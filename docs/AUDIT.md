@@ -1,5 +1,9 @@
 # Scaffold audit — 2026-10-09
 
+This is the historical milestone-0 audit snapshot. Milestone 1 was subsequently
+implemented in `packages/core`; see `docs/MVP.md` and `packages/core/README.md` for
+current core status. The discrepancy table below records the pre-core scaffold.
+
 ## Scope and sources
 
 Read the complete `AGENTS.md`, `docs/ARCHITECTURE.md`, `docs/ASSET_SPEC.md`, and

@@ -30,11 +30,15 @@ Validate an entire loop from editable character recipe to **two correct independ
 - [ ] `AGENTS.md` and docs are present and used by Codex.
 
 ### 1 — Character core
-- [ ] Versioned CharacterRecipe and Zod runtime parser.
-- [ ] Deterministic default/seeded random character generation.
-- [ ] Valid and invalid trait/body/outfit combinations tested.
-- [ ] JSON round-trip preserves appearance and schema version.
-- [ ] Core imports neither React nor PixiJS.
+- [x] Versioned CharacterRecipe and Zod runtime parser.
+- [x] Deterministic default/seeded random character generation.
+- [x] Valid and invalid trait/body/outfit combinations tested.
+- [x] JSON round-trip preserves appearance and schema version.
+- [x] Core imports neither React nor PixiJS.
+
+Implemented in `packages/core`; see its README for the version-1 contract, discrete
+anatomy presets, composable trait rules, deterministic seed contract and six example
+recipes. Registry/renderers and the legacy demo UI remain separate future tasks.
 
 ### 2 — Asset registry + RenderPlan
 - [ ] Manifest parser and indexed lookups by ID, target, pose, direction, body.

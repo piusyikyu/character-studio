@@ -4,7 +4,7 @@ A TypeScript pnpm workspace for one versioned CharacterRecipe and two independen
 asset-backed outputs: detailed 1024 × 1536 T-pose artwork and pixel 128 × 192 idle
 sprites, each with eight separately authored facings.
 
-This repository is at the workspace-scaffold stage. The existing React application
+The shared character core (MVP milestone 1) is implemented. The existing React application
 is the original empty-preview demo; it does not yet implement the specified recipe,
 manifest, or rendering pipelines. Read [AGENTS.md](AGENTS.md),
 [architecture](docs/ARCHITECTURE.md), [asset specification](docs/ASSET_SPEC.md), and
@@ -45,7 +45,7 @@ see [Playwright's browser setup](https://playwright.dev/docs/browsers).
 | Location | Purpose |
 | --- | --- |
 | `apps/studio` | Working React/Vite/Tailwind/Zustand demo |
-| `packages/core` | Empty milestone 1 boundary for platform-independent recipe/trait/compatibility logic |
+| `packages/core` | Versioned CharacterRecipe, anatomy/ancestry/compatibility, serialization, seeded generation and examples |
 | `packages/asset-registry` | Existing flat demo registry; versioned manifests and RenderPlans await milestone 2 |
 | `packages/renderer-detailed` | Empty milestone 3 boundary for native detailed composition with PixiJS v8 |
 | `packages/renderer-pixel` | Empty milestone 3 boundary for deterministic native CPU RGBA composition |
@@ -58,8 +58,9 @@ see [Playwright's browser setup](https://playwright.dev/docs/browsers).
 Packages are private, consume each other with `workspace:*`, and export TypeScript
 source for development in Vite and Vitest. Library builds generate ESM and declaration
 artifacts in each package's `dist`; the application build is in `apps/studio/dist`.
-They are not configured for external publishing. New milestone packages export
-nothing until implemented. Builds check scaffold wiring, not MVP completion.
+They are not configured for external publishing. The detailed/pixel renderer and
+asset-validator scaffolds export nothing until implemented. Builds also check
+scaffold wiring; a successful build does not complete rendering milestones.
 Core excludes DOM/Node ambient types and rejects platform/UI/rendering imports in
 ESLint. The pixel package also excludes browser ambient types.
 
@@ -90,7 +91,11 @@ direction and layer asset IDs. Both backends return
 `{ status: 'scaffold', composedLayers: 0 }` and leave previews empty. These APIs are
 not the new target-independent CharacterRecipe or RenderPlan contract.
 
-Milestone 1 will implement core and migrate recipe consumers. Milestone 2 will
+Milestone 1 core is implemented and documented in [packages/core/README.md](packages/core/README.md).
+It provides schema-validated recipe creation, canonical JSON, deterministic seeded
+generation and six examples including all three ancestry hybrid pairs. The current
+demo remains on its legacy contract until editor/registry integration is implemented.
+Milestone 2 will
 implement versioned manifests, coverage/compatibility diagnostics and render plans;
 milestone 3 will implement the two target-native compositors and export. Milestone 4
 will replace demo backend selection with target selection and add the complete
@@ -104,7 +109,8 @@ default final export uses pure `#00FF00` (RGBA `0,255,0,255`) and bright yellow
 must be an explicit choice. No approved art, synthetic layered fixtures, compositor,
 or export pipeline exists yet.
 
-Unit tests cover legacy schemas, state and mocked renderer lifecycles. Browser smoke
+Unit tests cover core recipe/trait/body/outfit compatibility, serialization and
+seeded generation, plus legacy schemas, state and mocked renderer lifecycles. Browser smoke
 tests cover the real demo controls and preview initialization, not anatomical QA or
 MVP pixel correctness. Later rendering tests must compare exact RGBA, integer native
 coordinates/dimensions, palette isolation and deterministic hashes. Human visual

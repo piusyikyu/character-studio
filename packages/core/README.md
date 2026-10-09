@@ -4,11 +4,13 @@ Platform-independent appearance contracts for MVP milestone 1. Core exports a
 strict version-1 CharacterRecipe parser, authored anatomy presets, composable
 human/elf/vampire ancestry traits, compatibility diagnostics, defaults, canonical
 JSON serialization, and the eight directions/two native target specifications.
+It also provides seeded random generation and six validated example recipes.
 
 ```ts
 import {
   createCharacterRecipe, characterRecipeSchema,
   serializeCharacterRecipe, deserializeCharacterRecipe,
+  generateRandomCharacter, EXAMPLE_CHARACTER_RECIPES,
 } from '@female-character-studio/core';
 
 const recipe = createCharacterRecipe({
@@ -19,6 +21,8 @@ const recipe = createCharacterRecipe({
 });
 const imported = deserializeCharacterRecipe(serializeCharacterRecipe(recipe));
 characterRecipeSchema.parse(imported);
+const random = generateRandomCharacter('my-character-seed');
+const example = EXAMPLE_CHARACTER_RECIPES.find(({ id }) => id === 'elf-vampire');
 ```
 
 ## Recipe contract
@@ -74,6 +78,32 @@ Serialization validates first and emits compact canonical JSON with schema key
 order and canonical trait order. Deserialization validates again, preserving all
 appearance choices; malformed JSON raises SyntaxError and invalid recipes raise
 ZodError. No migration is performed for an unsupported version.
+
+## Deterministic generation and examples
+
+`generateRandomCharacter(seed)` accepts any string (including empty/Unicode strings)
+or safe integer, including zero and negative values. Fractional, non-finite and
+unsafe numeric seeds and unsupported runtime types fail explicitly. Numeric `42`
+and string `"42"` use distinct seed namespaces. Each call owns its generator state;
+no clock, platform API or `Math.random` is used.
+
+`RANDOM_GENERATION_VERSION` is `1`: a tagged UTF-16 seed is hashed with 32-bit
+FNV-1a arithmetic and drives a Mulberry-style sequence. Option order and draw order
+are part of this generation version and guarded by a fixed regression recipe.
+Changes to those rules require a deliberate generation-version change. Seeds are
+not stored in CharacterRecipe; serialized appearance reproduces the selected
+identity without requiring random generation later. Target/direction/catalog
+availability is never guessed by this generator.
+
+Generation chooses single-species or two-species ancestry, compatible ear/fang
+traits, one authored body preset, and independent material choices. Matching chest,
+proportions, height and outfit fit are derived by the same validated factory used
+for hand-authored recipes.
+
+`EXAMPLE_CHARACTER_RECIPES` contains immutable `{ id, recipe }` entries:
+`human-balanced`, `elf-slender`, `vampire-balanced`, `human-elf`, `elf-vampire`, and
+`human-vampire`. Every example validates and round-trips through recipe JSON. They
+are semantic recipe fixtures, not assets or approval records.
 
 TypeScript excludes DOM and ambient Node types. ESLint disallows React, PixiJS,
 Node built-ins, registry, renderer, and legacy character-engine imports. Core must
