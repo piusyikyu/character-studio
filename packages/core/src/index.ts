@@ -7,3 +7,4 @@ export type { CharacterRecipe, CharacterRecipeOptions } from './recipe';
 export * from './serialization';
 export * from './random';
 export * from './examples';
+export * from './render-plan';

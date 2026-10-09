@@ -84,6 +84,9 @@ importers:
       '@character-studio/character-engine':
         specifier: workspace:*
         version: link:../character-engine
+      '@character-studio/core':
+        specifier: workspace:*
+        version: link:../core
       zod:
         specifier: ^4.0.0
         version: 4.6.5
