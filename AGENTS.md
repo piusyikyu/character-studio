@@ -2,7 +2,7 @@
 ## Development environment: WSL2
 
 - Primary environment: Ubuntu under WSL2.
-- Repository location: /home/<user>/projects/female-character-studio.
+- Repository location: /home/<user>/projects/character-studio.
 - Run Node.js, pnpm, Git, Codex and tests inside WSL.
 - Use Bash syntax for scripts and terminal commands.
 - Do not use PowerShell commands in project setup scripts.

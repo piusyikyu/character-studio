@@ -1,0 +1,24 @@
+{
+  "name": "@female-character-studio/app",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": { "dev": "vite --host 127.0.0.1", "build": "tsc --noEmit && vite build", "typecheck": "tsc --noEmit", "preview": "vite preview --host 127.0.0.1" },
+  "dependencies": {
+    "@female-character-studio/asset-registry": "workspace:*",
+    "@female-character-studio/character-engine": "workspace:*",
+    "@female-character-studio/renderer-canvas": "workspace:*",
+    "@female-character-studio/renderer-pixi": "workspace:*",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "zustand": "^5.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "tailwindcss": "^4.0.0",
+    "vite": "^7.0.0"
+  }
+}

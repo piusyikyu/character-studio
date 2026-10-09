@@ -1,0 +1,9 @@
+{
+  "name": "@female-character-studio/renderer-pixi",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": { ".": "./src/index.ts" },
+  "scripts": { "build": "tsup src/index.ts --format esm --dts --clean", "typecheck": "tsc --noEmit" },
+  "dependencies": { "@female-character-studio/character-engine": "workspace:*", "pixi.js": "^8.0.0" }
+}
