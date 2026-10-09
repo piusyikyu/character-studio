@@ -159,6 +159,15 @@ importers:
       '@character-studio/core':
         specifier: workspace:*
         version: link:../../packages/core
+      '@character-studio/render-utils':
+        specifier: workspace:*
+        version: link:../../packages/render-utils
+      fast-png:
+        specifier: ^7.0.0
+        version: 7.0.1
+      zod:
+        specifier: ^4.0.0
+        version: 4.6.5
 
   tools/render-demo:
     dependencies:

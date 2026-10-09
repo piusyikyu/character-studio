@@ -1,0 +1,6 @@
+import { defineConfig } from 'tsup';
+
+export default defineConfig({
+  entry: ['src/index.ts', 'src/import-cli.ts'], format: ['esm'], dts: true, clean: true,
+  noExternal: [/^@character-studio\//, /^zod(?:\/|$)/, 'fast-png', 'pako', 'iobuffer'],
+});

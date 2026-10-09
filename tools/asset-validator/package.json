@@ -5,11 +5,14 @@
   "type": "module",
   "exports": { ".": "./src/index.ts" },
   "scripts": {
-    "build": "tsup src/index.ts --format esm --dts --clean",
+    "build": "tsup",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@character-studio/core": "workspace:*",
-    "@character-studio/asset-registry": "workspace:*"
+    "@character-studio/asset-registry": "workspace:*",
+    "@character-studio/render-utils": "workspace:*",
+    "fast-png": "^7.0.0",
+    "zod": "^4.0.0"
   }
 }

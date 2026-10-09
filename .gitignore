@@ -5,6 +5,7 @@ playwright-report/
 test-results/
 .vite/
 artifacts/
+assets/staging/
 assets/placeholder-v1/
 assets/detailed/placeholder-v1/
 assets/pixel/placeholder-v1/

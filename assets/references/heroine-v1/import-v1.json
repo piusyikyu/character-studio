@@ -1,0 +1,896 @@
+{
+  "schemaVersion": 1,
+  "packId": "heroine-v1",
+  "pipelineVersion": 1,
+  "target": "detailed",
+  "sourceKind": "flattened-reference",
+  "pose": "standing-reference",
+  "nativeSize": {
+    "width": 1024,
+    "height": 1536
+  },
+  "reviewStatus": "needs-human-review",
+  "matte": {
+    "edgeRadius": 6,
+    "greenExcess": 6,
+    "backgroundMinGreen": 150,
+    "backgroundMaxRedBlue": 70,
+    "minimumCoverage": 0.03,
+    "baselineTolerance": 8
+  },
+  "frames": {
+    "N": {
+      "sourceSha256": "9e45a0718bb589555440722ff822b6f855274506c2c293b4deb78db30642f100",
+      "labelExclusions": [],
+      "anchors": [
+        {
+          "id": "head_center",
+          "position": {
+            "x": 510,
+            "y": 175
+          },
+          "confidence": "low",
+          "evidence": "hair-silhouette",
+          "note": "Approximate visible head/hair centre; not a skull or modular origin."
+        },
+        {
+          "id": "neck_base",
+          "position": null,
+          "confidence": "low",
+          "evidence": "occluded",
+          "note": "Not observable in this flattened illustration. No hidden point inferred."
+        },
+        {
+          "id": "shoulder_screen_left",
+          "position": {
+            "x": 406,
+            "y": 320
+          },
+          "confidence": "low",
+          "evidence": "visible-landmark",
+          "note": "Visible shoulder contour candidate. Screen side only; anatomical side requires human review."
+        },
+        {
+          "id": "shoulder_screen_right",
+          "position": {
+            "x": 614,
+            "y": 320
+          },
+          "confidence": "low",
+          "evidence": "visible-landmark",
+          "note": "Visible shoulder contour candidate. Screen side only; anatomical side requires human review."
+        },
+        {
+          "id": "waist_center",
+          "position": {
+            "x": 513,
+            "y": 509
+          },
+          "confidence": "low",
+          "evidence": "garment-silhouette",
+          "note": "Observed garment contour at approximate body level; not recovered anatomy."
+        },
+        {
+          "id": "hip_screen_left",
+          "position": {
+            "x": 439,
+            "y": 600
+          },
+          "confidence": "low",
+          "evidence": "garment-silhouette",
+          "note": "Observed garment contour at approximate body level; not recovered anatomy."
+        },
+        {
+          "id": "hip_screen_right",
+          "position": {
+            "x": 593,
+            "y": 600
+          },
+          "confidence": "low",
+          "evidence": "garment-silhouette",
+          "note": "Observed garment contour at approximate body level; not recovered anatomy."
+        },
+        {
+          "id": "foot_screen_left",
+          "position": {
+            "x": 478,
+            "y": 1468
+          },
+          "confidence": "low",
+          "evidence": "visible-landmark",
+          "note": "Observed shoe contact candidate; review against foot-region measurement."
+        },
+        {
+          "id": "foot_screen_right",
+          "position": {
+            "x": 544,
+            "y": 1468
+          },
+          "confidence": "low",
+          "evidence": "visible-landmark",
+          "note": "Observed shoe contact candidate; review against foot-region measurement."
+        }
+      ],
+      "footSearchRegions": [
+        {
+          "x": 446,
+          "y": 1420,
+          "width": 65,
+          "height": 80
+        },
+        {
+          "x": 513,
+          "y": 1420,
+          "width": 66,
+          "height": 80
+        }
+      ]
+    },
+    "NE": {
+      "sourceSha256": "29ad9cdf60337a58968b0d9a86ffccbfb396de8adaaf329ffcaf9b7fbfb27646",
+      "labelExclusions": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 180,
+          "height": 110
+        }
+      ],
+      "anchors": [
+        {
+          "id": "head_center",
+          "position": {
+            "x": 581,
+            "y": 162
+          },
+          "confidence": "low",
+          "evidence": "hair-silhouette",
+          "note": "Approximate visible head/hair centre; not a skull or modular origin."
+        },
+        {
+          "id": "neck_base",
+          "position": {
+            "x": 615,
+            "y": 279
+          },
+          "confidence": "low",
+          "evidence": "visible-landmark",
+          "note": "Visible neck/skin transition candidate; attachment position needs review."
+        },
+        {
+          "id": "shoulder_screen_left",
+          "position": null,
+          "confidence": "low",
+          "evidence": "occluded",
+          "note": "Not observable in this flattened illustration. No hidden point inferred."
+        },
+        {
+          "id": "shoulder_screen_right",
+          "position": {
+            "x": 653,
+            "y": 306
+          },
+          "confidence": "low",
+          "evidence": "visible-landmark",
+          "note": "Visible shoulder contour candidate. Screen side only; anatomical side requires human review."
+        },
+        {
+          "id": "waist_center",
+          "position": {
+            "x": 605,
+            "y": 510
+          },
+          "confidence": "low",
+          "evidence": "garment-silhouette",
+          "note": "Observed garment contour at approximate body level; not recovered anatomy."
+        },
+        {
+          "id": "hip_screen_left",
+          "position": null,
+          "confidence": "low",
+          "evidence": "occluded",
+          "note": "Not observable in this flattened illustration. No hidden point inferred."
+        },
+        {
+          "id": "hip_screen_right",
+          "position": {
+            "x": 692,
+            "y": 601
+          },
+          "confidence": "low",
+          "evidence": "garment-silhouette",
+          "note": "Observed garment contour at approximate body level; not recovered anatomy."
+        },
+        {
+          "id": "foot_screen_left",
+          "position": null,
+          "confidence": "low",
+          "evidence": "occluded",
+          "note": "Not observable in this flattened illustration. No hidden point inferred."
+        },
+        {
+          "id": "foot_screen_right",
+          "position": {
+            "x": 734,
+            "y": 1453
+          },
+          "confidence": "low",
+          "evidence": "visible-landmark",
+          "note": "Observed shoe contact candidate; review against foot-region measurement."
+        }
+      ],
+      "footSearchRegions": [
+        {
+          "x": 665,
+          "y": 1410,
+          "width": 120,
+          "height": 80
+        }
+      ]
+    },
+    "E": {
+      "sourceSha256": "287415787e2ebc4f362f6b1f39aa81438edc43a33cc9d49a749990226ceda6ef",
+      "labelExclusions": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 180,
+          "height": 110
+        }
+      ],
+      "anchors": [
+        {
+          "id": "head_center",
+          "position": {
+            "x": 558,
+            "y": 165
+          },
+          "confidence": "low",
+          "evidence": "hair-silhouette",
+          "note": "Approximate visible head/hair centre; not a skull or modular origin."
+        },
+        {
+          "id": "neck_base",
+          "position": {
+            "x": 561,
+            "y": 281
+          },
+          "confidence": "low",
+          "evidence": "visible-landmark",
+          "note": "Visible neck/skin transition candidate; attachment position needs review."
+        },
+        {
+          "id": "shoulder_screen_left",
+          "position": null,
+          "confidence": "low",
+          "evidence": "occluded",
+          "note": "Not observable in this flattened illustration. No hidden point inferred."
+        },
+        {
+          "id": "shoulder_screen_right",
+          "position": {
+            "x": 521,
+            "y": 306
+          },
+          "confidence": "low",
+          "evidence": "visible-landmark",
+          "note": "Visible shoulder contour candidate. Screen side only; anatomical side requires human review."
+        },
+        {
+          "id": "waist_center",
+          "position": {
+            "x": 610,
+            "y": 511
+          },
+          "confidence": "low",
+          "evidence": "garment-silhouette",
+          "note": "Observed garment contour at approximate body level; not recovered anatomy."
+        },
+        {
+          "id": "hip_screen_left",
+          "position": null,
+          "confidence": "low",
+          "evidence": "occluded",
+          "note": "Not observable in this flattened illustration. No hidden point inferred."
+        },
+        {
+          "id": "hip_screen_right",
+          "position": {
+            "x": 651,
+            "y": 616
+          },
+          "confidence": "low",
+          "evidence": "garment-silhouette",
+          "note": "Observed garment contour at approximate body level; not recovered anatomy."
+        },
+        {
+          "id": "foot_screen_left",
+          "position": null,
+          "confidence": "low",
+          "evidence": "occluded",
+          "note": "Not observable in this flattened illustration. No hidden point inferred."
+        },
+        {
+          "id": "foot_screen_right",
+          "position": {
+            "x": 643,
+            "y": 1450
+          },
+          "confidence": "low",
+          "evidence": "visible-landmark",
+          "note": "Observed shoe contact candidate; review against foot-region measurement."
+        }
+      ],
+      "footSearchRegions": [
+        {
+          "x": 560,
+          "y": 1400,
+          "width": 150,
+          "height": 80
+        }
+      ]
+    },
+    "SE": {
+      "sourceSha256": "565816ff9d58843e41b9fccd9f1c987790e4cbcc96f4edc635e141695734a31a",
+      "labelExclusions": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 180,
+          "height": 110
+        }
+      ],
+      "anchors": [
+        {
+          "id": "head_center",
+          "position": {
+            "x": 554,
+            "y": 164
+          },
+          "confidence": "low",
+          "evidence": "hair-silhouette",
+          "note": "Approximate visible head/hair centre; not a skull or modular origin."
+        },
+        {
+          "id": "neck_base",
+          "position": {
+            "x": 551,
+            "y": 275
+          },
+          "confidence": "low",
+          "evidence": "visible-landmark",
+          "note": "Visible neck/skin transition candidate; attachment position needs review."
+        },
+        {
+          "id": "shoulder_screen_left",
+          "position": {
+            "x": 460,
+            "y": 291
+          },
+          "confidence": "low",
+          "evidence": "visible-landmark",
+          "note": "Visible shoulder contour candidate. Screen side only; anatomical side requires human review."
+        },
+        {
+          "id": "shoulder_screen_right",
+          "position": {
+            "x": 636,
+            "y": 311
+          },
+          "confidence": "low",
+          "evidence": "visible-landmark",
+          "note": "Visible shoulder contour candidate. Screen side only; anatomical side requires human review."
+        },
+        {
+          "id": "waist_center",
+          "position": {
+            "x": 577,
+            "y": 510
+          },
+          "confidence": "low",
+          "evidence": "garment-silhouette",
+          "note": "Observed garment contour at approximate body level; not recovered anatomy."
+        },
+        {
+          "id": "hip_screen_left",
+          "position": {
+            "x": 493,
+            "y": 604
+          },
+          "confidence": "low",
+          "evidence": "garment-silhouette",
+          "note": "Observed garment contour at approximate body level; not recovered anatomy."
+        },
+        {
+          "id": "hip_screen_right",
+          "position": {
+            "x": 648,
+            "y": 607
+          },
+          "confidence": "low",
+          "evidence": "garment-silhouette",
+          "note": "Observed garment contour at approximate body level; not recovered anatomy."
+        },
+        {
+          "id": "foot_screen_left",
+          "position": {
+            "x": 557,
+            "y": 1462
+          },
+          "confidence": "low",
+          "evidence": "visible-landmark",
+          "note": "Observed shoe contact candidate; review against foot-region measurement."
+        },
+        {
+          "id": "foot_screen_right",
+          "position": {
+            "x": 652,
+            "y": 1381
+          },
+          "confidence": "low",
+          "evidence": "visible-landmark",
+          "note": "Observed shoe contact candidate; review against foot-region measurement."
+        }
+      ],
+      "footSearchRegions": [
+        {
+          "x": 484,
+          "y": 1415,
+          "width": 150,
+          "height": 90
+        },
+        {
+          "x": 583,
+          "y": 1340,
+          "width": 142,
+          "height": 70
+        }
+      ],
+      "backgroundCorrections": [
+        {
+          "id": "se-curl-gap-v1",
+          "region": {
+            "x": 290,
+            "y": 720,
+            "width": 45,
+            "height": 60
+          },
+          "maxRedBlue": 160,
+          "note": "Remove the lighter mint-green screen inside the lower screen-left hair curl, preserving non-green hair and its antialiased boundary."
+        }
+      ]
+    },
+    "S": {
+      "sourceSha256": "857aa1c7efffab571e8761fd8beac340748ab916b48458504d287510caf2a54f",
+      "labelExclusions": [],
+      "anchors": [
+        {
+          "id": "head_center",
+          "position": {
+            "x": 511,
+            "y": 169
+          },
+          "confidence": "low",
+          "evidence": "hair-silhouette",
+          "note": "Approximate visible head/hair centre; not a skull or modular origin."
+        },
+        {
+          "id": "neck_base",
+          "position": {
+            "x": 512,
+            "y": 285
+          },
+          "confidence": "low",
+          "evidence": "visible-landmark",
+          "note": "Visible neck/skin transition candidate; attachment position needs review."
+        },
+        {
+          "id": "shoulder_screen_left",
+          "position": {
+            "x": 413,
+            "y": 311
+          },
+          "confidence": "low",
+          "evidence": "visible-landmark",
+          "note": "Visible shoulder contour candidate. Screen side only; anatomical side requires human review."
+        },
+        {
+          "id": "shoulder_screen_right",
+          "position": {
+            "x": 608,
+            "y": 311
+          },
+          "confidence": "low",
+          "evidence": "visible-landmark",
+          "note": "Visible shoulder contour candidate. Screen side only; anatomical side requires human review."
+        },
+        {
+          "id": "waist_center",
+          "position": {
+            "x": 512,
+            "y": 520
+          },
+          "confidence": "low",
+          "evidence": "garment-silhouette",
+          "note": "Observed garment contour at approximate body level; not recovered anatomy."
+        },
+        {
+          "id": "hip_screen_left",
+          "position": {
+            "x": 436,
+            "y": 602
+          },
+          "confidence": "low",
+          "evidence": "garment-silhouette",
+          "note": "Observed garment contour at approximate body level; not recovered anatomy."
+        },
+        {
+          "id": "hip_screen_right",
+          "position": {
+            "x": 601,
+            "y": 602
+          },
+          "confidence": "low",
+          "evidence": "garment-silhouette",
+          "note": "Observed garment contour at approximate body level; not recovered anatomy."
+        },
+        {
+          "id": "foot_screen_left",
+          "position": {
+            "x": 480,
+            "y": 1452
+          },
+          "confidence": "low",
+          "evidence": "visible-landmark",
+          "note": "Observed shoe contact candidate; review against foot-region measurement."
+        },
+        {
+          "id": "foot_screen_right",
+          "position": {
+            "x": 560,
+            "y": 1452
+          },
+          "confidence": "low",
+          "evidence": "visible-landmark",
+          "note": "Observed shoe contact candidate; review against foot-region measurement."
+        }
+      ],
+      "footSearchRegions": [
+        {
+          "x": 443,
+          "y": 1400,
+          "width": 75,
+          "height": 90
+        },
+        {
+          "x": 521,
+          "y": 1400,
+          "width": 78,
+          "height": 90
+        }
+      ]
+    },
+    "SW": {
+      "sourceSha256": "407b8199febdc33823c35175dcacfc5357627a1ef3a74f6d5e6af42d241a32ac",
+      "labelExclusions": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 180,
+          "height": 110
+        }
+      ],
+      "anchors": [
+        {
+          "id": "head_center",
+          "position": {
+            "x": 454,
+            "y": 175
+          },
+          "confidence": "low",
+          "evidence": "hair-silhouette",
+          "note": "Approximate visible head/hair centre; not a skull or modular origin."
+        },
+        {
+          "id": "neck_base",
+          "position": {
+            "x": 461,
+            "y": 288
+          },
+          "confidence": "low",
+          "evidence": "visible-landmark",
+          "note": "Visible neck/skin transition candidate; attachment position needs review."
+        },
+        {
+          "id": "shoulder_screen_left",
+          "position": {
+            "x": 390,
+            "y": 317
+          },
+          "confidence": "low",
+          "evidence": "visible-landmark",
+          "note": "Visible shoulder contour candidate. Screen side only; anatomical side requires human review."
+        },
+        {
+          "id": "shoulder_screen_right",
+          "position": {
+            "x": 562,
+            "y": 310
+          },
+          "confidence": "low",
+          "evidence": "visible-landmark",
+          "note": "Visible shoulder contour candidate. Screen side only; anatomical side requires human review."
+        },
+        {
+          "id": "waist_center",
+          "position": {
+            "x": 449,
+            "y": 519
+          },
+          "confidence": "low",
+          "evidence": "garment-silhouette",
+          "note": "Observed garment contour at approximate body level; not recovered anatomy."
+        },
+        {
+          "id": "hip_screen_left",
+          "position": {
+            "x": 363,
+            "y": 620
+          },
+          "confidence": "low",
+          "evidence": "garment-silhouette",
+          "note": "Observed garment contour at approximate body level; not recovered anatomy."
+        },
+        {
+          "id": "hip_screen_right",
+          "position": {
+            "x": 533,
+            "y": 610
+          },
+          "confidence": "low",
+          "evidence": "garment-silhouette",
+          "note": "Observed garment contour at approximate body level; not recovered anatomy."
+        },
+        {
+          "id": "foot_screen_left",
+          "position": {
+            "x": 303,
+            "y": 1480
+          },
+          "confidence": "low",
+          "evidence": "visible-landmark",
+          "note": "Observed shoe contact candidate; review against foot-region measurement."
+        },
+        {
+          "id": "foot_screen_right",
+          "position": {
+            "x": 461,
+            "y": 1410
+          },
+          "confidence": "low",
+          "evidence": "visible-landmark",
+          "note": "Observed shoe contact candidate; review against foot-region measurement."
+        }
+      ],
+      "footSearchRegions": [
+        {
+          "x": 238,
+          "y": 1425,
+          "width": 150,
+          "height": 90
+        },
+        {
+          "x": 408,
+          "y": 1370,
+          "width": 114,
+          "height": 60
+        }
+      ]
+    },
+    "W": {
+      "sourceSha256": "013ab4e8d7f50796b5e705a2df51e9ece8be7d9360729029528c7e3b5a475b02",
+      "labelExclusions": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 180,
+          "height": 110
+        }
+      ],
+      "anchors": [
+        {
+          "id": "head_center",
+          "position": {
+            "x": 451,
+            "y": 176
+          },
+          "confidence": "low",
+          "evidence": "hair-silhouette",
+          "note": "Approximate visible head/hair centre; not a skull or modular origin."
+        },
+        {
+          "id": "neck_base",
+          "position": {
+            "x": 450,
+            "y": 292
+          },
+          "confidence": "low",
+          "evidence": "visible-landmark",
+          "note": "Visible neck/skin transition candidate; attachment position needs review."
+        },
+        {
+          "id": "shoulder_screen_left",
+          "position": {
+            "x": 475,
+            "y": 305
+          },
+          "confidence": "low",
+          "evidence": "visible-landmark",
+          "note": "Visible shoulder contour candidate. Screen side only; anatomical side requires human review."
+        },
+        {
+          "id": "shoulder_screen_right",
+          "position": null,
+          "confidence": "low",
+          "evidence": "occluded",
+          "note": "Not observable in this flattened illustration. No hidden point inferred."
+        },
+        {
+          "id": "waist_center",
+          "position": {
+            "x": 387,
+            "y": 516
+          },
+          "confidence": "low",
+          "evidence": "garment-silhouette",
+          "note": "Observed garment contour at approximate body level; not recovered anatomy."
+        },
+        {
+          "id": "hip_screen_left",
+          "position": {
+            "x": 351,
+            "y": 614
+          },
+          "confidence": "low",
+          "evidence": "garment-silhouette",
+          "note": "Observed garment contour at approximate body level; not recovered anatomy."
+        },
+        {
+          "id": "hip_screen_right",
+          "position": null,
+          "confidence": "low",
+          "evidence": "occluded",
+          "note": "Not observable in this flattened illustration. No hidden point inferred."
+        },
+        {
+          "id": "foot_screen_left",
+          "position": {
+            "x": 371,
+            "y": 1439
+          },
+          "confidence": "low",
+          "evidence": "visible-landmark",
+          "note": "Observed shoe contact candidate; review against foot-region measurement."
+        },
+        {
+          "id": "foot_screen_right",
+          "position": null,
+          "confidence": "low",
+          "evidence": "occluded",
+          "note": "Not observable in this flattened illustration. No hidden point inferred."
+        }
+      ],
+      "footSearchRegions": [
+        {
+          "x": 307,
+          "y": 1385,
+          "width": 166,
+          "height": 80
+        }
+      ]
+    },
+    "NW": {
+      "sourceSha256": "65d61333d41122762b26b16fa41eda205499e6c4959f19dab3b98ada456972f6",
+      "labelExclusions": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 180,
+          "height": 110
+        }
+      ],
+      "anchors": [
+        {
+          "id": "head_center",
+          "position": {
+            "x": 447,
+            "y": 158
+          },
+          "confidence": "low",
+          "evidence": "hair-silhouette",
+          "note": "Approximate visible head/hair centre; not a skull or modular origin."
+        },
+        {
+          "id": "neck_base",
+          "position": {
+            "x": 419,
+            "y": 265
+          },
+          "confidence": "low",
+          "evidence": "visible-landmark",
+          "note": "Visible neck/skin transition candidate; attachment position needs review."
+        },
+        {
+          "id": "shoulder_screen_left",
+          "position": {
+            "x": 400,
+            "y": 299
+          },
+          "confidence": "low",
+          "evidence": "visible-landmark",
+          "note": "Visible shoulder contour candidate. Screen side only; anatomical side requires human review."
+        },
+        {
+          "id": "shoulder_screen_right",
+          "position": null,
+          "confidence": "low",
+          "evidence": "occluded",
+          "note": "Not observable in this flattened illustration. No hidden point inferred."
+        },
+        {
+          "id": "waist_center",
+          "position": {
+            "x": 452,
+            "y": 510
+          },
+          "confidence": "low",
+          "evidence": "garment-silhouette",
+          "note": "Observed garment contour at approximate body level; not recovered anatomy."
+        },
+        {
+          "id": "hip_screen_left",
+          "position": {
+            "x": 379,
+            "y": 614
+          },
+          "confidence": "low",
+          "evidence": "garment-silhouette",
+          "note": "Observed garment contour at approximate body level; not recovered anatomy."
+        },
+        {
+          "id": "hip_screen_right",
+          "position": null,
+          "confidence": "low",
+          "evidence": "occluded",
+          "note": "Not observable in this flattened illustration. No hidden point inferred."
+        },
+        {
+          "id": "foot_screen_left",
+          "position": {
+            "x": 316,
+            "y": 1431
+          },
+          "confidence": "low",
+          "evidence": "visible-landmark",
+          "note": "Observed shoe contact candidate; review against foot-region measurement."
+        },
+        {
+          "id": "foot_screen_right",
+          "position": null,
+          "confidence": "low",
+          "evidence": "occluded",
+          "note": "Not observable in this flattened illustration. No hidden point inferred."
+        }
+      ],
+      "footSearchRegions": [
+        {
+          "x": 256,
+          "y": 1385,
+          "width": 125,
+          "height": 65
+        }
+      ]
+    }
+  },
+  "processingRevision": 2
+}

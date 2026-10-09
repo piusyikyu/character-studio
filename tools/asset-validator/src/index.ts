@@ -1,2 +1,4 @@
-// Asset auditing will be added after the versioned manifest parser exists.
-export {};
+export { importReferencePack } from './reference-import';
+export { matteReference } from './matte';
+export { referenceImportSettingsSchema } from './schema';
+export type { ReferenceImportSettings, AnchorCandidate, Rectangle } from './schema';
