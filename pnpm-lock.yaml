@@ -44,9 +44,21 @@ importers:
       '@character-studio/character-engine':
         specifier: workspace:*
         version: link:../../packages/character-engine
+      '@character-studio/core':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@character-studio/render-utils':
+        specifier: workspace:*
+        version: link:../../packages/render-utils
       '@character-studio/renderer-canvas':
         specifier: workspace:*
         version: link:../../packages/renderer-canvas
+      '@character-studio/renderer-detailed':
+        specifier: workspace:*
+        version: link:../../packages/renderer-detailed
+      '@character-studio/renderer-pixel':
+        specifier: workspace:*
+        version: link:../../packages/renderer-pixel
       '@character-studio/renderer-pixi':
         specifier: workspace:*
         version: link:../../packages/renderer-pixi
@@ -103,6 +115,15 @@ importers:
         specifier: ^4.0.0
         version: 4.6.5
 
+  packages/render-utils:
+    dependencies:
+      '@character-studio/core':
+        specifier: workspace:*
+        version: link:../core
+      fast-png:
+        specifier: ^7.0.0
+        version: 7.0.1
+
   packages/renderer-canvas:
     dependencies:
       '@character-studio/character-engine':
@@ -114,6 +135,9 @@ importers:
       '@character-studio/core':
         specifier: workspace:*
         version: link:../core
+      '@character-studio/render-utils':
+        specifier: workspace:*
+        version: link:../render-utils
       pixi.js:
         specifier: ^8.0.0
         version: 8.22.0
@@ -123,6 +147,9 @@ importers:
       '@character-studio/core':
         specifier: workspace:*
         version: link:../core
+      '@character-studio/render-utils':
+        specifier: workspace:*
+        version: link:../render-utils
 
   packages/renderer-pixi:
     dependencies:
@@ -141,6 +168,24 @@ importers:
       '@character-studio/core':
         specifier: workspace:*
         version: link:../../packages/core
+
+  tools/render-demo:
+    dependencies:
+      '@character-studio/asset-registry':
+        specifier: workspace:*
+        version: link:../../packages/asset-registry
+      '@character-studio/core':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@character-studio/render-utils':
+        specifier: workspace:*
+        version: link:../../packages/render-utils
+      '@character-studio/renderer-pixel':
+        specifier: workspace:*
+        version: link:../../packages/renderer-pixel
+      '@playwright/test':
+        specifier: 1.64.0
+        version: 1.64.0
 
 packages:
 
@@ -915,6 +960,9 @@ packages:
   '@types/node@24.19.1':
     resolution: {integrity: sha512-aS3/DG0oM05K0RIXXP+hKjinGG5IgSSVGzswZxW3O0sS3pH4/fycXundUC9XsszgKCk4gHXylTEK6hyFxVxnoQ==}
 
+  '@types/pako@2.0.4':
+    resolution: {integrity: sha512-VWDCbrLeVXJM9fihYodcLiIv0ku+AlOa/TQ1SvYOaBuyrSKgEcro95LJyIsJ4vSo6BXIxOKxiJAat04CmST9Fw==}
+
   '@types/react-dom@19.3.0':
     resolution: {integrity: sha512-ZI7bU42mZXXKHn/qNLEw2IrbiINU7X5+vfgdixBHkCNpYWXjKgfQ/P+uyGb5CjOLB9UcnTeg3rylQtV2hym44Q==}
     peerDependencies:
@@ -1215,6 +1263,9 @@ packages:
   fast-levenshtein@2.0.6:
     resolution: {integrity: sha512-DCXu6Ifhqcks7TZKY3Hxp3y6qphY5SJZmrWMDrKcERSOXWQdMhU9Ig/PYrzyw/ul9jOIyh0N4M0tbC5hodg8dw==}
 
+  fast-png@7.0.1:
+    resolution: {integrity: sha512-aD5BELuxRrAPlRhb9V/z1PVMFJy3cUXqIvoxM3IQ+7Rku+T4cbXxWclZ47f1XwhViEl4n30TAN8JmvTJKKc2Dw==}
+
   fdir@6.5.0:
     resolution: {integrity: sha512-tIbYtZbucOs0BRGqPJkshJUYdL+SDH7dVM8gjy+ERp3WAUjLEFJE+02kanyHtwjWOnwrKYBiwAmM0p4kLJAnXg==}
     engines: {node: '>=12.0.0'}
@@ -1284,6 +1335,9 @@ packages:
   imurmurhash@0.1.4:
     resolution: {integrity: sha512-JmXMZ6wuvDmLiHEml9ykzqO6lwFbof0GG4IkcGaENdCRDDmMVnny7s5HsIgHCbaq0w2MyPhDqkhTUgS2LU2PHA==}
     engines: {node: '>=0.8.19'}
+
+  iobuffer@6.0.1:
+    resolution: {integrity: sha512-SZWYkWNfjIXIBYSDpXDYIgshqtbOPsi4lviawAEceR1Kqk+sHDlcQjWrzNQsii80AyBY0q5c8HCTNjqo74ul+Q==}
 
   is-extglob@2.1.1:
     resolution: {integrity: sha512-SbKbANkN603Vi4jEZv49LeVJMn4yGwsbzZworEoyEiutsN3nJYdbO36zfhGJ6QEDpOZIFkDtnq5JRxmvl3jsoQ==}
@@ -1475,6 +1529,9 @@ packages:
   p-locate@5.0.0:
     resolution: {integrity: sha512-LaNjtRWUBY++zB5nE/NwcaoMylSPk+S+ZHNB1TzdbMJMny6dynpAGt7X/tl/QYq3TIeE6nxHppbo2LGymrG5Pw==}
     engines: {node: '>=10'}
+
+  pako@2.2.0:
+    resolution: {integrity: sha512-zJq6RP/5q+TO2OpFV3FHzlPnFjmkb7Nc99a5SNjJE+uu/PkpChs+NIZSSzbBoD+6kjiISXjfYdwj1ZRQ81dz/w==}
 
   parse-svg-path@0.2.0:
     resolution: {integrity: sha512-Tf7FFIrguPKQwzD4pWnYkR2VOv3raoHeKED80Bm+BYHI3KxC8KsgsGC5+fSMzAGDA6UEk4bHvmi+RsjmL3khpg==}
@@ -2396,6 +2453,8 @@ snapshots:
     dependencies:
       undici-types: 7.24.6
 
+  '@types/pako@2.0.4': {}
+
   '@types/react-dom@19.3.0(@types/react@19.3.0)':
     dependencies:
       '@types/react': 19.3.0
@@ -2785,6 +2844,12 @@ snapshots:
 
   fast-levenshtein@2.0.6: {}
 
+  fast-png@7.0.1:
+    dependencies:
+      '@types/pako': 2.0.4
+      iobuffer: 6.0.1
+      pako: 2.2.0
+
   fdir@6.5.0(picomatch@4.0.7):
     optionalDependencies:
       picomatch: 4.0.7
@@ -2842,6 +2907,8 @@ snapshots:
   ignore@7.0.12: {}
 
   imurmurhash@0.1.4: {}
+
+  iobuffer@6.0.1: {}
 
   is-extglob@2.1.1: {}
 
@@ -2990,6 +3057,8 @@ snapshots:
   p-locate@5.0.0:
     dependencies:
       p-limit: 3.1.0
+
+  pako@2.2.0: {}
 
   parse-svg-path@0.2.0: {}
 

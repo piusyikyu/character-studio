@@ -4,9 +4,10 @@ A TypeScript pnpm workspace for one versioned CharacterRecipe and two independen
 asset-backed outputs: detailed 1024 × 1536 T-pose artwork and pixel 128 × 192 idle
 sprites, each with eight separately authored facings.
 
-The shared character core (MVP milestone 1) is implemented. The existing React application
-is the original empty-preview demo; it does not yet implement the specified recipe,
-manifest, or rendering pipelines. Read [AGENTS.md](AGENTS.md),
+The character core, asset planner and placeholder render pipelines (MVP milestones
+1–3) are implemented. The original editor remains an empty-preview demo; a separate
+[read-only renderer demonstration](tools/render-demo/README.md) shows all eight
+facings and exports for both native targets. Read [AGENTS.md](AGENTS.md),
 [architecture](docs/ARCHITECTURE.md), [asset specification](docs/ASSET_SPEC.md), and
 [MVP milestones](docs/MVP.md) before changing those contracts. The scaffold audit
 is recorded in [docs/AUDIT.md](docs/AUDIT.md).
@@ -28,6 +29,7 @@ pnpm install --frozen-lockfile
 pnpm test:e2e:install
 pnpm verify
 pnpm test:e2e
+pnpm demo:assets
 pnpm dev
 ```
 
@@ -45,10 +47,12 @@ see [Playwright's browser setup](https://playwright.dev/docs/browsers).
 | Location | Purpose |
 | --- | --- |
 | `apps/studio` | Working React/Vite/Tailwind/Zustand demo |
-| `packages/core` | Versioned CharacterRecipe, anatomy/ancestry/compatibility, serialization, seeded generation and examples |
-| `packages/asset-registry` | Existing flat demo registry; versioned manifests and RenderPlans await milestone 2 |
-| `packages/renderer-detailed` | Empty milestone 3 boundary for native detailed composition with PixiJS v8 |
-| `packages/renderer-pixel` | Empty milestone 3 boundary for deterministic native CPU RGBA composition |
+| `packages/core` | Versioned CharacterRecipe and RenderPlan schemas, anatomy/traits, native planes/anchors, serialization, seeded generation and examples |
+| `packages/asset-registry` | Versioned catalogs/manifests, compatibility/coverage diagnostics, composition planning and synthetic metadata fixtures; preserved legacy registry |
+| `packages/renderer-detailed` | PixiJS v8 native detailed composition and standalone PNG export |
+| `packages/renderer-pixel` | Deterministic integer CPU RGBA composition, nearest preview and pixel PNG/sheet export |
+| `packages/render-utils` | Shared indexed palettes, native image validation, PNG codec and export decoration |
+| `tools/render-demo` | Separate native placeholder authoring, generated assets, read-only demonstration and headless exports |
 | `tools/asset-validator` | Empty boundary for future portable Node asset audits; no audit CLI yet |
 | `assets/source` | Reserved for versioned approved source imagery |
 | `assets/detailed`, `assets/pixel` | Reserved for independently authored target-native asset families |
@@ -58,9 +62,9 @@ see [Playwright's browser setup](https://playwright.dev/docs/browsers).
 Packages are private, consume each other with `workspace:*`, and export TypeScript
 source for development in Vite and Vitest. Library builds generate ESM and declaration
 artifacts in each package's `dist`; the application build is in `apps/studio/dist`.
-They are not configured for external publishing. The detailed/pixel renderer and
-asset-validator scaffolds export nothing until implemented. Builds also check
-scaffold wiring; a successful build does not complete rendering milestones.
+They are not configured for external publishing. The asset-validator scaffold
+still has no audit CLI. The Node demo tools bundle workspace dependencies so they
+run directly under Node 24; image processing stays outside the shared core.
 Core excludes DOM/Node ambient types and rejects platform/UI/rendering imports in
 ESLint. The pixel package also excludes browser ambient types.
 
@@ -68,12 +72,14 @@ ESLint. The pixel package also excludes browser ambient types.
 
 ```bash
 pnpm dev          # Start the React application
+pnpm demo:assets  # Generate independent temporary native layer PNGs and catalog
+pnpm demo:export  # Save eight detailed PNGs, eight pixel PNGs and one pixel sheet
 pnpm typecheck    # Check root configs, smoke tests, and all workspace packages
 pnpm lint         # ESLint with zero warnings permitted
 pnpm test         # Run Vitest once
 pnpm test:watch   # Run Vitest in watch mode
 pnpm test:e2e:install # Install Playwright's Chromium headless shell
-pnpm test:e2e     # Boot Vite and smoke-test the existing app in Chromium
+pnpm test:e2e     # Generate placeholders and test the app and real renderers in Chromium
 pnpm build        # Build libraries and application in dependency order
 pnpm verify       # Typecheck, lint, test, then build
 pnpm verify:all   # Run verify followed by the browser smoke test
@@ -95,9 +101,11 @@ Milestone 1 core is implemented and documented in [packages/core/README.md](pack
 It provides schema-validated recipe creation, canonical JSON, deterministic seeded
 generation and six examples including all three ancestry hybrid pairs. The current
 demo remains on its legacy contract until editor/registry integration is implemented.
-Milestone 2 will
-implement versioned manifests, coverage/compatibility diagnostics and render plans;
-milestone 3 will implement the two target-native compositors and export. Milestone 4
+Milestone 2 provides versioned manifests, coverage/compatibility diagnostics and
+render plans; see [packages/asset-registry/README.md](packages/asset-registry/README.md).
+Milestone 3 provides both native compositors and export using separate geometric
+placeholder assets. Visit `/render-demo.html` after `pnpm demo:assets` and `pnpm dev`;
+headless exports go to `artifacts/render-demo`. Milestone 4
 will replace demo backend selection with target selection and add the complete
 editor/export controls. Avoid changing the working demo to pretend those pipelines
 exist before their contracts and tests are ready.
@@ -106,12 +114,17 @@ The canonical facings are N, NE, E, SE, S, SW, W, NW. Pixel sheets must be 512 �
 with row-major N, NE, E, SE / S, SW, W, NW. Internal layers stay transparent;
 default final export uses pure `#00FF00` (RGBA `0,255,0,255`) and bright yellow
 `#FFFF00` labels (RGBA `255,255,0,255`) at each cell's top-left. Transparent export
-must be an explicit choice. No approved art, synthetic layered fixtures, compositor,
-or export pipeline exists yet.
+must be an explicit choice. The registry's metadata-only test fixtures retain
+fictional references; the renderer demo generates actual versioned PNG placeholders.
+No production art is approved yet, and the main editor has no creator controls.
 
 Six public-API integration tests cover core recipe save/load, compatibility and
-seeded generation. Legacy unit tests cover schemas, state and mocked renderer lifecycles. Browser smoke
-tests cover the real demo controls and preview initialization, not anatomical QA or
-MVP pixel correctness. Later rendering tests must compare exact RGBA, integer native
-coordinates/dimensions, palette isolation and deterministic hashes. Human visual
-approval remains necessary for anatomical and garment coherence.
+seeded generation. Seven registry integration tests cover recipe-to-plan workflows
+across both targets and all eight directions, native geometry, visibility, materials
+and explicit errors. Three rendering API workflows cover exact RGBA, palette
+isolation, masks, deterministic exports and sheet placement. Two real-renderer
+browser workflows exercise Pixi/WebGL, native sizes/bounds, direction-specific
+visibility/positions, palettes, GPU readback and downloads. A third browser smoke
+test preserves the original demo. Legacy unit tests still cover schemas, state and
+mocked legacy renderer lifecycles. Human visual approval remains necessary for
+anatomical and garment coherence; placeholders are pipeline fixtures.

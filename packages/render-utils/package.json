@@ -1,0 +1,9 @@
+{
+  "name": "@character-studio/render-utils",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": { ".": "./src/index.ts" },
+  "scripts": { "build": "tsup src/index.ts --format esm --dts --clean", "typecheck": "tsc --noEmit" },
+  "dependencies": { "@character-studio/core": "workspace:*", "fast-png": "^7.0.0" }
+}

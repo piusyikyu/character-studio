@@ -1,0 +1,9 @@
+{
+  "name": "@character-studio/render-demo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": { ".": "./src/placeholders.ts" },
+  "scripts": { "build": "tsup", "typecheck": "tsc --noEmit" },
+  "dependencies": { "@character-studio/core": "workspace:*", "@character-studio/asset-registry": "workspace:*", "@character-studio/render-utils": "workspace:*", "@character-studio/renderer-pixel": "workspace:*", "@playwright/test": "1.64.0" }
+}

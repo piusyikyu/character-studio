@@ -4,6 +4,8 @@ Reserved for independently authored, versioned detailed PNG layers, material map
 masks, and manifests. Native assembled output is 1024 × 1536 in authored T-pose.
 Each MVP-ready asset needs all eight facings: N, NE, E, SE, S, SW, W, NW.
 
-No artwork or manifests are present. Publication and app asset delivery will be
-configured after manifest resolution exists; this directory is not automatically
-served by Vite. See `docs/ASSET_SPEC.md` for the draft contract.
+`pnpm demo:assets` creates temporary modular geometric layers and material maps in
+`placeholder-v1/`. Those generated files are ignored by Git and are not approved
+artwork. Their native geometry is authored separately from the pixel family in
+`tools/render-demo/src/placeholders.ts`; generated copies serve the read-only demo.
+See `docs/ASSET_SPEC.md` for the contract and the demo tool README for exports.

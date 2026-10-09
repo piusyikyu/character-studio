@@ -1,6 +1,10 @@
 # Asset Specification — Female Character Studio
 
-**Status:** Canonical draft for MVP. Changes to this contract require updating loaders, validators, fixtures and both renderers.
+**Status:** MVP manifest/planning contracts are implemented. Runtime Zod schemas
+in `packages/core` and `packages/asset-registry` are normative. Placeholder rendering
+and export are implemented; production PNG/visual audits remain future work.
+Changes to this contract require updating
+loaders, validators, fixtures and both renderers.
 
 ## 1. Asset families and native sizes
 
@@ -49,12 +53,18 @@ This example is illustrative; keep schema types/Zod in the source code as the no
   "schemaVersion": 1,
   "id": "hair.long-waves.v1",
   "assetVersion": 1,
-  "slot": "hair",
-  "compatibleRigs": ["female-humanoid-v1"],
-  "compatibleBodies": ["balanced", "slender"],
+  "compatibleRigs": [
+    "female-humanoid-v1"
+  ],
+  "compatibleBodies": [
+    "balanced",
+    "slender"
+  ],
   "requiresTraits": [],
   "excludesTraits": [],
-  "materialSlots": ["hair"],
+  "materialSlots": [
+    "hair"
+  ],
   "variants": {
     "detailed": {
       "pose": "tpose",
@@ -64,17 +74,89 @@ This example is illustrative; keep schema types/Zod in the source code as the no
             "sprite": "hair/long-waves/detailed/S-rear.png",
             "plane": "hair-rear",
             "attachTo": "head_center",
-            "origin": {"x": 180, "y": 90},
-            "offset": {"x": 0, "y": 0},
-            "materialMap": "hair/long-waves/detailed/S-rear-material.png"
+            "origin": {
+              "x": 180,
+              "y": 90
+            },
+            "offset": {
+              "x": 0,
+              "y": 0
+            },
+            "materialMap": {
+              "source": "hair/long-waves/detailed/S-rear-material.png",
+              "size": {
+                "width": 360,
+                "height": 520
+              },
+              "regions": [
+                {
+                  "index": 1,
+                  "material": "hair",
+                  "shade": "shadow"
+                },
+                {
+                  "index": 2,
+                  "material": "hair",
+                  "shade": "base"
+                },
+                {
+                  "index": 3,
+                  "material": "hair",
+                  "shade": "highlight"
+                }
+              ]
+            },
+            "id": "rear",
+            "size": {
+              "width": 360,
+              "height": 520
+            },
+            "order": 0,
+            "visibility": "visible"
           },
           {
             "sprite": "hair/long-waves/detailed/S-front.png",
             "plane": "hair-front",
             "attachTo": "head_center",
-            "origin": {"x": 180, "y": 90},
-            "offset": {"x": 0, "y": 0},
-            "materialMap": "hair/long-waves/detailed/S-front-material.png"
+            "origin": {
+              "x": 180,
+              "y": 90
+            },
+            "offset": {
+              "x": 0,
+              "y": 0
+            },
+            "materialMap": {
+              "source": "hair/long-waves/detailed/S-front-material.png",
+              "size": {
+                "width": 360,
+                "height": 520
+              },
+              "regions": [
+                {
+                  "index": 1,
+                  "material": "hair",
+                  "shade": "shadow"
+                },
+                {
+                  "index": 2,
+                  "material": "hair",
+                  "shade": "base"
+                },
+                {
+                  "index": 3,
+                  "material": "hair",
+                  "shade": "highlight"
+                }
+              ]
+            },
+            "id": "front",
+            "size": {
+              "width": 360,
+              "height": 520
+            },
+            "order": 0,
+            "visibility": "visible"
           }
         ]
       }
@@ -87,14 +169,52 @@ This example is illustrative; keep schema types/Zod in the source code as the no
             "sprite": "hair/long-waves/pixel/S-rear.png",
             "plane": "hair-rear",
             "attachTo": "head_center",
-            "origin": {"x": 14, "y": 10},
-            "offset": {"x": 0, "y": 0},
-            "materialMap": "hair/long-waves/pixel/S-rear-material.png"
+            "origin": {
+              "x": 14,
+              "y": 10
+            },
+            "offset": {
+              "x": 0,
+              "y": 0
+            },
+            "materialMap": {
+              "source": "hair/long-waves/pixel/S-rear-material.png",
+              "size": {
+                "width": 28,
+                "height": 60
+              },
+              "regions": [
+                {
+                  "index": 1,
+                  "material": "hair",
+                  "shade": "shadow"
+                },
+                {
+                  "index": 2,
+                  "material": "hair",
+                  "shade": "base"
+                },
+                {
+                  "index": 3,
+                  "material": "hair",
+                  "shade": "highlight"
+                }
+              ]
+            },
+            "id": "rear",
+            "size": {
+              "width": 28,
+              "height": 60
+            },
+            "order": 0,
+            "visibility": "visible"
           }
         ]
       }
     }
-  }
+  },
+  "status": "draft",
+  "category": "hair"
 }
 ```
 
@@ -130,3 +250,58 @@ A part's `plane` can vary by direction (e.g. back hair over rear shoulders). Def
 Validators must catch: missing source files, missing facings, wrong image dimensions (per declared asset-local dims), alpha mismatch, manifest IDs, required/excluded trait conflict, invalid anchor references, positions outside target, extraneous non-integer pixel coordinates, missing palette mappings, and non-reproducible output.
 
 Human art QA must additionally check: hairstyle front/back logic, garment topology, eye visibility, real left/right handedness, fingers/legs, consistent anatomy, and project style. Approval should be attached to a specific asset version and target.
+
+## 10. Catalog and planning API
+
+`assetCatalogSchema` validates a version-1 envelope with `catalogVersion`, `assets`,
+`rigs` and `bindings`. Every binding has a unique semantic `key` and explicit
+`assetIds`; recipe selections resolve through those bindings, never arbitrary
+first-match assets. Native rig profiles contain rig/body/target/pose and a facing
+table with all thirteen anchors per declared facing. See
+[the registry README](../packages/asset-registry/README.md) for binding names and
+executable synthetic catalog examples.
+
+Manifest variant keys declare supported targets. Published manifests require all
+eight explicit facing lists. Drafts may omit facings, but planning rejects gaps
+across the selected target's complete eight-facing set. An empty facing list is an
+explicit declaration of invisibility, not missing artwork. Frames have stable IDs,
+native size, plane, integer local `order`, and `visibility` (`visible`, `hidden`,
+`front-only`); front-only details disappear in N/NE/NW. Rear eyes are forbidden.
+No scale/rotation/mirror fields or fallback paths exist.
+
+Material maps contain `source`, matching native `size` and indexed `regions`
+(`index`, semantic `material`, `shade`). Index zero is reserved for pixels not
+linked to a palette. The current material roles are skin, hair, left-eye,
+right-eye and outfit, allowing independent eye palettes. Optional occlusion masks
+contain a source reference and matching native size.
+
+`resolveRenderPlan(registry, recipe, target, direction)` emits a deeply immutable,
+versioned plan with the pinned catalog/recipe, native target dimensions/pose,
+rig anchors and ordered visible cells. Each cell carries its asset version,
+frame/source, attachment geometry and computed position, visibility, palette
+assignments, indexed material map and optional mask. `renderPlanSchema` validates
+bounds, integer pixel positions, material identities and direction-dependent order.
+
+Without a supplied source inventory, registry validation checks declared metadata;
+it does not read PNGs or prove physical existence, alpha or visual correctness.
+The synthetic catalog intentionally references fictional PNGs. An external loader
+can supply `availableSources` to fail explicitly on missing planned sources.
+
+## 11. Raster encoding and placeholder exports
+
+Runtime source PNGs are non-indexed RGBA8. Indexed material-map PNGs also use RGBA8:
+red is the declared region index, green/blue are zero and alpha exactly matches the
+source; index zero leaves source RGB unchanged and is mandatory for transparent
+pixels. Retention-mask alpha multiplies that layer's alpha (255 keeps, 0 cuts),
+without erasing earlier layers. Decoded dimensions must match the manifest.
+
+Both renderers return internal transparent straight RGBA. Detailed layers compose
+through PixiJS v8 at 1024×1536; native CPU pixel composition uses exact integer
+source-over at 128×192. Shared export code decorates a copy with pure green and
+yellow fixed bitmap labels, then encodes PNGs with fixed JavaScript codec settings.
+Pixel sheets require one recipe/catalog and row-major N, NE, E, SE / S, SW, W, NW.
+
+`tools/render-demo` owns generated temporary `placeholder-v1` images with separate
+target-native authoring tables. They exercise every facing without reflection,
+downsampling or production-art claims. See its README for the read-only gallery,
+17-file headless export and verification procedure.

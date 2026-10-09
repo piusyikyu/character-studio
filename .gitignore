@@ -4,6 +4,11 @@ coverage/
 playwright-report/
 test-results/
 .vite/
+artifacts/
+assets/placeholder-v1/
+assets/detailed/placeholder-v1/
+assets/pixel/placeholder-v1/
+apps/studio/public/placeholder-assets/
 *.tsbuildinfo
 .env
 .env.*

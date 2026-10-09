@@ -124,6 +124,15 @@ not decode images or own rendering. Read the architecture, asset specification,
 and MVP documents before implementing contracts.
 
 No image decoding, rendering, asset resolution or UI control is implemented here.
+Core also exports the version-1 `renderPlanSchema`/`RenderPlan`, thirteen rig
+landmarks, native geometry and material-map schemas, and direction-dependent
+plane ordering. Plans contain only visible, concretely positioned source cells;
+their immutable metadata includes palette assignments and optional occlusion
+masks. Parsing enforces target dimensions/pose, anchor placement, integer pixel
+coordinates, bounds, draw order and hidden rear eyes/front-only details. Registry
+resolution lives in `packages/asset-registry`. Both renderers now consume these
+plans with temporary native placeholder assets; see `tools/render-demo/README.md`.
+
 `packages/character-engine` remains the original working demo, whose Character
 and DOM renderer contracts are not the specified CharacterRecipe. Do not re-export
-that demo as core. Migrate its consumers when milestone 1 is implemented.
+that demo as core. Its consumers will migrate during editor integration.

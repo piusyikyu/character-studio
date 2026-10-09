@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Character Studio renderer demonstration</title>
+    <style>
+      body { margin: 24px; background: #17172b; color: #eeeafa; font: 16px system-ui; }
+      a { color: #a3e4d4; } .gallery { display: flex; gap: 16px; overflow-x: auto; }
+      figure { margin: 0; flex: 0 0 auto; } figcaption { margin: 8px 0; }
+      img, canvas { background: repeating-conic-gradient(#36334a 0% 25%, #242236 0% 50%) 0 / 16px 16px; }
+      .pixel img { width: 256px; height: 384px; image-rendering: pixelated; }
+      .detailed img { width: 256px; height: 384px; }
+      #sheet { width: 1024px; height: 768px; image-rendering: pixelated; }
+    </style>
+  </head>
+  <body>
+    <h1>Renderer demonstration</h1>
+    <p>Temporary modular shapes, separately authored at each target's native resolution. These are pipeline fixtures awaiting art review.</p>
+    <p id="status" role="status">Loading renderer demonstration…</p>
+    <h2>Pixel idle poses · 128 × 192</h2><div id="pixel" class="gallery pixel"></div>
+    <h2>Detailed T-poses · 1024 × 1536</h2><div id="detailed" class="gallery detailed"></div>
+    <h2>Pixel sprite sheet · 512 × 384</h2><p><a id="sheet-download">Download green-background sheet</a></p><img id="sheet" alt="Eight labelled pixel poses" />
+    <script type="module" src="/src/render-demo.ts"></script>
+  </body>
+</html>

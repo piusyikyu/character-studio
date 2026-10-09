@@ -38,28 +38,42 @@ Validate an entire loop from editable character recipe to **two correct independ
 
 Implemented in `packages/core`; see its README for the version-1 contract, discrete
 anatomy presets, composable trait rules, deterministic seed contract and six example
-recipes. Registry/renderers and the legacy demo UI remain separate future tasks.
+recipes. Placeholder renderers are implemented in milestone 3; migration of the
+legacy demo UI remains a separate future task.
 
 ### 2 — Asset registry + RenderPlan
-- [ ] Manifest parser and indexed lookups by ID, target, pose, direction, body.
-- [ ] Native direction-specific anchors, render planes and occlusion metadata.
-- [ ] Both targets can resolve all eight directions from synthetic placeholder manifests.
-- [ ] Incomplete coverage causes explicit errors; nothing is silently mirrored or substituted.
+- [x] Manifest parser and indexed lookups by ID, target, pose, direction, body.
+- [x] Native direction-specific anchors, render planes and occlusion metadata.
+- [x] Both targets can resolve all eight directions from synthetic placeholder manifests.
+- [x] Incomplete coverage causes explicit errors; nothing is silently mirrored or substituted.
+
+Implemented in `packages/asset-registry` with shared RenderPlan schemas in core.
+Synthetic fixtures describe fictional PNG references, not approved or renderable
+artwork. Actual placeholder rendering is implemented in milestone 3. Production
+PNG/alpha audits and editor integration remain future work; see the registry README
+for binding and source-inventory contracts.
 
 ### 3 — Render pipelines
-- [ ] Detailed renderer combines high-res placeholder layers at 1024×1536.
-- [ ] Pixel renderer composes native 128×192 integer pixels with no smoothing.
-- [ ] Green background and yellow label only appear in final export, never source layers.
-- [ ] Palette changes are isolated to the intended material.
-- [ ] Identical recipe/catalog/export choices produce identical pixel hashes.
-- [ ] 4×2 pixel sheet exports as exactly 512×384 with correct direction order.
+- [x] Detailed renderer combines high-res placeholder layers at 1024×1536.
+- [x] Pixel renderer composes native 128×192 integer pixels with no smoothing.
+- [x] Green background and yellow label only appear in final export, never source layers.
+- [x] Palette changes are isolated to the intended material.
+- [x] Identical recipe/catalog/export choices produce identical pixel hashes.
+- [x] 4×2 pixel sheet exports as exactly 512×384 with correct direction order.
+
+Implemented with separately authored geometric placeholder cells and real-browser
+renderer tests. The standalone read-only demo and export procedure are documented
+in `tools/render-demo/README.md`. Placeholders require visual review; production
+artwork and editor controls remain future milestones. Pixel byte equality is tested
+directly, stronger than comparing hashes; detailed GPU alpha rounding can vary by
+device even though repeated exports are stable in the tested browser.
 
 ### 4 — Studio UI
 - [ ] Controls modify shared recipe; both preview targets update accordingly.
 - [ ] Eight-direction selector + S/N compare mode.
 - [ ] Character JSON save/load; PNG exports; compatibility warnings.
 - [ ] Undo/redo for recipe edits; no inert buttons.
-- [ ] Playwright smoke tests run in WSL.
+- [x] Playwright smoke tests run in WSL.
 
 ### 5 — First approved art package
 - [ ] One authored/approved female base for detailed and pixel targets.

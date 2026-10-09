@@ -8,5 +8,5 @@
     "build": "tsup src/index.ts --format esm --dts --clean",
     "typecheck": "tsc --noEmit"
   },
-  "dependencies": { "@character-studio/core": "workspace:*" }
+  "dependencies": { "@character-studio/core": "workspace:*", "@character-studio/render-utils": "workspace:*" }
 }

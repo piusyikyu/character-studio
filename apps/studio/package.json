@@ -5,6 +5,10 @@
   "type": "module",
   "scripts": { "dev": "vite --host 127.0.0.1", "build": "tsc --noEmit && vite build", "typecheck": "tsc --noEmit", "preview": "vite preview --host 127.0.0.1" },
   "dependencies": {
+    "@character-studio/renderer-detailed": "workspace:*",
+    "@character-studio/renderer-pixel": "workspace:*",
+    "@character-studio/render-utils": "workspace:*",
+    "@character-studio/core": "workspace:*",
     "@character-studio/asset-registry": "workspace:*",
     "@character-studio/character-engine": "workspace:*",
     "@character-studio/renderer-canvas": "workspace:*",

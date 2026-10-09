@@ -13,9 +13,9 @@ export default defineConfig({
   },
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
   webServer: {
-    command: 'pnpm --filter @character-studio/app dev --port 5173 --strictPort',
+    command: 'pnpm demo:assets && pnpm --filter @character-studio/app dev --port 5173 --strictPort',
     url: 'http://127.0.0.1:5173',
     reuseExistingServer: false,
-    timeout: 30_000,
+    timeout: 60_000,
   },
 });
