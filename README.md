@@ -78,6 +78,7 @@ pnpm demo:assets  # Generate independent temporary native layer PNGs and catalog
 pnpm demo:export  # Save eight detailed PNGs, eight pixel PNGs and one pixel sheet
 pnpm reference:import # Prepare heroine-v1 reference staging and audit, without publishing
 pnpm hair:review # Prepare S/N modular hair draft inspection; human approval required
+pnpm hair:review:profiles # Prepare independent E/W hair draft inspection
 pnpm typecheck    # Check root configs, smoke tests, and all workspace packages
 pnpm lint         # ESLint with zero warnings permitted
 pnpm test         # Run Vitest once

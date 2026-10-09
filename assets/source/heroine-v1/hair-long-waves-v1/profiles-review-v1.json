@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "id": "hair.long-waves.v1",
+  "assetVersion": 1,
+  "target": "detailed",
+  "directions": [
+    "E",
+    "W"
+  ],
+  "decision": "approved-standing-reference-hair-design",
+  "recordedDate": "2026-10-09",
+  "evidence": "User: approved, commit",
+  "configSha256": "ecab265505299667a9b612f6cacf6b08ec055648c3ab2796d48e6ed1730117e0",
+  "minimumVisibleAlpha": 8,
+  "layers": [
+    {
+      "direction": "E",
+      "part": "rear",
+      "sourceSha256": "49b934e45607ab823138875ad5aadd921bb631688654f1c8435a1a5d6d4c5a6b",
+      "cleanedSha256": "d178857fcc2a0c200e0a7cee32bb9aae455f72733a061a7ec9869e00dc5f79b7"
+    },
+    {
+      "direction": "E",
+      "part": "front",
+      "sourceSha256": "51f4f60475883073a7b7a99963afa890af8ce5792744028a5300c0e0989de8f7",
+      "cleanedSha256": "b12b2860f6b7b70b75817f4ff56e820dfe06cfaa3b4ee1ecb180cafba03e3608"
+    },
+    {
+      "direction": "W",
+      "part": "rear",
+      "sourceSha256": "4a21e68c152b767055a6e46e6fec368a127bde857067f7e05a97244490c2faa3",
+      "cleanedSha256": "c3daed980d6a9d1cc2738cda4bcef229ce8d8c383328d286771f58b67c5d78b6"
+    },
+    {
+      "direction": "W",
+      "part": "front",
+      "sourceSha256": "0fe65d5937f9a335953e4ace877aa3f8520854830d5a4d147dfcf3539277e335",
+      "cleanedSha256": "e7a0ffd1e426e2bd8c755773bc3f8a38ab2bb559bdf82823c896a162c1a287ba"
+    }
+  ],
+  "scope": "Current E/W silhouettes, front/rear separation, crown/fringe ownership and alpha cleanup accepted. T-pose, separately authored head/body fit, production publication and complete Step 6C remain pending."
+}

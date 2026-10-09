@@ -96,7 +96,7 @@ The editor operates on the temporary geometric catalog, not approved artwork.
 - [x] Record background/alpha/bounds/baseline measurements and versioned candidate anchors.
 - [x] Add repeatable import/export and source-preservation workflow tests.
 - [ ] Human review of matte edges, uncertain regions, anchors and baseline inconsistency.
-- [ ] Step 6C: S/N hair design approved; remaining facings and anatomy unfinished.
+- [ ] Step 6C: S/N and E/W hair designs approved; diagonal facings and anatomy unfinished.
 
 See [REFERENCE_IMPORT.md](REFERENCE_IMPORT.md). The approved sources are flattened
 standing illustrations, including the approved NE/NW dress corrections. Staging

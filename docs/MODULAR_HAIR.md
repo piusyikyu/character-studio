@@ -1,8 +1,10 @@
-# Step 6C — first S/N modular hair draft
+# Step 6C — modular long-hair authoring
 
 The user approved proceeding from the verified Steps 6A–6B audit on 2026-10-09.
-This increment authors the long silver-lilac hairstyle for S and N and stops for
-visual review. It does not complete Step 6C or approve the remaining art package.
+The initial S/N hair design has user approval recorded in `review-v1.json`.
+The independent E/W hair design also has user approval recorded in
+`profiles-review-v1.json`. Both approval records pin source and cleaned hashes.
+It does not complete Step 6C or approve the remaining art package.
 Existing reference matte flags and candidate anchors remain observations, not
 certified anatomy. Detailed production artwork still requires an authored T-pose.
 
@@ -13,8 +15,8 @@ reference-based authoring inputs. Built-in imagegen edits created the PNGs;
 `prompts.json` records the selected prompts. The original eight references and
 reference-import staging are preserved. New hair surfaces previously hidden by
 the person are newly authored candidates, not recovered source pixels.
-The two intermediate rear images used for targeted edits are preserved in
-`inputs/`; only the three top-level PNGs are selected for review.
+The S/N intermediate rear images and E/W edit inputs are preserved in `inputs/`;
+each authoring configuration names the selected top-level PNGs for its pair.
 
 `authoring-v1.json` records the semantic `hair.long-waves.v1` ID, raw PNG hashes,
 native 1024×1536 dimensions, candidate head origins, allowable bounds and explicit
@@ -96,3 +98,61 @@ Do not promote these inputs to `assets/detailed`, bind them into the editor, cla
 eight-facing coverage or add pixel counterparts. After S/N approval, author the
 remaining six facings independently and continue the body/head/clothing work.
 Step 6C needs its own final approval before Step 6D material/shade maps.
+
+## E/W profile design approval and remaining fit review
+
+The user approved the E/W increment on 2026-10-09 with “approved, commit”.
+`profiles-review-v1.json` pins its authoring config, raw source hashes, cleaned
+layer hashes and the accepted alpha threshold. The standing-reference design
+differences below are accepted. Draft authoring status remains because a
+separately authored head/body, T-pose fit and production publication are pending.
+
+Four new source PNGs (`E-front.png`, `E-rear-drape.png`, `W-front.png`, `W-rear-drape.png`)
+and `profiles-authoring-v1.json` describe independently authored profile pieces.
+The S/N config, PNGs and approval record stay unchanged. This additive facing
+increment keeps the same semantic asset version; it does not replace any
+approved facing. `profiles-prompts.json` preserves the built-in imagegen prompt
+history and intermediate edit inputs are retained in `inputs/`.
+
+Some direct rear edits introduced visible haze and failed the same alpha/bounds
+checks used for accepted layers. They were rejected. Retrying from alpha-normalized
+transparent inputs succeeded without changing the 8/255 threshold. Raw and cleaned
+edit inputs are preserved, with the deterministic cleanup described in
+`inputs/cleanup-v1.json`. Only the four top-level files named in the profile
+configuration are selected; intermediate face-outline drafts are not accepted.
+The rear drapes also remove the duplicated crown/fringe from earlier candidates.
+The front layer owns the complete cap and ahoge in each profile; partial rear
+roots are intended to sit beneath it and a future head. Raw/normalized pre-removal
+inputs are kept for lineage. Attempts that enlarged the drape were rejected.
+
+```bash
+pnpm hair:review:profiles
+```
+
+Outputs go to `assets/staging/heroine-v1/hair-long-waves-v1/profiles/`, following
+the same layers/assembled/checker/green/comparison conventions as S/N. The E/W
+configuration has its own pinned hashes and explicitly visible front hair for
+both profiles; neither is filled from a reflection or copied source. Reports
+describe only the pair they inspect, so E/W reports list S/N as absent from that
+inspection even though approved S/N authoring exists separately.
+
+Future fit review should inspect each front/rear combination at native size
+against its own reference and separately authored head/body.
+Check the scalp junction, near/far lock ownership, profile outline, ahoge and curl
+length. Compare E to E and W to W: their original silhouettes differ. Front
+pieces may differ in scale and curl length from the reference, and newly exposed
+rear strands are authored candidates. Broad draft bounds are overflow checks,
+not proof of anatomical fit. Candidate head anchors remain E `(558,165)` and
+W `(451,176)`; there is no approved head or T-pose rig behind these pieces yet.
+
+The E front curls end at y480, below the reference collarbone near y355, while W
+front ends at y419. W rear ends around y872 versus the reference near y810 and is
+broader. E rear ends at y857, close to its reference near y850. These observations
+are recorded in `knownReviewIssues` and accepted as standing-reference design
+observations. Head/body fit remains unverified. No stage command scales or
+translates the artwork to hide the differences.
+
+The planned next authoring increment is SE/SW, followed by independent NE/NW.
+All four diagonal facings and modular body/head/clothing authoring remain
+unfinished. Keep NE/NW eyes and front-only fringe hidden. Final Step 6C review
+still precedes material/shade maps, pixel counterparts or publication.

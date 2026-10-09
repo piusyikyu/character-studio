@@ -122,6 +122,14 @@ the next increment. Source/cleaned hashes are pinned in `review-v1.json`; T-pose
 and head/body fit remain unverified. Continue with independently authored E/W;
 Step 6C must be reviewed before Step 6D. No production pixel art is derived.
 
+The next increment adds independent E/W front/rear hair authoring and
+`pnpm hair:review:profiles`, with separate pinned authoring configuration and
+staging outputs. The user approved the E/W standing-reference hair design on
+2026-10-09 and requested a local commit; `profiles-review-v1.json` pins the accepted
+config, source and cleaned hashes. S/N approval and source artwork are preserved.
+All diagonal facings, modular body/head/clothing and a production
+T-pose rig remain unfinished. Do not treat profile authoring as Step 6C completion.
+
 - Distinguish `assets/references/` (immutable source images), `assets/source/` (editable layered files), `assets/staging/` (unapproved outputs), `assets/detailed/` and `assets/pixel/` (approved published parts), `assets/manifests/` and `assets/qa/` (generated reports).
 - Each modular part should declare a unique semantic ID, target, supported facings, compatible rig/body presets, image paths, attachment anchor, native offset, depth plane, visibility/occlusion, optional material/shade masks and requires/excludes.
 - Layer order may vary with facing. Long hair usually needs rear and front components. Clothing should conform to genuine front/rear three-dimensional construction.

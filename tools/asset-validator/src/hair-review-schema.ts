@@ -31,10 +31,18 @@ export const hairReviewSchema = z.strictObject({
   referenceProcessingRevision: z.literal(2),
   minimumVisibleAlpha: z.literal(8),
   knownReviewIssues: z.array(z.string().min(1)).min(1),
-  frames: z.strictObject({ S: frame, N: frame }),
+  frames: z.union([
+    z.strictObject({ S: frame, N: frame }),
+    z.strictObject({ E: frame, W: frame }),
+  ]),
 }).superRefine((draft, ctx) => {
-  if (draft.frames.S.front.visibility !== 'visible') ctx.addIssue({ code: 'custom', path: ['frames', 'S', 'front'], message: 'S needs an independently authored visible fringe.' });
-  if (draft.frames.N.front.visibility !== 'hidden') ctx.addIssue({ code: 'custom', path: ['frames', 'N', 'front'], message: 'The front fringe is explicitly hidden in N; do not invent rear-facing bangs.' });
+  if ('S' in draft.frames) {
+    if (draft.frames.S.front.visibility !== 'visible') ctx.addIssue({ code: 'custom', path: ['frames', 'S', 'front'], message: 'S needs an independently authored visible fringe.' });
+    if (draft.frames.N.front.visibility !== 'hidden') ctx.addIssue({ code: 'custom', path: ['frames', 'N', 'front'], message: 'The front fringe is explicitly hidden in N; do not invent rear-facing bangs.' });
+  } else {
+    for (const direction of ['E', 'W'] as const) if (draft.frames[direction].front.visibility !== 'visible') ctx.addIssue({ code: 'custom', path: ['frames', direction, 'front'], message: 'Each profile needs its own visible front hair; do not mirror or skip it.' });
+    if (draft.frames.E.rear.sourceSha256 === draft.frames.W.rear.sourceSha256 || (draft.frames.E.front.visibility === 'visible' && draft.frames.W.front.visibility === 'visible' && draft.frames.E.front.artwork.sourceSha256 === draft.frames.W.front.artwork.sourceSha256)) ctx.addIssue({ code: 'custom', path: ['frames'], message: 'E/W must reference distinct independently authored layers.' });
+  }
   for (const [direction, frame] of Object.entries(draft.frames)) {
     for (const part of [frame.rear, ...(frame.front.visibility === 'visible' ? [frame.front.artwork] : [])]) {
       if (part.origin.x !== frame.candidateHeadAnchor.x || part.origin.y !== frame.candidateHeadAnchor.y) ctx.addIssue({ code: 'custom', path: ['frames', direction], message: 'Full-canvas origins must match the provisional head anchor; native top-left stays at (0,0).' });

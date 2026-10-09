@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "id": "hair.long-waves.v1",
+  "assetVersion": 1,
+  "status": "draft-needs-human-review",
+  "target": "detailed",
+  "sourcePose": "standing-reference",
+  "intendedRuntimePose": "tpose",
+  "rigCompatibility": "unverified",
+  "paletteReady": false,
+  "authoringMethod": "imagegen-reference-edit",
+  "nativeSize": {
+    "width": 1024,
+    "height": 1536
+  },
+  "referenceProcessingRevision": 2,
+  "minimumVisibleAlpha": 8,
+  "knownReviewIssues": [
+    "E front curls extend to y480 rather than the reference collarbone near y355; its cap/fringe is also broader. W front curls end at y419. These scale/length differences need human design and fit review; no resampling or translation was applied.",
+    "W rear curls extend to around y872 versus the reference near y810 and the flowing rear silhouette is wider; compare its scale and curl rhythm independently to W. E rear ends at y857 versus the reference near y850.",
+    "Short collarbone locks and duplicated crown/fringe were removed from rear drapes; front pieces own the cap, ahoge and short locks. Partial rear roots are intended beneath a future head/front cap. Near/far lock continuity, hidden strands and actual head/body occlusion need review.",
+    "Candidate head origins E558,165 and W451,176 are provisional standing-reference observations, not approved T-pose rig attachments. All diagonal facings remain missing.",
+    "Raw authoring outputs are retained. Final review clears only alpha below8/255 and zero-alpha RGB. Direct edits that introduced visible background haze were rejected, not repaired by increasing the threshold."
+  ],
+  "frames": {
+    "E": {
+      "reference": "E.png",
+      "referenceSha256": "d81679768bcf8fe648d7af248f514124f7a01bfde256b7e8abf370239411798f",
+      "candidateHeadAnchor": {
+        "x": 558,
+        "y": 165
+      },
+      "rear": {
+        "source": "E-rear-drape.png",
+        "sourceSha256": "49b934e45607ab823138875ad5aadd921bb631688654f1c8435a1a5d6d4c5a6b",
+        "origin": {
+          "x": 558,
+          "y": 165
+        },
+        "allowedBounds": {
+          "x": 200,
+          "y": 30,
+          "width": 500,
+          "height": 870
+        }
+      },
+      "front": {
+        "visibility": "visible",
+        "artwork": {
+          "source": "E-front.png",
+          "sourceSha256": "51f4f60475883073a7b7a99963afa890af8ce5792744028a5300c0e0989de8f7",
+          "origin": {
+            "x": 558,
+            "y": 165
+          },
+          "allowedBounds": {
+            "x": 350,
+            "y": 20,
+            "width": 380,
+            "height": 480
+          }
+        }
+      }
+    },
+    "W": {
+      "reference": "W.png",
+      "referenceSha256": "b9ef27952e8a2dc7ee2e5f668bf75468dae2630c927c18009fe8c660bde603db",
+      "candidateHeadAnchor": {
+        "x": 451,
+        "y": 176
+      },
+      "rear": {
+        "source": "W-rear-drape.png",
+        "sourceSha256": "4a21e68c152b767055a6e46e6fec368a127bde857067f7e05a97244490c2faa3",
+        "origin": {
+          "x": 451,
+          "y": 176
+        },
+        "allowedBounds": {
+          "x": 350,
+          "y": 30,
+          "width": 550,
+          "height": 900
+        }
+      },
+      "front": {
+        "visibility": "visible",
+        "artwork": {
+          "source": "W-front.png",
+          "sourceSha256": "0fe65d5937f9a335953e4ace877aa3f8520854830d5a4d147dfcf3539277e335",
+          "origin": {
+            "x": 451,
+            "y": 176
+          },
+          "allowedBounds": {
+            "x": 300,
+            "y": 20,
+            "width": 350,
+            "height": 430
+          }
+        }
+      }
+    }
+  }
+}

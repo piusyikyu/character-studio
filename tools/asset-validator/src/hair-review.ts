@@ -1,6 +1,7 @@
 import { lstat, mkdir, readFile, realpath, writeFile } from 'node:fs/promises';
 import { isAbsolute, relative, resolve } from 'node:path';
 import { DIRECTIONS, DIRECTION_PLANE_ORDER } from '@character-studio/core';
+import type { Direction } from '@character-studio/core';
 import { blankImage, decodePng, decorateExport, drawRgba, encodePng } from '@character-studio/render-utils';
 import type { RgbaImage } from '@character-studio/render-utils';
 import { alphaStatistics, characterBounds } from './audit';
@@ -14,6 +15,7 @@ export interface HairReviewOptions {
   readonly sourceDirectory: string;
   readonly referenceDirectory: string;
   readonly outputDirectory: string;
+  readonly configFilename?: 'authoring-v1.json' | 'profiles-authoring-v1.json';
 }
 
 /** Offline review only: no runtime catalog, publication, recolouring or inferred rig. */
@@ -27,7 +29,7 @@ export async function prepareHairReview(options: HairReviewOptions) {
     try { if ((await realpath(ancestor)) !== ancestor) throw new Error('Staging path must not traverse symlinks.'); break; }
     catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; ancestor = resolve(ancestor, '..'); }
   }
-  const configPath = resolve(sourceDirectory, 'authoring-v1.json');
+  const configPath = resolve(sourceDirectory, options.configFilename ?? 'authoring-v1.json');
   const configBytes = await readFile(configPath);
   const draft = hairReviewSchema.parse(JSON.parse(configBytes.toString('utf8')));
   const inputs = new Map<string, string>([[configPath, sha256(configBytes)]]);
@@ -43,10 +45,10 @@ export async function prepareHairReview(options: HairReviewOptions) {
     return image;
   };
   const pending: { path: string; image: RgbaImage }[] = [];
-  const measurements: { direction: 'S' | 'N'; part: 'rear' | 'front'; sourceSha256: string; outputSha256: string; bounds: ReturnType<typeof characterBounds>; alpha: ReturnType<typeof alphaStatistics>; sourceAlpha: ReturnType<typeof alphaStatistics>; noisePixelsCleared: number; greenCandidates: number; plane: string; position: { x: number; y: number } }[] = [];
+  const measurements: { direction: Direction; part: 'rear' | 'front'; sourceSha256: string; outputSha256: string; bounds: ReturnType<typeof characterBounds>; alpha: ReturnType<typeof alphaStatistics>; sourceAlpha: ReturnType<typeof alphaStatistics>; noisePixelsCleared: number; greenCandidates: number; plane: string; position: { x: number; y: number } }[] = [];
   const comparisons: RgbaImage[] = [];
-  for (const direction of ['S', 'N'] as const) {
-    const frame = draft.frames[direction];
+  const frames = Object.entries(draft.frames).map(([direction, frame]) => ({ direction: direction as Direction, frame }));
+  for (const { direction, frame } of frames) {
     const reference = await load(referenceDirectory, frame.reference, frame.referenceSha256);
     const layers = new Map<'hair-rear' | 'hair-front', RgbaImage>();
     for (const [part, artwork] of [['rear', frame.rear], ...(frame.front.visibility === 'visible' ? [['front', frame.front.artwork] as const] : [])] as const) {
@@ -62,7 +64,7 @@ export async function prepareHairReview(options: HairReviewOptions) {
       const bounds = characterBounds(image);
       const alpha = alphaStatistics(image), allowed = artwork.allowedBounds;
       if (!bounds || !alpha.transparent) throw new Error(`${direction}-${part}: needs isolated visible hair and genuine transparency.`);
-      if (bounds.x < allowed.x || bounds.y < allowed.y || bounds.x + bounds.width > allowed.x + allowed.width || bounds.y + bounds.height > allowed.y + allowed.height) throw new Error(`${direction}-${part}: artwork exceeds the reviewed authoring envelope; inspect scale/position, never silently resize.`);
+      if (bounds.x < allowed.x || bounds.y < allowed.y || bounds.x + bounds.width > allowed.x + allowed.width || bounds.y + bounds.height > allowed.y + allowed.height) throw new Error(`${direction}-${part}: artwork exceeds the declared authoring envelope; inspect scale/position, never silently resize.`);
       let greenCandidates = 0;
       for (let p = 0; p < image.width * image.height; p++) {
         const i = p * 4;
@@ -100,11 +102,11 @@ export async function prepareHairReview(options: HairReviewOptions) {
     minimumVisibleAlpha: draft.minimumVisibleAlpha,
     knownReviewIssues: draft.knownReviewIssues,
     modularDraft: true, published: false, paletteReady: false, rigCompatibility: 'unverified',
-    supportedReviewDirections: ['S', 'N'], missingDirections: DIRECTIONS.filter((d) => d !== 'S' && d !== 'N'),
-    hiddenLayers: [{ direction: 'N', part: 'front', reason: draft.frames.N.front.visibility === 'hidden' ? draft.frames.N.front.reason : '' }],
+    supportedReviewDirections: frames.map(({ direction }) => direction), missingDirections: DIRECTIONS.filter((d) => !frames.some(({ direction }) => d === direction)),
+    hiddenLayers: frames.filter(({ frame }) => frame.front.visibility === 'hidden').map(({ direction, frame }) => ({ direction, part: 'front', reason: frame.front.visibility === 'hidden' ? frame.front.reason : '' })),
     measurements,
     outputs: pending.map(({ path, image }) => ({ path, sha256: sha256(encodePng(image)) })),
-    reviewRequired: ['Visible hair silhouette, curls and source identity', 'No skin, eyes, clothing, glow or painted background in hair layers', 'Newly authored occluded hair surfaces and S front/rear junction', 'Candidate head attachments; actual rig/body/T-pose compatibility remains unverified', 'S/N approval before authoring remaining facings; Step 6C approval before 6D'],
+    reviewRequired: ['Visible hair silhouette, curls and source identity', 'No skin, eyes, clothing, glow or painted background in hair layers', 'Newly authored occluded hair surfaces and front/rear junction', 'Candidate head attachments; actual rig/body/T-pose compatibility remains unverified', 'Pair design approval before further authoring; Step 6C approval before 6D'],
   };
   // Validate ALL inputs before writing, and never overwrite a symlinked output.
   for (const { path, image } of pending) {
