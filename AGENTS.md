@@ -50,6 +50,16 @@ The targets share semantic choices (race, anatomy, head, hair, face, outfit, pal
 - Pixel art: one uniform, axis-aligned square pixel grid; crisp edges; no anti-aliasing, blur, smoothing, dithering, gradients, or non-integer transformations. Dark indigo outlines, restrained palette, distinct shade ramps.
 - Palette swaps must change only the intended material; don't recolour outlines or unrelated clothing.
 
+## Project context
+
+Read docs/PROJECT_CONTEXT.md before working on
+architecture, character features, renderers or assets.
+
+Treat this file as the project's requirements and
+decision history, not proof of implemented functionality.
+
+Keep it updated when important decisions change.
+
 ## Work procedure
 - Read `docs/ARCHITECTURE.md`, `docs/ASSET_SPEC.md`, and `docs/MVP.md` before changing core contracts or pipeline behavior.
 - Inspect existing code before editing; preserve working conventions; keep tasks small.
@@ -69,3 +79,12 @@ The targets share semantic choices (race, anatomy, head, hair, face, outfit, pal
 - Start with one female humanoid rig; human/elf/vampire traits; two body presets, two hairstyles, two head shapes and two expressions, plus skin/hair/independent eye palettes.
 - Static eight-direction frames in both render targets. One compatible starter outfit. No animation, procedural AI generation, continuous body deformation, backend or database in MVP.
 - Missing target variants are errors surfaced in UI, not silent skips.
+
+## Milestone progression
+
+- Follow the development milestones in docs/MVP.md.
+- Verify existing milestone implementations against acceptance criteria.
+- Do not assume a milestone is complete based on file existence.
+- Require explicit user approval before advancing to the next milestone.
+- Current focus: Verify Steps 6A–6B, then implement 6C upon approval.
+- Never overwrite approved artwork without permission.
