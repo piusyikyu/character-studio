@@ -109,8 +109,8 @@ default final export uses pure `#00FF00` (RGBA `0,255,0,255`) and bright yellow
 must be an explicit choice. No approved art, synthetic layered fixtures, compositor,
 or export pipeline exists yet.
 
-Unit tests cover core recipe/trait/body/outfit compatibility, serialization and
-seeded generation, plus legacy schemas, state and mocked renderer lifecycles. Browser smoke
+Six public-API integration tests cover core recipe save/load, compatibility and
+seeded generation. Legacy unit tests cover schemas, state and mocked renderer lifecycles. Browser smoke
 tests cover the real demo controls and preview initialization, not anatomical QA or
 MVP pixel correctness. Later rendering tests must compare exact RGBA, integer native
 coordinates/dimensions, palette isolation and deterministic hashes. Human visual

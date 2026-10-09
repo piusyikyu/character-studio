@@ -22,7 +22,7 @@ The targets share semantic choices (race, anatomy, head, hair, face, outfit, pal
 - Zustand for editor state and undo/redo; Zod for runtime data validation.
 - PixiJS v8 for interactive high-resolution compositing.
 - Deterministic, integer-coordinate RGBA compositor for native 128×192 pixel export; Canvas 2D or PixiJS with nearest-neighbor sampling for preview.
-- Vitest for unit/integration tests and Playwright for UI smoke tests.
+- Playwright E2E tests for user-visible workflows; Vitest for a small public-API integration suite where browser coverage is not yet available.
 - Static versioned PNG/mask assets and JSON manifests. No backend or database for MVP.
 
 ## Architectural invariants
@@ -55,6 +55,7 @@ The targets share semantic choices (race, anatomy, head, hair, face, outfit, pal
 - Inspect existing code before editing; preserve working conventions; keep tasks small.
 - Implement schemas, tests and synthetic placeholder art **before** producing a large asset catalogue.
 - For each change, run affected typecheck, lint, tests and build commands. Report exactly what ran and what failed or was unavailable.
+- Prefer E2E coverage over numerous unit tests. Keep tests focused on meaningful workflows and failure boundaries; avoid repetitive enum/default checks, helper-level tests and mock-heavy implementation tests. Until core is integrated into the editor, retain a few public-API integration tests for recipe save/load, compatibility and deterministic generation.
 - Add regression tests for direction-specific visibility, rendering order, attachment positioning, deterministic export and palette isolation.
 - Prefer human visual approval for anatomical coherence. Automated tests do not prove correct clothing topology.
 - Do not add decorative/non-functional UI controls.

@@ -105,6 +105,17 @@ for hand-authored recipes.
 `human-vampire`. Every example validates and round-trips through recipe JSON. They
 are semantic recipe fixtures, not assets or approval records.
 
+## Testing approach
+
+The six tests in `src/core.integration.test.ts` exercise the public API as workflows:
+creating and saving/loading a hybrid appearance, using the example recipes,
+rejecting invalid imports, returning actionable compatibility diagnostics, and
+reproducing valid seeded characters. They replace repetitive helper/enum unit tests.
+
+Prefer Playwright E2E tests for user-visible editor behavior as it becomes available.
+The current studio still uses the legacy character model, so its browser smoke test
+does not cover this core yet; these tests are API integration tests, not UI E2E tests.
+
 TypeScript excludes DOM and ambient Node types. ESLint disallows React, PixiJS,
 Node built-ins, registry, renderer, and legacy character-engine imports. Core must
 not decode images or own rendering. Read the architecture, asset specification,
