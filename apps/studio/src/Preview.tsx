@@ -1,65 +1,56 @@
 import { useEffect, useRef, useState } from 'react';
-import { NATIVE_SIZE } from '@character-studio/character-engine';
-import type { CharacterRenderer } from '@character-studio/character-engine';
-import { useStudioStore } from './store';
+import { DIRECTIONS, RENDER_TARGET_SPECS } from '@character-studio/core';
+import type { RgbaImage } from '@character-studio/render-utils';
+import { describeError, useStudioStore } from './store';
+import type { PreviewFrame, StudioRuntime } from './runtime';
 
-export function Preview() {
-  const host = useRef<HTMLDivElement>(null);
-  const [status, setStatus] = useState('Preparing preview…');
-  const rendererId = useStudioStore((state) => state.rendererId);
-  const character = useStudioStore((state) => state.character);
-  const renderer = useRef<CharacterRenderer | undefined>(undefined);
-
+export interface PreviewState { frames: readonly PreviewFrame[]; ready: boolean; error: string | null }
+const EMPTY: PreviewState = { frames: [], ready: false, error: null };
+function NativeCanvas({ image, direction, target, zoom }: { image: RgbaImage; direction: string; target: string; zoom: number }) {
+  const canvas = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
-    const element = host.current;
-    if (!element) return;
+    const context = canvas.current?.getContext('2d');
+    if (!context) return;
+    context.imageSmoothingEnabled = false;
+    context.putImageData(new ImageData(new Uint8ClampedArray(image.data), image.width, image.height), 0, 0);
+  }, [image]);
+  const displayWidth = 128 * zoom;
+  return <canvas ref={canvas} width={image.width} height={image.height} style={{ width: displayWidth, height: displayWidth * 1.5 }} className={target === 'pixel' ? 'pixel-canvas' : ''} aria-label={`${target} ${direction} character preview`} />;
+}
+export function Preview({ runtime, onUpdate, initializationError }: { runtime: StudioRuntime | null; onUpdate(state: PreviewState): void; initializationError: string | null }) {
+  const { recipe, target, direction, compare, zoom, background, setView } = useStudioStore((state) => state);
+  const [result, setResult] = useState<PreviewState>(EMPTY);
+  const [retry, setRetry] = useState(0);
+  useEffect(() => {
     let cancelled = false;
-    let instance: CharacterRenderer | undefined;
-    setStatus('Preparing preview…');
-
-    async function initialize() {
-      try {
-        const candidate = rendererId === 'pixi'
-          ? new (await import('@character-studio/renderer-pixi')).PixiCharacterRenderer()
-          : new (await import('@character-studio/renderer-canvas')).CanvasCharacterRenderer();
-        if (cancelled) return;
-        instance = candidate;
-        await candidate.mount(element!, NATIVE_SIZE);
-        if (cancelled) return;
-        renderer.current = candidate;
-        candidate.render({ character: useStudioStore.getState().character, size: NATIVE_SIZE });
-        setStatus('Preview ready · no character assets loaded');
-      } catch (error) {
-        if (cancelled) return;
-        instance?.destroy();
-        renderer.current = undefined;
-        setStatus(error instanceof Error ? error.message : 'Preview unavailable');
-      }
-    }
-
-    void initialize();
-    return () => {
-      cancelled = true;
-      instance?.destroy();
-      if (renderer.current === instance) renderer.current = undefined;
-    };
-  }, [rendererId]);
-
-  useEffect(() => {
-    renderer.current?.render({ character, size: NATIVE_SIZE });
-  }, [character]);
-
-  return (
-    <section className="rounded-2xl border border-slate-700 bg-slate-900 p-6" aria-labelledby="preview-title">
-      <div className="mb-6 flex items-center justify-between gap-4">
-        <h2 id="preview-title" className="text-lg font-semibold">Character preview</h2>
-        <span className="text-sm text-slate-400">64 × 96 native pixels</span>
-      </div>
-      <div className="preview-grid flex min-h-96 items-center justify-center rounded-xl border border-slate-700">
-        <div ref={host} className="native-preview" />
-      </div>
-      <p className="mt-4 text-center font-mono text-yellow-300">{character.direction.toUpperCase()}</p>
-      <p className="mt-2 text-center text-sm text-slate-400" role="status">{status}</p>
-    </section>
-  );
+    setResult(EMPTY); onUpdate(EMPTY);
+    if (!runtime) return;
+    const facings = compare ? ['S', 'N'] as const : [direction];
+    void Promise.all(facings.map((facing) => runtime.render(recipe, target, facing))).then((frames) => {
+      if (cancelled) return;
+      const next = { frames, ready: true, error: null }; setResult(next); onUpdate(next);
+    }).catch((error: unknown) => {
+      if (cancelled) return;
+      const next = { frames: [], ready: false, error: describeError(error) }; setResult(next); onUpdate(next);
+    });
+    return () => { cancelled = true; };
+  }, [runtime, recipe, target, direction, compare, retry, onUpdate]);
+  const native = RENDER_TARGET_SPECS[target];
+  const error = initializationError ?? result.error;
+  return <section className="panel preview-panel" aria-labelledby="preview-title">
+    <div className="panel-heading preview-heading"><div><p className="eyebrow">02 / PREVIEW</p><h2 id="preview-title">Character canvas</h2></div><span className="native-size">{native.width} × {native.height}<br />{native.pose}</span></div>
+    <div className="preview-toolbar">
+      <label className="field"><span>Renderer</span><select aria-label="Renderer" value={target} onChange={(event) => setView({ target: event.target.value as 'detailed' | 'pixel' })}><option value="detailed">Detailed</option><option value="pixel">Pixel</option></select></label>
+      <label className="field"><span>Zoom</span><select aria-label="Zoom" value={zoom} onChange={(event) => setView({ zoom: Number(event.target.value) })}>{[1, 2, 3, 4].map((value) => <option key={value} value={value}>{target === 'pixel' ? `${value}×` : `${value * 12.5}%`}</option>)}</select></label>
+      <label className="field"><span>Preview background</span><select aria-label="Preview background" value={background} onChange={(event) => setView({ background: event.target.value as typeof background })}><option value="checker">Transparency grid</option><option value="dark">Dark</option><option value="green">Green</option></select></label>
+    </div>
+    <div className="direction-row" role="group" aria-label="Facing directions">{DIRECTIONS.map((facing) => <button key={facing} aria-label={`Face ${facing}`} aria-pressed={!compare && direction === facing} onClick={() => setView({ direction: facing, compare: false })}>{facing}</button>)}</div>
+    <label className="check-field compare-toggle"><input type="checkbox" checked={compare} onChange={(event) => setView({ compare: event.target.checked })} />Compare S / N</label>
+    <div className={`preview-stage background-${background}`} aria-busy={!result.ready && !error}>
+      {result.ready ? <div className="preview-frames">{result.frames.map(({ plan, image }) => <figure key={plan.direction}><figcaption>{plan.direction} <span>{['N', 'NE', 'NW'].includes(plan.direction) ? 'Back view' : ['S', 'SE', 'SW'].includes(plan.direction) ? 'Front view' : 'Profile'}</span></figcaption><NativeCanvas image={image} direction={plan.direction} target={target} zoom={zoom} /></figure>)}</div> : <div className="preview-message"><p>{error ? 'Preview unavailable' : 'Composing character…'}</p></div>}
+    </div>
+    <p className="preview-status" role="status">{error ? 'Preview unavailable · see compatibility warnings' : result.ready ? `Preview ready · ${target} · ${compare ? 'S / N' : direction}` : runtime ? 'Updating preview…' : 'Loading character assets…'}</p>
+    {result.error && <button className="secondary-button retry-button" onClick={() => setRetry((value) => value + 1)}>Retry preview</button>}
+    <p className="hint preview-note">Temporary modular artwork · transparent native composition · exports keep native resolution</p>
+  </section>;
 }

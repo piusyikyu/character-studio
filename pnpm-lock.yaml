@@ -41,27 +41,18 @@ importers:
       '@character-studio/asset-registry':
         specifier: workspace:*
         version: link:../../packages/asset-registry
-      '@character-studio/character-engine':
-        specifier: workspace:*
-        version: link:../../packages/character-engine
       '@character-studio/core':
         specifier: workspace:*
         version: link:../../packages/core
       '@character-studio/render-utils':
         specifier: workspace:*
         version: link:../../packages/render-utils
-      '@character-studio/renderer-canvas':
-        specifier: workspace:*
-        version: link:../../packages/renderer-canvas
       '@character-studio/renderer-detailed':
         specifier: workspace:*
         version: link:../../packages/renderer-detailed
       '@character-studio/renderer-pixel':
         specifier: workspace:*
         version: link:../../packages/renderer-pixel
-      '@character-studio/renderer-pixi':
-        specifier: workspace:*
-        version: link:../../packages/renderer-pixi
       react:
         specifier: ^19.0.0
         version: 19.3.0

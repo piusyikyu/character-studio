@@ -10,9 +10,6 @@
     "@character-studio/render-utils": "workspace:*",
     "@character-studio/core": "workspace:*",
     "@character-studio/asset-registry": "workspace:*",
-    "@character-studio/character-engine": "workspace:*",
-    "@character-studio/renderer-canvas": "workspace:*",
-    "@character-studio/renderer-pixi": "workspace:*",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "zustand": "^5.0.0"
