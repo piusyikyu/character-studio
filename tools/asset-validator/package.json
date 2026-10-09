@@ -1,5 +1,5 @@
 {
-  "name": "@female-character-studio/asset-validator",
+  "name": "@character-studio/asset-validator",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -9,7 +9,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@female-character-studio/core": "workspace:*",
-    "@female-character-studio/asset-registry": "workspace:*"
+    "@character-studio/core": "workspace:*",
+    "@character-studio/asset-registry": "workspace:*"
   }
 }

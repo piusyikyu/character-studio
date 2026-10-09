@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { createCharacter, NATIVE_SIZE } from '@female-character-studio/character-engine';
+import { createCharacter, NATIVE_SIZE } from '@character-studio/character-engine';
 
 const mock = vi.hoisted(() => ({
   init: vi.fn<() => Promise<void>>(), destroy: vi.fn(), render: vi.fn(), resize: vi.fn(),

@@ -1,9 +1,9 @@
 {
-  "name": "@female-character-studio/renderer-canvas",
+  "name": "@character-studio/renderer-canvas",
   "version": "0.1.0",
   "private": true,
   "type": "module",
   "exports": { ".": "./src/index.ts" },
   "scripts": { "build": "tsup src/index.ts --format esm --dts --clean", "typecheck": "tsc --noEmit" },
-  "dependencies": { "@female-character-studio/character-engine": "workspace:*" }
+  "dependencies": { "@character-studio/character-engine": "workspace:*" }
 }

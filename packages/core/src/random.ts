@@ -5,13 +5,13 @@ import { EYE_COLOURS, FACIAL_EXPRESSIONS, HAIR_COLOURS, HAIR_STYLES, HEAD_SHAPES
 import { createCharacterRecipe } from './recipe';
 import type { CharacterRecipe } from './recipe';
 
-export const RANDOM_GENERATION_VERSION = 1;
+export const RANDOM_GENERATION_VERSION = 2;
 export type RandomSeed = string | number;
 
 function createSeededRandom(seed: RandomSeed): () => number {
   if (typeof seed !== 'string' && typeof seed !== 'number') throw new TypeError('A character seed must be a string or a safe integer.');
   if (typeof seed === 'number' && !Number.isSafeInteger(seed)) throw new RangeError('A numeric character seed must be a safe integer.');
-  const text = `female-character-studio:${RANDOM_GENERATION_VERSION}:${typeof seed}:${seed}`;
+  const text = `character-studio:${RANDOM_GENERATION_VERSION}:${typeof seed}:${seed}`;
   // FNV-1a over UTF-16 code units followed by a 32-bit Mulberry-style sequence.
   // Math.imul/bitwise arithmetic makes this independent of platform and global RNG state.
   let state = 0x811c9dc5;

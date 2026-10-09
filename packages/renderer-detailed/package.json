@@ -1,5 +1,5 @@
 {
-  "name": "@female-character-studio/renderer-detailed",
+  "name": "@character-studio/renderer-detailed",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -8,5 +8,5 @@
     "build": "tsup src/index.ts --format esm --dts --clean",
     "typecheck": "tsc --noEmit"
   },
-  "dependencies": { "@female-character-studio/core": "workspace:*", "pixi.js": "^8.0.0" }
+  "dependencies": { "@character-studio/core": "workspace:*", "pixi.js": "^8.0.0" }
 }

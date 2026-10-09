@@ -1,5 +1,5 @@
-import { assetIdSchema, directionSchema, layerSlotSchema, pixelPointSchema, pixelSizeSchema } from '@female-character-studio/character-engine';
-import type { Direction, LayerSlot } from '@female-character-studio/character-engine';
+import { assetIdSchema, directionSchema, layerSlotSchema, pixelPointSchema, pixelSizeSchema } from '@character-studio/character-engine';
+import type { Direction, LayerSlot } from '@character-studio/character-engine';
 import { z } from 'zod';
 
 export const assetSchema = z.object({

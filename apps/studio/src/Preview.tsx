@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { NATIVE_SIZE } from '@female-character-studio/character-engine';
-import type { CharacterRenderer } from '@female-character-studio/character-engine';
+import { NATIVE_SIZE } from '@character-studio/character-engine';
+import type { CharacterRenderer } from '@character-studio/character-engine';
 import { useStudioStore } from './store';
 
 export function Preview() {
@@ -20,8 +20,8 @@ export function Preview() {
     async function initialize() {
       try {
         const candidate = rendererId === 'pixi'
-          ? new (await import('@female-character-studio/renderer-pixi')).PixiCharacterRenderer()
-          : new (await import('@female-character-studio/renderer-canvas')).CanvasCharacterRenderer();
+          ? new (await import('@character-studio/renderer-pixi')).PixiCharacterRenderer()
+          : new (await import('@character-studio/renderer-canvas')).CanvasCharacterRenderer();
         if (cancelled) return;
         instance = candidate;
         await candidate.mount(element!, NATIVE_SIZE);

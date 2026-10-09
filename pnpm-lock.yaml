@@ -38,16 +38,16 @@ importers:
 
   apps/studio:
     dependencies:
-      '@female-character-studio/asset-registry':
+      '@character-studio/asset-registry':
         specifier: workspace:*
         version: link:../../packages/asset-registry
-      '@female-character-studio/character-engine':
+      '@character-studio/character-engine':
         specifier: workspace:*
         version: link:../../packages/character-engine
-      '@female-character-studio/renderer-canvas':
+      '@character-studio/renderer-canvas':
         specifier: workspace:*
         version: link:../../packages/renderer-canvas
-      '@female-character-studio/renderer-pixi':
+      '@character-studio/renderer-pixi':
         specifier: workspace:*
         version: link:../../packages/renderer-pixi
       react:
@@ -81,7 +81,7 @@ importers:
 
   packages/asset-registry:
     dependencies:
-      '@female-character-studio/character-engine':
+      '@character-studio/character-engine':
         specifier: workspace:*
         version: link:../character-engine
       zod:
@@ -102,13 +102,13 @@ importers:
 
   packages/renderer-canvas:
     dependencies:
-      '@female-character-studio/character-engine':
+      '@character-studio/character-engine':
         specifier: workspace:*
         version: link:../character-engine
 
   packages/renderer-detailed:
     dependencies:
-      '@female-character-studio/core':
+      '@character-studio/core':
         specifier: workspace:*
         version: link:../core
       pixi.js:
@@ -117,13 +117,13 @@ importers:
 
   packages/renderer-pixel:
     dependencies:
-      '@female-character-studio/core':
+      '@character-studio/core':
         specifier: workspace:*
         version: link:../core
 
   packages/renderer-pixi:
     dependencies:
-      '@female-character-studio/character-engine':
+      '@character-studio/character-engine':
         specifier: workspace:*
         version: link:../character-engine
       pixi.js:
@@ -132,10 +132,10 @@ importers:
 
   tools/asset-validator:
     dependencies:
-      '@female-character-studio/asset-registry':
+      '@character-studio/asset-registry':
         specifier: workspace:*
         version: link:../../packages/asset-registry
-      '@female-character-studio/core':
+      '@character-studio/core':
         specifier: workspace:*
         version: link:../../packages/core
 

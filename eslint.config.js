@@ -20,7 +20,7 @@ export default tseslint.config(
       'no-restricted-imports': ['error', {
         paths: builtinModules.filter((name) => !name.startsWith('node:')),
         patterns: [{
-          group: ['node:*', 'react', 'react/*', 'react-dom', 'react-dom/*', 'pixi.js', 'pixi.js/*', '@female-character-studio/renderer-*', '@female-character-studio/asset-registry', '@female-character-studio/character-engine'],
+          group: ['node:*', 'react', 'react/*', 'react-dom', 'react-dom/*', 'pixi.js', 'pixi.js/*', '@character-studio/renderer-*', '@character-studio/asset-registry', '@character-studio/character-engine'],
           message: 'Core must remain independent of UI, renderers, registry, and platform APIs.',
         }],
       }],

@@ -11,7 +11,7 @@ import {
   createCharacterRecipe, characterRecipeSchema,
   serializeCharacterRecipe, deserializeCharacterRecipe,
   generateRandomCharacter, EXAMPLE_CHARACTER_RECIPES,
-} from '@female-character-studio/core';
+} from '@character-studio/core';
 
 const recipe = createCharacterRecipe({
   ancestry: { primary: 'elf', secondary: 'vampire' },
@@ -87,10 +87,12 @@ unsafe numeric seeds and unsupported runtime types fail explicitly. Numeric `42`
 and string `"42"` use distinct seed namespaces. Each call owns its generator state;
 no clock, platform API or `Math.random` is used.
 
-`RANDOM_GENERATION_VERSION` is `1`: a tagged UTF-16 seed is hashed with 32-bit
+`RANDOM_GENERATION_VERSION` is `2`: a tagged UTF-16 seed is hashed with 32-bit
 FNV-1a arithmetic and drives a Mulberry-style sequence. Option order and draw order
 are part of this generation version and guarded by a fixed regression recipe.
-Changes to those rules require a deliberate generation-version change. Seeds are
+Version 2 uses the renamed `character-studio` seed prefix, changing generated
+appearances for existing seeds. Changes to these rules require a deliberate
+generation-version change. Seeds are
 not stored in CharacterRecipe; serialized appearance reproduces the selected
 identity without requiring random generation later. Target/direction/catalog
 availability is never guessed by this generator.

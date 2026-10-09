@@ -68,13 +68,13 @@ describe('character core workflows', () => {
       expect(serializeCharacterRecipe(generateRandomCharacter(seed))).toBe(saved);
       expect(serializeCharacterRecipe(deserializeCharacterRecipe(saved))).toBe(saved);
     }
-    // Protect the documented version-1 seed contract against accidental drift.
-    expect(generateRandomCharacter('female-character-studio')).toEqual({
+    // Protect the documented version-2 seed contract against accidental drift.
+    expect(generateRandomCharacter('character-studio')).toEqual({
       schemaVersion: 1,
-      anatomy: { family: 'female-humanoid-v1', bodyPreset: 'slender', chestSize: 'small', bodyProportions: 'slender', height: 'tall', headShape: 'angular' },
-      ancestry: { primary: 'vampire' }, visibleTraits: ['rounded-ears'],
-      hair: { style: 'long-waves', colour: 'hair.gold' }, skinTone: 'skin.light', expression: 'stern',
-      eyes: { leftColour: 'eyes.green', rightColour: 'eyes.brown' },
+      anatomy: { family: 'female-humanoid-v1', bodyPreset: 'slender', chestSize: 'small', bodyProportions: 'slender', height: 'tall', headShape: 'soft-oval' },
+      ancestry: { primary: 'human' }, visibleTraits: ['rounded-ears'],
+      hair: { style: 'short-bob', colour: 'hair.chestnut' }, skinTone: 'skin.warm', expression: 'stern',
+      eyes: { leftColour: 'eyes.green', rightColour: 'eyes.green' },
       outfit: { id: 'starter-outfit', fit: 'slender', colour: 'outfit.charcoal' },
     });
   });

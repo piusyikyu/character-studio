@@ -77,7 +77,7 @@ pnpm test:e2e     # Boot Vite and smoke-test the existing app in Chromium
 pnpm build        # Build libraries and application in dependency order
 pnpm verify       # Typecheck, lint, test, then build
 pnpm verify:all   # Run verify followed by the browser smoke test
-pnpm --filter @female-character-studio/app preview
+pnpm --filter @character-studio/app preview
 ```
 
 The scaffold uses [Tailwind's Vite integration](https://tailwindcss.com/docs/installation/using-vite)

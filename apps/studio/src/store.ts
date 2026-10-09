@@ -1,6 +1,6 @@
 import { create } from 'zustand';
-import { createCharacter, directionSchema, rendererIdSchema } from '@female-character-studio/character-engine';
-import type { Character, Direction, RendererId } from '@female-character-studio/character-engine';
+import { createCharacter, directionSchema, rendererIdSchema } from '@character-studio/character-engine';
+import type { Character, Direction, RendererId } from '@character-studio/character-engine';
 
 interface StudioState {
   character: Character;

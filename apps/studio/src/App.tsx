@@ -1,5 +1,5 @@
-import { createAssetRegistry } from '@female-character-studio/asset-registry';
-import { DIRECTIONS, directionSchema, LAYER_SLOTS, rendererIdSchema } from '@female-character-studio/character-engine';
+import { createAssetRegistry } from '@character-studio/asset-registry';
+import { DIRECTIONS, directionSchema, LAYER_SLOTS, rendererIdSchema } from '@character-studio/character-engine';
 import { Preview } from './Preview';
 import { useStudioStore } from './store';
 

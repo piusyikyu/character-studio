@@ -1,5 +1,5 @@
-import { pixelSizeSchema, validateRenderRequest } from '@female-character-studio/character-engine';
-import type { CharacterRenderer, PixelSize, RenderRequest, RenderResult } from '@female-character-studio/character-engine';
+import { pixelSizeSchema, validateRenderRequest } from '@character-studio/character-engine';
+import type { CharacterRenderer, PixelSize, RenderRequest, RenderResult } from '@character-studio/character-engine';
 
 export class CanvasCharacterRenderer implements CharacterRenderer {
   readonly id = 'canvas';
