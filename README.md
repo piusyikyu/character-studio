@@ -54,7 +54,9 @@ see [Playwright's browser setup](https://playwright.dev/docs/browsers).
 | `packages/renderer-pixel` | Deterministic integer CPU RGBA composition, nearest preview and pixel PNG/sheet export |
 | `packages/render-utils` | Shared indexed palettes, native image validation, PNG codec and export decoration |
 | `tools/render-demo` | Separate native placeholder authoring, generated assets, read-only demonstration and headless exports |
-| `tools/asset-validator` | Empty boundary for future portable Node asset audits; no audit CLI yet |
+| `tools/asset-validator` | Portable Node reference import, transparency staging, candidate anchors and audit CLI |
+| `assets/references` | Approved flattened references and versioned import review settings |
+| `assets/staging` | Ignored transparent reference outputs and inspection reports; unpublished |
 | `assets/source` | Reserved for versioned approved source imagery |
 | `assets/detailed`, `assets/pixel` | Reserved for independently authored target-native asset families |
 | `packages/character-engine` | Preserved legacy demo Character and DOM renderer contracts |
@@ -63,8 +65,7 @@ see [Playwright's browser setup](https://playwright.dev/docs/browsers).
 Packages are private, consume each other with `workspace:*`, and export TypeScript
 source for development in Vite and Vitest. Library builds generate ESM and declaration
 artifacts in each package's `dist`; the application build is in `apps/studio/dist`.
-They are not configured for external publishing. The asset-validator scaffold
-still has no audit CLI. The Node demo tools bundle workspace dependencies so they
+They are not configured for external publishing. The Node audit/demo tools bundle workspace dependencies so they
 run directly under Node 24; image processing stays outside the shared core.
 Core excludes DOM/Node ambient types and rejects platform/UI/rendering imports in
 ESLint. The pixel package also excludes browser ambient types.
@@ -75,6 +76,7 @@ ESLint. The pixel package also excludes browser ambient types.
 pnpm dev          # Generate placeholders and start the interactive editor
 pnpm demo:assets  # Generate independent temporary native layer PNGs and catalog
 pnpm demo:export  # Save eight detailed PNGs, eight pixel PNGs and one pixel sheet
+pnpm reference:import # Prepare heroine-v1 reference staging and audit, without publishing
 pnpm typecheck    # Check root configs, smoke tests, and all workspace packages
 pnpm lint         # ESLint with zero warnings permitted
 pnpm test         # Run Vitest once
@@ -122,7 +124,9 @@ default final export uses pure `#00FF00` (RGBA `0,255,0,255`) and bright yellow
 `#FFFF00` labels (RGBA `255,255,0,255`) at each cell's top-left. Transparent export
 must be an explicit choice. The registry's metadata-only test fixtures retain
 fictional references; the renderer demo generates actual versioned PNG placeholders.
-No production art is approved yet; the editor uses geometric pipeline fixtures.
+The approved heroine-v1 detailed illustrations are flattened references, prepared
+separately by the [reference import workflow](docs/REFERENCE_IMPORT.md). They are
+not modular runtime assets; the editor continues using geometric pipeline fixtures.
 
 Six public-API integration tests cover core recipe save/load, compatibility and
 seeded generation. Seven registry integration tests cover recipe-to-plan workflows

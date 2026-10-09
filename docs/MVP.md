@@ -89,6 +89,21 @@ The editor operates on the temporary geometric catalog, not approved artwork.
 - [ ] QA check: back skirt/dress geometry truly differs from front where appropriate.
 - [ ] QA check: clean pixel edges, no hanging/rhombus accessories, no bounds crossing.
 
+#### Reference preparation — Steps 6A–6B
+
+- [x] Validate the approved eight-direction heroine-v1 detailed reference files and preserve source hashes.
+- [x] Produce native transparent full-character staging, contact sheet and checker/green inspection previews.
+- [x] Record background/alpha/bounds/baseline measurements and versioned candidate anchors.
+- [x] Add repeatable import/export and source-preservation workflow tests.
+- [ ] Human review of matte edges, uncertain regions, anchors and baseline inconsistency.
+- [ ] Step 6C: modular segmentation (blocked on review; not begun).
+
+See [REFERENCE_IMPORT.md](REFERENCE_IMPORT.md). The approved sources are flattened
+standing illustrations, including the approved NE/NW dress corrections. Staging
+does not satisfy modular-layer or detailed T-pose approval, and no production
+pixel assets have been authored. The initial foot-baseline audit flags a 48 px
+spread; original geometry remains unchanged.
+
 ## Development guidance for Codex
 Implement each milestone as a separate task and stop after test/verification. Favor synthetic coloured shapes in early renderer tests over premature illustration generation. Add snapshot/golden-image tests for the pixel pipeline and manual S/N review at each art approval gate.
 
