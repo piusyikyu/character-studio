@@ -1,0 +1,12 @@
+{
+  "name": "@female-character-studio/renderer-pixel",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": { ".": "./src/index.ts" },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --dts --clean",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": { "@female-character-studio/core": "workspace:*" }
+}

@@ -15,16 +15,20 @@
     "lint": "eslint . --max-warnings 0",
     "test": "vitest run",
     "test:watch": "vitest",
-    "verify": "pnpm typecheck && pnpm lint && pnpm test && pnpm build"
+    "test:e2e": "playwright test",
+    "test:e2e:install": "playwright install chromium --only-shell",
+    "verify": "pnpm typecheck && pnpm lint && pnpm test && pnpm build",
+    "verify:all": "pnpm verify && pnpm test:e2e"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.0",
+    "@playwright/test": "1.64.0",
     "@types/node": "^24.0.0",
     "eslint": "^10.0.0",
     "globals": "^17.0.0",
+    "tsup": "^8.5.0",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.0",
-    "vitest": "^4.0.0",
-    "tsup": "^8.5.0"
+    "vitest": "^4.0.0"
   }
 }

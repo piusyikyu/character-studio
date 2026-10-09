@@ -1,10 +1,15 @@
 # Female Character Studio
 
-A TypeScript pnpm workspace for a layered character editor. This initial scaffold
-includes shared character contracts, an asset registry, empty PixiJS v8 and Canvas
-2D renderers, and a React application with direction and renderer controls.
-Character composition, artwork, animation, and PNG export are intentionally future
-work.
+A TypeScript pnpm workspace for one versioned CharacterRecipe and two independent
+asset-backed outputs: detailed 1024 × 1536 T-pose artwork and pixel 128 × 192 idle
+sprites, each with eight separately authored facings.
+
+This repository is at the workspace-scaffold stage. The existing React application
+is the original empty-preview demo; it does not yet implement the specified recipe,
+manifest, or rendering pipelines. Read [AGENTS.md](AGENTS.md),
+[architecture](docs/ARCHITECTURE.md), [asset specification](docs/ASSET_SPEC.md), and
+[MVP milestones](docs/MVP.md) before changing those contracts. The scaffold audit
+is recorded in [docs/AUDIT.md](docs/AUDIT.md).
 
 ## WSL2 Ubuntu setup
 
@@ -18,9 +23,11 @@ With NVM already installed:
 source "$HOME/.nvm/nvm.sh"
 nvm install
 nvm use
-npm install --global pnpm@10
+npm install --global pnpm@10.34.6
 pnpm install --frozen-lockfile
+pnpm test:e2e:install
 pnpm verify
+pnpm test:e2e
 pnpm dev
 ```
 
@@ -28,56 +35,77 @@ pnpm dev
 Node to version 24. For an exact pnpm toolchain match, install the version in its
 `packageManager` field. The dev server listens on `http://localhost:5173` by default.
 Use the localhost URL in your browser; the development tools stay in Ubuntu.
+Playwright also runs in Ubuntu using headless Chromium. If Ubuntu lacks Chromium
+system libraries, run `pnpm exec playwright install-deps chromium` in WSL (it may
+require sudo). Browser binaries and OS libraries are separate from pnpm dependencies;
+see [Playwright's browser setup](https://playwright.dev/docs/browsers).
 
 ## Workspace
 
 | Location | Purpose |
 | --- | --- |
-| `apps/studio` | React, Vite, Tailwind CSS, Zustand application |
-| `packages/character-engine` | Zod character schemas, pixel geometry, renderer contract, export policy |
-| `packages/asset-registry` | Validated metadata registration and slot/direction lookup |
-| `packages/renderer-pixi` | PixiJS v8 asynchronous lifecycle and transparent preview scaffold |
-| `packages/renderer-canvas` | Canvas 2D lifecycle and transparent preview scaffold |
+| `apps/studio` | Working React/Vite/Tailwind/Zustand demo |
+| `packages/core` | Empty milestone 1 boundary for platform-independent recipe/trait/compatibility logic |
+| `packages/asset-registry` | Existing flat demo registry; versioned manifests and RenderPlans await milestone 2 |
+| `packages/renderer-detailed` | Empty milestone 3 boundary for native detailed composition with PixiJS v8 |
+| `packages/renderer-pixel` | Empty milestone 3 boundary for deterministic native CPU RGBA composition |
+| `tools/asset-validator` | Empty boundary for future portable Node asset audits; no audit CLI yet |
+| `assets/source` | Reserved for versioned approved source imagery |
+| `assets/detailed`, `assets/pixel` | Reserved for independently authored target-native asset families |
+| `packages/character-engine` | Preserved legacy demo Character and DOM renderer contracts |
+| `packages/renderer-pixi`, `packages/renderer-canvas` | Preserved empty-preview backends used by the current app |
 
 Packages are private, consume each other with `workspace:*`, and export TypeScript
 source for development in Vite and Vitest. Library builds generate ESM and declaration
 artifacts in each package's `dist`; the application build is in `apps/studio/dist`.
-They are not configured for external publishing.
+They are not configured for external publishing. New milestone packages export
+nothing until implemented. Builds check scaffold wiring, not MVP completion.
+Core excludes DOM/Node ambient types and rejects platform/UI/rendering imports in
+ESLint. The pixel package also excludes browser ambient types.
 
 ## Commands
 
 ```bash
 pnpm dev          # Start the React application
-pnpm typecheck    # Check all five packages
+pnpm typecheck    # Check root configs, smoke tests, and all workspace packages
 pnpm lint         # ESLint with zero warnings permitted
 pnpm test         # Run Vitest once
 pnpm test:watch   # Run Vitest in watch mode
+pnpm test:e2e:install # Install Playwright's Chromium headless shell
+pnpm test:e2e     # Boot Vite and smoke-test the existing app in Chromium
 pnpm build        # Build libraries and application in dependency order
 pnpm verify       # Typecheck, lint, test, then build
+pnpm verify:all   # Run verify followed by the browser smoke test
 pnpm --filter @female-character-studio/app preview
 ```
 
 The scaffold uses [Tailwind's Vite integration](https://tailwindcss.com/docs/installation/using-vite)
 and [PixiJS v8's asynchronous Application initialization](https://pixijs.com/8.x/guides/components/application).
 
-## Character and asset contracts
+## Demo and migration boundaries
 
-The initial defaults are eight compass directions, six layer slots, and a 64 × 96
-native frame. These are starting conventions rather than a completed art format.
-The Zod schemas reject fractional dimensions and offsets, unsupported directions,
-and duplicate layer slots. Asset IDs are unique within a registry. Asset sources
-are local `/assets/...png` or `/assets/...webp` paths with integer dimensions and
-anchors; registry reads return copies to protect stored metadata.
+The preserved demo uses long-form compass directions, six generic layer slots,
+one 64 × 96 frame, and a Pixi/Canvas backend selector. Its Character includes
+direction and layer asset IDs. Both backends return
+`{ status: 'scaffold', composedLayers: 0 }` and leave previews empty. These APIs are
+not the new target-independent CharacterRecipe or RenderPlan contract.
 
-The registry starts empty. Source artwork belongs in `apps/studio/public/assets`;
-register metadata explicitly through `createAssetRegistry`. No sample character or
-compositor is included. Both renderers return `{ status: 'scaffold', composedLayers: 0 }`
-and leave their previews transparent even if given character layers.
+Milestone 1 will implement core and migrate recipe consumers. Milestone 2 will
+implement versioned manifests, coverage/compatibility diagnostics and render plans;
+milestone 3 will implement the two target-native compositors and export. Milestone 4
+will replace demo backend selection with target selection and add the complete
+editor/export controls. Avoid changing the working demo to pretend those pipelines
+exist before their contracts and tests are ready.
 
-Internal art uses transparency. The future final PNG export must use an exact
-`#00FF00` background (RGBA `0,255,0,255`) and yellow direction labels (`#FFFF00`,
-RGBA `255,255,0,255`). Pixel comparisons must use exact RGBA values, integer
-positions, and native dimensions. Current tests validate the contracts and renderer
-lifecycle with mocks; real GPU rendering and exported PNG pixel tests will be needed
-when the compositor and export pipeline exist. No image processing or platform
-specific graphics libraries are required at this stage.
+The canonical facings are N, NE, E, SE, S, SW, W, NW. Pixel sheets must be 512 × 384,
+with row-major N, NE, E, SE / S, SW, W, NW. Internal layers stay transparent;
+default final export uses pure `#00FF00` (RGBA `0,255,0,255`) and bright yellow
+`#FFFF00` labels (RGBA `255,255,0,255`) at each cell's top-left. Transparent export
+must be an explicit choice. No approved art, synthetic layered fixtures, compositor,
+or export pipeline exists yet.
+
+Unit tests cover legacy schemas, state and mocked renderer lifecycles. Browser smoke
+tests cover the real demo controls and preview initialization, not anatomical QA or
+MVP pixel correctness. Later rendering tests must compare exact RGBA, integer native
+coordinates/dimensions, palette isolation and deterministic hashes. Human visual
+approval remains necessary for anatomical and garment coherence.

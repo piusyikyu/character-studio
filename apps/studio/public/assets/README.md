@@ -1,9 +1,13 @@
 # Character artwork
 
-Add transparent PNG or WebP source artwork here. Register each direction's metadata
-through `@female-character-studio/asset-registry`; placing a file here does not
-register it automatically. Positions and dimensions must be integers. The default
-character frame is 64 × 96 native pixels.
+This is the original demo's Vite-served asset location. Its legacy registry accepts
+PNG/WebP paths here, and its empty preview uses a 64 × 96 frame. These conventions
+are superseded by the target-specific specification in `docs/ASSET_SPEC.md`.
 
-No character artwork is bundled in this scaffold. Export backgrounds and direction
-labels belong to the future export pipeline, not to internal source artwork.
+New source art belongs in `assets/source`, with versioned native families in
+`assets/detailed` and `assets/pixel`. Their publication into browser-accessible
+paths will be designed in milestone 2. Do not place production art into the old
+flat registry until the manifest and target contracts are implemented.
+
+No artwork is bundled. Green backgrounds and direction labels belong to the final
+export stage, not to source layers.

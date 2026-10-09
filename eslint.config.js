@@ -1,13 +1,29 @@
 import js from '@eslint/js';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
+import { builtinModules } from 'node:module';
 
 export default tseslint.config(
-  { ignores: ['**/dist/**', '**/node_modules/**', '**/coverage/**'] },
+  { ignores: ['**/dist/**', '**/node_modules/**', '**/coverage/**', 'playwright-report/**', 'test-results/**'] },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
     files: ['**/*.{js,ts,tsx}'],
     languageOptions: { globals: { ...globals.browser, ...globals.node } },
+  },
+  {
+    files: ['packages/core/src/**/*.{ts,tsx}'],
+    languageOptions: {
+      globals: Object.fromEntries(Object.keys({ ...globals.browser, ...globals.node }).map((name) => [name, 'off'])),
+    },
+    rules: {
+      'no-restricted-imports': ['error', {
+        paths: builtinModules.filter((name) => !name.startsWith('node:')),
+        patterns: [{
+          group: ['node:*', 'react', 'react/*', 'react-dom', 'react-dom/*', 'pixi.js', 'pixi.js/*', '@female-character-studio/renderer-*', '@female-character-studio/asset-registry', '@female-character-studio/character-engine'],
+          message: 'Core must remain independent of UI, renderers, registry, and platform APIs.',
+        }],
+      }],
+    },
   },
 );
