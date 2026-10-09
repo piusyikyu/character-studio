@@ -39,7 +39,7 @@ Validate an entire loop from editable character recipe to **two correct independ
 Implemented in `packages/core`; see its README for the version-1 contract, discrete
 anatomy presets, composable trait rules, deterministic seed contract and six example
 recipes. Placeholder renderers are implemented in milestone 3; migration of the
-legacy demo UI remains a separate future task.
+studio now uses these contracts in milestone 4.
 
 ### 2 — Asset registry + RenderPlan
 - [x] Manifest parser and indexed lookups by ID, target, pose, direction, body.
@@ -50,7 +50,7 @@ legacy demo UI remains a separate future task.
 Implemented in `packages/asset-registry` with shared RenderPlan schemas in core.
 Synthetic fixtures describe fictional PNG references, not approved or renderable
 artwork. Actual placeholder rendering is implemented in milestone 3. Production
-PNG/alpha audits and editor integration remain future work; see the registry README
+PNG/alpha audits remain future work; see the registry README
 for binding and source-inventory contracts.
 
 ### 3 — Render pipelines
@@ -64,16 +64,23 @@ for binding and source-inventory contracts.
 Implemented with separately authored geometric placeholder cells and real-browser
 renderer tests. The standalone read-only demo and export procedure are documented
 in `tools/render-demo/README.md`. Placeholders require visual review; production
-artwork and editor controls remain future milestones. Pixel byte equality is tested
+artwork remains a future milestone; editor controls are implemented in milestone 4. Pixel byte equality is tested
 directly, stronger than comparing hashes; detailed GPU alpha rounding can vary by
 device even though repeated exports are stable in the tested browser.
 
 ### 4 — Studio UI
-- [ ] Controls modify shared recipe; both preview targets update accordingly.
-- [ ] Eight-direction selector + S/N compare mode.
-- [ ] Character JSON save/load; PNG exports; compatibility warnings.
-- [ ] Undo/redo for recipe edits; no inert buttons.
+- [x] Controls modify shared recipe; both preview targets update accordingly.
+- [x] Eight-direction selector + S/N compare mode.
+- [x] Character JSON save/load; PNG exports; compatibility warnings.
+- [x] Undo/redo for recipe edits; no inert buttons.
 - [x] Playwright smoke tests run in WSL.
+
+Implemented in `apps/studio`; see its README for controls, local presets, pinned
+JSON, deterministic seed generation and native PNG/sheet export. Two editor API
+workflows and four real-browser interaction workflows cover history, save/load,
+exports and asset failure recovery. Build/height/chest remain linked discrete
+presets; one starter outfit is selected automatically with its correct body fit.
+The editor operates on the temporary geometric catalog, not approved artwork.
 
 ### 5 — First approved art package
 - [ ] One authored/approved female base for detailed and pixel targets.

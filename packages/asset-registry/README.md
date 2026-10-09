@@ -4,7 +4,7 @@ MVP milestone 2 provides version-1 manifest/catalog parsers, indexed manifest an
 rig-profile lookups, coverage diagnostics and immutable RenderPlans. The new API
 uses `@character-studio/core` and Zod; it performs no file I/O, React work, PixiJS
 work or image rendering. The original `createAssetRegistry` API is preserved in
-`src/legacy.ts` for the existing demo; new code uses `createManifestRegistry`.
+`src/legacy.ts` for legacy consumers; new code uses `createManifestRegistry`.
 
 ```ts
 import { createCharacterRecipe } from '@character-studio/core';
@@ -99,4 +99,5 @@ references are intentionally fictional. No artwork or compositor is included.
 Seven public-API integration tests exercise complete recipe-to-plan workflows,
 anchors/baselines, direction-specific draw order/visibility, palette assignment,
 compatibility diagnostics and missing/invalid data. The legacy tests remain for
-the preserved demo. Browser coverage of this planner awaits editor integration.
+the preserved demo. Editor browser workflows also cover live resolution and missing binding/source
+diagnostics using the generated native placeholder catalog.

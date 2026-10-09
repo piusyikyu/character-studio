@@ -115,8 +115,9 @@ rejecting invalid imports, returning actionable compatibility diagnostics, and
 reproducing valid seeded characters. They replace repetitive helper/enum unit tests.
 
 Prefer Playwright E2E tests for user-visible editor behavior as it becomes available.
-The current studio still uses the legacy character model, so its browser smoke test
-does not cover this core yet; these tests are API integration tests, not UI E2E tests.
+The studio now edits this CharacterRecipe directly. Browser workflows cover live
+controls, history, seed replay and JSON import/export; these six tests retain the
+platform-independent API validation and compatibility boundaries.
 
 TypeScript excludes DOM and ambient Node types. ESLint disallows React, PixiJS,
 Node built-ins, registry, renderer, and legacy character-engine imports. Core must
@@ -135,4 +136,5 @@ plans with temporary native placeholder assets; see `tools/render-demo/README.md
 
 `packages/character-engine` remains the original working demo, whose Character
 and DOM renderer contracts are not the specified CharacterRecipe. Do not re-export
-that demo as core. Its consumers will migrate during editor integration.
+that demo as core. The interactive editor has migrated to CharacterRecipe and RenderPlan; the legacy
+packages remain available independently.
