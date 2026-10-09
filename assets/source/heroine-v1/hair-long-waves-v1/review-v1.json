@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "hair.long-waves.v1",
+  "assetVersion": 1,
+  "target": "detailed",
+  "directions": [
+    "S",
+    "N"
+  ],
+  "decision": "approved-standing-reference-hair-design",
+  "evidence": "User: approved. commit and then next step",
+  "configSha256": "8f88d9a4d5aae1003ffebd28edfe07d7fbd51306050b0d766917ef9e913c82c3",
+  "minimumVisibleAlpha": 8,
+  "layers": [
+    {
+      "direction": "S",
+      "part": "rear",
+      "sourceSha256": "213a3a457050fe7ca6c18b89fe07ff66bbad8fdf0d43333b2482db646e2d0264",
+      "cleanedSha256": "603c5c9704467684733b5d38315719971e2fac86f2174f0aa2dbd65bae991d80"
+    },
+    {
+      "direction": "S",
+      "part": "front",
+      "sourceSha256": "e237ec281a63c033416781cc3f7c87c84e25fa7ccabd4ea6cd8ecf97067c193b",
+      "cleanedSha256": "9aa236e207124ecba14cc3741460079f72fbf9f4822ee60dfc5a8ddb603d991b"
+    },
+    {
+      "direction": "N",
+      "part": "rear",
+      "sourceSha256": "92e7688eb6f10d5f3fb41ff07240b3bed88b13fb0ed98b6c53034b2e6be53878",
+      "cleanedSha256": "a286e0fc06739dbf1f4bac9f12896b757e1df3ac61c18fbf0406e2df59b649a5"
+    }
+  ],
+  "scope": "Current S/N silhouettes, front/rear separation and alpha cleanup accepted for continued authoring. T-pose, separately authored head/body fit, production publication and complete Step 6C remain pending."
+}

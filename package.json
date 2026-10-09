@@ -13,6 +13,7 @@
     "demo:assets": "pnpm --filter @character-studio/render-demo build && node tools/render-demo/dist/generate-assets.js",
     "demo:export": "pnpm demo:assets && node tools/render-demo/dist/export-demo.js",
     "reference:import": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/import-cli.js",
+    "hair:review": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/hair-review-cli.js",
     "build": "pnpm demo:assets && pnpm -r build",
     "typecheck": "tsc --noEmit && pnpm -r typecheck",
     "lint": "eslint . --max-warnings 0",

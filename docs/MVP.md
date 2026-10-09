@@ -96,13 +96,20 @@ The editor operates on the temporary geometric catalog, not approved artwork.
 - [x] Record background/alpha/bounds/baseline measurements and versioned candidate anchors.
 - [x] Add repeatable import/export and source-preservation workflow tests.
 - [ ] Human review of matte edges, uncertain regions, anchors and baseline inconsistency.
-- [ ] Step 6C: modular segmentation (blocked on review; not begun).
+- [ ] Step 6C: S/N hair design approved; remaining facings and anatomy unfinished.
 
 See [REFERENCE_IMPORT.md](REFERENCE_IMPORT.md). The approved sources are flattened
 standing illustrations, including the approved NE/NW dress corrections. Staging
 does not satisfy modular-layer or detailed T-pose approval, and no production
 pixel assets have been authored. The initial foot-baseline audit flags a 48 px
 spread; original geometry remains unchanged.
+
+The user approved proceeding after the verified 6A–6B audit on 2026-10-09.
+The initial Step 6C increment is three separately authored S/N hair draft layers,
+explicit N fringe invisibility, provisional native origins and deterministic
+inspection tooling. See [MODULAR_HAIR.md](MODULAR_HAIR.md). This is not approval
+of candidate anatomy or a completed art package. Remaining facings, body/head,
+clothing and the T-pose rig are unfinished; Steps 6D–6E have not begun.
 
 ## Development guidance for Codex
 Implement each milestone as a separate task and stop after test/verification. Favor synthetic coloured shapes in early renderer tests over premature illustration generation. Add snapshot/golden-image tests for the pixel pipeline and manual S/N review at each art approval gate.

@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "id": "hair.long-waves.v1",
+  "assetVersion": 1,
+  "status": "draft-needs-human-review",
+  "target": "detailed",
+  "sourcePose": "standing-reference",
+  "intendedRuntimePose": "tpose",
+  "rigCompatibility": "unverified",
+  "paletteReady": false,
+  "authoringMethod": "imagegen-reference-edit",
+  "nativeSize": {
+    "width": 1024,
+    "height": 1536
+  },
+  "referenceProcessingRevision": 2,
+  "minimumVisibleAlpha": 8,
+  "knownReviewIssues": [
+    "S front face-framing curls end at y445 rather than the reference collarbone level near y355; head/shoulder fit needs review.",
+    "The S rear candidate extends below the reference hair length. N terminal curls have been reauthored to shorten them; both silhouettes and lengths still need visual comparison. No resampling or translation has been applied.",
+    "The S inner short curls were removed from the rear layer so the front piece owns those strands. Scalp/cap overlap and strand continuity still require visual review against a separately authored head.",
+    "Generated hair is reauthored artwork, not exact recovered segmentation. Hidden strand continuations, alpha threshold and actual T-pose compatibility need visual approval."
+  ],
+  "frames": {
+    "S": {
+      "reference": "S.png",
+      "referenceSha256": "4d835a1da05ab36992d3b97dad400233b81e1a6ad8d8f4872ed5353b771707c6",
+      "candidateHeadAnchor": {
+        "x": 511,
+        "y": 169
+      },
+      "rear": {
+        "source": "S-rear.png",
+        "sourceSha256": "213a3a457050fe7ca6c18b89fe07ff66bbad8fdf0d43333b2482db646e2d0264",
+        "origin": {
+          "x": 511,
+          "y": 169
+        },
+        "allowedBounds": {
+          "x": 150,
+          "y": 20,
+          "width": 720,
+          "height": 920
+        }
+      },
+      "front": {
+        "visibility": "visible",
+        "artwork": {
+          "source": "S-front.png",
+          "sourceSha256": "e237ec281a63c033416781cc3f7c87c84e25fa7ccabd4ea6cd8ecf97067c193b",
+          "origin": {
+            "x": 511,
+            "y": 169
+          },
+          "allowedBounds": {
+            "x": 300,
+            "y": 25,
+            "width": 400,
+            "height": 450
+          }
+        }
+      }
+    },
+    "N": {
+      "reference": "N.png",
+      "referenceSha256": "299756dbb6e643707daa0d899c440980501da9f138f8043fbb1d299214959539",
+      "candidateHeadAnchor": {
+        "x": 510,
+        "y": 175
+      },
+      "rear": {
+        "source": "N-rear.png",
+        "sourceSha256": "92e7688eb6f10d5f3fb41ff07240b3bed88b13fb0ed98b6c53034b2e6be53878",
+        "origin": {
+          "x": 510,
+          "y": 175
+        },
+        "allowedBounds": {
+          "x": 150,
+          "y": 20,
+          "width": 720,
+          "height": 920
+        }
+      },
+      "front": {
+        "visibility": "hidden",
+        "reason": "Frontal fringe and face-framing locks are occluded from the full-back view; no mirrored or invented north bangs."
+      }
+    }
+  }
+}

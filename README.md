@@ -77,6 +77,7 @@ pnpm dev          # Generate placeholders and start the interactive editor
 pnpm demo:assets  # Generate independent temporary native layer PNGs and catalog
 pnpm demo:export  # Save eight detailed PNGs, eight pixel PNGs and one pixel sheet
 pnpm reference:import # Prepare heroine-v1 reference staging and audit, without publishing
+pnpm hair:review # Prepare S/N modular hair draft inspection; human approval required
 pnpm typecheck    # Check root configs, smoke tests, and all workspace packages
 pnpm lint         # ESLint with zero warnings permitted
 pnpm test         # Run Vitest once
@@ -127,6 +128,8 @@ fictional references; the renderer demo generates actual versioned PNG placehold
 The approved heroine-v1 detailed illustrations are flattened references, prepared
 separately by the [reference import workflow](docs/REFERENCE_IMPORT.md). They are
 not modular runtime assets; the editor continues using geometric pipeline fixtures.
+The initial [modular hair draft](docs/MODULAR_HAIR.md) prepares S/N front/rear hair
+authoring for review and remains outside the runtime catalog.
 
 Six public-API integration tests cover core recipe save/load, compatibility and
 seeded generation. Seven registry integration tests cover recipe-to-plan workflows

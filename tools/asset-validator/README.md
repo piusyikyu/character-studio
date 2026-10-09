@@ -1,10 +1,13 @@
-# Asset validator scaffold
+# Asset review tools
 
-Reserved for portable Node.js audits of versioned manifests, facing coverage,
-source/mask files, dimensions, alpha, landmarks, palettes, bounds, and export
-determinism. No validator or executable CLI is implemented yet. A successful
-package build does not certify any artwork or manifest.
+Portable Node.js tools prepare immutable reference inputs and modular hair drafts
+for human inspection. A successful build or automated audit does not certify art.
 
-Implement the versioned manifest parser in milestone 2 before adding an audit CLI.
-Reports must preserve approved artwork. Human anatomical and garment approval is
-required in addition to automated validation.
+- `pnpm reference:import`: Steps 6A–6B; see [REFERENCE_IMPORT.md](../../docs/REFERENCE_IMPORT.md).
+- `pnpm hair:review`: initial Step 6C S/N authoring review; see [MODULAR_HAIR.md](../../docs/MODULAR_HAIR.md).
+
+Both commands produce ignored staging outputs. They never publish assets or call
+an image-generation service. Reference and authoring inputs are hash-pinned,
+native dimensions are validated and source files remain unchanged. Runtime
+manifest parsing belongs to `packages/asset-registry`; these authoring reports do
+not replace approved rigs or complete production coverage/mask/visual validation.
