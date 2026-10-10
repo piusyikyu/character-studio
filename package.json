@@ -26,7 +26,8 @@
     "test:e2e:install": "playwright install chromium --only-shell",
     "verify": "pnpm typecheck && pnpm lint && pnpm test && pnpm build",
     "verify:all": "pnpm verify && pnpm test:e2e",
-    "hair:review:back-diagonals": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/hair-review-cli.js --back-diagonals"
+    "hair:review:back-diagonals": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/hair-review-cli.js --back-diagonals",
+    "head:review": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/head-review-cli.js"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.0",

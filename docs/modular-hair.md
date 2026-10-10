@@ -437,3 +437,19 @@ five unrelated cases skipped). NE frame/source/cleaned hashes, 68 earlier
 authoring files, all eight originals, 15 staging output hashes, local links and
 `git diff --check` passed. No automated failure remains. Browser E2E was not
 rerun for this localized offline art correction. NW visual approval is now recorded in `back-diagonals-review-v1.json`.
+
+
+## Eight-facing design approval and anatomy follow-up
+
+The user approved the corrected NW shoulder lock with “approved. commit and
+continue to next step”. `back-diagonals-review-v1.json` pins the accepted
+NE/NW config, raw/cleaned layers and shoulder-restoration provenance; earlier
+NE-only approval remains unchanged. Local commit `464f9e4` freezes the pair.
+All eight hair designs have standing-reference approval.
+
+The next Step 6C increment authors S/N bald head and neck bases and checks
+their native fit with these immutable hair layers; see
+[modular-head.md](modular-head.md). The first comparison exposes S fringe
+occlusion of the nose/eye area, requiring a new fit correction after head
+geometry review. Final anatomy, body/clothing, T-pose and Step 6C approval
+remain unfinished; Step 6D is not advanced.

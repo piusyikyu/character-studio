@@ -6,3 +6,7 @@ export { prepareHairReview } from './hair-review';
 export { hairReviewSchema } from './hair-review-schema';
 export type { HairReviewOptions } from './hair-review';
 export type { HairReviewDraft } from './hair-review-schema';
+export { prepareHeadReview } from './head-review';
+export { headReviewSchema } from './head-review-schema';
+export type { HeadReviewOptions } from './head-review';
+export type { HeadReviewDraft } from './head-review-schema';

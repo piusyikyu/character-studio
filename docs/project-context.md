@@ -198,6 +198,33 @@ are in `inputs/back-diagonals-v2/`. The updated comparison remains at
 `back-diagonals/overview.png`; corrected NW was approved with “approved. commit and continue to next step”. `back-diagonals-review-v1.json` pins the pair config/layers and restoration provenance. This does not
 advance Step 6C anatomy/production fit or Step 6D.
 
+### Approved back-diagonal hair and S/N anatomy increment — 2026-10-10
+
+The user approved corrected NW and requested a local commit followed by
+the next increment. `back-diagonals-review-v1.json` pins both rear-hair
+facings and restoration provenance; commit `464f9e4` records that approval.
+All eight hair designs are approved at standing-reference design scope.
+
+The next small Step 6C increment authors independent bald S/N soft-oval
+head/neck skin bases, partitions native source pixels and prepares offline
+comparisons with the unchanged accepted hair. S omits eyes/brows/mouth for
+future interchangeable facial parts; N has no facial features. Human ears
+remain embedded in these first head bases and need subsequent separation
+for ear variants. Synthetic native placement guides are framing aids only.
+The new complete scalp/jaw/nape anatomy itself requires visual approval.
+
+`pnpm head:review` prepares native head/neck layers, exact reconstructed
+studies, close-up/full-canvas comparisons and hashed QA. One public artwork
+integration workflow checks reconstruction, approved hair, real render-order
+overlap, deterministic export and meaningful failure boundaries.
+
+The comparison exposes S fringe coverage of the nose and intended eye area
+at the reference head position. S fit is not ready; review head geometry
+and author a versioned fringe-fit correction. N posterior scalp coverage is
+visually plausible but still unapproved. Six other head facings, facial/ear
+layers, body/clothing and production T-pose fit remain unfinished. See
+`docs/modular-head.md`. This does not complete Step 6C or advance Step 6D.
+
 - Distinguish `assets/references/` (immutable source images), `assets/source/` (editable layered files), `assets/staging/` (unapproved outputs), `assets/detailed/` and `assets/pixel/` (approved published parts), `assets/manifests/` and `assets/qa/` (generated reports).
 - Each modular part should declare a unique semantic ID, target, supported facings, compatible rig/body presets, image paths, attachment anchor, native offset, depth plane, visibility/occlusion, optional material/shade masks and requires/excludes.
 - Layer order may vary with facing. Long hair usually needs rear and front components. Clothing should conform to genuine front/rear three-dimensional construction.

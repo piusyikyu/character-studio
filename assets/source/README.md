@@ -32,3 +32,10 @@ Independent NE/NW rear-crown/drape candidates are `NE-rear-v1.png` and
 frontal fringe. NE design approval is pinned in `back-diagonals-ne-review-v1.json`;
 NW shoulder-curl restoration is approved in `back-diagonals-review-v1.json`. The raw NW version1 is retained for
 native mask reproduction in `inputs/back-diagonals-v2/`. Complete anatomy remains pending.
+
+`heroine-v1/head-soft-oval-v1/` contains independent S/N bald skin masters,
+head/neck partitions, native ownership masks and placement-guide provenance.
+These anatomy drafts are unapproved and omit eyes/brows/mouth. Human ears
+remain embedded pending independent variants. See
+[modular-head.md](../../docs/modular-head.md) for the S fringe-fit discrepancy
+and remaining anatomy/body/T-pose work. Approved hair is unchanged.

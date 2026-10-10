@@ -19,3 +19,10 @@ not replace approved rigs or complete production coverage/mask/visual validation
   with explicitly hidden fringe, native reference/hair comparisons and separate
   staging. Schema rejects a visible front fringe or reuse of the same rear image.
   NE/NW design approval and shoulder-restoration provenance are pinned in `back-diagonals-review-v1.json`; production anatomy/T-pose fit remains pending.
+
+- `pnpm head:review`: offline S/N bald head/neck skin-base review with exact
+  source partition and pinned approved hair. Produces separate native close-up
+  and full-canvas comparisons; see [modular-head.md](../../docs/modular-head.md).
+  These drafts omit eye/brow/mouth assets, keep human ears embedded for initial
+  review, and remain outside the runtime catalog. The current S fringe fit
+  needs correction. No body/T-pose or final Step 6C approval is implied.

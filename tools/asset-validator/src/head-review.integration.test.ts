@@ -1,0 +1,84 @@
+import { cp, mkdir, mkdtemp, readFile, readdir, rm, stat, writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { decode } from 'fast-png';
+import { expect, it } from 'vitest';
+import { blankImage, decodePng, drawRgba, encodePng } from '@character-studio/render-utils';
+import { DIRECTION_PLANE_ORDER } from '@character-studio/core';
+import { prepareHeadReview } from './head-review';
+import { headReviewSchema } from './head-review-schema';
+import { matteReference } from './matte';
+import { referenceImportSettingsSchema } from './schema';
+import { sha256 } from './reference-import';
+
+const repository = fileURLToPath(new URL('../../../', import.meta.url));
+const sourceDirectory = resolve(repository, 'assets/source/heroine-v1/head-soft-oval-v1');
+const hairDirectory = resolve(repository, 'assets/source/heroine-v1/hair-long-waves-v1');
+
+it('reviews authored S/N anatomy with exact partitions, approved hair, native depth, repeatable exports and immutable sources', async () => {
+  const temporary = await mkdtemp(resolve(tmpdir(), 'character-head-review-'));
+  try {
+    // Recreate reference copies from tracked inputs, independently of ignored staging.
+    const referenceDirectory = resolve(temporary, 'references'); await mkdir(referenceDirectory);
+    const settings = referenceImportSettingsSchema.parse(JSON.parse(await readFile(resolve(repository, 'assets/references/heroine-v1/import-v1.json'), 'utf8')));
+    for (const direction of ['S', 'N'] as const) {
+      const raw = decode(await readFile(resolve(repository, `assets/references/heroine-v1/detailed/${direction}.png`)), { checkCrc: true }), image = blankImage(1024, 1536);
+      for (let p = 0; p < 1024 * 1536; p++) { image.data.set(raw.data.subarray(p * raw.channels, p * raw.channels + 3), p * 4); image.data[p * 4 + 3] = raw.channels === 4 ? raw.data[p * 4 + 3]! : 255; }
+      const frame = settings.frames[direction];
+      await writeFile(resolve(referenceDirectory, `${direction}.png`), encodePng(matteReference(image, frame.labelExclusions, settings.matte, frame.backgroundCorrections).image));
+    }
+    const files = [];
+    for (const directory of [sourceDirectory, hairDirectory]) for (const path of await readdir(directory, { recursive: true })) if ((await stat(resolve(directory, path))).isFile()) files.push(resolve(directory, path));
+    const before = await Promise.all(files.map(async (path) => ({ path, hash: sha256(await readFile(path)), mtime: (await stat(path)).mtimeMs })));
+    const options = { sourceDirectory, hairDirectory, referenceDirectory, outputDirectory: resolve(temporary, 'review') };
+    const report = await prepareHeadReview(options);
+    expect(report).toMatchObject({ published: false, paletteReady: false, anatomyApproved: false, rigCompatibility: 'unverified', supportedReviewDirections: ['S', 'N'], missingDirections: ['NE', 'E', 'SE', 'SW', 'W', 'NW'], hiddenFacialLayers: ['eyes', 'eyebrows', 'mouth'], masterReconstruction: 'exact-normalized-head-neck-partition' });
+    expect(report.measurements).toHaveLength(4);
+    expect(report.hairMeasurements).toHaveLength(3);
+    for (const item of report.measurements) expect(item).toMatchObject({ greenCandidates: 0, position: { x: 0, y: 0 } });
+    for (const direction of ['S', 'N'] as const) {
+      const head = decodePng(await readFile(resolve(options.outputDirectory, `layers/${direction}-head.png`))), neck = decodePng(await readFile(resolve(options.outputDirectory, `layers/${direction}-neck.png`)));
+      expect([head.width, head.height, neck.width, neck.height]).toEqual([1024, 1536, 1024, 1536]);
+      for (const image of [head, neck]) for (let i = 0; i < image.data.length; i += 4) if (image.data[i + 3]! < 8 && image.data.subarray(i, i + 4).some((v) => v !== 0)) throw new Error('Normalized transparent anatomy must have zero RGBA.');
+      const reconstructed = blankImage(1024, 1536); drawRgba(reconstructed, neck, 0, 0); drawRgba(reconstructed, head, 0, 0);
+      expect(sha256(encodePng(reconstructed))).toBe(report.masters.find((m) => m.direction === direction)!.cleanedSha256);
+      const layers = new Map([['head', head], ['neck', neck]]);
+      for (const hair of report.hairMeasurements.filter((m) => m.direction === direction)) {
+        const image = decodePng(await readFile(resolve(hairDirectory, `${direction}-${hair.part}.png`)));
+        for (let i = 0; i < image.data.length; i += 4) if (image.data[i + 3]! < 8) image.data.fill(0, i, i + 4);
+        expect(sha256(encodePng(image))).toBe(hair.cleanedSha256); layers.set(`hair-${hair.part}`, image);
+      }
+      const composed = blankImage(1024, 1536);
+      for (const plane of DIRECTION_PLANE_ORDER[direction]) { const image = layers.get(plane); if (image) drawRgba(composed, image, 0, 0); }
+      expect(sha256(encodePng(composed))).toBe(report.fitMeasurements.find((m) => m.direction === direction)!.outputSha256);
+      const wrongOrder = blankImage(1024, 1536);
+      // A real overlap boundary: S front hair and N rear hair must cover the head.
+      for (const image of [...layers.values()].reverse()) drawRgba(wrongOrder, image, 0, 0);
+      expect(sha256(wrongOrder.data)).not.toBe(sha256(composed.data));
+      expect(report.fitMeasurements.find((m) => m.direction === direction)!.headPixelsOverlappedByHair).toBeGreaterThan(1000);
+      const green = decodePng(await readFile(resolve(options.outputDirectory, `inspection/green/${direction}-fit.png`)));
+      expect([...green.data.slice(0, 4)]).toEqual([0, 255, 0, 255]);
+      expect([...green.data.slice((8 * 1024 + 8) * 4, (8 * 1024 + 8) * 4 + 4)]).toEqual([255, 255, 0, 255]);
+    }
+    const s = decodePng(await readFile(resolve(options.outputDirectory, 'master/S.png'))), n = decodePng(await readFile(resolve(options.outputDirectory, 'master/N.png'))), mirrored = blankImage(1024, 1536);
+    for (let y = 0; y < 1536; y++) for (let x = 0; x < 1024; x++) mirrored.data.set(n.data.subarray((y * 1024 + x) * 4, (y * 1024 + x) * 4 + 4), (y * 1024 + 1023 - x) * 4);
+    expect(sha256(s.data)).not.toBe(sha256(n.data)); expect(sha256(s.data)).not.toBe(sha256(mirrored.data));
+    expect(await prepareHeadReview(options)).toEqual(report);
+    for (const output of report.outputs) expect(sha256(await readFile(resolve(options.outputDirectory, output.path)))).toBe(output.sha256);
+    const copy = resolve(temporary, 'invalid-source'); await cp(sourceDirectory, copy, { recursive: true });
+    const draft = headReviewSchema.parse(JSON.parse(await readFile(resolve(copy, 'authoring-v1.json'), 'utf8')));
+    // Re-pinning an altered partition must still fail semantic pixel preservation.
+    const source = resolve(copy, draft.frames.S.head.source), changed = decodePng(await readFile(source));
+    const pixel = changed.data.findIndex((v, i) => i % 4 === 3 && v >= 8) - 3;
+    changed.data[pixel] = (changed.data[pixel]! + 1) % 256;
+    const edited = encodePng(changed); await writeFile(source, edited); draft.frames.S.head.sourceSha256 = sha256(edited);
+    await writeFile(resolve(copy, 'authoring-v1.json'), JSON.stringify(draft));
+    await expect(prepareHeadReview({ ...options, sourceDirectory: copy, outputDirectory: resolve(temporary, 'rejected') })).rejects.toThrow('preserve its own master pixels exactly');
+    const badAttachment = headReviewSchema.parse(JSON.parse(await readFile(resolve(sourceDirectory, 'authoring-v1.json'), 'utf8'))); badAttachment.frames.N.neck.origin.y++;
+    await writeFile(resolve(copy, 'authoring-v1.json'), JSON.stringify(badAttachment));
+    await expect(prepareHeadReview({ ...options, sourceDirectory: copy, outputDirectory: resolve(temporary, 'rejected') })).rejects.toThrow('no translation');
+    await expect(prepareHeadReview({ ...options, outputDirectory: resolve(hairDirectory, 'unsafe') })).rejects.toThrow('must be disjoint');
+    for (const item of before) { expect(sha256(await readFile(item.path))).toBe(item.hash); expect((await stat(item.path)).mtimeMs).toBe(item.mtime); }
+  } finally { await rm(temporary, { recursive: true, force: true }); }
+}, 120_000);
