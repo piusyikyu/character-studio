@@ -54,6 +54,7 @@ export const hairReviewSchema = z.strictObject({
     z.strictObject({ S: frame, N: frame }),
     z.strictObject({ E: frame, W: frame }),
     z.strictObject({ SE: frame, SW: frame }),
+    z.strictObject({ NE: frame, NW: frame }),
   ]),
 }).superRefine((draft, ctx) => {
   const fixtures = Object.values(draft.frames).filter((frame) => frame.fitFixture);
@@ -76,6 +77,9 @@ export const hairReviewSchema = z.strictObject({
   } else if ('E' in draft.frames) {
     for (const direction of ['E', 'W'] as const) if (draft.frames[direction].front.visibility !== 'visible') ctx.addIssue({ code: 'custom', path: ['frames', direction, 'front'], message: 'Each profile needs its own visible front hair; do not mirror or skip it.' });
     if (draft.frames.E.rear.sourceSha256 === draft.frames.W.rear.sourceSha256 || (draft.frames.E.front.visibility === 'visible' && draft.frames.W.front.visibility === 'visible' && draft.frames.E.front.artwork.sourceSha256 === draft.frames.W.front.artwork.sourceSha256)) ctx.addIssue({ code: 'custom', path: ['frames'], message: 'E/W must reference distinct independently authored layers.' });
+  } else if ('NE' in draft.frames) {
+    for (const direction of ['NE', 'NW'] as const) if (draft.frames[direction].front.visibility !== 'hidden') ctx.addIssue({ code: 'custom', path: ['frames', direction, 'front'], message: 'Back diagonals hide the frontal fringe; do not expose front-facing bangs or eyes.' });
+    if (draft.frames.NE.rear.sourceSha256 === draft.frames.NW.rear.sourceSha256) ctx.addIssue({ code: 'custom', path: ['frames'], message: 'NE/NW must reference distinct independently authored rear layers.' });
   } else {
     for (const direction of ['SE', 'SW'] as const) if (draft.frames[direction].front.visibility !== 'visible') ctx.addIssue({ code: 'custom', path: ['frames', direction, 'front'], message: 'Each front diagonal needs its own visible front hair; do not mirror or skip it.' });
     if (draft.frames.SE.rear.sourceSha256 === draft.frames.SW.rear.sourceSha256 || (draft.frames.SE.front.visibility === 'visible' && draft.frames.SW.front.visibility === 'visible' && draft.frames.SE.front.artwork.sourceSha256 === draft.frames.SW.front.artwork.sourceSha256)) ctx.addIssue({ code: 'custom', path: ['frames'], message: 'SE/SW must reference distinct independently authored layers.' });

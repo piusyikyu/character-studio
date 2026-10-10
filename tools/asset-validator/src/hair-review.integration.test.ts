@@ -17,7 +17,7 @@ import { sha256 } from './reference-import';
 const repository = fileURLToPath(new URL('../../../', import.meta.url));
 const sourceDirectory = resolve(repository, 'assets/source/heroine-v1/hair-long-waves-v1');
 
-// Recreate just S/N from tracked inputs, never depend on ignored local staging.
+// Recreate the requested facings from tracked inputs; never depend on ignored staging.
 async function references(directory: string, directions: readonly Direction[] = ['S', 'N']) {
   await mkdir(directory, { recursive: true });
   const settings = referenceImportSettingsSchema.parse(JSON.parse(await readFile(resolve(repository, 'assets/references/heroine-v1/import-v1.json'), 'utf8')));
@@ -34,27 +34,32 @@ async function references(directory: string, directions: readonly Direction[] = 
 }
 
 describe('Modular hair authoring review', () => {
-  it('prepares reproducible detached layers with native attachments, facing depth, hidden north fringe and immutable inputs', async () => {
+  it.each([
+    { configFilename: 'authoring-v1.json' as const, directions: ['S', 'N'] as const, hidden: ['N'], missing: ['NE', 'E', 'SE', 'SW', 'W', 'NW'], count: 3, approvalFile: 'review-v1.json' },
+    { configFilename: 'back-diagonals-authoring-v1.json' as const, directions: ['NE', 'NW'] as const, hidden: ['NE', 'NW'], missing: ['N', 'E', 'SE', 'S', 'SW', 'W'], count: 2, approvalFile: 'back-diagonals-review-v1.json' },
+  ])('prepares $configFilename with native attachments, hidden rear fringe and immutable inputs', async ({ configFilename, directions, hidden, missing, count, approvalFile }) => {
     const temporary = await mkdtemp(resolve(tmpdir(), 'character-hair-review-'));
     try {
       const referenceDirectory = resolve(temporary, 'references');
-      await references(referenceDirectory);
-      const draft = hairReviewSchema.parse(JSON.parse(await readFile(resolve(sourceDirectory, 'authoring-v1.json'), 'utf8')));
-      if (!('S' in draft.frames)) throw new Error('Expected the reviewed S/N pair.');
-      const parts = [draft.frames.S.rear, draft.frames.N.rear, ...(draft.frames.S.front.visibility === 'visible' ? [draft.frames.S.front.artwork] : [])];
+      await references(referenceDirectory, directions);
+      const draft = hairReviewSchema.parse(JSON.parse(await readFile(resolve(sourceDirectory, configFilename), 'utf8')));
+      const parts = Object.values(draft.frames).flatMap((frame) => [frame.rear, ...(frame.front.visibility === 'visible' ? [frame.front.artwork] : [])]);
       const before = await Promise.all(parts.map(async (part) => ({ path: resolve(sourceDirectory, part.source), hash: sha256(await readFile(resolve(sourceDirectory, part.source))), mtime: (await stat(resolve(sourceDirectory, part.source))).mtimeMs })));
-      const options = { sourceDirectory, referenceDirectory, outputDirectory: resolve(temporary, 'staging') };
+      const options = { sourceDirectory, referenceDirectory, outputDirectory: resolve(temporary, 'staging'), configFilename };
       const first = await prepareHairReview(options);
-      const approval = JSON.parse(await readFile(resolve(sourceDirectory, 'review-v1.json'), 'utf8'));
-      expect(sha256(await readFile(resolve(sourceDirectory, 'authoring-v1.json')))).toBe(approval.configSha256);
-      for (const approved of approval.layers) expect(first.measurements.find((m) => m.direction === approved.direction && m.part === approved.part)).toMatchObject({ sourceSha256: approved.sourceSha256, outputSha256: approved.cleanedSha256 });
+      if (approvalFile) {
+        const approval = JSON.parse(await readFile(resolve(sourceDirectory, approvalFile), 'utf8'));
+        expect(first.configSha256).toBe(approval.configSha256);
+        for (const approved of approval.layers) expect(first.measurements.find((m) => m.direction === approved.direction && m.part === approved.part)).toMatchObject({ sourceSha256: approved.sourceSha256, outputSha256: approved.cleanedSha256 });
+      }
       expect(first.published).toBe(false);
       expect(first.paletteReady).toBe(false);
       expect(first.sourcePose).toBe('standing-reference');
       expect(first.rigCompatibility).toBe('unverified');
-      expect(first.missingDirections).toEqual(['NE', 'E', 'SE', 'SW', 'W', 'NW']);
-      expect(first.hiddenLayers).toMatchObject([{ direction: 'N', part: 'front' }]);
-      expect(first.measurements).toHaveLength(3);
+      expect(first.supportedReviewDirections).toEqual(directions);
+      expect(first.missingDirections).toEqual(missing);
+      expect(first.hiddenLayers).toMatchObject(hidden.map((direction) => ({ direction, part: 'front' })));
+      expect(first.measurements).toHaveLength(count);
       for (const layer of first.measurements) {
         expect(layer.position).toEqual({ x: 0, y: 0 });
         expect(layer.alpha.transparent).toBeGreaterThan(0);
@@ -63,14 +68,61 @@ describe('Modular hair authoring review', () => {
         expect([image.width, image.height]).toEqual([1024, 1536]);
         for (let i = 0; i < image.data.length; i += 4) if (!image.data[i + 3] && (image.data[i] || image.data[i + 1] || image.data[i + 2])) throw new Error('Invisible RGB was not normalized.');
       }
-      expect(sha256(await readFile(resolve(options.outputDirectory, 'assembled/N.png')))).toBe(first.measurements.find((m) => m.direction === 'N')!.outputSha256);
-      const green = decodePng(await readFile(resolve(options.outputDirectory, 'inspection/green/S-assembled.png')));
+      for (const direction of hidden) expect(sha256(await readFile(resolve(options.outputDirectory, `assembled/${direction}.png`)))).toBe(first.measurements.find((m) => m.direction === direction)!.outputSha256);
+      const green = decodePng(await readFile(resolve(options.outputDirectory, `inspection/green/${directions[0]}-assembled.png`)));
       expect([...green.data.slice(0, 4)]).toEqual([0, 255, 0, 255]);
       expect([...green.data.slice((8 * 1024 + 8) * 4, (8 * 1024 + 8) * 4 + 4)]).toEqual([255, 255, 0, 255]);
       const outputs = new Map<string, string>();
       for (const path of await readdir(options.outputDirectory, { recursive: true })) if ((await stat(resolve(options.outputDirectory, path))).isFile()) outputs.set(path, sha256(await readFile(resolve(options.outputDirectory, path))));
       expect(await prepareHairReview(options)).toEqual(first);
       for (const [path, hash] of outputs) expect(sha256(await readFile(resolve(options.outputDirectory, path)))).toBe(hash);
+      if ('NE' in draft.frames) {
+        const approval = JSON.parse(await readFile(resolve(sourceDirectory, 'back-diagonals-ne-review-v1.json'), 'utf8'));
+        expect(draft.frames.NE).toEqual(approval.frame);
+        expect(first.measurements.find((m) => m.direction === 'NE')).toMatchObject({ sourceSha256: approval.layers[0].sourceSha256, outputSha256: approval.layers[0].cleanedSha256 });
+        const restoration = JSON.parse(await readFile(resolve(sourceDirectory, 'inputs/back-diagonals-v2/restoration-v2.json'), 'utf8'));
+        const pairApproval = JSON.parse(await readFile(resolve(sourceDirectory, 'back-diagonals-review-v1.json'), 'utf8'));
+        expect(restoration).toEqual(pairApproval.shoulderRestoration);
+        const baseBytes = await readFile(resolve(sourceDirectory, restoration.baseline.source));
+        const refBytes = await readFile(resolve(referenceDirectory, restoration.reference.source));
+        const maskBytes = await readFile(resolve(sourceDirectory, restoration.selection.source));
+        const outputBytes = await readFile(resolve(sourceDirectory, restoration.output.source));
+        for (const [bytes, hash] of [[baseBytes, restoration.baseline.sha256], [refBytes, restoration.reference.sha256], [maskBytes, restoration.selection.sha256], [outputBytes, restoration.output.sha256]] as const) expect(sha256(bytes)).toBe(hash);
+        expect(draft.frames.NW.rear.sourceSha256).toBe(restoration.output.sha256);
+        const base = decodePng(baseBytes), reference = decodePng(refBytes), mask = decodePng(maskBytes), corrected = decodePng(outputBytes);
+        const staged = decodePng(await readFile(resolve(options.outputDirectory, 'layers/NW-rear.png')));
+        let selectedPixels = 0, addedPixels = 0;
+        for (let i = 0; i < corrected.data.length; i += 4) {
+          const selected = mask.data[i + 3] === 255;
+          if (mask.data.subarray(i, i + 4).some((value) => value !== (selected ? 255 : 0))) throw new Error('Shoulder mask is not binary RGBA.');
+          const expected = selected ? reference : base;
+          if (corrected.data.subarray(i, i + 4).some((value, channel) => value !== expected.data[i + channel])) throw new Error('NW shoulder restoration changed its reference pixels or pixels outside the mask.');
+          if (selected) {
+            selectedPixels++;
+            if (base.data[i + 3]! < 8) addedPixels++;
+            if (reference.data[i + 3]! < 8 || staged.data.subarray(i, i + 4).some((value, channel) => value !== reference.data[i + channel])) throw new Error('NW shoulder curl is missing from review output.');
+          }
+        }
+        expect({ selectedPixels, addedPixels, replacedPixels: selectedPixels - addedPixels }).toEqual({ selectedPixels: restoration.pixelCount, addedPixels: restoration.addedPixels, replacedPixels: restoration.replacedPixels });
+        const ne = decodePng(await readFile(resolve(options.outputDirectory, 'layers/NE-rear.png')));
+        const nw = decodePng(await readFile(resolve(options.outputDirectory, 'layers/NW-rear.png')));
+        const mirrored = blankImage(1024, 1536);
+        for (let y = 0; y < 1536; y++) for (let x = 0; x < 1024; x++) mirrored.data.set(nw.data.subarray((y * 1024 + x) * 4, (y * 1024 + x) * 4 + 4), (y * 1024 + 1023 - x) * 4);
+        expect(sha256(ne.data)).not.toBe(sha256(nw.data));
+        expect(sha256(ne.data)).not.toBe(sha256(mirrored.data));
+        const copy = resolve(temporary, 'invalid-source');
+        await mkdir(copy);
+        for (const part of parts) await cp(resolve(sourceDirectory, part.source), resolve(copy, part.source));
+        const invalid = structuredClone(draft.frames);
+        invalid.NW.rear = structuredClone(invalid.NE.rear);
+        invalid.NW.rear.origin = invalid.NW.candidateHeadAnchor;
+        await writeFile(resolve(copy, configFilename), JSON.stringify({ ...draft, frames: invalid }));
+        await expect(prepareHairReview({ ...options, sourceDirectory: copy, outputDirectory: resolve(temporary, 'rejected') })).rejects.toThrow('independently authored rear layers');
+        const visible = structuredClone(draft.frames);
+        visible.NE.front = { visibility: 'visible', artwork: visible.NE.rear };
+        await writeFile(resolve(copy, configFilename), JSON.stringify({ ...draft, frames: visible }));
+        await expect(prepareHairReview({ ...options, sourceDirectory: copy, outputDirectory: resolve(temporary, 'rejected') })).rejects.toThrow('hide the frontal fringe');
+      }
       for (const input of before) {
         expect(sha256(await readFile(input.path))).toBe(input.hash);
         expect((await stat(input.path)).mtimeMs).toBe(input.mtime);
@@ -89,7 +141,7 @@ describe('Modular hair authoring review', () => {
       await references(referenceDirectory, directions);
       const draftBytes = await readFile(resolve(sourceDirectory, configFilename));
       const draft = hairReviewSchema.parse(JSON.parse(draftBytes.toString('utf8')));
-      if ('S' in draft.frames) throw new Error('Expected independently authored side or diagonal artwork.');
+      if ('S' in draft.frames || 'NE' in draft.frames) throw new Error('Expected independently authored side or front-diagonal artwork.');
       const profileSources = Object.values(draft.frames).flatMap((frame) => [frame.rear.source, ...(frame.front.visibility === 'visible' ? [frame.front.artwork.source] : []), ...(frame.designMaster ? [frame.designMaster.source] : []), ...(frame.fitHead ? [frame.fitHead.artwork.source] : []), ...(frame.rearCompletion ? [frame.rearCompletion.base.source, frame.rearCompletion.artwork.source, frame.rearCompletion.selection.source] : [])]);
       const immutable = ['authoring-v1.json', 'review-v1.json', 'S-front.png', 'S-rear.png', 'N-rear.png', 'profiles-authoring-v1.json', 'profiles-review-v1.json', 'E-front.png', 'E-rear-drape.png', 'W-front.png', 'W-rear-drape.png', 'front-diagonals-authoring-v4.json', 'front-diagonals-review-v1.json', 'SE-master-v3.png', 'SW-master-v3.png', configFilename, ...profileSources];
       const before = await Promise.all(immutable.map(async (path) => ({ path, hash: sha256(await readFile(resolve(sourceDirectory, path))), mtime: (await stat(resolve(sourceDirectory, path))).mtimeMs })));

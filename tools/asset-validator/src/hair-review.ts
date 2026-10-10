@@ -16,7 +16,7 @@ export interface HairReviewOptions {
   readonly sourceDirectory: string;
   readonly referenceDirectory: string;
   readonly outputDirectory: string;
-  readonly configFilename?: 'authoring-v1.json' | 'profiles-authoring-v1.json' | 'front-diagonals-authoring-v4.json' | 'front-diagonals-authoring-v5.json';
+  readonly configFilename?: 'authoring-v1.json' | 'profiles-authoring-v1.json' | 'front-diagonals-authoring-v4.json' | 'front-diagonals-authoring-v5.json' | 'back-diagonals-authoring-v1.json';
 }
 
 /** Offline review only: no runtime catalog, publication, recolouring or inferred rig. */

@@ -330,3 +330,110 @@ incorrectly over the head, the targeted revision-5 workflow passed, including
 repeat generation and rejection of edits outside the mask. All five workflows
 are verified with no remaining failure. Browser E2E was not rerun for this offline
 art/review-tool increment. Rear-root design approval is recorded; independent anatomy fit remains open.
+
+
+## NE/NW back-diagonal design — approved
+
+After local approval commit `3b46839`, the user requested continuing Step 6C.
+`back-diagonals-authoring-v1.json` now selects independently authored
+`NE-rear-v1.png` and the initial `NW-rear-v1.png`. Each built-in imagegen edit used only its
+own transparent standing reference; selected prompts and input roles are saved
+in `back-diagonals-prompts-v1.json`. The rear layer owns the rear crown, long
+drape and visible near-side locks for this draft; frontal fringe is explicitly
+hidden in both directions. No head/body anatomy is supplied by this increment.
+
+Initial generations enlarged the hair and were rejected before staging. The
+selected native sources were copied without scaling, translation or reflection.
+At the existing 8/255 alpha threshold, NE bounds are x233–687/y25–873 and NW
+bounds x334–819/y31–843 (inclusive). Cleanup removes 13,050 and 11,757 near-zero
+alpha pixels respectively; raw generation remains intact in source. The cleaned
+layers show no visible glow, skin, eyes or clothing in manual inspection. These
+observations require user review and are not anatomical certification.
+
+```bash
+pnpm hair:review:back-diagonals
+```
+
+Inspection outputs are separate ignored staging under
+`assets/staging/heroine-v1/hair-long-waves-v1/back-diagonals/`.
+`overview.png` compares original reference (left) and detached hair (right),
+with NE above NW. Native `inspection/comparison/`, checker/green previews,
+transparent `layers/` and `assembled/`, and hashed `metadata.json` support
+review. Yellow labels and checker/green backgrounds exist only in inspection
+outputs. The source layers remain transparent and label-free.
+
+The existing public authoring workflow is parameterized for this pair as well
+as S/N; no helper or enum test suite is added. It checks native placement,
+explicit hidden fringe, transparent/green/yellow export conventions, repeatable
+bytes and unchanged sources. NE/NW rear art is checked against identical and
+reflected reuse; invalid reuse and visible-fringe configurations must fail
+through the review API. Schema checks express layer visibility, not semantic
+recognition of eyes in artwork.
+
+Review curl silhouette/length, near-side locks, back crown orientation and
+absence of face/eyes at native scale. Complete head/body anatomy and production
+T-pose fit are still absent, so this is a detached standing-reference hair
+design review. All eight directions now have candidate hair artwork across
+the four review groups, and the pair design is approved in `back-diagonals-review-v1.json`. Earlier NE acceptance is preserved in `back-diagonals-ne-review-v1.json`. Stop after each subsequent anatomy increment
+for visual review; Step 6C remains incomplete and Step 6D has not begun.
+
+Validation for this increment:
+
+- `pnpm hair:review:back-diagonals` passed, including the asset-tool build and
+  generation of 15 hashed PNGs.
+- `pnpm --filter @character-studio/asset-validator typecheck` passed after
+  correcting union narrowing in the integration file.
+- `pnpm lint` passed for the workspace.
+- `pnpm test tools/asset-validator/src/hair-review.integration.test.ts -t
+  'prepares.*native attachments'` passed both S/N and NE/NW cases.
+- Final reflected-art checks passed with the same two-case command above. A filename-specific
+  test filter matched no cases; it was replaced with the working workflow filter.
+- All 68 prior source files, eight original reference images and staged output
+  hashes matched; local documentation links and `git diff --check` passed.
+
+No unresolved automated failure remains. Browser E2E and the full root build
+were not rerun for this offline asset-review increment. NW visual design
+approval and independent anatomy fit remain open.
+
+
+## NW shoulder-curl correction
+
+The user accepted NE and identified a missing curl over the NW shoulder.
+`back-diagonals-ne-review-v1.json` records NE-only design approval, pinning its
+frame and source/cleaned hashes. NE artwork and placement remain unchanged.
+
+`NW-rear-v2.png` restores the narrow near-side shoulder lock from NW's own
+transparent reference through a manually traced binary mask. The user previously
+authorized manual masks; no new image generation or other-facing artwork is
+used. The current draft config selects this corrected NW source. Original raw
+`NW-rear-v1.png` is retained as the hash-pinned derivation input.
+
+`inputs/back-diagonals-v2/restore-shoulder.js` records the polygon, rejects changed
+inputs and writes new files only. `restoration-v2.json` pins input/output/mask
+hashes and selected coverage; mask and selected-reference PNGs make the
+correction inspectable. Warm skin and green spill are excluded locally.
+Reference RGBA is unchanged inside the mask; baseline RGBA is unchanged outside.
+Source layers keep transparency and native coordinates.
+
+The existing public review workflow verifies the restored reference pixels in
+both source and staged output, unchanged pixels outside the mask, provenance
+hashes, counts and accepted NE hashes. This is a regression check within the
+existing workflow, not an additional helper/unit test suite. The corrected
+shoulder-curl join still needs visual review; complete anatomy/T-pose fit and
+final Step 6C approval remain pending.
+
+The tightened mask selects 1,117 reference pixels: 1,007 newly visible hair
+pixels and 110 overlapping baseline pixels. A thin shoulder-outline fragment
+seen in the first enlarged comparison was excluded before final review.
+
+Validation: `pnpm hair:review:back-diagonals` (asset-tool build and 15 PNGs),
+`pnpm --filter @character-studio/asset-validator typecheck`, `pnpm lint`, and
+`pnpm test tools/asset-validator/src/hair-review.integration.test.ts -t
+'prepares.*native attachments'` passed. After tightening the shoulder-edge mask,
+the CLI and lint passed again, and
+`pnpm test tools/asset-validator/src/hair-review.integration.test.ts -t
+'prepares.*back-diagonals'` passed the final correction workflow (one passed,
+five unrelated cases skipped). NE frame/source/cleaned hashes, 68 earlier
+authoring files, all eight originals, 15 staging output hashes, local links and
+`git diff --check` passed. No automated failure remains. Browser E2E was not
+rerun for this localized offline art correction. NW visual approval is now recorded in `back-diagonals-review-v1.json`.

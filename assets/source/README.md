@@ -26,3 +26,9 @@ green background.
 
 SE/SW revision-5 rear-root and curl-connection design is approved in
 `front-diagonals-review-v2.json`; complete anatomy and production fit remain pending.
+
+Independent NE/NW rear-crown/drape candidates are `NE-rear-v1.png` and
+`NW-rear-v2.png`, with `back-diagonals-` authoring config/prompts. Both hide
+frontal fringe. NE design approval is pinned in `back-diagonals-ne-review-v1.json`;
+NW shoulder-curl restoration is approved in `back-diagonals-review-v1.json`. The raw NW version1 is retained for
+native mask reproduction in `inputs/back-diagonals-v2/`. Complete anatomy remains pending.

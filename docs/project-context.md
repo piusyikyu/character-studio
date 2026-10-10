@@ -172,6 +172,32 @@ no new helper/enum unit suite is added. Separate staging at `front-diagonals-v5/
 keeps the approved visible revision-4 inspection intact. The user approved revision 5 with “approved. commit and then continue”; `front-diagonals-review-v2.json` records its scope and hashes. Full anatomy/T-pose fit, NE/NW and final Step 6C review
 remain unfinished. Step 6D does not advance.
 
+### NE/NW rear-hair review increment — 2026-10-10
+
+The user approved SE/SW revision-5 rear completion and requested committing
+then continuing. Local commit `3b46839` records that approval; earlier approvals
+and artwork remain unchanged. Independent NE/NW rear-crown/drape candidates
+are now authored from their own references with explicit hidden front fringe.
+Rejected enlarged generations were not retained in the repository; selected
+raw sources use the existing alpha cleanup without geometric transforms.
+`pnpm hair:review:back-diagonals` prepares a separate two-row comparison in
+ignored staging. The existing public integration workflow is extended for
+determinism, native geometry, hidden fringe and rejection of reused facing art.
+Complete independent anatomy/T-pose fit and
+full Step 6C review remain required. Step 6D remains outside this increment.
+
+### NW shoulder-curl restoration and NE approval — 2026-10-10
+
+The user accepted NE and reported a missing NW shoulder lock. NE-only design
+approval is recorded in `back-diagonals-ne-review-v1.json`; its artwork and
+frame remain unchanged. NW revision 2 copies the missing visible curl from its
+own reference using the previously authorized manual-mask method, preserving
+native coordinates and all pixels outside the selection. The initial NW source
+is retained as required derivation evidence. Authoring script/mask/provenance
+are in `inputs/back-diagonals-v2/`. The updated comparison remains at
+`back-diagonals/overview.png`; corrected NW was approved with “approved. commit and continue to next step”. `back-diagonals-review-v1.json` pins the pair config/layers and restoration provenance. This does not
+advance Step 6C anatomy/production fit or Step 6D.
+
 - Distinguish `assets/references/` (immutable source images), `assets/source/` (editable layered files), `assets/staging/` (unapproved outputs), `assets/detailed/` and `assets/pixel/` (approved published parts), `assets/manifests/` and `assets/qa/` (generated reports).
 - Each modular part should declare a unique semantic ID, target, supported facings, compatible rig/body presets, image paths, attachment anchor, native offset, depth plane, visibility/occlusion, optional material/shade masks and requires/excludes.
 - Layer order may vary with facing. Long hair usually needs rear and front components. Clothing should conform to genuine front/rear three-dimensional construction.

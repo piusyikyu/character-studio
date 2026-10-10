@@ -80,7 +80,8 @@ pnpm reference:import # Prepare heroine-v1 reference staging and audit, without 
 pnpm hair:review # Prepare S/N modular hair draft inspection; human approval required
 pnpm hair:review:profiles # Prepare independent E/W hair draft inspection
 pnpm hair:review:front-diagonals # Prepare SE/SW reference/study/masked-reconstruction inspection
-pnpm hair:review:front-diagonals:completion # Review new SE/SW rear roots and connections
+pnpm hair:review:front-diagonals:completion # Review approved SE/SW rear roots and connections
+pnpm hair:review:back-diagonals # Prepare independent NE/NW rear hair candidates
 pnpm typecheck    # Check root configs, smoke tests, and all workspace packages
 pnpm lint         # ESLint with zero warnings permitted
 pnpm test         # Run Vitest once
@@ -135,7 +136,7 @@ The [modular hair drafts](docs/modular-hair.md) prepare S/N, E/W and SE/SW front
 hair inspections and remain outside the runtime catalog. S/N and E/W have design
 approval; SE/SW revision-4 visible hair drafts and pixel-preserving mask partitions are approved,
 with previously omitted far-side reference curls restored.
-SE/SW rear-root and connection design approval is recorded in `front-diagonals-review-v2.json`. These standing-reference drafts do not certify
+SE/SW rear-root and connection design approval is recorded in `front-diagonals-review-v2.json`. NE/NW rear-hair designs, including the NW shoulder-curl correction, are approved in `back-diagonals-review-v1.json`. These standing-reference drafts do not certify
 production T-pose or head/body fit.
 
 Six public-API integration tests cover core recipe save/load, compatibility and

@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "direction": "NW",
+  "method": "manual-native-reference-hair-mask",
+  "minimumVisibleAlpha": 8,
+  "baseline": {
+    "source": "NW-rear-v1.png",
+    "sha256": "d06640a3c244a19dfc8508faab4f04dc915d712717f95c5b636df04712828313"
+  },
+  "reference": {
+    "source": "NW.png",
+    "sha256": "ec34f6f12044aaeeb649c320c17635470ec6aeb99cc50ff0da430e9d333dd11d"
+  },
+  "selection": {
+    "source": "inputs/back-diagonals-v2/NW-shoulder-mask.png",
+    "sha256": "8ec5e4c8c19187136a99c4697d14092a9c1b34d68c9a9e31a257dc8b7b64aadb"
+  },
+  "output": {
+    "source": "NW-rear-v2.png",
+    "sha256": "d9f9588b48b112d64f544557c45037532719d9b7c888aebfdd2ee16eb3c0b658"
+  },
+  "pixelCount": 1117,
+  "addedPixels": 1007,
+  "replacedPixels": 110,
+  "polygon": [
+    [
+      377,
+      286
+    ],
+    [
+      385,
+      284
+    ],
+    [
+      378,
+      294
+    ],
+    [
+      370,
+      306
+    ],
+    [
+      367,
+      313
+    ],
+    [
+      367,
+      322
+    ],
+    [
+      372,
+      334
+    ],
+    [
+      370,
+      348
+    ],
+    [
+      368,
+      358
+    ],
+    [
+      356,
+      361
+    ],
+    [
+      345,
+      358
+    ],
+    [
+      339,
+      350
+    ],
+    [
+      338,
+      339
+    ],
+    [
+      344,
+      333
+    ],
+    [
+      347,
+      342
+    ],
+    [
+      355,
+      346
+    ],
+    [
+      360,
+      341
+    ],
+    [
+      354,
+      331
+    ],
+    [
+      349,
+      322
+    ],
+    [
+      347,
+      312
+    ],
+    [
+      350,
+      302
+    ],
+    [
+      357,
+      293
+    ],
+    [
+      365,
+      288
+    ]
+  ],
+  "policy": "Copy exact NW reference RGBA inside the manually traced shoulder curl. Reject local warm skin (R-B >15) and green spill (G-max(R,B) >20). Preserve baseline RGBA everywhere outside the mask. No transformations or other-facing artwork."
+}

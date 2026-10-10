@@ -14,3 +14,8 @@ an image-generation service. Reference and authoring inputs are hash-pinned,
 native dimensions are validated and source files remain unchanged. Runtime
 manifest parsing belongs to `packages/asset-registry`; these authoring reports do
 not replace approved rigs or complete production coverage/mask/visual validation.
+
+- `pnpm hair:review:back-diagonals`: independent NE/NW rear-crown/drape candidates
+  with explicitly hidden fringe, native reference/hair comparisons and separate
+  staging. Schema rejects a visible front fringe or reuse of the same rear image.
+  NE/NW design approval and shoulder-restoration provenance are pinned in `back-diagonals-review-v1.json`; production anatomy/T-pose fit remains pending.
