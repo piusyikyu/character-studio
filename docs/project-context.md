@@ -158,6 +158,20 @@ needed to reproduce/test the accepted restoration remain unchanged. Old preview
 iterations and generated test/export artifacts were also removed. Cleanup does
 not authorize advancing art authoring or the next milestone.
 
+After cleanup commit `e850c1c`, the user requested the next increment and asked
+to avoid pointless unit tests. The next Step 6C increment completes SE/SW
+concealed rear backing and far-side connections as revision-5 candidates, using
+each facing's own imagegen rear edit and explicit manual masks. Approved source
+files stay unchanged. Initial additive-only joins retained old extraction cuts;
+small seam polygons therefore permit repairs in the new rear version only.
+Front/head sources remain revision 4. The review verifies the accepted baseline
+partition, exact pixels outside completion masks, generated pixels inside them,
+retained visible reference coverage, native depth and deterministic outputs.
+One additional case extends the existing public review integration workflow;
+no new helper/enum unit suite is added. Separate staging at `front-diagonals-v5/`
+keeps the approved visible revision-4 inspection intact. The user approved revision 5 with “approved. commit and then continue”; `front-diagonals-review-v2.json` records its scope and hashes. Full anatomy/T-pose fit, NE/NW and final Step 6C review
+remain unfinished. Step 6D does not advance.
+
 - Distinguish `assets/references/` (immutable source images), `assets/source/` (editable layered files), `assets/staging/` (unapproved outputs), `assets/detailed/` and `assets/pixel/` (approved published parts), `assets/manifests/` and `assets/qa/` (generated reports).
 - Each modular part should declare a unique semantic ID, target, supported facings, compatible rig/body presets, image paths, attachment anchor, native offset, depth plane, visibility/occlusion, optional material/shade masks and requires/excludes.
 - Layer order may vary with facing. Long hair usually needs rear and front components. Clothing should conform to genuine front/rear three-dimensional construction.

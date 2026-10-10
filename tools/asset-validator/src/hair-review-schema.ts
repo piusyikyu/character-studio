@@ -20,6 +20,11 @@ const frame = z.strictObject({
   fitHead: z.strictObject({ purpose: z.literal('review-only-head-neck'), anatomyApproved: z.literal(false), artwork: layer }).optional(),
   partitionMasks: z.strictObject({ rear: mask, front: mask, head: mask }).optional(),
   restoredReferenceHair: mask.extend({ pixelCount: z.number().int().min(100) }).optional(),
+  rearCompletion: z.strictObject({
+    base: mask, artwork: mask, selection: mask,
+    pixelCount: z.number().int().min(100),
+    addedPixels: z.number().int().min(100), changedPixels: z.number().int().nonnegative(),
+  }).refine((completion) => completion.pixelCount === completion.addedPixels + completion.changedPixels, 'Rear completion counts must match the selected coverage.').optional(),
   fitFixture: z.strictObject({
     purpose: z.literal('review-only-head-neck'),
     anatomyApproved: z.literal(false),
@@ -39,11 +44,11 @@ export const hairReviewSchema = z.strictObject({
   status: z.literal('draft-needs-human-review'), target: z.literal('detailed'),
   sourcePose: z.literal('standing-reference'), intendedRuntimePose: z.literal('tpose'),
   rigCompatibility: z.literal('unverified'), paletteReady: z.literal(false),
-  authoringMethod: z.enum(['imagegen-reference-edit', 'imagegen-study/manual-mask-partition']),
+  authoringMethod: z.enum(['imagegen-reference-edit', 'imagegen-study/manual-mask-partition', 'imagegen-study/manual-mask-completion']),
   nativeSize: z.strictObject({ width: z.literal(1024), height: z.literal(1536) }),
   referenceProcessingRevision: z.literal(2),
   minimumVisibleAlpha: z.literal(8),
-  reviewRevision: z.union([z.literal(2), z.literal(3), z.literal(4)]).optional(),
+  reviewRevision: z.union([z.literal(2), z.literal(3), z.literal(4), z.literal(5)]).optional(),
   knownReviewIssues: z.array(z.string().min(1)).min(1),
   frames: z.union([
     z.strictObject({ S: frame, N: frame }),
@@ -55,13 +60,15 @@ export const hairReviewSchema = z.strictObject({
   if (draft.reviewRevision === 2 && (!('SE' in draft.frames) || fixtures.length !== 2)) ctx.addIssue({ code: 'custom', path: ['frames'], message: 'Revision 2 requires separate SE/SW head-neck review fixtures.' });
   if (fixtures.length && draft.reviewRevision !== 2) ctx.addIssue({ code: 'custom', path: ['reviewRevision'], message: 'Head-neck fit inspection requires an explicit review revision.' });
   for (const [direction, frame] of Object.entries(draft.frames)) {
-    if ((draft.reviewRevision === 4) !== Boolean(frame.restoredReferenceHair)) ctx.addIssue({ code: 'custom', path: ['frames', direction, 'restoredReferenceHair'], message: 'Revision 4 requires each facing to preserve its restored reference hair.' });
+    if (((draft.reviewRevision ?? 0) >= 4) !== Boolean(frame.restoredReferenceHair)) ctx.addIssue({ code: 'custom', path: ['frames', direction, 'restoredReferenceHair'], message: 'Revision 4 and later require each facing to preserve its restored reference hair coverage.' });
+    if ((draft.reviewRevision === 5) !== Boolean(frame.rearCompletion)) ctx.addIssue({ code: 'custom', path: ['frames', direction, 'rearCompletion'], message: 'Revision 5 requires a pinned baseline rear, completion artwork and selection mask for each facing.' });
     if ((draft.reviewRevision ?? 0) >= 3) {
       if (!('SE' in draft.frames) || !frame.designMaster || !frame.fitHead || !frame.partitionMasks || frame.fitFixture) ctx.addIssue({ code: 'custom', path: ['frames', direction], message: 'Master-partition review requires each diagonal to have its own whole-facing master and authored review head with partition masks, without synthetic fit guides.' });
       for (const part of [frame.rear, ...(frame.front.visibility === 'visible' ? [frame.front.artwork] : []), ...(frame.fitHead ? [frame.fitHead.artwork] : [])]) if (!frame.designMaster || part.authoringMasterSha256 !== frame.designMaster.sourceSha256) ctx.addIssue({ code: 'custom', path: ['frames', direction], message: 'Hair and review-head layers must name the same facing-specific authoring master.' });
     } else if (frame.designMaster || frame.fitHead || frame.partitionMasks) ctx.addIssue({ code: 'custom', path: ['frames', direction], message: 'Whole-facing master review requires revision 3 or later.' });
   }
-  if (((draft.reviewRevision ?? 0) >= 3) !== (draft.authoringMethod === 'imagegen-study/manual-mask-partition')) ctx.addIssue({ code: 'custom', path: ['authoringMethod'], message: 'Manual master partition requires revision 3 or later.' });
+  const expectedMethod = draft.reviewRevision === 5 ? 'imagegen-study/manual-mask-completion' : (draft.reviewRevision ?? 0) >= 3 ? 'imagegen-study/manual-mask-partition' : 'imagegen-reference-edit';
+  if (draft.authoringMethod !== expectedMethod) ctx.addIssue({ code: 'custom', path: ['authoringMethod'], message: 'The authoring method must match the partition/completion review revision.' });
   if ('SE' in draft.frames && (draft.reviewRevision ?? 0) >= 3 && draft.frames.SE.designMaster?.sourceSha256 === draft.frames.SW.designMaster?.sourceSha256) ctx.addIssue({ code: 'custom', path: ['frames'], message: 'SE/SW must have independently authored whole-facing masters.' });
   if ('S' in draft.frames) {
     if (draft.frames.S.front.visibility !== 'visible') ctx.addIssue({ code: 'custom', path: ['frames', 'S', 'front'], message: 'S needs an independently authored visible fringe.' });

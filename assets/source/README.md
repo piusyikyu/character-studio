@@ -15,6 +15,14 @@ and complete heads remain unfinished. Their configuration and prompts are prefix
 `front-diagonals-`; approved S/N/E/W sources and revision-3 inputs needed to reproduce
 the accepted SE/SW restoration are preserved. Rejected iterations are archived in
 Git history at `d2ec13f`, rather than kept in the working tree.
+`SE/SW-rear-drape-v5.png` and `front-diagonals-authoring-v5.json` are new,
+approved rear-root/connection designs, pinned in `front-diagonals-review-v2.json`. Native masks and generated inputs are
+in `inputs/front-diagonals-v5/`, with prompts in `front-diagonals-prompts-v5.json`.
+They retain the approved revision-4 files and front/head layers; small cut-edge
+repairs change only selected pixels in the new candidate.
 See [modular-hair.md](../../docs/modular-hair.md). Preserve approved versions; do not overwrite them without
 permission. Source layers must be transparent and contain no export labels or
 green background.
+
+SE/SW revision-5 rear-root and curl-connection design is approved in
+`front-diagonals-review-v2.json`; complete anatomy and production fit remain pending.

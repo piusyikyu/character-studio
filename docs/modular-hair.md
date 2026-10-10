@@ -5,7 +5,8 @@ The initial S/N hair design has user approval recorded in `review-v1.json`.
 The independent E/W hair design also has user approval recorded in
 `profiles-review-v1.json`. Both approval records pin source and cleaned hashes.
 The SE/SW revision-4 visible hair draft has user approval recorded in
-`front-diagonals-review-v1.json`; body-occluded connections remain unfinished.
+`front-diagonals-review-v1.json`. Revision-5 rear-root and connection design approval
+is recorded separately in `front-diagonals-review-v2.json`; full anatomy fit remains unfinished.
 It does not complete Step 6C or approve the remaining art package.
 Existing reference matte flags and candidate anchors remain observations, not
 certified anatomy. Detailed production artwork still requires an authored T-pose.
@@ -258,3 +259,74 @@ independently authored anatomy. The current SE study ends at y868 (about 33 px
 below the reference); SW ends at y830, close to the reference near y825.
 Do not publish these drafts, claim complete detached hair or begin Step 6D before
 the complete Step 6C package has been reviewed and approved.
+
+## SE/SW revision-5 rear completion — design approved
+
+After cleanup commit `e850c1c`, the user requested the next Step 6C increment.
+This increment authors concealed rear backing and connects the far-side curls,
+using each facing's own accepted rear as the imagegen edit target and its own
+accepted master as alignment guidance. It does not overwrite approved source
+files or infer production anatomy. Front/head PNGs remain revision 4.
+
+The first additions left old extraction cuts visible at the joins. Explicit small
+seam polygons therefore allow replacing selected cut-edge pixels in the **new**
+rear PNG, while every pixel outside the completion mask stays identical to the
+accepted rear. Generated RGBA is copied at native coordinates, with no scaling,
+mirroring, interpolation or recolouring. The 8/255 alpha threshold remains fixed.
+Existing visible curl coverage cannot be erased, including within seam repairs.
+
+`front-diagonals-authoring-v5.json` selects `SE/SW-rear-drape-v5.png` and pins
+baseline rear, generated artwork and binary mask hashes. Generated inputs,
+polygons and derivation counts live in `inputs/front-diagonals-v5/`;
+`front-diagonals-prompts-v5.json` records the built-in imagegen prompts and roles.
+The source-authoring `complete-rear.js` writes new files only and refuses to
+replace existing outputs. To reproduce in a fresh authoring checkout, run it
+from the repository root under Node 24; do not run it over approved art.
+
+SE adds 33,278 rear pixels and repairs 1,507 existing cut-edge pixels in the new
+version. SW adds 37,076 and repairs 3,788. These are selection counts, not proof
+of good strand topology. Original references, accepted master/front/head/rear
+files, configurations and approval records remain intact. The approved visible
+master is still the baseline; a completed rear can overlap behind the face and
+cap, so the candidate is no longer a disjoint partition of that master.
+
+```bash
+pnpm hair:review:front-diagonals:completion
+```
+
+The new review uses separate ignored staging at
+`assets/staging/heroine-v1/hair-long-waves-v1/front-diagonals-v5/`:
+
+- `overview.png`: reference / approved visible master / candidate composition,
+  with SE above SW. It is reduced only for inspection.
+- `inspection/master-comparison/`: native comparisons of those same three views.
+- `layers/` and `fit/`: native transparent candidate hair and rear/head/front fit.
+- `hair-only-overview.png`: detached hair without the partial review head.
+- `completion/` and `inspection/checker/*-selected-completion.png`: only the
+  selected additions and repairs, for review against the accepted rear.
+- `metadata.json`: added, repaired and repaired-reference pixel counts, source
+  hashes, output hashes and remaining review gates.
+
+The public review workflow still requires the **baseline** front/rear/head masks
+to partition and reconstruct the approved visible master exactly. It additionally
+checks that candidate rear pixels outside completion masks match the baseline,
+selected pixels match the same facing's generated artwork, mask counts agree and
+no selected patch erases visible reference hair. Front/head share the baseline
+master and remain unchanged. The integration workflow also checks head-over-rear
+occlusion and rejects a re-pinned rear edit outside its manual mask.
+
+Inspect the far-side curl joins, narrow strand width, root growth and backing
+behind the face/cap at native scale. The review head contains only visible study
+pixels; a complete independent head/body and production T-pose fit are still
+needed. The user approved the root/connection design on 2026-10-10 with “approved. commit and then continue”. `front-diagonals-review-v2.json` pins the config, source/cleaned layers and completion provenance. NE/NW and final Step 6C review remain
+unfinished, and Step 6D has not begun.
+
+Validation: affected tool typecheck, workspace lint, the completion CLI (including
+its tool build), output-hash checks and preservation of all 66 prior asset
+PNG/JSON files passed. The existing hair integration file passed its four earlier
+workflows; the new revision-5 case initially failed because its negative order
+swapped disjoint front/head layers. After changing that check to place rear hair
+incorrectly over the head, the targeted revision-5 workflow passed, including
+repeat generation and rejection of edits outside the mask. All five workflows
+are verified with no remaining failure. Browser E2E was not rerun for this offline
+art/review-tool increment. Rear-root design approval is recorded; independent anatomy fit remains open.

@@ -81,6 +81,7 @@ describe('Modular hair authoring review', () => {
   it.each([
     { directions: ['E', 'W'] as const, configFilename: 'profiles-authoring-v1.json' as const, missing: ['N', 'NE', 'SE', 'S', 'SW', 'NW'], approvalFile: 'profiles-review-v1.json' },
     { directions: ['SE', 'SW'] as const, configFilename: 'front-diagonals-authoring-v4.json' as const, missing: ['N', 'NE', 'E', 'S', 'W', 'NW'], approvalFile: 'front-diagonals-review-v1.json' },
+    { directions: ['SE', 'SW'] as const, configFilename: 'front-diagonals-authoring-v5.json' as const, missing: ['N', 'NE', 'E', 'S', 'W', 'NW'], approvalFile: 'front-diagonals-review-v2.json' },
   ])('reviews $configFilename pieces reproducibly without changing approved inputs', async ({ directions, configFilename, missing, approvalFile }) => {
     const temporary = await mkdtemp(resolve(tmpdir(), 'character-hair-profiles-'));
     try {
@@ -89,7 +90,7 @@ describe('Modular hair authoring review', () => {
       const draftBytes = await readFile(resolve(sourceDirectory, configFilename));
       const draft = hairReviewSchema.parse(JSON.parse(draftBytes.toString('utf8')));
       if ('S' in draft.frames) throw new Error('Expected independently authored side or diagonal artwork.');
-      const profileSources = Object.values(draft.frames).flatMap((frame) => [frame.rear.source, ...(frame.front.visibility === 'visible' ? [frame.front.artwork.source] : []), ...(frame.designMaster ? [frame.designMaster.source] : []), ...(frame.fitHead ? [frame.fitHead.artwork.source] : [])]);
+      const profileSources = Object.values(draft.frames).flatMap((frame) => [frame.rear.source, ...(frame.front.visibility === 'visible' ? [frame.front.artwork.source] : []), ...(frame.designMaster ? [frame.designMaster.source] : []), ...(frame.fitHead ? [frame.fitHead.artwork.source] : []), ...(frame.rearCompletion ? [frame.rearCompletion.base.source, frame.rearCompletion.artwork.source, frame.rearCompletion.selection.source] : [])]);
       const immutable = ['authoring-v1.json', 'review-v1.json', 'S-front.png', 'S-rear.png', 'N-rear.png', 'profiles-authoring-v1.json', 'profiles-review-v1.json', 'E-front.png', 'E-rear-drape.png', 'W-front.png', 'W-rear-drape.png', 'front-diagonals-authoring-v4.json', 'front-diagonals-review-v1.json', 'SE-master-v3.png', 'SW-master-v3.png', configFilename, ...profileSources];
       const before = await Promise.all(immutable.map(async (path) => ({ path, hash: sha256(await readFile(resolve(sourceDirectory, path))), mtime: (await stat(resolve(sourceDirectory, path))).mtimeMs })));
       const options = { sourceDirectory, referenceDirectory, outputDirectory: resolve(temporary, 'staging'), configFilename };
@@ -99,6 +100,7 @@ describe('Modular hair authoring review', () => {
       if (approvalFile) {
         const approval = JSON.parse(await readFile(resolve(sourceDirectory, approvalFile), 'utf8'));
         expect(first.configSha256).toBe(approval.configSha256);
+        if (approval.rearCompletion) expect(first.rearCompletionMeasurements).toEqual(approval.rearCompletion);
         for (const approved of approval.layers) expect(first.measurements.find((m) => m.direction === approved.direction && m.part === approved.part)).toMatchObject({ sourceSha256: approved.sourceSha256, outputSha256: approved.cleanedSha256 });
       }
       expect(first.hiddenLayers).toEqual([]);
@@ -163,8 +165,9 @@ describe('Modular hair authoring review', () => {
             expect(restoredCount).toBeGreaterThan(direction === 'SE' ? 10_000 : 4_000);
           }
           const wrongOrder = blankImage(1024, 1536);
-          for (const image of [rear, front, head]) drawRgba(wrongOrder, image, 0, 0);
-          if (draft.reviewRevision === 2) expect(sha256(fit.data)).not.toBe(sha256(wrongOrder.data));
+          const misplaced = draft.reviewRevision === 5 ? [head, rear, front] : [rear, front, head];
+          for (const image of misplaced) drawRgba(wrongOrder, image, 0, 0);
+          if (draft.reviewRevision === 2 || draft.reviewRevision === 5) expect(sha256(fit.data)).not.toBe(sha256(wrongOrder.data));
           else {
             // Revision 3 partitions visible master pixels; it does not fake hidden anatomy.
             const master = decodePng(await readFile(resolve(options.outputDirectory, `masters/${direction}.png`)));
@@ -189,6 +192,9 @@ describe('Modular hair authoring review', () => {
           if (draft.reviewRevision === 2) {
             expect(rearOccluded).toBeGreaterThan(100);
             expect(bangsOverHead).toBeGreaterThan(100);
+          } else if (draft.reviewRevision === 5) {
+            expect(rearOccluded).toBeGreaterThan(100);
+            expect(bangsOverHead).toBe(0); // The unchanged partial head/front are still disjoint.
           } else {
             expect(rearOccluded).toBe(0);
             expect(bangsOverHead).toBe(0);
@@ -202,9 +208,32 @@ describe('Modular hair authoring review', () => {
         expect(sha256(await readFile(resolve(options.outputDirectory, 'overview.png')))).toBe(sha256(encodePng(overview(contact))));
         expect(sha256(await readFile(resolve(options.outputDirectory, 'hair-only-overview.png')))).toBe(sha256(encodePng(overview(hairOnlyContact))));
         if ((draft.reviewRevision ?? 0) >= 3) {
-          expect(first).toMatchObject({ syntheticFitGuides: false, masterReconstruction: 'exact-visible-rgba-partition', hiddenRootCompletion: 'pending', reviewHeadCompleteness: 'visible-study-pixels-only' });
+          expect(first).toMatchObject({ syntheticFitGuides: false, masterReconstruction: draft.reviewRevision === 5 ? 'exact-baseline-partition-plus-masked-rear-completion' : 'exact-visible-rgba-partition', hiddenRootCompletion: draft.reviewRevision === 5 ? 'authored-needs-human-review' : 'pending', reviewHeadCompleteness: 'visible-study-pixels-only' });
           expect(first.designMasterMeasurements).toHaveLength(2);
           for (const measurement of first.designMasterMeasurements!) expect(sha256(await readFile(resolve(options.outputDirectory, `masters/${measurement.direction}.png`)))).toBe(measurement.outputSha256);
+        }
+        if (draft.reviewRevision === 5) {
+          expect(first.rearCompletionMeasurements).toHaveLength(2);
+          for (const [direction, frame] of Object.entries(draft.frames)) {
+            const completion = frame.rearCompletion!;
+            const rear = decodePng(await readFile(resolve(options.outputDirectory, `layers/${direction}-rear.png`)));
+            const baseline = decodePng(await readFile(resolve(sourceDirectory, completion.base.source)));
+            const authored = decodePng(await readFile(resolve(sourceDirectory, completion.artwork.source)));
+            const mask = decodePng(await readFile(resolve(sourceDirectory, completion.selection.source)));
+            let addedPixels = 0, changedPixels = 0;
+            for (let i = 0; i < rear.data.length; i += 4) {
+              if (mask.data[i + 3]) {
+                if (baseline.data[i + 3]) changedPixels++;
+                else addedPixels++;
+                if (authored.data[i + 3]! < 8 || rear.data.subarray(i, i + 4).some((value, channel) => value !== authored.data[i + channel])) throw new Error('Completion lost authored native pixels.');
+              } else if (rear.data.subarray(i, i + 4).some((value, channel) => value !== baseline.data[i + channel])) throw new Error('Completion changed accepted pixels outside its mask.');
+            }
+            expect(first.rearCompletionMeasurements!.find((measurement) => measurement.direction === direction)).toMatchObject({ addedPixels, changedPixels, pixelCount: completion.pixelCount });
+            expect(addedPixels).toBeGreaterThan(30_000);
+            expect(changedPixels).toBeLessThan(4_000);
+            const restoration = decodePng(await readFile(resolve(sourceDirectory, frame.restoredReferenceHair!.source)));
+            for (let i = 3; i < rear.data.length; i += 4) if (restoration.data[i] && rear.data[i]! < 8) throw new Error('Completion dropped visible reference curls.');
+          }
         }
       }
       for (const output of first.outputs) expect(sha256(await readFile(resolve(options.outputDirectory, output.path)))).toBe(output.sha256);
@@ -245,6 +274,23 @@ describe('Modular hair authoring review', () => {
           await expect(prepareHairReview({ ...options, sourceDirectory: copy, outputDirectory: rejectedFit })).rejects.toThrow('preserve their own master pixels exactly');
           await expect(stat(rejectedFit)).rejects.toThrow('ENOENT');
           await cp(resolve(sourceDirectory, corrupted.frames.SW.front.artwork.source), artworkPath);
+          if (draft.reviewRevision === 5) {
+            // Re-pinning a changed rear cannot legitimize edits outside the manual mask.
+            const escaped = JSON.parse(draftBytes.toString('utf8'));
+            const frame = escaped.frames.SW;
+            const rearPath = resolve(copy, frame.rear.source);
+            const rear = decodePng(await readFile(rearPath));
+            const selection = decodePng(await readFile(resolve(copy, frame.rearCompletion.selection.source)));
+            const pixel = rear.data.findIndex((value, index) => index % 4 === 3 && value >= 8 && selection.data[index] === 0) - 3;
+            rear.data[pixel] = (rear.data[pixel]! + 1) % 256;
+            const bytes = encodePng(rear);
+            await writeFile(rearPath, bytes);
+            frame.rear.sourceSha256 = sha256(bytes);
+            await writeFile(path, JSON.stringify(escaped));
+            await expect(prepareHairReview({ ...options, sourceDirectory: copy, outputDirectory: rejectedFit })).rejects.toThrow('rear completion changed pixels outside its selection');
+            await expect(stat(rejectedFit)).rejects.toThrow('ENOENT');
+            await cp(resolve(sourceDirectory, frame.rear.source), rearPath);
+          }
           if (draft.reviewRevision === 4) {
             // A consistent master/layer repartition still fails if it drops reference hair.
             const missingHair = JSON.parse(draftBytes.toString('utf8'));
