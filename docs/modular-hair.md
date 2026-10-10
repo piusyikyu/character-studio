@@ -453,3 +453,10 @@ their native fit with these immutable hair layers; see
 occlusion of the nose/eye area, requiring a new fit correction after head
 geometry review. Final anatomy, body/clothing, T-pose and Step 6C approval
 remain unfinished; Step 6D is not advanced.
+
+After committing the S/N anatomy draft at `2474fde`, the next fit correction
+uses a new S front/rear candidate in the anatomy source directory. It restores
+native reference fringe/face-framing placement and removes duplicated rear
+temple geometry, leaving four recorded facial samples clear. This fit pair
+requires visual review and does not replace any approved hair source/config.
+`pnpm head:review` selects it; `pnpm head:review:v1` retains the initial comparison.

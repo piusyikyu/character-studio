@@ -70,7 +70,8 @@ into continuous deformation.
 
 ```bash
 pnpm reference:import # If transparent reference staging is absent
-pnpm head:review
+pnpm head:review # Current revision-2 S fit candidate and unchanged N
+pnpm head:review:v1 # Reproduce the initial mismatch in separate staging/v1
 ```
 
 `assets/staging/heroine-v1/head-soft-oval-v1/` is ignored and regenerated:
@@ -90,7 +91,7 @@ Internal layers contain neither backgrounds nor direction labels. Yellow
 direction labels and checker/pure-green backgrounds are applied only in
 inspection. Full green fit previews additionally carry `FIT DRAFT`.
 
-**S fit needs correction:** the accepted frontal fringe covers the nose and
+**Initial revision-1 S fit:** the accepted frontal fringe covers the nose and
 intended eye area at the reference-position head. Hair design approval did
 not establish production head fit. This comparison is evidence of that
 mismatch, not a successful fitted character. Review the head geometry, then
@@ -136,4 +137,96 @@ Initial validation caught JSON provenance paths incorrectly constrained to
 PNG filenames and a strict TypeScript tuple inference error. Both were
 corrected before the successful runs above. The full application build and
 browser E2E suite were not rerun for this offline asset-tool increment. The
-S fringe mismatch remains an unresolved visual issue despite passing tests.
+S fringe mismatch remained unresolved in revision 1 despite passing tests.
+
+## Revision 2 — native S hair/head fit correction
+
+The user approved this fit candidate with “approved. commit and continue”.
+`review-fit-v2.json` pins its config, source inputs and reviewed compositions.
+Approval acknowledges the known temple seams; repair proceeds in a new version.
+It does not certify a production head/rig or complete Step 6C.
+
+The user approved committing the draft and continuing after the S mismatch
+explanation. Local commit `2474fde` preserves the initial anatomy draft and
+review tooling, including its unresolved fit evidence. This checkpoint does
+not certify production anatomy or complete Step 6C.
+
+The approximate `(511,169)` head anchor did not constrain actual skull, ear,
+fringe or face geometry. Native comparison showed the initial front fringe
+covering the nose at `(511,224)`, and the rear hair also contained oversized
+temple locks. Changing only the front left two incompatible head openings.
+
+`authoring-v2.json` therefore selects a separate S fit pair in the anatomy
+source directory; the approved hair package, all head/neck parts and N remain
+unchanged:
+
+- `S-front-fit-v2.png`: 28,748 visible pixels from S's own immutable transparent
+  reference, copied at their exact native coordinates. Hand-traced polygons
+  define the crown/fringe/face-framing locks and exclude forehead/ear areas.
+  An explicit warm-skin boundary exclusion removes skin touched by those
+  contours; surviving RGBA is unchanged. Native mask, polygon settings,
+  extraction script and provenance are in `inputs/`. No other facing is used.
+- `S-rear-fit-master-v2.png`: a new built-in imagegen rear-hair study authored
+  from the approved S rear, original S character and reference-native front
+  candidate. `prompts-fit-v2.json` records roles and the complete prompt.
+- `S-rear-fit-v2.png`: 278,449 native study pixels retained by its binary mask.
+  Above y290, the rear is restricted to S's reference silhouette to prevent
+  duplicate temple/crown protrusions. Below y290, every study pixel with alpha
+  at least 8 is retained. Two explicit upper-crown rectangles remove 24
+  detached pixels created by the silhouette cut; lower fine strands are
+  preserved. No scaling, translation, reflection or recolouring
+  occurs. The raw study, mask, partition script and provenance remain separate.
+
+The review validates both derivations and composes the new S rear / unchanged
+neck / unchanged head / new S front. Four manually recorded facial samples—
+screen-left eye `(475,198)`, screen-right eye `(541,195)`, nose `(511,224)` and
+chin `(513,266)`—must have zero front-hair alpha and visible head skin. These
+samples are fit diagnostics, not new eyes/mouth artwork or a certified rig.
+
+`pnpm head:review` writes the current revision-2 overview at the existing
+review path and adds native front/rear fit layers and mask/checker inspection.
+It produces 32 PNGs. `pnpm head:review:v1` regenerates the original fit under
+`assets/staging/heroine-v1/head-soft-oval-v1/v1/` without modifying version-1
+source/configuration. Regeneration calls neither imagegen nor extraction.
+
+The existing single integration workflow also exercises this fit revision:
+actual revision-1 nose obstruction, four exposed revision-2 facial samples,
+native depth, unchanged anatomy/N output, exact reference/master ownership,
+repeatability and rejection of a forged front even after re-pinning its hash
+and provenance. No additional helper/unit-test suite was introduced.
+
+The candidate needs visual review of head proportions, forehead/ear cut edges,
+hair crown/drape transitions and lower curl length. Facial overlays, independent
+ears, six other heads, full anatomy/body/clothing and production T-pose fit
+remain unfinished. Do not interpret four clear sample points as complete visual
+approval, publish the pair or begin Step 6D before the required review.
+
+Current inspection exposes the nose and eye positions and eliminates the old
+double temple-lock silhouette. The temple transitions still show hard mask
+edges where reference-derived front hair meets authored rear hair. Review and
+repair those contours in a subsequent version before production acceptance;
+the current pair is a fit candidate, not a seamless finished character.
+
+Revision-2 validation:
+
+- `pnpm head:review`: asset-tool build/declarations and current CLI passed;
+  all 32 output hashes and the current config hash independently verified.
+- `pnpm --filter @character-studio/asset-validator typecheck` and `pnpm lint`:
+  passed.
+- `pnpm test tools/asset-validator/src/head-review.integration.test.ts`:
+  one public workflow passed with frozen inputs (107.18 seconds total).
+- `node tools/asset-validator/dist/head-review-cli.js --v1`: passed; all 26
+  historical output hashes verified, with unchanged skin bases and identical N
+  composition across both revisions.
+- Preservation audit: all 105 existing original-reference, approved-hair and
+  version-1 anatomy source/provenance files retained their SHA-256 hashes.
+- `git diff --check` and local documentation links: passed.
+
+Development test failures were corrected: the forged-source case initially
+inherited a deliberately altered head fixture; a facial sample comparison
+incorrectly expected the raw skin RGBA despite alpha 253 composing over rear
+hair; and the preservation check caught a prompt-provenance edit made while
+the test was running. The final rerun passed with frozen source inputs.
+The full application build and browser E2E suite were not rerun for this offline
+authoring/tool increment. Visual temple-edge repair and production anatomy
+approval remain outstanding regardless of automated results.

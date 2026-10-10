@@ -82,7 +82,8 @@ pnpm hair:review:profiles # Prepare independent E/W hair draft inspection
 pnpm hair:review:front-diagonals # Prepare SE/SW reference/study/masked-reconstruction inspection
 pnpm hair:review:front-diagonals:completion # Review approved SE/SW rear roots and connections
 pnpm hair:review:back-diagonals # Prepare approved independent NE/NW rear hair
-pnpm head:review # Compare S/N bald head/neck drafts with accepted hair
+pnpm head:review # Compare the versioned S hair fit and unchanged N anatomy draft
+pnpm head:review:v1 # Reproduce the initial S mismatch separately
 pnpm typecheck    # Check root configs, smoke tests, and all workspace packages
 pnpm lint         # ESLint with zero warnings permitted
 pnpm test         # Run Vitest once
@@ -139,8 +140,9 @@ approval; SE/SW revision-4 visible hair drafts and pixel-preserving mask partiti
 with previously omitted far-side reference curls restored.
 SE/SW rear-root and connection design approval is recorded in `front-diagonals-review-v2.json`. NE/NW rear-hair designs, including the NW shoulder-curl correction, are approved in `back-diagonals-review-v1.json`. These standing-reference drafts do not certify
 production T-pose or head/body fit. The [S/N head/neck drafts](docs/modular-head.md)
-now provide an anatomy review; the S fringe currently blocks the nose/eye area,
-so fitted production heads remain unfinished.
+now provide an anatomy review with a versioned S front/rear fit candidate that
+leaves four facial landmark samples exposed. Visual fit approval and complete
+production heads remain unfinished; approved sources and N are unchanged.
 
 Six public-API integration tests cover core recipe save/load, compatibility and
 seeded generation. Seven registry integration tests cover recipe-to-plan workflows

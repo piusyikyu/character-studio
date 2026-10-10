@@ -37,5 +37,6 @@ native mask reproduction in `inputs/back-diagonals-v2/`. Complete anatomy remain
 head/neck partitions, native ownership masks and placement-guide provenance.
 These anatomy drafts are unapproved and omit eyes/brows/mouth. Human ears
 remain embedded pending independent variants. See
-[modular-head.md](../../docs/modular-head.md) for the S fringe-fit discrepancy
-and remaining anatomy/body/T-pose work. Approved hair is unchanged.
+[modular-head.md](../../docs/modular-head.md) for the initial S fit discrepancy,
+versioned front/rear fit correction and remaining anatomy/body/T-pose work.
+All approved hair and version-1 anatomy sources are unchanged.

@@ -225,6 +225,24 @@ visually plausible but still unapproved. Six other head facings, facial/ear
 layers, body/clothing and production T-pose fit remain unfinished. See
 `docs/modular-head.md`. This does not complete Step 6C or advance Step 6D.
 
+### S fit correction after anatomy-draft checkpoint — 2026-10-10
+
+The user questioned S alignment, then approved a local commit and continuation.
+Commit `2474fde` preserves the initial S/N anatomy draft and review workflow.
+Equal approximate anchor coordinates did not establish matching facial geometry.
+The accepted S front covered the nose/eye area; its rear also carried oversized
+temple locks. Revision 2 therefore fits a new S front/rear pair while preserving
+all approved source images, head/neck parts and N output. The front is selected
+from S's own reference with native manual masks; the rear is newly authored with
+built-in imagegen and clipped to the native reference silhouette above y290.
+The current `pnpm head:review` selects `authoring-v2.json`; `head:review:v1`
+reproduces the historical mismatch separately. Four exposed facial samples and
+exact native source ownership are regression boundaries, not anatomical proof.
+The user approved this fit candidate with “approved. commit and continue”.
+`review-fit-v2.json` pins its config, sources and reviewed composition; the
+known temple seams are the next versioned repair. Step 6C remains unfinished and
+Step 6D has not begun. See `docs/modular-head.md` for retained provenance.
+
 - Distinguish `assets/references/` (immutable source images), `assets/source/` (editable layered files), `assets/staging/` (unapproved outputs), `assets/detailed/` and `assets/pixel/` (approved published parts), `assets/manifests/` and `assets/qa/` (generated reports).
 - Each modular part should declare a unique semantic ID, target, supported facings, compatible rig/body presets, image paths, attachment anchor, native offset, depth plane, visibility/occlusion, optional material/shade masks and requires/excludes.
 - Layer order may vary with facing. Long hair usually needs rear and front components. Clothing should conform to genuine front/rear three-dimensional construction.

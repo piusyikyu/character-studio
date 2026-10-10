@@ -66,6 +66,33 @@ it('reviews authored S/N anatomy with exact partitions, approved hair, native de
     expect(sha256(s.data)).not.toBe(sha256(n.data)); expect(sha256(s.data)).not.toBe(sha256(mirrored.data));
     expect(await prepareHeadReview(options)).toEqual(report);
     for (const output of report.outputs) expect(sha256(await readFile(resolve(options.outputDirectory, output.path)))).toBe(output.sha256);
+    // The fit revision changes S front hair only, preserving all anatomy and N.
+    const revisedOptions = { ...options, configSource: 'authoring-v2.json' as const, outputDirectory: resolve(temporary, 'fit-v2') };
+    const revised = await prepareHeadReview(revisedOptions);
+    expect(revised.masters).toEqual(report.masters);
+    expect(revised.measurements).toEqual(report.measurements);
+    expect(revised.hairMeasurements).toEqual(report.hairMeasurements);
+    expect(revised.fitMeasurements.find((m) => m.direction === 'N')).toEqual(report.fitMeasurements.find((m) => m.direction === 'N'));
+    expect(revised.fringeFitMeasurement!.facialLandmarks).toHaveLength(4);
+    expect(revised.fringeFitMeasurement!.facialLandmarks.every((p) => p.hairAlpha === 0)).toBe(true);
+    const originalFront = decodePng(await readFile(resolve(hairDirectory, 'S-front.png')));
+    expect(originalFront.data[(224 * 1024 + 511) * 4 + 3]).toBeGreaterThan(8); // Actual reported nose occlusion.
+    const correctedFront = decodePng(await readFile(resolve(revisedOptions.outputDirectory, 'layers/S-front-fit.png')));
+    const correctedFit = decodePng(await readFile(resolve(revisedOptions.outputDirectory, 'fit/S.png')));
+    const nativeHead = decodePng(await readFile(resolve(revisedOptions.outputDirectory, 'layers/S-head.png')));
+    const rear = decodePng(await readFile(resolve(revisedOptions.outputDirectory, 'layers/S-rear-fit.png')));
+    for (let i = 0; i < rear.data.length; i += 4) if (rear.data[i + 3]! < 8) rear.data.fill(0, i, i + 4);
+    const assembledFit = blankImage(1024, 1536);
+    for (const image of [rear, decodePng(await readFile(resolve(revisedOptions.outputDirectory, 'layers/S-neck.png'))), nativeHead]) drawRgba(assembledFit, image, 0, 0);
+    // Authored skin has alpha 253 internally; compare against its real rear-backed composition.
+    for (const { position: { x, y } } of revised.fringeFitMeasurement!.facialLandmarks) {
+      const i = (y * 1024 + x) * 4;
+      expect([...correctedFit.data.slice(i, i + 4)]).toEqual([...assembledFit.data.slice(i, i + 4)]);
+    }
+    drawRgba(assembledFit, correctedFront, 0, 0);
+    expect(sha256(assembledFit.data)).toBe(sha256(correctedFit.data));
+    expect(await prepareHeadReview(revisedOptions)).toEqual(revised);
+    for (const output of revised.outputs) expect(sha256(await readFile(resolve(revisedOptions.outputDirectory, output.path)))).toBe(output.sha256);
     const copy = resolve(temporary, 'invalid-source'); await cp(sourceDirectory, copy, { recursive: true });
     const draft = headReviewSchema.parse(JSON.parse(await readFile(resolve(copy, 'authoring-v1.json'), 'utf8')));
     // Re-pinning an altered partition must still fail semantic pixel preservation.
@@ -79,6 +106,20 @@ it('reviews authored S/N anatomy with exact partitions, approved hair, native de
     await writeFile(resolve(copy, 'authoring-v1.json'), JSON.stringify(badAttachment));
     await expect(prepareHeadReview({ ...options, sourceDirectory: copy, outputDirectory: resolve(temporary, 'rejected') })).rejects.toThrow('no translation');
     await expect(prepareHeadReview({ ...options, outputDirectory: resolve(hairDirectory, 'unsafe') })).rejects.toThrow('must be disjoint');
+    // Re-pinning a forged fit source and its provenance must not bypass native reference ownership.
+    const fitDraft = headReviewSchema.parse(JSON.parse(await readFile(resolve(copy, 'authoring-v2.json'), 'utf8')));
+    await writeFile(resolve(copy, fitDraft.frames.S.head.source), await readFile(resolve(sourceDirectory, fitDraft.frames.S.head.source)));
+    const frontSource = resolve(copy, fitDraft.fringeFit!.front.source), forgedFront = decodePng(await readFile(frontSource));
+    const selectedPixel = forgedFront.data.findIndex((v, i) => i % 4 === 3 && v >= 8) - 3;
+    forgedFront.data[selectedPixel] = (forgedFront.data[selectedPixel]! + 1) % 256;
+    const forged = encodePng(forgedFront); await writeFile(frontSource, forged);
+    fitDraft.fringeFit!.front.sourceSha256 = sha256(forged);
+    const provenancePath = resolve(copy, fitDraft.fringeFit!.provenance.source);
+    const provenance = JSON.parse(await readFile(provenancePath, 'utf8')) as { sourceSha256: string };
+    provenance.sourceSha256 = sha256(forged); const provenanceBytes = JSON.stringify(provenance);
+    await writeFile(provenancePath, provenanceBytes); fitDraft.fringeFit!.provenance.sourceSha256 = sha256(Buffer.from(provenanceBytes));
+    await writeFile(resolve(copy, 'authoring-v2.json'), JSON.stringify(fitDraft));
+    await expect(prepareHeadReview({ ...revisedOptions, sourceDirectory: copy, outputDirectory: resolve(temporary, 'forged-fit') })).rejects.toThrow('preserve selected reference RGBA');
     for (const item of before) { expect(sha256(await readFile(item.path))).toBe(item.hash); expect((await stat(item.path)).mtimeMs).toBe(item.mtime); }
   } finally { await rm(temporary, { recursive: true, force: true }); }
-}, 120_000);
+}, 180_000);

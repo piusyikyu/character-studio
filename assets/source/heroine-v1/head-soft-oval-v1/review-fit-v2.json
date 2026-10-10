@@ -1,0 +1,151 @@
+{
+  "schemaVersion": 1,
+  "id": "head.soft-oval.v1",
+  "assetVersion": 2,
+  "target": "detailed",
+  "status": "approved-standing-reference-fit-candidate",
+  "approvalEvidence": "User: approved. commit and continue",
+  "scope": "S front/rear standing-reference fit candidate with recorded clear facial samples; temple seams remain a known issue. N review composition unchanged. Not production anatomy, T-pose, publication or complete Step 6C approval.",
+  "config": "authoring-v2.json",
+  "configSha256": "067a43b066e2f98f4dc9c592028fa13a9114e69b1d2148639ec7600f92303bf9",
+  "inputs": [
+    {
+      "source": "N-head-v1.png",
+      "sourceSha256": "0551734b677bd85fbd6c91124566bfbb9757a5b7533b141fc5306a3f2fdcbae6"
+    },
+    {
+      "source": "N-master-v1.png",
+      "sourceSha256": "2e80960dd9cc147ee12408df6105890e9a074a47d0d6054538d42bf66187419d"
+    },
+    {
+      "source": "N-neck-v1.png",
+      "sourceSha256": "52e437d6e78ab93ffbf0f4b1367032b8f8df825b953e6bc0c98bf19e7ec8e9c4"
+    },
+    {
+      "source": "S-front-fit-v2.png",
+      "sourceSha256": "3307e2865d0b83697072b4fad0dfa4fafc7c7fb662bb2e75509a04e869f9cb1d"
+    },
+    {
+      "source": "S-head-v1.png",
+      "sourceSha256": "fccf4f33961217036295ee67e7117d6cecb7cc84644210ce73c58170215f16ce"
+    },
+    {
+      "source": "S-master-v1.png",
+      "sourceSha256": "d4b443961d2653cc596f5f5ddb0d970aeef685b34db1a4922616e6e1f01c4633"
+    },
+    {
+      "source": "S-neck-v1.png",
+      "sourceSha256": "59e9afde1b076981a294e0eb8a058eec1c811135c07759f1991a22b6291a41dc"
+    },
+    {
+      "source": "S-rear-fit-master-v2.png",
+      "sourceSha256": "dc419dfa421100b69a1c1e1f1395f95db60359247d420cf7b44ce645b4facc70"
+    },
+    {
+      "source": "S-rear-fit-v2.png",
+      "sourceSha256": "889e9ff26912eced67bbb314abe40ec5aca7e3038ea2599556fea58a61d47ed8"
+    },
+    {
+      "source": "inputs/N-head-mask-v1.png",
+      "sourceSha256": "4b5ed2dae60d24c25556f2f6c6babe485139c94ac53094cd953c043e2a828eef"
+    },
+    {
+      "source": "inputs/N-neck-mask-v1.png",
+      "sourceSha256": "d880bccf5c0c63773e2b599e9cc092b24b98bd52c8d52e30d9e9a5928fb2baa2"
+    },
+    {
+      "source": "inputs/N-placement-guide.png",
+      "sourceSha256": "c12b79ac22ab43ba3285af15f1f0cd1b49066eca0358c86bf6226141979bab64"
+    },
+    {
+      "source": "inputs/S-front-fit-mask-v2.png",
+      "sourceSha256": "9d0bec5473d69c82543d89f027fc7b20982af875983c28d4f49b12d8ae797cc0"
+    },
+    {
+      "source": "inputs/S-head-mask-v1.png",
+      "sourceSha256": "8c45d7a43d0cec40079c3f2f93f3725356d46e9ea8f318e353e316cc06c7c5b7"
+    },
+    {
+      "source": "inputs/S-neck-mask-v1.png",
+      "sourceSha256": "6e69a983ab9442efe3577455f6af4904da1330bfa22a502ddad116a14138809f"
+    },
+    {
+      "source": "inputs/S-placement-guide.png",
+      "sourceSha256": "efe4565c47141ad566bd352767b583e70d23045e2ce8b5ce23faa027d40f9d4f"
+    },
+    {
+      "source": "inputs/S-rear-fit-mask-v2.png",
+      "sourceSha256": "08cd9a402352f853158364819dacc8eb0c80ef630a20b9929f31c776949373fc"
+    },
+    {
+      "source": "inputs/front-fit-v2-provenance.json",
+      "sourceSha256": "04c91c55ff13d544c4aa4a2a8306782e301d4fb1f5cf78b429e6e21a278df6de"
+    },
+    {
+      "source": "inputs/rear-fit-v2-provenance.json",
+      "sourceSha256": "8fe244dd9520546f177314b51e56ce461325a8706b6d9efcb03f92fc375d11e2"
+    }
+  ],
+  "fitMeasurements": [
+    {
+      "direction": "S",
+      "headPixelsOverlappedByHair": 12719,
+      "headPixelsWithoutHairOverlap": 11512,
+      "outputSha256": "cfea2ec115c04a5d5111c675564fa93c82d39ac73fa96a92bf9b7b8f032fb52a"
+    },
+    {
+      "direction": "N",
+      "headPixelsOverlappedByHair": 24270,
+      "headPixelsWithoutHairOverlap": 0,
+      "outputSha256": "0a804f17591307be3752fcfdeb14905651aa6038ddc299a61049c2a86b473bdb"
+    }
+  ],
+  "fringeFitMeasurement": {
+    "sourceSha256": "3307e2865d0b83697072b4fad0dfa4fafc7c7fb662bb2e75509a04e869f9cb1d",
+    "cleanedSha256": "fda78d45d8b40d1b4527b6712231d495bac589f0e507875cd112fa5ab1d4188e",
+    "pixelCount": 28748,
+    "rearSourceSha256": "889e9ff26912eced67bbb314abe40ec5aca7e3038ea2599556fea58a61d47ed8",
+    "rearCleanedSha256": "35a154e3b9feb36d8ee3239de6dbafddf1e03298cf1a541c49cc731d4135f62e",
+    "rearPixelCount": 278449,
+    "facialLandmarks": [
+      {
+        "name": "screen-left-eye-center",
+        "position": {
+          "x": 475,
+          "y": 198
+        },
+        "hairAlpha": 0
+      },
+      {
+        "name": "screen-right-eye-center",
+        "position": {
+          "x": 541,
+          "y": 195
+        },
+        "hairAlpha": 0
+      },
+      {
+        "name": "nose-tip",
+        "position": {
+          "x": 511,
+          "y": 224
+        },
+        "hairAlpha": 0
+      },
+      {
+        "name": "chin",
+        "position": {
+          "x": 513,
+          "y": 266
+        },
+        "hairAlpha": 0
+      }
+    ]
+  },
+  "remainingReview": [
+    "Temple/crown seam contours",
+    "Independent ear/facial layers and six other heads",
+    "Complete body/clothing anatomy and production T-pose fit",
+    "Final Step 6C approval before Step 6D"
+  ]
+}

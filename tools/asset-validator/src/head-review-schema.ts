@@ -19,7 +19,7 @@ const frame = z.strictObject({
 
 /** Offline anatomy evidence; deliberately not a runtime manifest or approved rig. */
 export const headReviewSchema = z.strictObject({
-  schemaVersion: z.literal(1), id: z.literal('head.soft-oval.v1'), assetVersion: z.literal(1),
+  schemaVersion: z.literal(1), id: z.literal('head.soft-oval.v1'), assetVersion: z.union([z.literal(1), z.literal(2)]),
   target: z.literal('detailed'), status: z.literal('draft-needs-human-review'),
   sourcePose: z.literal('standing-reference'), intendedRuntimePose: z.literal('tpose'),
   rigCompatibility: z.literal('unverified'), paletteReady: z.literal(false), anatomyApproved: z.literal(false),
@@ -29,6 +29,19 @@ export const headReviewSchema = z.strictObject({
   hairConfig: z.strictObject({ source: z.literal('authoring-v1.json'), sourceSha256: hash }),
   hairApproval: z.strictObject({ source: z.literal('review-v1.json'), sourceSha256: hash }),
   knownReviewIssues: z.array(z.string().min(1)).min(1),
+  fringeFit: z.strictObject({
+    direction: z.literal('S'), method: z.literal('reference-front/authored-rear-native-fit'),
+    front: input, selection: input, pixelCount: z.number().int().positive(),
+    provenance: z.strictObject({ source: z.literal('inputs/front-fit-v2-provenance.json'), sourceSha256: hash }),
+    rear: input, rearMaster: input, rearSelection: input, rearPixelCount: z.number().int().positive(),
+    rearProvenance: z.strictObject({ source: z.literal('inputs/rear-fit-v2-provenance.json'), sourceSha256: hash }),
+    referenceEnvelopeUntilY: z.literal(290),
+    rearExclusions: z.array(z.strictObject({ x: z.number().int().nonnegative(), y: z.number().int().nonnegative(), width: z.number().int().positive().max(32), height: z.number().int().positive().max(32) }).refine((r) => r.x + r.width <= 1024 && r.y + r.height < 290)).max(4),
+    facialLandmarks: z.array(z.strictObject({ name: z.enum(['screen-left-eye-center', 'screen-right-eye-center', 'nose-tip', 'chin']), position: point })).length(4),
+    approved: z.literal(false),
+  }).optional(),
   frames: z.strictObject({ S: frame, N: frame }),
-}).refine((d) => d.frames.S.master.sourceSha256 !== d.frames.N.master.sourceSha256, 'S/N need distinct independently authored anatomy masters.');
+}).refine((d) => d.frames.S.master.sourceSha256 !== d.frames.N.master.sourceSha256, 'S/N need distinct independently authored anatomy masters.')
+  .refine((d) => (d.assetVersion === 2) === !!d.fringeFit, 'Only revision 2 requires the explicit S fringe-fit candidate.')
+  .refine((d) => !d.fringeFit || new Set(d.fringeFit.facialLandmarks.map((p) => p.name)).size === 4, 'Fringe-fit review needs four distinct facial landmarks.');
 export type HeadReviewDraft = z.infer<typeof headReviewSchema>;

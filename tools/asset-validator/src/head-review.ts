@@ -18,6 +18,7 @@ export interface HeadReviewOptions {
   readonly hairDirectory: string;
   readonly referenceDirectory: string;
   readonly outputDirectory: string;
+  readonly configSource?: 'authoring-v1.json' | 'authoring-v2.json';
 }
 
 /** Authored anatomy review only; preserves approved hair and does not publish a catalog. */
@@ -38,7 +39,9 @@ export async function prepareHeadReview(options: HeadReviewOptions) {
     if (expectedHash && expectedHash !== hash) throw new Error(`${source}: source hash changed; create a reviewed new version.`);
     inputs.set(path, hash); return bytes;
   };
-  const configBytes = await read(sourceDirectory, 'authoring-v1.json');
+  const configSource = options.configSource ?? 'authoring-v1.json';
+  if (!['authoring-v1.json', 'authoring-v2.json'].includes(configSource)) throw new Error('Unsupported anatomy review configuration.');
+  const configBytes = await read(sourceDirectory, configSource);
   const draft = headReviewSchema.parse(JSON.parse(configBytes.toString('utf8')));
   const hairBytes = await read(hairDirectory, draft.hairConfig.source, draft.hairConfig.sourceSha256);
   const hair = hairReviewSchema.parse(JSON.parse(hairBytes.toString('utf8')));
@@ -60,6 +63,7 @@ export async function prepareHeadReview(options: HeadReviewOptions) {
   const masters: { direction: 'S' | 'N'; sourceSha256: string; cleanedSha256: string; noisePixelsCleared: number; bounds: ReturnType<typeof characterBounds> }[] = [];
   const hairMeasurements: { direction: 'S' | 'N'; part: 'rear' | 'front'; sourceSha256: string; cleanedSha256: string }[] = [];
   const fitMeasurements: { direction: 'S' | 'N'; headPixelsOverlappedByHair: number; headPixelsWithoutHairOverlap: number; outputSha256: string }[] = [];
+  let fringeFitMeasurement: { sourceSha256: string; cleanedSha256: string; pixelCount: number; rearSourceSha256: string; rearCleanedSha256: string; rearPixelCount: number; facialLandmarks: { name: string; position: { x: number; y: number }; hairAlpha: number }[] } | undefined;
   const closeups = blankImage(1152, 880), fullContact = blankImage(3072, 3072);
   const crop = (image: RgbaImage) => {
     const result = blankImage(384, 440);
@@ -101,6 +105,45 @@ export async function prepareHeadReview(options: HeadReviewOptions) {
       layers.set(part === 'rear' ? 'hair-rear' : 'hair-front', image);
       hairMeasurements.push({ direction, part, sourceSha256: artwork.sourceSha256, cleanedSha256 });
     }
+    if (direction === 'S' && draft.fringeFit) {
+      const correction = draft.fringeFit;
+      const provenance = JSON.parse((await read(sourceDirectory, correction.provenance.source, correction.provenance.sourceSha256)).toString('utf8')) as { referenceSha256?: string; sourceSha256?: string; selectionSha256?: string };
+      if (provenance.referenceSha256 !== frame.referenceSha256 || provenance.sourceSha256 !== correction.front.sourceSha256 || provenance.selectionSha256 !== correction.selection.sourceSha256) throw new Error('S fringe-fit provenance does not match its native sources.');
+      const front = await load(sourceDirectory, correction.front.source, correction.front.sourceSha256), mask = await load(sourceDirectory, correction.selection.source, correction.selection.sourceSha256);
+      let pixelCount = 0;
+      for (let i = 0; i < front.data.length; i += 4) {
+        const selected = mask.data[i + 3] === 255;
+        if (mask.data.subarray(i, i + 4).some((v) => v !== (selected ? 255 : 0))) throw new Error('S fringe-fit mask must be binary RGBA.');
+        if ((selected && reference.data[i + 3]! < 8) || front.data.subarray(i, i + 4).some((v, c) => v !== (selected ? reference.data[i + c] : 0))) throw new Error('S fringe-fit must preserve selected reference RGBA at native coordinates exactly.');
+        if (selected) pixelCount++;
+      }
+      if (pixelCount !== correction.pixelCount) throw new Error('S fringe-fit mask coverage changed.');
+      const rearProvenance = JSON.parse((await read(sourceDirectory, correction.rearProvenance.source, correction.rearProvenance.sourceSha256)).toString('utf8')) as { referenceSha256?: string; masterSha256?: string; sourceSha256?: string; selectionSha256?: string; referenceEnvelopeUntilY?: number; exclusions?: unknown };
+      if (rearProvenance.referenceSha256 !== frame.referenceSha256 || rearProvenance.masterSha256 !== correction.rearMaster.sourceSha256 || rearProvenance.sourceSha256 !== correction.rear.sourceSha256 || rearProvenance.selectionSha256 !== correction.rearSelection.sourceSha256 || rearProvenance.referenceEnvelopeUntilY !== correction.referenceEnvelopeUntilY) throw new Error('S rear-fit provenance does not match its native sources.');
+      if (JSON.stringify(rearProvenance.exclusions) !== JSON.stringify(correction.rearExclusions)) throw new Error('S rear-fit fragment exclusions differ from their provenance.');
+      const rear = await load(sourceDirectory, correction.rear.source, correction.rear.sourceSha256), rearMaster = await load(sourceDirectory, correction.rearMaster.source, correction.rearMaster.sourceSha256), rearMask = await load(sourceDirectory, correction.rearSelection.source, correction.rearSelection.sourceSha256);
+      let rearPixelCount = 0;
+      for (let i = 0; i < rear.data.length; i += 4) {
+        const y = Math.floor(i / 4 / 1024);
+        const x = (i / 4) % 1024;
+        const selected = rearMaster.data[i + 3]! >= 8 && (y >= correction.referenceEnvelopeUntilY || reference.data[i + 3]! >= 8) && !correction.rearExclusions.some((r) => x >= r.x && x < r.x + r.width && y >= r.y && y < r.y + r.height);
+        if (rearMask.data.subarray(i, i + 4).some((v) => v !== (selected ? 255 : 0)) || rear.data.subarray(i, i + 4).some((v, c) => v !== (selected ? rearMaster.data[i + c] : 0))) throw new Error('S rear-fit must preserve its authored master inside the native reference envelope exactly.');
+        if (selected) rearPixelCount++;
+      }
+      if (rearPixelCount !== correction.rearPixelCount) throw new Error('S rear-fit mask coverage changed.');
+      const rearBounds = characterBounds(rear);
+      if (!rearBounds || !alphaStatistics(rear).transparent || rearBounds.y + rearBounds.height > 1000) throw new Error('S rear-fit exceeds its upper-canvas hair envelope.');
+      const facialLandmarks = correction.facialLandmarks.map(({ name, position }) => {
+        const i = (position.y * 1024 + position.x) * 4;
+        if (front.data[i + 3] !== 0 || !layers.get('head')!.data[i + 3]) throw new Error(`S fringe-fit obstructs or misses ${name}; inspect the native facial landmarks.`);
+        return { name, position, hairAlpha: front.data[i + 3]! };
+      });
+      layers.set('hair-front', front);
+      layers.set('hair-rear', rear);
+      fringeFitMeasurement = { sourceSha256: correction.front.sourceSha256, cleanedSha256: sha256(encodePng(front)), pixelCount, rearSourceSha256: correction.rear.sourceSha256, rearCleanedSha256: sha256(encodePng(rear)), rearPixelCount, facialLandmarks };
+      pending.push({ path: 'layers/S-front-fit.png', image: front }, { path: 'masks/S-front-fit.png', image: mask }, { path: 'inspection/checker/S-front-fit.png', image: checkerPreview(front, 'S') });
+      pending.push({ path: 'layers/S-rear-fit.png', image: rear }, { path: 'masks/S-rear-fit.png', image: rearMask }, { path: 'inspection/checker/S-rear-fit.png', image: checkerPreview(rear, 'S') });
+    }
     const fit = blankImage(1024, 1536);
     for (const plane of DIRECTION_PLANE_ORDER[direction]) { const image = layers.get(plane); if (image) drawRgba(fit, image, 0, 0); }
     // Report actual head-pixel occlusion, without claiming anatomical correctness.
@@ -118,7 +161,7 @@ export async function prepareHeadReview(options: HeadReviewOptions) {
     pending.push({ path: `inspection/head-comparison/${direction}.png`, image: comparison }, { path: `inspection/full-comparison/${direction}.png`, image: full });
   }
   pending.push({ path: 'overview.png', image: closeups }, { path: 'full-overview.png', image: overview(fullContact) });
-  const report = { schemaVersion: 1, id: draft.id, assetVersion: draft.assetVersion, target: draft.target, status: draft.status, sourcePose: draft.sourcePose, intendedRuntimePose: draft.intendedRuntimePose, rigCompatibility: draft.rigCompatibility, anatomyApproved: false, paletteReady: false, published: false, featurePolicy: draft.featurePolicy, earPolicy: draft.earPolicy, minimumVisibleAlpha: draft.minimumVisibleAlpha, configSha256: sha256(configBytes), supportedReviewDirections: ['S', 'N'], missingDirections: DIRECTIONS.filter((d) => d !== 'S' && d !== 'N'), knownReviewIssues: draft.knownReviewIssues, measurements, masters, hairMeasurements, fitMeasurements, masterReconstruction: 'exact-normalized-head-neck-partition', previewColumns: ['reference', 'bare-head-neck-skin-base', 'accepted-hair+head+neck'], closeupRegion: { x: 320, y: 40, width: 384, height: 440, sampling: 'native-copy' }, hiddenFacialLayers: ['eyes', 'eyebrows', 'mouth'], outputs: pending.map(({ path, image }) => ({ path, sha256: sha256(encodePng(image)) })), reviewRequired: ['New scalp/jaw/nape anatomy and ear placement', 'N has no visible face or eyes; S skin underlay has no baked eye/brow/mouth layers', 'Native head/neck/hair geometry and posterior scalp coverage', 'Independent human-ear layers and six other head facings', 'Complete body/clothing and production T-pose fit', 'Final Step6C approval before Step6D'] };
+  const report = { schemaVersion: 1, id: draft.id, assetVersion: draft.assetVersion, configSource, target: draft.target, status: draft.status, sourcePose: draft.sourcePose, intendedRuntimePose: draft.intendedRuntimePose, rigCompatibility: draft.rigCompatibility, anatomyApproved: false, paletteReady: false, published: false, featurePolicy: draft.featurePolicy, earPolicy: draft.earPolicy, minimumVisibleAlpha: draft.minimumVisibleAlpha, configSha256: sha256(configBytes), supportedReviewDirections: ['S', 'N'], missingDirections: DIRECTIONS.filter((d) => d !== 'S' && d !== 'N'), knownReviewIssues: draft.knownReviewIssues, measurements, masters, hairMeasurements, fringeFitMeasurement, fitMeasurements, masterReconstruction: 'exact-normalized-head-neck-partition', previewColumns: ['reference', 'bare-head-neck-skin-base', draft.fringeFit ? 'candidate-hair-fit+head+neck' : 'accepted-hair+head+neck'], closeupRegion: { x: 320, y: 40, width: 384, height: 440, sampling: 'native-copy' }, hiddenFacialLayers: ['eyes', 'eyebrows', 'mouth'], outputs: pending.map(({ path, image }) => ({ path, sha256: sha256(encodePng(image)) })), reviewRequired: ['New scalp/jaw/nape anatomy and ear placement', 'N has no visible face or eyes; S skin underlay has no baked eye/brow/mouth layers', 'Native head/neck/hair geometry and posterior scalp coverage', 'Independent human-ear layers and six other head facings', 'Complete body/clothing and production T-pose fit', 'Final Step6C approval before Step6D'] };
   for (const { path, image } of pending) {
     const destination = resolve(outputDirectory, path);
     for (let parent = destination; nested(outputDirectory, parent); parent = resolve(parent, '..')) {
