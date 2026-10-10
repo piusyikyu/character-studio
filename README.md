@@ -10,9 +10,9 @@ The character core, asset planner, native render pipelines and interactive studi
 previews, history, presets and native exports. A separate
 [read-only renderer demonstration](tools/render-demo/README.md) shows all eight
 facings for both targets. Read [AGENTS.md](AGENTS.md),
-[architecture](docs/ARCHITECTURE.md), [asset specification](docs/ASSET_SPEC.md), and
-[MVP milestones](docs/MVP.md) before changing those contracts. The scaffold audit
-is recorded in [docs/AUDIT.md](docs/AUDIT.md).
+[architecture](docs/architecture.md), [asset specification](docs/asset-spec.md), and
+[MVP milestones](docs/mvp.md) before changing those contracts. The scaffold audit
+is recorded in [docs/audit.md](docs/audit.md).
 
 ## WSL2 Ubuntu setup
 
@@ -128,9 +128,9 @@ default final export uses pure `#00FF00` (RGBA `0,255,0,255`) and bright yellow
 must be an explicit choice. The registry's metadata-only test fixtures retain
 fictional references; the renderer demo generates actual versioned PNG placeholders.
 The approved heroine-v1 detailed illustrations are flattened references, prepared
-separately by the [reference import workflow](docs/REFERENCE_IMPORT.md). They are
+separately by the [reference import workflow](docs/reference-import.md). They are
 not modular runtime assets; the editor continues using geometric pipeline fixtures.
-The [modular hair drafts](docs/MODULAR_HAIR.md) prepare S/N, E/W and SE/SW front/rear
+The [modular hair drafts](docs/modular-hair.md) prepare S/N, E/W and SE/SW front/rear
 hair inspections and remain outside the runtime catalog. S/N and E/W have design
 approval; SE/SW revision-4 visible hair drafts and pixel-preserving mask partitions are approved,
 with previously omitted far-side reference curls restored.

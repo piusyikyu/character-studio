@@ -12,7 +12,9 @@ approval, pinned in `front-diagonals-review-v1.json`, with missing far-side curl
 restored from each original reference.
 The masked reconstruction retains every visible study pixel; hidden roots
 and complete heads remain unfinished. Their configuration and prompts are prefixed
-`front-diagonals-`; rejected revision-1/2 inputs and approved S/N/E/W sources are preserved.
-See [MODULAR_HAIR.md](../../docs/MODULAR_HAIR.md). Preserve approved versions; do not overwrite them without
+`front-diagonals-`; approved S/N/E/W sources and revision-3 inputs needed to reproduce
+the accepted SE/SW restoration are preserved. Rejected iterations are archived in
+Git history at `d2ec13f`, rather than kept in the working tree.
+See [modular-hair.md](../../docs/modular-hair.md). Preserve approved versions; do not overwrite them without
 permission. Source layers must be transparent and contain no export labels or
 green background.

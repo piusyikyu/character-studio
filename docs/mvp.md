@@ -98,7 +98,7 @@ The editor operates on the temporary geometric catalog, not approved artwork.
 - [ ] Human review of matte edges, uncertain regions, anchors and baseline inconsistency.
 - [ ] Step 6C: S/N, E/W and SE/SW visible hair drafts approved; body-occluded connections, hidden roots, NE/NW and anatomy unfinished.
 
-See [REFERENCE_IMPORT.md](REFERENCE_IMPORT.md). The approved sources are flattened
+See [reference-import.md](reference-import.md). The approved sources are flattened
 standing illustrations, including the approved NE/NW dress corrections. Staging
 does not satisfy modular-layer or detailed T-pose approval, and no production
 pixel assets have been authored. The initial foot-baseline audit flags a 48 px
@@ -107,7 +107,7 @@ spread; original geometry remains unchanged.
 The user approved proceeding after the verified 6A–6B audit on 2026-10-09.
 The initial Step 6C increment is three separately authored S/N hair draft layers,
 explicit N fringe invisibility, provisional native origins and deterministic
-inspection tooling. See [MODULAR_HAIR.md](MODULAR_HAIR.md). This is not approval
+inspection tooling. See [modular-hair.md](modular-hair.md). This is not approval
 of candidate anatomy or a completed art package. Remaining facings, body/head,
 clothing and the T-pose rig are unfinished; Steps 6D–6E have not begun.
 

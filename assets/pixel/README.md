@@ -9,4 +9,4 @@ maps in `placeholder-v1/`. Those generated files are ignored by Git and are not
 approved artwork. Their integer native geometry is independently authored in
 `tools/render-demo/src/placeholders.ts`. Detailed images are never downscaled or
 mirrored to supply these facings. Generated copies serve the read-only demo; see
-the demo tool README for export instructions and `docs/ASSET_SPEC.md` for the contract.
+the demo tool README for export instructions and `docs/asset-spec.md` for the contract.

@@ -152,7 +152,11 @@
     }
   },
   "rejected": "All initial oversized whole studies, targeted scale adjustments and separately regenerated front/rear/head candidates are unselected. Final layers come only from masked pixels of each selected facing-specific master.",
-  "maskRecord": "inputs/front-diagonals-v3/partition-v3.json",
-  "maskReproduction": "node assets/source/heroine-v1/hair-long-waves-v1/inputs/front-diagonals-v3/partition.js (from repository root; regenerates unapproved v3 source candidates; regenerate config hashes if masks change).",
-  "limitations": "Partition reconstructs visible study pixels exactly. Complete hidden roots and independently authored head/body fit remain pending."
+  "limitations": "Partition reconstructs visible study pixels exactly. Complete hidden roots and independently authored head/body fit remain pending.",
+  "archivedMaskPartition": {
+    "commit": "d2ec13f",
+    "record": "inputs/front-diagonals-v3/partition-v3.json",
+    "reproduction": "node assets/source/heroine-v1/hair-long-waves-v1/inputs/front-diagonals-v3/partition.js (from repository root; regenerates unapproved v3 source candidates; regenerate config hashes if masks change).",
+    "status": "Historical revision-3 partition removed from the working tree; current approved partition is inputs/front-diagonals-v4/partition-v4.json."
+  }
 }

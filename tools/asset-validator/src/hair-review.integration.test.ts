@@ -80,8 +80,6 @@ describe('Modular hair authoring review', () => {
 
   it.each([
     { directions: ['E', 'W'] as const, configFilename: 'profiles-authoring-v1.json' as const, missing: ['N', 'NE', 'SE', 'S', 'SW', 'NW'], approvalFile: 'profiles-review-v1.json' },
-    { directions: ['SE', 'SW'] as const, configFilename: 'front-diagonals-authoring-v1.json' as const, missing: ['N', 'NE', 'E', 'S', 'W', 'NW'], approvalFile: null },
-    { directions: ['SE', 'SW'] as const, configFilename: 'front-diagonals-authoring-v2.json' as const, missing: ['N', 'NE', 'E', 'S', 'W', 'NW'], approvalFile: null },
     { directions: ['SE', 'SW'] as const, configFilename: 'front-diagonals-authoring-v4.json' as const, missing: ['N', 'NE', 'E', 'S', 'W', 'NW'], approvalFile: 'front-diagonals-review-v1.json' },
   ])('reviews $configFilename pieces reproducibly without changing approved inputs', async ({ directions, configFilename, missing, approvalFile }) => {
     const temporary = await mkdtemp(resolve(tmpdir(), 'character-hair-profiles-'));
@@ -92,7 +90,7 @@ describe('Modular hair authoring review', () => {
       const draft = hairReviewSchema.parse(JSON.parse(draftBytes.toString('utf8')));
       if ('S' in draft.frames) throw new Error('Expected independently authored side or diagonal artwork.');
       const profileSources = Object.values(draft.frames).flatMap((frame) => [frame.rear.source, ...(frame.front.visibility === 'visible' ? [frame.front.artwork.source] : []), ...(frame.designMaster ? [frame.designMaster.source] : []), ...(frame.fitHead ? [frame.fitHead.artwork.source] : [])]);
-      const immutable = ['authoring-v1.json', 'review-v1.json', 'S-front.png', 'S-rear.png', 'N-rear.png', 'profiles-authoring-v1.json', 'profiles-review-v1.json', 'E-front.png', 'E-rear-drape.png', 'W-front.png', 'W-rear-drape.png', 'front-diagonals-authoring-v1.json', 'SE-front.png', 'SE-rear-drape.png', 'SW-front.png', 'SW-rear-drape.png', configFilename, ...profileSources];
+      const immutable = ['authoring-v1.json', 'review-v1.json', 'S-front.png', 'S-rear.png', 'N-rear.png', 'profiles-authoring-v1.json', 'profiles-review-v1.json', 'E-front.png', 'E-rear-drape.png', 'W-front.png', 'W-rear-drape.png', 'front-diagonals-authoring-v4.json', 'front-diagonals-review-v1.json', 'SE-master-v3.png', 'SW-master-v3.png', configFilename, ...profileSources];
       const before = await Promise.all(immutable.map(async (path) => ({ path, hash: sha256(await readFile(resolve(sourceDirectory, path))), mtime: (await stat(resolve(sourceDirectory, path))).mtimeMs })));
       const options = { sourceDirectory, referenceDirectory, outputDirectory: resolve(temporary, 'staging'), configFilename };
       const first = await prepareHairReview(options);

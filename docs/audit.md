@@ -1,13 +1,13 @@
 # Scaffold audit — 2026-10-09
 
 This is the historical milestone-0 audit snapshot. Milestone 1 was subsequently
-implemented in `packages/core`; see `docs/MVP.md` and `packages/core/README.md` for
+implemented in `packages/core`; see `docs/mvp.md` and `packages/core/README.md` for
 current core status. The discrepancy table below records the pre-core scaffold.
 
 ## Scope and sources
 
-Read the complete `AGENTS.md`, `docs/ARCHITECTURE.md`, `docs/ASSET_SPEC.md`, and
-`docs/MVP.md`, then inspected every existing package manifest, TypeScript config,
+Read the complete `AGENTS.md`, `docs/architecture.md`, `docs/asset-spec.md`, and
+`docs/mvp.md`, then inspected every existing package manifest, TypeScript config,
 root config/script, app entry point/store/preview, engine/registry/renderer source,
 and all five unit-test files. This audit addresses milestone 0 and configuration
 gaps only. The supplied specifications were not edited.

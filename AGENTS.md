@@ -52,7 +52,7 @@ The targets share semantic choices (race, anatomy, head, hair, face, outfit, pal
 
 ## Project context
 
-Read docs/PROJECT_CONTEXT.md before working on
+Read docs/project-context.md before working on
 architecture, character features, renderers or assets.
 
 Treat this file as the project's requirements and
@@ -61,7 +61,7 @@ decision history, not proof of implemented functionality.
 Keep it updated when important decisions change.
 
 ## Work procedure
-- Read `docs/ARCHITECTURE.md`, `docs/ASSET_SPEC.md`, and `docs/MVP.md` before changing core contracts or pipeline behavior.
+- Read `docs/architecture.md`, `docs/asset-spec.md`, and `docs/mvp.md` before changing core contracts or pipeline behavior.
 - Inspect existing code before editing; preserve working conventions; keep tasks small.
 - Implement schemas, tests and synthetic placeholder art **before** producing a large asset catalogue.
 - For each change, run affected typecheck, lint, tests and build commands. Report exactly what ran and what failed or was unavailable.
@@ -82,7 +82,7 @@ Keep it updated when important decisions change.
 
 ## Milestone progression
 
-- Follow the development milestones in docs/MVP.md.
+- Follow the development milestones in docs/mvp.md.
 - Verify existing milestone implementations against acceptance criteria.
 - Do not assume a milestone is complete based on file existence.
 - Require explicit user approval before advancing to the next milestone.
