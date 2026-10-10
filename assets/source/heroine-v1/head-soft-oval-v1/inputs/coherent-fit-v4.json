@@ -1,0 +1,11 @@
+{
+  "method": "single-study/native-hair-partition",
+  "studySha256": "4d3130c9cae37127ca120faeca38d59784000ab843f313c68e88b94c51b38f6f",
+  "minimumVisibleAlpha": 8,
+  "skinRegion": [[430, 120], [604, 120], [604, 325], [430, 325]],
+  "skinMinimumRedMinusBlue": 18,
+  "excludedPixels": [[516, 222], [758, 549], [275, 561]],
+  "posteriorEarRegion": [[584, 200], [620, 200], [620, 270], [584, 270]],
+  "rearFromY": 350,
+  "note": "One continuous S drawing at its original coordinates. The bounded skin mask excludes warm visible face/ear/neck pixels, plus the isolated pale nose highlight. Two isolated alpha-8 specks are cleared explicitly. The character's left ear is between foreground fringe and posterior side lock. Lower drapes pass to rear below the neck without overlap or gaps. No reference-silhouette clipping, translations, resampling, recolouring or other facings."
+}

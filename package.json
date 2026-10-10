@@ -28,7 +28,10 @@
     "verify:all": "pnpm verify && pnpm test:e2e",
     "hair:review:back-diagonals": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/hair-review-cli.js --back-diagonals",
     "head:review": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/head-review-cli.js",
-    "head:review:v1": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/head-review-cli.js --v1"
+    "head:review:v1": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/head-review-cli.js --v1",
+    "head:review:v2": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/head-review-cli.js --v2",
+    "head:review:v3": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/head-review-cli.js --v3",
+    "head:review:v4": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/head-review-cli.js --v4"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.0",

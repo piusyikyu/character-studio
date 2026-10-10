@@ -40,3 +40,20 @@ remain embedded pending independent variants. See
 [modular-head.md](../../docs/modular-head.md) for the initial S fit discrepancy,
 versioned front/rear fit correction and remaining anatomy/body/T-pose work.
 All approved hair and version-1 anatomy sources are unchanged.
+Revision 2's standing-reference fit is approved in `review-fit-v2.json`.
+Revision 3's local patches were visually rejected because mismatched contours
+left disjoint strokes and cropped cheeks. Revision 4 instead partitions the
+complete S hair from one shared study at native coordinates, preserving a
+continuous drawing. Warm skin/context is excluded by bounded manual masks;
+front and rear have disjoint ownership, with the complete head between the
+foreground fringe and posterior ear lock. `authoring-v4.json`,
+`prompts-coherent-v4.json` and `inputs/partition-coherent-fit-v4.js` retain its
+provenance. The raw study is not a runtime layer. Original anatomy, approved
+hair, v2 approval and N remain unchanged. This candidate needs visual review.
+
+Revision 5 preserves the entire revision-4 hair drawing and changes only
+front/rear ownership at S's left ear. A contour-shaped inward/lower extension
+moves 247 existing side-lock pixels behind the complete ear/lobe. It introduces
+no newly generated or recoloured hair. `authoring-v5.json` pins the previous
+config, unchanged hair master and new ownership masks; the reproducible script
+is `inputs/partition-ear-depth-v5.js`. The user generally approved this standing-reference fit with known hair noise; `review-fit-v5.json` pins that limited approval. Production anatomy remains unfinished.

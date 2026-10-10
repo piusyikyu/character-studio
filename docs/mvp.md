@@ -96,7 +96,7 @@ The editor operates on the temporary geometric catalog, not approved artwork.
 - [x] Record background/alpha/bounds/baseline measurements and versioned candidate anchors.
 - [x] Add repeatable import/export and source-preservation workflow tests.
 - [ ] Human review of matte edges, uncertain regions, anchors and baseline inconsistency.
-- [ ] Step 6C: All eight hair designs approved; S/N anatomy draft checkpoint committed; versioned S front/rear fit correction now needs visual review. Complete head/body/clothing anatomy and production fit remain unfinished.
+- [ ] Step 6C: All eight hair designs approved; S/N anatomy draft and revision-2 S fit checkpoint committed. Revision-3 local patches failed visual review. Revision-4 coherent hair looks acceptable, but assembled ear clipping was rejected. Revision-5 fit generally approved with known hair noise; E/W head anatomy is the next increment. Complete head/body/clothing anatomy and production fit remain unfinished.
 
 See [reference-import.md](reference-import.md). The approved sources are flattened
 standing illustrations, including the approved NE/NW dress corrections. Staging

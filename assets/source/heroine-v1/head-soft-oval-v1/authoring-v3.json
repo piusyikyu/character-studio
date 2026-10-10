@@ -1,0 +1,268 @@
+{
+  "schemaVersion": 1,
+  "id": "head.soft-oval.v1",
+  "assetVersion": 3,
+  "target": "detailed",
+  "status": "draft-needs-human-review",
+  "sourcePose": "standing-reference",
+  "intendedRuntimePose": "tpose",
+  "rigCompatibility": "unverified",
+  "paletteReady": false,
+  "anatomyApproved": false,
+  "authoringMethod": "imagegen-guide/manual-native-partition",
+  "featurePolicy": "skin-base-no-eyes-brows-mouth",
+  "earPolicy": "human-ears-in-head-base-needs-separation",
+  "minimumVisibleAlpha": 8,
+  "nativeSize": {
+    "width": 1024,
+    "height": 1536
+  },
+  "hairConfig": {
+    "source": "authoring-v1.json",
+    "sourceSha256": "8f88d9a4d5aae1003ffebd28edfe07d7fbd51306050b0d766917ef9e913c82c3"
+  },
+  "hairApproval": {
+    "source": "review-v1.json",
+    "sourceSha256": "079ca6a5298219e58a97ab354706060ca00a840d8ecd0bb56ec9db6cc730d090"
+  },
+  "knownReviewIssues": [
+    "New concealed scalp, jaw and nape anatomy requires human review. Synthetic placement guides were used only for native framing; they are not approved anatomy.",
+    "Revision 3 splits S ear-area hair into reference-native foreground bang and posterior lock, with the complete head/ear rendering between them. Local neck masks clear skin-coloured contamination from reference curls. Temple study patches, full anatomy and future body/T-pose fit still require visual review. Approved revision-2 inputs, full head/neck anatomy and N remain unchanged.",
+    "S is a skin underlay without eyes, eyebrows or mouth. N is independently authored posterior anatomy, with no face or eyes. Nose shading and human ears are embedded in these initial head bases; independent ear variants remain unfinished.",
+    "Standing-reference head/neck fit does not establish body, clothing, body-preset or production T-pose compatibility. Six other head facings, facial layers and full Step6C review remain pending.",
+    "Accepted hair is unchanged. Check scalp coverage, ear clearance and dangling face-framing hair against a future complete body. The S neck ends at y322, eight pixels below the nominal y314 guide; confirm the neck/body join before approving production fit.",
+    "Head/neck partition uses a documented native horizontal boundary. Hidden overlapping attachment surfaces must be authored if later deformation or a new body requires them. Palette maps and Step6D remain unstarted."
+  ],
+  "frames": {
+    "S": {
+      "reference": "S.png",
+      "referenceSha256": "4d835a1da05ab36992d3b97dad400233b81e1a6ad8d8f4872ed5353b771707c6",
+      "candidateHeadAnchor": {
+        "x": 511,
+        "y": 169
+      },
+      "candidateNeckAnchor": {
+        "x": 511,
+        "y": 292
+      },
+      "master": {
+        "source": "S-master-v1.png",
+        "sourceSha256": "d4b443961d2653cc596f5f5ddb0d970aeef685b34db1a4922616e6e1f01c4633"
+      },
+      "guide": {
+        "source": "inputs/S-placement-guide.png",
+        "sourceSha256": "efe4565c47141ad566bd352767b583e70d23045e2ce8b5ce23faa027d40f9d4f"
+      },
+      "cutY": 278,
+      "allowedBounds": {
+        "x": 420,
+        "y": 75,
+        "width": 195,
+        "height": 250
+      },
+      "head": {
+        "source": "S-head-v1.png",
+        "sourceSha256": "fccf4f33961217036295ee67e7117d6cecb7cc84644210ce73c58170215f16ce",
+        "origin": {
+          "x": 511,
+          "y": 169
+        },
+        "selection": {
+          "source": "inputs/S-head-mask-v1.png",
+          "sourceSha256": "8c45d7a43d0cec40079c3f2f93f3725356d46e9ea8f318e353e316cc06c7c5b7"
+        },
+        "pixelCount": 24231
+      },
+      "neck": {
+        "source": "S-neck-v1.png",
+        "sourceSha256": "59e9afde1b076981a294e0eb8a058eec1c811135c07759f1991a22b6291a41dc",
+        "origin": {
+          "x": 511,
+          "y": 292
+        },
+        "selection": {
+          "source": "inputs/S-neck-mask-v1.png",
+          "sourceSha256": "6e69a983ab9442efe3577455f6af4904da1330bfa22a502ddad116a14138809f"
+        },
+        "pixelCount": 3135
+      }
+    },
+    "N": {
+      "reference": "N.png",
+      "referenceSha256": "299756dbb6e643707daa0d899c440980501da9f138f8043fbb1d299214959539",
+      "candidateHeadAnchor": {
+        "x": 510,
+        "y": 175
+      },
+      "candidateNeckAnchor": {
+        "x": 510,
+        "y": 288
+      },
+      "master": {
+        "source": "N-master-v1.png",
+        "sourceSha256": "2e80960dd9cc147ee12408df6105890e9a074a47d0d6054538d42bf66187419d"
+      },
+      "guide": {
+        "source": "inputs/N-placement-guide.png",
+        "sourceSha256": "c12b79ac22ab43ba3285af15f1f0cd1b49066eca0358c86bf6226141979bab64"
+      },
+      "cutY": 265,
+      "allowedBounds": {
+        "x": 420,
+        "y": 75,
+        "width": 195,
+        "height": 250
+      },
+      "head": {
+        "source": "N-head-v1.png",
+        "sourceSha256": "0551734b677bd85fbd6c91124566bfbb9757a5b7533b141fc5306a3f2fdcbae6",
+        "origin": {
+          "x": 510,
+          "y": 175
+        },
+        "selection": {
+          "source": "inputs/N-head-mask-v1.png",
+          "sourceSha256": "4b5ed2dae60d24c25556f2f6c6babe485139c94ac53094cd953c043e2a828eef"
+        },
+        "pixelCount": 24270
+      },
+      "neck": {
+        "source": "N-neck-v1.png",
+        "sourceSha256": "52e437d6e78ab93ffbf0f4b1367032b8f8df825b953e6bc0c98bf19e7ec8e9c4",
+        "origin": {
+          "x": 510,
+          "y": 288
+        },
+        "selection": {
+          "source": "inputs/N-neck-mask-v1.png",
+          "sourceSha256": "d880bccf5c0c63773e2b599e9cc092b24b98bd52c8d52e30d9e9a5928fb2baa2"
+        },
+        "pixelCount": 3575
+      }
+    }
+  },
+  "fringeFit": {
+    "direction": "S",
+    "method": "reference-front/authored-rear-native-fit",
+    "front": {
+      "source": "S-front-fit-v2.png",
+      "sourceSha256": "3307e2865d0b83697072b4fad0dfa4fafc7c7fb662bb2e75509a04e869f9cb1d"
+    },
+    "selection": {
+      "source": "inputs/S-front-fit-mask-v2.png",
+      "sourceSha256": "9d0bec5473d69c82543d89f027fc7b20982af875983c28d4f49b12d8ae797cc0"
+    },
+    "provenance": {
+      "source": "inputs/front-fit-v2-provenance.json",
+      "sourceSha256": "04c91c55ff13d544c4aa4a2a8306782e301d4fb1f5cf78b429e6e21a278df6de"
+    },
+    "pixelCount": 28748,
+    "facialLandmarks": [
+      {
+        "name": "screen-left-eye-center",
+        "position": {
+          "x": 475,
+          "y": 198
+        }
+      },
+      {
+        "name": "screen-right-eye-center",
+        "position": {
+          "x": 541,
+          "y": 195
+        }
+      },
+      {
+        "name": "nose-tip",
+        "position": {
+          "x": 511,
+          "y": 224
+        }
+      },
+      {
+        "name": "chin",
+        "position": {
+          "x": 513,
+          "y": 266
+        }
+      }
+    ],
+    "approved": false,
+    "rear": {
+      "source": "S-rear-fit-v2.png",
+      "sourceSha256": "889e9ff26912eced67bbb314abe40ec5aca7e3038ea2599556fea58a61d47ed8"
+    },
+    "rearMaster": {
+      "source": "S-rear-fit-master-v2.png",
+      "sourceSha256": "dc419dfa421100b69a1c1e1f1395f95db60359247d420cf7b44ce645b4facc70"
+    },
+    "rearSelection": {
+      "source": "inputs/S-rear-fit-mask-v2.png",
+      "sourceSha256": "08cd9a402352f853158364819dacc8eb0c80ef630a20b9929f31c776949373fc"
+    },
+    "rearPixelCount": 278449,
+    "rearProvenance": {
+      "source": "inputs/rear-fit-v2-provenance.json",
+      "sourceSha256": "8fe244dd9520546f177314b51e56ce461325a8706b6d9efcb03f92fc375d11e2"
+    },
+    "referenceEnvelopeUntilY": 290,
+    "rearExclusions": [
+      {
+        "x": 370,
+        "y": 234,
+        "width": 11,
+        "height": 3
+      },
+      {
+        "x": 633,
+        "y": 246,
+        "width": 1,
+        "height": 1
+      }
+    ]
+  },
+  "seamRepair": {
+    "direction": "S",
+    "method": "shared-study/native-local-seam-ownership",
+    "baseline": {
+      "source": "authoring-v2.json",
+      "sourceSha256": "067a43b066e2f98f4dc9c592028fa13a9114e69b1d2148639ec7600f92303bf9"
+    },
+    "approval": {
+      "source": "review-fit-v2.json",
+      "sourceSha256": "f95bf9e939a8e51618aea9f596b6ebecb873e38515e06fb818a75b63c98ecdc6"
+    },
+    "settings": {
+      "source": "inputs/seam-repair-v3.json",
+      "sourceSha256": "7deb923231e3d8e82ddf80370adb725b10c449a0f2b2a87bbd7cb6460a48fe2a"
+    },
+    "study": {
+      "source": "S-seam-study-master-v3.png",
+      "sourceSha256": "4d3130c9cae37127ca120faeca38d59784000ab843f313c68e88b94c51b38f6f"
+    },
+    "selection": {
+      "source": "inputs/S-seam-mask-v3.png",
+      "sourceSha256": "07378e6b2b0a56ece73addfedf0b0f71e72025278611aa110278059f252b7c9f"
+    },
+    "earSelection": {
+      "source": "inputs/S-left-ear-hair-mask-v3.png",
+      "sourceSha256": "4d4e650e6f849e4e531cfd59f9ad8a905e6c5482e786e82314ab4bead749a530"
+    },
+    "neckSelection": {
+      "source": "inputs/S-neck-hair-mask-v3.png",
+      "sourceSha256": "049f239b6a1aea693751e25f94d6eb9f247f2f8db08a876c377802c4210f404e"
+    },
+    "front": {
+      "source": "S-front-fit-v3.png",
+      "sourceSha256": "0eaef6cc107b95e2f3df94b37a1f39fba1233bfd6673065a0ec9498935b97298"
+    },
+    "rear": {
+      "source": "S-rear-fit-v3.png",
+      "sourceSha256": "93592c3a768761f0b5feed33c535012a0a2829acf6fefa78acd5ed5cd2d40dc5"
+    },
+    "pixelCount": 2587,
+    "earPixelCount": 6360,
+    "neckPixelCount": 11232,
+    "approved": false
+  }
+}

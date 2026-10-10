@@ -64,9 +64,8 @@ it('reviews authored S/N anatomy with exact partitions, approved hair, native de
     const s = decodePng(await readFile(resolve(options.outputDirectory, 'master/S.png'))), n = decodePng(await readFile(resolve(options.outputDirectory, 'master/N.png'))), mirrored = blankImage(1024, 1536);
     for (let y = 0; y < 1536; y++) for (let x = 0; x < 1024; x++) mirrored.data.set(n.data.subarray((y * 1024 + x) * 4, (y * 1024 + x) * 4 + 4), (y * 1024 + 1023 - x) * 4);
     expect(sha256(s.data)).not.toBe(sha256(n.data)); expect(sha256(s.data)).not.toBe(sha256(mirrored.data));
-    expect(await prepareHeadReview(options)).toEqual(report);
     for (const output of report.outputs) expect(sha256(await readFile(resolve(options.outputDirectory, output.path)))).toBe(output.sha256);
-    // The fit revision changes S front hair only, preserving all anatomy and N.
+    // The fit revision changes the S hair pair, preserving all anatomy and N.
     const revisedOptions = { ...options, configSource: 'authoring-v2.json' as const, outputDirectory: resolve(temporary, 'fit-v2') };
     const revised = await prepareHeadReview(revisedOptions);
     expect(revised.masters).toEqual(report.masters);
@@ -91,8 +90,61 @@ it('reviews authored S/N anatomy with exact partitions, approved hair, native de
     }
     drawRgba(assembledFit, correctedFront, 0, 0);
     expect(sha256(assembledFit.data)).toBe(sha256(correctedFit.data));
-    expect(await prepareHeadReview(revisedOptions)).toEqual(revised);
     for (const output of revised.outputs) expect(sha256(await readFile(resolve(revisedOptions.outputDirectory, output.path)))).toBe(output.sha256);
+    // Current candidate partitions one continuous S drawing; no patched contours.
+    const coherentOptions = { ...options, configSource: 'authoring-v5.json' as const, outputDirectory: resolve(temporary, 'fit-v5') };
+    const coherent = await prepareHeadReview(coherentOptions);
+    expect(coherent.measurements).toEqual(revised.measurements);
+    expect(coherent.masters).toEqual(revised.masters);
+    expect(coherent.fitMeasurements.find((m) => m.direction === 'N')).toEqual(revised.fitMeasurements.find((m) => m.direction === 'N'));
+    expect(coherent.coherentFitMeasurement!.posteriorEarHairOverHead).toBeGreaterThan(0);
+    expect(coherent.coherentFitMeasurement!.facialLandmarks.every((p) => p.hairAlpha === 0)).toBe(true);
+    const coherentFront = decodePng(await readFile(resolve(coherentOptions.outputDirectory, 'layers/S-front-coherent.png')));
+    const coherentRear = decodePng(await readFile(resolve(coherentOptions.outputDirectory, 'layers/S-rear-coherent.png')));
+    const coherentMaster = decodePng(await readFile(resolve(coherentOptions.outputDirectory, 'master/S-hair-coherent.png')));
+    const wholeHair = blankImage(1024, 1536);
+    drawRgba(wholeHair, coherentRear, 0, 0); drawRgba(wholeHair, coherentFront, 0, 0);
+    expect(sha256(wholeHair.data)).toBe(sha256(coherentMaster.data));
+    const previousFront = decodePng(await readFile(resolve(sourceDirectory, 'S-front-fit-v4.png')));
+    const previousRear = decodePng(await readFile(resolve(sourceDirectory, 'S-rear-fit-v4.png')));
+    expect(sha256(coherentMaster.data)).toBe(sha256(decodePng(await readFile(resolve(sourceDirectory, 'S-hair-coherent-master-v4.png'))).data));
+    let changedOwners = 0;
+    for (let i = 0; i < wholeHair.data.length; i += 4) {
+      let changedOwner = false;
+      for (let c = 0; c < 4; c++) if (previousFront.data[i + c] !== coherentFront.data[i + c] || previousRear.data[i + c] !== coherentRear.data[i + c]) changedOwner = true;
+      if (!changedOwner) continue;
+      const x = i / 4 % 1024, y = Math.floor(i / 4 / 1024);
+      if (x < 568 || x >= 584 || y < 200 || y >= 239) throw new Error('Ear-depth correction changed unrelated hair ownership.');
+      expect([...coherentFront.data.slice(i, i + 4)]).toEqual([0, 0, 0, 0]);
+      expect([...coherentRear.data.slice(i, i + 4)]).toEqual([...previousFront.data.slice(i, i + 4)]);
+      expect(previousRear.data[i + 3]).toBe(0);
+      changedOwners++;
+    }
+    expect(changedOwners).toBe(247);
+    for (let i = 0; i < wholeHair.data.length; i += 4) if (coherentFront.data[i + 3] && coherentRear.data[i + 3]) throw new Error('Coherent hair owners overlap.');
+    const coherentComposition = blankImage(1024, 1536);
+    for (const image of [coherentRear, decodePng(await readFile(resolve(coherentOptions.outputDirectory, 'layers/S-neck.png'))), nativeHead]) drawRgba(coherentComposition, image, 0, 0);
+    const skinWithoutFront = coherentComposition.data.slice();
+    drawRgba(coherentComposition, coherentFront, 0, 0);
+    const coherentFit = decodePng(await readFile(resolve(coherentOptions.outputDirectory, 'fit/S.png')));
+    expect(sha256(coherentComposition.data)).toBe(sha256(coherentFit.data));
+    // Previously cropped cheek areas and a pale skin highlight must stay skin.
+    for (const [x, y] of [[550, 245], [470, 240], [516, 222]]) {
+      const i = (y! * 1024 + x!) * 4;
+      expect(nativeHead.data[i + 3]).toBeGreaterThan(8);
+      expect(coherentFront.data[i + 3]).toBe(0);
+      expect([...coherentFit.data.slice(i, i + 4)]).toEqual([...skinWithoutFront.slice(i, i + 4)]);
+    }
+    // These real inner-ear/lobe pixels were covered in v4, despite a sound hair partition.
+    for (const [x, y] of [[580, 220], [578, 225], [575, 228], [573, 231]]) {
+      const i = (y! * 1024 + x!) * 4;
+      expect(previousFront.data[i + 3]).toBeGreaterThan(8);
+      expect(nativeHead.data[i + 3]).toBeGreaterThan(8);
+      expect(coherentFront.data[i + 3]).toBe(0);
+      expect([...coherentFit.data.slice(i, i + 4)]).toEqual([...skinWithoutFront.slice(i, i + 4)]);
+    }
+    expect(await prepareHeadReview(coherentOptions)).toEqual(coherent);
+    for (const output of coherent.outputs) expect(sha256(await readFile(resolve(coherentOptions.outputDirectory, output.path)))).toBe(output.sha256);
     const copy = resolve(temporary, 'invalid-source'); await cp(sourceDirectory, copy, { recursive: true });
     const draft = headReviewSchema.parse(JSON.parse(await readFile(resolve(copy, 'authoring-v1.json'), 'utf8')));
     // Re-pinning an altered partition must still fail semantic pixel preservation.
@@ -120,6 +172,17 @@ it('reviews authored S/N anatomy with exact partitions, approved hair, native de
     await writeFile(provenancePath, provenanceBytes); fitDraft.fringeFit!.provenance.sourceSha256 = sha256(Buffer.from(provenanceBytes));
     await writeFile(resolve(copy, 'authoring-v2.json'), JSON.stringify(fitDraft));
     await expect(prepareHeadReview({ ...revisedOptions, sourceDirectory: copy, outputDirectory: resolve(temporary, 'forged-fit') })).rejects.toThrow('preserve selected reference RGBA');
+    // Re-pinning an altered new layer cannot bypass single-study ownership.
+    await cp(sourceDirectory, copy, { recursive: true });
+    const coherentDraft = headReviewSchema.parse(JSON.parse(await readFile(resolve(copy, 'authoring-v5.json'), 'utf8')));
+    const coherentSource = resolve(copy, coherentDraft.coherentFit!.front.source), forgedHair = decodePng(await readFile(coherentSource));
+    const crownPixel = (100 * 1024 + 500) * 4;
+    expect(forgedHair.data[crownPixel + 3]).toBeGreaterThan(8);
+    forgedHair.data[crownPixel] = (forgedHair.data[crownPixel]! + 1) % 256;
+    const coherentBytes = encodePng(forgedHair); await writeFile(coherentSource, coherentBytes);
+    coherentDraft.coherentFit!.front.sourceSha256 = sha256(coherentBytes);
+    await writeFile(resolve(copy, 'authoring-v5.json'), JSON.stringify(coherentDraft));
+    await expect(prepareHeadReview({ ...coherentOptions, sourceDirectory: copy, outputDirectory: resolve(temporary, 'forged-coherent-fit') })).rejects.toThrow('exact disjoint native partition');
     for (const item of before) { expect(sha256(await readFile(item.path))).toBe(item.hash); expect((await stat(item.path)).mtimeMs).toBe(item.mtime); }
   } finally { await rm(temporary, { recursive: true, force: true }); }
 }, 180_000);

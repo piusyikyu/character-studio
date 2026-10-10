@@ -19,7 +19,7 @@ const frame = z.strictObject({
 
 /** Offline anatomy evidence; deliberately not a runtime manifest or approved rig. */
 export const headReviewSchema = z.strictObject({
-  schemaVersion: z.literal(1), id: z.literal('head.soft-oval.v1'), assetVersion: z.union([z.literal(1), z.literal(2)]),
+  schemaVersion: z.literal(1), id: z.literal('head.soft-oval.v1'), assetVersion: z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4), z.literal(5)]),
   target: z.literal('detailed'), status: z.literal('draft-needs-human-review'),
   sourcePose: z.literal('standing-reference'), intendedRuntimePose: z.literal('tpose'),
   rigCompatibility: z.literal('unverified'), paletteReady: z.literal(false), anatomyApproved: z.literal(false),
@@ -40,8 +40,31 @@ export const headReviewSchema = z.strictObject({
     facialLandmarks: z.array(z.strictObject({ name: z.enum(['screen-left-eye-center', 'screen-right-eye-center', 'nose-tip', 'chin']), position: point })).length(4),
     approved: z.literal(false),
   }).optional(),
+  seamRepair: z.strictObject({
+    direction: z.literal('S'), method: z.literal('shared-study/native-local-seam-ownership'),
+    baseline: z.strictObject({ source: z.literal('authoring-v2.json'), sourceSha256: hash }),
+    approval: z.strictObject({ source: z.literal('review-fit-v2.json'), sourceSha256: hash }),
+    settings: z.strictObject({ source: z.literal('inputs/seam-repair-v3.json'), sourceSha256: hash }),
+    study: input, selection: input, earSelection: input, neckSelection: input, front: input, rear: input,
+    pixelCount: z.number().int().positive(), earPixelCount: z.number().int().positive(), neckPixelCount: z.number().int().positive(), approved: z.literal(false),
+  }).optional(),
+  coherentFit: z.strictObject({
+    direction: z.literal('S'), method: z.literal('single-study/native-hair-partition'),
+    baseline: z.strictObject({ source: z.literal('authoring-v2.json'), sourceSha256: hash }),
+    approval: z.strictObject({ source: z.literal('review-fit-v2.json'), sourceSha256: hash }),
+    study: input, settings: z.strictObject({ source: z.enum(['inputs/coherent-fit-v4.json', 'inputs/coherent-fit-v5.json']), sourceSha256: hash }),
+    ownershipBaseline: z.strictObject({ source: z.literal('authoring-v4.json'), sourceSha256: hash }).optional(),
+    master: input, front: input, rear: input, frontSelection: input, rearSelection: input,
+    frontPixelCount: z.number().int().positive(), rearPixelCount: z.number().int().positive(),
+    facialLandmarks: z.array(z.strictObject({ name: z.string().min(1), position: point })).length(4),
+    approved: z.literal(false),
+  }).optional(),
   frames: z.strictObject({ S: frame, N: frame }),
 }).refine((d) => d.frames.S.master.sourceSha256 !== d.frames.N.master.sourceSha256, 'S/N need distinct independently authored anatomy masters.')
-  .refine((d) => (d.assetVersion === 2) === !!d.fringeFit, 'Only revision 2 requires the explicit S fringe-fit candidate.')
+  .refine((d) => (d.assetVersion === 2 || d.assetVersion === 3) === !!d.fringeFit, 'Only revisions 2 and 3 require the explicit S fringe-fit candidate.')
+  .refine((d) => (d.assetVersion === 3) === !!d.seamRepair, 'Only revision 3 requires the explicit local seam repair.')
+  .refine((d) => (d.assetVersion >= 4) === !!d.coherentFit, 'Revisions 4 and 5 require the coherent S hair partition.')
+  .refine((d) => !d.coherentFit || d.coherentFit.settings.source === `inputs/coherent-fit-v${d.assetVersion}.json`, 'Coherent fit settings must match the artwork revision.')
+  .refine((d) => (d.assetVersion === 5) === !!d.coherentFit?.ownershipBaseline, 'Revision 5 must pin the unchanged revision-4 hair drawing.')
   .refine((d) => !d.fringeFit || new Set(d.fringeFit.facialLandmarks.map((p) => p.name)).size === 4, 'Fringe-fit review needs four distinct facial landmarks.');
 export type HeadReviewDraft = z.infer<typeof headReviewSchema>;

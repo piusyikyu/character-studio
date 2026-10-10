@@ -1,0 +1,171 @@
+{
+  "schemaVersion": 1,
+  "id": "head.soft-oval.v1",
+  "assetVersion": 5,
+  "target": "detailed",
+  "status": "approved-standing-reference-fit-candidate",
+  "approvalEvidence": "User: generally approved. There are still some noise in hair. commit and go to the next step",
+  "scope": "General visual approval of the current S coherent hair/head fit and ear-depth correction, with unchanged N review composition. Minor hair noise is acknowledged and remains outstanding. Not final production anatomy, T-pose, publication or complete Step 6C approval.",
+  "config": "authoring-v5.json",
+  "configSha256": "b953e1eeff3e797eb4f32189f7a9e433d7503a7accf0900eef4f5f9e15b2dc0a",
+  "inputs": [
+    {
+      "source": "authoring-v2.json",
+      "sourceSha256": "067a43b066e2f98f4dc9c592028fa13a9114e69b1d2148639ec7600f92303bf9"
+    },
+    {
+      "source": "authoring-v4.json",
+      "sourceSha256": "fa8dcdfd9b004c83925e509dc36b3bea50f54fb06dfa95d2825f6b42b6fd743c"
+    },
+    {
+      "source": "inputs/coherent-fit-v5.json",
+      "sourceSha256": "ee0ba089f6def2ff60629d0beb8466e38126b79daead2ccbf43ac26dd0155412"
+    },
+    {
+      "source": "inputs/N-head-mask-v1.png",
+      "sourceSha256": "4b5ed2dae60d24c25556f2f6c6babe485139c94ac53094cd953c043e2a828eef"
+    },
+    {
+      "source": "inputs/N-neck-mask-v1.png",
+      "sourceSha256": "d880bccf5c0c63773e2b599e9cc092b24b98bd52c8d52e30d9e9a5928fb2baa2"
+    },
+    {
+      "source": "inputs/N-placement-guide.png",
+      "sourceSha256": "c12b79ac22ab43ba3285af15f1f0cd1b49066eca0358c86bf6226141979bab64"
+    },
+    {
+      "source": "inputs/S-front-fit-mask-v5.png",
+      "sourceSha256": "03d5def5d573de851459904b906a4cc319d2f17e432276d612727a94041a4243"
+    },
+    {
+      "source": "inputs/S-head-mask-v1.png",
+      "sourceSha256": "8c45d7a43d0cec40079c3f2f93f3725356d46e9ea8f318e353e316cc06c7c5b7"
+    },
+    {
+      "source": "inputs/S-neck-mask-v1.png",
+      "sourceSha256": "6e69a983ab9442efe3577455f6af4904da1330bfa22a502ddad116a14138809f"
+    },
+    {
+      "source": "inputs/S-placement-guide.png",
+      "sourceSha256": "efe4565c47141ad566bd352767b583e70d23045e2ce8b5ce23faa027d40f9d4f"
+    },
+    {
+      "source": "inputs/S-rear-fit-mask-v5.png",
+      "sourceSha256": "a452a23e371e080529cf0996a3bcc47e5b926226f345f612b6bde7ce39268fc1"
+    },
+    {
+      "source": "N-head-v1.png",
+      "sourceSha256": "0551734b677bd85fbd6c91124566bfbb9757a5b7533b141fc5306a3f2fdcbae6"
+    },
+    {
+      "source": "N-master-v1.png",
+      "sourceSha256": "2e80960dd9cc147ee12408df6105890e9a074a47d0d6054538d42bf66187419d"
+    },
+    {
+      "source": "N-neck-v1.png",
+      "sourceSha256": "52e437d6e78ab93ffbf0f4b1367032b8f8df825b953e6bc0c98bf19e7ec8e9c4"
+    },
+    {
+      "source": "review-fit-v2.json",
+      "sourceSha256": "f95bf9e939a8e51618aea9f596b6ebecb873e38515e06fb818a75b63c98ecdc6"
+    },
+    {
+      "source": "S-front-fit-v5.png",
+      "sourceSha256": "ca39910e6d7ad53e5c887c61e56722cea78576a0776a5520261275cdf92520b8"
+    },
+    {
+      "source": "S-hair-coherent-master-v4.png",
+      "sourceSha256": "dd86649fc2a92ebc3e3036c194ef390e4233b02ca49e26d72b273076bb451f8c"
+    },
+    {
+      "source": "S-head-v1.png",
+      "sourceSha256": "fccf4f33961217036295ee67e7117d6cecb7cc84644210ce73c58170215f16ce"
+    },
+    {
+      "source": "S-master-v1.png",
+      "sourceSha256": "d4b443961d2653cc596f5f5ddb0d970aeef685b34db1a4922616e6e1f01c4633"
+    },
+    {
+      "source": "S-neck-v1.png",
+      "sourceSha256": "59e9afde1b076981a294e0eb8a058eec1c811135c07759f1991a22b6291a41dc"
+    },
+    {
+      "source": "S-rear-fit-v5.png",
+      "sourceSha256": "041df8c88fff16881ce89b650e2fdb01cced40ec5f3ff624d17c3c682e23f58e"
+    },
+    {
+      "source": "S-seam-study-master-v3.png",
+      "sourceSha256": "4d3130c9cae37127ca120faeca38d59784000ab843f313c68e88b94c51b38f6f"
+    }
+  ],
+  "hairConfig": {
+    "source": "authoring-v1.json",
+    "sourceSha256": "8f88d9a4d5aae1003ffebd28edfe07d7fbd51306050b0d766917ef9e913c82c3"
+  },
+  "hairApproval": {
+    "source": "review-v1.json",
+    "sourceSha256": "079ca6a5298219e58a97ab354706060ca00a840d8ecd0bb56ec9db6cc730d090"
+  },
+  "fitMeasurements": [
+    {
+      "direction": "S",
+      "headPixelsOverlappedByHair": 12456,
+      "headPixelsWithoutHairOverlap": 11775,
+      "outputSha256": "03693dbdb2c5d2273bf0f6bf90a019f8f17a13cafe2b4da889b4bbe29d6bd883"
+    },
+    {
+      "direction": "N",
+      "headPixelsOverlappedByHair": 24270,
+      "headPixelsWithoutHairOverlap": 0,
+      "outputSha256": "0a804f17591307be3752fcfdeb14905651aa6038ddc299a61049c2a86b473bdb"
+    }
+  ],
+  "coherentFitMeasurement": {
+    "studySha256": "4d3130c9cae37127ca120faeca38d59784000ab843f313c68e88b94c51b38f6f",
+    "masterSha256": "6963db1885095b51c364b383ed16562d1c65c5ea5c4b4d4564afab5349a65e4f",
+    "frontPixelCount": 49021,
+    "rearPixelCount": 218814,
+    "posteriorEarHairOverHead": 368,
+    "facialLandmarks": [
+      {
+        "name": "screen-left-eye-center",
+        "position": {
+          "x": 475,
+          "y": 198
+        },
+        "hairAlpha": 0
+      },
+      {
+        "name": "screen-right-eye-center",
+        "position": {
+          "x": 541,
+          "y": 195
+        },
+        "hairAlpha": 0
+      },
+      {
+        "name": "nose-tip",
+        "position": {
+          "x": 511,
+          "y": 224
+        },
+        "hairAlpha": 0
+      },
+      {
+        "name": "chin",
+        "position": {
+          "x": 513,
+          "y": 266
+        },
+        "hairAlpha": 0
+      }
+    ],
+    "reconstruction": "exact-disjoint-single-study-partition"
+  },
+  "remainingReview": [
+    "Residual noise in hair, acknowledged by user",
+    "Independent ear and facial layers; six remaining head facings",
+    "Complete body/clothing anatomy, other presets and production T-pose fit",
+    "Final Step 6C review before Step 6D"
+  ]
+}

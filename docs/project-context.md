@@ -235,13 +235,99 @@ temple locks. Revision 2 therefore fits a new S front/rear pair while preserving
 all approved source images, head/neck parts and N output. The front is selected
 from S's own reference with native manual masks; the rear is newly authored with
 built-in imagegen and clipped to the native reference silhouette above y290.
-The current `pnpm head:review` selects `authoring-v2.json`; `head:review:v1`
+The revision-2 review selects `authoring-v2.json`; `head:review:v1`
 reproduces the historical mismatch separately. Four exposed facial samples and
 exact native source ownership are regression boundaries, not anatomical proof.
 The user approved this fit candidate with “approved. commit and continue”.
 `review-fit-v2.json` pins its config, sources and reviewed composition; the
 known temple seams are the next versioned repair. Step 6C remains unfinished and
 Step 6D has not begun. See `docs/modular-head.md` for retained provenance.
+
+### S temple and left-ear foreground correction — 2026-10-10
+
+Commit `bde4c80` freezes the approved revision-2 fit candidate. The next
+increment retains a new shared S seam study and manually traced local masks.
+During review, the user identified missing foreground hair at S's left ear
+(screen-right): the original ear exclusion removed part of a crossing strand.
+The initial narrow revision-3 restoration failed visual review. The user then
+identified that the hair lies both in front of and behind the ear. Revised local
+ownership keeps the crossing bang in front and places the side lock behind the
+complete unchanged head/ear. S's own native reference supplies retained hair;
+visible reference ear/skin is excluded. Neck-curl masks also clear skin-filled
+holes, warm rims and a detached clavicle-outline fragment. Retained RGBA is
+unchanged, with no blur or feathering. Independent ear layers remain unfinished.
+
+At revision 3, `pnpm head:review` selected `authoring-v3.json`; `head:review:v2` reproduces
+the approved baseline under separate staging/v2. The new comparison shows
+reference / approved v2 fit / v3 candidate. Masks and exact pixel ownership
+are verified, including unchanged anatomy, N and all pixels outside the local
+repair areas. Local strand joins, revised ear depth and cleaned neck contours still require
+human visual review. This increment does not complete Step 6C or advance 6D.
+
+### S coherent native hair partition after rejected local patches — 2026-10-10
+
+The user rejected the revised overview: hair strokes remained disjoint and
+cheeks were cropped. Exact local source ownership and passing tests did not
+establish a coherent fit. The cause was a composition of original-reference
+fringe, independently authored rear hair and small shared-study patches whose
+contours differed. Position changes alone could not repair those strokes.
+
+Revision 4 uses the entire existing shared S drawing as the sole hair source,
+not its local patches. The visible face/ear/neck context is excluded within a
+bounded manual skin mask; one pale nose-highlight pixel and two detached
+alpha-8 specks have explicit exclusions. The supposed black/purple background
+in this raw study has zero alpha; it is not visible haze. Every retained RGBA
+pixel stays at its native coordinate. A posterior ear region places the side
+lock behind the complete original head; the fringe/face-framing locks remain
+in front. Lower drapes pass to the rear below the neck. Front and rear have
+exact disjoint ownership and reconstruct one continuous hair master.
+
+At revision 4, `pnpm head:review` selected `authoring-v4.json`; `head:review:v3` retains
+historical rejected-patch reproduction separately. The current overview and
+`inspection/S-coherent-partition.png` show the assembled fit and exact split.
+Approved v2, all complete anatomy sources and N remain unchanged. A further
+imagegen edit was rejected for changing native framing and is not retained.
+The selected earlier prompt and manual derivation are recorded in
+`prompts-coherent-v4.json`. The one existing integration workflow now checks
+the coherent reconstruction, uncovered cheeks, posterior ear depth, unchanged
+anatomy/N, deterministic exports and rejection of re-pinned forged hair.
+No additional unit-test suite was introduced. Visual review and all remaining
+Step 6C anatomy/body/T-pose work remain pending; Step 6D has not begun.
+
+### Lower left-ear clipping in the coherent S fit — 2026-10-10
+
+The user said the coherent partition looked fine at the moment, but the ear
+was still clipped in the assembled overview. This is not approval of the
+assembled anatomy or complete Step 6C. The cause was remaining foreground
+side-lock pixels over the inner/lower ear: the rectangular posterior region
+started at x584, while the complete ear/lobe extends farther inward.
+
+Revision 5 changes only the native depth ownership. A contour-shaped inward
+extension transfers 247 existing hair pixels from front to rear, including
+173 pixels over head/ear skin. The complete revision-4 hair-only master remains
+identical; no hair is cut, redrawn, recoloured or repositioned. Skin exclusion,
+crown/fringe, neck curls, drapes, all original anatomy, approved sources and N
+remain unchanged. `authoring-v5.json` pins the v4 ownership baseline;
+`inputs/partition-ear-depth-v5.js` writes new parts/masks only.
+`pnpm head:review` now selects v5; `head:review:v4` reproduces the earlier fit
+in separate staging/v4. The current partition's complete-hair column is
+unchanged; its front/rear columns reflect only the ear-depth transfer.
+
+The existing single integration workflow checks real previously occluded
+inner-ear/lobe pixels in the assembled fit, unchanged whole hair, localized
+ownership changes, source preservation and repeatable exports. Review of the
+updated ear and remaining Step 6C work is pending. No new unit-test suite or
+Step 6D work was introduced.
+
+### General approval of S fit with known hair noise — 2026-10-10
+
+The user generally approved revision 5 and requested committing then
+continuing, while noting residual noise in the hair. `review-fit-v5.json`
+records this limited standing-reference checkpoint approval and the known
+noise. Do not overwrite its source or interpret it as final production
+anatomy/Step 6C acceptance. The next increment authors independent E/W bald
+head/neck anatomy and compares each with its own approved profile hair.
+S/N stay unchanged. Step 6D remains outside the authorized increment.
 
 - Distinguish `assets/references/` (immutable source images), `assets/source/` (editable layered files), `assets/staging/` (unapproved outputs), `assets/detailed/` and `assets/pixel/` (approved published parts), `assets/manifests/` and `assets/qa/` (generated reports).
 - Each modular part should declare a unique semantic ID, target, supported facings, compatible rig/body presets, image paths, attachment anchor, native offset, depth plane, visibility/occlusion, optional material/shade masks and requires/excludes.

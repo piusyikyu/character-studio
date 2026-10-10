@@ -82,8 +82,11 @@ pnpm hair:review:profiles # Prepare independent E/W hair draft inspection
 pnpm hair:review:front-diagonals # Prepare SE/SW reference/study/masked-reconstruction inspection
 pnpm hair:review:front-diagonals:completion # Review approved SE/SW rear roots and connections
 pnpm hair:review:back-diagonals # Prepare approved independent NE/NW rear hair
-pnpm head:review # Compare the versioned S hair fit and unchanged N anatomy draft
+pnpm head:review # Review revision-5 S ear depth with coherent hair and unchanged N anatomy draft
 pnpm head:review:v1 # Reproduce the initial S mismatch separately
+pnpm head:review:v2 # Reproduce the approved S fit before temple/ear-mask repair
+pnpm head:review:v3 # Reproduce rejected local seam patches separately
+pnpm head:review:v4 # Reproduce the coherent hair fit before lower-ear correction
 pnpm typecheck    # Check root configs, smoke tests, and all workspace packages
 pnpm lint         # ESLint with zero warnings permitted
 pnpm test         # Run Vitest once

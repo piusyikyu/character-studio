@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "tool": "built-in imagegen",
+  "mode": "reuse-existing-selected-study/manual-native-masks",
+  "direction": "S",
+  "study": {
+    "source": "S-seam-study-master-v3.png",
+    "sourceSha256": "4d3130c9cae37127ca120faeca38d59784000ab843f313c68e88b94c51b38f6f"
+  },
+  "sourcePromptRecord": "prompts-seam-v3.json",
+  "inputs": [
+    {
+      "source": "inputs/S-fit-edit-input-v2.png",
+      "role": "edit target: exact approved revision-2 S composition",
+      "sourceSha256": "cfea2ec115c04a5d5111c675564fa93c82d39ac73fa96a92bf9b7b8f032fb52a"
+    },
+    {
+      "source": "assets/staging/heroine-v1/reference-import-v1/transparent/S.png",
+      "role": "S hair-style reference only",
+      "sourceSha256": "4d835a1da05ab36992d3b97dad400233b81e1a6ad8d8f4872ed5353b771707c6"
+    }
+  ],
+  "prompt": "Use case: precise-object-edit. Image1 EDIT TARGET is the current assembled S full-front head/neck and long silver-lilac hair on a transparent native1024x1536 canvas. Image2 is ONLY the original character's hair-style reference. Change ONLY two small temple hair joins: screen-left x375..450 y190..255 and screen-right x585..650 y170..255. In image1 these joins have chopped-off straight horizontal/vertical cut edges, white stubs and tiny floating fragments. Replace those local discontinuities with smooth continuous curved silver-lilac strands flowing from the existing small crown/temple into the long rear drapes. Keep the same foreground fringe, ahoge, tiny head SIZE/POSITION, four exposed facial sample locations atx475y198,x541y195,x511y224,x513y266, and the curled short face-framing locks. Preserve image1 native placement and scale EXACTLY: NO zoom, enlargement, crop, translation, re-centering, canvas resize, or pose change. Do not change any other part: head and neck skin, bald faceless skin (NO eyes, brows, mouth), crown above y170, frontal middle fringe, hair below y255 or its long curled ends. Do not copy image2 body, face, dress, background, eyes, text or accessories. The edited output remains same full1024x1536 transparent canvas with small head at top center and lower half mostly empty. Only local hair strand repair in the two temple zones; gently shaded anime outlined silver-lilac coherent curves, no square patch edges, pasted shapes, disconnected stubs, ornaments, glow or haze.",
+  "selectionReason": "The prior local patch composition was visually rejected. Reuse the complete continuous S study as one hair drawing, instead of combining different contours. A new transparency edit was rejected because it enlarged the head/hair and changed native placement; that rejected image is not selected or stored in the repository.",
+  "postprocessing": "inputs/partition-coherent-fit-v4.js uses hand-defined native skin/ear regions and three explicit isolated exclusions from inputs/coherent-fit-v4.json. Front and rear partition one hair master without overlaps, transformations or reference silhouette clipping. Original head/neck and N are unchanged.",
+  "outputs": [
+    {
+      "source": "S-hair-coherent-master-v4.png",
+      "sourceSha256": "dd86649fc2a92ebc3e3036c194ef390e4233b02ca49e26d72b273076bb451f8c"
+    },
+    {
+      "source": "S-front-fit-v4.png",
+      "sourceSha256": "b33e032e3d3c71245a5eab586e581354cff339ff505bccb9c4e82199663508fd"
+    },
+    {
+      "source": "S-rear-fit-v4.png",
+      "sourceSha256": "902ddc15aa747e364f2ca56f392dfc8eaa160c73ddb2fd1cdc58172a9b184891"
+    },
+    {
+      "source": "inputs/S-front-fit-mask-v4.png",
+      "sourceSha256": "c65ba122156b645585572e4318fe350a0a207cfe9776d9774f5e8943a2c98c4d"
+    },
+    {
+      "source": "inputs/S-rear-fit-mask-v4.png",
+      "sourceSha256": "74350a1ea4614b04101144d0284f73da76fc3d4eb71c23890a8b30b35b9a6932"
+    }
+  ],
+  "approved": false
+}

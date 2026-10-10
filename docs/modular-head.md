@@ -70,14 +70,17 @@ into continuous deformation.
 
 ```bash
 pnpm reference:import # If transparent reference staging is absent
-pnpm head:review # Current revision-2 S fit candidate and unchanged N
+pnpm head:review # Current revision-5 S ear-depth candidate and unchanged N
 pnpm head:review:v1 # Reproduce the initial mismatch in separate staging/v1
+pnpm head:review:v2 # Reproduce the approved baseline in separate staging/v2
+pnpm head:review:v3 # Reproduce visually rejected local patches in staging/v3
+pnpm head:review:v4 # Reproduce coherent hair with lower-ear clipping in staging/v4
 ```
 
 `assets/staging/heroine-v1/head-soft-oval-v1/` is ignored and regenerated:
 
 - `overview.png`: native cropped comparisons, reference / bare skin base /
-  accepted hair+head+neck, S above N. Each cell copies source x320/y40/
+  current candidate hair+head+neck, S above N. Each cell copies source x320/y40/
   width384/height440 without scaling. It is a close-up diagnostic, not a
   cropped production asset.
 - `full-overview.png`: reduced inspection of complete native canvases, with
@@ -183,7 +186,7 @@ screen-left eye `(475,198)`, screen-right eye `(541,195)`, nose `(511,224)` and
 chin `(513,266)`—must have zero front-hair alpha and visible head skin. These
 samples are fit diagnostics, not new eyes/mouth artwork or a certified rig.
 
-`pnpm head:review` writes the current revision-2 overview at the existing
+The revision-2 review writes its overview at the existing
 review path and adds native front/rear fit layers and mask/checker inspection.
 It produces 32 PNGs. `pnpm head:review:v1` regenerates the original fit under
 `assets/staging/heroine-v1/head-soft-oval-v1/v1/` without modifying version-1
@@ -230,3 +233,260 @@ the test was running. The final rerun passed with frozen source inputs.
 The full application build and browser E2E suite were not rerun for this offline
 authoring/tool increment. Visual temple-edge repair and production anatomy
 approval remain outstanding regardless of automated results.
+
+## Revision 3 — temple repair, ear depth and neck masks
+
+Local commit `bde4c80` records the user's approval of revision 2. Revision 3
+is a new candidate; it preserves all approved source images and approval
+records. It continues the current Step 6C increment without beginning 6D.
+
+The selected built-in imagegen study `S-seam-study-master-v3.png` was edited
+from the exact approved v2 composition, saved as `inputs/S-fit-edit-input-v2.png`,
+with S's original character as hair-style reference. `prompts-seam-v3.json`
+records the full prompt, input roles and hashes. The raw study includes head
+context and invisible background RGB at zero alpha; revision 3 used only localized hair pixels.
+It is never composited as a flattened character or published as a part.
+
+`inputs/seam-repair-v3.json` contains two native temple polygons, a local
+ear-depth region and its foreground-bang contour, plus two neck-curl cleanup
+regions. The character's left ear is on screen-right. The script
+`inputs/extract-seam-repair-v3.js` verifies baseline/reference inputs and writes
+new v3 files only. For the temple repair, exposed baseline head/neck pixels and
+warm study skin are protected; study pixels are retained only within S's own
+reference silhouette. The front layer owns retained seam pixels and the rear
+is cleared at those coordinates, avoiding doubled opacity. Approved front/rear
+RGBA remains exact outside the repair masks.
+
+The initial narrow ear-hole repair failed visual review. The user identified
+that hair passes both in front of and behind the ear, so a single foreground
+ownership mask was the wrong approach. The revised 6,360-pixel region separates
+reference-native hair by depth: the full crossing bang belongs to the front,
+and the side lock belongs to the rear. The complete unchanged head/ear renders
+between them. Foreground and posterior hair are not both assigned the same
+reference pixels. Warmer reference ear/skin pixels are excluded from hair;
+concealed baseline rear backing is retained where the reference exposes skin.
+The local red-minus-blue guard is at most 15, inside manually traced contours.
+Independent ear layers remain unfinished.
+
+Around the neck, two regions covering 11,232 pixels revise the visible front
+curl contours without moving or smoothing their artwork. The same local colour
+guard removes skin-filled curl holes and warm skin rims that the older check
+missed. A hand-traced contour revision excludes a three-pixel detached clavicle
+outline. Retained hair RGBA is copied exactly from S's reference. The baseline
+rear stays unchanged there, except where ear-depth and front-curl masks overlap:
+foreground ownership takes priority so reference hair is not duplicated.
+No blur, feathering, resizing or recolouring is applied.
+
+`authoring-v3.json` pins the approved v2 config/approval, raw study, settings,
+masks and new fit pair. Review checks exact study/reference ownership, mask
+coverage, exposed facial samples, complete unchanged anatomy, and preserved
+pixels outside the masks. `fringeFitMeasurement` records the inherited v2
+baseline; `seamRepairMeasurement` identifies the active v3 pair and restored
+hair coverage over head pixels.
+
+At revision 3, the review generated the overview plus
+`inspection/S-seam-comparison.png`: native crops of reference / approved v2
+fit / v3 candidate. It retains historical v2 derivation inspection and adds
+v3 front/rear parts and seam/ear/neck masks. `head:review:v1` and `head:review:v2`
+reproduce their historical fits separately. CLI regeneration calls neither
+imagegen nor the extraction script.
+
+At revision 3, the existing public artwork integration workflow repeated the v3
+export rather than repeating each historical version. It also checks the real
+restored foreground pixel at `(582,205)`, the posterior side lock at
+`(596,211)` behind the complete ear, cleaned curl holes/rims/fragments,
+complete anatomy/N preservation, native render order and rejection of a re-pinned alteration outside the local
+masks. No additional unit-test suite was added.
+
+Visual review remains required for local strand transitions, ear occlusion,
+head anatomy and future body fit. Small patch joins remain visible at close
+inspection; do not treat ownership/count checks as seamless production-art
+approval. Further facings, facial/ear layers, full anatomy, production T-pose
+and Step 6C acceptance remain outstanding.
+
+Revision-3 validation:
+
+- `pnpm head:review`: asset-tool JavaScript/declaration build and CLI passed;
+  all 38 output hashes and the current config hash independently verified.
+- `pnpm --filter @character-studio/asset-validator typecheck`: passed.
+- `pnpm lint`: passed workspace lint with zero warnings.
+- `pnpm test tools/asset-validator/src/head-review.integration.test.ts`:
+  the single public artwork workflow passed with revised ear-depth and neck
+  checks (127.56 seconds total).
+- `node tools/asset-validator/dist/head-review-cli.js --v2`: passed; all 32
+  historical output hashes and approved fit/fringe measurements reproduced.
+- Preservation audit: all 118 baseline reference, approved hair, anatomy and
+  revision-2 provenance files retained their SHA-256 hashes. The recorded N
+  fit composition is unchanged, and the saved edit target equals the approved
+  v2 S fit hash.
+- The ear contours select 2,455 foreground and 3,098 posterior reference hair
+  pixels before overlapping neck cleanup. Neck cleanup removes 612 previously
+  retained non-hair pixels.
+  All four facial samples remain clear.
+- `git diff --check`: passed. Full application build and browser E2E were not
+  rerun for this offline asset-tool correction.
+
+Initial validation of the revised masks caught an ear/temple overlap in the
+derivation script's rear ownership. Restoring baseline backing where reference
+skin is excluded corrected it. The first integration run sampled an empty
+corner of the detached fragment; the regression now samples its actual pixel
+at `(448,297)`. The successful checks above include those corrections.
+
+## Revision 4 — one continuous S hair drawing
+
+The user rejected revision 3's overview because strokes were disjoint and
+cheeks looked cropped. The passing pixel-ownership checks did not establish
+visual coherence. Local reference/native-study patches had incompatible
+contours; the next correction replaces the complete S hair pair as a new
+version, rather than adjusting offsets or adding more patches.
+
+`S-seam-study-master-v3.png` is reused as the single coherent hair source.
+Its visible skin context is excluded using a bounded manual mask with a local
+red-minus-blue threshold of 18. An isolated pale nose-highlight pixel and two
+detached alpha-8 specks are explicitly excluded. The raw study's apparent
+background/glow has zero alpha. Below alpha 8, RGBA is cleared to zero;
+retained hair RGBA and native positions are exact. No reference-silhouette
+clip, scaling, translation, mirroring, blending of hair sources or smoothing
+is applied. A subsequent generated edit changed native framing and was
+rejected without retaining it in the repository.
+
+New files, without overwriting any earlier image or approval:
+
+- `S-hair-coherent-master-v4.png`: the complete hair-only matte.
+- `S-front-fit-v4.png` and `S-rear-fit-v4.png`: 49,268 foreground and 218,567
+  posterior pixels, with exact disjoint ownership. They reconstruct the
+  complete matte pixel-for-pixel, including continuous neck curls and drapes.
+- `inputs/coherent-fit-v4.json`, two binary ownership masks and
+  `inputs/partition-coherent-fit-v4.js`: bounded skin/ear regions, explicit
+  exclusions and reproducible derivation. The script verifies the raw study
+  hash and writes new files only.
+- `authoring-v4.json`: pinned single source, complete master, parts, settings,
+  masks, counts and approved-v2 anatomy baseline. It does not inherit the
+  mixed-source v2/v3 hair pair for the current S composition.
+- `prompts-coherent-v4.json`: the selected existing built-in imagegen prompt,
+  input roles, raw source hash, selection reason and manual-mask processing.
+
+The foreground contains the crown/fringe and face-framing locks. Within
+x584–619/y200–269, the side lock goes behind the complete head/ear. Hair below
+y350 goes to the rear below the neck; those disjoint pieces meet at the same
+native coordinates. They are not concealed surfaces for later deformation or
+interchangeable production body fits. Complete original S/N anatomy and the
+approved N composition are unchanged.
+
+The current overview shows reference / unchanged skin base / coherent fit.
+`inspection/S-coherent-partition.png` shows front / rear / complete hair matte.
+The complete 1024×1536 canvases are retained; only diagnostic crops and the
+full overview use inspection framing. Obsolete revision-3 generated images
+were removed from the current staging root; historical sources remain, and
+`head:review:v3` reproduces that rejected composition in a separate folder.
+
+The same single public integration workflow now repeats revision 4 and
+checks exact single-study reconstruction, native rendering order, exposed
+cheek/nose samples, posterior ear overlap, unchanged anatomy/N and immutable
+sources. It rejects a re-pinned altered hair pixel even when its file hash
+has been updated. Revision-3 visual patch expectations are superseded; no
+additional unit-test suite was added.
+
+This is an unapproved standing-reference fit candidate. Review the complete
+hair contour, ears, cheeks and neck at native resolution. Independent ears,
+six head facings, facial layers, full body/clothing anatomy, other presets,
+production T-pose fit and final Step 6C approval remain unfinished. Step 6D
+has not started.
+
+Revision-4 validation:
+
+- `pnpm head:review`: asset-tool JavaScript/declaration build and CLI passed;
+  32 current output PNGs generated with native S/N anatomy.
+- `pnpm --filter @character-studio/asset-validator typecheck`: passed.
+- `pnpm lint`: passed workspace lint with zero warnings.
+- `pnpm test tools/asset-validator/src/head-review.integration.test.ts`:
+  the existing single artwork workflow passed (110.31 seconds total).
+- Preservation audit: all 129 pre-existing source files, including original
+  references, approved hair, anatomy, v2 approvals and v3 derivation evidence,
+  retain their SHA-256 hashes. N's fit hash remains
+  `0a804f17591307be3752fcfdeb14905651aa6038ddc299a61049c2a86b473bdb`.
+- The posterior ear region retains 195 hair pixels behind head/ear skin;
+  four facial samples and the previously cropped cheek samples are exposed.
+- `git diff --check`: passed. Full app build and browser E2E were not rerun
+  for this offline asset-tool correction.
+
+The first v4 review invocation rejected the JSON settings path because it
+used the PNG-only source schema. The settings input now has its own explicit
+JSON path; build, CLI and integration validation passed after that correction.
+No anatomy source, approved imagery or earlier derivation was overwritten.
+
+## Revision 5 — complete left-ear depth correction
+
+The user found the coherent hair partition acceptable at the moment, but
+rejected the assembled overview's clipped left ear. Its inner edge and lobe
+were still obscured by foreground side-lock hair. The rectangular posterior
+region began at x584, outside part of the complete ear silhouette. This was
+a depth-ownership defect, not missing ear anatomy or a reason to redraw hair.
+
+`inputs/coherent-fit-v5.json` replaces that rectangle with a contour-shaped
+inward/lower extension. `inputs/partition-ear-depth-v5.js` transfers 247 exact
+existing RGBA pixels from the v4 front to the rear; 173 overlap head/ear skin.
+The complete head renders above that lock, exposing its inner edge and lobe.
+No pixel is removed from the whole hair drawing, and no hair colour, position,
+alpha, skin-exclusion mask, crown, neck curl or drape changes. Ownership outside
+x568–583/y200–238 is unchanged. The full posterior region also retains the
+unchanged older side-lock ownership to the right and below that extension.
+
+New `S-front-fit-v5.png`, `S-rear-fit-v5.png`, binary ownership masks and
+`authoring-v5.json` preserve every earlier source. Counts are 49,021 foreground
+and 218,814 posterior pixels. The config pins `authoring-v4.json` and reuses
+`S-hair-coherent-master-v4.png` with its exact hash. The review rejects a change
+to the complete v4 master, raw study or skin/exclusion settings. Front/rear
+still reconstruct that master exactly. No imagegen call was needed; the existing
+selected source/prompt record remains `prompts-coherent-v4.json`.
+
+`pnpm head:review` prepares the v5 overview and partition. The partition's
+complete-hair column remains pixel-identical to v4; its front/rear columns
+reflect the localized ownership correction. `pnpm head:review:v4` reproduces
+the earlier clipped-ear fit separately. Complete S/N anatomy, approved hair,
+all v2/v3/v4 sources and N's fit are unchanged. Review this ear in the assembled
+image rather than inferring success from the hair-only reconstruction.
+
+The existing single integration workflow now repeats v5 and checks actual
+previously obscured pixels at `(580,220)`, `(578,225)`, `(575,228)` and
+`(573,231)` against the rear-backed complete head. It also checks the localized
+247-pixel ownership change and unchanged whole drawing, while retaining the
+native reconstruction, cheek, source-preservation and forged-pixel boundaries.
+No additional unit-test suite was added. Independent ear assets, remaining
+facings and final Step 6C visual approval are still unfinished; 6D has not begun.
+
+Revision-5 validation:
+
+- `pnpm head:review`: asset-tool JavaScript/declaration build and CLI passed;
+  all 32 current output PNG hashes and the current config hash verified.
+- `pnpm --filter @character-studio/asset-validator typecheck`: passed.
+- `pnpm lint`: passed workspace lint with zero warnings.
+- `pnpm test tools/asset-validator/src/head-review.integration.test.ts`:
+  the existing single workflow passed (110.42 seconds total).
+- `node tools/asset-validator/dist/head-review-cli.js --v4`: passed;
+  all 32 historical PNG hashes verified. The whole hair PNG is byte-identical
+  between the historical and current staging. Only 173 assembled pixels differ,
+  within x568–583/y219–236 around the inner ear/lobe.
+- Preservation audit: all 138 pre-existing source/provenance files retain
+  their SHA-256 hashes; N's fit retains its approved checkpoint hash.
+- `git diff --check`: passed. Full app build and browser E2E were not rerun
+  for this offline ownership correction.
+
+The first integration run compared an encoded staging PNG against a source
+PNG encoded with different codec options. That assertion was corrected to
+compare decoded RGBA for artwork identity; source-file hashes remain checked
+separately. The complete source hair never changed. The rerun passed.
+
+## Revision-5 general approval and next increment
+
+The user generally approved the current fit and requested a local commit and
+continuation, while explicitly noting remaining noise in the hair.
+`review-fit-v5.json` pins that evidence, the reviewed config/inputs, native
+fit hashes and remaining issues. Approval accepts the standing-reference fit
+checkpoint with known hair noise; it does not certify production T-pose
+anatomy or complete Step 6C. Any later noise cleanup needs a new version.
+
+The next small Step 6C increment is independently authored E/W bald head/neck
+skin anatomy, with each profile's own source and approved hair comparison.
+S/N sources and this approval stay unchanged. Independent ear/facial assets,
+diagonal heads and full body/clothing remain later work; Step 6D stays gated.
