@@ -3,6 +3,12 @@ import { assetSourceSchema } from '@character-studio/core';
 
 const hash = z.string().regex(/^[a-f0-9]{64}$/);
 const input = z.strictObject({ source: assetSourceSchema, sourceSha256: hash });
+const hairPartition = z.strictObject({
+  study: input,
+  settings: z.strictObject({ source: z.enum(['inputs/coherent-fit-v4.json', 'inputs/coherent-fit-v5.json', 'inputs/profiles-v2/E-fit.json', 'inputs/profiles-v2/W-fit.json', 'inputs/profiles-v3/E-fit.json', 'inputs/profiles-v3/W-fit.json']), sourceSha256: hash }),
+  master: input, front: input, rear: input, frontSelection: input, rearSelection: input,
+  frontPixelCount: z.number().int().positive(), rearPixelCount: z.number().int().positive(),
+});
 const point = z.strictObject({ x: z.number().int().min(0).max(1023), y: z.number().int().min(0).max(1535) });
 const part = input.extend({ origin: point, selection: input, pixelCount: z.number().int().positive() });
 const frame = z.strictObject({
@@ -52,10 +58,8 @@ export const headReviewSchema = z.strictObject({
     direction: z.literal('S'), method: z.literal('single-study/native-hair-partition'),
     baseline: z.strictObject({ source: z.literal('authoring-v2.json'), sourceSha256: hash }),
     approval: z.strictObject({ source: z.literal('review-fit-v2.json'), sourceSha256: hash }),
-    study: input, settings: z.strictObject({ source: z.enum(['inputs/coherent-fit-v4.json', 'inputs/coherent-fit-v5.json']), sourceSha256: hash }),
+    ...hairPartition.shape,
     ownershipBaseline: z.strictObject({ source: z.literal('authoring-v4.json'), sourceSha256: hash }).optional(),
-    master: input, front: input, rear: input, frontSelection: input, rearSelection: input,
-    frontPixelCount: z.number().int().positive(), rearPixelCount: z.number().int().positive(),
     facialLandmarks: z.array(z.strictObject({ name: z.string().min(1), position: point })).length(4),
     approved: z.literal(false),
   }).optional(),
@@ -68,3 +72,42 @@ export const headReviewSchema = z.strictObject({
   .refine((d) => (d.assetVersion === 5) === !!d.coherentFit?.ownershipBaseline, 'Revision 5 must pin the unchanged revision-4 hair drawing.')
   .refine((d) => !d.fringeFit || new Set(d.fringeFit.facialLandmarks.map((p) => p.name)).size === 4, 'Fringe-fit review needs four distinct facial landmarks.');
 export type HeadReviewDraft = z.infer<typeof headReviewSchema>;
+export type HeadReviewFrame = z.infer<typeof frame>;
+const polygon = z.array(z.tuple([z.number().int().min(0).max(1023), z.number().int().min(0).max(1535)])).min(3);
+const earRepairFrame = z.strictObject({
+  skinStudy: input, earStudy: input, selection: input, referenceSelection: input,
+  repairRegion: polygon, earEnvelope: polygon, referenceEarRegion: polygon,
+  referenceSkinMinimumRedMinusBlue: z.literal(18),
+  referenceHighlights: z.array(point),
+  changedPixelCount: z.number().int().positive(), referencePixelCount: z.number().int().positive(),
+});
+
+/** Independent side anatomy; keeps existing S/N fit histories separate. */
+export const headProfilesReviewSchema = z.strictObject({
+  ...headReviewSchema.shape,
+  assetVersion: z.union([z.literal(1), z.literal(2), z.literal(3)]),
+  hairConfig: z.strictObject({ source: z.literal('profiles-authoring-v1.json'), sourceSha256: hash }),
+  hairApproval: z.strictObject({ source: z.literal('profiles-review-v1.json'), sourceSha256: hash }),
+  fringeFit: z.never().optional(), seamRepair: z.never().optional(), coherentFit: z.never().optional(),
+  profileFit: z.strictObject({
+    method: z.literal('single-study/native-hair-partition'),
+    baseline: z.strictObject({ source: z.literal('profiles-authoring-v1.json'), sourceSha256: hash }),
+    frames: z.strictObject({
+      E: hairPartition.extend({ facialLandmarks: z.array(z.strictObject({ name: z.enum(['near-eye', 'nose-tip', 'chin']), position: point })).length(3) }),
+      W: hairPartition.extend({ facialLandmarks: z.array(z.strictObject({ name: z.enum(['near-eye', 'nose-tip', 'chin']), position: point })).length(3) }),
+    }),
+  }).optional(),
+  earRepair: z.strictObject({
+    method: z.literal('local-authored-skin/reference-ear-native-fit'),
+    baseline: z.strictObject({ source: z.literal('profiles-authoring-v2.json'), sourceSha256: hash }),
+    frames: z.strictObject({ E: earRepairFrame, W: earRepairFrame }),
+    approved: z.literal(false),
+  }).optional(),
+  frames: z.strictObject({ E: frame, W: frame }),
+}).refine((d) => d.frames.E.master.sourceSha256 !== d.frames.W.master.sourceSha256, 'E/W need distinct independently authored anatomy masters.')
+  .refine((d) => (d.assetVersion >= 2) === !!d.profileFit, 'Revisions 2 and 3 require explicit E/W coherent hair fit.')
+  .refine((d) => (d.assetVersion === 3) === !!d.earRepair, 'Revision 3 requires a pinned local ear repair.')
+  .refine((d) => !d.profileFit || d.profileFit.frames.E.study.sourceSha256 !== d.profileFit.frames.W.study.sourceSha256, 'E/W hair fit needs independent studies.')
+  .refine((d) => !d.profileFit || (['E', 'W'] as const).every((direction) => d.profileFit!.frames[direction].settings.source === `inputs/profiles-v${d.assetVersion}/${direction}-fit.json` && new Set(d.profileFit!.frames[direction].facialLandmarks.map((p) => p.name)).size === 3), 'Profile fit needs its own settings and three distinct exposed landmarks.');
+export type HeadProfilesReviewDraft = z.infer<typeof headProfilesReviewSchema>;
+export type NativeHairPartition = z.infer<typeof hairPartition>;

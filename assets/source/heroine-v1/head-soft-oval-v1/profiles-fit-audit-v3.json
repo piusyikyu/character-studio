@@ -1,0 +1,320 @@
+{
+  "schemaVersion": 1,
+  "id": "head.soft-oval.v1",
+  "assetVersion": 3,
+  "status": "draft-needs-human-review",
+  "approved": false,
+  "step6CComplete": false,
+  "step6DStarted": false,
+  "config": {
+    "source": "profiles-authoring-v3.json",
+    "sourceSha256": "9d332412510eaca683b05dc2437ab53af7941e138570c606c4bf7dc428682fee"
+  },
+  "reportedDefect": "Profile ears too large and misaligned with references; v2 posterior hair masks overexposed displaced bald ears.",
+  "correction": "Local authored skin/ear envelopes plus exact same-facing reference-visible ear RGBA and corrected crossing-fringe ownership. Native anatomy outside local masks and neck/anchors unchanged.",
+  "profileEarMeasurements": [
+    {
+      "direction": "E",
+      "changedPixelCount": 3606,
+      "selectedPixelCount": 3620,
+      "referencePixelCount": 178,
+      "referenceEarRegion": [
+        [
+          520,
+          177
+        ],
+        [
+          524,
+          177
+        ],
+        [
+          526,
+          184
+        ],
+        [
+          527,
+          191
+        ],
+        [
+          529,
+          196
+        ],
+        [
+          531,
+          202
+        ],
+        [
+          526,
+          202
+        ],
+        [
+          522,
+          199
+        ],
+        [
+          519,
+          196
+        ],
+        [
+          517,
+          192
+        ],
+        [
+          516,
+          186
+        ],
+        [
+          515,
+          183
+        ],
+        [
+          514,
+          180
+        ],
+        [
+          517,
+          178
+        ]
+      ],
+      "concealedEarEnvelope": [
+        [
+          515,
+          171
+        ],
+        [
+          527,
+          171
+        ],
+        [
+          535,
+          180
+        ],
+        [
+          536,
+          194
+        ],
+        [
+          532,
+          205
+        ],
+        [
+          526,
+          207
+        ],
+        [
+          517,
+          201
+        ],
+        [
+          512,
+          190
+        ],
+        [
+          511,
+          181
+        ]
+      ],
+      "sourceOwnership": "native-reference-visible-ear/local-authored-concealed-skin"
+    },
+    {
+      "direction": "W",
+      "changedPixelCount": 3145,
+      "selectedPixelCount": 3150,
+      "referencePixelCount": 456,
+      "referenceEarRegion": [
+        [
+          476,
+          180
+        ],
+        [
+          503,
+          180
+        ],
+        [
+          503,
+          220
+        ],
+        [
+          476,
+          220
+        ]
+      ],
+      "concealedEarEnvelope": [
+        [
+          487,
+          177
+        ],
+        [
+          498,
+          178
+        ],
+        [
+          505,
+          187
+        ],
+        [
+          505,
+          198
+        ],
+        [
+          498,
+          208
+        ],
+        [
+          490,
+          214
+        ],
+        [
+          481,
+          217
+        ],
+        [
+          477,
+          213
+        ],
+        [
+          478,
+          200
+        ],
+        [
+          478,
+          185
+        ]
+      ],
+      "sourceOwnership": "native-reference-visible-ear/local-authored-concealed-skin"
+    }
+  ],
+  "profileFitMeasurements": [
+    {
+      "direction": "E",
+      "studySha256": "d81679768bcf8fe648d7af248f514124f7a01bfde256b7e8abf370239411798f",
+      "masterSha256": "dcf6749fd1c08152c72b51f123d800e159628a78b3a71a0d138dbc7d9caa3174",
+      "frontPixelCount": 46339,
+      "rearPixelCount": 85873,
+      "posteriorEarHairOverHead": 0,
+      "facialLandmarks": [
+        {
+          "name": "near-eye",
+          "position": {
+            "x": 594,
+            "y": 180
+          },
+          "hairAlpha": 0
+        },
+        {
+          "name": "nose-tip",
+          "position": {
+            "x": 627,
+            "y": 202
+          },
+          "hairAlpha": 0
+        },
+        {
+          "name": "chin",
+          "position": {
+            "x": 596,
+            "y": 249
+          },
+          "hairAlpha": 0
+        }
+      ],
+      "reconstruction": "exact-disjoint-single-study-partition"
+    },
+    {
+      "direction": "W",
+      "studySha256": "b9ef27952e8a2dc7ee2e5f668bf75468dae2630c927c18009fe8c660bde603db",
+      "masterSha256": "8cf4333fd7f18a9f693f080263b8c6afea950858a539479bd9827efc5f4ea0df",
+      "frontPixelCount": 45072,
+      "rearPixelCount": 68454,
+      "posteriorEarHairOverHead": 0,
+      "facialLandmarks": [
+        {
+          "name": "near-eye",
+          "position": {
+            "x": 414,
+            "y": 186
+          },
+          "hairAlpha": 0
+        },
+        {
+          "name": "nose-tip",
+          "position": {
+            "x": 380,
+            "y": 209
+          },
+          "hairAlpha": 0
+        },
+        {
+          "name": "chin",
+          "position": {
+            "x": 403,
+            "y": 254
+          },
+          "hairAlpha": 0
+        }
+      ],
+      "reconstruction": "exact-disjoint-single-study-partition"
+    }
+  ],
+  "fitMeasurements": [
+    {
+      "direction": "E",
+      "headPixelsOverlappedByHair": 17199,
+      "headPixelsWithoutHairOverlap": 5824,
+      "outputSha256": "e6d55f666456d8fbde0b34b84af954c1b08dd0f12a134172eb2c666c25e166ed"
+    },
+    {
+      "direction": "W",
+      "headPixelsOverlappedByHair": 14303,
+      "headPixelsWithoutHairOverlap": 6614,
+      "outputSha256": "a1bc94736e2b4237c37603eb97910b10ecf4fcc992e0bd04d7997ca48b88fdbe"
+    }
+  ],
+  "visibleRimAudit": {
+    "E": {
+      "warmReferenceEarPixels": 177,
+      "selectedReferenceEarPixels": 178,
+      "mismatches": 0,
+      "note": "One pale inner-ear highlight explicitly belongs to skin."
+    },
+    "W": {
+      "warmReferenceEarPixels": 456,
+      "selectedReferenceEarPixels": 456,
+      "mismatches": 0,
+      "note": "Initial manual contour omitted 18 rim pixels; final selection includes the entire local visible reference skin."
+    }
+  },
+  "verification": {
+    "typecheck": "pnpm --filter @character-studio/asset-validator typecheck: passed",
+    "lint": "pnpm lint: passed, zero warnings",
+    "build": "pnpm --filter @character-studio/asset-validator build: passed JS and declarations",
+    "integration": "pnpm test tools/asset-validator/src/head-review.integration.test.ts: 2 workflows passed (225.26s); after expanding W rim, focused E/W rerun passed (122.50s), S/N case skipped in that targeted rerun.",
+    "authoringReplay": "Two native placement guides and 22 partition/config outputs reproduced byte-for-byte in isolated temporary source copy.",
+    "sourcePreservation": "All 162 files from pre-profile source/reference snapshot retain original hashes. Approved S/N config/fit measurements remain identical to review-fit-v5.json.",
+    "staging": "142 PNG hashes verified: S/N32, current profiles44, historical profile-v1 26 and profile-v2 40.",
+    "diff": "git diff --check passed",
+    "notRun": [
+      "Full application build",
+      "Browser E2E"
+    ]
+  },
+  "preview": {
+    "overview": "assets/staging/heroine-v1/head-soft-oval-v1/profiles/overview.png",
+    "comparison": [
+      "inspection/E-fit-comparison.png",
+      "inspection/W-fit-comparison.png"
+    ],
+    "comparisonColumns": [
+      "reference",
+      "rejected-profile-v2-fit",
+      "candidate-profile-v3-fit"
+    ]
+  },
+  "remainingReview": [
+    "Concealed ear structure and local skin transitions",
+    "Residual hair mask noise and complete hidden profile hair",
+    "Separate facial/ear variants and four diagonal heads",
+    "Body/clothing/material maps and production T-pose fit",
+    "Final Step6C approval before6D"
+  ]
+}

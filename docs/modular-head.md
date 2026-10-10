@@ -490,3 +490,252 @@ The next small Step 6C increment is independently authored E/W bald head/neck
 skin anatomy, with each profile's own source and approved hair comparison.
 S/N sources and this approval stay unchanged. Independent ear/facial assets,
 diagonal heads and full body/clothing remain later work; Step 6D stays gated.
+
+## Independent E/W anatomy candidates
+
+Local commit `11fe059` records revision-5 general approval and its known hair
+noise. The next increment adds separate native 1024×1536 `E-master-v1.png` and
+`W-master-v1.png`. Built-in imagegen authored each concealed scalp, profile
+cheek/jaw/nose, near human ear and neck from its own character reference and an
+independently traced synthetic placement guide. `profiles-prompts-v1.json`
+records exact prompts, input roles and selected filenames. The guides are
+framing aids, not approved anatomy; no facing is mirrored or resized.
+
+`inputs/create-profile-guides.js` creates new native guides only, and
+`inputs/partition-profile-masters-v1.js` derives binary masks and exact head/neck
+parts, writing new files with exclusive creation. E divides at y268 and W at
+y270. Raw image RGB under zero alpha is invisible; processing clears RGBA below
+alpha 8 without filtering retained skin pixels. E retains 23,023 head and 2,741
+neck pixels; W retains 20,917 head and 3,043 neck pixels. Exposed native anatomy
+bounds are E x476–629/y71–310 and W x379–533/y85–316. Origins match the provisional
+profile hair head anchors; parts remain on full canvases at position (0,0).
+These are standing-reference candidates with unverified rig/T-pose fit. Human
+ears remain embedded in the head, and interchangeable facial/ear layers are
+unfinished.
+
+`profiles-authoring-v1.json` pins the new native inputs and approved profile
+hair configuration/approval. The existing anatomy review API now supports
+this separate E/W configuration with the same hash, native-bound, binary-mask,
+pixel-preservation, source-immutability and deterministic export checks. It
+keeps S/N historical fit paths unchanged. Run:
+
+```bash
+pnpm head:review:profiles:v1
+```
+
+The initial revision-1 overview, now reproduced in `profiles/v1/overview.png`, shows:
+E is the top row, W the bottom; columns are reference / complete skin base /
+existing approved hair with the new skin. `full-overview.png`, native standalone
+parts, masks and green/yellow inspection previews accompany `metadata.json`.
+Sources contain no direction labels or coloured backgrounds. The profile
+metadata lists missing directions for this two-facing review, not the complete
+repository's available drafts.
+
+The right column intentionally exposes an unresolved fit failure. E's existing
+hair crown does not cover the scalp, and both fringes overlap the profile nose.
+At native E (627,202) and W (380,209), real head pixels are covered by the
+foreground hair. Hair design approval never established anatomical fit.
+Do not clip the scalp, shift parts, mirror another facing or claim this is a
+finished fit. E/W bare anatomy requires visual review independently of these
+existing hair defects.
+
+Two attempted coherent whole-hair edits changed native head framing and were
+rejected. `profiles-fit-experiments-v1.json` records their exact prompts and
+input roles; generated rejects remain outside the repository. At this initial review, no profile-fit v2 or replacement approved hair existed. After anatomy review, the
+fit correction must use one continuous same-facing hair drawing and native
+front/rear depth ownership around the complete ear, with nose/eye/cheek exposure
+and crown coverage inspected in the assembled result. Approved S/N and all
+earlier hair imagery remain unchanged. Step 6C remains open and 6D stays gated.
+
+One additional public artwork integration workflow covers the actual E/W
+assets: native anatomy reconstruction, independent masters, exact approved
+hair and render order, deterministic exports, unchanged source hashes/mtimes
+and rejection of a re-pinned altered head pixel. It also verifies that the known
+nose obstruction is present in the diagnostic output; passing this workflow
+does not certify fit correctness. No helper-level or enum/default unit tests
+were added.
+
+`profiles-fit-audit-v1.json` pins the reviewed profile configuration and records
+the actual head/front-hair/assembled RGBA at both obscured noses and an exposed
+E scalp sample. Its fit approval and Step 6C completion flags remain false.
+
+Initial profile-increment validation (revision 1):
+
+- `pnpm head:review:profiles`: asset-tool JavaScript/declaration build and CLI
+  passed; all 26 profile PNG hashes independently verified.
+- `pnpm --filter @character-studio/asset-validator typecheck`: passed.
+- `pnpm lint`: passed with zero warnings.
+- `pnpm test tools/asset-validator/src/head-review.integration.test.ts`: both
+  the existing S/N artwork workflow and the new E/W workflow passed
+  (160.32 seconds total).
+- Preservation audit: all 162 source/reference files in the pre-fit snapshot
+  retain their hashes, including approved S/N sources and the profile masters.
+- `git diff --check`: passed. Full application build and browser E2E were not
+  rerun for this offline anatomy-review increment.
+
+The passing processing checks do not resolve the visually failed profile hair
+fit or approve anatomical proportions. The replacement studies were rejected
+before extraction; the diagnostic preserves that limitation explicitly.
+
+## Profile revision 2 — visible reference hair fit
+
+The user requested continuation while the profile increment was in progress.
+Further standalone/local edits enlarged or shifted the head and hair. Editing
+the complete dressed character held the native frame, but those studies added
+coloured nonzero-alpha haze and retained body occlusions. A trial colour matte
+damaged hair outlines. These alternatives are rejected; their image files were
+removed from the repository, while originals remain in the generated-image
+directory. `profiles-prompts-v2.json` records exact prompts, input roles and
+reasons. No generated hair image was selected. The two complete bald anatomy
+masters remain the selected built-in imagegen results.
+
+The current visible-fit candidate instead preserves each facing's own clean
+reference pixels. `E-fit-reference-master-v2.png` and its W counterpart are
+hash-identical to their respective imported native reference; the review
+explicitly rejects a different-facing source. They remain flattened reference
+context, not modular head/body parts. The actual hair-only matte is derived
+by the manually traced hair/curl regions, face/shoulder/body exclusions and
+bounded warm-skin guard in `inputs/profiles-v2/{E,W}-fit.json`.
+
+`inputs/partition-profile-fit-v2.js` verifies pinned reference/native anatomy,
+writes new parts/masks exclusively, and creates `profiles-authoring-v2.json`.
+The complete unchanged head/ear/neck renders between rear and front hair.
+Ear-side locks use the manual posterior regions; hair below y350 belongs to
+the rear, and crown/fringe belongs to the front. Parts reconstruct the complete
+**visible** hair matte exactly. Retained RGBA is copied directly from a single
+same-facing reference, with no scaling, mirroring, offsets, contour collage,
+global colour key or colour changes.
+
+This corrects sampled native facial obstruction and scalp exposure. Both
+near-eye/nose/chin sets have zero front/rear hair alpha, and E (558,80) and
+W (451,100) have crown coverage. The reference and newly authored bald skin
+have small contour differences: native mask edges, cheeks, complete ears and
+neck transitions need human review. Passing ownership checks do not establish
+anatomical coherence. Hair hidden by the original standing body/arm has not
+been authored here; these fitted visible hair parts are **not complete reusable
+production hair**. The existing approved full profile hair design sources stay
+unchanged for that later concealed-surface authoring.
+
+```bash
+pnpm head:review:profiles:v2  # Historical visible-fit candidate
+pnpm head:review:profiles:v1  # Original mismatch, separate profiles/v1 staging
+```
+
+Current staging has 40 PNGs. Review `profiles/overview.png` and
+`inspection/{E,W}-fit-comparison.png` (reference / original fit / current fit).
+`inspection/{E,W}-coherent-partition.png` shows front / rear / visible matte.
+`profiles-fit-audit-v2.json` pins measurements and remaining issues, with all
+anatomy/fit/Step 6C completion approvals false. Residual S noise is unchanged.
+
+The same added public profile workflow now covers both the recorded v1 failure
+and v2 facial/crown exposure, single-reference reconstruction, actual render
+order, unchanged complete anatomy/approved hair, deterministic v2 exports and
+rejection of a re-pinned forged fit pixel. The existing S/N workflow remains.
+No additional helper or enum/default tests were introduced. Step 6D has not
+started; review and concealed surfaces are still outstanding within Step 6C.
+
+Revision-2 validation (historical checkpoint):
+
+- Asset-tool JavaScript/declaration build and current/profile-v1 CLI exports
+  passed. All 40 current PNG hashes were independently verified; historical
+  profile-v1 staging remains separate.
+- `pnpm --filter @character-studio/asset-validator typecheck`: passed.
+- `pnpm lint`: passed with zero warnings.
+- `pnpm test tools/asset-validator/src/head-review.integration.test.ts`: both
+  public artwork workflows passed (204.67 seconds total), including unchanged
+  S/N anatomy/ear depth and repeated E/W current exports.
+- All 162 files in the source/reference preservation snapshot remain unchanged.
+- `git diff --check`: passed. Full application build and browser E2E were not
+  rerun for this offline asset-tool increment.
+
+The first generated-study extraction failed its chin exposure check; explicit
+face exclusions corrected that processing check, but visual inspection then
+rejected the study's background contamination and damaged matte. The passing
+checks above use the final same-facing reference extraction, not that rejected
+colour-assisted trial. Complete hidden hair and anatomical approval are still
+unresolved regardless of these automated results.
+
+## Profile revision 3 — local ear size and placement correction
+
+The user rejected the profile ears as too large and misaligned with the
+references. The independently generated v1 ears were larger and higher;
+v2's broad posterior regions additionally exposed almost the entire bald ear.
+The previous sampled face/scalp tests did not establish correct ear geometry.
+
+The correction preserves reference-visible ear pixels at their actual native
+coordinates. Small authored skin regions remove the old displaced ears and
+supply concealed ear attachment/root surfaces within separately traced E/W
+envelopes. The surrounding scalp, face silhouette, neck, anchors and approved
+sources remain unchanged. Both directions use their own studies and reference;
+no direction is mirrored, moved or resampled. Only manually selected pixels
+from the built-in imagegen studies enter the corrected anatomy. Rejected
+framing/scale alternatives are recorded without retaining unused repository PNGs.
+
+The visible reference hair has already been drawn around the canonical ear.
+Moving its crossing fringe behind a larger bald ear was incorrect. The new
+ownership keeps those strands in front, retains the reference-visible ear
+opening and limits the posterior region to visible ear skin. There are currently
+zero extracted posterior hair pixels over the ear: concealed hair behind the
+ear was never present in the flattened visible reference. It remains future
+authoring work, rather than justification to expose the full bald ear.
+One pale E ear-highlight pixel is explicitly removed from the hair matte and
+restored as reference ear skin; the remaining whole hair drawing is preserved.
+
+`profiles-authoring-v3.json` pins the local repair baseline, skin/ear studies,
+manual polygons and masks. `inputs/partition-profile-ears-v3.js` writes new
+versions exclusively. `profiles-prompts-v3.json` retains exact built-in prompts,
+input roles, selected pixel scope and rejected attempts. Placement guides are
+framing aids, not approved anatomy. Raw generated body/scalp/context outside
+the local selections never enters the final parts.
+
+```bash
+pnpm head:review:profiles     # Current local ear correction, profiles/
+pnpm head:review:profiles:v2  # Rejected large/misaligned ear fit, profiles/v2/
+pnpm head:review:profiles:v1  # Initial hair/scalp mismatch, profiles/v1/
+```
+
+Current `profiles/overview.png` shows reference / corrected bald base / assembled
+fit. `inspection/{E,W}-fit-comparison.png` shows reference / rejected v2 / v3.
+The review verifies exact native selected ear pixels in the **assembled output**,
+not only the bare part. Its two public artwork integration workflows cover
+historical defects, unchanged S/N, local anatomy preservation, real layer depth,
+source hashes, deterministic exports and rejection of re-pinned unrelated edits.
+No additional unit-test cases were introduced.
+
+Concealed ear shape and local skin transitions still need human review. E/W are
+unapproved candidates. Known hair noise, four diagonal heads, separate facial/ear
+variants, complete concealed hair, body/clothing and production T-pose fit remain
+unfinished. Step 6C is open; Step 6D has not started.
+
+Revision-3 validation:
+
+- Asset-validator typecheck, root lint (zero warnings) and JavaScript/declaration
+  build passed; current profile, historical v2 and approved S/N CLI exports passed.
+- Both existing public artwork workflows passed (225.26 seconds). After expanding
+  the W rim selection, the affected E/W workflow passed again (122.50 seconds);
+  the S/N case was skipped in that targeted rerun.
+- Complete local warm reference ear extents match assembled pixels exactly:
+  E 177 pixels plus one selected pale highlight; W all 456 pixels. The first W
+  contour omitted 18 rim pixels; those are now restored and covered by regression.
+- Both placement guides and 22 partition/config outputs reproduced byte-for-byte
+  in an isolated temporary copy. No additional unit-test cases were added.
+- All 162 source/reference files in the earlier snapshot preserve their hashes.
+  Approved S/N config and fit measurements still match `review-fit-v5.json`.
+- All 142 staging PNG hashes verified across S/N and profile v1/v2/v3; current
+  profile staging contains 44 PNGs. `git diff --check` passed.
+- Full application build and browser E2E were not rerun for this offline asset
+  correction. `profiles-fit-audit-v3.json` records evidence and remaining review.
+
+### E/W fit approval and next increment — 2026-10-10
+
+The user approved the overall revision-3 E/W fit, acknowledging minor pixelation
+in the left/W bare-ear overview; other inspected outputs were satisfactory.
+`profiles-review-fit-v3.json` pins the accepted config, inputs and measured fits.
+The accepted artwork remains unchanged. This is a standing-reference fit checkpoint,
+not complete production anatomy or final Step 6C approval.
+
+The next small Step 6C increment is independently authored SE/SW bald head and neck
+bases, reviewed against their already approved front-diagonal hairstyle. Preserve
+all accepted sources, inspect actual layered geometry, and retain manual masks and
+prompt provenance. NE/NW heads, facial/ear variants, concealed hair, body/clothing,
+material maps and production T-pose remain later work. Step 6D has not started.

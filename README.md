@@ -87,6 +87,9 @@ pnpm head:review:v1 # Reproduce the initial S mismatch separately
 pnpm head:review:v2 # Reproduce the approved S fit before temple/ear-mask repair
 pnpm head:review:v3 # Reproduce rejected local seam patches separately
 pnpm head:review:v4 # Reproduce the coherent hair fit before lower-ear correction
+pnpm head:review:profiles # Review E/W local ear size/placement and visible-hair fit candidates
+pnpm head:review:profiles:v1 # Reproduce the original profile hair mismatch separately
+pnpm head:review:profiles:v2 # Reproduce the rejected large/misaligned profile ear fit
 pnpm typecheck    # Check root configs, smoke tests, and all workspace packages
 pnpm lint         # ESLint with zero warnings permitted
 pnpm test         # Run Vitest once
@@ -142,10 +145,16 @@ hair inspections and remain outside the runtime catalog. S/N and E/W have design
 approval; SE/SW revision-4 visible hair drafts and pixel-preserving mask partitions are approved,
 with previously omitted far-side reference curls restored.
 SE/SW rear-root and connection design approval is recorded in `front-diagonals-review-v2.json`. NE/NW rear-hair designs, including the NW shoulder-curl correction, are approved in `back-diagonals-review-v1.json`. These standing-reference drafts do not certify
-production T-pose or head/body fit. The [S/N head/neck drafts](docs/modular-head.md)
-now provide an anatomy review with a versioned S front/rear fit candidate that
-leaves four facial landmark samples exposed. Visual fit approval and complete
-production heads remain unfinished; approved sources and N are unchanged.
+production T-pose or head/body fit. The [head/neck drafts](docs/modular-head.md)
+provide S/N anatomy and the generally approved revision-5 S fit with known hair
+noise. Independent E/W skin candidates now have a versioned local ear correction, native masks and comparison
+outputs. Profile revision 1 exposed nose obstruction and E scalp exposure.
+Revision 2 corrected facial/scalp exposure but its ears were rejected as too
+large and misaligned. Revision 3 repairs the ears locally, preserving each
+facing's visible reference ear pixels at native size and position with corrected
+fringe ownership. Concealed ear surfaces and mask edges need review; hair hidden
+by the standing body remains unfinished. Complete production heads and hair remain unfinished; approved
+sources and S/N stay unchanged.
 
 Six public-API integration tests cover core recipe save/load, compatibility and
 seeded generation. Seven registry integration tests cover recipe-to-plan workflows

@@ -2,15 +2,18 @@ import { lstat, mkdir, readFile, realpath, writeFile } from 'node:fs/promises';
 import { isAbsolute, relative, resolve } from 'node:path';
 import { z } from 'zod';
 import { DIRECTIONS, DIRECTION_PLANE_ORDER, directionSchema } from '@character-studio/core';
-import type { RenderPlane } from '@character-studio/core';
+import type { Direction, RenderPlane } from '@character-studio/core';
 import { blankImage, decodePng, decorateExport, drawRgba, encodePng } from '@character-studio/render-utils';
 import type { RgbaImage } from '@character-studio/render-utils';
 import { alphaStatistics, characterBounds } from './audit';
 import { checkerPreview, fitDraftLabel, overview } from './inspection';
-import { headReviewSchema } from './head-review-schema';
+import { headProfilesReviewSchema, headReviewSchema } from './head-review-schema';
+import type { HeadReviewFrame } from './head-review-schema';
 import { hairReviewSchema } from './hair-review-schema';
+import type { HairReviewFrame } from './hair-review-schema';
 import { inspectHeadFitRepair } from './head-fit-repair';
-import { inspectCoherentHeadFit } from './head-coherent-fit';
+import { inspectCoherentHeadFit, inspectProfileHeadFit } from './head-coherent-fit';
+import { inspectProfileEarRepair } from './head-profile-ear-repair';
 import { sha256 } from './reference-import';
 
 const nested = (parent: string, child: string) => { const p = relative(parent, child); return p === '' || (!p.startsWith('..') && !isAbsolute(p)); };
@@ -20,7 +23,7 @@ export interface HeadReviewOptions {
   readonly hairDirectory: string;
   readonly referenceDirectory: string;
   readonly outputDirectory: string;
-  readonly configSource?: 'authoring-v1.json' | 'authoring-v2.json' | 'authoring-v3.json' | 'authoring-v4.json' | 'authoring-v5.json';
+  readonly configSource?: 'authoring-v1.json' | 'authoring-v2.json' | 'authoring-v3.json' | 'authoring-v4.json' | 'authoring-v5.json' | 'profiles-authoring-v1.json' | 'profiles-authoring-v2.json' | 'profiles-authoring-v3.json';
 }
 
 /** Authored anatomy review only; preserves approved hair and does not publish a catalog. */
@@ -42,12 +45,17 @@ export async function prepareHeadReview(options: HeadReviewOptions) {
     inputs.set(path, hash); return bytes;
   };
   const configSource = options.configSource ?? 'authoring-v1.json';
-  if (!['authoring-v1.json', 'authoring-v2.json', 'authoring-v3.json', 'authoring-v4.json', 'authoring-v5.json'].includes(configSource)) throw new Error('Unsupported anatomy review configuration.');
+  if (!['authoring-v1.json', 'authoring-v2.json', 'authoring-v3.json', 'authoring-v4.json', 'authoring-v5.json', 'profiles-authoring-v1.json', 'profiles-authoring-v2.json', 'profiles-authoring-v3.json'].includes(configSource)) throw new Error('Unsupported anatomy review configuration.');
   const configBytes = await read(sourceDirectory, configSource);
-  const draft = headReviewSchema.parse(JSON.parse(configBytes.toString('utf8')));
+  const profileDraft = configSource.startsWith('profiles-') ? headProfilesReviewSchema.parse(JSON.parse(configBytes.toString('utf8'))) : undefined;
+  const frontBackDraft = profileDraft ? undefined : headReviewSchema.parse(JSON.parse(configBytes.toString('utf8')));
+  const draft = frontBackDraft ?? profileDraft!;
+  const reviewDirections = frontBackDraft ? ['S', 'N'] as const : ['E', 'W'] as const;
   const hairBytes = await read(hairDirectory, draft.hairConfig.source, draft.hairConfig.sourceSha256);
   const hair = hairReviewSchema.parse(JSON.parse(hairBytes.toString('utf8')));
-  if (!('S' in hair.frames)) throw new Error('Head S/N review needs the approved S/N hair pair.');
+  if (reviewDirections.some((direction) => !(direction in hair.frames))) throw new Error(`Head ${reviewDirections.join('/')} review needs its approved hair pair.`);
+  const frames: Partial<Record<Direction, HeadReviewFrame>> = draft.frames;
+  const hairFrames: Partial<Record<Direction, HairReviewFrame>> = hair.frames;
   const approval = approvalSchema.parse(JSON.parse((await read(hairDirectory, draft.hairApproval.source, draft.hairApproval.sourceSha256)).toString('utf8')));
   if (approval.configSha256 !== sha256(hairBytes)) throw new Error('Hair configuration does not match its design approval.');
   const load = async (directory: string, source: string, hash: string) => {
@@ -61,21 +69,23 @@ export async function prepareHeadReview(options: HeadReviewOptions) {
     return cleared;
   };
   const pending: { path: string; image: RgbaImage }[] = [];
-  const measurements: { direction: 'S' | 'N'; part: 'head' | 'neck'; sourceSha256: string; outputSha256: string; pixelCount: number; bounds: ReturnType<typeof characterBounds>; origin: { x: number; y: number }; position: { x: number; y: number }; greenCandidates: number }[] = [];
-  const masters: { direction: 'S' | 'N'; sourceSha256: string; cleanedSha256: string; noisePixelsCleared: number; bounds: ReturnType<typeof characterBounds> }[] = [];
-  const hairMeasurements: { direction: 'S' | 'N'; part: 'rear' | 'front'; sourceSha256: string; cleanedSha256: string }[] = [];
-  const fitMeasurements: { direction: 'S' | 'N'; headPixelsOverlappedByHair: number; headPixelsWithoutHairOverlap: number; outputSha256: string }[] = [];
+  const measurements: { direction: Direction; part: 'head' | 'neck'; sourceSha256: string; outputSha256: string; pixelCount: number; bounds: ReturnType<typeof characterBounds>; origin: { x: number; y: number }; position: { x: number; y: number }; greenCandidates: number }[] = [];
+  const masters: { direction: Direction; sourceSha256: string; cleanedSha256: string; noisePixelsCleared: number; bounds: ReturnType<typeof characterBounds> }[] = [];
+  const hairMeasurements: { direction: Direction; part: 'rear' | 'front'; sourceSha256: string; cleanedSha256: string }[] = [];
+  const fitMeasurements: { direction: Direction; headPixelsOverlappedByHair: number; headPixelsWithoutHairOverlap: number; outputSha256: string }[] = [];
   let fringeFitMeasurement: { sourceSha256: string; cleanedSha256: string; pixelCount: number; rearSourceSha256: string; rearCleanedSha256: string; rearPixelCount: number; facialLandmarks: { name: string; position: { x: number; y: number }; hairAlpha: number }[] } | undefined;
   let seamRepairMeasurement: Awaited<ReturnType<typeof inspectHeadFitRepair>>['measurement'] | undefined;
   let coherentFitMeasurement: Awaited<ReturnType<typeof inspectCoherentHeadFit>>['measurement'] | undefined;
+  const profileFitMeasurements: ({ direction: 'E' | 'W' } & Awaited<ReturnType<typeof inspectProfileHeadFit>>['measurement'])[] = [];
+  const profileEarMeasurements: Awaited<ReturnType<typeof inspectProfileEarRepair>>['measurement'][] = [];
   const closeups = blankImage(1152, 880), fullContact = blankImage(3072, 3072);
   const crop = (image: RgbaImage) => {
     const result = blankImage(384, 440);
     for (let y = 0; y < 440; y++) result.data.set(image.data.subarray(((y + 40) * 1024 + 320) * 4, ((y + 40) * 1024 + 704) * 4), y * 384 * 4);
     return result;
   };
-  for (const [row, direction] of (['S', 'N'] as const).entries()) {
-    const frame = draft.frames[direction], hairFrame = hair.frames[direction];
+  for (const [row, direction] of reviewDirections.entries()) {
+    const frame = frames[direction]!, hairFrame = hairFrames[direction]!;
     if (frame.reference !== hairFrame.reference || frame.referenceSha256 !== hairFrame.referenceSha256 || frame.candidateHeadAnchor.x !== hairFrame.candidateHeadAnchor.x || frame.candidateHeadAnchor.y !== hairFrame.candidateHeadAnchor.y) throw new Error(`${direction}: reference/head anchor must match the accepted hair study.`);
     const reference = await load(referenceDirectory, frame.reference, frame.referenceSha256);
     let baselineFit: RgbaImage | undefined;
@@ -84,6 +94,19 @@ export async function prepareHeadReview(options: HeadReviewOptions) {
     const noisePixelsCleared = normalize(master), bounds = characterBounds(master), allowed = frame.allowedBounds;
     if (!bounds || !alphaStatistics(master).transparent || bounds.x < allowed.x || bounds.y < allowed.y || bounds.x + bounds.width > allowed.x + allowed.width || bounds.y + bounds.height > allowed.y + allowed.height) throw new Error(`${direction}: anatomy exceeds the native authoring envelope; inspect placement, never resize.`);
     masters.push({ direction, sourceSha256: frame.master.sourceSha256, cleanedSha256: sha256(encodePng(master)), noisePixelsCleared, bounds });
+    if ((direction === 'E' || direction === 'W') && profileDraft?.earRepair) {
+      const repaired = await inspectProfileEarRepair(profileDraft, direction, sourceDirectory, read, load, master, reference);
+      profileEarMeasurements.push(repaired.measurement);
+      pending.push({ path: `masks/${direction}-ear-repair.png`, image: repaired.mask }, { path: `masks/${direction}-reference-ear.png`, image: repaired.referenceMask });
+      // Compare the actual rejected v2 fit, using its old anatomy and old ownership.
+      baselineFit = blankImage(1024, 1536);
+      const priorFrame = repaired.baseline.frames[direction], priorHair = repaired.baseline.profileFit!.frames[direction];
+      const previousLayers = new Map<RenderPlane, RgbaImage>();
+      for (const [plane, input] of [['hair-rear', priorHair.rear], ['neck', priorFrame.neck], ['head', priorFrame.head], ['hair-front', priorHair.front]] as const) {
+        const image = await load(sourceDirectory, input.source, input.sourceSha256); normalize(image); previousLayers.set(plane, image);
+      }
+      for (const plane of DIRECTION_PLANE_ORDER[direction]) { const image = previousLayers.get(plane); if (image) drawRgba(baselineFit, image, 0, 0); }
+    }
     const layers = new Map<RenderPlane, RgbaImage>();
     for (const part of ['head', 'neck'] as const) {
       const artwork = frame[part], image = await load(sourceDirectory, artwork.source, artwork.sourceSha256), mask = await load(sourceDirectory, artwork.selection.source, artwork.selection.sourceSha256);
@@ -110,8 +133,8 @@ export async function prepareHeadReview(options: HeadReviewOptions) {
       layers.set(part === 'rear' ? 'hair-rear' : 'hair-front', image);
       hairMeasurements.push({ direction, part, sourceSha256: artwork.sourceSha256, cleanedSha256 });
     }
-    if (direction === 'S' && draft.fringeFit) {
-      const correction = draft.fringeFit;
+    if (direction === 'S' && frontBackDraft?.fringeFit) {
+      const correction = frontBackDraft.fringeFit;
       const provenance = JSON.parse((await read(sourceDirectory, correction.provenance.source, correction.provenance.sourceSha256)).toString('utf8')) as { referenceSha256?: string; sourceSha256?: string; selectionSha256?: string };
       if (provenance.referenceSha256 !== frame.referenceSha256 || provenance.sourceSha256 !== correction.front.sourceSha256 || provenance.selectionSha256 !== correction.selection.sourceSha256) throw new Error('S fringe-fit provenance does not match its native sources.');
       const front = await load(sourceDirectory, correction.front.source, correction.front.sourceSha256), mask = await load(sourceDirectory, correction.selection.source, correction.selection.sourceSha256);
@@ -148,17 +171,17 @@ export async function prepareHeadReview(options: HeadReviewOptions) {
       fringeFitMeasurement = { sourceSha256: correction.front.sourceSha256, cleanedSha256: sha256(encodePng(front)), pixelCount, rearSourceSha256: correction.rear.sourceSha256, rearCleanedSha256: sha256(encodePng(rear)), rearPixelCount, facialLandmarks };
       pending.push({ path: 'layers/S-front-fit.png', image: front }, { path: 'masks/S-front-fit.png', image: mask }, { path: 'inspection/checker/S-front-fit.png', image: checkerPreview(front, 'S') });
       pending.push({ path: 'layers/S-rear-fit.png', image: rear }, { path: 'masks/S-rear-fit.png', image: rearMask }, { path: 'inspection/checker/S-rear-fit.png', image: checkerPreview(rear, 'S') });
-      if (draft.seamRepair) {
+      if (frontBackDraft.seamRepair) {
         baselineFit = blankImage(1024, 1536);
         for (const plane of DIRECTION_PLANE_ORDER.S) { const image = layers.get(plane); if (image) drawRgba(baselineFit, image, 0, 0); }
-        const repaired = await inspectHeadFitRepair(draft, sourceDirectory, read, load, front, rear, layers.get('head')!, layers.get('neck')!, reference);
+        const repaired = await inspectHeadFitRepair(frontBackDraft, sourceDirectory, read, load, front, rear, layers.get('head')!, layers.get('neck')!, reference);
         layers.set('hair-front', repaired.front); layers.set('hair-rear', repaired.rear);
         seamRepairMeasurement = repaired.measurement;
         pending.push({ path: 'layers/S-front-repaired.png', image: repaired.front }, { path: 'layers/S-rear-repaired.png', image: repaired.rear }, { path: 'masks/S-seam-repair.png', image: repaired.mask }, { path: 'masks/S-left-ear-hair.png', image: repaired.earMask }, { path: 'masks/S-neck-hair.png', image: repaired.neckMask });
       }
     }
-    if (direction === 'S' && draft.coherentFit) {
-      const coherent = await inspectCoherentHeadFit(draft, sourceDirectory, read, load, layers.get('head')!);
+    if (direction === 'S' && frontBackDraft?.coherentFit) {
+      const coherent = await inspectCoherentHeadFit(frontBackDraft, sourceDirectory, read, load, layers.get('head')!);
       layers.set('hair-front', coherent.front); layers.set('hair-rear', coherent.rear);
       coherentFitMeasurement = coherent.measurement;
       pending.push({ path: 'layers/S-front-coherent.png', image: coherent.front }, { path: 'layers/S-rear-coherent.png', image: coherent.rear }, { path: 'master/S-hair-coherent.png', image: coherent.master }, { path: 'masks/S-front-coherent.png', image: coherent.frontMask }, { path: 'masks/S-rear-coherent.png', image: coherent.rearMask });
@@ -166,8 +189,26 @@ export async function prepareHeadReview(options: HeadReviewOptions) {
       for (const [column, image] of [coherent.front, coherent.rear, coherent.master].entries()) drawRgba(partition, checkerPreview(crop(image), 'S'), column * 384, 0);
       pending.push({ path: 'inspection/S-coherent-partition.png', image: partition });
     }
+    if ((direction === 'E' || direction === 'W') && profileDraft?.profileFit) {
+      if (!baselineFit) {
+        baselineFit = blankImage(1024, 1536);
+        for (const plane of DIRECTION_PLANE_ORDER[direction]) { const image = layers.get(plane); if (image) drawRgba(baselineFit, image, 0, 0); }
+      }
+      const coherent = await inspectProfileHeadFit(profileDraft, direction, sourceDirectory, read, load, layers.get('head')!);
+      layers.set('hair-front', coherent.front); layers.set('hair-rear', coherent.rear);
+      profileFitMeasurements.push({ direction, ...coherent.measurement });
+      pending.push({ path: `layers/${direction}-front-coherent.png`, image: coherent.front }, { path: `layers/${direction}-rear-coherent.png`, image: coherent.rear }, { path: `master/${direction}-hair-coherent.png`, image: coherent.master }, { path: `masks/${direction}-front-coherent.png`, image: coherent.frontMask }, { path: `masks/${direction}-rear-coherent.png`, image: coherent.rearMask });
+      const partition = blankImage(1152, 440);
+      for (const [column, image] of [coherent.front, coherent.rear, coherent.master].entries()) drawRgba(partition, checkerPreview(crop(image), direction), column * 384, 0);
+      pending.push({ path: `inspection/${direction}-coherent-partition.png`, image: partition });
+    }
     const fit = blankImage(1024, 1536);
     for (const plane of DIRECTION_PLANE_ORDER[direction]) { const image = layers.get(plane); if (image) drawRgba(fit, image, 0, 0); }
+    if ((direction === 'E' || direction === 'W') && profileDraft?.earRepair) {
+      const input = profileDraft.earRepair.frames[direction].referenceSelection;
+      const mask = await load(sourceDirectory, input.source, input.sourceSha256);
+      for (let i = 0; i < mask.data.length; i += 4) if (mask.data[i + 3] === 255 && fit.data.subarray(i, i + 4).some((v, c) => v !== reference.data[i + c])) throw new Error(`${direction}: assembled visible ear must match reference RGBA at native coordinates.`);
+    }
     // Report actual head-pixel occlusion, without claiming anatomical correctness.
     let headPixelsOverlappedByHair = 0, headPixelsWithoutHairOverlap = 0;
     const head = layers.get('head')!, coveringHair = layers.get(direction === 'N' ? 'hair-rear' : 'hair-front')!;
@@ -178,7 +219,7 @@ export async function prepareHeadReview(options: HeadReviewOptions) {
     if (baselineFit) {
       const seamComparison = blankImage(1152, 440);
       for (const [column, image] of [reference, baselineFit, fit].entries()) drawRgba(seamComparison, checkerPreview(crop(image), direction), column * 384, 0);
-      pending.push({ path: 'inspection/S-seam-comparison.png', image: seamComparison });
+      pending.push({ path: direction === 'S' ? 'inspection/S-seam-comparison.png' : `inspection/${direction}-fit-comparison.png`, image: seamComparison });
     }
     for (const [column, image] of [reference, master, fit].entries()) {
       drawRgba(comparison, checkerPreview(crop(image), direction), column * 384, 0);
@@ -188,7 +229,7 @@ export async function prepareHeadReview(options: HeadReviewOptions) {
     pending.push({ path: `inspection/head-comparison/${direction}.png`, image: comparison }, { path: `inspection/full-comparison/${direction}.png`, image: full });
   }
   pending.push({ path: 'overview.png', image: closeups }, { path: 'full-overview.png', image: overview(fullContact) });
-  const report = { schemaVersion: 1, id: draft.id, assetVersion: draft.assetVersion, configSource, target: draft.target, status: draft.status, sourcePose: draft.sourcePose, intendedRuntimePose: draft.intendedRuntimePose, rigCompatibility: draft.rigCompatibility, anatomyApproved: false, paletteReady: false, published: false, featurePolicy: draft.featurePolicy, earPolicy: draft.earPolicy, minimumVisibleAlpha: draft.minimumVisibleAlpha, configSha256: sha256(configBytes), supportedReviewDirections: ['S', 'N'], missingDirections: DIRECTIONS.filter((d) => d !== 'S' && d !== 'N'), knownReviewIssues: draft.knownReviewIssues, measurements, masters, hairMeasurements, fringeFitMeasurement, seamRepairMeasurement, coherentFitMeasurement, fitMeasurements, masterReconstruction: 'exact-normalized-head-neck-partition', previewColumns: ['reference', 'bare-head-neck-skin-base', (draft.fringeFit || draft.coherentFit) ? 'candidate-hair-fit+head+neck' : 'accepted-hair+head+neck'], closeupRegion: { x: 320, y: 40, width: 384, height: 440, sampling: 'native-copy' }, hiddenFacialLayers: ['eyes', 'eyebrows', 'mouth'], outputs: pending.map(({ path, image }) => ({ path, sha256: sha256(encodePng(image)) })), reviewRequired: ['New scalp/jaw/nape anatomy and ear placement', 'N has no visible face or eyes; S skin underlay has no baked eye/brow/mouth layers', 'Native head/neck/hair geometry and posterior scalp coverage', 'Independent human-ear layers and six other head facings', 'Complete body/clothing and production T-pose fit', 'Final Step6C approval before Step6D'] };
+  const report = { schemaVersion: 1, id: draft.id, assetVersion: draft.assetVersion, configSource, target: draft.target, status: draft.status, sourcePose: draft.sourcePose, intendedRuntimePose: draft.intendedRuntimePose, rigCompatibility: draft.rigCompatibility, anatomyApproved: false, paletteReady: false, published: false, featurePolicy: draft.featurePolicy, earPolicy: draft.earPolicy, minimumVisibleAlpha: draft.minimumVisibleAlpha, configSha256: sha256(configBytes), supportedReviewDirections: reviewDirections, missingDirections: DIRECTIONS.filter((d) => !new Set<Direction>(reviewDirections).has(d)), knownReviewIssues: draft.knownReviewIssues, measurements, masters, hairMeasurements, fringeFitMeasurement, seamRepairMeasurement, coherentFitMeasurement, ...(profileFitMeasurements.length ? { profileFitMeasurements } : {}), ...(profileEarMeasurements.length ? { profileEarMeasurements } : {}), fitMeasurements, masterReconstruction: 'exact-normalized-head-neck-partition', previewColumns: ['reference', 'bare-head-neck-skin-base', (draft.fringeFit || draft.coherentFit || profileDraft?.profileFit) ? 'candidate-hair-fit+head+neck' : 'accepted-hair+head+neck'], closeupRegion: { x: 320, y: 40, width: 384, height: 440, sampling: 'native-copy' }, hiddenFacialLayers: ['eyes', 'eyebrows', 'mouth'], outputs: pending.map(({ path, image }) => ({ path, sha256: sha256(encodePng(image)) })), reviewRequired: ['New scalp/jaw/nape anatomy and ear placement', frontBackDraft ? 'N has no visible face or eyes; S skin underlay has no baked eye/brow/mouth layers' : 'E faces right; W faces left; profile skin has no baked eye/brow/mouth layers', 'Native head/neck/hair geometry and posterior scalp coverage', 'Independent human-ear layers and remaining head facings', 'Complete body/clothing and production T-pose fit', 'Final Step6C approval before Step6D'] };
   for (const { path, image } of pending) {
     const destination = resolve(outputDirectory, path);
     for (let parent = destination; nested(outputDirectory, parent); parent = resolve(parent, '..')) {

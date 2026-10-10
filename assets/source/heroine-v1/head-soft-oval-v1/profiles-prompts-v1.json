@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "head.soft-oval.v1",
+  "target": "detailed",
+  "tool": "built-in imagegen",
+  "transparentBackground": true,
+  "selected": [
+    {
+      "direction": "E",
+      "inputs": [
+        {
+          "source": "inputs/profiles-v1/E-placement-guide.png",
+          "role": "edit target: independently traced synthetic native silhouette guide, not approved anatomy"
+        },
+        {
+          "source": "assets/staging/heroine-v1/reference-import-v1/transparent/E.png",
+          "role": "own E character and skin-style reference, not the opposite profile"
+        }
+      ],
+      "output": "E-master-v1.png",
+      "prompt": "Use case: precise-object-edit. Image1 is the EDIT TARGET: a tiny synthetic bald profile head+neck silhouette on native1024x1536 transparent canvas. KEEP ITS EXACT NATIVE OUTLINE, SIZE AND PLACEMENT. Image2 is ONLY this facing's own character/skin-style reference. Replace flat fill inside image1 with polished gently shaded anime warm peach skin, a complete concealed scalp and skull, feminine cheek/jaw, one anatomically positioned near human ear and slender neck. Preserve reference nose/chin profile identity but NO eyes, eyelids, eyelashes, eyebrows or mouth lines because these need future interchangeable facial assets. No hair, stubble, body, shoulders, clothing, accessories, text, labels, glow/haze or background. Do NOT zoom, crop, scale, translate, recenter or mirror. Keep the head tiny in the top center and all pixels belowy330 empty. Native transparent1024x1536, genuine alpha, matching the guide geometry. Guide is framing only; render authored skin anatomy, not flat placeholder. STRICT E profile faces screen-RIGHT. Near ear aroundx524y201. Skull envelopex485..625 y74..234; nose tipx627y202; chinx596y249; neck ends at y310, lowerneck x506..578. Do not expose far ear or add a second nose. Keep original asymmetric E anatomy; do not derive from W."
+    },
+    {
+      "direction": "W",
+      "inputs": [
+        {
+          "source": "inputs/profiles-v1/W-placement-guide.png",
+          "role": "edit target: independently traced synthetic native silhouette guide, not approved anatomy"
+        },
+        {
+          "source": "assets/staging/heroine-v1/reference-import-v1/transparent/W.png",
+          "role": "own W character and skin-style reference, not the opposite profile"
+        }
+      ],
+      "output": "W-master-v1.png",
+      "prompt": "Use case: precise-object-edit. Image1 is the EDIT TARGET: a tiny synthetic bald profile head+neck silhouette on native1024x1536 transparent canvas. KEEP ITS EXACT NATIVE OUTLINE, SIZE AND PLACEMENT. Image2 is ONLY this facing's own character/skin-style reference. Replace flat fill inside image1 with polished gently shaded anime warm peach skin, a complete concealed scalp and skull, feminine cheek/jaw, one anatomically positioned near human ear and slender neck. Preserve reference nose/chin profile identity but NO eyes, eyelids, eyelashes, eyebrows or mouth lines because these need future interchangeable facial assets. No hair, stubble, body, shoulders, clothing, accessories, text, labels, glow/haze or background. Do NOT zoom, crop, scale, translate, recenter or mirror. Keep the head tiny in the top center and all pixels belowy330 empty. Native transparent1024x1536, genuine alpha, matching the guide geometry. Guide is framing only; render authored skin anatomy, not flat placeholder. STRICT W profile faces screen-LEFT. Near ear aroundx497y201. Skull envelopex392..530 y85..237; nose tipx380y209; chinx403y254; neck ends y317, lowerneck x429..503. Do not expose far ear or add a second nose. Keep original asymmetric W anatomy; do not derive from E."
+    }
+  ],
+  "postprocessing": "Independent native 1024x1536 masters partitioned into head and neck at E y268 and W y270. Alpha below8 cleared, no geometry transforms or reflection; raw source alpha is preserved. Apparent background/glow is zero-alpha RGB, not visible haze. Approved profile hair is unchanged; fit requires human review."
+}

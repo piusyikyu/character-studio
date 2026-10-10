@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "status": "rejected-not-selected",
+  "tool": "image_gen.imagegen",
+  "mode": "builtin",
+  "reason": "Both generated whole-hair studies changed native head/neck framing; E enlarged/shifted the anatomy markedly. Neither is selected, partitioned, composited or retained as a repository image. No profile fit v2 exists.",
+  "attempts": [
+    {
+      "direction": "E",
+      "prompt": "Use case: precise-object-edit. Image1 is the EDIT TARGET: the independently authored E bald head+neck, tiny at the top of native1024x1536 transparent canvas. Image2 is ONLY its own E character HAIRSTYLE reference. Add one complete coherent long silver-lilac wavy hairstyle around image1, while preserving image1's exact head/ear/nose/jaw/neck size, native coordinates and skin pixels. Keep blank skin with NO eyes, eyelids, lashes, brows or mouth lines. E faces screen-RIGHT. Nose tipx627y202, chinx596y249, future near-eye centrex594y180 must remain exposed skin. Full concealed bald skull x476..629 y71..250, near ear aroundx535y180, neck ends y310. Entire crown must COVER the tiny original bald scalp without protruding skin. Hairstyle like image2: side-swept crown fringe and ahoge, continuous outlined temple roots and short curled face-framing locks, flowing luminous silver-lilac hair drapes and curls predominantly screen-left, ending aroundy870. Keep the near ear visible with side-lock BEHIND the ear and fringe IN FRONT; keep nose and cheek/profile silhouette readable. Hair should form one continuous drawing, with genuine open transparent holes between curled locks/drapes. NO squared joins, pasted pieces, cropped cheek, duplicated hair, hair covering nose or future eye centre, skin-contaminated curls, body/clothes/accessories/text/backdrop/glow/haze. Whole1024x1536 genuine transparency, tiny head at its existing top coordinates and all pixels belowy950 empty. NO zoom, enlargement, translation, rescaling, cropping, re-centering or reflection. New hidden connecting roots and drapes are authored continuously, not cloned from another facing. Retain exact image1 skin anatomy under hair; this shared native study is for manually partitioned front/rear hair around the unchanged anatomy.",
+      "inputRoles": [
+        {
+          "source": "E-master-v1.png",
+          "role": "exact native bald anatomy edit target"
+        },
+        {
+          "source": "../../../staging/heroine-v1/reference-import-v1/transparent/E.png",
+          "role": "independent same-facing hairstyle reference"
+        }
+      ],
+      "transparentBackground": true,
+      "generatedOutput": "Generated images are saved to /home/piusyikyu/.codex/generated_images/01a1212b-c584-7652-834d-600dca1e3a5c as /home/piusyikyu/.codex/generated_images/01a1212b-c584-7652-834d-600dca1e3a5c/exec-cd18d375-c8af-43fa-8d59-ff764b9ad28d.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+    },
+    {
+      "direction": "W",
+      "prompt": "Use case: precise-object-edit. Image1 is the EDIT TARGET: the independently authored W bald head+neck, tiny at the top of native1024x1536 transparent canvas. Image2 is ONLY its own W character HAIRSTYLE reference. Add one complete coherent long silver-lilac wavy hairstyle around image1, while preserving image1's exact head/ear/nose/jaw/neck size, native coordinates and skin pixels. Keep blank skin with NO eyes, eyelids, lashes, brows or mouth lines. W faces screen-LEFT. Nose tipx380y209, chinx403y254, future near-eye centrex414y186 must remain exposed skin. Full bald skull x379..533 y85..255, near ear aroundx485y188, neck ends y316. Entire crown must COVER the tiny original bald scalp without protruding skin. Hairstyle like image2: side-swept crown fringe and ahoge, continuous outlined temple roots and short curled face-framing locks, flowing luminous silver-lilac hair drapes and curls predominantly screen-right, ending aroundy870. Keep the near ear visible with side-lock BEHIND the ear and fringe IN FRONT; keep nose and cheek/profile silhouette readable. Hair should form one continuous drawing, with genuine open transparent holes between curled locks/drapes. NO squared joins, pasted pieces, cropped cheek, duplicated hair, hair covering nose or future eye centre, skin-contaminated curls, body/clothes/accessories/text/backdrop/glow/haze. Whole1024x1536 genuine transparency, tiny head at its existing top coordinates and all pixels belowy950 empty. NO zoom, enlargement, translation, rescaling, cropping, re-centering or reflection. New hidden connecting roots and drapes are authored continuously, not cloned from another facing. Retain exact image1 skin anatomy under hair; this shared native study is for manually partitioned front/rear hair around the unchanged anatomy.",
+      "inputRoles": [
+        {
+          "source": "W-master-v1.png",
+          "role": "exact native bald anatomy edit target"
+        },
+        {
+          "source": "../../../staging/heroine-v1/reference-import-v1/transparent/W.png",
+          "role": "independent same-facing hairstyle reference"
+        }
+      ],
+      "transparentBackground": true,
+      "generatedOutput": "Generated images are saved to /home/piusyikyu/.codex/generated_images/01a1212b-c584-7652-834d-600dca1e3a5c as /home/piusyikyu/.codex/generated_images/01a1212b-c584-7652-834d-600dca1e3a5c/exec-38aad543-a27b-47be-9ecf-a5e7b356013f.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+    }
+  ]
+}

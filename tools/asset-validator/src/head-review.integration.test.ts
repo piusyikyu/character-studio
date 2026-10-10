@@ -7,7 +7,7 @@ import { expect, it } from 'vitest';
 import { blankImage, decodePng, drawRgba, encodePng } from '@character-studio/render-utils';
 import { DIRECTION_PLANE_ORDER } from '@character-studio/core';
 import { prepareHeadReview } from './head-review';
-import { headReviewSchema } from './head-review-schema';
+import { headProfilesReviewSchema, headReviewSchema } from './head-review-schema';
 import { matteReference } from './matte';
 import { referenceImportSettingsSchema } from './schema';
 import { sha256 } from './reference-import';
@@ -183,6 +183,168 @@ it('reviews authored S/N anatomy with exact partitions, approved hair, native de
     coherentDraft.coherentFit!.front.sourceSha256 = sha256(coherentBytes);
     await writeFile(resolve(copy, 'authoring-v5.json'), JSON.stringify(coherentDraft));
     await expect(prepareHeadReview({ ...coherentOptions, sourceDirectory: copy, outputDirectory: resolve(temporary, 'forged-coherent-fit') })).rejects.toThrow('exact disjoint native partition');
+    for (const item of before) { expect(sha256(await readFile(item.path))).toBe(item.hash); expect((await stat(item.path)).mtimeMs).toBe(item.mtime); }
+  } finally { await rm(temporary, { recursive: true, force: true }); }
+}, 180_000);
+
+it('reviews independent E/W anatomy, native reference ear fit, historical defects and immutable sources', async () => {
+  const temporary = await mkdtemp(resolve(tmpdir(), 'character-profile-head-review-'));
+  try {
+    const referenceDirectory = resolve(temporary, 'references'); await mkdir(referenceDirectory);
+    const settings = referenceImportSettingsSchema.parse(JSON.parse(await readFile(resolve(repository, 'assets/references/heroine-v1/import-v1.json'), 'utf8')));
+    for (const direction of ['E', 'W'] as const) {
+      const raw = decode(await readFile(resolve(repository, `assets/references/heroine-v1/detailed/${direction}.png`)), { checkCrc: true }), image = blankImage(1024, 1536);
+      for (let p = 0; p < 1024 * 1536; p++) { image.data.set(raw.data.subarray(p * raw.channels, p * raw.channels + 3), p * 4); image.data[p * 4 + 3] = raw.channels === 4 ? raw.data[p * 4 + 3]! : 255; }
+      const frame = settings.frames[direction];
+      await writeFile(resolve(referenceDirectory, `${direction}.png`), encodePng(matteReference(image, frame.labelExclusions, settings.matte, frame.backgroundCorrections).image));
+    }
+    const before = [];
+    for (const directory of [sourceDirectory, hairDirectory]) for (const file of await readdir(directory, { recursive: true })) {
+      const path = resolve(directory, file), info = await stat(path);
+      if (info.isFile()) before.push({ path, hash: sha256(await readFile(path)), mtime: info.mtimeMs });
+    }
+    const options = { sourceDirectory, hairDirectory, referenceDirectory, outputDirectory: resolve(temporary, 'review'), configSource: 'profiles-authoring-v1.json' as const };
+    const draft = headProfilesReviewSchema.parse(JSON.parse(await readFile(resolve(sourceDirectory, options.configSource), 'utf8')));
+    const report = await prepareHeadReview(options);
+    expect(report).toMatchObject({ published: false, anatomyApproved: false, rigCompatibility: 'unverified', supportedReviewDirections: ['E', 'W'], masterReconstruction: 'exact-normalized-head-neck-partition' });
+    expect(report.measurements).toHaveLength(4);
+    expect(report.hairMeasurements).toHaveLength(4);
+    const masters = new Map<'E' | 'W', ReturnType<typeof blankImage>>();
+    for (const direction of ['E', 'W'] as const) {
+      const head = decodePng(await readFile(resolve(options.outputDirectory, `layers/${direction}-head.png`))), neck = decodePng(await readFile(resolve(options.outputDirectory, `layers/${direction}-neck.png`)));
+      const master = decodePng(await readFile(resolve(options.outputDirectory, `master/${direction}.png`))), reconstructed = blankImage(1024, 1536);
+      expect([head.width, head.height, neck.width, neck.height]).toEqual([1024, 1536, 1024, 1536]);
+      drawRgba(reconstructed, neck, 0, 0); drawRgba(reconstructed, head, 0, 0);
+      expect(sha256(reconstructed.data)).toBe(sha256(master.data)); masters.set(direction, master);
+      const layers = new Map([['head', head], ['neck', neck]]);
+      for (const part of ['rear', 'front'] as const) {
+        const measurement = report.hairMeasurements.find((m) => m.direction === direction && m.part === part)!;
+        const image = decodePng(await readFile(resolve(hairDirectory, `${direction}-${part === 'rear' ? 'rear-drape' : 'front'}.png`)));
+        for (let i = 0; i < image.data.length; i += 4) if (image.data[i + 3]! < 8) image.data.fill(0, i, i + 4);
+        expect(sha256(encodePng(image))).toBe(measurement.cleanedSha256); layers.set(`hair-${part}`, image);
+      }
+      const composition = blankImage(1024, 1536);
+      for (const plane of DIRECTION_PLANE_ORDER[direction]) { const image = layers.get(plane); if (image) drawRgba(composition, image, 0, 0); }
+      const fit = decodePng(await readFile(resolve(options.outputDirectory, `fit/${direction}.png`)));
+      expect(sha256(composition.data)).toBe(sha256(fit.data));
+      expect(sha256(encodePng(composition))).toBe(report.fitMeasurements.find((m) => m.direction === direction)!.outputSha256);
+      // These are diagnostic failures, not a claim that the existing hair fit is approved.
+      const [x, y] = direction === 'E' ? [627, 202] : [380, 209], i = (y! * 1024 + x!) * 4;
+      expect(head.data[i + 3]).toBeGreaterThan(8);
+      expect(layers.get('hair-front')!.data[i + 3]).toBeGreaterThan(8);
+      expect([...fit.data.slice(i, i + 4)]).not.toEqual([...head.data.slice(i, i + 4)]);
+    }
+    const e = masters.get('E')!, w = masters.get('W')!, mirrored = blankImage(1024, 1536);
+    for (let y = 0; y < 1536; y++) for (let x = 0; x < 1024; x++) mirrored.data.set(w.data.subarray((y * 1024 + x) * 4, (y * 1024 + x) * 4 + 4), (y * 1024 + 1023 - x) * 4);
+    expect(sha256(e.data)).not.toBe(sha256(w.data)); expect(sha256(e.data)).not.toBe(sha256(mirrored.data));
+    const correctedOptions = { ...options, configSource: 'profiles-authoring-v2.json' as const, outputDirectory: resolve(temporary, 'corrected') };
+    const corrected = await prepareHeadReview(correctedOptions);
+    expect(corrected.masters).toEqual(report.masters);
+    expect(corrected.measurements).toEqual(report.measurements);
+    expect(corrected.hairMeasurements).toEqual(report.hairMeasurements);
+    expect(corrected.profileFitMeasurements).toHaveLength(2);
+    for (const direction of ['E', 'W'] as const) {
+      const front = decodePng(await readFile(resolve(correctedOptions.outputDirectory, `layers/${direction}-front-coherent.png`))), rear = decodePng(await readFile(resolve(correctedOptions.outputDirectory, `layers/${direction}-rear-coherent.png`)));
+      const matte = decodePng(await readFile(resolve(correctedOptions.outputDirectory, `master/${direction}-hair-coherent.png`))), hair = blankImage(1024, 1536);
+      drawRgba(hair, rear, 0, 0); drawRgba(hair, front, 0, 0);
+      expect(sha256(hair.data)).toBe(sha256(matte.data));
+      const measurement = corrected.profileFitMeasurements!.find((m) => m.direction === direction)!;
+      expect(measurement.studySha256).toBe(draft.frames[direction].referenceSha256);
+      expect(measurement.posteriorEarHairOverHead).toBeGreaterThan(0);
+      const skin = blankImage(1024, 1536);
+      drawRgba(skin, rear, 0, 0);
+      drawRgba(skin, decodePng(await readFile(resolve(correctedOptions.outputDirectory, `layers/${direction}-neck.png`))), 0, 0);
+      drawRgba(skin, decodePng(await readFile(resolve(correctedOptions.outputDirectory, `layers/${direction}-head.png`))), 0, 0);
+      const skinWithoutFront = skin.data.slice(); drawRgba(skin, front, 0, 0);
+      const fit = decodePng(await readFile(resolve(correctedOptions.outputDirectory, `fit/${direction}.png`)));
+      expect(sha256(skin.data)).toBe(sha256(fit.data));
+      for (const landmark of measurement.facialLandmarks) {
+        const i = (landmark.position.y * 1024 + landmark.position.x) * 4;
+        expect(front.data[i + 3]).toBe(0); expect(rear.data[i + 3]).toBe(0);
+        expect([...fit.data.slice(i, i + 4)]).toEqual([...skinWithoutFront.slice(i, i + 4)]);
+      }
+      const [x, y] = direction === 'E' ? [558, 80] : [451, 100];
+      expect(front.data[(y! * 1024 + x!) * 4 + 3]).toBeGreaterThan(8);
+    }
+    // The size/position repair must change the actual assembled ears, not just metadata.
+    const earOptions = { ...options, configSource: 'profiles-authoring-v3.json' as const, outputDirectory: resolve(temporary, 'ear-fit') };
+    const earDraft = headProfilesReviewSchema.parse(JSON.parse(await readFile(resolve(sourceDirectory, earOptions.configSource), 'utf8')));
+    const ears = await prepareHeadReview(earOptions);
+    expect(ears.profileEarMeasurements).toHaveLength(2);
+    expect(ears.hairMeasurements).toEqual(corrected.hairMeasurements);
+    for (const direction of ['E', 'W'] as const) {
+      const reference = decodePng(await readFile(resolve(referenceDirectory, `${direction}.png`)));
+      const actual = decodePng(await readFile(resolve(earOptions.outputDirectory, `fit/${direction}.png`)));
+      const oldFit = decodePng(await readFile(resolve(correctedOptions.outputDirectory, `fit/${direction}.png`)));
+      const mask = decodePng(await readFile(resolve(earOptions.outputDirectory, `masks/${direction}-reference-ear.png`)));
+      const repairMask = decodePng(await readFile(resolve(earOptions.outputDirectory, `masks/${direction}-ear-repair.png`)));
+      const master = decodePng(await readFile(resolve(earOptions.outputDirectory, `master/${direction}.png`)));
+      const oldMaster = masters.get(direction)!;
+      const hair = decodePng(await readFile(resolve(earOptions.outputDirectory, `master/${direction}-hair-coherent.png`)));
+      const oldHair = decodePng(await readFile(resolve(correctedOptions.outputDirectory, `master/${direction}-hair-coherent.png`)));
+      const exclusions = new Set(earDraft.earRepair!.frames[direction].referenceHighlights.map(({ x, y }) => (y * 1024 + x) * 4));
+      let referencePixels = 0, changedVisibleEarPixels = 0;
+      for (let i = 0; i < mask.data.length; i += 4) {
+        if (mask.data[i + 3] === 255) {
+          referencePixels++;
+          if (actual.data.subarray(i, i + 4).some((v, c) => v !== reference.data[i + c])) throw new Error('Visible ear size and placement must match native reference pixels.');
+          if (oldFit.data.subarray(i, i + 4).some((v, c) => v !== actual.data[i + c])) changedVisibleEarPixels++;
+        }
+        if (!repairMask.data[i + 3] && master.data.subarray(i, i + 4).some((v, c) => v !== oldMaster.data[i + c])) throw new Error('Ear correction changed unrelated anatomy.');
+        if (!exclusions.has(i) && hair.data.subarray(i, i + 4).some((v, c) => v !== oldHair.data[i + c])) throw new Error('Ear correction changed unrelated hair drawing.');
+      }
+      expect(referencePixels).toBe(earDraft.earRepair!.frames[direction].referencePixelCount);
+      expect(referencePixels).toBeGreaterThan(100);
+      expect(changedVisibleEarPixels).toBeGreaterThan(50);
+      for (const [x, y] of direction === 'E' ? [[522, 183], [526, 198]] : [[491, 188], [483, 210]]) expect(mask.data[(y! * 1024 + x!) * 4 + 3]).toBe(255);
+      // Check the full native visible skin extent, beyond sparse landmarks or
+      // an incomplete hand-drawn selection (the W rim previously lost 18 pixels).
+      const [left, top, right, bottom] = direction === 'E' ? [512, 175, 532, 205] : [476, 180, 503, 220];
+      for (let y = top!; y < bottom!; y++) for (let x = left!; x < right!; x++) {
+        const i = (y * 1024 + x) * 4;
+        if (reference.data[i]! - reference.data[i + 2]! <= 18) continue;
+        expect(mask.data[i + 3]).toBe(255);
+        expect([...actual.data.slice(i, i + 4)]).toEqual([...reference.data.slice(i, i + 4)]);
+      }
+      expect(await readFile(resolve(earOptions.outputDirectory, `layers/${direction}-neck.png`))).toEqual(await readFile(resolve(correctedOptions.outputDirectory, `layers/${direction}-neck.png`)));
+      const assembled = blankImage(1024, 1536);
+      for (const layer of [`${direction}-rear-coherent`, `${direction}-neck`, `${direction}-head`, `${direction}-front-coherent`]) drawRgba(assembled, decodePng(await readFile(resolve(earOptions.outputDirectory, `layers/${layer}.png`))), 0, 0);
+      expect(sha256(assembled.data)).toBe(sha256(actual.data));
+    }
+    expect(await prepareHeadReview(earOptions)).toEqual(ears);
+    for (const output of ears.outputs) expect(sha256(await readFile(resolve(earOptions.outputDirectory, output.path)))).toBe(output.sha256);
+    for (const output of corrected.outputs) expect(sha256(await readFile(resolve(correctedOptions.outputDirectory, output.path)))).toBe(output.sha256);
+    for (const output of report.outputs) expect(sha256(await readFile(resolve(options.outputDirectory, output.path)))).toBe(output.sha256);
+    const copy = resolve(temporary, 'forged-source'); await cp(sourceDirectory, copy, { recursive: true });
+    const path = resolve(copy, draft.frames.E.head.source), forged = decodePng(await readFile(path));
+    const pixel = forged.data.findIndex((v, i) => i % 4 === 3 && v >= 8) - 3;
+    forged.data[pixel] = (forged.data[pixel]! + 1) % 256;
+    const bytes = encodePng(forged); await writeFile(path, bytes); draft.frames.E.head.sourceSha256 = sha256(bytes);
+    await writeFile(resolve(copy, options.configSource), JSON.stringify(draft));
+    await expect(prepareHeadReview({ ...options, sourceDirectory: copy, outputDirectory: resolve(temporary, 'rejected') })).rejects.toThrow('preserve its own master pixels exactly');
+    await writeFile(path, await readFile(resolve(sourceDirectory, draft.frames.E.head.source)));
+    await writeFile(resolve(copy, options.configSource), await readFile(resolve(sourceDirectory, options.configSource)));
+    const fitDraft = headProfilesReviewSchema.parse(JSON.parse(await readFile(resolve(copy, correctedOptions.configSource), 'utf8')));
+    const fitSource = resolve(copy, fitDraft.profileFit!.frames.E.front.source), changedHair = decodePng(await readFile(fitSource));
+    const hairPixel = changedHair.data.findIndex((v, i) => i % 4 === 3 && v >= 8) - 3;
+    changedHair.data[hairPixel] = (changedHair.data[hairPixel]! + 1) % 256;
+    const hairBytes = encodePng(changedHair); await writeFile(fitSource, hairBytes);
+    fitDraft.profileFit!.frames.E.front.sourceSha256 = sha256(hairBytes);
+    await writeFile(resolve(copy, correctedOptions.configSource), JSON.stringify(fitDraft));
+    await expect(prepareHeadReview({ ...correctedOptions, sourceDirectory: copy, outputDirectory: resolve(temporary, 'forged-fit') })).rejects.toThrow('exact disjoint native partition');
+    await writeFile(fitSource, await readFile(resolve(sourceDirectory, fitDraft.profileFit!.frames.E.front.source)));
+    await writeFile(resolve(copy, correctedOptions.configSource), await readFile(resolve(sourceDirectory, correctedOptions.configSource)));
+    // Re-pin both master and head after an unrelated edit: even a coherent forged
+    // partition must fail the local ear source-preservation boundary.
+    for (const part of ['master', 'head'] as const) {
+      const input = earDraft.frames.E[part], image = decodePng(await readFile(resolve(copy, input.source)));
+      const i = (145 * 1024 + 585) * 4;
+      expect(image.data[i + 3]).toBeGreaterThan(8);
+      image.data[i] = (image.data[i]! + 1) % 256;
+      const bytes = encodePng(image); await writeFile(resolve(copy, input.source), bytes); input.sourceSha256 = sha256(bytes);
+    }
+    await writeFile(resolve(copy, earOptions.configSource), JSON.stringify(earDraft));
+    await expect(prepareHeadReview({ ...earOptions, sourceDirectory: copy, outputDirectory: resolve(temporary, 'forged-ear') })).rejects.toThrow('all anatomy outside its local mask');
     for (const item of before) { expect(sha256(await readFile(item.path))).toBe(item.hash); expect((await stat(item.path)).mtimeMs).toBe(item.mtime); }
   } finally { await rm(temporary, { recursive: true, force: true }); }
 }, 180_000);

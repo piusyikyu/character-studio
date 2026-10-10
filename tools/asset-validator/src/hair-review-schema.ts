@@ -91,3 +91,4 @@ export const hairReviewSchema = z.strictObject({
   }
 });
 export type HairReviewDraft = z.infer<typeof hairReviewSchema>;
+export type HairReviewFrame = z.infer<typeof frame>;
