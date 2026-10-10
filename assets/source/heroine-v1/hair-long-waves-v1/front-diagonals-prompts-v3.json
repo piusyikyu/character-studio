@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "authoringMethod": "imagegen-study/manual-mask-partition",
+  "decision": "User explicitly selected manually drawn masks after independently regenerated parts drifted in size.",
+  "phases": [
+    {
+      "phase": "v3MasterRequests",
+      "requests": [
+        {
+          "direction": "SE",
+          "prompt": "Use case: precise-object-edit. Edit the ONE attached SE character reference. Produce a coherent HEAD-AND-HAIR authoring master, not separated parts. Keep the existing head, face, pale skin, purple eyes, hairstyle and all visible curls at their original size, perspective and native position on the SAME 1024x1536 transparent canvas. The face remains three-quarter FRONT facing SCREEN RIGHT. Remove the dress, arms, gloves, torso, legs, feet, accessories and all clothing entirely. Keep only the original head and a short neck ending near the original collarbone. Reconstruct continuous hidden silver-lilac long hair where the removed body previously occluded it, with strands growing from the SAME correctly rotated scalp as the original head. Preserve the original visible outer hair silhouette, sweep, curl scale, ahoge and asymmetrical near/far fringe. The long hair drape sweeps down SCREEN LEFT behind the original screen-left shoulder; the screen-right drape is much narrower and lies farther behind the head. It MUST read as this same SE quarter-front hairstyle, not a symmetric back-view wig with a front cap glued onto it. Preserve visible source hair design rather than inventing evenly spaced generic curls. Maintain original native scale: loop near x585,y30, head/chin near x565,y240, collarbone near y290, major drape outer-left near x195, terminal curl near y835. The lower canvas below y860 stays completely empty. DO NOT zoom, enlarge, recenter, rotate or mirror. One continuous hairstyle around the retained head, no seam or disjoint collar behind the neck. Output head, short neck and COMPLETE continuous hairstyle only, transparent alpha. No separate front/rear panels, no body or clothing, no labels, text, grid, checkerboard, backdrop, cast shadow or glow."
+        },
+        {
+          "direction": "SW",
+          "prompt": "Use case: precise-object-edit. Edit the ONE attached SW character reference. Produce a coherent HEAD-AND-HAIR authoring master, not separated parts. Preserve the reference head, face, pale skin, purple eyes, hairstyle and visible curls at their original native size, perspective and position on the SAME 1024x1536 transparent canvas. Face is three-quarter FRONT facing SCREEN LEFT. Remove all dress, torso, shoulders, arms, gloves, legs, feet, accessories and clothing. Retain original head and short neck to around the original collarbone. Author the previously occluded hidden hair surfaces as one continuous volume growing from this SAME rotated scalp. The main long silver-lilac hair flows predominantly down SCREEN RIGHT, behind the near-side ear and original screen-right shoulder. The far-side screen-left drape is foreshortened and narrow. Preserve original asymmetric bangs, ahoge, ear exposure, curl ribbon rhythm and visible hair contour, not a generic symmetrical full-back wig. Original hair coordinates remain: loop near x425,y30, crown near x455,y90, face/chin near x450,y260, short front curls end near y345, broad long drape spans toward x850 and finishes near y825. Keep the bottom canvas below y850 empty. No zoom, recentering, mirroring of SE, resizing or rotation. One coherent whole hairstyle around the retained reference head, no upper-root cut or mismatched cap. Output ONLY original-size head, short neck and complete hair on true alpha transparency. No body, shoulders, outfit, accessories, labels, text, grids, checkerboard, solid backdrop, shadow or glow. Use only this SW reference, not assets from any other facing."
+        }
+      ]
+    },
+    {
+      "phase": "v3MasterFitRequests",
+      "requests": [
+        {
+          "direction": "SE",
+          "prompt": "Use case: precise-object-edit. Image 1 is EDIT TARGET: coherent SE head-and-hair study, but it is MUCH TOO LARGE on its canvas. Image 2 is the SAME SE original character, for SIZE AND POSITION only. REDRAW ALL of image1 at approximately55% of its CURRENT width and height, retaining its coherent three-quarter screen-right geometry. Keep output canvas1024x1536 unchanged; the canvas does NOT shrink. Place the SMALLER head and hair at the ORIGINAL head/hair position fromimage2. Current study fills almostfullcanvas; corrected study occupies only the UPPER HALF, bottom y835, with entire lowerhalf empty. Put loop near(585,30), crown near(565,80), eyes near(550,175), chin near(565,245); long drape dominantly LEFT, roughly x200..700,y200..835. You must visibly SHRINK the whole subject, do not zoom it or fill the frame. Maintain direction, head/neck, continuous silver-lilac waves and near/far locks; remove any residual shoulders. No other character or clothing, no labels/background/glow, TRUE TRANSPARENT. This is one native-size master, not layered pieces or multiple panels.",
+          "paths": [
+            "/tmp/SE-master-v3-clean.png",
+            "/home/piusyikyu/projects/character-studio/assets/staging/heroine-v1/reference-import-v1/transparent/SE.png"
+          ]
+        },
+        {
+          "direction": "SW",
+          "prompt": "Use case: precise-object-edit. Image 1 is EDIT TARGET: coherent SW head-and-hair study, but it is MUCH TOO LARGE on its canvas. Image 2 is the SAME SW original character, for SIZE AND POSITION only. REDRAW ALL of image1 at approximately55% of its CURRENT width and height, retaining coherent three-quarter screen-left geometry. Outputcanvas1024x1536 unchanged; the canvas does NOT shrink. Place SMALLER head and hair at ORIGINAL head/hair position fromimage2. Currentstudyfillsalmostfullcanvas; corrected study occupies onlyUPPERHALF, bottomy825, with entirelowerhalfempty. Put loopnear(425,30), crownnear(455,85), eyesnear(455,185), chinnear(450,260); longdrapedominantlyRIGHT, roughlyx330..850,y200..825. Visibly SHRINK whole subject, do NOT zoom or fill frame. Keep direction, head, shortneck, connected silver-lilacwaves andnear/farlocks; remove residualshoulders. No othercharacter/clothing/labels/background/glow, TRUE TRANSPARENT. One native-size whole-facingmaster, not separatedpanels.",
+          "paths": [
+            "/tmp/SW-master-v3-clean.png",
+            "/home/piusyikyu/projects/character-studio/assets/staging/heroine-v1/reference-import-v1/transparent/SW.png"
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "v3InPlaceRequests",
+      "requests": [
+        {
+          "direction": "SE",
+          "prompt": "Use case: precise-object-edit. Edit this SE source image IN PLACE. ERASE the dress, torso, arms, gloves, legs and feet. Keep the existing head, short neck and silver-lilac hair UNCHANGED, at the EXACT same native scale and pixel positions as in this image. Keep gaps where the erased body occluded the hair; do not reconstruct hidden hair in this pass. Preserve the original canvas 1024x1536 and all empty margins. Do not zoom, recenter, enlarge, rotate, mirror, redesign or redraw the retained head and hair. The result has the original small head near the top and original hair ending around y830; the entire lower canvas becomes EMPTY transparent. Only erase the body/clothes, retain the original head/hair. True transparent background. No new text, labels, objects, shadows or glow."
+        },
+        {
+          "direction": "SW",
+          "prompt": "Use case: precise-object-edit. Edit this SW source image IN PLACE. ERASE the dress, torso, arms, gloves, legs and feet. Keep the existing head, short neck and silver-lilac hair UNCHANGED, at the EXACT same native scale and pixel positions as in this image. Keep gaps where the erased body occluded the hair; do not reconstruct hidden hair in this pass. Preserve the original canvas 1024x1536 and all empty margins. Do not zoom, recenter, enlarge, rotate, mirror, redesign or redraw the retained head and hair. The result has the original small head near the top and original hair ending around y830; the entire lower canvas becomes EMPTY transparent. Only erase the body/clothes, retain the original head/hair. True transparent background. No new text, labels, objects, shadows or glow."
+        }
+      ]
+    },
+    {
+      "phase": "v3SESplitRequests",
+      "requests": [
+        {
+          "name": "SE-front-v3",
+          "paths": [
+            "/tmp/SE-in-place-v3-clean.png"
+          ],
+          "prompt": "Use case: precise-object-edit. EDIT THIS IMAGE IN PLACE, keep its1024x1536canvas. ERASE the face, head skin, neck and all LONG rear hair. KEEP ONLY the existing FRONT CAP, loop ahoge, asymmetric fringe/bangs and SHORT face-framing curls, unchanged in size and native position. The existing cap starts nearx420,y50 and endsaroundx650,y230, shortlocks endnear y335. Don't redraw or move the retained frontcap/locks; don't invent new curls. Erase all long drape below the short curls and behind the head. Output a TRANSPARENT native front hair layer at originalcoordinates. No skin, eyes, ears, face outlines, neck orbody, no rearhair, no labelsbackgroundglow. Do not zoom, enlarge, centre or mirror. Mostcanvasremains completelyempty."
+        },
+        {
+          "name": "SE-rear-v3",
+          "paths": [
+            "/tmp/SE-in-place-v3-clean.png"
+          ],
+          "prompt": "Use case: precise-object-edit. EDIT THIS IMAGE IN PLACE at same1024x1536canvas. KEEP the existing LONG rear silver-lilac hair drape exactly at its current native size and position, terminal y868, dominant sweep towardSCREEN LEFT. ERASE the head/skin/eyes/neck, FRONTcap includingloopahoge, bangs and BOTH SHORTface-framing locks. Keep the direction-specific long rear hair with its existing left-swept outer silhouette, NOT a symmetric full-back wig. Complete only the small hidden roots underneath where cap/head were erased, flowing continuously from behind head nearx520,y145 into existingdrape nearx460,y260. Upperroots should be concealed by originalcap and head on reassembly; no flat cuts, head-shaped hole, duplicate crown, ahoge, eyes or shortfringe. No redesign of lower curls; preserve existingcontour andlength. Truealpha transparent, no body/clothing/labels/grid/backdrop/glow. Do notzoom, resize, recenter, rotate or mirror. Bottomcanvasbelow y880remainsempty."
+        },
+        {
+          "name": "SE-head-v3",
+          "paths": [
+            "/tmp/SE-in-place-v3-clean.png"
+          ],
+          "prompt": "Use case: precise-object-edit. EDIT THIS IMAGE IN PLACE on the original1024x1536canvas. ERASE ALL HAIR. Retain the existing small adult female SE face, ear and shortneck at EXACTLY their current native size and coordinates. Reconstruct only the bald scalp previouslyhiddenbyhair so the samehead can be drawn behind its ORIGINAL cap. Face three-quarter FRONT towardSCREEN RIGHT, existingeyes aroundy175 andchin aroundy240. Skull remains aroundx480..630,y65..240; shortneckendsnear y285. Output ONLY this SMALL baldheadandneck at originalposition, restofcanvasemptytransparent. NO HAIR, no eyebrowsmadeofhairstrands, no shouldersbodyclothingaccessories, no labelsglowbackground. Do notzoom, enlarge, recenter, rescale or changefacing. This is unapproved reviewhead evidence, not approvedproduction anatomy."
+        },
+        {
+          "name": "SW-master-complete-v3",
+          "paths": [
+            "/tmp/SW-in-place-v3-clean.png"
+          ],
+          "prompt": "Use case: precise-object-edit. Edit IN PLACE. Keep every existing head, face, cap, ahoge, shortlocks and outerlonghair contour at the same native size and position on1024x1536canvas. Complete the hidden REARHAIR only inside the body-shaped transparent gap belowthe neck, approximatelyx395..565,y300..680. Fill that erasedtorso void with flowing silver-lilac rearstrands connected to the SAME SW scalp, foreshortened onSCREEN LEFT and flowinginto dominantSCREEN-RIGHT drape. Avoid a torso-shaped cutout or symmetricback-viewwig. Preserve originalthree-quarterfront head towardSCREEN LEFT, scalp neary90, eyesneary185, chin260, lowerhairtip828. Do notchangeexisting outercurls or theirscale, keepallhairwithinx330..860 andy24..835. No facechange, no newbody/skin/shoulders/clothing, no textgridbackgroundglow. Truealpha transparency. Do NOTzoom, recenter, resize or mirror; only addthe occludedrearhairinside the gap."
+        }
+      ]
+    },
+    {
+      "phase": "v3RemainingRequests",
+      "requests": [
+        {
+          "name": "SE-front-fit-v3",
+          "paths": [
+            "/tmp/SE-front-v3-clean.png",
+            "/tmp/SE-in-place-v3-clean.png"
+          ],
+          "prompt": "Use case: precise-object-edit. Image1 is edit target FRONT HAIR ONLY; image2 is its SAME SE master for exact size. Target front piece is enlarged relative to master. Redraw it approximately25% SMALLER, fitting image2's cap and shortlocks at original nativecoordinates. Preserve the same asymmetric SE cap, fringe, ahoge, curls, NOT image1's oversized dimensions. Cap must be within x408..655,y45..240; loop near(585,30); shortlocks end near y335, NOT432. Keep head opening aroundx520..610,y150..245. Output ONLY corrected SMALL front hair on unchanged1024x1536 transparentcanvas. No rearhair, head, face, skin, eyes, shouldersbody orclothing. No zoom, recentering, mirroring or backdrop. Put emptyspace belowy350. Image2 alignment guide, NEVERcopyitslongdrape orface."
+        },
+        {
+          "name": "SE-head-fit-v3",
+          "paths": [
+            "/tmp/SE-head-v3-clean.png",
+            "/tmp/SE-in-place-v3-clean.png"
+          ],
+          "prompt": "Use case: precise-object-edit. Image1 is edit target BALD SE reviewhead only. Image2 is its same SE head-and-hair master, position/scale guide. The targethead is oversized. REDRAW it about25% SMALLER to match MASTER's face size and location, retaining purpleeyes and same three-quarterSCREEN-RIGHT facing. Native1024x1536canvas stays unchanged. Match master's eyes near(550,175) and chin near(565,240); shortneck ends aroundy285, NOT347. Bald skull roughlyx475..625 y65..245, one small head. Leave remaining canvasemptytransparent. Nohair, frontfringe, cap, torso, shouldersclothing, backgroundglow orlabels. Do notzoom orcenterhead inwholecanvas. The master'sface remains guidance, thisheadunapprovedreviewart."
+        },
+        {
+          "name": "SW-front-v3",
+          "paths": [
+            "/tmp/SW-master-complete-v3-clean.png"
+          ],
+          "prompt": "Use case: precise-object-edit. Edit IN PLACE. ERASE ONLY the face/skin/ear/neck and ALL LONG REAR HAIR. Retain the EXISTING small SW front cap, ahoge, bangs and the TWO short cheek/collarbone curls exactly where they are in this master. Do not redraw larger or extend them. Retained cap occupies roughlyx340..597 y55..245, loopx425 y24, shortlocks endaroundy350. Keep skull/face opening x410..520 y150..260. Do not copy long far-side strands from the rear mass as extra frontlocks. Output ONLY the SAME small front hair at original nativecoordinates on1024x1536canvas, genuinealpha. Belowy360all empty. No head skin orface, no longrearhair, no clothinglabelsbackgroundglow. NOresize, zoom, recenter, rotation, mirror orstylechange."
+        },
+        {
+          "name": "SW-rear-v3",
+          "paths": [
+            "/tmp/SW-master-complete-v3-clean.png"
+          ],
+          "prompt": "Use case: precise-object-edit. Edit IN PLACE. KEEP the EXISTING long SW rear hair at exactnative size andcoordinates, predominantly flowingdown SCREEN RIGHT to y830. ERASE the face, headskin, ear, neck, all FRONTcap/loopahoge/bangs and BOTHshort collarbone curls. Retain the master's newly completed hidden rear strands including foreshortened leftside. Only reconstruct small hidden rearroots inside the formercap/head footprint, under crown nearx475,y115 then screen-right behindear nearx535,y200. No severedhorizontal root, symmetricback wig, newgeneric curls orduplicate frontcap. Preserve lowerdrpeoutercontour x340..862 andlength y830, do notresize/recentre/zoom/mirror. Source perspective stays SW quarter-front towardSCREEN LEFT. Rear roots arelateroccluded by SAME master's head/cap. Output ONLY longrearhair native1024x1536transparent. No skin, eyes, neckbodyclothing, frontfringe, shortlocks, ahoge, labelsbackgroundglow."
+        },
+        {
+          "name": "SW-head-v3",
+          "paths": [
+            "/tmp/SW-master-complete-v3-clean.png"
+          ],
+          "prompt": "Use case: precise-object-edit. Edit IN PLACE. ERASE ALL HAIR while keeping the SAME SMALL SW face, visibleear and shortneck at ORIGINAL nativecoordinates. Reconstruct ONLY baldscalp hidden under originalcap. Face three-quarterfront towardSCREEN LEFT, purpleeyes near(455,185), chin around(450,260), shortneck ending near y300. Bald skull approximatelyx365..540 y75..260. This is a SMALL unapprovedreviewhead, not a closeup. Output ONLY thatbaldheadandneck on1024x1536canvas, entire restemptytransparent. No hair/strands/stubble, no shouldersbodyclothing, no eyesrelocation, nozoom, resize, recenter, mirror, labelsbackgroundglow."
+        }
+      ]
+    }
+  ],
+  "selectedMasters": {
+    "SE": {
+      "raw": "inputs/front-diagonals-v3/SE-master-raw.png",
+      "normalized": "SE-master-v3.png",
+      "request": "v3InPlaceRequests/SE",
+      "reference": "assets/staging/heroine-v1/reference-import-v1/transparent/SE.png"
+    },
+    "SW": {
+      "raw": "inputs/front-diagonals-v3/SW-master-raw.png",
+      "normalized": "SW-master-v3.png",
+      "request": "v3SESplitRequests/SW-master-complete-v3",
+      "reference": "assets/staging/heroine-v1/reference-import-v1/transparent/SW.png",
+      "priorStudy": "v3InPlaceRequests/SW",
+      "preservedIntermediate": [
+        {
+          "source": "inputs/front-diagonals-v3/SW-in-place-raw.png",
+          "sha256": "6f5a1bfed4a76ec71b80528092a0aed00cb10a881626d96af7070c5f4bf4eefc"
+        },
+        {
+          "source": "inputs/front-diagonals-v3/SW-in-place-normalized.png",
+          "sha256": "754af8e6f066e266b2fcff0f97b2a991fc20afdc1ed0427ec2489c42b6604bdf"
+        }
+      ]
+    }
+  },
+  "rejected": "All initial oversized whole studies, targeted scale adjustments and separately regenerated front/rear/head candidates are unselected. Final layers come only from masked pixels of each selected facing-specific master.",
+  "maskRecord": "inputs/front-diagonals-v3/partition-v3.json",
+  "maskReproduction": "node assets/source/heroine-v1/hair-long-waves-v1/inputs/front-diagonals-v3/partition.js (from repository root; regenerates unapproved v3 source candidates; regenerate config hashes if masks change).",
+  "limitations": "Partition reconstructs visible study pixels exactly. Complete hidden roots and independently authored head/body fit remain pending."
+}

@@ -1,0 +1,205 @@
+{
+  "schemaVersion": 1,
+  "id": "hair.long-waves.v1",
+  "assetVersion": 1,
+  "status": "draft-needs-human-review",
+  "target": "detailed",
+  "sourcePose": "standing-reference",
+  "intendedRuntimePose": "tpose",
+  "rigCompatibility": "unverified",
+  "paletteReady": false,
+  "authoringMethod": "imagegen-study/manual-mask-partition",
+  "nativeSize": {
+    "width": 1024,
+    "height": 1536
+  },
+  "referenceProcessingRevision": 2,
+  "minimumVisibleAlpha": 8,
+  "knownReviewIssues": [
+    "Revisions 1 and 2 were rejected by visual review: separate generated parts drifted in scale and facing geometry. Revision 3 uses independent same-facing whole head/hair studies, manually masked with explicit user authorization; no S/N/E/W art is used.",
+    "Front, rear and visible review-head partition every normalized master pixel exactly once, retaining native 1024x1536 coordinates and all visible RGBA. This proves reconstruction and shared perspective, not human design approval or a production modular asset.",
+    "The extracted head contains only visible study skin/eyes, not a complete bald head. Rear roots hidden beneath the cap/head are not yet completed. Detached hair therefore has a head-shaped opening and partition seams; hidden-root authoring and fit on an independently authored head/body remain required before runtime publication.",
+    "SE master terminal y868 is approximately33px below the original reference near835; SW terminal y830 is close to reference near825. Hair formerly occluded by the body is newly authored. Compare three columns reference/study/reconstruction; inspect mask edges and short-lock ownership at native scale.",
+    "Minimum visible alpha remains8/255; only near-zero speckles and zero-alpha RGB were cleared. No scaling, reflection, recolouring or translation. Candidate reference anchors are unapproved; standing-reference art has no T-pose or body-preset compatibility.",
+    "SE/SW design approval pending. NE/NW, complete modular anatomy/clothing and final Step6C review remain unfinished. No Step6D or production publication."
+  ],
+  "frames": {
+    "SE": {
+      "reference": "SE.png",
+      "referenceSha256": "392d4b7ec7c6a0119b1087c55f304f6a250f50272e51d0ce5aadd8b79df40a51",
+      "candidateHeadAnchor": {
+        "x": 554,
+        "y": 164
+      },
+      "rear": {
+        "source": "SE-rear-drape-v3.png",
+        "sourceSha256": "769d3351ea423bd3e44e1a93e1643b7ed32d435ddbe9fd76e632f8fcbc850cd9",
+        "origin": {
+          "x": 554,
+          "y": 164
+        },
+        "allowedBounds": {
+          "x": 180,
+          "y": 15,
+          "width": 720,
+          "height": 880
+        },
+        "authoringMasterSha256": "4260d4d12e7b4a8a033995790b76d446acf18436d959f5c546e197bfa2788734"
+      },
+      "front": {
+        "visibility": "visible",
+        "artwork": {
+          "source": "SE-front-v3.png",
+          "sourceSha256": "9bbef14f40d008220c8a4efdc473989be5c01bda5afdd2f3fff9556f6bd692e5",
+          "origin": {
+            "x": 554,
+            "y": 164
+          },
+          "allowedBounds": {
+            "x": 180,
+            "y": 15,
+            "width": 720,
+            "height": 880
+          },
+          "authoringMasterSha256": "4260d4d12e7b4a8a033995790b76d446acf18436d959f5c546e197bfa2788734"
+        }
+      },
+      "designMaster": {
+        "source": "SE-master-v3.png",
+        "sourceSha256": "4260d4d12e7b4a8a033995790b76d446acf18436d959f5c546e197bfa2788734",
+        "origin": {
+          "x": 554,
+          "y": 164
+        },
+        "allowedBounds": {
+          "x": 180,
+          "y": 15,
+          "width": 720,
+          "height": 880
+        }
+      },
+      "partitionMasks": {
+        "head": {
+          "source": "inputs/front-diagonals-v3/SE-head-mask.png",
+          "sourceSha256": "541762bd2b9e8fae967a26f6d3ed40fdc15950f820e5ec782379876d7314d942"
+        },
+        "front": {
+          "source": "inputs/front-diagonals-v3/SE-front-mask.png",
+          "sourceSha256": "0c85d7ef9e0effa0ce6e6fb801e14b8d473819fc3c935a04a2b0490190ee3b4a"
+        },
+        "rear": {
+          "source": "inputs/front-diagonals-v3/SE-rear-mask.png",
+          "sourceSha256": "caaa5d7db91d51da0d1ec9af5f7bd0686df8e23ed70daabadcec766a3adc4035"
+        }
+      },
+      "fitHead": {
+        "purpose": "review-only-head-neck",
+        "anatomyApproved": false,
+        "artwork": {
+          "source": "SE-review-head-v3.png",
+          "sourceSha256": "d7f62030ccb450b3cc115aaffe83bf339c0c7c884f608b6ecff91fe98ccce974",
+          "origin": {
+            "x": 554,
+            "y": 164
+          },
+          "allowedBounds": {
+            "x": 180,
+            "y": 15,
+            "width": 720,
+            "height": 880
+          },
+          "authoringMasterSha256": "4260d4d12e7b4a8a033995790b76d446acf18436d959f5c546e197bfa2788734"
+        }
+      }
+    },
+    "SW": {
+      "reference": "SW.png",
+      "referenceSha256": "4d288310e7fbf452f9bf7cd842172b5201ce061249f2eade711d31518c34b870",
+      "candidateHeadAnchor": {
+        "x": 454,
+        "y": 175
+      },
+      "rear": {
+        "source": "SW-rear-drape-v3.png",
+        "sourceSha256": "630ae198c3fa6cb658f1b4935dc296104ead8aedb9b01844813988ae0a7ea0c1",
+        "origin": {
+          "x": 454,
+          "y": 175
+        },
+        "allowedBounds": {
+          "x": 180,
+          "y": 15,
+          "width": 720,
+          "height": 880
+        },
+        "authoringMasterSha256": "efeda97a10b76f8d78ab0168a77fab2b315dbbc98a67477193a9129bdd729347"
+      },
+      "front": {
+        "visibility": "visible",
+        "artwork": {
+          "source": "SW-front-v3.png",
+          "sourceSha256": "73bbb1f8bbd0387d4794ac0a090f7783a0a932152a79b1f4b129d6b0531800eb",
+          "origin": {
+            "x": 454,
+            "y": 175
+          },
+          "allowedBounds": {
+            "x": 180,
+            "y": 15,
+            "width": 720,
+            "height": 880
+          },
+          "authoringMasterSha256": "efeda97a10b76f8d78ab0168a77fab2b315dbbc98a67477193a9129bdd729347"
+        }
+      },
+      "designMaster": {
+        "source": "SW-master-v3.png",
+        "sourceSha256": "efeda97a10b76f8d78ab0168a77fab2b315dbbc98a67477193a9129bdd729347",
+        "origin": {
+          "x": 454,
+          "y": 175
+        },
+        "allowedBounds": {
+          "x": 180,
+          "y": 15,
+          "width": 720,
+          "height": 880
+        }
+      },
+      "partitionMasks": {
+        "head": {
+          "source": "inputs/front-diagonals-v3/SW-head-mask.png",
+          "sourceSha256": "94c1c5a62818872022ec46d4b7d42906d15ccc5f9a2a6cc16da174d9717fc675"
+        },
+        "front": {
+          "source": "inputs/front-diagonals-v3/SW-front-mask.png",
+          "sourceSha256": "40bb7fe8c4e8b5be34bf9184527eb82281d21b0aec0f01ba3da69e321d2905d6"
+        },
+        "rear": {
+          "source": "inputs/front-diagonals-v3/SW-rear-mask.png",
+          "sourceSha256": "ee4e4259e2269f2401e5b70193b4b340e7d2473a6d0bb441ead5422b3147cdb3"
+        }
+      },
+      "fitHead": {
+        "purpose": "review-only-head-neck",
+        "anatomyApproved": false,
+        "artwork": {
+          "source": "SW-review-head-v3.png",
+          "sourceSha256": "916e5b31fca82bf27bc10d49eb9ad50dc3ba4d780b357179ea825558e1917a9b",
+          "origin": {
+            "x": 454,
+            "y": 175
+          },
+          "allowedBounds": {
+            "x": 180,
+            "y": 15,
+            "width": 720,
+            "height": 880
+          },
+          "authoringMasterSha256": "efeda97a10b76f8d78ab0168a77fab2b315dbbc98a67477193a9129bdd729347"
+        }
+      }
+    }
+  },
+  "reviewRevision": 3
+}

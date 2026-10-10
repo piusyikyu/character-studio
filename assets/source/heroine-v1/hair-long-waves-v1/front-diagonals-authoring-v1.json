@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "id": "hair.long-waves.v1",
+  "assetVersion": 1,
+  "status": "draft-needs-human-review",
+  "target": "detailed",
+  "sourcePose": "standing-reference",
+  "intendedRuntimePose": "tpose",
+  "rigCompatibility": "unverified",
+  "paletteReady": false,
+  "authoringMethod": "imagegen-reference-edit",
+  "nativeSize": {
+    "width": 1024,
+    "height": 1536
+  },
+  "referenceProcessingRevision": 2,
+  "minimumVisibleAlpha": 8,
+  "knownReviewIssues": [
+    "SE front ends at y361 rather than the reference short curls near y325; its crown spans x420..717, broader and farther right than the reference. SW front ends at y446 rather than near y345, with a broader cap. Length, scale and face fit require human design review.",
+    "SE rear ends at y842 versus the reference near y835, but its outer-left curls begin at x274 rather than near x195, giving a narrower left-flowing silhouette. SW rear ends at y889 rather than near y825 and extends to x896 rather than near x850. These authored silhouette differences require review; the deterministic pipeline applies no scale or translation.",
+    "Front pieces own the cap, loop ahoge, fringe and short locks; rear drapes remove duplicate crowns and reconstruct hidden strands. SE rear roots begin near y260. SW straight-cut roots were repaired with tapered strands reaching y180. Root continuity, near/far lock ownership, upper overlap and actual head/body occlusion remain unverified.",
+    "Candidate origins SE554,164 and SW454,175 are low-confidence standing-reference head observations, not approved T-pose rig attachments. NE/NW hair and modular head/body/clothing are still missing.",
+    "Raw authoring outputs and selected edit lineage are preserved. Review clears only alpha below8/255 and zero-alpha RGB. Oversized, undersized and ear-contaminated candidates were rejected; scale corrections were newly authored imagegen edits, never deterministic resampling of approved artwork."
+  ],
+  "frames": {
+    "SE": {
+      "reference": "SE.png",
+      "referenceSha256": "392d4b7ec7c6a0119b1087c55f304f6a250f50272e51d0ce5aadd8b79df40a51",
+      "candidateHeadAnchor": {
+        "x": 554,
+        "y": 164
+      },
+      "rear": {
+        "source": "SE-rear-drape.png",
+        "sourceSha256": "e7c5b160d70cc0c8af98f809ed559e4165b5d7440e0c104db057e442201ab9ca",
+        "origin": {
+          "x": 554,
+          "y": 164
+        },
+        "allowedBounds": {
+          "x": 190,
+          "y": 150,
+          "width": 600,
+          "height": 740
+        }
+      },
+      "front": {
+        "visibility": "visible",
+        "artwork": {
+          "source": "SE-front.png",
+          "sourceSha256": "02978c1f6b0acb0e36bf59538151db880a9f747f341040e85152f782a169ac61",
+          "origin": {
+            "x": 554,
+            "y": 164
+          },
+          "allowedBounds": {
+            "x": 380,
+            "y": 15,
+            "width": 370,
+            "height": 390
+          }
+        }
+      }
+    },
+    "SW": {
+      "reference": "SW.png",
+      "referenceSha256": "4d288310e7fbf452f9bf7cd842172b5201ce061249f2eade711d31518c34b870",
+      "candidateHeadAnchor": {
+        "x": 454,
+        "y": 175
+      },
+      "rear": {
+        "source": "SW-rear-drape.png",
+        "sourceSha256": "8efe3693c37d829fe8a04053786e4c93b20d1e2244d771d199bee5e1487e3d81",
+        "origin": {
+          "x": 454,
+          "y": 175
+        },
+        "allowedBounds": {
+          "x": 250,
+          "y": 150,
+          "width": 680,
+          "height": 770
+        }
+      },
+      "front": {
+        "visibility": "visible",
+        "artwork": {
+          "source": "SW-front.png",
+          "sourceSha256": "131b83470b91089d97c7d134aa5c4b8295d88a0016c1ad4f37b12e0401d29699",
+          "origin": {
+            "x": 454,
+            "y": 175
+          },
+          "allowedBounds": {
+            "x": 290,
+            "y": 10,
+            "width": 380,
+            "height": 460
+          }
+        }
+      }
+    }
+  }
+}

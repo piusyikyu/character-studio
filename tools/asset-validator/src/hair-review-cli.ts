@@ -5,14 +5,14 @@ import { prepareHairReview } from './hair-review';
 const repository = resolve(fileURLToPath(new URL('../../..', import.meta.url)));
 try {
   const args = process.argv.slice(2);
-  if (args.some((arg) => arg !== '--profiles') || args.length > 1) throw new Error('Usage: hair-review-cli.js [--profiles]');
-  const profiles = args.includes('--profiles');
+  if (args.some((arg) => !['--profiles', '--front-diagonals'].includes(arg)) || args.length > 1) throw new Error('Usage: hair-review-cli.js [--profiles | --front-diagonals]');
+  const group = args.includes('--profiles') ? 'profiles' : args.includes('--front-diagonals') ? 'front-diagonals' : '';
   const report = await prepareHairReview({
     sourceDirectory: resolve(repository, 'assets/source/heroine-v1/hair-long-waves-v1'),
     referenceDirectory: resolve(repository, 'assets/staging/heroine-v1/reference-import-v1/transparent'),
-    outputDirectory: resolve(repository, 'assets/staging/heroine-v1/hair-long-waves-v1', ...(profiles ? ['profiles'] : [])),
-    configFilename: profiles ? 'profiles-authoring-v1.json' : 'authoring-v1.json',
+    outputDirectory: resolve(repository, 'assets/staging/heroine-v1/hair-long-waves-v1', ...(group ? [group] : [])),
+    configFilename: group === 'profiles' ? 'profiles-authoring-v1.json' : group === 'front-diagonals' ? 'front-diagonals-authoring-v4.json' : 'authoring-v1.json',
   });
   console.log(`Prepared ${report.measurements.length} native hair layers for ${report.supportedReviewDirections.join('/')} review.`);
-  console.log(`Review: assets/staging/heroine-v1/hair-long-waves-v1/${profiles ? 'profiles/' : ''}overview.png. Authoring review only; rig/T-pose compatibility unverified.`);
+  console.log(`Review: assets/staging/heroine-v1/hair-long-waves-v1/${group ? `${group}/` : ''}overview.png. Authoring review only; rig/T-pose compatibility unverified.`);
 } catch (error) { console.error(error); process.exitCode = 1; }

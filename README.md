@@ -79,6 +79,7 @@ pnpm demo:export  # Save eight detailed PNGs, eight pixel PNGs and one pixel she
 pnpm reference:import # Prepare heroine-v1 reference staging and audit, without publishing
 pnpm hair:review # Prepare S/N modular hair draft inspection; human approval required
 pnpm hair:review:profiles # Prepare independent E/W hair draft inspection
+pnpm hair:review:front-diagonals # Prepare SE/SW reference/study/masked-reconstruction inspection
 pnpm typecheck    # Check root configs, smoke tests, and all workspace packages
 pnpm lint         # ESLint with zero warnings permitted
 pnpm test         # Run Vitest once
@@ -129,8 +130,12 @@ fictional references; the renderer demo generates actual versioned PNG placehold
 The approved heroine-v1 detailed illustrations are flattened references, prepared
 separately by the [reference import workflow](docs/REFERENCE_IMPORT.md). They are
 not modular runtime assets; the editor continues using geometric pipeline fixtures.
-The initial [modular hair draft](docs/MODULAR_HAIR.md) prepares S/N front/rear hair
-authoring for review and remains outside the runtime catalog.
+The [modular hair drafts](docs/MODULAR_HAIR.md) prepare S/N, E/W and SE/SW front/rear
+hair inspections and remain outside the runtime catalog. S/N and E/W have design
+approval; SE/SW revision-4 visible hair drafts and pixel-preserving mask partitions are approved,
+with previously omitted far-side reference curls restored.
+Hidden rear roots still need completion. These standing-reference drafts do not certify
+production T-pose or head/body fit.
 
 Six public-API integration tests cover core recipe save/load, compatibility and
 seeded generation. Seven registry integration tests cover recipe-to-plan workflows

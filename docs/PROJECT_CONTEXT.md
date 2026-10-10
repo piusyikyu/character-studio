@@ -130,6 +130,61 @@ config, source and cleaned hashes. S/N approval and source artwork are preserved
 All diagonal facings, modular body/head/clothing and a production
 T-pose rig remain unfinished. Do not treat profile authoring as Step 6C completion.
 
+The user requested the next Step 6C increment after the E/W local commit.
+Independent SE/SW front/rear hair drafts and `pnpm hair:review:front-diagonals`
+add a separate authoring config, prompt/edit lineage and inspection directory.
+SE/SW design approval is pending; all approved S/N and E/W sources/configs stay
+unchanged. Native origins remain standing-reference candidates, not production
+rig attachments. NE/NW hair, modular body/head/clothing and T-pose fit still need
+authoring and review. Final Step 6C approval still precedes Step 6D.
+
+The user subsequently questioned the SE/SW overview's front/rear assembly.
+Pixel checks confirmed correct rear-then-front compositing and overview layout,
+but visual inspection found an exposed SE rear-root cut/mismatched junction and
+SW rear strands visible through an unoccluded face/neck opening. SE/SW remain
+unapproved and need a common scalp layout, revised junctions and explicit
+head/neck fit inspection before continuing to NE/NW. Passing deterministic
+tests does not establish visual fit; retain the current drafts as evidence.
+
+The user requested correcting SE/SW. Revision-2 rear PNGs and a separately pinned
+config preserve revision-1 inputs and all approved art. The SE severed root edge
+and SW pointed root flap were reauthored; review now includes explicitly marked,
+synthetic faceless scalp/neck guides between rear and front hair, with separate
+hair-only diagnostics. The guides are unapproved fit fixtures, not production
+heads or rigs. Lower curl silhouettes also changed and require design review.
+`pnpm hair:review:front-diagonals` initially selected this revision. SE/SW approval is still
+pending; do not advance to NE/NW or claim Step 6C completion from test success.
+
+The user rejected revision 2 because the parts still looked assembled from
+different facings. Provenance confirms each used its own reference, but separate
+generation lost shared scale and perspective; seam repairs did not solve it.
+Revision 3 therefore starts from independent, coherent SE/SW head-and-hair studies.
+The user explicitly chose manually drawn masks instead of regenerating separate
+parts. Native masks partition each study into front hair, rear hair and visible
+review-head pixels. The current command compares reference/study/reconstruction
+and rejects any changed, missing, duplicated or foreign master pixel.
+This preserves visible geometry; it is not a complete modular scalp/head.
+Hidden rear roots and full anatomy/T-pose fit remain required. Previous revisions
+are preserved as rejected evidence; SE/SW design approval is still pending.
+
+On 2026-10-10 the user identified missing far-side curls: character-left
+(screen-right) in SE and character-right (screen-left) in SW. The omission was
+already present in revision-3 studies, so exact partition reconstruction did not
+prove complete visible reference coverage. Revision 4 restores those curls with
+manual native masks from each facing's transparent reference, preserving all
+prior study pixels. The review command now selects revision 4 and also verifies
+restored reference RGBA in both the master and rear hair, rejecting lost coverage.
+Original body occlusion leaves gaps between extracted fragments; they still need
+authored hidden hair. This correction does not approve SE/SW or finish Step 6C.
+
+The user then approved the current SE/SW revision-4 visible hair draft on
+2026-10-10 and requested a local commit. `front-diagonals-review-v1.json` pins
+the accepted config, raw/cleaned layer and master hashes, partition/restoration
+masks and partial review-head evidence. This accepts the restored visible curls
+and current facing geometry, not complete detached hair or head anatomy.
+Body-occluded connections, concealed rear roots, independent head/body/T-pose fit,
+NE/NW and final Step 6C approval remain unfinished. Step 6D has not begun.
+
 - Distinguish `assets/references/` (immutable source images), `assets/source/` (editable layered files), `assets/staging/` (unapproved outputs), `assets/detailed/` and `assets/pixel/` (approved published parts), `assets/manifests/` and `assets/qa/` (generated reports).
 - Each modular part should declare a unique semantic ID, target, supported facings, compatible rig/body presets, image paths, attachment anchor, native offset, depth plane, visibility/occlusion, optional material/shade masks and requires/excludes.
 - Layer order may vary with facing. Long hair usually needs rear and front components. Clothing should conform to genuine front/rear three-dimensional construction.

@@ -1,0 +1,578 @@
+{
+  "schemaVersion": 1,
+  "method": "manual-native-mask-partition",
+  "authorization": "User chose manually drawn masks to preserve study pixels.",
+  "minimumVisibleAlpha": 8,
+  "skinSelection": "Manually bounded head/neck ROI; R-B > 15 and R >= G selects warm skin only inside that ROI. Manually drawn eye polygons retain eye pixels. Dark head outlines within the same ROI (R < 90, G < 85, B < 130) also belong to the head. Remaining manually drawn crown and short-lock polygons select front hair; all remaining visible master pixels select rear hair.",
+  "pixelPolicy": "Every normalized master pixel belongs to exactly one layer; copy all four RGBA channels without transforms, interpolation or recolouring. Hidden scalp/root completion is pending; the head contains only visible reference-study anatomy.",
+  "derivations": [
+    {
+      "direction": "SE",
+      "master": "SE-master-v3.png",
+      "masterSha256": "4260d4d12e7b4a8a033995790b76d446acf18436d959f5c546e197bfa2788734",
+      "rawMaster": "inputs/front-diagonals-v3/SE-master-raw.png",
+      "rawMasterSha256": "8fe1696f72fad2517b6280cb786b4b3ceda37e3e79de1f11da039bb5313163d9",
+      "pixelCounts": {
+        "head": 8806,
+        "front": 33918,
+        "rear": 180369
+      },
+      "files": [
+        {
+          "part": "head",
+          "source": "SE-review-head-v3.png",
+          "sourceSha256": "d7f62030ccb450b3cc115aaffe83bf339c0c7c884f608b6ecff91fe98ccce974",
+          "mask": "inputs/front-diagonals-v3/SE-head-mask.png",
+          "maskSha256": "541762bd2b9e8fae967a26f6d3ed40fdc15950f820e5ec782379876d7314d942"
+        },
+        {
+          "part": "front",
+          "source": "SE-front-v3.png",
+          "sourceSha256": "9bbef14f40d008220c8a4efdc473989be5c01bda5afdd2f3fff9556f6bd692e5",
+          "mask": "inputs/front-diagonals-v3/SE-front-mask.png",
+          "maskSha256": "0c85d7ef9e0effa0ce6e6fb801e14b8d473819fc3c935a04a2b0490190ee3b4a"
+        },
+        {
+          "part": "rear",
+          "source": "SE-rear-drape-v3.png",
+          "sourceSha256": "769d3351ea423bd3e44e1a93e1643b7ed32d435ddbe9fd76e632f8fcbc850cd9",
+          "mask": "inputs/front-diagonals-v3/SE-rear-mask.png",
+          "maskSha256": "caaa5d7db91d51da0d1ec9af5f7bd0686df8e23ed70daabadcec766a3adc4035"
+        }
+      ],
+      "manualRegions": {
+        "skinROI": [
+          [
+            475,
+            110
+          ],
+          [
+            631,
+            110
+          ],
+          [
+            639,
+            280
+          ],
+          [
+            571,
+            292
+          ],
+          [
+            488,
+            291
+          ]
+        ],
+        "eyes": [
+          [
+            [
+              519,
+              155
+            ],
+            [
+              540,
+              156
+            ],
+            [
+              560,
+              162
+            ],
+            [
+              574,
+              169
+            ],
+            [
+              573,
+              181
+            ],
+            [
+              565,
+              187
+            ],
+            [
+              550,
+              185
+            ],
+            [
+              533,
+              177
+            ],
+            [
+              522,
+              174
+            ]
+          ],
+          [
+            [
+              600,
+              172
+            ],
+            [
+              618,
+              163
+            ],
+            [
+              620,
+              181
+            ],
+            [
+              610,
+              193
+            ],
+            [
+              603,
+              195
+            ]
+          ]
+        ],
+        "front": [
+          [
+            [
+              414,
+              0
+            ],
+            [
+              682,
+              0
+            ],
+            [
+              681,
+              218
+            ],
+            [
+              629,
+              244
+            ],
+            [
+              562,
+              235
+            ],
+            [
+              498,
+              229
+            ],
+            [
+              482,
+              205
+            ],
+            [
+              410,
+              164
+            ]
+          ],
+          [
+            [
+              480,
+              154
+            ],
+            [
+              516,
+              188
+            ],
+            [
+              510,
+              230
+            ],
+            [
+              527,
+              254
+            ],
+            [
+              530,
+              287
+            ],
+            [
+              540,
+              318
+            ],
+            [
+              520,
+              333
+            ],
+            [
+              502,
+              318
+            ],
+            [
+              486,
+              310
+            ],
+            [
+              479,
+              275
+            ],
+            [
+              468,
+              267
+            ],
+            [
+              471,
+              223
+            ]
+          ],
+          [
+            [
+              611,
+              169
+            ],
+            [
+              642,
+              207
+            ],
+            [
+              628,
+              235
+            ],
+            [
+              650,
+              270
+            ],
+            [
+              650,
+              286
+            ],
+            [
+              659,
+              295
+            ],
+            [
+              671,
+              327
+            ],
+            [
+              672,
+              340
+            ],
+            [
+              650,
+              349
+            ],
+            [
+              622,
+              345
+            ],
+            [
+              603,
+              322
+            ],
+            [
+              591,
+              285
+            ],
+            [
+              572,
+              274
+            ],
+            [
+              566,
+              246
+            ],
+            [
+              596,
+              221
+            ]
+          ]
+        ]
+      },
+      "noisePixelsCleared": 19100
+    },
+    {
+      "direction": "SW",
+      "master": "SW-master-v3.png",
+      "masterSha256": "efeda97a10b76f8d78ab0168a77fab2b315dbbc98a67477193a9129bdd729347",
+      "rawMaster": "inputs/front-diagonals-v3/SW-master-raw.png",
+      "rawMasterSha256": "ce857af792cd970147be8911aac9fddd9c701813932d224b65656620d8f3cbf5",
+      "pixelCounts": {
+        "head": 8614,
+        "front": 38531,
+        "rear": 143556
+      },
+      "files": [
+        {
+          "part": "head",
+          "source": "SW-review-head-v3.png",
+          "sourceSha256": "916e5b31fca82bf27bc10d49eb9ad50dc3ba4d780b357179ea825558e1917a9b",
+          "mask": "inputs/front-diagonals-v3/SW-head-mask.png",
+          "maskSha256": "94c1c5a62818872022ec46d4b7d42906d15ccc5f9a2a6cc16da174d9717fc675"
+        },
+        {
+          "part": "front",
+          "source": "SW-front-v3.png",
+          "sourceSha256": "73bbb1f8bbd0387d4794ac0a090f7783a0a932152a79b1f4b129d6b0531800eb",
+          "mask": "inputs/front-diagonals-v3/SW-front-mask.png",
+          "maskSha256": "40bb7fe8c4e8b5be34bf9184527eb82281d21b0aec0f01ba3da69e321d2905d6"
+        },
+        {
+          "part": "rear",
+          "source": "SW-rear-drape-v3.png",
+          "sourceSha256": "630ae198c3fa6cb658f1b4935dc296104ead8aedb9b01844813988ae0a7ea0c1",
+          "mask": "inputs/front-diagonals-v3/SW-rear-mask.png",
+          "maskSha256": "ee4e4259e2269f2401e5b70193b4b340e7d2473a6d0bb441ead5422b3147cdb3"
+        }
+      ],
+      "manualRegions": {
+        "skinROI": [
+          [
+            390,
+            110
+          ],
+          [
+            545,
+            110
+          ],
+          [
+            557,
+            304
+          ],
+          [
+            524,
+            333
+          ],
+          [
+            489,
+            322
+          ],
+          [
+            456,
+            296
+          ],
+          [
+            395,
+            262
+          ]
+        ],
+        "eyes": [
+          [
+            [
+              435,
+              172
+            ],
+            [
+              457,
+              172
+            ],
+            [
+              478,
+              166
+            ],
+            [
+              492,
+              172
+            ],
+            [
+              488,
+              187
+            ],
+            [
+              473,
+              195
+            ],
+            [
+              453,
+              202
+            ],
+            [
+              440,
+              201
+            ]
+          ],
+          [
+            [
+              400,
+              190
+            ],
+            [
+              411,
+              190
+            ],
+            [
+              419,
+              197
+            ],
+            [
+              428,
+              209
+            ],
+            [
+              427,
+              216
+            ],
+            [
+              416,
+              217
+            ],
+            [
+              406,
+              205
+            ]
+          ]
+        ],
+        "front": [
+          [
+            [
+              338,
+              0
+            ],
+            [
+              613,
+              0
+            ],
+            [
+              626,
+              184
+            ],
+            [
+              562,
+              209
+            ],
+            [
+              537,
+              205
+            ],
+            [
+              483,
+              232
+            ],
+            [
+              444,
+              244
+            ],
+            [
+              390,
+              233
+            ],
+            [
+              337,
+              185
+            ]
+          ],
+          [
+            [
+              381,
+              153
+            ],
+            [
+              411,
+              184
+            ],
+            [
+              420,
+              225
+            ],
+            [
+              434,
+              248
+            ],
+            [
+              432,
+              281
+            ],
+            [
+              417,
+              310
+            ],
+            [
+              423,
+              337
+            ],
+            [
+              431,
+              354
+            ],
+            [
+              416,
+              377
+            ],
+            [
+              387,
+              381
+            ],
+            [
+              362,
+              352
+            ],
+            [
+              350,
+              317
+            ],
+            [
+              360,
+              279
+            ],
+            [
+              364,
+              241
+            ]
+          ],
+          [
+            [
+              502,
+              170
+            ],
+            [
+              523,
+              183
+            ],
+            [
+              514,
+              224
+            ],
+            [
+              522,
+              255
+            ],
+            [
+              529,
+              276
+            ],
+            [
+              522,
+              300
+            ],
+            [
+              523,
+              324
+            ],
+            [
+              511,
+              352
+            ],
+            [
+              491,
+              363
+            ],
+            [
+              474,
+              357
+            ],
+            [
+              458,
+              336
+            ],
+            [
+              454,
+              314
+            ],
+            [
+              468,
+              294
+            ],
+            [
+              484,
+              266
+            ],
+            [
+              480,
+              241
+            ],
+            [
+              493,
+              209
+            ]
+          ]
+        ]
+      },
+      "noisePixelsCleared": 17270
+    }
+  ]
+}

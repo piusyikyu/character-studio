@@ -5,8 +5,9 @@ import type { Direction } from '@character-studio/core';
 import { blankImage, decodePng, decorateExport, drawRgba, encodePng } from '@character-studio/render-utils';
 import type { RgbaImage } from '@character-studio/render-utils';
 import { alphaStatistics, characterBounds } from './audit';
-import { checkerPreview, overview } from './inspection';
+import { checkerPreview, fitDraftLabel, overview } from './inspection';
 import { hairReviewSchema } from './hair-review-schema';
+import { headNeckFixture } from './hair-fit-fixture';
 import { sha256 } from './reference-import';
 
 const nested = (parent: string, child: string) => { const path = relative(parent, child); return path === '' || (!path.startsWith('..') && !isAbsolute(path)); };
@@ -15,7 +16,7 @@ export interface HairReviewOptions {
   readonly sourceDirectory: string;
   readonly referenceDirectory: string;
   readonly outputDirectory: string;
-  readonly configFilename?: 'authoring-v1.json' | 'profiles-authoring-v1.json';
+  readonly configFilename?: 'authoring-v1.json' | 'profiles-authoring-v1.json' | 'front-diagonals-authoring-v1.json' | 'front-diagonals-authoring-v2.json' | 'front-diagonals-authoring-v3.json' | 'front-diagonals-authoring-v4.json';
 }
 
 /** Offline review only: no runtime catalog, publication, recolouring or inferred rig. */
@@ -44,23 +45,31 @@ export async function prepareHairReview(options: HairReviewOptions) {
     if (image.width !== 1024 || image.height !== 1536) throw new Error(`${source}: expected native 1024 × 1536; no resampling is allowed.`);
     return image;
   };
+  const normalize = (image: RgbaImage) => {
+    let noisePixelsCleared = 0;
+    for (let i = 3; i < image.data.length; i += 4) if (image.data[i]! < draft.minimumVisibleAlpha) {
+      if (image.data[i]) noisePixelsCleared++;
+      image.data.fill(0, i - 3, i + 1);
+    }
+    return noisePixelsCleared;
+  };
   const pending: { path: string; image: RgbaImage }[] = [];
   const measurements: { direction: Direction; part: 'rear' | 'front'; sourceSha256: string; outputSha256: string; bounds: ReturnType<typeof characterBounds>; alpha: ReturnType<typeof alphaStatistics>; sourceAlpha: ReturnType<typeof alphaStatistics>; noisePixelsCleared: number; greenCandidates: number; plane: string; position: { x: number; y: number } }[] = [];
   const comparisons: RgbaImage[] = [];
+  const hairOnlyComparisons: RgbaImage[] = [];
+  const fixtureMeasurements: { direction: Direction; purpose: 'review-only-head-neck'; anatomyApproved: false; bounds: ReturnType<typeof characterBounds>; outputSha256: string; sourceSha256?: string; position: { x: number; y: number } }[] = [];
+  const designMasterMeasurements: { direction: Direction; sourceSha256: string; outputSha256: string; bounds: ReturnType<typeof characterBounds> }[] = [];
+  const restoredReferenceHairMeasurements: { direction: Direction; maskSha256: string; pixelCount: number }[] = [];
   const frames = Object.entries(draft.frames).map(([direction, frame]) => ({ direction: direction as Direction, frame }));
   for (const { direction, frame } of frames) {
     const reference = await load(referenceDirectory, frame.reference, frame.referenceSha256);
-    const layers = new Map<'hair-rear' | 'hair-front', RgbaImage>();
-    for (const [part, artwork] of [['rear', frame.rear], ...(frame.front.visibility === 'visible' ? [['front', frame.front.artwork] as const] : [])] as const) {
+    const layers = new Map<'hair-rear' | 'hair-front' | 'head', RgbaImage>();
+    for (const [part, artwork] of [['rear', frame.rear], ...(frame.front.visibility === 'visible' ? [['front', frame.front.artwork] as const] : []), ...(frame.fitHead ? [['head', frame.fitHead.artwork] as const] : [])] as const) {
       const image = await load(sourceDirectory, artwork.source, artwork.sourceSha256);
       const sourceAlpha = alphaStatistics(image);
-      let noisePixelsCleared = 0;
       // Built-in authoring outputs may contain near-zero alpha speckles far from hair.
       // Preserve raw source PNGs, and record this versioned <8/255 cleanup explicitly.
-      for (let i = 3; i < image.data.length; i += 4) if (image.data[i]! < draft.minimumVisibleAlpha) {
-        if (image.data[i]) noisePixelsCleared++;
-        image.data.fill(0, i - 3, i + 1);
-      }
+      const noisePixelsCleared = normalize(image);
       const bounds = characterBounds(image);
       const alpha = alphaStatistics(image), allowed = artwork.allowedBounds;
       if (!bounds || !alpha.transparent) throw new Error(`${direction}-${part}: needs isolated visible hair and genuine transparency.`);
@@ -74,10 +83,15 @@ export async function prepareHairReview(options: HairReviewOptions) {
           if (image.data[i + 1]! - Math.max(image.data[i]!, image.data[i + 2]!) > 20) greenCandidates++;
         }
       }
-      const plane = part === 'rear' ? 'hair-rear' : 'hair-front';
+      const plane = part === 'rear' ? 'hair-rear' : part === 'front' ? 'hair-front' : 'head';
       layers.set(plane, image);
-      measurements.push({ direction, part, sourceSha256: artwork.sourceSha256, outputSha256: sha256(encodePng(image)), bounds, alpha, sourceAlpha, noisePixelsCleared, greenCandidates, plane, position: { x: 0, y: 0 } });
-      pending.push({ path: `layers/${direction}-${part}.png`, image }, { path: `inspection/checker/${direction}-${part}.png`, image: checkerPreview(image, direction) }, { path: `inspection/green/${direction}-${part}.png`, image: decorateExport(image, direction) });
+      if (part === 'head') {
+        fixtureMeasurements.push({ direction, purpose: 'review-only-head-neck', anatomyApproved: false, sourceSha256: artwork.sourceSha256, outputSha256: sha256(encodePng(image)), bounds, position: { x: 0, y: 0 } });
+        pending.push({ path: `fixtures/${direction}-head-neck-fixture.png`, image }, { path: `inspection/checker/${direction}-head-neck-fixture.png`, image: fitDraftLabel(checkerPreview(image, direction)) }, { path: `inspection/green/${direction}-head-neck-fixture.png`, image: fitDraftLabel(decorateExport(image, direction)) });
+      } else {
+        measurements.push({ direction, part, sourceSha256: artwork.sourceSha256, outputSha256: sha256(encodePng(image)), bounds, alpha, sourceAlpha, noisePixelsCleared, greenCandidates, plane, position: { x: 0, y: 0 } });
+        pending.push({ path: `layers/${direction}-${part}.png`, image }, { path: `inspection/checker/${direction}-${part}.png`, image: checkerPreview(image, direction) }, { path: `inspection/green/${direction}-${part}.png`, image: decorateExport(image, direction) });
+      }
     }
     const assembled = blankImage(1024, 1536);
     // Follow core's actual facing-specific plane order even for detached hair review.
@@ -89,12 +103,80 @@ export async function prepareHairReview(options: HairReviewOptions) {
     const comparison = blankImage(2048, 1536);
     drawRgba(comparison, checkerPreview(reference, direction), 0, 0);
     drawRgba(comparison, checkerPreview(assembled, direction), 1024, 0);
-    comparisons.push(comparison);
     pending.push({ path: `inspection/comparison/${direction}.png`, image: comparison });
+    hairOnlyComparisons.push(comparison);
+    if (frame.fitFixture || frame.fitHead) {
+      if (frame.fitFixture) {
+        const fixture = headNeckFixture(frame.fitFixture);
+        layers.set('head', fixture);
+        fixtureMeasurements.push({ direction, purpose: frame.fitFixture.purpose, anatomyApproved: false, bounds: characterBounds(fixture), outputSha256: sha256(encodePng(fixture)), position: { x: 0, y: 0 } });
+        pending.push({ path: `fixtures/${direction}-head-neck-fixture.png`, image: fixture }, { path: `inspection/checker/${direction}-head-neck-fixture.png`, image: fitDraftLabel(checkerPreview(fixture, direction)) }, { path: `inspection/green/${direction}-head-neck-fixture.png`, image: fitDraftLabel(decorateExport(fixture, direction)) });
+      }
+      const fit = blankImage(1024, 1536);
+      for (const plane of DIRECTION_PLANE_ORDER[direction]) {
+        const image = plane === 'hair-rear' || plane === 'hair-front' || plane === 'head' ? layers.get(plane) : undefined;
+        if (image) drawRgba(fit, image, 0, 0);
+      }
+      const checker = fitDraftLabel(checkerPreview(fit, direction));
+      const fitComparison = blankImage(2048, 1536);
+      drawRgba(fitComparison, checkerPreview(reference, direction), 0, 0);
+      drawRgba(fitComparison, checker, 1024, 0);
+      pending.push({ path: `fit/${direction}.png`, image: fit }, { path: `inspection/checker/${direction}-fit.png`, image: checker }, { path: `inspection/green/${direction}-fit.png`, image: fitDraftLabel(decorateExport(fit, direction)) }, { path: `inspection/fit-comparison/${direction}.png`, image: fitComparison });
+      if (frame.designMaster) {
+        const master = await load(sourceDirectory, frame.designMaster.source, frame.designMaster.sourceSha256);
+        normalize(master);
+        const bounds = characterBounds(master), allowed = frame.designMaster.allowedBounds;
+        if (!bounds || !alphaStatistics(master).transparent || bounds.x < allowed.x || bounds.y < allowed.y || bounds.x + bounds.width > allowed.x + allowed.width || bounds.y + bounds.height > allowed.y + allowed.height) throw new Error(`${direction}: whole-facing master exceeds its native authoring envelope.`);
+        if (frame.restoredReferenceHair) {
+          const mask = await load(sourceDirectory, frame.restoredReferenceHair.source, frame.restoredReferenceHair.sourceSha256);
+          const restored = blankImage(1024, 1536), rear = layers.get('hair-rear')!;
+          let pixelCount = 0;
+          for (let i = 0; i < mask.data.length; i += 4) {
+            const owned = mask.data[i + 3] === 255;
+            if (mask.data.subarray(i, i + 4).some((value) => value !== (owned ? 255 : 0))) throw new Error(`${direction}: restoration mask must be binary RGBA.`);
+            if (!owned) continue;
+            if (reference.data[i + 3]! < draft.minimumVisibleAlpha || master.data.subarray(i, i + 4).some((value, channel) => value !== reference.data[i + channel]) || rear.data.subarray(i, i + 4).some((value, channel) => value !== reference.data[i + channel])) throw new Error(`${direction}: restored reference hair is missing or altered.`);
+            restored.data.set(reference.data.subarray(i, i + 4), i);
+            pixelCount++;
+          }
+          if (pixelCount !== frame.restoredReferenceHair.pixelCount) throw new Error(`${direction}: restored reference hair coverage changed.`);
+          restoredReferenceHairMeasurements.push({ direction, maskSha256: frame.restoredReferenceHair.sourceSha256, pixelCount });
+          pending.push({ path: `restored/${direction}-reference-hair.png`, image: restored }, { path: `inspection/checker/${direction}-restored-reference-hair.png`, image: checkerPreview(restored, direction) });
+        }
+        if (frame.partitionMasks) {
+          const parts = ['rear', 'front', 'head'] as const;
+          const masks = await Promise.all(parts.map((part) => load(sourceDirectory, frame.partitionMasks![part].source, frame.partitionMasks![part].sourceSha256)));
+          for (let i = 0; i < master.data.length; i += 4) {
+            let owners = 0;
+            for (const [index, part] of parts.entries()) {
+              const mask = masks[index]!, owned = mask.data[i + 3] === 255;
+              if (owned) owners++;
+              if (mask.data.subarray(i, i + 4).some((value) => value !== (owned ? 255 : 0))) throw new Error(`${direction}: partition masks must be binary RGBA.`);
+              const image = layers.get(part === 'head' ? 'head' : part === 'rear' ? 'hair-rear' : 'hair-front')!;
+              if (image.data.subarray(i, i + 4).some((value, channel) => value !== (owned ? master.data[i + channel] : 0))) throw new Error(`${direction}: masked layers must preserve their own master pixels exactly.`);
+            }
+            if (owners !== (master.data[i + 3] ? 1 : 0)) throw new Error(`${direction}: master partition has overlapping or missing pixels.`);
+          }
+          if (sha256(fit.data) !== sha256(master.data)) throw new Error(`${direction}: masked reconstruction differs from the whole-facing master.`);
+        }
+        designMasterMeasurements.push({ direction, sourceSha256: frame.designMaster.sourceSha256, outputSha256: sha256(encodePng(master)), bounds });
+        const masterComparison = blankImage(3072, 1536);
+        drawRgba(masterComparison, checkerPreview(reference, direction), 0, 0);
+        drawRgba(masterComparison, fitDraftLabel(checkerPreview(master, direction)), 1024, 0);
+        drawRgba(masterComparison, checker, 2048, 0);
+        pending.push({ path: `masters/${direction}.png`, image: master }, { path: `inspection/checker/${direction}-master.png`, image: fitDraftLabel(checkerPreview(master, direction)) }, { path: `inspection/green/${direction}-master.png`, image: fitDraftLabel(decorateExport(master, direction)) }, { path: `inspection/master-comparison/${direction}.png`, image: masterComparison });
+        comparisons.push(masterComparison);
+      } else comparisons.push(fitComparison);
+    } else comparisons.push(comparison);
   }
-  const contact = blankImage(2048, 3072);
+  const contact = blankImage((draft.reviewRevision ?? 0) >= 3 ? 3072 : 2048, 3072);
   comparisons.forEach((image, index) => drawRgba(contact, image, 0, index * 1536));
   pending.push({ path: 'overview.png', image: overview(contact) });
+  if (fixtureMeasurements.length) {
+    const hairOnlyContact = blankImage(2048, 3072);
+    hairOnlyComparisons.forEach((image, index) => drawRgba(hairOnlyContact, image, 0, index * 1536));
+    pending.push({ path: 'hair-only-overview.png', image: overview(hairOnlyContact) });
+  }
   const report = {
     schemaVersion: 1, id: draft.id, assetVersion: draft.assetVersion, status: draft.status,
     target: draft.target, sourcePose: draft.sourcePose, intendedRuntimePose: draft.intendedRuntimePose,
@@ -105,6 +187,9 @@ export async function prepareHairReview(options: HairReviewOptions) {
     supportedReviewDirections: frames.map(({ direction }) => direction), missingDirections: DIRECTIONS.filter((d) => !frames.some(({ direction }) => d === direction)),
     hiddenLayers: frames.filter(({ frame }) => frame.front.visibility === 'hidden').map(({ direction, frame }) => ({ direction, part: 'front', reason: frame.front.visibility === 'hidden' ? frame.front.reason : '' })),
     measurements,
+    ...(draft.reviewRevision ? { reviewRevision: draft.reviewRevision, overviewContent: (draft.reviewRevision ?? 0) >= 3 ? 'reference / whole-facing-master / rear-hair+review-head+front-hair' : 'rear-hair/head-neck-review-fixture/front-hair', fixtureAnatomyApproved: false, fixtureMeasurements } : {}),
+    ...((draft.reviewRevision ?? 0) >= 3 ? { designMasterMeasurements, syntheticFitGuides: false, masterReconstruction: 'exact-visible-rgba-partition', hiddenRootCompletion: 'pending', reviewHeadCompleteness: 'visible-study-pixels-only' } : {}),
+    ...(draft.reviewRevision === 4 ? { restoredReferenceHairMeasurements } : {}),
     outputs: pending.map(({ path, image }) => ({ path, sha256: sha256(encodePng(image)) })),
     reviewRequired: ['Visible hair silhouette, curls and source identity', 'No skin, eyes, clothing, glow or painted background in hair layers', 'Newly authored occluded hair surfaces and front/rear junction', 'Candidate head attachments; actual rig/body/T-pose compatibility remains unverified', 'Pair design approval before further authoring; Step 6C approval before 6D'],
   };

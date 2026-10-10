@@ -3,6 +3,27 @@ import type { RgbaImage } from '@character-studio/render-utils';
 import type { Direction } from '@character-studio/core';
 import type { AnchorCandidate } from './schema';
 
+/** Preview decoration only; never embed review labels in transparent source art. */
+export function fitDraftLabel(image: RgbaImage): RgbaImage {
+  const glyphs: Readonly<Record<string, readonly string[]>> = {
+    F: ['11111', '10000', '11110', '10000', '10000'], I: ['11111', '00100', '00100', '00100', '11111'],
+    T: ['11111', '00100', '00100', '00100', '00100'], D: ['11110', '10001', '10001', '10001', '11110'],
+    R: ['11110', '10001', '11110', '10100', '10010'], A: ['01110', '10001', '11111', '10001', '10001'],
+  };
+  const result = { ...image, data: image.data.slice() };
+  for (const [letterIndex, letter] of [...'FIT DRAFT'].entries()) {
+    if (letter === ' ') continue;
+    for (const [row, line] of glyphs[letter]!.entries()) for (const [column, pixel] of [...line].entries()) {
+      if (pixel === '0') continue;
+      for (let dy = 0; dy < 4; dy++) for (let dx = 0; dx < 4; dx++) {
+        const x = 8 + letterIndex * 24 + column * 4 + dx, y = 40 + row * 4 + dy;
+        result.data.set([255, 255, 0, 255], (y * result.width + x) * 4);
+      }
+    }
+  }
+  return result;
+}
+
 export function checkerPreview(image: RgbaImage, direction: Direction): RgbaImage {
   const result = blankImage(image.width, image.height);
   for (let y = 0; y < image.height; y++) for (let x = 0; x < image.width; x++) {
