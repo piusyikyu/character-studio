@@ -1,0 +1,1215 @@
+{
+  "schemaVersion": 1,
+  "id": "head.soft-oval.v1",
+  "assetVersion": 4,
+  "target": "detailed",
+  "status": "draft-needs-human-review",
+  "sourcePose": "standing-reference",
+  "intendedRuntimePose": "tpose",
+  "rigCompatibility": "unverified",
+  "paletteReady": false,
+  "anatomyApproved": false,
+  "authoringMethod": "imagegen-guide/manual-native-partition",
+  "featurePolicy": "skin-base-no-eyes-brows-mouth",
+  "earPolicy": "human-ears-in-head-base-needs-separation",
+  "minimumVisibleAlpha": 8,
+  "nativeSize": {
+    "width": 1024,
+    "height": 1536
+  },
+  "hairConfig": {
+    "source": "front-diagonals-authoring-v5.json",
+    "sourceSha256": "3efa8d3744783e3ca777172daadbbd913a40bec45a7bfe9745e97774116a11a8"
+  },
+  "hairApproval": {
+    "source": "front-diagonals-review-v2.json",
+    "sourceSha256": "06f1c910578cc85f983dca86ad56521646a057b14928b200bb6194fa4595d79e"
+  },
+  "knownReviewIssues": [
+    "Revision 3 generally approved with the circled abrupt neck hair join outstanding. Revision 4 clears 157 duplicate foreground pixels already retained in the rear behind head/neck skin.",
+    "SE, SW anatomy, nose, rear hair, native anchors and all previous artwork are unchanged. Other inherited hair seams and mask transitions still require visual review.",
+    "Standing-reference candidate only. Facial/ear variants, NE/NW heads, concealed hair, body/clothing, material maps, production T-pose and final Step 6C remain unfinished. Step 6D has not started."
+  ],
+  "frames": {
+    "SE": {
+      "reference": "SE.png",
+      "referenceSha256": "392d4b7ec7c6a0119b1087c55f304f6a250f50272e51d0ce5aadd8b79df40a51",
+      "candidateHeadAnchor": {
+        "x": 554,
+        "y": 164
+      },
+      "candidateNeckAnchor": {
+        "x": 545,
+        "y": 283
+      },
+      "master": {
+        "source": "SE-master-v2.png",
+        "sourceSha256": "4044fe8b6cad057426274986642913919e53b21517dcadc0337264812c91a969"
+      },
+      "guide": {
+        "source": "inputs/front-diagonals-v1/SE-placement-guide.png",
+        "sourceSha256": "7b5c0dcab5a015f1ae6a71f90dc8da7a984ec3f429b9bb70d6fbd504d82bfeee"
+      },
+      "cutY": 265,
+      "allowedBounds": {
+        "x": 470,
+        "y": 45,
+        "width": 170,
+        "height": 285
+      },
+      "head": {
+        "source": "SE-head-v2.png",
+        "sourceSha256": "f9640b76effeb54f7550e5f234509beb0bbd9f4a87090079b7660bb56190c1f0",
+        "origin": {
+          "x": 554,
+          "y": 164
+        },
+        "selection": {
+          "source": "inputs/front-diagonals-v2/SE-head-mask.png",
+          "sourceSha256": "459c46f93d96c8c9e3a35907aa264bbed67f200c69a0359539d5bdea18bd6173"
+        },
+        "pixelCount": 23090
+      },
+      "neck": {
+        "source": "SE-neck-v1.png",
+        "sourceSha256": "2e1a164ae12ce2bc5dbc868fb930cecb2906a115687c8e3ae6d9ed7d9f0e2cb7",
+        "origin": {
+          "x": 545,
+          "y": 283
+        },
+        "selection": {
+          "source": "inputs/front-diagonals-v1/SE-neck-mask-v1.png",
+          "sourceSha256": "ab24c7f9e3128590eafe2218f97d9bf569e5fc674cc64b63cb49e5fab2e8c9e0"
+        },
+        "pixelCount": 1878
+      }
+    },
+    "SW": {
+      "reference": "SW.png",
+      "referenceSha256": "4d288310e7fbf452f9bf7cd842172b5201ce061249f2eade711d31518c34b870",
+      "candidateHeadAnchor": {
+        "x": 454,
+        "y": 175
+      },
+      "candidateNeckAnchor": {
+        "x": 484,
+        "y": 299
+      },
+      "master": {
+        "source": "SW-master-v3.png",
+        "sourceSha256": "553bcf71350683bd1d61821199163366146a17fdd62cdd1edb43c57e6223bd3c"
+      },
+      "guide": {
+        "source": "inputs/front-diagonals-v1/SW-placement-guide.png",
+        "sourceSha256": "b4c05057839913359a2490ee2c6e4f9ac97dffe57b6d26663076716a810bfed1"
+      },
+      "cutY": 280,
+      "allowedBounds": {
+        "x": 390,
+        "y": 60,
+        "width": 165,
+        "height": 270
+      },
+      "head": {
+        "source": "SW-head-v3.png",
+        "sourceSha256": "a8476bb174fa8982fd015b28058fbfee23f55b1a31360dbdc7ff63057979c4b3",
+        "origin": {
+          "x": 454,
+          "y": 175
+        },
+        "selection": {
+          "source": "inputs/front-diagonals-v3/SW-head-mask.png",
+          "sourceSha256": "00034c819fb20d2265a95aee2266d98d234ea871b38d3c4ca06936bd01b9f81d"
+        },
+        "pixelCount": 22497
+      },
+      "neck": {
+        "source": "SW-neck-v3.png",
+        "sourceSha256": "a16542a341efdd503ca666014cbbfd676a1cf0a7c0c7c48316f848570bbf83de",
+        "origin": {
+          "x": 484,
+          "y": 299
+        },
+        "selection": {
+          "source": "inputs/front-diagonals-v3/SW-neck-mask.png",
+          "sourceSha256": "b18a0838771c55f217316d75c2b44326d03ed016c3e343f8999c37f582efde23"
+        },
+        "pixelCount": 2385
+      }
+    }
+  },
+  "localFitRepair": {
+    "method": "ordered-native-local-study-masks",
+    "baseline": {
+      "source": "front-diagonals-authoring-v1.json",
+      "sourceSha256": "a2457a78ecb4e67954a7d70c46d1cb77839df8e1e0c2a69b3b25748494a20984"
+    },
+    "settings": {
+      "source": "inputs/front-diagonals-v2/repair-settings.json",
+      "sourceSha256": "6bfed47a80ff3f17a70eca411f371334d6ebbe60e4b1440b5152450a2f51924a"
+    },
+    "approved": false,
+    "frames": {
+      "SE": {
+        "patches": [
+          {
+            "name": "complete-ear",
+            "directory": "head",
+            "study": {
+              "source": "inputs/front-diagonals-v2/SE-complete-ear-study.png",
+              "sourceSha256": "e5ced5c562fcdcb16b63741883cc54cb22b306d46c5fb7de51142e84ace15de2"
+            },
+            "region": [
+              [
+                472,
+                135
+              ],
+              [
+                514,
+                135
+              ],
+              [
+                514,
+                207
+              ],
+              [
+                472,
+                207
+              ]
+            ],
+            "selection": {
+              "source": "inputs/front-diagonals-v2/SE-complete-ear-mask.png",
+              "sourceSha256": "8be21724bdcd5bfcdf7c945a9a2e11e75ea7335991520270b104278ece04486f"
+            },
+            "pixelCount": 3024
+          },
+          {
+            "name": "face",
+            "directory": "head",
+            "study": {
+              "source": "inputs/front-diagonals-v2/SE-face-study.png",
+              "sourceSha256": "37035476819eca0c45100205a6162e1d92d8c2b648991069f7f710edcde55c06"
+            },
+            "region": [
+              [
+                510,
+                130
+              ],
+              [
+                637,
+                130
+              ],
+              [
+                637,
+                265
+              ],
+              [
+                510,
+                265
+              ]
+            ],
+            "selection": {
+              "source": "inputs/front-diagonals-v2/SE-face-mask.png",
+              "sourceSha256": "78cccb60b4213f870b09b2eb9fdb1552bf15fcadc0354a544e346d8f970eb7fc"
+            },
+            "pixelCount": 17145
+          },
+          {
+            "name": "nose-erasure",
+            "directory": "head",
+            "study": {
+              "source": "inputs/front-diagonals-v1/SE-ear-study.png",
+              "sourceSha256": "376bea8acbb169d84350c9686a95afabe6486d687e82f9dcfe92af0212d1fa5c"
+            },
+            "region": [
+              [
+                588,
+                174
+              ],
+              [
+                604,
+                174
+              ],
+              [
+                604,
+                200
+              ],
+              [
+                595,
+                209
+              ],
+              [
+                584,
+                207
+              ],
+              [
+                584,
+                181
+              ]
+            ],
+            "selection": {
+              "source": "inputs/front-diagonals-v2/SE-nose-erasure-mask.png",
+              "sourceSha256": "11058ddc80a437b2012b8f69a07515ecb127cff0aeefd5b65b378a762c57a7e1"
+            },
+            "pixelCount": 630
+          },
+          {
+            "name": "mouth-erasure",
+            "directory": "head",
+            "study": {
+              "source": "inputs/front-diagonals-v1/SE-ear-study.png",
+              "sourceSha256": "376bea8acbb169d84350c9686a95afabe6486d687e82f9dcfe92af0212d1fa5c"
+            },
+            "region": [
+              [
+                572,
+                207
+              ],
+              [
+                588,
+                207
+              ],
+              [
+                588,
+                219
+              ],
+              [
+                572,
+                219
+              ]
+            ],
+            "selection": {
+              "source": "inputs/front-diagonals-v2/SE-mouth-erasure-mask.png",
+              "sourceSha256": "9b6f8013c6221e867abb0b7eb771d73652b4e9e5424197447cee13b3c8b3abba"
+            },
+            "pixelCount": 192
+          },
+          {
+            "name": "native-nose",
+            "directory": "hair",
+            "study": {
+              "source": "SE-master-v4.png",
+              "sourceSha256": "a4316b2393f8e4ae838bceeace145b9dcefde2c22076c523e1cf329090a5ec2f"
+            },
+            "region": [
+              [
+                586,
+                185
+              ],
+              [
+                590,
+                185
+              ],
+              [
+                590,
+                192
+              ],
+              [
+                594,
+                198
+              ],
+              [
+                596,
+                201
+              ],
+              [
+                594,
+                205
+              ],
+              [
+                589,
+                209
+              ],
+              [
+                586,
+                200
+              ]
+            ],
+            "minimumRedMinusBlue": 18,
+            "selection": {
+              "source": "inputs/front-diagonals-v2/SE-native-nose-mask.png",
+              "sourceSha256": "50d8fa0654a52b8ca44bd77b43b43046c0ac3275d4fbac18aab91d70fea2ab9f"
+            },
+            "pixelCount": 136
+          }
+        ],
+        "front": {
+          "source": "SE-front-fit-v2.png",
+          "sourceSha256": "9bbef14f40d008220c8a4efdc473989be5c01bda5afdd2f3fff9556f6bd692e5"
+        },
+        "frontSelection": {
+          "source": "inputs/front-diagonals-v2/SE-front-cleanup-mask.png",
+          "sourceSha256": "b50e62dae794d1342438bfe38870911bd2b9a6055fa013983ae66c8e07e09b59"
+        },
+        "frontRegions": [],
+        "removedPixelCount": 0
+      },
+      "SW": {
+        "patches": [
+          {
+            "name": "complete-ear",
+            "directory": "head",
+            "study": {
+              "source": "inputs/front-diagonals-v2/SW-complete-ear-study.png",
+              "sourceSha256": "f739dc177af1911fbaaad27e8e55f758762eaf788bbd1b739acd269efaba7da0"
+            },
+            "region": [
+              [
+                503,
+                144
+              ],
+              [
+                550,
+                144
+              ],
+              [
+                550,
+                220
+              ],
+              [
+                503,
+                220
+              ]
+            ],
+            "selection": {
+              "source": "inputs/front-diagonals-v2/SW-complete-ear-mask.png",
+              "sourceSha256": "32f99862a57bdae0e069c426aec37b3a16ba085b4f668a4d04854281534e23c1"
+            },
+            "pixelCount": 3572
+          }
+        ],
+        "front": {
+          "source": "SW-front-fit-v2.png",
+          "sourceSha256": "bdb0ef7647fd804e81b2004a529fd78fe3c948f40873e3489f317f518784a40b"
+        },
+        "frontSelection": {
+          "source": "inputs/front-diagonals-v2/SW-front-cleanup-mask.png",
+          "sourceSha256": "467c9cdc029e4747ae668fce7523dbfdd14995126137bf53001c80fa60947c68"
+        },
+        "frontRegions": [
+          [
+            [
+              463,
+              165
+            ],
+            [
+              467,
+              165
+            ],
+            [
+              467,
+              169
+            ],
+            [
+              463,
+              169
+            ]
+          ],
+          [
+            [
+              470,
+              166
+            ],
+            [
+              471,
+              166
+            ],
+            [
+              471,
+              167
+            ],
+            [
+              470,
+              167
+            ]
+          ],
+          [
+            [
+              468,
+              167
+            ],
+            [
+              469,
+              167
+            ],
+            [
+              469,
+              168
+            ],
+            [
+              468,
+              168
+            ]
+          ],
+          [
+            [
+              538,
+              173
+            ],
+            [
+              539,
+              173
+            ],
+            [
+              539,
+              177
+            ],
+            [
+              538,
+              177
+            ]
+          ],
+          [
+            [
+              439,
+              202
+            ],
+            [
+              449,
+              202
+            ],
+            [
+              449,
+              209
+            ],
+            [
+              439,
+              209
+            ]
+          ],
+          [
+            [
+              421,
+              221
+            ],
+            [
+              426,
+              221
+            ],
+            [
+              426,
+              225
+            ],
+            [
+              421,
+              225
+            ]
+          ],
+          [
+            [
+              488,
+              221
+            ],
+            [
+              496,
+              221
+            ],
+            [
+              496,
+              227
+            ],
+            [
+              488,
+              227
+            ]
+          ],
+          [
+            [
+              446,
+              233
+            ],
+            [
+              447,
+              233
+            ],
+            [
+              447,
+              234
+            ],
+            [
+              446,
+              234
+            ]
+          ],
+          [
+            [
+              437,
+              234
+            ],
+            [
+              444,
+              234
+            ],
+            [
+              444,
+              235
+            ],
+            [
+              437,
+              235
+            ]
+          ],
+          [
+            [
+              433,
+              237
+            ],
+            [
+              443,
+              237
+            ],
+            [
+              443,
+              243
+            ],
+            [
+              433,
+              243
+            ]
+          ],
+          [
+            [
+              401,
+              270
+            ],
+            [
+              402,
+              270
+            ],
+            [
+              402,
+              271
+            ],
+            [
+              401,
+              271
+            ]
+          ],
+          [
+            [
+              400,
+              273
+            ],
+            [
+              401,
+              273
+            ],
+            [
+              401,
+              274
+            ],
+            [
+              400,
+              274
+            ]
+          ],
+          [
+            [
+              478,
+              276
+            ],
+            [
+              486,
+              275
+            ],
+            [
+              489,
+              280
+            ],
+            [
+              485,
+              289
+            ],
+            [
+              484,
+              298
+            ],
+            [
+              478,
+              298
+            ],
+            [
+              475,
+              289
+            ]
+          ]
+        ],
+        "removedPixelCount": 237
+      }
+    }
+  },
+  "swCorrection": {
+    "baseline": {
+      "source": "front-diagonals-authoring-v2.json",
+      "sourceSha256": "92ff8f7efacaea3779f22312e511e5debe2ca473612233e035e0998723e45b49"
+    },
+    "settings": {
+      "source": "inputs/front-diagonals-v3/repair-settings.json",
+      "sourceSha256": "eb55bf230b75360dba8af66c2ffa2b245795cb992cc655ea436703e3592e6a30"
+    },
+    "operations": [
+      {
+        "name": "face-neck",
+        "plane": "skin",
+        "directory": "head",
+        "region": [
+          [
+            394,
+            181
+          ],
+          [
+            503,
+            181
+          ],
+          [
+            503,
+            220
+          ],
+          [
+            531,
+            240
+          ],
+          [
+            531,
+            330
+          ],
+          [
+            394,
+            330
+          ]
+        ],
+        "excludeRegions": [],
+        "color": "all",
+        "study": {
+          "source": "inputs/front-diagonals-v3/SW-face-study.png",
+          "sourceSha256": "c221c8724ed49b2047cc8b7f0b17c11236ef12b3e3cd5d1712d2bedcdd373ecc"
+        },
+        "selection": {
+          "source": "inputs/front-diagonals-v3/SW-face-neck-mask.png",
+          "sourceSha256": "0bdfb05b40ed2aa724fb250a55e31c59856bc08c1720571190e7892cb375c827"
+        },
+        "pixelCount": 19039
+      },
+      {
+        "name": "nose-erasure",
+        "plane": "skin",
+        "directory": "head",
+        "region": [
+          [
+            420,
+            194
+          ],
+          [
+            437,
+            194
+          ],
+          [
+            437,
+            220
+          ],
+          [
+            420,
+            220
+          ]
+        ],
+        "excludeRegions": [],
+        "color": "all",
+        "study": {
+          "source": "inputs/front-diagonals-v1/SW-ear-study.png",
+          "sourceSha256": "bb6f7e4e8e61d0b520ae38971c4381f514c3785522adf9eb41d2f8a6776a15db"
+        },
+        "selection": {
+          "source": "inputs/front-diagonals-v3/SW-nose-erasure-mask.png",
+          "sourceSha256": "45b85368d871cb807cbc7c2cf3312e53cb884477a44e0677d938598dedac3609"
+        },
+        "pixelCount": 442
+      },
+      {
+        "name": "mouth-erasure",
+        "plane": "skin",
+        "directory": "head",
+        "region": [
+          [
+            432,
+            224
+          ],
+          [
+            452,
+            224
+          ],
+          [
+            452,
+            240
+          ],
+          [
+            432,
+            240
+          ]
+        ],
+        "excludeRegions": [],
+        "color": "all",
+        "study": {
+          "source": "inputs/front-diagonals-v1/SW-ear-study.png",
+          "sourceSha256": "bb6f7e4e8e61d0b520ae38971c4381f514c3785522adf9eb41d2f8a6776a15db"
+        },
+        "selection": {
+          "source": "inputs/front-diagonals-v3/SW-mouth-erasure-mask.png",
+          "sourceSha256": "3d4efdaf294b0e9adbcae0a27d5f9e24086eadd11039ad98abe09b5f04076fc9"
+        },
+        "pixelCount": 320
+      },
+      {
+        "name": "native-nose",
+        "plane": "skin",
+        "directory": "hair",
+        "region": [
+          [
+            419,
+            217
+          ],
+          [
+            423,
+            216
+          ],
+          [
+            426,
+            221
+          ],
+          [
+            425,
+            225
+          ],
+          [
+            422,
+            229
+          ],
+          [
+            418,
+            224
+          ]
+        ],
+        "excludeRegions": [],
+        "color": "skin",
+        "study": {
+          "source": "SW-master-v4.png",
+          "sourceSha256": "3a6ed1c897a44f657a610e89b9543d7f5d198ced3ca88a1bc488ca95de0b8bf4"
+        },
+        "selection": {
+          "source": "inputs/front-diagonals-v3/SW-native-nose-mask.png",
+          "sourceSha256": "3ef1e91de9706544fba9c077b451ae3e902f2d072d29187cb2c192167a3e9e3f"
+        },
+        "pixelCount": 63
+      },
+      {
+        "name": "jaw",
+        "plane": "skin",
+        "directory": "hair",
+        "region": [
+          [
+            432,
+            247
+          ],
+          [
+            444,
+            249
+          ],
+          [
+            456,
+            255
+          ],
+          [
+            474,
+            246
+          ],
+          [
+            486,
+            241
+          ],
+          [
+            493,
+            237
+          ],
+          [
+            493,
+            241
+          ],
+          [
+            482,
+            250
+          ],
+          [
+            469,
+            258
+          ],
+          [
+            456,
+            264
+          ],
+          [
+            444,
+            259
+          ]
+        ],
+        "excludeRegions": [],
+        "color": "all",
+        "study": {
+          "source": "SW-review-head-v4.png",
+          "sourceSha256": "916e5b31fca82bf27bc10d49eb9ad50dc3ba4d780b357179ea825558e1917a9b"
+        },
+        "selection": {
+          "source": "inputs/front-diagonals-v3/SW-jaw-mask.png",
+          "sourceSha256": "d914c7abb210df68294267e76646db5eda8877c24b91c1cbb77930b9d3cc9966"
+        },
+        "pixelCount": 471
+      },
+      {
+        "name": "front-strand",
+        "plane": "hair-front",
+        "directory": "hair",
+        "region": [
+          [
+            468,
+            263
+          ],
+          [
+            490,
+            261
+          ],
+          [
+            498,
+            280
+          ],
+          [
+            493,
+            302
+          ],
+          [
+            503,
+            317
+          ],
+          [
+            488,
+            329
+          ],
+          [
+            463,
+            320
+          ]
+        ],
+        "excludeRegions": [
+          [
+            [
+              418,
+              213
+            ],
+            [
+              429,
+              215
+            ],
+            [
+              449,
+              216
+            ],
+            [
+              468,
+              217
+            ],
+            [
+              476,
+              221
+            ],
+            [
+              487,
+              220
+            ],
+            [
+              496,
+              217
+            ],
+            [
+              497,
+              231
+            ],
+            [
+              495,
+              239
+            ],
+            [
+              482,
+              249
+            ],
+            [
+              468,
+              258
+            ],
+            [
+              456,
+              263
+            ],
+            [
+              444,
+              258
+            ],
+            [
+              432,
+              247
+            ],
+            [
+              424,
+              237
+            ],
+            [
+              420,
+              228
+            ],
+            [
+              419,
+              220
+            ]
+          ]
+        ],
+        "color": "hair",
+        "study": {
+          "source": "SW-master-v4.png",
+          "sourceSha256": "3a6ed1c897a44f657a610e89b9543d7f5d198ced3ca88a1bc488ca95de0b8bf4"
+        },
+        "selection": {
+          "source": "inputs/front-diagonals-v3/SW-front-strand-mask.png",
+          "sourceSha256": "22a446bf788da411fa6e7da92bf8980d82a93bd888ff9dab77f8f80d60b16884"
+        },
+        "pixelCount": 1424
+      },
+      {
+        "name": "rear-jaw",
+        "plane": "hair-rear",
+        "directory": "hair",
+        "region": [
+          [
+            430,
+            252
+          ],
+          [
+            447,
+            250
+          ],
+          [
+            457,
+            258
+          ],
+          [
+            473,
+            254
+          ],
+          [
+            482,
+            257
+          ],
+          [
+            483,
+            276
+          ],
+          [
+            469,
+            289
+          ],
+          [
+            449,
+            280
+          ],
+          [
+            433,
+            267
+          ]
+        ],
+        "excludeRegions": [
+          [
+            [
+              418,
+              213
+            ],
+            [
+              429,
+              215
+            ],
+            [
+              449,
+              216
+            ],
+            [
+              468,
+              217
+            ],
+            [
+              476,
+              221
+            ],
+            [
+              487,
+              220
+            ],
+            [
+              496,
+              217
+            ],
+            [
+              497,
+              231
+            ],
+            [
+              495,
+              239
+            ],
+            [
+              482,
+              249
+            ],
+            [
+              468,
+              258
+            ],
+            [
+              456,
+              263
+            ],
+            [
+              444,
+              258
+            ],
+            [
+              432,
+              247
+            ],
+            [
+              424,
+              237
+            ],
+            [
+              420,
+              228
+            ],
+            [
+              419,
+              220
+            ]
+          ]
+        ],
+        "color": "hair",
+        "study": {
+          "source": "SW-master-v4.png",
+          "sourceSha256": "3a6ed1c897a44f657a610e89b9543d7f5d198ced3ca88a1bc488ca95de0b8bf4"
+        },
+        "selection": {
+          "source": "inputs/front-diagonals-v3/SW-rear-jaw-mask.png",
+          "sourceSha256": "a23eb4775fee1f068e7674850e7ef3c1a9c64a798a3bda075f3b487495edecb1"
+        },
+        "pixelCount": 907
+      },
+      {
+        "name": "front-curl",
+        "plane": "hair-front",
+        "directory": "head",
+        "region": [
+          [
+            469,
+            289
+          ],
+          [
+            482,
+            286
+          ],
+          [
+            487,
+            291
+          ],
+          [
+            489,
+            301
+          ],
+          [
+            489,
+            309
+          ],
+          [
+            483,
+            316
+          ],
+          [
+            471,
+            315
+          ],
+          [
+            465,
+            309
+          ],
+          [
+            465,
+            300
+          ]
+        ],
+        "excludeRegions": [],
+        "color": "hair",
+        "study": {
+          "source": "inputs/front-diagonals-v3/SW-curl-study.png",
+          "sourceSha256": "2b97412bee592d2eb0c3e9af0a7ca5811b13112284f9de39d73e90dacbc9fb9a"
+        },
+        "selection": {
+          "source": "inputs/front-diagonals-v3/SW-front-curl-mask.png",
+          "sourceSha256": "f0ce02341aadf504dc3728ac089b7b20e7c7726fc54ac7abf7f37b86fd803a46"
+        },
+        "pixelCount": 582
+      }
+    ],
+    "front": {
+      "source": "SW-front-fit-v3.png",
+      "sourceSha256": "1496d8733ea2ee3eeeb220655b0a19c546360ef7203ddffc227b8e898840939e"
+    },
+    "rear": {
+      "source": "SW-rear-fit-v3.png",
+      "sourceSha256": "13377dfc572cf48e014834fcbcc9814b1e0b31a67a3dbd9a0e581feced40d5ee"
+    },
+    "approved": false
+  },
+  "neckOwnership": {
+    "method": "duplicate-front-behind-skin",
+    "baseline": {
+      "source": "front-diagonals-authoring-v3.json",
+      "sourceSha256": "b720ebea895fef4026484f49442bd701e4eb72dd14935e927b998c7733e0ccaa"
+    },
+    "approval": {
+      "source": "front-diagonals-review-fit-v3.json",
+      "sourceSha256": "0aec4c06e302a0b5a6ca9e8da1d3242769dd40fd74d85d0275b53ea779fc0625"
+    },
+    "settings": {
+      "source": "inputs/front-diagonals-v4/neck-ownership.json",
+      "sourceSha256": "30e618850befebafd9a4f5e5aa715583fea849e9f7698adacfd4ca8de5305ab4"
+    },
+    "region": [
+      [
+        466,
+        263
+      ],
+      [
+        476,
+        263
+      ],
+      [
+        476,
+        287
+      ],
+      [
+        466,
+        287
+      ]
+    ],
+    "selection": {
+      "source": "inputs/front-diagonals-v4/SW-neck-ownership-mask.png",
+      "sourceSha256": "692105190793cdad570d17b2c0015ec9767a896a52d1534323e3f97f68743c85"
+    },
+    "front": {
+      "source": "SW-front-fit-v4.png",
+      "sourceSha256": "d29fdff37b14e90d126608625a9bb81589b711e1f588b4bced32bf9ba9942b83"
+    },
+    "pixelCount": 157,
+    "approved": false
+  }
+}

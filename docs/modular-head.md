@@ -739,3 +739,218 @@ bases, reviewed against their already approved front-diagonal hairstyle. Preserv
 all accepted sources, inspect actual layered geometry, and retain manual masks and
 prompt provenance. NE/NW heads, facial/ear variants, concealed hair, body/clothing,
 material maps and production T-pose remain later work. Step 6D has not started.
+
+### SE/SW head and neck draft — first increment
+
+`pnpm head:review:front-diagonals:v1` reproduces
+`assets/staging/heroine-v1/head-soft-oval-v1/front-diagonals/v1/overview.png`.
+Rows are SE and SW; columns are original reference, new bald head/neck base and
+actual assembled fit with the approved revision-5 hairstyle. This increment is
+unapproved and remains outside the runtime catalog.
+
+Each facing has its own native 1024×1536 skin study, framing guide and source
+provenance in `front-diagonals-prompts-v1.json`. Head origins retain the accepted
+hair attachments; neck origins are provisional. New studies are never mirrored,
+rescaled, translated or substituted for another facing. Head and neck partition
+at SE y265 and SW y280 and exactly reconstruct their own composite master.
+
+Whole-head generation drifted from the guides; rejected attempts are recorded.
+The selected studies supply scalp, cheek, jaw and neck skin without eyes, eyebrows
+or mouth lines. Local same-facing ear-erasure studies remove the displaced
+generated ears. Manually drawn, bounded masks retain 190 SE and 333 SW visible-ear
+pixels from each approved design study, at their original size and position.
+Everything outside these ear repair regions retains the raw skin study exactly.
+The masks and ownership are validated independently of re-pinned part hashes.
+Existing approved S/N, E/W and hair source imagery is unchanged.
+
+**Outstanding visual review:** visible jaw/nose geometry differs from the studies;
+small seams and speckles remain in the approved hair masks around face/neck.
+Visible-ear retention does not author complete concealed ear rims. The bare
+preview currently includes the reference-visible ear fragment and a smooth skin
+root; complete ear shape and its mask transitions remain unfinished. A later
+versioned repair may be needed before accepting these anatomy/fit candidates.
+This draft is not production T-pose anatomy, complete Step 6C or Step 6D.
+
+One additional public artwork workflow exercises both actual SE/SW compositions,
+source preservation, independently authored geometry, exact reconstruction,
+canonical ear ownership, deterministic output and rejected re-pinned edits.
+There are no new helper-level or enum/default unit tests.
+
+First-draft validation: asset-validator typecheck, root lint and tool build passed;
+SE/SW, accepted S/N and accepted E/W CLI exports passed. The full artwork run
+passed S/N and E/W but found a faulty new tamper fixture (alpha255 assumption).
+After correcting selection to alpha>=8, SE/SW passed the targeted rerun in
+56.93 seconds (the two already-passing cases skipped). Eighteen authoring outputs
+reproduced byte-for-byte; 222 prior source/reference hashes and 30 staged PNG
+hashes verified. Both accepted fit records still match current measurements.
+Full application build/browser E2E were not rerun for this offline tool change.
+`front-diagonals-fit-audit-v1.json` records validation and unresolved art review.
+
+### SE/SW local correction — revision 2
+
+The user rejected the first draft's clipped bare-ear fragments, misplaced SE
+nose and white SW face pixels. `front-diagonals-authoring-v2.json` pins the
+first draft and a new set of ordered, manually traced native repair masks.
+`pnpm head:review:front-diagonals:v2` reproduces this historical candidate at
+`assets/staging/heroine-v1/head-soft-oval-v1/front-diagonals/v2/overview.png`.
+Separate `inspection/SE-fit-comparison.png` and `SW-fit-comparison.png` show
+reference, rejected fit and corrected fit using the actual runtime plane order.
+
+Each facing has its own newly authored complete ear study, including concealed
+rim, concha and lobe, rather than a clipped reference-visible fragment. The
+SE face study corrects cheek/jaw geometry locally. Its residual generated nose
+and faint mouth mark are erased with a bounded smooth-skin study from the same
+SE facing; a narrow mask retains 136 warm nose pixels from the approved SE
+design study at their original coordinates. No eye or mouth layers are baked
+into the skin base. Exact prompts, input roles and selected/rejected attempts
+are recorded in `front-diagonals-prompts-v2.json`.
+
+SW front-hair cleanup clears 237 selected pixels: small disconnected face
+flecks plus a local neck fragment. It retains every unselected RGBA pixel,
+including legitimate white hair highlights. Approved front/rear sources,
+anchors and all existing S/N and E/W artwork remain untouched. Both original
+neck layers are reused. This does not solve all existing hair-mask edges or
+approve anatomy; complete ears, skin transitions and the new fit still need
+human visual review.
+
+The existing SE/SW public artwork workflow now covers both revisions, actual
+layer composition, visible native nose ownership, fragment removal,
+deterministic output, immutable sources and rejection of re-pinned edits
+outside the local masks. No additional unit test cases were added. Guide and
+authoring scripts reproduce the correction from retained raw studies and
+settings without image transforms. Step 6C remains unfinished; Step 6D has not
+started.
+
+Revision-2 verification: affected typecheck, root lint and asset-validator build
+passed. Current/historical SE/SW CLI exports passed. S/N and E/W artwork workflows
+passed in the full run; a transparent-corner sample caused the new SE/SW regression
+to fail. After selecting an actual fragment pixel, the SE/SW rerun passed
+(1 passed, 2 skipped; 102.33 seconds). The 17 authoring outputs and five guides
+replayed byte-for-byte; all 244 prior source/reference hashes and 38 current
+staged PNG hashes verified. Existing accepted S/N and E/W fit records still match
+their staged measurements. Full application build and browser E2E were not rerun
+for this offline change. `front-diagonals-fit-audit-v2.json` records the checks,
+initial failures, measurements and outstanding visual review.
+
+### SW nose, jaw and neck ownership — revision 3
+
+The user found SE substantially improved, but SW still had an offset nose,
+white fragments below the chin and an unwanted pale cutout through the neck
+curl. Revision 2 had repaired only SW's ear and cleared selected front pixels;
+its profile-shaped skin outline and mismatched jaw/neck ownership remained.
+
+`front-diagonals-authoring-v3.json` preserves SE's revision-2 layers and fit
+byte-for-byte. Eight ordered local masks repair SW without shifting or scaling
+any source. A new built-in imagegen skin study smooths the SW face/neck outline;
+same-facing smooth skin erases its misplaced generated nose and mouth. A narrow
+mask retains 63 original warm nose pixels from SW's own approved design at
+native coordinates, including `(421,223)`. The approved SW review skin supplies
+the jaw contour, keeping hair out of the bare head layer.
+
+The strand and rear-jaw masks restore canonical SW hair pixels while excluding
+exposed face skin. A separately authored local curl supplies 582 selected hair
+pixels over the pale neck fork. Its mask excludes skin and preserves legitimate
+white hair highlights. Each operation pins its raw study, binary selection and
+pixel count. Exact prompts and roles are in `front-diagonals-prompts-v3.json`;
+portable guide/partition scripts reproduce the new sources. Previous sources,
+approved hair imagery and anchors remain unchanged. This is a bounded repair
+of the marked regions; inherited edge noise elsewhere still needs review.
+
+`pnpm head:review:front-diagonals` now exports revision 3 to
+`assets/staging/heroine-v1/head-soft-oval-v1/front-diagonals/overview.png`.
+`inspection/SW-fit-comparison.png` shows reference / revision 2 / revision 3.
+The comparison baseline changes to revision 2 for both facings, while SE's
+head, neck, front layer, assembled fit and head inspection stay byte-identical.
+Historical revision-1 and revision-2 commands remain available separately.
+
+Revision-3 validation:
+
+- Asset-validator typecheck, root lint and asset-validator JS/declaration build
+  passed. Current revision-3 and historical revision-2 CLI exports passed.
+- `pnpm exec vitest run tools/asset-validator/src/head-review.integration.test.ts -t 'independent SE/SW'`
+  passed: one workflow passed, two unrelated workflows skipped, 156.49 seconds.
+  The existing case checks actual plane composition, native nose ownership,
+  repaired neck samples, unchanged SE, deterministic output, immutable source
+  hashes/mtimes and rejection of re-pinned changes outside masks. No additional
+  test cases were added.
+- All 270 pre-repair source/reference hashes were unchanged; 47 current staging
+  PNG hashes verified. Sixteen authoring outputs and two guides replayed
+  byte-for-byte in an isolated temporary copy.
+- S/N and E/W artwork workflows passed during revision-2 verification; they
+  were not rerun for this SW-only increment. Full application build and browser
+  E2E were not rerun because this is an offline asset-tool change.
+
+`front-diagonals-fit-audit-v3.json` retains the measurements and review limits.
+SW anatomy, local mask transitions and remaining edge noise require human
+visual approval. Step 6C remains unfinished and Step 6D has not started.
+
+### SW detached neck fragment — revision 4, 2026-10-12
+
+The user generally approved revision 3, while circling abrupt hair around SW's
+neck. `front-diagonals-review-fit-v3.json` pins the limited fit approval and this
+remaining issue. The transported sources and staging were verified unchanged;
+the temporary `wip` commit was already undone with its files retained.
+
+Native layer inspection found a detached 157-pixel foreground fragment at
+x466–475/y263–286. All its RGBA pixels already exist identically in the rear layer,
+and all overlap head/neck skin. Revision 4 clears only this duplicate foreground
+ownership, allowing the skin to cover the existing rear lock. No hair is redrawn,
+moved, mirrored, recoloured or removed from the rear. SW skin/nose/neck, SE and
+native attachments remain unchanged. This bounded repair does not clean every
+seam or abrupt transition in the broader circled area.
+
+`front-diagonals-authoring-v4.json` pins the v3 config/approval, a native binary
+mask, manual settings and `SW-front-fit-v4.png`.
+`inputs/partition-front-diagonal-neck-v4.js` verifies baseline hashes and writes
+new files exclusively; replay it in a separate scratch copy, never over sources.
+No new generated study or prompt record is needed for this ownership-only edit.
+
+`pnpm head:review:front-diagonals` prepares the v4 candidate at the usual current
+staging location. `pnpm head:review:front-diagonals:v3` reproduces the accepted
+checkpoint in `front-diagonals/v3/`. The SW comparison now shows reference /
+generally approved v3 / v4 candidate, using actual layer composition.
+
+The existing SE/SW public integration workflow checks skin exposure at all 157
+selected pixels, exact preservation elsewhere, unchanged SE/anatomy/rear,
+native plane composition, deterministic exports and rejection of re-pinned edits
+outside the mask. No new test cases are added. The correction still requires
+visual review; complete concealed hair, facial/ear parts, NE/NW anatomy,
+body/clothing and production T-pose remain unfinished. Step 6D stays gated.
+
+Revision-4 validation on the new machine:
+
+- `pnpm --filter @character-studio/asset-validator typecheck`: passed.
+- `pnpm lint`: passed with zero warnings.
+- `pnpm head:review:front-diagonals`: passed, including asset-validator
+  JavaScript/declaration build and current revision-4 export.
+- `node tools/asset-validator/dist/head-review-cli.js --front-diagonals-v3`:
+  passed; all 47 historical PNG hashes match the revision-3 audit.
+- `pnpm exec vitest run tools/asset-validator/src/head-review.integration.test.ts -t 'independent SE/SW'`:
+  passed, one workflow passed and two unrelated workflows skipped; 114.18 seconds.
+- All 48 current PNG hashes verified. All 299 prior source/reference hashes and
+  modification times unchanged. The three authoring outputs reproduced
+  byte-for-byte in an isolated scratch copy. `git diff --check`: passed.
+- Full application build and browser E2E were not rerun for this offline
+  asset-tool change. `front-diagonals-fit-audit-v4.json` pins results and review
+  limits. No new artwork approval, commit or milestone advancement was inferred.
+
+### Revision-4 qualified approval and future body occlusion — 2026-10-12
+
+The user approved the current fit for now and requested a local commit followed
+by the next increment. The circled abrupt neck/shoulder hair starts remain visible
+in the detached composition; the user expects the future body to occlude them.
+`front-diagonals-review-fit-v4.json` pins this limited standing-reference approval.
+Do not keep patching or clipping these accepted hair starts solely to clean the
+detached overview.
+
+When actual body/clothing anatomy is authored, inspect these starts in real
+native same-facing composition. Rear hair must sit behind the appropriate torso
+and shoulder surfaces; intentional foreground curls retain their depth. This
+expected occlusion is not yet implemented or visually verified. Any abrupt join
+that remains visible with the real body needs a new versioned repair. Moving
+overview panels or adding a synthetic torso does not certify production fit.
+
+The next small Step 6C increment authors independent NE/NW posterior three-quarter
+head/neck anatomy against the accepted rear hair. Both facings must hide eyes and
+frontal features. Separate facial/ear assets, concealed hair, body/clothing,
+material maps and production T-pose remain later work. Step 6D stays gated.

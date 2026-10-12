@@ -2,6 +2,158 @@
 
 > Purpose: This file transfers the **requirements and decisions** from a ChatGPT planning conversation into the WSL2/VS Code Codex development workflow. It is project context, **not** proof that any implementation is complete. Review actual repository files and tests before assuming a feature exists.
 
+## Post-move SE/SW review — 2026-10-12
+
+**Latest decision:** The user approved revision 4 for now and requested a local
+commit followed by the next Step 6C increment. Abrupt hair starts in the circled
+neck/shoulder area are accepted in this detached head/hair review because the
+future body should cover them. `front-diagonals-review-fit-v4.json` pins this
+qualified approval. Actual body occlusion remains unverified: check these starts
+with real same-facing body/clothing layers, preserving correct front/rear hair
+depth, and version any remaining visible defects. Do not erase valid hair now
+or treat a detached overview as proof of finished body fit. The next increment
+is independently authored NE/NW head/neck anatomy, with no visible eyes. Final
+Step 6C and Step 6D approval remain outstanding.
+
+The new-machine read-only audit confirmed all 424 transported checkpoint files,
+the selected source configurations, eight original/transparent references and
+123 current head-review PNG hashes. The temporary `wip` commit was already undone:
+HEAD is `62847da`, with its transported changes retained in the working tree.
+
+The user generally approved the SE/SW revision-3 fit, but circled abrupt hair at
+SW's neck. `front-diagonals-review-fit-v3.json` records that limited approval and
+remaining issue. It does not certify complete production anatomy or Step 6C.
+
+Revision 4 clears one detached 157-pixel foreground fragment at native
+x466–475/y263–286. Every selected RGBA pixel already exists identically in the
+rear, behind head/neck skin. Rear hair, anatomy, SE, nose pixels and anchors remain
+unchanged. This is a depth correction, with no new image generation or broad
+colour cleanup. Other seams in the circled region still need visual review.
+
+`pnpm head:review:front-diagonals` now selects
+`head-soft-oval-v1/front-diagonals-authoring-v4.json`; its current overview stays at
+`assets/staging/heroine-v1/head-soft-oval-v1/front-diagonals/overview.png`.
+`pnpm head:review:front-diagonals:v3` retains the accepted checkpoint separately.
+The comparison shows reference / revision 3 / revision 4. The latest qualified
+approval above supersedes the prior pending-review state. S/N v5 and E/W v3
+selections are unchanged.
+Step 6C remains unfinished; Step 6D has not started.
+
+## Machine-move checkpoint — 2026-10-10
+
+This section describes the current handoff. The dated entries below retain
+historical decisions, rejected drafts and superseded command defaults.
+
+The user requested a temporary local commit with the exact subject `wip` to
+preserve the current work while moving machines. Its parent is `62847da`
+(`feat: add approved profile head and hair fit`). The checkpoint includes the
+SE/SW revision-1, revision-2 and revision-3 source studies, masks, authoring
+scripts, configurations, prompt records and audits, plus the asset-validator
+changes and documentation. It records work in progress, not visual approval.
+The user intends to undo the temporary commit after the move; retain the files
+when doing so. Do not push, publish branches or create pull requests.
+
+### Implementation and approval status
+
+- MVP milestones 1–4 are implemented using the temporary geometric catalog:
+  core recipe/contracts, asset resolution, independent renderers and studio UI.
+  Real heroine artwork is still an offline authoring/review pipeline and is not
+  the editor's runtime catalog. Preserve the separate legacy 64×96 demo packages.
+- Steps 6A–6B have repeatable reference validation, transparent staging,
+  measurements, candidate anchors and source-preservation tests. Human review
+  of matte edges, uncertain regions, anchors and baseline inconsistency remains
+  open in `docs/mvp.md`; do not mark full acceptance from generated files alone.
+- Step 6C is in progress. All eight hairstyle designs have recorded approvals,
+  with incomplete concealed hair and production rig/T-pose compatibility.
+  S fit revision 5 is generally approved with known hair noise; N is an anatomy
+  draft. E/W standing-reference fit revision 3 is approved with minor W overview
+  ear pixelation acknowledged. These are limited fit checkpoints.
+- The latest SE/SW head fit is revision 3. SE reuses revision-2 head/neck/front
+  layers and assembled fit byte-for-byte. SW has local nose/jaw/neck ownership
+  corrections and a newly authored curl. The user found SE much better; the
+  latest SW repair has not received visual approval. Review anatomy, local mask
+  transitions and remaining edge noise before continuing authoring.
+- NE/NW heads, separate facial/ear variants, concealed lower hair, full body and
+  clothing anatomy, material maps, independently authored pixel assets and
+  production T-pose fit remain unfinished. Final Step 6C approval is outstanding;
+  Step 6D has not started and requires explicit approval.
+
+### Files and review commands to resume
+
+All selected source imagery and derivation inputs are under version control in
+`assets/references/heroine-v1/` and `assets/source/heroine-v1/`. Retained raw
+studies are local repository copies; external Codex generated-image paths in
+provenance are historical records, not regeneration dependencies. Temporary
+files under `/tmp` and the previous machine's Codex session are not required.
+Use the checked-in portable authoring scripts only to replay a derivation in a
+separate scratch copy; normal review commands consume the retained sources.
+Never overwrite approved artwork or mirror another facing.
+
+`assets/staging/` is ignored and is deliberately excluded from the `wip`
+commit. The user will transfer that directory separately to the same relative
+location on the new machine. It contains generated inspection images/reports,
+not approved runtime assets. The current review entry points are:
+
+| Scope | Selected source config | Command | Staging overview |
+| --- | --- | --- | --- |
+| S/N head fit | `head-soft-oval-v1/authoring-v5.json` | `pnpm head:review` | `head-soft-oval-v1/overview.png` |
+| E/W head fit | `head-soft-oval-v1/profiles-authoring-v3.json` | `pnpm head:review:profiles` | `head-soft-oval-v1/profiles/overview.png` |
+| SE/SW head fit | `head-soft-oval-v1/front-diagonals-authoring-v3.json` | `pnpm head:review:front-diagonals` | `head-soft-oval-v1/front-diagonals/overview.png` |
+
+Config paths in the table are relative to `assets/source/heroine-v1/`; overview
+paths are relative to `assets/staging/heroine-v1/`. For the latest SW repair,
+also inspect `head-soft-oval-v1/front-diagonals/inspection/SW-fit-comparison.png`
+(reference / revision 2 / revision 3). Revision-1 and revision-2 head-fit commands
+remain available separately. See `docs/modular-head.md` and
+`front-diagonals-fit-audit-v3.json` for measurements and review limits.
+
+On the new machine, use Ubuntu/WSL Bash and keep the checkout under `/home`.
+Install NVM if needed, then follow the pinned toolchain:
+
+```bash
+source "$HOME/.nvm/nvm.sh"
+nvm install
+nvm use
+npm install --global pnpm@10.34.6
+pnpm install --frozen-lockfile
+```
+
+Reinstall dependencies rather than transferring `node_modules`, build outputs
+or browser binaries. To regenerate reference staging if it has not been
+transferred, run `pnpm reference:import` first: hair/head review commands read
+`assets/staging/heroine-v1/reference-import-v1/transparent/`. The head commands
+above then rebuild their current inspections from checked-in source assets.
+Hair inspections can be regenerated with `pnpm hair:review`,
+`pnpm hair:review:profiles`, `pnpm hair:review:front-diagonals`,
+`pnpm hair:review:front-diagonals:completion` and
+`pnpm hair:review:back-diagonals`. The ordinary editor's temporary catalog is
+regenerated by `pnpm dev` or `pnpm build`, independently of heroine staging.
+
+### Validation carried with this checkpoint
+
+The latest artwork change passed asset-validator typecheck, root lint,
+asset-validator JS/declaration build, current revision-3 and historical
+revision-2 CLI exports, and the existing focused SE/SW integration workflow:
+
+```bash
+pnpm exec vitest run tools/asset-validator/src/head-review.integration.test.ts -t 'independent SE/SW'
+```
+
+Result: one passed, two unrelated workflows skipped, 156.49 seconds. The workflow
+covers actual plane composition, native nose/neck samples, unchanged SE,
+deterministic output, immutable sources and rejection of re-pinned edits outside
+masks. No additional unit test cases were added. All 270 pre-repair source/reference
+hashes were preserved, 47 current staging PNG hashes verified, and 16 authoring
+outputs plus two guides reproduced byte-for-byte in an isolated temporary copy.
+S/N and E/W workflows passed during revision-2 verification and were not rerun
+for the SW-only increment. Full application build/browser E2E were not rerun.
+These are prior local results; rerun checks after installing on the new machine.
+
+For a full environment check, run `pnpm test:e2e:install`, `pnpm verify`, then
+`pnpm test:e2e`; Chromium system dependencies may need installation as described
+in `README.md`. Do not add repetitive unit tests for the migration. Passing
+automated checks does not replace visual review or authorize the next milestone.
+
 ## 1. Goal
 
 Build a modular female fantasy character creator that lets users select and combine:
@@ -445,3 +597,62 @@ bases, reviewed against their already approved front-diagonal hairstyle. Preserv
 all accepted sources, inspect actual layered geometry, and retain manual masks and
 prompt provenance. NE/NW heads, facial/ear variants, concealed hair, body/clothing,
 material maps and production T-pose remain later work. Step 6D has not started.
+
+### First SE/SW head/neck increment — 2026-10-10
+
+After qualified E/W approval, commit `62847da` records the accepted profile fit
+and minor left/W overview-ear pixelation. Step 6C continues with independently
+authored SE/SW bald skin bases, manual native head/neck partitions, and actual
+composition against the unchanged approved front-diagonal hairstyle.
+
+The new front-diagonal anatomy is an unapproved candidate. Generation attempts
+that zoomed or shifted whole studies were rejected. Local ear-erasure patches
+remove displaced ears; bounded masks restore each approved design study's
+visible ear pixels without transforms. Visible jaw/nose differences, concealed
+ear rims and existing hair-mask seams/speckles need review and likely versioned
+correction. Source-ownership checks and one focused public artwork workflow
+cover this pair; automatic checks do not prove anatomical coherence.
+
+NE/NW head anatomy, separate facial/ear variants, concealed hair, body/clothing,
+material maps and production T-pose remain outstanding. No Step 6D work is
+authorized by this incremental anatomy checkpoint.
+
+### SE/SW ear, nose and hair-mask correction — 2026-10-10
+
+The user rejected the first SE/SW anatomy overview: bare ears retained only
+clipped visible fragments, the SE nose was displaced, and SW hair-mask fragments
+appeared as white pixels over the face. Revision 2 authors complete independent
+ear studies and corrects SE cheek/jaw geometry with local native masks. A narrow
+same-facing approved-study nose mask retains the original SE landmark after
+erasing the generated displaced nose and faint mouth. SW cleanup removes 237
+manually selected front-hair face/neck fragment pixels while preserving all
+other artwork and legitimate white highlights. Previous sources, approved hair
+and rear layers are unchanged; neck layers are reused.
+
+At this checkpoint the default front-diagonal head-review command prepared revision 2, with
+reference/rejected/corrected comparisons. `head:review:front-diagonals:v1`
+reproduces the earlier draft separately. Both corrections and complete-ear
+anatomy remain pending visual approval. They do not complete Step 6C or authorize
+Step 6D. Existing public artwork coverage is extended, with no new unit cases.
+
+### SW nose and neck ownership follow-up — 2026-10-10
+
+The user found SE much better but reported the same nose issue on SW, plus
+white jaw fragments and neck cutouts. Revision 2 had left SW's profile-shaped
+skin outline unchanged. Revision 3 uses a new local SW skin study, manually
+traced native masks and 63 nose pixels from SW's own approved hair design.
+The jaw contour comes from its canonical review skin. Canonical strand/rear
+pixels and a separately authored local curl correct depth ownership around
+the marked neck gap without globally removing white hair highlights.
+
+SE's skin/hair layers and assembled fit remain byte-identical to revision 2.
+Previous source imagery is preserved. The default front-diagonal head command
+now selects revision 3; `head:review:front-diagonals:v2` retains the preceding
+checkpoint. Comparisons show reference / revision 2 / revision 3. Exact prompts,
+raw studies, masks and portable authoring scripts retain the derivation.
+
+The existing SE/SW artwork integration case passed, with deterministic output,
+native nose/neck regressions and rejection of edits outside the selected masks.
+No additional unit cases were introduced. This candidate needs visual review
+of anatomy and mask transitions; inherited edge noise is still outstanding.
+Step 6C is unfinished and Step 6D remains unauthorized.

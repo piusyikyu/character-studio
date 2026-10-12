@@ -1,0 +1,275 @@
+{
+  "schemaVersion": 1,
+  "id": "head.soft-oval.v1",
+  "assetVersion": 1,
+  "target": "detailed",
+  "status": "draft-needs-human-review",
+  "config": "front-diagonals-authoring-v1.json",
+  "configSha256": "a2457a78ecb4e67954a7d70c46d1cb77839df8e1e0c2a69b3b25748494a20984",
+  "scope": "First independent SE/SW head/neck skin drafts with bounded ear-erasure studies and same-facing visible-ear ownership; real approved hairstyle composition. Not complete concealed ear anatomy, production T-pose, published asset or final Step 6C approval.",
+  "checks": {
+    "assetValidatorTypecheck": "passed",
+    "rootLint": "passed, zero warnings",
+    "assetValidatorBuild": "passed JavaScript and declarations",
+    "cliExports": [
+      "SE/SW first draft passed",
+      "Approved S/N revision5 passed; config and fit/coherent measurements match review-fit-v5.json",
+      "Approved E/W revision3 passed; config and fit/ear/profile measurements match profiles-review-fit-v3.json"
+    ],
+    "artworkIntegration": {
+      "command": "pnpm test tools/asset-validator/src/head-review.integration.test.ts",
+      "result": "S/N and E/W passed; new SE/SW fixture initially failed because it searched for alpha255 and changed no pixel in an alpha253 source. Fixture now selects a visible alpha>=8 pixel and asserts valid position.",
+      "affectedRerun": "pnpm test tools/asset-validator/src/head-review.integration.test.ts -t 'independent SE/SW'",
+      "affectedResult": "1 passed, 2 skipped; 56.93 seconds. All three workflows passed across full run and corrected targeted rerun; no additional helper unit tests."
+    },
+    "authoringReplay": "18 guide, mask, anatomy and config outputs byte-for-byte in isolated temporary copies",
+    "sourcePreservation": "222 prior source/reference hashes unchanged",
+    "stagingOutputs": "30 PNG hashes verified",
+    "diffCheck": "passed",
+    "fullApplicationBuild": "not rerun: offline asset-tool change",
+    "browserE2E": "not rerun: no app/UI change"
+  },
+  "visibleEarOwnership": {
+    "SE": {
+      "pixelCount": 190,
+      "source": "Own approved design-study pixels at native coordinates; baseline alpha is retained, final color follows normal source-over with rear/front hair."
+    },
+    "SW": {
+      "pixelCount": 333,
+      "source": "Own approved design-study pixels at native coordinates; baseline alpha is retained, final color follows normal source-over with rear/front hair."
+    }
+  },
+  "measurements": [
+    {
+      "direction": "SE",
+      "part": "head",
+      "sourceSha256": "2caafc8fcad801c7f22644e8c0223e6bf6d522bb8cc38a01524169bddb06f65f",
+      "outputSha256": "1a3a7138903b925c87effd893aaca00baf3899e91ac7f48b1cb6b925fba2ff84",
+      "pixelCount": 23950,
+      "bounds": {
+        "x": 478,
+        "y": 55,
+        "width": 148,
+        "height": 210
+      },
+      "origin": {
+        "x": 554,
+        "y": 164
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "greenCandidates": 0
+    },
+    {
+      "direction": "SE",
+      "part": "neck",
+      "sourceSha256": "2e1a164ae12ce2bc5dbc868fb930cecb2906a115687c8e3ae6d9ed7d9f0e2cb7",
+      "outputSha256": "fe9592cfed63e843688866a578b862da1b101144de8e4d852c207332c36da783",
+      "pixelCount": 1878,
+      "bounds": {
+        "x": 497,
+        "y": 265,
+        "width": 92,
+        "height": 33
+      },
+      "origin": {
+        "x": 545,
+        "y": 283
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "greenCandidates": 0
+    },
+    {
+      "direction": "SW",
+      "part": "head",
+      "sourceSha256": "e78dbd185d49f8c4c14d7f797eb822195b97bde67357e6fa50c5ed15cf0ff2a2",
+      "outputSha256": "f5dca06407f1de0acf0d793feceb909e44e2aca9c9a1ced79d3e5e9e61527c28",
+      "pixelCount": 22678,
+      "bounds": {
+        "x": 400,
+        "y": 69,
+        "width": 141,
+        "height": 211
+      },
+      "origin": {
+        "x": 454,
+        "y": 175
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "greenCandidates": 0
+    },
+    {
+      "direction": "SW",
+      "part": "neck",
+      "sourceSha256": "73add2fd3c4381ab5231c6af5d4548aa2ce6e4c55bfaff59aa069e2058161915",
+      "outputSha256": "8172378e8320deb5fa7dc6fae026a6d1a0f75bff7baea7dcf8eb8c92dd0deb9e",
+      "pixelCount": 2303,
+      "bounds": {
+        "x": 449,
+        "y": 280,
+        "width": 76,
+        "height": 36
+      },
+      "origin": {
+        "x": 484,
+        "y": 299
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "greenCandidates": 0
+    }
+  ],
+  "fitMeasurements": [
+    {
+      "direction": "SE",
+      "headPixelsOverlappedByHair": 15691,
+      "headPixelsWithoutHairOverlap": 8259,
+      "outputSha256": "abe5a5ecdef1f10849068bc12005acf6f2bcbd2689d4ab2df7d29e42e2319e98"
+    },
+    {
+      "direction": "SW",
+      "headPixelsOverlappedByHair": 14592,
+      "headPixelsWithoutHairOverlap": 8086,
+      "outputSha256": "5b0c59840b7354fe0f507315bd9bc7be0e3581293fc5fc5975c1572aad0ab24b"
+    }
+  ],
+  "remainingReview": [
+    "SE/SW jaw/nose and neck geometry drift from the framing guides; inspect fit before accepting anatomy",
+    "Reference-visible ear fragment retained; complete concealed ear rim/root anatomy is unfinished",
+    "Existing hair-mask seams/speckles around cheeks/neck and local skin transitions need visual review and likely versioned correction",
+    "NE/NW heads, separate facial/ear variants, concealed hair/body/clothing/material maps and production T-pose",
+    "Final Step 6C review before Step 6D"
+  ],
+  "outputs": [
+    {
+      "path": "masks/SE-visible-ear.png",
+      "sha256": "6a5a54dac27ccbed74a631029070eb33c752847c593ba5a3db56ef4a254aca2a"
+    },
+    {
+      "path": "masks/SE-ear-repair.png",
+      "sha256": "e8098d555a0127b1e8b1cfbf408de09b3ca0c5873dbdbfc42a20946ccecc7fc7"
+    },
+    {
+      "path": "layers/SE-head.png",
+      "sha256": "1a3a7138903b925c87effd893aaca00baf3899e91ac7f48b1cb6b925fba2ff84"
+    },
+    {
+      "path": "inspection/checker/SE-head.png",
+      "sha256": "31ed6d66ca0ef71150521a2c8cbb711b35fda943bb466afdea2dc3a25b9565bb"
+    },
+    {
+      "path": "masks/SE-head.png",
+      "sha256": "747770fbb7622a8f83b2afa89b62e56d0a9b1d5b12ca2fc9b06e84558efe62d2"
+    },
+    {
+      "path": "layers/SE-neck.png",
+      "sha256": "fe9592cfed63e843688866a578b862da1b101144de8e4d852c207332c36da783"
+    },
+    {
+      "path": "inspection/checker/SE-neck.png",
+      "sha256": "8978fb17f7acdf0a0784ed37f5a8f023cd1cd49d31a6354d78fc3ea196ad9d5a"
+    },
+    {
+      "path": "masks/SE-neck.png",
+      "sha256": "8c066f0e49f8ef2a32d05f73e597ce2b03941273ac95f818f463b753a66525ea"
+    },
+    {
+      "path": "master/SE.png",
+      "sha256": "ecf2a44b8db3828257bcc42bd563bfebe123168ed515dd65b6dd1e1fc9245495"
+    },
+    {
+      "path": "assembled/SE.png",
+      "sha256": "ecf2a44b8db3828257bcc42bd563bfebe123168ed515dd65b6dd1e1fc9245495"
+    },
+    {
+      "path": "fit/SE.png",
+      "sha256": "abe5a5ecdef1f10849068bc12005acf6f2bcbd2689d4ab2df7d29e42e2319e98"
+    },
+    {
+      "path": "inspection/green/SE-fit.png",
+      "sha256": "8864fef9962df66c65ec44e29e6465ee0ce8a9e8fdc39996adedb3a9c954409e"
+    },
+    {
+      "path": "inspection/head-comparison/SE.png",
+      "sha256": "73538a5ead8ea05f80e88c67c0e861eb3c3e9a418baabe6efbdceec47aa8b106"
+    },
+    {
+      "path": "inspection/full-comparison/SE.png",
+      "sha256": "b0b0605b919689db960999129955b915a286e6ef8992ab5526b1c5d2fa91618d"
+    },
+    {
+      "path": "masks/SW-visible-ear.png",
+      "sha256": "28a7cbc2d1269604993306b6a808ce418c4c0708f5a6e62192b033709fc665cc"
+    },
+    {
+      "path": "masks/SW-ear-repair.png",
+      "sha256": "f34ca22df304a8faa4d19b5b160f1429942693c901a4af50cd6630dcbca8a4cd"
+    },
+    {
+      "path": "layers/SW-head.png",
+      "sha256": "f5dca06407f1de0acf0d793feceb909e44e2aca9c9a1ced79d3e5e9e61527c28"
+    },
+    {
+      "path": "inspection/checker/SW-head.png",
+      "sha256": "ec0c5dc2de2bb8ba274674724db5d60714d5c0296a99cfae61ff76e6639cc0fb"
+    },
+    {
+      "path": "masks/SW-head.png",
+      "sha256": "fee3268eb359838573d520de981438e73bf07b61a4fa93899fc148069c548ced"
+    },
+    {
+      "path": "layers/SW-neck.png",
+      "sha256": "8172378e8320deb5fa7dc6fae026a6d1a0f75bff7baea7dcf8eb8c92dd0deb9e"
+    },
+    {
+      "path": "inspection/checker/SW-neck.png",
+      "sha256": "f09e910c03893851080ab80de7faef7fa6727eef04c03047fc694547c38e7c59"
+    },
+    {
+      "path": "masks/SW-neck.png",
+      "sha256": "8b1bb87d5695a1e0f5abeac26c845d71b2e44ecd34882219f549e7958bdc3f28"
+    },
+    {
+      "path": "master/SW.png",
+      "sha256": "4a9e9ef9b6cbd0c58267016f2952a2ce7b497c4b2c5845ab4dc72f40395debd2"
+    },
+    {
+      "path": "assembled/SW.png",
+      "sha256": "4a9e9ef9b6cbd0c58267016f2952a2ce7b497c4b2c5845ab4dc72f40395debd2"
+    },
+    {
+      "path": "fit/SW.png",
+      "sha256": "5b0c59840b7354fe0f507315bd9bc7be0e3581293fc5fc5975c1572aad0ab24b"
+    },
+    {
+      "path": "inspection/green/SW-fit.png",
+      "sha256": "29244ec252113b797a8c3344cd0cba167d70bc9e0288dd199deebfa30ac6b088"
+    },
+    {
+      "path": "inspection/head-comparison/SW.png",
+      "sha256": "4a1a6680b3b92d1b43e3fbe5907b4f5338964d3cd3a295f3bc150f39afe67e7e"
+    },
+    {
+      "path": "inspection/full-comparison/SW.png",
+      "sha256": "b6388ad5c692c6879505d682a93f8361801ba494d9a7a7f1ea3e9eb2c68b1ac4"
+    },
+    {
+      "path": "overview.png",
+      "sha256": "abaf2cc2e1df806567ef11d6e627d2ac11878453f216f641041d22671a823cb1"
+    },
+    {
+      "path": "full-overview.png",
+      "sha256": "e3aaa63c16ac4a121378e65879d93beb7cbc911e659477ffb0e3bc815fe5ff72"
+    }
+  ]
+}

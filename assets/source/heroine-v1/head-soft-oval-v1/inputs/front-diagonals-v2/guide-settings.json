@@ -1,0 +1,21 @@
+{
+  "purpose": "Native complete ear envelopes; synthetic framing only, not artwork.",
+  "guides": {
+    "SE": {
+      "ear": [
+        489,
+        171,
+        12,
+        21
+      ]
+    },
+    "SW": {
+      "ear": [
+        531,
+        182,
+        14,
+        21
+      ]
+    }
+  }
+}

@@ -87,6 +87,10 @@ pnpm head:review:v1 # Reproduce the initial S mismatch separately
 pnpm head:review:v2 # Reproduce the approved S fit before temple/ear-mask repair
 pnpm head:review:v3 # Reproduce rejected local seam patches separately
 pnpm head:review:v4 # Reproduce the coherent hair fit before lower-ear correction
+pnpm head:review:front-diagonals # Review revision-4 SW neck ownership and unchanged SE
+pnpm head:review:front-diagonals:v3 # Reproduce the generally approved nose/jaw/neck fit with the abrupt hair fragment
+pnpm head:review:front-diagonals:v2 # Reproduce the prior ear/SE-nose repair and SW fragment cleanup
+pnpm head:review:front-diagonals:v1 # Reproduce the rejected visible-only ear/offset nose/noisy hair draft
 pnpm head:review:profiles # Review E/W local ear size/placement and visible-hair fit candidates
 pnpm head:review:profiles:v1 # Reproduce the original profile hair mismatch separately
 pnpm head:review:profiles:v2 # Reproduce the rejected large/misaligned profile ear fit
@@ -155,6 +159,17 @@ facing's visible reference ear pixels at native size and position with corrected
 fringe ownership. Concealed ear surfaces and mask edges need review; hair hidden
 by the standing body remains unfinished. Complete production heads and hair remain unfinished; approved
 sources and S/N stay unchanged.
+
+Independent SE/SW head drafts now include complete ear studies, a local SE
+face/nose correction and manually masked SW face/neck fragment cleanup.
+Revision 3 corrects the remaining SW nose offset and jaw/neck ownership with
+native masks and a locally authored curl. SE's layers and assembled fit are
+byte-identical to revision 2; approved source imagery remains unchanged.
+Revision 3 has general standing-reference fit approval with abrupt SW neck hair
+flagged. Revision 4 clears 157 duplicate foreground pixels already retained in
+the rear behind skin. Revision 4 is approved for now; abrupt neck/shoulder hair
+starts must be checked under the future body's actual occlusion. See the overview and before/after comparisons in
+[modular-head.md](docs/modular-head.md).
 
 Six public-API integration tests cover core recipe save/load, compatibility and
 seeded generation. Seven registry integration tests cover recipe-to-plan workflows

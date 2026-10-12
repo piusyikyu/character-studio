@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "head.soft-oval.v1",
+  "revision": 2,
+  "target": "detailed",
+  "tool": "built-in imagegen",
+  "transparentBackground": true,
+  "selected": [
+    {
+      "direction": "SE",
+      "output": "inputs/front-diagonals-v2/SE-complete-ear-study.png",
+      "inputs": [
+        "inputs/front-diagonals-v2/SE-ear-guide.png",
+        "assets/source/heroine-v1/hair-long-waves-v1/SE-master-v4.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Image1 is EXACT EDIT TARGET, native1024x1536 tiny SE three-quarter front-right bald female head and neck. The flat salmon oval atx489y171 (boundsx477..501 y150..192) is a complete EAR PLACEMENT GUIDE. Render ONLY that oval and its skull attachment as ONE complete small human ear, matching polished anime warm peach skin. Include continuous helix rim, inner concha, tragus and lobe; no clipped upper/lower ear edges. Complete ear attached to skull, not a pasted visible fragment. Image2 is same-facing SE skin and ear style reference only, with hair hiding part of ear; RECONSTRUCT hidden ear parts. Keep exact guide oval size and placement. Preserve wholehead scalp, jaw/nose and neck, native tiny upper-center framing and transparent alpha. No eyes/brows/mouth lines/hair, no shoulders/body/clothes/background/text/glow. Do NOT zoom, crop, scale, move, recenter, mirror or enlarge ear. Native1024x1536 actual transparency. This is local ear completion ONLY.",
+      "scope": "Complete native ear and local attachment only."
+    },
+    {
+      "direction": "SW",
+      "output": "inputs/front-diagonals-v2/SW-complete-ear-study.png",
+      "inputs": [
+        "inputs/front-diagonals-v2/SW-ear-guide.png",
+        "assets/source/heroine-v1/hair-long-waves-v1/SW-master-v4.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Image1 is EXACT EDIT TARGET, native1024x1536 tiny SW three-quarter front-left bald female head and neck. Flat salmon oval atx531y182 (boundsx517..545 y161..203) is a complete EAR PLACEMENT GUIDE. Render ONLY that oval and its skull attachment as ONE complete small human ear, polished anime warm peach skin. Continuous complete helix, inner concha/tragus and lobe, not cropped or clipped. Properly attach to skull. Image2 is same-facing SW skin/ear style reference only; its hair occludes part of ear, so reconstruct concealed rim. Keep exact guide oval size and position. Preserve scalp, face/nose/jaw/neck, tiny upper-center native placement and transparent alpha. No eyes/brows/mouth/hair, shoulders/body/clothes/text/glow/background. Do NOT zoom/recenter/translate/scale/mirror/enlarge. Native1024x1536 actual transparency. Local complete-ear completion ONLY.",
+      "scope": "Complete native ear and local attachment only."
+    },
+    {
+      "direction": "SE",
+      "output": "inputs/front-diagonals-v2/SE-face-study.png",
+      "inputs": [
+        "inputs/front-diagonals-v2/SE-face-guide.png",
+        "assets/source/heroine-v1/hair-long-waves-v1/SE-master-v4.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Image1 is EDIT TARGET: tiny native1024x1536 SE bald female head-neck with a flat salmon FACE POSITION GUIDE. The guide gives the CORRECT THREE-QUARTER FRONT RIGHT face shape matching image2, its same-facing approved hairstyle/design STYLE/GEOMETRY reference. Render the flat guide as polished warm peach anime skin and smoothly connect to existing scalp/neck. Critical: nose is a subtle INTERIOR nose highlight atx591y201, NOT the current misplaced protruding side-profile nose on the outer right atx621y181. Remove that old profile nose entirely. Keep right cheek boundary x612y165,606y189,602y201,599y214; chin atx567y244. Feminine three-quarter face, not profile. Keep tiny upper-center head, native1024x1536transparent canvas and scalp top/neck unchanged. No eyes/eyelids/lashes/brows/mouth lines/hair, no body/shoulders/clothes/text/background/glow. Do NOT zoom/reframe/recenter/translate/scale/mirror. Draw fine clean jaw outline along guide and natural shaded cheek, small interior nose; no eyes. Restore smooth complete forehead/neck skin connections, no holes. STRICT TRANSPARENT BACKGROUND. Absolutely NO mouth mark, no smile or lips, only smooth skin below the subtle interior nose. Nose tip must be INSIDE the face, not an outline protrusion. Match guide geometry exactly.",
+      "scope": "Bounded jaw/cheek revision. Residual displaced nose and faint mouth excluded by additional same-facing native masks; original nose retained separately."
+    }
+  ],
+  "rejected": [
+    {
+      "direction": "SE",
+      "prompt": "Use case: precise-object-edit. Image1 is EDIT TARGET: tiny native1024x1536 SE bald female head-neck with a flat salmon FACE POSITION GUIDE. The guide gives the CORRECT THREE-QUARTER FRONT RIGHT face shape matching image2, its same-facing approved hairstyle/design STYLE/GEOMETRY reference. Render the flat guide as polished warm peach anime skin and smoothly connect to existing scalp/neck. Critical: nose is a subtle INTERIOR nose highlight atx591y201, NOT the current misplaced protruding side-profile nose on the outer right atx621y181. Remove that old profile nose entirely. Keep right cheek boundary x612y165,606y189,602y201,599y214; chin atx567y244. Feminine three-quarter face, not profile. Keep tiny upper-center head, native1024x1536transparent canvas and scalp top/neck unchanged. No eyes/eyelids/lashes/brows/mouth lines/hair, no body/shoulders/clothes/text/background/glow. Do NOT zoom/reframe/recenter/translate/scale/mirror. Draw fine clean jaw outline along guide and natural shaded cheek, small interior nose; no eyes. Restore smooth complete forehead/neck skin connections, no holes.",
+      "reason": "Residual mouth and displaced nose; retry selected for cleaner cheek/jaw. No pixels used."
+    }
+  ],
+  "postprocessing": "User-authorized manually traced native masks. Ordered complete-ear and local SE face patches; smooth same-facing skin removes generated nose/mouth, narrow canonical warm nose patch restores approved SE landmark. SW front-hair cleanup removes only selected residual face/neck fragments. No transforms or edits to approved sources."
+}

@@ -1,0 +1,297 @@
+{
+  "schemaVersion": 1,
+  "id": "head.soft-oval.v1",
+  "assetVersion": 1,
+  "target": "detailed",
+  "status": "draft-needs-human-review",
+  "sourcePose": "standing-reference",
+  "intendedRuntimePose": "tpose",
+  "rigCompatibility": "unverified",
+  "paletteReady": false,
+  "anatomyApproved": false,
+  "authoringMethod": "imagegen-guide/manual-native-partition",
+  "featurePolicy": "skin-base-no-eyes-brows-mouth",
+  "earPolicy": "human-ears-in-head-base-needs-separation",
+  "minimumVisibleAlpha": 8,
+  "nativeSize": {
+    "width": 1024,
+    "height": 1536
+  },
+  "hairConfig": {
+    "source": "front-diagonals-authoring-v5.json",
+    "sourceSha256": "3efa8d3744783e3ca777172daadbbd913a40bec45a7bfe9745e97774116a11a8"
+  },
+  "hairApproval": {
+    "source": "front-diagonals-review-v2.json",
+    "sourceSha256": "06f1c910578cc85f983dca86ad56521646a057b14928b200bb6194fa4595d79e"
+  },
+  "knownReviewIssues": [
+    "Independently authored SE/SW complete bald head and neck drafts: three-quarter front right/left. Visible ear pixels retain the same-facing approved design study; concealed ear anatomy still needs review.",
+    "Native skin studies drift from synthetic jaw/neck guides. Actual approved-hair fit is displayed without transforms or substitutions; visible jaw/nose geometry and original hair-mask seams require visual inspection.",
+    "Approved front-diagonal hair remains unchanged. Existing tiny skin-mask cuts, residual noise and hair roots around the neck may need a later versioned fit correction; design approval does not certify this anatomy fit.",
+    "Human ears remain embedded; NE/NW heads, separate facial/ear variants, concealed hair, body/clothing and production T-pose fit remain unfinished. This is not final Step 6C approval; Step 6D has not started."
+  ],
+  "frames": {
+    "SE": {
+      "reference": "SE.png",
+      "referenceSha256": "392d4b7ec7c6a0119b1087c55f304f6a250f50272e51d0ce5aadd8b79df40a51",
+      "candidateHeadAnchor": {
+        "x": 554,
+        "y": 164
+      },
+      "candidateNeckAnchor": {
+        "x": 545,
+        "y": 283
+      },
+      "master": {
+        "source": "SE-master-v1.png",
+        "sourceSha256": "924a52da4d585a03a65daec728156ffed3b986a072033424ad0492e5c807b9c7"
+      },
+      "guide": {
+        "source": "inputs/front-diagonals-v1/SE-placement-guide.png",
+        "sourceSha256": "7b5c0dcab5a015f1ae6a71f90dc8da7a984ec3f429b9bb70d6fbd504d82bfeee"
+      },
+      "cutY": 265,
+      "allowedBounds": {
+        "x": 470,
+        "y": 45,
+        "width": 170,
+        "height": 285
+      },
+      "head": {
+        "source": "SE-head-v1.png",
+        "sourceSha256": "2caafc8fcad801c7f22644e8c0223e6bf6d522bb8cc38a01524169bddb06f65f",
+        "origin": {
+          "x": 554,
+          "y": 164
+        },
+        "selection": {
+          "source": "inputs/front-diagonals-v1/SE-head-mask-v1.png",
+          "sourceSha256": "d7eb1554f953d89aa30f0104eb61c9ee7efffa1204dfc94ecea96c625a631185"
+        },
+        "pixelCount": 23950
+      },
+      "neck": {
+        "source": "SE-neck-v1.png",
+        "sourceSha256": "2e1a164ae12ce2bc5dbc868fb930cecb2906a115687c8e3ae6d9ed7d9f0e2cb7",
+        "origin": {
+          "x": 545,
+          "y": 283
+        },
+        "selection": {
+          "source": "inputs/front-diagonals-v1/SE-neck-mask-v1.png",
+          "sourceSha256": "ab24c7f9e3128590eafe2218f97d9bf569e5fc674cc64b63cb49e5fab2e8c9e0"
+        },
+        "pixelCount": 1878
+      }
+    },
+    "SW": {
+      "reference": "SW.png",
+      "referenceSha256": "4d288310e7fbf452f9bf7cd842172b5201ce061249f2eade711d31518c34b870",
+      "candidateHeadAnchor": {
+        "x": 454,
+        "y": 175
+      },
+      "candidateNeckAnchor": {
+        "x": 484,
+        "y": 299
+      },
+      "master": {
+        "source": "SW-master-v1.png",
+        "sourceSha256": "7526f20c0edb177c33a0203d02fc40b185e4f2ef3628ab4d93e72b86832016f5"
+      },
+      "guide": {
+        "source": "inputs/front-diagonals-v1/SW-placement-guide.png",
+        "sourceSha256": "b4c05057839913359a2490ee2c6e4f9ac97dffe57b6d26663076716a810bfed1"
+      },
+      "cutY": 280,
+      "allowedBounds": {
+        "x": 390,
+        "y": 60,
+        "width": 165,
+        "height": 270
+      },
+      "head": {
+        "source": "SW-head-v1.png",
+        "sourceSha256": "e78dbd185d49f8c4c14d7f797eb822195b97bde67357e6fa50c5ed15cf0ff2a2",
+        "origin": {
+          "x": 454,
+          "y": 175
+        },
+        "selection": {
+          "source": "inputs/front-diagonals-v1/SW-head-mask-v1.png",
+          "sourceSha256": "8357ceeb1c90e333bdb3517794e5351c8157538d7e33e5d6ffdf1e39070312fc"
+        },
+        "pixelCount": 22678
+      },
+      "neck": {
+        "source": "SW-neck-v1.png",
+        "sourceSha256": "73add2fd3c4381ab5231c6af5d4548aa2ce6e4c55bfaff59aa069e2058161915",
+        "origin": {
+          "x": 484,
+          "y": 299
+        },
+        "selection": {
+          "source": "inputs/front-diagonals-v1/SW-neck-mask-v1.png",
+          "sourceSha256": "0465d89a105953ec360447b6d56e99eaa3528519d2c6b00bb6771dce5c014da2"
+        },
+        "pixelCount": 2303
+      }
+    }
+  },
+  "nativeEarOwnership": {
+    "method": "authored-skin/same-facing-study-visible-ear",
+    "frames": {
+      "SE": {
+        "study": {
+          "source": "inputs/front-diagonals-v1/SE-skin-study.png",
+          "sourceSha256": "f9bf6a4f067c3a404f70b8ffd277fc7608a3c1def0bad930a2228a0a061647f4"
+        },
+        "repairStudy": {
+          "source": "inputs/front-diagonals-v1/SE-ear-study.png",
+          "sourceSha256": "376bea8acbb169d84350c9686a95afabe6486d687e82f9dcfe92af0212d1fa5c"
+        },
+        "repairSelection": {
+          "source": "inputs/front-diagonals-v1/SE-ear-repair-mask.png",
+          "sourceSha256": "450f13399e51eb4f143cd5389d1b9b9f8d7ade50ecb22592b8fa9e49924765cf"
+        },
+        "repairRegion": [
+          [
+            477,
+            141
+          ],
+          [
+            522,
+            141
+          ],
+          [
+            527,
+            159
+          ],
+          [
+            525,
+            205
+          ],
+          [
+            485,
+            205
+          ],
+          [
+            477,
+            189
+          ]
+        ],
+        "selection": {
+          "source": "inputs/front-diagonals-v1/SE-visible-ear-mask.png",
+          "sourceSha256": "72bd09055ca999130c8b3be4cbd857f7dd53ba17503eb31a95925470081300a3"
+        },
+        "region": [
+          [
+            479,
+            158
+          ],
+          [
+            489,
+            155
+          ],
+          [
+            494,
+            160
+          ],
+          [
+            491,
+            174
+          ],
+          [
+            485,
+            187
+          ],
+          [
+            481,
+            182
+          ],
+          [
+            478,
+            171
+          ]
+        ],
+        "pixelCount": 190
+      },
+      "SW": {
+        "study": {
+          "source": "inputs/front-diagonals-v1/SW-skin-study.png",
+          "sourceSha256": "40369ce2ba735c6da6e11957fd238f6888f643efca3514ba993fab031545db8f"
+        },
+        "repairStudy": {
+          "source": "inputs/front-diagonals-v1/SW-ear-study.png",
+          "sourceSha256": "bb6f7e4e8e61d0b520ae38971c4381f514c3785522adf9eb41d2f8a6776a15db"
+        },
+        "repairSelection": {
+          "source": "inputs/front-diagonals-v1/SW-ear-repair-mask.png",
+          "sourceSha256": "d1b3651b2680d97394f7151137fb51ceb55ba89d6efb632b5dbd29c5c47a417d"
+        },
+        "repairRegion": [
+          [
+            504,
+            144
+          ],
+          [
+            544,
+            144
+          ],
+          [
+            547,
+            171
+          ],
+          [
+            545,
+            218
+          ],
+          [
+            514,
+            218
+          ],
+          [
+            505,
+            200
+          ]
+        ],
+        "selection": {
+          "source": "inputs/front-diagonals-v1/SW-visible-ear-mask.png",
+          "sourceSha256": "dff6a17412791e3706ec25439b56c5e1b352af3be9ab0495f4de009e5aa2a60c"
+        },
+        "region": [
+          [
+            523,
+            170
+          ],
+          [
+            533,
+            166
+          ],
+          [
+            540,
+            170
+          ],
+          [
+            540,
+            181
+          ],
+          [
+            535,
+            190
+          ],
+          [
+            528,
+            200
+          ],
+          [
+            523,
+            194
+          ]
+        ],
+        "pixelCount": 333
+      }
+    }
+  }
+}

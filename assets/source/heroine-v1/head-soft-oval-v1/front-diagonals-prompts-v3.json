@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "head.soft-oval.v1",
+  "revision": 3,
+  "target": "detailed",
+  "tool": "built-in imagegen",
+  "transparentBackground": true,
+  "selected": [
+    {
+      "direction": "SW",
+      "output": "inputs/front-diagonals-v3/SW-face-study.png",
+      "inputs": [
+        {
+          "source": "inputs/front-diagonals-v3/SW-face-guide.png",
+          "role": "edit target: synthetic native face guide"
+        },
+        {
+          "source": "assets/source/heroine-v1/hair-long-waves-v1/SW-master-v4.png",
+          "role": "same-facing skin style and nose landmark reference"
+        }
+      ],
+      "prompt": "Use case: precise-object-edit. Image1 is EXACT EDIT TARGET: native1024x1536 tiny upper-center SW bald female head and neck. Its flat peach lower face is a positioning guide; preserve its THREE-QUARTER FRONT LEFT outline precisely, chin x456y263, left cheek x424y237, forehead-to-cheek edge x410y196, x414y210, x419y220. Image2 is same-facing SW hairstyle design reference only, for skin style and subtle nose position x421y223. Render the guide as clean polished warm-peach anime skin with consistent soft shading and a fine continuous jaw outline, seamlessly joined to scalp and neck. Critical NO profile nose protruding atx405y211. Nose is a tiny subtle INTERIOR highlight atx421y223. NO eyes, eyebrows, eyelashes, eyelids, mouth mark, smile, lip lines or hair. Absolutely smooth featureless skin below nose. Preserve existing complete ear, scalp topx400..543 y69, native tiny size/location and neck bottomy316. Repair the small guide gap atx403..445 y181. NO zoom/reframe/recenter/translation/resizing/mirroring. All belowy330 transparent. Native1024x1536 genuine transparent alpha, no body/shoulders/clothing/text/glow/background.",
+      "scope": "Only bounded face/neck pixels enter v3. Residual generated nose/mouth erased with retained same-facing skin study; canonical SW nose and jaw retained separately."
+    },
+    {
+      "direction": "SW",
+      "output": "inputs/front-diagonals-v3/SW-curl-study.png",
+      "inputs": [
+        {
+          "source": "assets/source/heroine-v1/hair-long-waves-v1/SW-master-v4.png",
+          "role": "exact same-facing hairstyle edit target"
+        }
+      ],
+      "prompt": "Use case: precise-object-edit. EXACT EDIT TARGET is native1024x1536 SW three-quarter front-left silver-lilac long hairstyle, tiny upper-center character head. Change ONLY the tiny neck-to-hair transition x462..496,y284..318. The jagged salmon-pink skin extension atx475y300 currently projects into the violet/silver foreground curl below the slender neck. Remove this small protruding skin wedge and reconstruct a continuous smooth silver-lilac foreground curl with fine crisp dark-purple outline and white highlight, seamlessly joining its existing strand above/right and below/left. Preserve the healthy neck ending nearx480y291, face, ear, all curls outside the tiny repair and the exact native framing, original proportions, RGB style and genuine transparent alpha. No extra strand, detached patch, cropped hole, white noise, straight cut seam or geometric blob. This is a tiny curl-edge repair, not a full hairstyle redraw. Do NOT zoom, translate, recenter, rescale, mirror, rotate or change canvas dimensions. Native1024x1536transparent. No text, background, glow, shoulders or new garments.",
+      "scope": "Only the manually traced native lower-neck curl uses this new artwork; all other generated changes discarded."
+    }
+  ],
+  "rejected": [],
+  "postprocessing": "User-authorized native manual masks only. SW skin and front/rear hair are replayed from the pinned v2 baseline through ordered bounded source-ownership masks. No scaling, translations, mirroring, global color key, changes to SE or approved source images. Manual full-face copying and moving rear pixels above the neck were inspected and discarded because they left seams."
+}

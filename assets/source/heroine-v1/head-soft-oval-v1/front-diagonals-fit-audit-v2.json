@@ -1,0 +1,339 @@
+{
+  "schemaVersion": 1,
+  "id": "head.soft-oval.v1",
+  "assetVersion": 2,
+  "target": "detailed",
+  "status": "draft-needs-human-review",
+  "config": "front-diagonals-authoring-v2.json",
+  "configSha256": "92ff8f7efacaea3779f22312e511e5debe2ca473612233e035e0998723e45b49",
+  "scope": "Local complete-ear studies, SE cheek/jaw repair and native nose retention, SW front-mask face/neck fragment cleanup. No transforms, runtime publication or Step 6D advancement.",
+  "checks": {
+    "assetValidatorTypecheck": "pnpm --filter @character-studio/asset-validator typecheck passed",
+    "rootLint": "pnpm lint passed with zero warnings",
+    "assetValidatorBuild": "pnpm --filter @character-studio/asset-validator build passed JS and declarations",
+    "cliExports": "Current front-diagonals v2 and historical front-diagonals v1 exports passed. Initial nose pin comparison rejected an extra design-master origin field; corrected to compare source and hash.",
+    "artworkIntegration": {
+      "command": "pnpm exec vitest run tools/asset-validator/src/head-review.integration.test.ts",
+      "result": "S/N and E/W passed; SE/SW failed because a newly added white-fragment sample selected the transparent corner of its component. Corrected sample to its actual occupied pixel; no asset changes.",
+      "affectedRerun": "pnpm exec vitest run tools/asset-validator/src/head-review.integration.test.ts -t 'independent SE/SW'",
+      "affectedResult": "1 passed, 2 skipped; 102.33 seconds. All three workflows passed across the full run and corrected targeted rerun. Existing SE/SW workflow extended; no additional test cases."
+    },
+    "authoringReplay": "17 authoring outputs and 5 guides reproduced byte-for-byte in isolated temporary copies. Subprocess spawn blocked by EPERM; module-import runner completed successfully.",
+    "sourcePreservation": "244 prior source/reference hashes unchanged; workflow also verifies source mtimes",
+    "stagingOutputs": "38 current PNG hashes verified; obsolete v1-only masks removed from current staging and retained under historical v1 staging",
+    "acceptedFitRecords": "Existing approved S/N v5 and E/W v3 staged config/fit measurements still match their acceptance records",
+    "diffCheck": "git diff --check passed",
+    "fullApplicationBuild": "not rerun: offline asset-tool change",
+    "browserE2E": "not rerun: no application/UI change"
+  },
+  "diagonalRepairMeasurements": [
+    {
+      "direction": "SE",
+      "patches": [
+        {
+          "name": "complete-ear",
+          "pixelCount": 3024,
+          "sourceSha256": "e5ced5c562fcdcb16b63741883cc54cb22b306d46c5fb7de51142e84ace15de2"
+        },
+        {
+          "name": "face",
+          "pixelCount": 17145,
+          "sourceSha256": "37035476819eca0c45100205a6162e1d92d8c2b648991069f7f710edcde55c06"
+        },
+        {
+          "name": "nose-erasure",
+          "pixelCount": 630,
+          "sourceSha256": "376bea8acbb169d84350c9686a95afabe6486d687e82f9dcfe92af0212d1fa5c"
+        },
+        {
+          "name": "mouth-erasure",
+          "pixelCount": 192,
+          "sourceSha256": "376bea8acbb169d84350c9686a95afabe6486d687e82f9dcfe92af0212d1fa5c"
+        },
+        {
+          "name": "native-nose",
+          "pixelCount": 136,
+          "sourceSha256": "a4316b2393f8e4ae838bceeace145b9dcefde2c22076c523e1cf329090a5ec2f"
+        }
+      ],
+      "removedPixelCount": 0,
+      "frontSha256": "1c6c019bae9cd2eaa737184ad05c00dc2b2a5fcd0634e516609e88b18a45c8eb"
+    },
+    {
+      "direction": "SW",
+      "patches": [
+        {
+          "name": "complete-ear",
+          "pixelCount": 3572,
+          "sourceSha256": "f739dc177af1911fbaaad27e8e55f758762eaf788bbd1b739acd269efaba7da0"
+        }
+      ],
+      "removedPixelCount": 237,
+      "frontSha256": "d8cf4bdca895d77b69d4504fb1c76a26bf9b1e12351ab8f2722d45081d0c3620"
+    }
+  ],
+  "measurements": [
+    {
+      "direction": "SE",
+      "part": "head",
+      "sourceSha256": "f9640b76effeb54f7550e5f234509beb0bbd9f4a87090079b7660bb56190c1f0",
+      "outputSha256": "3443968032781c13dbf8a5bccb57c47445a8c7e12a81d5594bf610e64bb7dc99",
+      "pixelCount": 23090,
+      "bounds": {
+        "x": 476,
+        "y": 55,
+        "width": 149,
+        "height": 210
+      },
+      "origin": {
+        "x": 554,
+        "y": 164
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "greenCandidates": 0
+    },
+    {
+      "direction": "SE",
+      "part": "neck",
+      "sourceSha256": "2e1a164ae12ce2bc5dbc868fb930cecb2906a115687c8e3ae6d9ed7d9f0e2cb7",
+      "outputSha256": "fe9592cfed63e843688866a578b862da1b101144de8e4d852c207332c36da783",
+      "pixelCount": 1878,
+      "bounds": {
+        "x": 497,
+        "y": 265,
+        "width": 92,
+        "height": 33
+      },
+      "origin": {
+        "x": 545,
+        "y": 283
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "greenCandidates": 0
+    },
+    {
+      "direction": "SW",
+      "part": "head",
+      "sourceSha256": "ef39876a982ac37b829ac89965216c6676886789284d798cb926bad37ab5813c",
+      "outputSha256": "4c5877275e492a77dd752c6f5ecf26bd1a4d4cd83c3b057ed5d07cc33b2e72e1",
+      "pixelCount": 22864,
+      "bounds": {
+        "x": 400,
+        "y": 69,
+        "width": 144,
+        "height": 211
+      },
+      "origin": {
+        "x": 454,
+        "y": 175
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "greenCandidates": 0
+    },
+    {
+      "direction": "SW",
+      "part": "neck",
+      "sourceSha256": "73add2fd3c4381ab5231c6af5d4548aa2ce6e4c55bfaff59aa069e2058161915",
+      "outputSha256": "8172378e8320deb5fa7dc6fae026a6d1a0f75bff7baea7dcf8eb8c92dd0deb9e",
+      "pixelCount": 2303,
+      "bounds": {
+        "x": 449,
+        "y": 280,
+        "width": 76,
+        "height": 36
+      },
+      "origin": {
+        "x": 484,
+        "y": 299
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "greenCandidates": 0
+    }
+  ],
+  "fitMeasurements": [
+    {
+      "direction": "SE",
+      "headPixelsOverlappedByHair": 14991,
+      "headPixelsWithoutHairOverlap": 8099,
+      "outputSha256": "f71de0d9c6dd8f0ffcff9e27f91872006de83346eb503ca25b5d47d9806437a0"
+    },
+    {
+      "direction": "SW",
+      "headPixelsOverlappedByHair": 14627,
+      "headPixelsWithoutHairOverlap": 8237,
+      "outputSha256": "11bde673ac535e502f4085fa1986973350318cb8e4b7373350532b967b8dd08a"
+    }
+  ],
+  "remainingReview": [
+    "Complete ear shape/size, native fit and local skin-mask transitions require human visual approval",
+    "Existing small hair-mask edges/noise remain; no whole-hair cleanup or global highlight key performed",
+    "NE/NW heads, independent facial/ear variants, concealed hair, body/clothing/material maps and production T-pose remain unfinished",
+    "Final Step 6C approval before Step 6D"
+  ],
+  "outputs": [
+    {
+      "path": "layers/SE-head.png",
+      "sha256": "3443968032781c13dbf8a5bccb57c47445a8c7e12a81d5594bf610e64bb7dc99"
+    },
+    {
+      "path": "inspection/checker/SE-head.png",
+      "sha256": "57b1f61ab6febde4dbdedd5aeb13acf337b6acaede8d033e2203799a2fb3fa8b"
+    },
+    {
+      "path": "masks/SE-head.png",
+      "sha256": "725f5cccd17c28056a89366d1b5ca88e57df3e35d3f66e647f0eaa61abd42950"
+    },
+    {
+      "path": "layers/SE-neck.png",
+      "sha256": "fe9592cfed63e843688866a578b862da1b101144de8e4d852c207332c36da783"
+    },
+    {
+      "path": "inspection/checker/SE-neck.png",
+      "sha256": "8978fb17f7acdf0a0784ed37f5a8f023cd1cd49d31a6354d78fc3ea196ad9d5a"
+    },
+    {
+      "path": "masks/SE-neck.png",
+      "sha256": "8c066f0e49f8ef2a32d05f73e597ce2b03941273ac95f818f463b753a66525ea"
+    },
+    {
+      "path": "layers/SE-front-fit.png",
+      "sha256": "1c6c019bae9cd2eaa737184ad05c00dc2b2a5fcd0634e516609e88b18a45c8eb"
+    },
+    {
+      "path": "masks/SE-front-cleanup.png",
+      "sha256": "a9337cac63e0534b7613af899de0ee55f96c48339eeff48df879b73787f5f85c"
+    },
+    {
+      "path": "masks/SE-complete-ear.png",
+      "sha256": "e095c1c1cf45979827287a111094f1379324700cb0ff2fcd187f733dc2e42200"
+    },
+    {
+      "path": "masks/SE-face.png",
+      "sha256": "575075da60ddb4bc92416c8324f0481b25e58e8fae3c41159b293bde78e5c83c"
+    },
+    {
+      "path": "masks/SE-nose-erasure.png",
+      "sha256": "b55fb113378f2c70c685782f8db64aba6744ca4160699dd79b03cc325e6d78ea"
+    },
+    {
+      "path": "masks/SE-mouth-erasure.png",
+      "sha256": "8edcf6f54864ce2b3c4905d3eb17d3062b6f64ee4474db2e812b35be1bb57dfa"
+    },
+    {
+      "path": "masks/SE-native-nose.png",
+      "sha256": "cc426f6d397e94929fb25519a0f79e02c9cb236d613193532174cd13f5dfa0ca"
+    },
+    {
+      "path": "master/SE.png",
+      "sha256": "903e64a0d840491a5dfb6d5fcf971d22d4c50bbbe42579b02da775d17c59f24f"
+    },
+    {
+      "path": "assembled/SE.png",
+      "sha256": "903e64a0d840491a5dfb6d5fcf971d22d4c50bbbe42579b02da775d17c59f24f"
+    },
+    {
+      "path": "fit/SE.png",
+      "sha256": "f71de0d9c6dd8f0ffcff9e27f91872006de83346eb503ca25b5d47d9806437a0"
+    },
+    {
+      "path": "inspection/green/SE-fit.png",
+      "sha256": "78db10bf0c849fe58ecad5cc32ce4e3896afacbbe3e2faaa0d90b878655e587b"
+    },
+    {
+      "path": "inspection/SE-fit-comparison.png",
+      "sha256": "200f6c33fc51cef75d9e093501641c71710bad224edfa3191f75fc0b7e2fb2c5"
+    },
+    {
+      "path": "inspection/head-comparison/SE.png",
+      "sha256": "05e758d93ad5ebd3f5806774a5225ee5b49f28db948b8abec42a1538e992facc"
+    },
+    {
+      "path": "inspection/full-comparison/SE.png",
+      "sha256": "18ca64e05b657962afd554f5d1a7baf7b9d2abb4ce025cb8dbccb4deda7789ea"
+    },
+    {
+      "path": "layers/SW-head.png",
+      "sha256": "4c5877275e492a77dd752c6f5ecf26bd1a4d4cd83c3b057ed5d07cc33b2e72e1"
+    },
+    {
+      "path": "inspection/checker/SW-head.png",
+      "sha256": "fe880941fce4c6d04722af71dd87cabc04a9d02dca26c880d35ed2910efa70d4"
+    },
+    {
+      "path": "masks/SW-head.png",
+      "sha256": "2f733314b4956eb6c403e2d4048c7e769c4cdc44f7201de576c1e7e043a220e1"
+    },
+    {
+      "path": "layers/SW-neck.png",
+      "sha256": "8172378e8320deb5fa7dc6fae026a6d1a0f75bff7baea7dcf8eb8c92dd0deb9e"
+    },
+    {
+      "path": "inspection/checker/SW-neck.png",
+      "sha256": "f09e910c03893851080ab80de7faef7fa6727eef04c03047fc694547c38e7c59"
+    },
+    {
+      "path": "masks/SW-neck.png",
+      "sha256": "8b1bb87d5695a1e0f5abeac26c845d71b2e44ecd34882219f549e7958bdc3f28"
+    },
+    {
+      "path": "layers/SW-front-fit.png",
+      "sha256": "d8cf4bdca895d77b69d4504fb1c76a26bf9b1e12351ab8f2722d45081d0c3620"
+    },
+    {
+      "path": "masks/SW-front-cleanup.png",
+      "sha256": "d50012b532d488d7796e343547ec5ca66679fccbddd8cb664e0ff1fab94ab0b6"
+    },
+    {
+      "path": "masks/SW-complete-ear.png",
+      "sha256": "c453e528c55571e3f0cf17fe2e05efb683121ad1b56ba820ed4b4210cd24c211"
+    },
+    {
+      "path": "master/SW.png",
+      "sha256": "0a8a7b75a057c21c6b61cfd44bc6cf4ef7a777b52a5bfa88e2961a59c27861f6"
+    },
+    {
+      "path": "assembled/SW.png",
+      "sha256": "0a8a7b75a057c21c6b61cfd44bc6cf4ef7a777b52a5bfa88e2961a59c27861f6"
+    },
+    {
+      "path": "fit/SW.png",
+      "sha256": "11bde673ac535e502f4085fa1986973350318cb8e4b7373350532b967b8dd08a"
+    },
+    {
+      "path": "inspection/green/SW-fit.png",
+      "sha256": "de5d3e5a6ffd3af0d4cd721c6995b4521e5d229049299b6291e436c84c610f7d"
+    },
+    {
+      "path": "inspection/SW-fit-comparison.png",
+      "sha256": "8afa1b91734d8873fd66fff3fafd46999322f69f1ff4d6d6b0430b3f1878aad7"
+    },
+    {
+      "path": "inspection/head-comparison/SW.png",
+      "sha256": "e6ae69449e9be4fd4040291a5cd28bcc03fa8d2e830755f51515f44bd0c5ce5d"
+    },
+    {
+      "path": "inspection/full-comparison/SW.png",
+      "sha256": "855950677950e5605636aa708607a8994dad09b9e3ee38cd014e27344d050284"
+    },
+    {
+      "path": "overview.png",
+      "sha256": "c7b7700a73337f73efb61f53dd234983030ae32a41d3533b0734dcd935900a56"
+    },
+    {
+      "path": "full-overview.png",
+      "sha256": "2075c59096209f0a7774ad99d2903d07cad5cc2b23a2a0ad9a640567f0d06ed0"
+    }
+  ]
+}
