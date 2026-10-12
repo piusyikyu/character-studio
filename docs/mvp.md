@@ -104,7 +104,12 @@ retained behind skin in the rear. Anatomy and SE remain unchanged; the local
 correction was then approved for now, with the broader abrupt neck/shoulder hair
 starts expected to be covered by the future body. That body occlusion must be
 verified with actual same-facing body/clothing layers in a later increment; it
-has not yet been demonstrated. Independent NE/NW head/neck anatomy is next.
+has not yet been demonstrated. Local commit `a9b2aa1` records that approval.
+Independent NE/NW posterior head/neck revision-1 candidates now have native
+partitions and approved rear-hair comparisons. The user approved this NE/NW
+standing-reference checkpoint in `back-diagonals-review-fit-v1.json`. Both hide
+eyes/frontal fringe. All eight facings have anatomy drafts; N remains unapproved,
+and complete production anatomy is still unfinished. Separate S human ears are next.
 This is not final Step 6C acceptance and does not advance Step 6D.
 
 See [reference-import.md](reference-import.md). The approved sources are flattened

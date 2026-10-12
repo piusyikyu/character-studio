@@ -7,7 +7,7 @@ import { blankImage, decodePng, decorateExport, drawRgba, encodePng } from '@cha
 import type { RgbaImage } from '@character-studio/render-utils';
 import { alphaStatistics, characterBounds } from './audit';
 import { checkerPreview, fitDraftLabel, overview } from './inspection';
-import { headFrontDiagonalsRepairSchema, headFrontDiagonalsReviewSchema, headProfilesReviewSchema, headReviewSchema } from './head-review-schema';
+import { headBackDiagonalsReviewSchema, headFrontDiagonalsRepairSchema, headFrontDiagonalsReviewSchema, headProfilesReviewSchema, headReviewSchema } from './head-review-schema';
 import type { HeadReviewFrame } from './head-review-schema';
 import { hairReviewSchema } from './hair-review-schema';
 import type { HairReviewFrame } from './hair-review-schema';
@@ -24,7 +24,7 @@ export interface HeadReviewOptions {
   readonly hairDirectory: string;
   readonly referenceDirectory: string;
   readonly outputDirectory: string;
-  readonly configSource?: 'authoring-v1.json' | 'authoring-v2.json' | 'authoring-v3.json' | 'authoring-v4.json' | 'authoring-v5.json' | 'profiles-authoring-v1.json' | 'profiles-authoring-v2.json' | 'profiles-authoring-v3.json' | 'front-diagonals-authoring-v1.json' | 'front-diagonals-authoring-v2.json' | 'front-diagonals-authoring-v3.json' | 'front-diagonals-authoring-v4.json';
+  readonly configSource?: 'authoring-v1.json' | 'authoring-v2.json' | 'authoring-v3.json' | 'authoring-v4.json' | 'authoring-v5.json' | 'profiles-authoring-v1.json' | 'profiles-authoring-v2.json' | 'profiles-authoring-v3.json' | 'front-diagonals-authoring-v1.json' | 'front-diagonals-authoring-v2.json' | 'front-diagonals-authoring-v3.json' | 'front-diagonals-authoring-v4.json' | 'back-diagonals-authoring-v1.json';
 }
 
 /** Authored anatomy review only; preserves approved hair and does not publish a catalog. */
@@ -46,19 +46,21 @@ export async function prepareHeadReview(options: HeadReviewOptions) {
     inputs.set(path, hash); return bytes;
   };
   const configSource = options.configSource ?? 'authoring-v1.json';
-  if (!['authoring-v1.json', 'authoring-v2.json', 'authoring-v3.json', 'authoring-v4.json', 'authoring-v5.json', 'profiles-authoring-v1.json', 'profiles-authoring-v2.json', 'profiles-authoring-v3.json', 'front-diagonals-authoring-v1.json', 'front-diagonals-authoring-v2.json', 'front-diagonals-authoring-v3.json', 'front-diagonals-authoring-v4.json'].includes(configSource)) throw new Error('Unsupported anatomy review configuration.');
+  if (!['authoring-v1.json', 'authoring-v2.json', 'authoring-v3.json', 'authoring-v4.json', 'authoring-v5.json', 'profiles-authoring-v1.json', 'profiles-authoring-v2.json', 'profiles-authoring-v3.json', 'front-diagonals-authoring-v1.json', 'front-diagonals-authoring-v2.json', 'front-diagonals-authoring-v3.json', 'front-diagonals-authoring-v4.json', 'back-diagonals-authoring-v1.json'].includes(configSource)) throw new Error('Unsupported anatomy review configuration.');
   const configBytes = await read(sourceDirectory, configSource);
   const profileDraft = configSource.startsWith('profiles-') ? headProfilesReviewSchema.parse(JSON.parse(configBytes.toString('utf8'))) : undefined;
   const diagonalDraft = configSource === 'front-diagonals-authoring-v1.json' ? headFrontDiagonalsReviewSchema.parse(JSON.parse(configBytes.toString('utf8'))) : undefined;
   const diagonalRepairDraft = (configSource === 'front-diagonals-authoring-v2.json' || configSource === 'front-diagonals-authoring-v3.json' || configSource === 'front-diagonals-authoring-v4.json') ? headFrontDiagonalsRepairSchema.parse(JSON.parse(configBytes.toString('utf8'))) : undefined;
-  const frontBackDraft = profileDraft || diagonalDraft || diagonalRepairDraft ? undefined : headReviewSchema.parse(JSON.parse(configBytes.toString('utf8')));
-  const draft = frontBackDraft ?? profileDraft ?? diagonalDraft ?? diagonalRepairDraft!;
-  const reviewDirections = frontBackDraft ? ['S', 'N'] as const : profileDraft ? ['E', 'W'] as const : ['SE', 'SW'] as const;
+  const backDraft = configSource === 'back-diagonals-authoring-v1.json' ? headBackDiagonalsReviewSchema.parse(JSON.parse(configBytes.toString('utf8'))) : undefined;
+  const frontBackDraft = profileDraft || diagonalDraft || diagonalRepairDraft || backDraft ? undefined : headReviewSchema.parse(JSON.parse(configBytes.toString('utf8')));
+  const draft = frontBackDraft ?? profileDraft ?? diagonalDraft ?? diagonalRepairDraft ?? backDraft!;
+  const reviewDirections = frontBackDraft ? ['S', 'N'] as const : profileDraft ? ['E', 'W'] as const : backDraft ? ['NE', 'NW'] as const : ['SE', 'SW'] as const;
   const hairBytes = await read(hairDirectory, draft.hairConfig.source, draft.hairConfig.sourceSha256);
   const hair = hairReviewSchema.parse(JSON.parse(hairBytes.toString('utf8')));
   if (reviewDirections.some((direction) => !(direction in hair.frames))) throw new Error(`Head ${reviewDirections.join('/')} review needs its approved hair pair.`);
   const frames: Partial<Record<Direction, HeadReviewFrame>> = draft.frames;
   const hairFrames: Partial<Record<Direction, HairReviewFrame>> = hair.frames;
+  if (backDraft && reviewDirections.some((direction) => hairFrames[direction]!.front.visibility !== 'hidden')) throw new Error('NE/NW posterior anatomy requires explicitly hidden frontal fringe; no front-facing fallback.');
   const approval = approvalSchema.parse(JSON.parse((await read(hairDirectory, draft.hairApproval.source, draft.hairApproval.sourceSha256)).toString('utf8')));
   if (approval.configSha256 !== sha256(hairBytes)) throw new Error('Hair configuration does not match its design approval.');
   const load = async (directory: string, source: string, hash: string) => {
@@ -254,7 +256,7 @@ export async function prepareHeadReview(options: HeadReviewOptions) {
     }
     // Report actual head-pixel occlusion, without claiming anatomical correctness.
     let headPixelsOverlappedByHair = 0, headPixelsWithoutHairOverlap = 0;
-    const head = layers.get('head')!, coveringHair = layers.get(direction === 'N' ? 'hair-rear' : 'hair-front')!;
+    const head = layers.get('head')!, coveringHair = layers.get(direction === 'N' || backDraft ? 'hair-rear' : 'hair-front')!;
     for (let i = 3; i < head.data.length; i += 4) if (head.data[i]) { if (coveringHair.data[i]! >= 8) headPixelsOverlappedByHair++; else headPixelsWithoutHairOverlap++; }
     fitMeasurements.push({ direction, headPixelsOverlappedByHair, headPixelsWithoutHairOverlap, outputSha256: sha256(encodePng(fit)) });
     pending.push({ path: `master/${direction}.png`, image: master }, { path: `assembled/${direction}.png`, image: reconstructed }, { path: `fit/${direction}.png`, image: fit }, { path: `inspection/green/${direction}-fit.png`, image: fitDraftLabel(decorateExport(fit, direction)) });
@@ -272,7 +274,7 @@ export async function prepareHeadReview(options: HeadReviewOptions) {
     pending.push({ path: `inspection/head-comparison/${direction}.png`, image: comparison }, { path: `inspection/full-comparison/${direction}.png`, image: full });
   }
   pending.push({ path: 'overview.png', image: closeups }, { path: 'full-overview.png', image: overview(fullContact) });
-  const report = { schemaVersion: 1, id: draft.id, assetVersion: draft.assetVersion, configSource, target: draft.target, status: draft.status, sourcePose: draft.sourcePose, intendedRuntimePose: draft.intendedRuntimePose, rigCompatibility: draft.rigCompatibility, anatomyApproved: false, paletteReady: false, published: false, featurePolicy: draft.featurePolicy, earPolicy: draft.earPolicy, minimumVisibleAlpha: draft.minimumVisibleAlpha, configSha256: sha256(configBytes), supportedReviewDirections: reviewDirections, missingDirections: DIRECTIONS.filter((d) => !new Set<Direction>(reviewDirections).has(d)), knownReviewIssues: draft.knownReviewIssues, measurements, masters, hairMeasurements, fringeFitMeasurement, seamRepairMeasurement, coherentFitMeasurement, ...(profileFitMeasurements.length ? { profileFitMeasurements } : {}), ...(profileEarMeasurements.length ? { profileEarMeasurements } : {}), ...(diagonalRepairMeasurements.length ? { diagonalRepairMeasurements } : {}), fitMeasurements, masterReconstruction: 'exact-normalized-head-neck-partition', previewColumns: ['reference', 'bare-head-neck-skin-base', (draft.fringeFit || draft.coherentFit || profileDraft?.profileFit || diagonalRepairDraft) ? 'candidate-hair-fit+head+neck' : 'accepted-hair+head+neck'], closeupRegion: { x: 320, y: 40, width: 384, height: 440, sampling: 'native-copy' }, hiddenFacialLayers: ['eyes', 'eyebrows', 'mouth'], outputs: pending.map(({ path, image }) => ({ path, sha256: sha256(encodePng(image)) })), reviewRequired: ['New scalp/jaw/nape anatomy and ear placement', frontBackDraft ? 'N has no visible face or eyes; S skin underlay has no baked eye/brow/mouth layers' : diagonalDraft || diagonalRepairDraft ? 'SE faces three-quarter front-right; SW faces three-quarter front-left; no baked eye/brow/mouth layers' : 'E faces right; W faces left; profile skin has no baked eye/brow/mouth layers', 'Native head/neck/hair geometry and posterior scalp coverage', 'Independent human-ear layers and remaining head facings', 'Complete body/clothing and production T-pose fit', 'Final Step6C approval before Step6D'] };
+  const report = { schemaVersion: 1, id: draft.id, assetVersion: draft.assetVersion, configSource, target: draft.target, status: draft.status, sourcePose: draft.sourcePose, intendedRuntimePose: draft.intendedRuntimePose, rigCompatibility: draft.rigCompatibility, anatomyApproved: false, paletteReady: false, published: false, featurePolicy: draft.featurePolicy, earPolicy: draft.earPolicy, minimumVisibleAlpha: draft.minimumVisibleAlpha, configSha256: sha256(configBytes), supportedReviewDirections: reviewDirections, missingDirections: DIRECTIONS.filter((d) => !new Set<Direction>(reviewDirections).has(d)), knownReviewIssues: draft.knownReviewIssues, measurements, masters, hairMeasurements, fringeFitMeasurement, seamRepairMeasurement, coherentFitMeasurement, ...(profileFitMeasurements.length ? { profileFitMeasurements } : {}), ...(profileEarMeasurements.length ? { profileEarMeasurements } : {}), ...(diagonalRepairMeasurements.length ? { diagonalRepairMeasurements } : {}), fitMeasurements, masterReconstruction: 'exact-normalized-head-neck-partition', previewColumns: ['reference', 'bare-head-neck-skin-base', (draft.fringeFit || draft.coherentFit || profileDraft?.profileFit || diagonalRepairDraft) ? 'candidate-hair-fit+head+neck' : 'accepted-hair+head+neck'], closeupRegion: { x: 320, y: 40, width: 384, height: 440, sampling: 'native-copy' }, hiddenFacialLayers: ['eyes', 'eyebrows', 'mouth'], outputs: pending.map(({ path, image }) => ({ path, sha256: sha256(encodePng(image)) })), reviewRequired: ['New scalp/jaw/nape anatomy and ear placement', backDraft ? 'NE/NW are posterior three-quarter views with no visible eyes, brows, mouth or frontal fringe' : frontBackDraft ? 'N has no visible face or eyes; S skin underlay has no baked eye/brow/mouth layers' : diagonalDraft || diagonalRepairDraft ? 'SE faces three-quarter front-right; SW faces three-quarter front-left; no baked eye/brow/mouth layers' : 'E faces right; W faces left; profile skin has no baked eye/brow/mouth layers', 'Native head/neck/hair geometry and posterior scalp coverage', 'Independent human-ear layers and remaining head facings', 'Complete body/clothing and production T-pose fit', 'Final Step6C approval before Step6D'] };
   for (const { path, image } of pending) {
     const destination = resolve(outputDirectory, path);
     for (let parent = destination; nested(outputDirectory, parent); parent = resolve(parent, '..')) {

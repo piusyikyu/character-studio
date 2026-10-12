@@ -111,6 +111,15 @@ export const headProfilesReviewSchema = z.strictObject({
   .refine((d) => !d.profileFit || d.profileFit.frames.E.study.sourceSha256 !== d.profileFit.frames.W.study.sourceSha256, 'E/W hair fit needs independent studies.')
   .refine((d) => !d.profileFit || (['E', 'W'] as const).every((direction) => d.profileFit!.frames[direction].settings.source === `inputs/profiles-v${d.assetVersion}/${direction}-fit.json` && new Set(d.profileFit!.frames[direction].facialLandmarks.map((p) => p.name)).size === 3), 'Profile fit needs its own settings and three distinct exposed landmarks.');
 export type HeadProfilesReviewDraft = z.infer<typeof headProfilesReviewSchema>;
+/** Posterior three-quarter anatomy; no frontal features or front fringe. */
+export const headBackDiagonalsReviewSchema = z.strictObject({
+  ...headReviewSchema.shape,
+  assetVersion: z.literal(1),
+  hairConfig: z.strictObject({ source: z.literal('back-diagonals-authoring-v1.json'), sourceSha256: hash }),
+  hairApproval: z.strictObject({ source: z.literal('back-diagonals-review-v1.json'), sourceSha256: hash }),
+  fringeFit: z.never().optional(), seamRepair: z.never().optional(), coherentFit: z.never().optional(),
+  frames: z.strictObject({ NE: frame, NW: frame }),
+}).refine((d) => d.frames.NE.master.sourceSha256 !== d.frames.NW.master.sourceSha256, 'NE/NW need distinct independently authored posterior anatomy masters.');
 /** Front diagonal anatomy remains a separate, independently authored review pair. */
 export const headFrontDiagonalsReviewSchema = z.strictObject({
   ...headReviewSchema.shape,

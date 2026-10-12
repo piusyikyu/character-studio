@@ -2,6 +2,41 @@
 
 > Purpose: This file transfers the **requirements and decisions** from a ChatGPT planning conversation into the WSL2/VS Code Codex development workflow. It is project context, **not** proof that any implementation is complete. Review actual repository files and tests before assuming a feature exists.
 
+## Independent NE/NW anatomy review — 2026-10-12
+
+**Latest decision:** The user approved this NE/NW checkpoint and requested a
+local commit followed by continuation. `back-diagonals-review-fit-v1.json` pins
+the accepted source/config/fit hashes. This approves the standing-reference
+anatomy/fit only; N remains a draft and final Step 6C is outstanding. The next
+bounded increment separates S human ears from the accepted skin base and reviews
+the concealed scalp/root underlay and actual hair depth. Facial components and
+other ear facings/ancestry variants remain subsequent work.
+
+Local commit `a9b2aa1` records the qualified SE/SW revision-4 approval and the
+future body-occlusion obligation described below. The next Step 6C increment
+adds independent posterior three-quarter NE/NW bald head/neck candidates, with
+front fringe explicitly hidden and no authored eyes, brows or mouth. Existing
+accepted sources and command selections stay unchanged.
+
+The selected configuration is `head-soft-oval-v1/back-diagonals-authoring-v1.json`.
+Run `pnpm head:review:back-diagonals`; review
+`assets/staging/heroine-v1/head-soft-oval-v1/back-diagonals/overview.png` (NE above
+NW; reference / bare head and neck / actual approved rear hair over skin).
+Raw imagegen studies, complete head/neck partitions, native masks, independent
+placement guides and exact prompt/derivation records are retained in source.
+NW's first study changed framing and ear placement and was rejected; the selected
+retry uses an explicit native near-ear marker. No facing is mirrored or shifted.
+
+These are now approved standing-reference anatomy/fit checkpoints. Inspect posterior
+orientation, absence of eyes, near-ear clearance, scalp coverage, nape and neck
+transitions. Neck widths differ from the synthetic guides; native pixels are
+shown as authored, not clipped to hide that difference. Check actual body joins
+later, including the accepted abrupt hair starts under body/clothing occlusion.
+All eight facings now have head/neck drafts, but N and the new NE/NW candidates
+require production anatomy/body-fit review, while N remains unapproved. Independent facial/ear assets, concealed hair,
+body/clothing, material maps, production T-pose and final Step 6C remain unfinished.
+Step 6D has not started.
+
 ## Post-move SE/SW review — 2026-10-12
 
 **Latest decision:** The user approved revision 4 for now and requested a local

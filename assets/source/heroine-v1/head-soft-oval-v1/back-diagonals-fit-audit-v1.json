@@ -1,0 +1,268 @@
+{
+  "schemaVersion": 1,
+  "id": "head.soft-oval.v1",
+  "assetVersion": 1,
+  "target": "detailed",
+  "status": "draft-needs-human-review",
+  "config": "back-diagonals-authoring-v1.json",
+  "configSha256": "8fe3259b3a80fc3ddfff366ca5ea1e32fd21d6f8a6a65c93545783ec1ae90e74",
+  "scope": "Independent NE/NW posterior bald head/neck candidates with unchanged approved rear hair. Front fringe hidden; anatomy/ear/nape/neck fit awaits approval.",
+  "checks": {
+    "assetValidatorTypecheck": "pnpm --filter @character-studio/asset-validator typecheck passed",
+    "rootLint": "pnpm lint passed with zero warnings",
+    "currentCli": "pnpm head:review:back-diagonals passed including asset-validator JS/declaration build",
+    "artworkIntegration": {
+      "command": "pnpm exec vitest run tools/asset-validator/src/head-review.integration.test.ts",
+      "result": "4 passed; 269.32 seconds. New posterior workflow plus existing S/N, E/W and SE/SW workflows."
+    },
+    "authoringReplay": "13 guide/config/partition outputs reproduced byte-for-byte in isolated scratch copy",
+    "sourcePreservation": "307 previously committed source/reference hashes and mtimes unchanged",
+    "stagingOutputs": "26 current PNG hashes verified",
+    "diffCheck": "git diff --check passed",
+    "fullApplicationBuild": "not rerun: offline anatomy/review-tool increment",
+    "browserE2E": "not rerun: no application/UI change"
+  },
+  "masters": [
+    {
+      "direction": "NE",
+      "sourceSha256": "20c888746ad9eb87ed7231be6a9bfed0168da23f2feea8957add9dc5d168b35b",
+      "cleanedSha256": "3e01ae59794bdd1253740e9e3b9525a8b442aaecefe1eb02f3d1a5c9351a6b9a",
+      "noisePixelsCleared": 1828,
+      "bounds": {
+        "x": 511,
+        "y": 70,
+        "width": 146,
+        "height": 238
+      }
+    },
+    {
+      "direction": "NW",
+      "sourceSha256": "ec076b69780e1f32706a96dc0fddad0c6e6b56953db6716993069671276ef396",
+      "cleanedSha256": "286fddec4137c5e1d710e809533355ff3660538fa1eb236dcc7f4ddd85c09c3a",
+      "noisePixelsCleared": 1442,
+      "bounds": {
+        "x": 383,
+        "y": 61,
+        "width": 137,
+        "height": 242
+      }
+    }
+  ],
+  "measurements": [
+    {
+      "direction": "NE",
+      "part": "head",
+      "sourceSha256": "3d11ebe22062d99fbda8317d3a97fb5cf715616b6cc5f743abbe371b421f17e3",
+      "outputSha256": "555febb63ecc706f2900f90b254f8c4cd7634337e5f60644b28ad22af3114e19",
+      "pixelCount": 21556,
+      "bounds": {
+        "x": 511,
+        "y": 70,
+        "width": 146,
+        "height": 190
+      },
+      "origin": {
+        "x": 581,
+        "y": 162
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "greenCandidates": 0
+    },
+    {
+      "direction": "NE",
+      "part": "neck",
+      "sourceSha256": "963f6c52fa386230f23926ec611d97fa544aedce0accef237151873f3aeeb56f",
+      "outputSha256": "a08e4d4df829adfd44a57f1a00f4a14fa79ac9432d0d5ba8893fe7a19f610496",
+      "pixelCount": 2829,
+      "bounds": {
+        "x": 539,
+        "y": 260,
+        "width": 89,
+        "height": 48
+      },
+      "origin": {
+        "x": 590,
+        "y": 285
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "greenCandidates": 0
+    },
+    {
+      "direction": "NW",
+      "part": "head",
+      "sourceSha256": "d86b1966b7c83a340e45a219f7432494ea12abf2ade54483d4c19c0f565643b6",
+      "outputSha256": "28b15e894d5dcfc756f115b4f42725d5151a3f8566de29cd66031e6967fb472e",
+      "pixelCount": 20492,
+      "bounds": {
+        "x": 383,
+        "y": 61,
+        "width": 137,
+        "height": 194
+      },
+      "origin": {
+        "x": 447,
+        "y": 158
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "greenCandidates": 0
+    },
+    {
+      "direction": "NW",
+      "part": "neck",
+      "sourceSha256": "ff5ea7bb2b6287eca50f2af6d4986f47191f8c483dbef9b96f9503194d514f10",
+      "outputSha256": "bae0f1d5cc301533d2b01f5fcc0572972277f60cac9570514c74931ae0d6f3e2",
+      "pixelCount": 3064,
+      "bounds": {
+        "x": 417,
+        "y": 255,
+        "width": 85,
+        "height": 48
+      },
+      "origin": {
+        "x": 438,
+        "y": 275
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "greenCandidates": 0
+    }
+  ],
+  "fitMeasurements": [
+    {
+      "direction": "NE",
+      "headPixelsOverlappedByHair": 21452,
+      "headPixelsWithoutHairOverlap": 104,
+      "outputSha256": "59b02d8fd07380bac390210f4d2c58b5e4ef45d0b3ca255bd5d9848ce695b669"
+    },
+    {
+      "direction": "NW",
+      "headPixelsOverlappedByHair": 20469,
+      "headPixelsWithoutHairOverlap": 23,
+      "outputSha256": "2848e2ebcabc08b88aced4a781d2e9fb5c6c93d2db44ff7d429ed47abb93a99a"
+    }
+  ],
+  "remainingReview": [
+    "Posterior head orientation and absence of eyes/frontal features require human approval",
+    "Near-ear clearance, scalp coverage, nape shading and neck geometry/body joins",
+    "Qualified SE/SW abrupt hair starts must be reviewed with actual body/clothing occlusion",
+    "Independent facial/ear variants, concealed hair, body/clothing, material maps and production T-pose",
+    "Final Step 6C approval before Step 6D"
+  ],
+  "outputs": [
+    {
+      "path": "layers/NE-head.png",
+      "sha256": "555febb63ecc706f2900f90b254f8c4cd7634337e5f60644b28ad22af3114e19"
+    },
+    {
+      "path": "inspection/checker/NE-head.png",
+      "sha256": "e3a71d166685bdfd1a32ff36862b181cd2dfc32354640ff2a1789e6b7d4f985b"
+    },
+    {
+      "path": "masks/NE-head.png",
+      "sha256": "ca5eff91c8839db33fd434362ae4e974cba0515065083084531a587a82f65337"
+    },
+    {
+      "path": "layers/NE-neck.png",
+      "sha256": "a08e4d4df829adfd44a57f1a00f4a14fa79ac9432d0d5ba8893fe7a19f610496"
+    },
+    {
+      "path": "inspection/checker/NE-neck.png",
+      "sha256": "96eb396f0acb355881d97afb7a85eb26c457c51585fda910f733ee1ff94139bc"
+    },
+    {
+      "path": "masks/NE-neck.png",
+      "sha256": "fb3ab6379836e4989dfaff177fd282a45902f9c6da3039cd78c1cdd6c506c3af"
+    },
+    {
+      "path": "master/NE.png",
+      "sha256": "3e01ae59794bdd1253740e9e3b9525a8b442aaecefe1eb02f3d1a5c9351a6b9a"
+    },
+    {
+      "path": "assembled/NE.png",
+      "sha256": "3e01ae59794bdd1253740e9e3b9525a8b442aaecefe1eb02f3d1a5c9351a6b9a"
+    },
+    {
+      "path": "fit/NE.png",
+      "sha256": "59b02d8fd07380bac390210f4d2c58b5e4ef45d0b3ca255bd5d9848ce695b669"
+    },
+    {
+      "path": "inspection/green/NE-fit.png",
+      "sha256": "74688272d321e543ebc9633d002bd841b53810cc7f9587b1afc5feb14615af8f"
+    },
+    {
+      "path": "inspection/head-comparison/NE.png",
+      "sha256": "c96dfcafb015f67c6efcda5c2d39609437da003812829641d744163ebf69a023"
+    },
+    {
+      "path": "inspection/full-comparison/NE.png",
+      "sha256": "6d59565b14ce88ccaaea6c3d9b1e7bc89aa4a1385f5e59a3e1e02aa65c0adddd"
+    },
+    {
+      "path": "layers/NW-head.png",
+      "sha256": "28b15e894d5dcfc756f115b4f42725d5151a3f8566de29cd66031e6967fb472e"
+    },
+    {
+      "path": "inspection/checker/NW-head.png",
+      "sha256": "f16411aa1e8a074362f9d1fbe20ac08bc9e8201d6e0de38517d315d83e84fe80"
+    },
+    {
+      "path": "masks/NW-head.png",
+      "sha256": "d753beb23861e881bc61ec59715d30769f342b0eab4189fd32a7da04de296b08"
+    },
+    {
+      "path": "layers/NW-neck.png",
+      "sha256": "bae0f1d5cc301533d2b01f5fcc0572972277f60cac9570514c74931ae0d6f3e2"
+    },
+    {
+      "path": "inspection/checker/NW-neck.png",
+      "sha256": "7acace69efeb47f826935a63eedcca3c613179ade8581a0661a87089fdac0d3b"
+    },
+    {
+      "path": "masks/NW-neck.png",
+      "sha256": "39200caab57bd61a417a20e38fef4f2e56cd7dba815098a9328127de697ba7fe"
+    },
+    {
+      "path": "master/NW.png",
+      "sha256": "286fddec4137c5e1d710e809533355ff3660538fa1eb236dcc7f4ddd85c09c3a"
+    },
+    {
+      "path": "assembled/NW.png",
+      "sha256": "286fddec4137c5e1d710e809533355ff3660538fa1eb236dcc7f4ddd85c09c3a"
+    },
+    {
+      "path": "fit/NW.png",
+      "sha256": "2848e2ebcabc08b88aced4a781d2e9fb5c6c93d2db44ff7d429ed47abb93a99a"
+    },
+    {
+      "path": "inspection/green/NW-fit.png",
+      "sha256": "a69835aa9c188a5a054dbdee910adf30d6df577d93e0e269afb4cfb7c4c76b63"
+    },
+    {
+      "path": "inspection/head-comparison/NW.png",
+      "sha256": "fc714eebce7a0ace866077ed2e3cdf1cc44d42ad5e8f37aa813c7f7e5f6bb319"
+    },
+    {
+      "path": "inspection/full-comparison/NW.png",
+      "sha256": "d73a9cd5211193195cd88ccaf928516a2048ad3faeced20b0c3f73c29f6128e0"
+    },
+    {
+      "path": "overview.png",
+      "sha256": "1b23a60541e3ad1825a3136f7315aa48c3412b932dca5468bdacbeaf7cb197a7"
+    },
+    {
+      "path": "full-overview.png",
+      "sha256": "dfeaa1c903f7c5e1fc77a680b7c1cd5774da5303ad535bbef0363ba56ce9fcac"
+    }
+  ]
+}

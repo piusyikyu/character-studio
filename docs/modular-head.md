@@ -954,3 +954,96 @@ The next small Step 6C increment authors independent NE/NW posterior three-quart
 head/neck anatomy against the accepted rear hair. Both facings must hide eyes and
 frontal features. Separate facial/ear assets, concealed hair, body/clothing,
 material maps and production T-pose remain later work. Step 6D stays gated.
+
+### Independent NE/NW posterior anatomy candidates — 2026-10-12
+
+Local commit `a9b2aa1` preserves qualified SE/SW revision-4 approval and its
+required future body-occlusion check. The next increment adds native independent
+NE/NW head/neck masters, without changing any accepted source imagery.
+
+`back-diagonals-authoring-v1.json` selects `NE/NW-master-v1.png`, their complete
+head and neck partitions and binary masks. Built-in imagegen independently
+authored each posterior three-quarter scalp/skull, minimal side cheek, complete
+near human ear, nape and slender neck from its own reference and native synthetic
+guide. Exact prompts/input roles and the rejected first NW study are recorded in
+`back-diagonals-prompts-v1.json`. The retry keeps NW's ear near x425/y186; the first
+study extended leftwards to about x359 and was rejected before selection.
+
+The raw masters remain unchanged. The established 8/255 alpha cleanup clears
+1,828 NE and 1,442 NW faint pixels. Retained bounds are NE x511–656/y70–307 and
+NW x383–519/y61–302. NE partitions at y260 (21,556 head / 2,829 neck pixels); NW
+at y255 (20,492 head / 3,064 neck). Each pair reconstructs its own normalized
+master exactly. Full-canvas origins match the provisional anchors: NE head
+`(581,162)`, neck `(590,285)`; NW head `(447,158)`, neck `(438,275)`. Every part
+remains at native `(0,0)`, with no scaling, reflection, translation or clipping.
+
+The synthetic guides are framing aids, not certified anatomy. Generated neck
+widths exceed their guide sketches: native neck bounds are NE x539–627/y260–307
+and NW x417–501/y255–302. Review the real nape/neck geometry and later body join;
+do not infer body/T-pose compatibility from approximate anchors or envelope checks.
+
+```bash
+pnpm head:review:back-diagonals
+```
+
+Separate ignored staging is at
+`assets/staging/heroine-v1/head-soft-oval-v1/back-diagonals/`. `overview.png` shows
+NE above NW and columns reference / complete bare skin / actual layered fit.
+Native head/neck, master/reconstruction and fit PNGs, checker/green inspections,
+full comparisons and hashed metadata accompany it. Head/neck render under the
+accepted rear hair using the real core back-facing order; frontal fringe remains
+explicitly hidden. Metadata describes this pair's coverage only, rather than
+the repository's complete set of head drafts.
+
+Both bare studies and assembled fits show posterior three-quarter orientation
+without eyes, brows or mouth. Near ears are embedded in the bare heads and mostly
+covered by the accepted hair in the assemblies. Ear clearance, cheek exposure,
+nape shading and mask transitions need human review. These observations do not
+approve anatomy or certify feature absence through an automated recognizer.
+
+One added public integration workflow checks exact native reconstruction,
+independent/unreflected masters, unchanged approved hair, real back-facing depth,
+hidden fringe, deterministic output and immutable inputs. It rejects a re-pinned
+edited partition and a visible posterior frontal-fringe config. Existing S/N,
+E/W and SE/SW workflows remain. No enum/default/helper unit suites are added.
+The guide and partition scripts write new files exclusively; replay them in a
+separate scratch copy. Thirteen guide/config/partition outputs reproduced
+byte-for-byte in that isolation.
+
+These NE/NW candidates require visual approval before the next anatomy increment.
+N remains an unapproved anatomy draft. Independent facial/ear variants, concealed
+hair, real body/clothing occlusion (including the accepted abrupt shoulder starts),
+material maps and production T-pose remain unfinished. Step 6C is not complete;
+Step 6D has not started.
+
+NE/NW increment validation on 2026-10-12:
+
+- `pnpm --filter @character-studio/asset-validator typecheck`: passed.
+- `pnpm lint`: passed with zero warnings.
+- `pnpm head:review:back-diagonals`: passed, including asset-validator
+  JavaScript/declaration build and 26 native inspection PNGs.
+- `pnpm exec vitest run tools/asset-validator/src/head-review.integration.test.ts`:
+  all four public artwork workflows passed in 269.32 seconds (NE/NW, S/N, E/W,
+  SE/SW). This verifies the new pair and preservation of the accepted fits.
+- All 26 staging PNG hashes verified, and 307 previously committed
+  source/reference hashes and modification times unchanged. Thirteen authored
+  guide/config/partition outputs replayed byte-for-byte in a scratch copy.
+  `git diff --check`: passed.
+- Full application build and browser E2E were not rerun for this offline
+  authoring/review-tool increment. `back-diagonals-fit-audit-v1.json` records
+  results and outstanding human-review limits. The new work is uncommitted.
+
+### NE/NW approval and separate-ear increment — 2026-10-12
+
+The user approved the reviewed NE/NW anatomy/fit and requested a local commit
+followed by continuation. `back-diagonals-review-fit-v1.json` pins its accepted
+configuration, source imagery and compositions. This is a standing-reference
+checkpoint, not production body/T-pose fit or final Step 6C approval. N remains
+an unapproved anatomy draft; this approval does not extend to it.
+
+The next bounded Step 6C increment separates the S human ears from the accepted
+skin base, retaining native ear imagery and authoring concealed scalp/root skin
+underlays as necessary. Review real ear/head/hair composition with the existing
+accepted S fit. Other ear facings/ancestry variants, facial features, concealed
+hair and complete body/clothing remain later increments. Keep the accepted
+SE/SW abrupt shoulder-hair starts on the future body-occlusion review checklist.

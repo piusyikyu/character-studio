@@ -91,6 +91,7 @@ pnpm head:review:front-diagonals # Review revision-4 SW neck ownership and uncha
 pnpm head:review:front-diagonals:v3 # Reproduce the generally approved nose/jaw/neck fit with the abrupt hair fragment
 pnpm head:review:front-diagonals:v2 # Reproduce the prior ear/SE-nose repair and SW fragment cleanup
 pnpm head:review:front-diagonals:v1 # Reproduce the rejected visible-only ear/offset nose/noisy hair draft
+pnpm head:review:back-diagonals # Review independent NE/NW posterior head/neck candidates with approved rear hair
 pnpm head:review:profiles # Review E/W local ear size/placement and visible-hair fit candidates
 pnpm head:review:profiles:v1 # Reproduce the original profile hair mismatch separately
 pnpm head:review:profiles:v2 # Reproduce the rejected large/misaligned profile ear fit
@@ -170,6 +171,12 @@ flagged. Revision 4 clears 157 duplicate foreground pixels already retained in
 the rear behind skin. Revision 4 is approved for now; abrupt neck/shoulder hair
 starts must be checked under the future body's actual occlusion. See the overview and before/after comparisons in
 [modular-head.md](docs/modular-head.md).
+
+Independent NE/NW posterior head/neck drafts are now reviewed separately with
+their approved rear hair. The frontal fringe stays hidden and no eye, brow or
+mouth layers are authored. Their standing-reference anatomy/hair fit is approved
+in `back-diagonals-review-fit-v1.json`; actual body/clothing and production T-pose
+fit remain unfinished. Separate S human-ear components are the next increment.
 
 Six public-API integration tests cover core recipe save/load, compatibility and
 seeded generation. Seven registry integration tests cover recipe-to-plan workflows

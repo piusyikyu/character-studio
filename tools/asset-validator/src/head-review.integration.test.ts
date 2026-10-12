@@ -7,7 +7,7 @@ import { expect, it } from 'vitest';
 import { blankImage, decodePng, drawRgba, encodePng } from '@character-studio/render-utils';
 import { DIRECTION_PLANE_ORDER } from '@character-studio/core';
 import { prepareHeadReview } from './head-review';
-import { headFrontDiagonalsRepairSchema, headFrontDiagonalsReviewSchema, headProfilesReviewSchema, headReviewSchema } from './head-review-schema';
+import { headBackDiagonalsReviewSchema, headFrontDiagonalsRepairSchema, headFrontDiagonalsReviewSchema, headProfilesReviewSchema, headReviewSchema } from './head-review-schema';
 import { matteReference } from './matte';
 import { referenceImportSettingsSchema } from './schema';
 import { sha256 } from './reference-import';
@@ -15,6 +15,74 @@ import { sha256 } from './reference-import';
 const repository = fileURLToPath(new URL('../../../', import.meta.url));
 const sourceDirectory = resolve(repository, 'assets/source/heroine-v1/head-soft-oval-v1');
 const hairDirectory = resolve(repository, 'assets/source/heroine-v1/hair-long-waves-v1');
+
+it('reviews independent NE/NW posterior anatomy with hidden fringe, native back-facing depth and immutable sources', async () => {
+  const temporary = await mkdtemp(resolve(tmpdir(), 'character-back-diagonal-head-review-'));
+  try {
+    const referenceDirectory = resolve(temporary, 'references'); await mkdir(referenceDirectory);
+    const settings = referenceImportSettingsSchema.parse(JSON.parse(await readFile(resolve(repository, 'assets/references/heroine-v1/import-v1.json'), 'utf8')));
+    for (const direction of ['NE', 'NW'] as const) {
+      const raw = decode(await readFile(resolve(repository, `assets/references/heroine-v1/detailed/${direction}.png`)), { checkCrc: true }), image = blankImage(1024, 1536);
+      for (let p = 0; p < 1024 * 1536; p++) { image.data.set(raw.data.subarray(p * raw.channels, p * raw.channels + 3), p * 4); image.data[p * 4 + 3] = raw.channels === 4 ? raw.data[p * 4 + 3]! : 255; }
+      const frame = settings.frames[direction];
+      await writeFile(resolve(referenceDirectory, `${direction}.png`), encodePng(matteReference(image, frame.labelExclusions, settings.matte, frame.backgroundCorrections).image));
+    }
+    const files = [];
+    for (const directory of [sourceDirectory, hairDirectory]) for (const path of await readdir(directory, { recursive: true })) if ((await stat(resolve(directory, path))).isFile()) files.push(resolve(directory, path));
+    const before = await Promise.all(files.map(async (path) => ({ path, hash: sha256(await readFile(path)), mtime: (await stat(path)).mtimeMs })));
+    const options = { sourceDirectory, hairDirectory, referenceDirectory, outputDirectory: resolve(temporary, 'review'), configSource: 'back-diagonals-authoring-v1.json' as const };
+    const config = headBackDiagonalsReviewSchema.parse(JSON.parse(await readFile(resolve(sourceDirectory, options.configSource), 'utf8')));
+    const hair = JSON.parse(await readFile(resolve(hairDirectory, config.hairConfig.source), 'utf8'));
+    const report = await prepareHeadReview(options);
+    expect(report).toMatchObject({ supportedReviewDirections: ['NE', 'NW'], anatomyApproved: false, published: false, hiddenFacialLayers: ['eyes', 'eyebrows', 'mouth'] });
+    expect(report.hairMeasurements.map((m) => m.part)).toEqual(['rear', 'rear']);
+    const anatomy = [];
+    for (const direction of ['NE', 'NW'] as const) {
+      const layers = new Map(), reconstructed = blankImage(1024, 1536);
+      for (const part of ['head', 'neck'] as const) {
+        const image = decodePng(await readFile(resolve(options.outputDirectory, `layers/${direction}-${part}.png`)));
+        expect(report.measurements.find((m) => m.direction === direction && m.part === part)?.position).toEqual({ x: 0, y: 0 });
+        layers.set(part, image); drawRgba(reconstructed, image, 0, 0);
+      }
+      expect(sha256(encodePng(reconstructed))).toBe(report.masters.find((m) => m.direction === direction)!.cleanedSha256);
+      anatomy.push(reconstructed);
+      const rear = decodePng(await readFile(resolve(hairDirectory, hair.frames[direction].rear.source)));
+      for (let i = 0; i < rear.data.length; i += 4) if (rear.data[i + 3]! < 8) rear.data.fill(0, i, i + 4);
+      expect(sha256(encodePng(rear))).toBe(report.hairMeasurements.find((m) => m.direction === direction)!.cleanedSha256);
+      layers.set('hair-rear', rear);
+      const fit = blankImage(1024, 1536);
+      for (const plane of DIRECTION_PLANE_ORDER[direction]) { const image = layers.get(plane); if (image) drawRgba(fit, image, 0, 0); }
+      expect(sha256(encodePng(fit))).toBe(report.fitMeasurements.find((m) => m.direction === direction)!.outputSha256);
+      expect(report.fitMeasurements.find((m) => m.direction === direction)!.headPixelsOverlappedByHair).toBeGreaterThan(1000);
+      // Real overlap distinguishes the back-facing order from hair behind the skull.
+      const wrongDepth = blankImage(1024, 1536);
+      for (const plane of ['hair-rear', 'neck', 'head']) drawRgba(wrongDepth, layers.get(plane)!, 0, 0);
+      expect(sha256(wrongDepth.data)).not.toBe(sha256(fit.data));
+    }
+    const mirrored = blankImage(1024, 1536);
+    for (let y = 0; y < 1536; y++) for (let x = 0; x < 1024; x++) mirrored.data.set(anatomy[1]!.data.subarray((y * 1024 + x) * 4, (y * 1024 + x) * 4 + 4), (y * 1024 + 1023 - x) * 4);
+    expect(sha256(anatomy[0]!.data)).not.toBe(sha256(mirrored.data));
+    const repeated = await prepareHeadReview({ ...options, outputDirectory: resolve(temporary, 'repeat') });
+    expect(repeated).toEqual(report);
+    for (const output of report.outputs) expect(sha256(await readFile(resolve(options.outputDirectory, output.path)))).toBe(output.sha256);
+    const copied = resolve(temporary, 'sources'); await cp(sourceDirectory, copied, { recursive: true });
+    const forged = decodePng(await readFile(resolve(copied, config.frames.NW.head.source)));
+    const i = forged.data.findIndex((v, index) => index % 4 === 3 && v >= 8) - 3;
+    forged.data[i] = forged.data[i]! ^ 1;
+    const bytes = encodePng(forged); await writeFile(resolve(copied, config.frames.NW.head.source), bytes); config.frames.NW.head.sourceSha256 = sha256(bytes);
+    await writeFile(resolve(copied, options.configSource), JSON.stringify(config));
+    await expect(prepareHeadReview({ ...options, sourceDirectory: copied, outputDirectory: resolve(temporary, 'forged') })).rejects.toThrow('head/neck partition must preserve');
+    // A re-pinned hair config cannot make posterior frontal fringe acceptable.
+    const copiedHair = resolve(temporary, 'hair'); await cp(hairDirectory, copiedHair, { recursive: true });
+    hair.frames.NE.front = { visibility: 'visible', artwork: hair.frames.NE.rear };
+    const hairBytes = Buffer.from(JSON.stringify(hair)); await writeFile(resolve(copiedHair, config.hairConfig.source), hairBytes);
+    const visibleConfig = headBackDiagonalsReviewSchema.parse(JSON.parse(await readFile(resolve(sourceDirectory, options.configSource), 'utf8')));
+    visibleConfig.hairConfig.sourceSha256 = sha256(hairBytes);
+    await writeFile(resolve(copied, options.configSource), JSON.stringify(visibleConfig));
+    await expect(prepareHeadReview({ ...options, sourceDirectory: copied, hairDirectory: copiedHair, outputDirectory: resolve(temporary, 'visible-fringe') })).rejects.toThrow(/fringe|front/i);
+    for (const file of before) { expect(sha256(await readFile(file.path))).toBe(file.hash); expect((await stat(file.path)).mtimeMs).toBe(file.mtime); }
+  } finally { await rm(temporary, { recursive: true, force: true }); }
+}, 180_000);
 
 it('reviews authored S/N anatomy with exact partitions, approved hair, native depth, repeatable exports and immutable sources', async () => {
   const temporary = await mkdtemp(resolve(tmpdir(), 'character-head-review-'));
