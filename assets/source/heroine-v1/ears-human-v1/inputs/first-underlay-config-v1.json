@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "id": "ears.human.v1",
+  "assetVersion": 1,
+  "target": "detailed",
+  "status": "draft-needs-human-review",
+  "sourcePose": "standing-reference",
+  "intendedRuntimePose": "tpose",
+  "rigCompatibility": "unverified",
+  "paletteReady": false,
+  "published": false,
+  "nativeSize": {
+    "width": 1024,
+    "height": 1536
+  },
+  "minimumVisibleAlpha": 8,
+  "direction": "S",
+  "method": "native-ear-patches/authored-concealed-skin/variant-retention",
+  "headConfig": {
+    "source": "authoring-v5.json",
+    "sourceSha256": "b953e1eeff3e797eb4f32189f7a9e433d7503a7accf0900eef4f5f9e15b2dc0a"
+  },
+  "headApproval": {
+    "source": "review-fit-v5.json",
+    "sourceSha256": "4f6f77225c52a87cd16717a4cdbba705cbaa0928b236fea16e29e229b98465a4"
+  },
+  "study": {
+    "source": "inputs/S-earless-study-v1.png",
+    "sourceSha256": "1c0c593672a0ac5d4615e64d7133661eff176d7a24997721cb0757e1d5f7a7c9"
+  },
+  "settings": {
+    "source": "inputs/ownership-v1.json",
+    "sourceSha256": "cf4d5d40ae004718765db0ac3275e3b89ddaf18cc583ba2cb5bf5cd304f5e7a1"
+  },
+  "head": {
+    "source": "S-head-underlay-v1.png",
+    "sourceSha256": "37452e358751a3fade08265d7fffd3b67c304e4185ce00506a42fb1a64ce7173"
+  },
+  "headRetention": {
+    "source": "inputs/S-human-head-retention-v1.png",
+    "sourceSha256": "c89eed6c5eecb4dc5eb5dcd86c4fdaa9b62703eb747a35e3a27604e13f99454f"
+  },
+  "sides": {
+    "right": {
+      "source": "S-right-ear-v1.png",
+      "sourceSha256": "887ac323fd45b12d555a8c2cbe9c263ad52a9369856b6967be34e884021cbd92",
+      "region": [
+        [
+          422,
+          183
+        ],
+        [
+          455,
+          183
+        ],
+        [
+          455,
+          241
+        ],
+        [
+          422,
+          241
+        ]
+      ],
+      "selection": {
+        "source": "inputs/S-right-mask-v1.png",
+        "sourceSha256": "7ee12dd746a42f963a479676d382337ee175f79f4ed102ca43a9fe7ff9d882b1"
+      },
+      "origin": {
+        "x": 511,
+        "y": 169
+      },
+      "pixelCount": 1331
+    },
+    "left": {
+      "source": "S-left-ear-v1.png",
+      "sourceSha256": "687ebf2af539bb69621c519b7b3cae82becd444206cc1eb3b01620e519a6496c",
+      "region": [
+        [
+          568,
+          183
+        ],
+        [
+          603,
+          183
+        ],
+        [
+          603,
+          241
+        ],
+        [
+          568,
+          241
+        ]
+      ],
+      "selection": {
+        "source": "inputs/S-left-mask-v1.png",
+        "sourceSha256": "baa4fffa0ba313f45b0243205b1401b49ab6569a77412f69469f7d4c24a44d2c"
+      },
+      "origin": {
+        "x": 511,
+        "y": 169
+      },
+      "pixelCount": 1370
+    }
+  },
+  "knownReviewIssues": [
+    "First S-only human-ear separation: exact accepted native ear/attachment RGBA, with newly authored concealed scalp/root skin in bounded local windows. Complete root anatomy and ear-free contours require visual approval.",
+    "The human-ear retention mask preserves the accepted partial-alpha head and S hair fit exactly. The ear-free preview uses the full skin underlay without that mask. Future ear variants need their own authored geometry, attachment compatibility and reviewed masks.",
+    "Physical right/left identity is retained. Other seven facings, elf/vampire ear variants, independent facial features, concealed hair, body/clothing, material maps and production T-pose remain unfinished. Final Step 6C approval precedes Step 6D.",
+    "Accepted abrupt shoulder hair starts remain on the future real body/clothing occlusion checklist; no synthetic body certifies that fit."
+  ]
+}

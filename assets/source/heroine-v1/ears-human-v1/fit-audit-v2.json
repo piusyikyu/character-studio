@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "assetVersion": 2,
+  "config": "authoring-v2.json",
+  "configSha256": "d9e10c050ae413fa87609f4a2596d166f28ca153d3f015e269afa1152612d0a4",
+  "status": "draft-needs-human-review",
+  "anatomyApproved": false,
+  "tool": "built-in imagegen",
+  "boundedCorrection": "Native mask selects small ears/root skin; prior concealed skin supplies attachment windows elsewhere. Approved head/neck/hair unchanged.",
+  "preservationCount": 344,
+  "stagingPngCount": 30,
+  "metrics": [
+    {
+      "side": "right",
+      "oldProjectionPixels": 625,
+      "newProjectionPixels": 370,
+      "definition": "Alpha >=8 beyond the fixed ear-free scalp silhouette; not an anatomical landmark measurement."
+    },
+    {
+      "side": "left",
+      "oldProjectionPixels": 667,
+      "newProjectionPixels": 429,
+      "definition": "Alpha >=8 beyond the fixed ear-free scalp silhouette; not an anatomical landmark measurement."
+    }
+  ],
+  "derivationReplayOutputs": 5,
+  "checks": [
+    {
+      "command": "pnpm --filter @character-studio/asset-validator typecheck",
+      "result": "passed"
+    },
+    {
+      "command": "pnpm lint",
+      "result": "passed, zero warnings"
+    },
+    {
+      "command": "pnpm ears:review",
+      "result": "passed, JS/declaration build and current export"
+    },
+    {
+      "command": "node tools/asset-validator/dist/ear-review-cli.js --v1",
+      "result": "passed, historical export"
+    },
+    {
+      "command": "pnpm exec vitest run tools/asset-validator/src/ear-review.integration.test.ts tools/asset-validator/src/head-review.integration.test.ts -t 'separate S human ears|authored S/N anatomy'",
+      "result": "2 passed, 3 unrelated head workflows skipped; 63.79 seconds"
+    },
+    {
+      "command": "git diff --check",
+      "result": "passed"
+    }
+  ],
+  "resolvedValidationIssue": "An initial generalized pin reused the PNG-only source schema for JSON configs/settings, causing the first CLI/ear test run to fail. Replaced with explicit JSON filename schemas; current checks passed.",
+  "notRun": [
+    "Full application build",
+    "Browser E2E"
+  ],
+  "reviewRequired": [
+    "Visible size and placement against same-facing reference",
+    "Complete bare ears and local anatomy/contour joins",
+    "Actual hair depth and future body/clothing occlusion",
+    "Other facings/ancestry variants, T-pose and final Step 6C approval"
+  ]
+}

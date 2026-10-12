@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "id": "ears.human.v1",
+  "assetVersion": 1,
+  "target": "detailed",
+  "status": "draft-needs-human-review",
+  "config": "authoring-v1.json",
+  "configSha256": "9bbc140b2bb31c1bb54bd3400b0e6a3251fb26ad8f9326ff2d96e57e0757e22c",
+  "scope": "Separate exact native S human ears and authored concealed scalp/root skin. Variant-specific head retention preserves accepted partial-alpha head and S revision-5 fit; ear-free underlay requires approval.",
+  "checks": {
+    "assetValidatorTypecheck": "pnpm --filter @character-studio/asset-validator typecheck passed",
+    "rootLint": "pnpm lint passed with zero warnings",
+    "toolBuildAndExport": "pnpm ears:review passed including JS/declaration build; node tools/asset-validator/dist/ear-review-cli.js passed after local contour refinement",
+    "artworkIntegration": {
+      "command": "pnpm exec vitest run tools/asset-validator/src/ear-review.integration.test.ts tools/asset-validator/src/head-review.integration.test.ts -t 'separate S human ears|authored S/N anatomy'",
+      "result": "2 passed, 3 skipped; 62.33 seconds. One new public ear workflow and existing S/N workflow; unrelated head workflows skipped."
+    },
+    "authoringReplay": "7 current ear/head/mask/config outputs reproduced byte-for-byte in isolated scratch; five ear/mask files remain identical across underlay refinement",
+    "sourcePreservation": "328 committed source/reference hashes and mtimes unchanged",
+    "stagingOutputs": "15 PNG hashes verified",
+    "diffCheck": "git diff --check passed",
+    "fullApplicationBuild": "not rerun: offline asset-tool increment",
+    "browserE2E": "not rerun: no application/UI change"
+  },
+  "measurements": [
+    {
+      "side": "right",
+      "pixelCount": 1331,
+      "origin": {
+        "x": 511,
+        "y": 169
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "side": "left",
+      "pixelCount": 1370,
+      "origin": {
+        "x": 511,
+        "y": 169
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  ],
+  "humanAssemblyMatchesAcceptedHead": true,
+  "humanFitMatchesAcceptedS5": true,
+  "humanFitSha256": "03693dbdb2c5d2273bf0f6bf90a019f8f17a13cafe2b4da889b4bbe29d6bd883",
+  "earlessFitSha256": "f35b1b11f009d63d248bddded03efc9b19bca022c450bc64d115ac1bbed82e96",
+  "remainingReview": [
+    "Concealed scalp/root surfaces and ear-free contour",
+    "Native attachment collars and actual front/rear hair depth",
+    "Other facings and ancestry variants; independent facial features",
+    "Real body/clothing occlusion and production T-pose",
+    "Final Step 6C approval before Step 6D"
+  ],
+  "outputs": [
+    {
+      "path": "layers/S-head-underlay.png",
+      "sha256": "ac1911fdfd1e8c43e641072a3941a5c1fa5b306f229322d80b11004ed26efd96"
+    },
+    {
+      "path": "masks/S-human-head-retention.png",
+      "sha256": "fb85e3c68af6de49cfe977370651820f669c7e846179ecce5d2861bd8628d304"
+    },
+    {
+      "path": "layers/S-right-ear.png",
+      "sha256": "70ec70d2c56739ad4f200db877436314027358f7c00fde2fe44bf7c5ad199666"
+    },
+    {
+      "path": "masks/S-right-ear.png",
+      "sha256": "cd7fa07059b3cec60c5bf721306bfed73c16130e026a2c5e7d2e5711947ef916"
+    },
+    {
+      "path": "inspection/S-right-ear.png",
+      "sha256": "a78a5ff59eb0ce49e2cea2a5f7f0131028eb7d0f36a41005073e385480c3c666"
+    },
+    {
+      "path": "layers/S-left-ear.png",
+      "sha256": "b19c8ef130ec510717173134eb8c5bf0e118b853d7458168717029fbdebef37f"
+    },
+    {
+      "path": "masks/S-left-ear.png",
+      "sha256": "05e676f4ddf3e0887da66f5fec6ba70f964372cb6c788895bd6c5787fbc9396e"
+    },
+    {
+      "path": "inspection/S-left-ear.png",
+      "sha256": "a789bea7bc58cff14dad090bfe91c3087f85a4e37fadefbe564d236be34af131"
+    },
+    {
+      "path": "assembled/S-head-human.png",
+      "sha256": "aef467c67c73b9255ce79647b493df8980f111c125414fc1c44aab48bff885e6"
+    },
+    {
+      "path": "fit/S-human.png",
+      "sha256": "03693dbdb2c5d2273bf0f6bf90a019f8f17a13cafe2b4da889b4bbe29d6bd883"
+    },
+    {
+      "path": "fit/S-earless.png",
+      "sha256": "f35b1b11f009d63d248bddded03efc9b19bca022c450bc64d115ac1bbed82e96"
+    },
+    {
+      "path": "inspection/S-head-underlay.png",
+      "sha256": "e0126ddb2cbf302afdfcf23fa8f2ceee8f56ec5afb487c6dafc89eeb4ac73735"
+    },
+    {
+      "path": "inspection/S-human-green.png",
+      "sha256": "baff36c3094be89eae0558f0619055c2c02094b4a7c99df9d0ff6973b3849fff"
+    },
+    {
+      "path": "overview.png",
+      "sha256": "6c5ea340be9dedf5aebee9dad24f367ea84fdb51ae5ba1f10abea30e1dacb12b"
+    },
+    {
+      "path": "anatomy-overview.png",
+      "sha256": "6484db22f2074b3d207c4e54b3349f20ae66d90981849954147154072b1c0e71"
+    }
+  ]
+}

@@ -39,7 +39,9 @@
     "head:review:front-diagonals:v1": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/head-review-cli.js --front-diagonals-v1",
     "head:review:front-diagonals:v2": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/head-review-cli.js --front-diagonals-v2",
     "head:review:front-diagonals:v3": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/head-review-cli.js --front-diagonals-v3",
-    "head:review:back-diagonals": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/head-review-cli.js --back-diagonals"
+    "head:review:back-diagonals": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/head-review-cli.js --back-diagonals",
+    "ears:review": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/ear-review-cli.js",
+    "ears:review:v1": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/ear-review-cli.js --v1"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.0",

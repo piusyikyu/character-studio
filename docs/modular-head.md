@@ -1047,3 +1047,28 @@ underlays as necessary. Review real ear/head/hair composition with the existing
 accepted S fit. Other ear facings/ancestry variants, facial features, concealed
 hair and complete body/clothing remain later increments. Keep the accepted
 SE/SW abrupt shoulder-hair starts on the future body-occlusion review checklist.
+
+### Separate S human-ear candidate — 2026-10-12
+
+Commit `1525979` records the accepted NE/NW increment. The separate S human-ear
+candidate now lives in `assets/source/heroine-v1/ears-human-v1/`, leaving every
+accepted head/neck/hair source and current head-review selection unchanged.
+Native ear patches, a locally authored concealed scalp/root underlay and a
+human-specific head retention mask reconstruct the accepted S skin and fit
+exactly. The ear-free underlay is shown separately and needs visual approval.
+See [modular-ears.md](modular-ears.md) and run `pnpm ears:review`. Other ear
+facings/ancestry variants and independent facial features remain future work;
+this is not final Step 6C or production anatomy approval.
+
+The user subsequently rejected S's inherited oversized ears. Separate-ear
+`authoring-v2.json` now supplies locally authored smaller ears while preserving
+all accepted head/neck/hair sources. `pnpm ears:review` compares the reference,
+accepted S5 fit and corrected candidate; `pnpm ears:review:v1` retains the original
+separation. This new ear anatomy and its local joins await visual approval.
+
+The user subsequently approved keeping the smaller S pair; `ears-human-v1/`
+`review-fit-v2.json` pins the accepted standing-reference checkpoint. Preserve
+the original larger ears as a potential future design option. Ear-size choice
+is recorded intent, with no runtime control or resizing implemented. The next
+bounded increment reviews independent S facial components over the approved
+smaller-ear skin/hair fit. Other ear facings and final Step 6C remain outstanding.

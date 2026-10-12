@@ -2,6 +2,62 @@
 
 > Purpose: This file transfers the **requirements and decisions** from a ChatGPT planning conversation into the WSL2/VS Code Codex development workflow. It is project context, **not** proof that any implementation is complete. Review actual repository files and tests before assuming a feature exists.
 
+## S ear approval and future size variants — 2026-10-12
+
+The user approved keeping the current smaller S ear size and requested a commit
+and continuation. `ears-human-v1/review-fit-v2.json` records the limited S
+standing-reference anatomy/underlay/hair-fit checkpoint. Preserve the original
+larger pair too: ear size can become another authored character-design choice,
+with independently authored facing/attachment coverage. This is design intent,
+not an implemented runtime control, recipe change or continuous image resizing.
+
+The next bounded Step 6C increment separates S eyes, brows and mouth from the
+same-facing reference and reviews them over the approved smaller-ear skin and
+existing hair. Other ear facings/ancestry variants remain subsequent work.
+No final Step 6C acceptance or advancement to Step 6D is implied. The correction
+history below retains superseded pending-review statements.
+
+## S ear proportions correction — 2026-10-12
+
+The user rejected the inherited S ear size as too large relative to the original
+reference and requested smaller ears. Revision 1's exact separation preserved
+that anatomical mismatch. `ears-human-v1/authoring-v2.json` now selects a new,
+unapproved local correction: independently authored smaller S ears from a retained
+built-in imagegen study, with a narrow native selection mask and the prior
+concealed-skin underlay elsewhere. The first study did not reduce size sufficiently
+and was rejected. All accepted head/neck/hair sources and head-review command
+selections remain unchanged; no native artwork is moved, mirrored or resized.
+
+`pnpm ears:review` shows reference / accepted oversized-ear fit / smaller-ear
+candidate. Inspect `assets/staging/heroine-v1/ears-human-v1/overview.png` and
+`anatomy-overview.png`. `pnpm ears:review:v1` retains historical separation output
+under `historical-v1/`. Exact prompts, source ownership and replay scripts are
+retained locally; see `docs/modular-ears.md`. Ear size, complete anatomy, contour
+joins and hair coverage await human approval. Step 6C remains unfinished, with
+no advancement to Step 6D and no new approval inferred from prior S5 acceptance.
+
+## Separate S human-ear review — 2026-10-12
+
+Local commit `1525979` records the approved NE/NW head/neck and hair-fit checkpoint.
+The next Step 6C increment separates S's human ears and authors concealed scalp/root
+skin underneath them, preserving all accepted artwork. The two ear/attachment
+patches keep their own physical side and exact native RGBA. Because the accepted
+skin has partial alpha, a human-specific head retention mask clears head coverage
+under the active human-ear pair; the restored head and actual S hair fit remain
+byte-identical to the accepted checkpoint. With ears absent, use the complete
+skin underlay without that human mask. Other variants need their own masks.
+
+Selected authoring: `assets/source/heroine-v1/ears-human-v1/authoring-v1.json`.
+Run `pnpm ears:review` and inspect
+`assets/staging/heroine-v1/ears-human-v1/anatomy-overview.png`, then `overview.png`.
+The new concealed skin and ear-free contour require approval. See
+`docs/modular-ears.md` for native windows, retained studies, exact prompt records
+and derivation limits. This is S-only; other ear facings/ancestry variants and
+separate facial features remain subsequent increments. No core/runtime catalog
+or editor changes. Body/clothing, actual abrupt-hair occlusion, concealed hair,
+palette maps, production T-pose and final Step 6C remain outstanding. Step 6D
+has not started; N is still an unapproved head draft.
+
 ## Independent NE/NW anatomy review — 2026-10-12
 
 **Latest decision:** The user approved this NE/NW checkpoint and requested a

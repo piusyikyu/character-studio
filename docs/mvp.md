@@ -109,7 +109,23 @@ Independent NE/NW posterior head/neck revision-1 candidates now have native
 partitions and approved rear-hair comparisons. The user approved this NE/NW
 standing-reference checkpoint in `back-diagonals-review-fit-v1.json`. Both hide
 eyes/frontal fringe. All eight facings have anatomy drafts; N remains unapproved,
-and complete production anatomy is still unfinished. Separate S human ears are next.
+and complete production anatomy is still unfinished. Commit `1525979` records
+NE/NW approval. The next S human-ear separation now has native ear/attachment
+patches, authored concealed root skin and a human-specific retention mask. The
+accepted head/hair assembly remains exact; the new ear-free anatomy and local
+joins await review. Other ear facings/ancestry variants and facial features remain
+unfinished; see [modular-ears.md](modular-ears.md).
+The user then rejected the inherited S ear size and requested a correction.
+Separate-ear revision 2 locally authors narrower ears with higher lobes and
+retains the concealed skin and all accepted head/neck/hair sources. The new
+reference/baseline/candidate comparison awaits visual approval; revision 1 remains
+available through `pnpm ears:review:v1`. Exact preservation of the old fit did
+not establish anatomically correct ear proportions.
+The user has now approved keeping revision 2's smaller S ear size; approval is
+pinned in `ears-human-v1/review-fit-v2.json`. Original larger ears remain available
+as a potential future authored design option. Ear-size controls and runtime
+contract changes are not implemented. The next bounded increment separates and
+reviews S eyes/brows/mouth over the approved ear/head/hair assembly.
 This is not final Step 6C acceptance and does not advance Step 6D.
 
 See [reference-import.md](reference-import.md). The approved sources are flattened

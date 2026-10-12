@@ -10,3 +10,5 @@ export { prepareHeadReview } from './head-review';
 export { headReviewSchema } from './head-review-schema';
 export type { HeadReviewOptions } from './head-review';
 export type { HeadReviewDraft } from './head-review-schema';
+export { prepareEarReview, earReviewSchema } from './ear-review';
+export type { EarReviewOptions } from './ear-review';
