@@ -1,5 +1,312 @@
 # Step 6C — native S facial-feature separation
 
+## S facial fit approval and next front-diagonal increment — 2026-10-13
+
+The user approved revision 11 and requested cleanup, a local commit and continued
+work. `face/reference-v1/review-fit-v11.json` pins the accepted S standing-reference
+configuration, source layers and native fit hash. This approves the visible S
+facial-layer and fringe-depth checkpoint; concealed surfaces, expressions,
+materials, other facings, production poses and final Step 6C remain unfinished.
+No existing source/config/artwork is rewritten. Regenerable caches are cleaned;
+current review outputs, native references and pinned historical sources remain.
+
+The next bounded Step 6C increment separates SE/SW visible facial components from
+each direction's own reference and composes them over the accepted
+`head/soft-oval-v1/front-diagonals-authoring-v4.json` fits. Preserve accepted S,
+SE/SW head/neck/hair sources, nose landmarks and native anchors. Independently
+trace features; do not mirror, shift inspection panels or infer approval from
+source ownership. The future body-occlusion obligation for abrupt neck/shoulder
+hair remains open. A new candidate needs visual approval. Step 6D has not started.
+Earlier current/pending-approval statements below are historical.
+
+## Original foreground depth over unchanged brows — revision 11, 2026-10-13
+
+The user found v10 much better and its right brow more natural, but the left
+brow appeared solidly over the hair. `review-fit-v10.json` records this remaining
+correction and preserves the positive observations without certifying the whole
+fit. V10's local fringe attenuation was excessive for the desired depth.
+
+`pnpm face:review` selects `authoring-v11.json`. It keeps every feature layer and
+both full brow masks byte-identical to v10, with the same native study and 4x4
+coverage. It removes the front-reveal override, restoring the complete original
+v5 front hair above the brows. The left tail remains authored beneath that hair,
+while its naturally occluded appearance replaces the painted-over overlap.
+The actual right-brow region is unchanged. Head/ears/neck/front/rear hair and
+all other facial details/folds remain pinned; no new artwork or image transforms.
+
+`inputs/brows-v11/ownership-settings.json` records the unchanged brow contours.
+`inputs/restore-s-brow-depth-v11.js` derives the new configuration in scratch,
+retaining v10 layer pins. V11 validation rejects re-pinned brow-layer changes;
+this is strictly a depth-selection increment. Historical v10 is recomposed with
+its own pinned front fit, preserving its exact original comparison hash.
+Review **reference / revision 10 / revision 11** in staging
+`face/reference-v1/inspection/brow-fit-comparison.png`;
+`pnpm face:review:v10` rebuilds the preceding checkpoint. Prior sources, prompts,
+mask/config files and feedback records remain required derivation baselines.
+
+Revision 11 needs visual review of the left tail/fringe transition. Positive
+feedback on v10's right brow does not imply whole-fit or production approval.
+Concealed geometry, variants/facings, materials, body/clothing, T-pose, independent
+pixel art and final Step 6C acceptance remain unfinished. Step 6D has not started.
+
+Revision-11 validation: asset-validator typecheck, root lint (zero warnings),
+JavaScript/declaration build, default-v11 and historical-v10 CLI exports passed.
+The existing face and cleanup integration workflows passed (two tests,
+234.02 seconds), covering actual composition with original foreground opacity,
+full retained brows, exact right-brow region and preceding/approved fit hashes,
+source ownership, determinism and immutable inputs. Current re-pinned brow edits
+are rejected; historical v10 out-of-mask front edits remain rejected. Chromium
+passed the v10/v11 viewer/native assembly check outside the sandbox due the known
+launch restriction. All 547 prior artwork/reference inputs retain hashes/mtimes;
+the source README changed intentionally. Forty-four current and 45 historical
+PNG hashes plus both viewer hashes verified. The v11 configuration replayed
+byte-for-byte in scratch. See `fit-audit-v11.json`. Full application build and
+studio E2E were not rerun for this offline depth-only increment. Generated caches
+and historical previews are cleared after validation, keeping current review
+outputs, native references and all pinned source baselines.
+
+## Fuller bands and exposed clean left tail — revision 10, 2026-10-13
+
+Revision 9 was rejected for a thin right brow and a short left brow with a line
+at its tail, pinned in `review-fit-v9.json`. The reference tail contains mixed
+fringe/brow pixels and the current front fringe hides some of that endpoint.
+The local correction therefore addresses both the bands and actual occlusion.
+
+`pnpm face:review` selects `authoring-v10.json`. A selected S study supplies two
+fuller native curves. Its left tail was authored over an opened forehead window
+(x539/y153/20x19) to avoid reproducing the crossing fringe line. The source guide
+uses the pinned v9 fit and approved head skin; the opened rectangle is discarded
+from the final layers. Only the two manually traced brow bands retain study RGB,
+with deterministic 4x4 geometric coverage affecting alpha. No source RGB is
+resampled; images and native anchors are not moved, scaled or mirrored.
+
+`inputs/brows-v10/ownership-settings.json` also traces a narrow front-reveal
+window. Its intersection with the left brow mask attenuates the v5 front hair
+alpha: 51 selected coordinates, 27 active hair pixels, 13 removed. The new
+`S-front-fit-v10.png` preserves all other native front pixels, so normal core
+plane order still places hair above brows. Approved v5 source images remain
+unchanged; the current head/ears/neck/rear hair, eyes/mouth/nose and retained
+70/56-pixel eyelid folds stay exact. Earlier whole-front-fit invariance statements
+apply to previous revisions; this candidate intentionally changes the bounded
+left-tail overlap. Approved/rejected comparison fits use their original front.
+
+Review **reference / rejected revision 9 / revision 10** in staging
+`face/reference-v1/inspection/brow-fit-comparison.png`. The right mask selects
+245 study coordinates (160 full/85 partial coverage); the left selects 306
+(222 full/84 partial). These are ownership/coverage counts, not evidence of
+anatomical or design approval. `prompts-v10.json` pins all prompts, the selected
+guide/study and the reasons/hashes for two discarded studies. Those unselected
+PNGs are not retained dependencies. Portable guide/partition scripts in `inputs/`
+are replayed only in scratch; `face:review:v9` rebuilds the prior candidate.
+
+Revision 10 needs human review of thickness, full visible length, colours, curve
+continuity, tail point and local fringe transition. It is uncommitted and remains
+an offline standing-reference candidate. Concealed geometry, expressions, other
+facings, material maps, body/clothing, T-pose, independent pixel art and final
+Step 6C acceptance remain unfinished. Step 6D has not started.
+
+Revision-10 validation: asset-validator typecheck, root lint (zero warnings),
+JavaScript/declaration build, default-v10 and historical-v9 CLI exports passed.
+The existing face and cleanup integration workflows passed (two tests,
+218.21 seconds), covering actual core-plane composition, exact approved/historical
+fit hashes, exposed violet tail samples, restored right-band coverage, source
+ownership, no changes outside the permitted brow/front masks, determinism and
+source immutability. Re-pinned wrong-side brow and out-of-mask front edits are
+rejected. Chromium passed the v9/v10 viewer/native assembly check outside the
+sandbox due the known launch restriction. All 534 prior artwork/reference inputs
+retain hashes/mtimes; the source README changed intentionally. Forty-five current
+and 44 historical PNG hashes plus both viewer hashes verified. Eight guide/masks/
+layers/config outputs replayed byte-for-byte in scratch. See `fit-audit-v10.json`.
+Full application build and studio E2E were not rerun for this offline increment.
+Historical previews and build caches are cleared after validation, preserving
+current review outputs, native references and every pinned source baseline.
+
+## Continuous right curve and tapered left tail — revision 9, 2026-10-13
+
+Revision 8 was rejected for a sharp transition in the character-right/screen-left
+brow and an abrupt character-left/screen-right tail, recorded in
+`review-fit-v8.json`. The right's small study patch still created a visible join
+with reference pixels; the left's binary contour ended bluntly.
+
+`pnpm face:review` selects `authoring-v9.json`. The right band now retains a
+continuous native study curve. The left retains its native reference curve through
+a newly tapered endpoint meeting the unchanged foreground fringe. Its generated
+study curve was not selected. `inputs/brows-v9/ownership-settings.json` records
+both independently traced contours. Four-by-four point coverage of each native
+detailed pixel yields the mask value; only source alpha is multiplied by it.
+Source RGB and coordinates stay exact. This is detailed-mask edge coverage,
+with no image scaling, blur, mirroring or change to pixel-art contracts.
+
+Review **reference / rejected revision 8 / revision 9** in staging
+`face/reference-v1/inspection/brow-fit-comparison.png`. The unchanged front hair
+provides real occlusion above both brow layers. Approved v5 head/ears/neck/hair,
+original eyes/mouth/nose and the 70/56-pixel upper-eyelid folds remain exact.
+Source ownership and authored coverage are validated for every native pixel.
+`prompts-v9.json` pins the built-in imagegen prompt, native guide and selected
+study; its background and every unselected edit are excluded from the layers.
+The portable `inputs/partition-s-brows-v9.js` is replayed only in scratch.
+
+`pnpm face:review:v8` rebuilds the rejected prior candidate. All older selected
+sources and rejection records remain derivation baselines. Revision 9 needs
+human review of the curves, tail taper, thickness, colours and native fringe
+joins. Hidden geometry, expressions, other facings, materials, body/clothing,
+T-pose, independent pixel art and final Step 6C acceptance remain unfinished.
+Step 6D has not started; no commit is authorised for this candidate.
+
+Revision-9 validation: asset-validator typecheck, root lint (zero warnings),
+JavaScript/declaration build, default-v9 and historical-v8 CLI exports passed.
+The existing face and cleanup integration workflows passed (two tests,
+209.46 seconds), covering actual core-plane composition, retained study/reference
+RGB with authored alpha coverage, soft tail samples beyond the former endpoint,
+excluded crossing stubs, exact rejected-v8/v7/v6 and approved-v5 fit hashes,
+unchanged output outside brow masks, determinism, source immutability and
+re-pinned wrong-side rejection. Chromium passed the v8/v9 viewer and native
+assembly checks outside the sandbox due its known launch restriction.
+All 521 prior artwork/reference inputs retain hashes and mtimes; the source
+README changed intentionally. The right has 166 selected study pixels with
+90 full/76 partial coverage; the left has 258 reference pixels with 176 full/82
+partial coverage. Forty-four current and 44 historical PNG hashes plus both
+viewer hashes verified. Five source outputs replayed byte-for-byte in scratch.
+See `fit-audit-v9.json`. Full application build and studio E2E were not rerun
+for this offline S-only increment. Historical previews and build caches are
+cleared after verification; the current review and source baselines remain.
+
+## Local brow-junction repair — revision 8, 2026-10-13
+
+Revision 7 was rejected for perpendicular crossing lines at both brows, recorded
+in `review-fit-v7.json`. Its expanded reference masks retained flattened fringe
+fragments. Revision 8 uses a bounded S study to reconstruct only the crossed
+junctions, with independently authored native contour and study-intersection
+masks in `inputs/brows-v8/`. The generated background and all other study changes
+are excluded. See `prompts-v8.json` for the built-in imagegen prompt, guide and
+selected study hashes. No image shifts, scaling, mirroring or colour keys occur.
+
+`pnpm face:review` selects `authoring-v8.json`; review **reference / rejected
+revision 7 / revision 8** in staging
+`face/reference-v1/inspection/brow-fit-comparison.png`. True foreground hair
+composes above the new brow bands. The approved v5 head/ears/neck/hair and native
+eye/mouth/nose layers remain byte-identical; the 70/56-pixel upper-eyelid folds
+remain on the eye plane. Both junctions use mixed reference/study ownership,
+validated at each native pixel against pinned masks. All changes outside the two
+brow bands are prohibited, even when source hashes are re-pinned.
+
+The portable `inputs/partition-s-brows-v8.js` is replayed only in an isolated
+scratch copy. `pnpm face:review:v7` reproduces the rejected preceding fit; v6/v7
+and all approved baselines remain pinned source dependencies. Review actual
+junction continuity, local shading and fringe occlusion. Revision 8 is unapproved;
+concealed brow surfaces, expressions, other facings, materials, body/clothing,
+T-pose, independently authored pixel assets and final Step 6C acceptance remain
+unfinished. Step 6D has not started.
+
+Revision-8 validation: asset-validator typecheck, root lint (zero warnings),
+JavaScript/declaration build, default-v8 and historical-v7 CLI exports passed.
+The existing face and cleanup integration workflows passed (two tests,
+205.08 seconds), covering actual core-plane composition, masked study junctions,
+correct alpha composition, excluded crossing stubs, exact historical/approved
+fits, unchanged output outside brow masks, deterministic export, source
+immutability and re-pinned wrong-side rejection. The initial sample assertion
+was corrected to account for partially transparent study pixels over skin.
+Chromium passed the v7/v8 viewer and native assembly checks; its sandbox launch
+failed, then the local check passed outside the sandbox. All 498 prior artwork/
+reference inputs retain hashes and mtimes; the source README changed intentionally.
+The 160/255-pixel brow layers retain 27/33 study pixels respectively. Forty-four
+current and 44 historical PNG hashes plus both viewer hashes verified. Seven
+source outputs replayed byte-for-byte in scratch. See `fit-audit-v8.json`.
+Full application build and studio E2E were not rerun for this offline S-only
+increment. Historical previews and build caches are cleared after verification;
+current review images, transparent references and all source baselines remain.
+
+## Brow gap and shortened endpoint correction — revision 7, 2026-10-13
+
+The user rejected revision 6: “NOT approved. The brows are not fully extracted.
+Her right brow has a gap while her left brow has been shortened.”
+`review-fit-v6.json` pins the rejection and actual fit/config hashes. Its masks
+were too tight: the right contour started after reference pixels beside the
+fringe, while the left contour stopped before the outer reference junction.
+
+`pnpm face:review` now selects `authoring-v7.json`. Expanded, independently traced
+native S masks retain 209 right/screen-left and 329 left/screen-right coordinates;
+98/43 respectively overlap foreground hair. Reference pixels at `(459,176)`
+and `(547,164)`, absent from the v6 brow layers, now appear unchanged in both
+their respective layers and actual assembly. The forehead curves extend through
+the existing fringe junctions. No layer shifts, scaling, mirroring, generation
+or colour keys are applied. Approved v5 head/ears/neck/hair, original eye/mouth/
+nose pixels and both retained eyelid folds remain exact.
+
+Review **reference / rejected revision 6 / revision 7** in
+`assets/staging/heroine-v1/face/reference-v1/inspection/brow-fit-comparison.png`.
+The source-derived v6 comparison is recomposed at native coordinates and pinned
+separately from the approved-v5 baseline; display panels are not moved. Settings
+and masks are in `inputs/brows-v7/`, with the scratch-only replay script
+`inputs/partition-s-brows-v7.js`. `pnpm face:review:v6` reproduces the rejected
+candidate under `historical-v6/`; source v6 and all earlier baselines are retained.
+
+Revision 7 still needs visual approval of the complete visible curves, fringe
+ownership and antialiased skin rims. Flattened reference junctions do not certify
+complete concealed brow geometry or material separation. Other facings/variants,
+body/clothing, concealed hair, materials, T-pose, independent pixel assets and
+final Step 6C acceptance remain unfinished. Step 6D has not started.
+
+Revision-7 validation: asset-validator typecheck, root lint (zero warnings),
+JavaScript/declaration build, current/default and historical-v6 CLI exports,
+the existing face and cleanup integration workflows (two passed, 181.68 seconds),
+and the Chromium v6/v7 viewer check passed. Regressions verify the two restored
+junction samples in actual composition, exact rejected-v6/approved-v5 fit hashes,
+unchanged artwork outside brow masks, retained eyelid folds, deterministic export,
+source immutability and re-pinned wrong-side rejection. All 488 prior source/
+reference inputs retain hashes/mtimes; the source README changed intentionally.
+Forty-four current and 44 historical PNG hashes plus both viewer hashes verified.
+Five authoring outputs replayed byte-for-byte in scratch. See `fit-audit-v7.json`.
+Full application build and studio E2E were not rerun for this S-only correction.
+Historical previews and build caches are cleared after verification; the current
+review and native transparent references remain available.
+
+## Current native S eyebrow candidate — revision 6, 2026-10-13
+
+After approving revision 5 and committing its correction/cleanup as `169bd1c`,
+the user authorised continued Step 6C work. `pnpm face:review` now selects
+`authoring-v6.json`: two independently traced visible eyebrow curves from S's
+native reference. There is no new generation, mirroring, shifting, scaling or
+colour-key operation. Character-right/screen-left brow has 56 selected pixels,
+five overlapped by the foreground fringe; character-left/screen-right has 157
+selected pixels with no foreground overlap. These are independently selected
+same-facing parts, not a mirrored pair.
+
+The earlier 70/56-pixel pale patches are upper-eyelid folds. They remain exact
+and now compose on the `eyes` plane as `rightUpperLidFold`/`leftUpperLidFold`.
+The new purple curves compose on `eyebrows`, before foreground hair. Approved
+revision-5 head, retention, ears, native nose, neck, front/rear hair, eye layers,
+mouth and anchors are unchanged. The approved previous fit hash is required and
+verified before export. Source settings and a scratch-only replay script are
+in `inputs/brows-v6/` and `inputs/partition-s-brows-v6.js`.
+
+Review **reference / approved revision 5 / revision 6** in
+`assets/staging/heroine-v1/face/reference-v1/inspection/brow-fit-comparison.png`.
+Its native crop is x435/y148/150×80, magnified 4× for inspection. The overview,
+bare anatomy, individual layers/masks and zero-transform head viewer also use
+v6. `pnpm face:review:v5` rebuilds the accepted checkpoint under `historical-v5/`;
+older sources and commands remain available.
+
+Revision 6 is unapproved. Review the curves, size, placement, skin rims and actual
+fringe occlusion. Only reference-visible brow geometry is supplied; concealed
+extensions, alternate expressions, palette/material maps and other facings
+remain unfinished. This is not final Step 6C acceptance or Step 6D progression.
+
+Revision-6 verification: asset-validator typecheck, root lint (zero warnings),
+JavaScript/declaration build and current/historical-v5 CLI exports passed. The
+existing face and cleanup integration workflows passed (two tests, 174.99 seconds),
+covering actual core-plane composition, exact approved v5 fit, retained folds,
+native brow ownership, unchanged output outside the brow masks, determinism,
+source immutability and rejection of re-pinned wrong-side brow edits. Local
+Chromium passed v5/v6 native defaults, unchanged anatomy overlay, opacity/reset,
+inspection transforms and actual assembly isolation/change. All 479 earlier
+source/reference inputs retain hashes/mtimes; the source README was updated
+intentionally. Forty-four current PNGs, 40 historical PNGs and both viewer hashes
+verified. Five authoring outputs replayed byte-for-byte in scratch. See
+`fit-audit-v6.json`; full application build and studio E2E were not rerun for this
+offline S-only increment. Generated caches and historical previews are cleared
+after validation, preserving the current review and transparent references.
+
 ## Revision-5 approval and reference brow ownership — 2026-10-13
 
 The user approved revision 5 and requested cleanup, commit and continued work.

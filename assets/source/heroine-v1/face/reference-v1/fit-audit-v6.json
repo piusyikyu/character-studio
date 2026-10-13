@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-13",
+  "direction": "S",
+  "assetVersion": 6,
+  "decision": "draft-needs-human-review",
+  "baselineCommit": "169bd1c",
+  "configSha256": "f18076dab7a02e12250b7020fbeba28c32d9f02fd798b162eb99929733a925a0",
+  "faceFitSha256": "f263cec9a9593251cdab8cdd2ed30606a798d3d01eca6e1e35736640e664113d",
+  "approvedPreviousFit": {
+    "assetVersion": 5,
+    "configSha256": "856bca856e02c799d3ce15bb3b7a55245513c3c57bb2a23fc0a07fa0dd0d89c6",
+    "outputSha256": "d91ba3564312f1bacbd7f4822709e93a2a4b9db9e9c388a828f88481e3525ea9"
+  },
+  "comparison": {
+    "path": "inspection/brow-fit-comparison.png",
+    "columns": [
+      "reference",
+      "approved-revision-5",
+      "candidate-revision-6"
+    ],
+    "crop": {
+      "x": 435,
+      "y": 148,
+      "width": 150,
+      "height": 80
+    },
+    "displayMagnification": 4
+  },
+  "measurements": [
+    {
+      "name": "rightBrow",
+      "side": "right",
+      "plane": "eyebrows",
+      "owner": "reference",
+      "pixels": 56,
+      "foregroundHairOverlapPixels": 5,
+      "origin": {
+        "x": 511,
+        "y": 169
+      }
+    },
+    {
+      "name": "leftBrow",
+      "side": "left",
+      "plane": "eyebrows",
+      "owner": "reference",
+      "pixels": 157,
+      "foregroundHairOverlapPixels": 0,
+      "origin": {
+        "x": 511,
+        "y": 169
+      }
+    }
+  ],
+  "eyelidFolds": [
+    {
+      "name": "rightUpperLidFold",
+      "side": "right",
+      "plane": "eyes",
+      "pixels": 70,
+      "owner": "reference",
+      "origin": {
+        "x": 511,
+        "y": 169
+      }
+    },
+    {
+      "name": "leftUpperLidFold",
+      "side": "left",
+      "plane": "eyes",
+      "pixels": 56,
+      "owner": "reference",
+      "origin": {
+        "x": 511,
+        "y": 169
+      }
+    }
+  ],
+  "validation": {
+    "assetValidatorTypecheck": "passed",
+    "rootLint": "passed, zero warnings",
+    "assetValidatorBuild": "passed: ESM and declarations",
+    "currentAndHistoricalV5Exports": "passed",
+    "existingIntegrationWorkflows": {
+      "command": "pnpm exec vitest run tools/asset-validator/src/face-review.integration.test.ts tools/asset-validator/src/workspace-cleanup.integration.test.ts",
+      "result": "2 passed",
+      "seconds": 174.99,
+      "coverage": [
+        "Actual core-plane composition and fringe depth",
+        "Exact approved revision-5 fit hash",
+        "Unchanged anatomy/ears/neck/hair and original eyes/mouth",
+        "Reference brow ownership and retained eye-plane eyelid folds",
+        "No changes outside the brow masks in the actual assembled output",
+        "Deterministic exports and source immutability",
+        "Rejection of re-pinned wrong-side brow pixels",
+        "Cleanup preserves current review and native references"
+      ]
+    },
+    "offlineChromium": "passed: v5/v6 native defaults, unchanged head overlay, opacity/reset, inspection transforms, assembly isolation and changed eyebrow composition",
+    "scratchReplay": "5 selected masks/layers/config outputs byte-for-byte",
+    "verification": {
+      "priorInputsUnchanged": 479,
+      "updatedDocumentation": "assets/source/README.md",
+      "currentPNG": 44,
+      "historicalPNG": 40,
+      "htmlHashesVerified": 2
+    },
+    "scope": "Full application build and studio browser E2E were not rerun for this S-only offline eyebrow increment."
+  },
+  "limitations": [
+    "Revision 6 separates actual visible purple S eyebrows from the native reference. Previous brow-labelled pale patches are retained as upper-eyelid folds on the eye plane.",
+    "Approved revision-5 head, retention, ears, native nose, neck, hair, eyes, mouth and anchors remain unchanged. Only two reference brow curves are added before foreground hair; no transforms, mirroring or colour keys are used.",
+    "Review brow contours, native placement, skin rims and actual fringe occlusion. The reference conceals some brow geometry; complete hidden surfaces, variants, material maps and other facings are still unfinished.",
+    "This is an unapproved offline standing-reference candidate. Full body/clothing, complete concealed hair, production T-pose, independent pixel artwork and final Step 6C acceptance remain open. Step 6D has not started."
+  ]
+}

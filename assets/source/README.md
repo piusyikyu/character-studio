@@ -11,6 +11,54 @@ masked hair pixels are consumed. Head/ear/facial inputs remain pinned to v4.
 `review-fit-v5.json` pins standing-reference approval; brows and production anatomy
 remain unfinished. See [modular-face.md](../../docs/modular-face.md).
 
+`face/reference-v1/review-fit-v11.json` pins approval of the S visible facial
+and fringe-depth fit. Its selected layers, masks, studies and historical
+configurations remain required baselines. Production approval is still pending.
+The next bounded candidate separates native SE/SW facial layers over accepted
+same-facing head/hair anatomy, retaining S exactly.
+
+Current `face/reference-v1/authoring-v11.json` retains both exact v10 brow layers
+and restores original v5 foreground-hair opacity above the left tail. Inputs in
+`inputs/brows-v11/` select the unchanged contours; no new image study is needed.
+The right-brow region stays exact. `review-fit-v10.json` records positive feedback
+and the remaining overlap correction. Revision 11 has standing-reference fit approval; all
+prior images, masks, configs and provenance remain pinned baselines.
+
+The preceding `face/reference-v1/authoring-v10.json` restores fuller native brow bands
+and a clean longer left tail. `inputs/brows-v10/` retains only the selected study
+and native guides/masks; `prompts-v10.json` records selected/discarded provenance.
+A new front-fit image changes only the bounded left-tail overlap, preserving
+all approved source files. Head/ears/neck/rear hair/features/folds stay exact.
+Revision 10 needs visual approval. Earlier configs, studies and rejection records
+remain required baselines; generated pixels outside the brow masks are discarded.
+
+The rejected `face/reference-v1/authoring-v9.json` attempted to repair the v8
+sharp right brow join and abrupt left tail. The right uses one native study curve, the left
+uses its native reference curve, both with manually authored tapered coverage.
+Inputs are in `inputs/brows-v9/`; `prompts-v9.json` pins the guide and selected
+study. Approved anatomy/hair/features/folds remain exact. Revision 9 was rejected
+for brow thickness/length and the tail line. Older configs, studies/masks and
+rejection records remain required baselines; generated edits outside the right brow are discarded.
+
+The rejected `face/reference-v1/authoring-v8.json` repaired the rejected v7 brow crossing
+lines with two bounded native study patches and revised brow-band masks. Inputs
+are in `inputs/brows-v8/`; `prompts-v8.json` pins the guide and selected study.
+Generated background/unselected pixels are discarded. Approved v5 anatomy/hair,
+original features and retained eyelid folds stay exact. Revision 8 was rejected
+for an abrupt tail and sharp transition. Source v6/v7 and their rejection records
+remain required baselines.
+
+The rejected `face/reference-v1/authoring-v6.json` selects partial native S
+purple eyebrow curves. The previous brow-labelled pale patches are retained as
+upper-eyelid folds; approved revision-5 anatomy/hair and original eyes/mouth remain
+exact. New inputs and masks are in `inputs/brows-v6/`. No new raw study is needed.
+
+Revision 6 was rejected for a right-brow gap and shortened left curve, recorded
+in `review-fit-v6.json`. The rejected `authoring-v7.json` widened both native reference
+contours through their fringe junctions. New masks are in `inputs/brows-v7/`;
+approved v5 anatomy/hair and retained eyelid folds remain unchanged. Revision 7
+was rejected for crossing fringe lines; prior sources remain pinned derivation baselines.
+
 Contains versioned layered source files and authoring inputs. The initial
 `heroine-v1/hair/long-waves-v1` PNGs have S/N design approval and remain unpublished authoring drafts, with
 hashes, selected imagegen prompts and provisional geometry in their review JSON.

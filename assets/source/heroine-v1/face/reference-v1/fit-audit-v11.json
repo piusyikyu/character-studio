@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-13",
+  "assetVersion": 11,
+  "direction": "S",
+  "decision": "draft-needs-human-review",
+  "configSha256": "abc8d575982dff8d0828d7d16ee11e829ec8ebe1e5629ddb1d6d271b284b6d5e",
+  "faceFitSha256": "0b51a0d1d6a1f2caf54324c715cf8aa27767e756aa71159ba717cc5e47576634",
+  "approvedPreviousFit": {
+    "assetVersion": 5,
+    "configSha256": "856bca856e02c799d3ce15bb3b7a55245513c3c57bb2a23fc0a07fa0dd0d89c6",
+    "outputSha256": "d91ba3564312f1bacbd7f4822709e93a2a4b9db9e9c388a828f88481e3525ea9"
+  },
+  "precedingFitSha256": "6e920d4722d9b8e42662c2331fe3d0fe8979af66cd8d0849b2ad2e5d7dd64bb6",
+  "feedbackRecord": "review-fit-v10.json",
+  "comparison": {
+    "path": "inspection/brow-fit-comparison.png",
+    "columns": [
+      "reference",
+      "preceding-revision-10",
+      "candidate-revision-11"
+    ],
+    "crop": {
+      "x": 435,
+      "y": 148,
+      "width": 150,
+      "height": 80
+    },
+    "displayMagnification": 4
+  },
+  "measurements": [
+    {
+      "name": "rightBrow",
+      "side": "right",
+      "plane": "eyebrows",
+      "owner": "study",
+      "pixels": 245,
+      "foregroundHairOverlapPixels": 115,
+      "origin": {
+        "x": 511,
+        "y": 169
+      }
+    },
+    {
+      "name": "leftBrow",
+      "side": "left",
+      "plane": "eyebrows",
+      "owner": "study",
+      "pixels": 306,
+      "foregroundHairOverlapPixels": 27,
+      "origin": {
+        "x": 511,
+        "y": 169
+      }
+    }
+  ],
+  "eyelidFolds": [
+    {
+      "name": "rightUpperLidFold",
+      "side": "right",
+      "plane": "eyes",
+      "pixels": 70,
+      "owner": "reference",
+      "origin": {
+        "x": 511,
+        "y": 169
+      }
+    },
+    {
+      "name": "leftUpperLidFold",
+      "side": "left",
+      "plane": "eyes",
+      "pixels": 56,
+      "owner": "reference",
+      "origin": {
+        "x": 511,
+        "y": 169
+      }
+    }
+  ],
+  "provenance": "Reuses the exact revision-10 brow layers, masks and pinned study from prompts-v10.json; no new artwork.",
+  "validation": {
+    "assetValidatorTypecheck": "passed",
+    "rootLint": "passed, zero warnings",
+    "assetValidatorBuild": "passed: ESM and declarations",
+    "currentAndHistoricalV10Exports": "passed",
+    "existingIntegrationWorkflow": {
+      "command": "pnpm exec vitest run tools/asset-validator/src/face-review.integration.test.ts tools/asset-validator/src/workspace-cleanup.integration.test.ts",
+      "result": "2 passed",
+      "seconds": 234.02,
+      "coverage": [
+        "Actual core-plane composition and exact preceding-v10/older/approved-v5 fit hashes",
+        "Original v5 front hair opacity restored over the full retained left brow",
+        "Exact revision-10 brow/feature layers and actual right-brow region unchanged",
+        "Native ownership, coverage, deterministic export, immutable hashes/mtimes",
+        "Re-pinned current brow edits rejected; historical v10 out-of-mask front edits still rejected",
+        "Cleanup preserves current review and source baselines"
+      ]
+    },
+    "offlineChromium": "passed: v10/v11 native defaults, unchanged head overlay, opacity/reset, temporary transforms, actual assembly isolation and zero cheek gaps. Run outside sandbox due known Chromium launch restriction.",
+    "configurationReplay": "Byte-for-byte in an isolated scratch copy",
+    "evidence": {
+      "priorSourceHashesAndMtimesPreserved": 547,
+      "intentionalTextUpdate": "assets/source/README.md",
+      "revision10FeaturesAndStudyUnchanged": true,
+      "frontRevealOverride": false,
+      "configurationReplay": "byte-for-byte in isolated scratch",
+      "exports": [
+        {
+          "version": 11,
+          "pngs": 44,
+          "viewer": true,
+          "configSha256": "abc8d575982dff8d0828d7d16ee11e829ec8ebe1e5629ddb1d6d271b284b6d5e",
+          "fitSha256": "0b51a0d1d6a1f2caf54324c715cf8aa27767e756aa71159ba717cc5e47576634"
+        },
+        {
+          "version": 10,
+          "pngs": 45,
+          "viewer": true,
+          "configSha256": "aa693384f1fecb38c4b0fe0b76156e7c0d40dffcfec730b01c2cb6e9e3cf6e43",
+          "fitSha256": "6e920d4722d9b8e42662c2331fe3d0fe8979af66cd8d0849b2ad2e5d7dd64bb6"
+        }
+      ]
+    },
+    "scope": "Full application build and studio E2E were not rerun for this offline depth-only increment.",
+    "cleanup": {
+      "deletedFiles": 70,
+      "deletedBytes": 12117549,
+      "preserved": [
+        "All source/reference artwork and approval/configuration records",
+        "Current face-review outputs and viewer",
+        "Native transparent reference dependency and import audit"
+      ],
+      "postCleanupCurrentPngHashesVerified": 44,
+      "postCleanupViewerHashVerified": true,
+      "postCleanupPriorInputsUnchanged": 547
+    }
+  },
+  "limitations": [
+    "Revision 11 preserves both exact revision-10 fuller brow layers and removes its foreground-fringe attenuation, so the left tail lies behind the original hair. The right brow assembly remains unchanged.",
+    "Approved-v5 front/rear hair, head/ears/neck, native eyes/mouth/nose, eyelid folds and anchors remain exact. The full left curve is retained beneath normal foreground occlusion.",
+    "No artwork generation, source-pixel edits, transforms, resampling, mirroring or colour keys. Earlier source/config/mask baselines remain pinned.",
+    "Review left-tail depth and the local fringe transition. This unapproved offline standing-reference candidate does not certify hidden geometry, variants/facings, materials, T-pose, independent pixel assets or final Step 6C acceptance. Step 6D has not started."
+  ]
+}

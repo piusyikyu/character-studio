@@ -1,5 +1,49 @@
 # MVP Plan — Female Character Studio
 
+Current approval update — 2026-10-13: the user approved the S revision-11
+facial/fringe fit in `face/reference-v1/review-fit-v11.json` and authorised
+cleanup, a local commit and continued Step 6C work. Next prepare native SE/SW
+facial layers over the approved front-diagonal head/hair fits. This does not
+certify other facings, concealed geometry, expressions/materials, body occlusion,
+production poses, independent pixel artwork or final Step 6C acceptance.
+Step 6D has not started. Earlier selections and pending approvals are historical.
+
+Current selection update — 2026-10-13: v10's right brow received positive
+feedback, but its left brow appeared over the hair. `review-fit-v10.json` records
+the remaining depth correction. `pnpm face:review` selects v11: both exact v10
+brow curves retained beneath the original, fully restored front fringe. No new
+artwork or layer movement. Review reference / v10 / v11;
+`face:review:v10` rebuilds the prior candidate. Left-tail visual approval remains
+pending. Step 6C/production review debt remain open; Step 6D has not started.
+Earlier entries are historical.
+
+Current selection update — 2026-10-13: v9 was rejected for a short left tail
+with an end line and a thin right brow, pinned in `review-fit-v9.json`.
+`pnpm face:review` selects v10: fuller native study bands plus a small foreground
+hair ownership mask exposing the clean left tail. All approved source files are
+preserved; actual front fit changes only at that junction. Head/ears/neck/rear
+hair/features/folds stay exact. Review reference / rejected v9 / v10;
+`face:review:v9` reproduces v9. Human approval is pending, Step 6C and production
+review debt remain open, and Step 6D has not started. Earlier entries are historical.
+
+Current selection update — 2026-10-13: revision 8 was rejected for a sharp right
+brow transition and abrupt left tail, pinned in `review-fit-v8.json`.
+`pnpm face:review` selects revision 9: a continuous native study right curve and
+native reference left curve with independently authored soft tapered coverage.
+Approved v5 anatomy/hair/features/folds remain exact. Review reference / rejected
+v8 / v9; `face:review:v8` reproduces the preceding fit. Visual approval is pending;
+Step 6C and production review debt remain open. Step 6D has not started.
+Earlier selections below are historical.
+
+Current selection update — 2026-10-13: revision 7 was rejected for lines from
+reference fringe fragments crossing the brows. `review-fit-v7.json` records it.
+`pnpm face:review` selects revision 8, which excludes those fragments and locally
+reconstructs the two native junctions with masked study pixels. Approved v5
+anatomy/hair and all other features/folds remain exact. Review reference / rejected
+v7 / v8 in the current brow comparison. `face:review:v7` rebuilds the preceding
+candidate. Visual approval is pending; Step 6C and all production review debt
+remain open. Step 6D has not started. Earlier selections below are historical.
+
 ## Purpose
 Validate an entire loop from editable character recipe to **two correct independent outputs**, using placeholder layered artwork before scaling up asset generation.
 
@@ -18,6 +62,20 @@ The user subsequently approved revision-5 S standing-reference fit, pinned in
 after cleanup and a local commit. The current brow-labelled patches are upper
 eyelid folds; the true reference eyebrow curves require separate native masks.
 This approval does not complete Step 6C or advance Step 6D.
+
+Commit `169bd1c` records that approval and cleanup. The subsequent revision-6
+candidate separates visible native S purple brow curves and retains the original
+pale patches as upper-eyelid folds. Approved head/ear/neck/hair and eye/mouth
+pixels stay fixed. `pnpm face:review` selects v6; `face:review:v5` rebuilds the
+approved checkpoint. Brow placement/contours/fringe overlap await visual approval;
+concealed brows, other facings and production review debt remain open.
+
+The user rejected v6's incomplete extraction: the right brow had a gap and the
+left curve was shortened. Rejection is pinned in `review-fit-v6.json`. Revision 7
+widens the native reference contours through both fringe junctions, preserving
+approved anatomy/hair and eyelid folds. `pnpm face:review` selects v7 and
+`face:review:v6` reproduces the rejected fit. Full visible curves/junctions need
+human approval; no milestone acceptance or Step 6D progression is implied.
 
 ## MVP scope
 - Target resolutions: detailed `1024x1536` in authored `tpose`; pixel `128x192` in authored `idle`.

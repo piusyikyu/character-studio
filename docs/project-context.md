@@ -2,6 +2,153 @@
 
 > Purpose: This file transfers the **requirements and decisions** from a ChatGPT planning conversation into the WSL2/VS Code Codex development workflow. It is project context, **not** proof that any implementation is complete. Review actual repository files and tests before assuming a feature exists.
 
+## S facial fit approval and next front-diagonal increment — 2026-10-13
+
+The user approved revision 11 and requested cleanup, a local commit and continued
+work. `face/reference-v1/review-fit-v11.json` pins the accepted S standing-reference
+configuration, source layers and native fit hash. This approves the visible S
+facial-layer and fringe-depth checkpoint; concealed surfaces, expressions,
+materials, other facings, production poses and final Step 6C remain unfinished.
+No existing source/config/artwork is rewritten. Regenerable caches are cleaned;
+current review outputs, native references and pinned historical sources remain.
+
+The next bounded Step 6C increment separates SE/SW visible facial components from
+each direction's own reference and composes them over the accepted
+`head/soft-oval-v1/front-diagonals-authoring-v4.json` fits. Preserve accepted S,
+SE/SW head/neck/hair sources, nose landmarks and native anchors. Independently
+trace features; do not mirror, shift inspection panels or infer approval from
+source ownership. The future body-occlusion obligation for abrupt neck/shoulder
+hair remains open. A new candidate needs visual approval. Step 6D has not started.
+Earlier current/pending-approval statements below are historical.
+
+## Left brow behind original fringe — revision 11, 2026-10-13
+
+The user found revision 10 much better and the right brow more natural, but
+flagged the left brow as appearing solidly over the hair. `review-fit-v10.json`
+records positive observations and the remaining depth correction, without
+claiming whole-fit approval. Its 27-pixel foreground attenuation caused the
+left tail to appear painted onto the fringe despite correct plane order.
+
+`pnpm face:review` now selects `authoring-v11.json`. Both exact v10 brow layers,
+masks, native study and coverage are retained. The reveal override is removed,
+restoring byte-identical approved-v5 foreground hair and normal opacity above
+the complete left curve. The actual right-brow region stays exact to v10.
+There is no new artwork generation, layer movement or source-pixel edit.
+
+Review staging `face/reference-v1/inspection/brow-fit-comparison.png`:
+reference / revision 10 / revision 11. `face:review:v10` reproduces the preceding
+candidate with its own attenuated front fit. All source baselines remain pinned.
+Revision 11 is uncommitted and awaits visual approval of left-tail occlusion.
+This stays within Step 6C; production review debt and final acceptance remain
+open. Step 6D has not started. Earlier current-selection entries are historical.
+
+## Fuller brows and local left-tail ownership — revision 10, 2026-10-13
+
+The user rejected v9: the character-left/screen-right brow remained much shorter
+than the reference with a line at its end, and the character-right/screen-left
+brow was too thin. `face/reference-v1/review-fit-v9.json` pins that rejection.
+The old left tail crop contained a fringe outline, and foreground hair still
+occluded part of the tail. A brow mask alone could not reveal that missing length.
+
+`pnpm face:review` now selects `authoring-v10.json`: fuller independently traced
+native study brow bands, with a clean left tail authored over a temporarily
+opened forehead guide. The temporary window and all unselected study edits are
+discarded. A separate intersection mask attenuates foreground hair alpha only
+at the left tail (27 active pixels, 13 removed), preserving composition order.
+This creates a new front fit; approved v5 source files stay unchanged. The current
+head/ears/neck/rear hair, eyes/mouth/nose and eyelid folds remain exact. Native
+coordinates and RGB ownership stay pinned; only authored mask coverage affects
+alpha. Two unsuitable studies were discarded without retaining their PNGs.
+
+Review staging `face/reference-v1/inspection/brow-fit-comparison.png`:
+reference / rejected revision 9 / revision 10. `face:review:v9` reproduces the
+preceding candidate. Revision 10 is uncommitted and needs human review of brow
+thickness/length, shading, tail point and the small fringe junction. Step 6C
+and all production review debt remain open; Step 6D has not started. Earlier
+current-selection statements below are historical.
+
+## Brow transition and tail taper — revision 9, 2026-10-13
+
+The user found revision 8 much better but rejected its abrupt character-left
+(screen-right) tail and sharp character-right (screen-left) transition.
+`face/reference-v1/review-fit-v8.json` pins that feedback and the native fit.
+The right reference/study splice and left hard mask endpoint were still visible.
+
+`pnpm face:review` now selects `authoring-v9.json`. The complete right brow band
+uses one coherent same-facing study curve, without an internal source splice.
+The left retains native reference pixels and tapers through the true fringe
+junction. Independently traced masks use deterministic 4x4 geometric coverage
+for soft detailed-pixel alpha edges; source RGB is never resampled or moved.
+The generated left curve was not selected. Approved v5 anatomy/hair/features and
+upper-eyelid folds remain exact. All unselected study changes are discarded.
+
+Review staging `face/reference-v1/inspection/brow-fit-comparison.png`:
+reference / rejected revision 8 / revision 9. `face:review:v8` reproduces the
+preceding candidate. Revision 9 is uncommitted and needs visual approval of the
+curves, taper, shading and actual hair occlusion. Step 6C remains open; Step 6D
+has not started. Earlier current-selection statements below are historical.
+
+## Rejected brow crossing lines and local revision-8 repair — 2026-10-13
+
+The user rejected revision 7: “Still not approved. There are lines at the brows
+right now. Fix it.” `face/reference-v1/review-fit-v7.json` pins the rejection.
+The expanded v7 masks copied fringe outlines crossing the brows from the flattened
+reference. Exact source ownership was insufficient to establish correct semantic
+ownership; trimming alone would again truncate the curves.
+
+`pnpm face:review` now selects `authoring-v8.json`. Independently traced native
+brow-band masks exclude the perpendicular stubs. A local generated S study supplies
+only the two small junction patches; all other brow pixels retain reference
+ownership. Native coordinates and actual foreground-hair occlusion are preserved.
+Approved v5 head/ears/neck/hair, eyes/mouth/nose and upper-eyelid folds remain exact.
+The study's background and all unselected generated changes are discarded.
+
+Review staging `face/reference-v1/inspection/brow-fit-comparison.png`:
+reference / rejected revision 7 / revision 8. `face:review:v7` reproduces the
+rejected checkpoint. Revisions 6 and 7 are retained as pinned derivation baselines.
+Revision 8 remains uncommitted and awaits human visual approval. This is still
+Step 6C; concealed geometry, variants/facings and production review debt remain
+open. Step 6D has not started. Older current-selection statements are historical.
+
+## Rejected partial brows and revision-7 correction — 2026-10-13
+
+The user rejected v6 for incomplete extraction: a gap in the character-right
+(screen-left) brow and a shortened character-left (screen-right) curve.
+`face/reference-v1/review-fit-v6.json` pins that rejection. Its masks were too
+tight; previous assertions about correctly separated visible brows do not imply
+complete extraction or approval.
+
+`pnpm face:review` now selects `authoring-v7.json`, with widened native reference
+contours through both fringe junctions. The existing approved-v5 anatomy/hair,
+original eyes/mouth/nose and retained eyelid folds are unchanged. The new comparison
+shows reference / rejected v6 / v7; `face:review:v6` reproduces the preceding fit.
+The native missing samples `(459,176)` and `(547,164)` are restored in the actual
+assembly. No artwork transforms or new generation were needed.
+
+Review the current `face/reference-v1/inspection/brow-fit-comparison.png` in
+staging. Revision 7 is uncommitted and unapproved. Junctions/skin rims, concealed
+brow geometry, other variants/facings and all production review debt remain open.
+This stays within Step 6C; Step 6D has not started.
+
+## Native S eyebrows over approved fit — revision 6, 2026-10-13
+
+Commit `169bd1c` records the approved revision-5 S neck-side fit and cleanup;
+33 generated files (2.4 MiB), including 11 duplicate/obsolete previews, were
+removed without deleting pinned source baselines. The next bounded candidate
+is `face/reference-v1/authoring-v6.json`, selected by `pnpm face:review`.
+
+It adds S's actual purple reference brow curves at native coordinates and
+retains the old pale brow-labelled patches as upper-eyelid folds on the eye
+plane. Approved head/ears/neck/hair, original eyes/mouth/nose and anchors remain
+exact. No new generation or transforms were needed. The 56/157-pixel brow masks
+are independently traced; concealed brow geometry is still unfinished.
+
+Review `face/reference-v1/inspection/brow-fit-comparison.png` in staging:
+reference / approved revision 5 / revision 6. The new brows need visual approval;
+they are uncommitted. `face:review:v5` rebuilds the approved preceding fit. Other
+facings/variants, materials, full concealed hair/body/clothing, T-pose, independent
+pixel art and final Step 6C acceptance remain open. Step 6D has not started.
+
 ## Approved S neck-side fit and next eyebrow increment — 2026-10-13
 
 The user approved revision 5 and requested cleanup, a local commit, and continued

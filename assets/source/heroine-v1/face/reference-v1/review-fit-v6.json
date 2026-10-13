@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "assetId": "face.reference.v1",
+  "assetVersion": 6,
+  "config": "authoring-v6.json",
+  "configSha256": "f18076dab7a02e12250b7020fbeba28c32d9f02fd798b162eb99929733a925a0",
+  "decision": "rejected-standing-reference-fit",
+  "reviewEvidence": "NOT approved. The brows are not fully extracted. Her right brow has a gap while her left brow has been shortened.",
+  "date": "2026-10-13",
+  "fitSha256": "f263cec9a9593251cdab8cdd2ed30606a798d3d01eca6e1e35736640e664113d",
+  "issues": [
+    "Character-right/screen-left brow mask omits visible pixels near the fringe, leaving a gap.",
+    "Character-left/screen-right brow mask truncates the reference curve before its fringe endpoint."
+  ],
+  "approvedBaseline": "review-fit-v5.json",
+  "finalStep6CAccepted": false
+}

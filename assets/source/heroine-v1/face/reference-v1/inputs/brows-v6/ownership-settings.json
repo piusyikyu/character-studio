@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "method": "native-reference-brows-with-retained-eyelid-folds",
+  "sideConvention": "Physical character right=screen-left; left=screen-right in S.",
+  "rightBrow": [
+    [
+      461,
+      174
+    ],
+    [
+      465,
+      174
+    ],
+    [
+      470,
+      175
+    ],
+    [
+      475,
+      176
+    ],
+    [
+      480,
+      178
+    ],
+    [
+      482,
+      180
+    ],
+    [
+      481,
+      181
+    ],
+    [
+      476,
+      179
+    ],
+    [
+      470,
+      178
+    ],
+    [
+      465,
+      177
+    ],
+    [
+      461,
+      177
+    ]
+  ],
+  "leftBrow": [
+    [
+      517,
+      175
+    ],
+    [
+      520,
+      172
+    ],
+    [
+      524,
+      170
+    ],
+    [
+      529,
+      168
+    ],
+    [
+      534,
+      166
+    ],
+    [
+      539,
+      164
+    ],
+    [
+      543,
+      163
+    ],
+    [
+      545,
+      164
+    ],
+    [
+      543,
+      167
+    ],
+    [
+      540,
+      169
+    ],
+    [
+      535,
+      171
+    ],
+    [
+      530,
+      174
+    ],
+    [
+      525,
+      176
+    ],
+    [
+      520,
+      179
+    ],
+    [
+      518,
+      180
+    ]
+  ],
+  "limitations": [
+    "Only native S visible purple eyebrow curves, each traced independently. No transforms or mirroring.",
+    "The original pale brow-labelled patches are upper-eyelid folds retained on the eye plane.",
+    "Concealed full eyebrow geometry, variants, colour/material maps and other facings remain unfinished."
+  ]
+}

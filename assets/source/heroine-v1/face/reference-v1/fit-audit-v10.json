@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-13",
+  "assetVersion": 10,
+  "direction": "S",
+  "decision": "draft-needs-human-review",
+  "configSha256": "aa693384f1fecb38c4b0fe0b76156e7c0d40dffcfec730b01c2cb6e9e3cf6e43",
+  "faceFitSha256": "6e920d4722d9b8e42662c2331fe3d0fe8979af66cd8d0849b2ad2e5d7dd64bb6",
+  "approvedPreviousFit": {
+    "assetVersion": 5,
+    "configSha256": "856bca856e02c799d3ce15bb3b7a55245513c3c57bb2a23fc0a07fa0dd0d89c6",
+    "outputSha256": "d91ba3564312f1bacbd7f4822709e93a2a4b9db9e9c388a828f88481e3525ea9"
+  },
+  "rejectedBrowFitSha256": "14b587818bd43507ef034422e2dd4fc49013a1269b475aa405bb508233cc792c",
+  "rejectionRecord": "review-fit-v9.json",
+  "comparison": {
+    "path": "inspection/brow-fit-comparison.png",
+    "columns": [
+      "reference",
+      "rejected-revision-9",
+      "candidate-revision-10"
+    ],
+    "crop": {
+      "x": 435,
+      "y": 148,
+      "width": 150,
+      "height": 80
+    },
+    "displayMagnification": 4
+  },
+  "measurements": [
+    {
+      "name": "rightBrow",
+      "side": "right",
+      "plane": "eyebrows",
+      "owner": "study",
+      "pixels": 245,
+      "foregroundHairOverlapPixels": 115,
+      "origin": {
+        "x": 511,
+        "y": 169
+      }
+    },
+    {
+      "name": "leftBrow",
+      "side": "left",
+      "plane": "eyebrows",
+      "owner": "study",
+      "pixels": 306,
+      "foregroundHairOverlapPixels": 14,
+      "origin": {
+        "x": 511,
+        "y": 169
+      }
+    }
+  ],
+  "coverage": {
+    "rightBrow": {
+      "total": 245,
+      "owner": "study",
+      "fullCoverage": 160,
+      "partialCoverage": 85
+    },
+    "leftBrow": {
+      "total": 306,
+      "owner": "study",
+      "fullCoverage": 222,
+      "partialCoverage": 84
+    }
+  },
+  "frontReveal": {
+    "selected": 51,
+    "active": 27,
+    "removed": 13
+  },
+  "eyelidFolds": [
+    {
+      "name": "rightUpperLidFold",
+      "side": "right",
+      "plane": "eyes",
+      "pixels": 70,
+      "owner": "reference",
+      "origin": {
+        "x": 511,
+        "y": 169
+      }
+    },
+    {
+      "name": "leftUpperLidFold",
+      "side": "left",
+      "plane": "eyes",
+      "pixels": 56,
+      "owner": "reference",
+      "origin": {
+        "x": 511,
+        "y": 169
+      }
+    }
+  ],
+  "provenance": "prompts-v10.json",
+  "validation": {
+    "assetValidatorTypecheck": "passed",
+    "rootLint": "passed, zero warnings",
+    "assetValidatorBuild": "passed: ESM and declarations",
+    "currentAndHistoricalV9Exports": "passed",
+    "existingIntegrationWorkflow": {
+      "command": "pnpm exec vitest run tools/asset-validator/src/face-review.integration.test.ts tools/asset-validator/src/workspace-cleanup.integration.test.ts",
+      "result": "2 passed",
+      "seconds": 218.21,
+      "coverage": [
+        "Actual core-plane composition and exact rejected-v9/v8/v7/v6 and approved-v5 fit hashes",
+        "Native study ownership with correct alpha coverage/composition",
+        "Exposed violet tail samples previously covered by foreground hair",
+        "Fuller right-band sample lost in v9",
+        "No actual output changes outside brow coverage, no front changes outside the tail mask",
+        "Unchanged head/ears/neck/rear hair, eyes/mouth/nose and folds",
+        "Determinism, immutable source hashes/mtimes and rejection of re-pinned wrong-side or out-of-mask front edits",
+        "Cleanup preserves current review and source baselines"
+      ]
+    },
+    "offlineChromium": "passed: v9/v10 native defaults, unchanged anatomy overlay, opacity/reset, inspection transforms, actual assembly isolation and zero cheek gaps. Run outside sandbox due known Chromium launch restriction.",
+    "scratchReplay": "8 guide/masks/layers/config outputs replayed byte-for-byte in isolated scratch",
+    "evidence": {
+      "priorSourceHashesAndMtimesPreserved": 534,
+      "intentionalTextUpdate": "assets/source/README.md",
+      "brows": {
+        "rightBrow": {
+          "total": 245,
+          "owner": "study",
+          "fullCoverage": 160,
+          "partialCoverage": 85
+        },
+        "leftBrow": {
+          "total": 306,
+          "owner": "study",
+          "fullCoverage": 222,
+          "partialCoverage": 84
+        }
+      },
+      "frontReveal": {
+        "selected": 51,
+        "active": 27,
+        "removed": 13
+      },
+      "exports": [
+        {
+          "version": 10,
+          "pngs": 45,
+          "viewer": true,
+          "configSha256": "aa693384f1fecb38c4b0fe0b76156e7c0d40dffcfec730b01c2cb6e9e3cf6e43",
+          "fitSha256": "6e920d4722d9b8e42662c2331fe3d0fe8979af66cd8d0849b2ad2e5d7dd64bb6"
+        },
+        {
+          "version": 9,
+          "pngs": 44,
+          "viewer": true,
+          "configSha256": "534ae8e3539a7b815bf08191942865a4a5bc2176ea0374b47c01340d673f26fd",
+          "fitSha256": "14b587818bd43507ef034422e2dd4fc49013a1269b475aa405bb508233cc792c"
+        }
+      ]
+    },
+    "scope": "Full application build and studio E2E were not rerun for this offline S-only increment.",
+    "cleanup": {
+      "deletedFiles": 68,
+      "deletedBytes": 12097606,
+      "preserved": [
+        "All source/reference artwork and approval/configuration records",
+        "Current face-review outputs and viewer",
+        "Native transparent reference dependency and import audit"
+      ],
+      "postCleanupCurrentPngHashesVerified": 45,
+      "postCleanupViewerHashVerified": true,
+      "postCleanupPriorInputsUnchanged": 534
+    }
+  },
+  "limitations": [
+    "Revision 10 restores fuller right brow thickness and a complete clean left tail from a same-facing open-forehead study. Both bands retain native study RGB and authored 4x4 alpha coverage.",
+    "A narrow mask attenuates foreground-hair alpha only inside the left tail/brow intersection, exposing the missing length while the composition order stays unchanged. All approved source files are preserved.",
+    "Head/ears/neck/rear hair, original eyes/mouth/nose, eyelid folds and native anchors remain exact. Study background, temporary forehead window and all unselected generated changes are discarded. No image shifts, scaling, mirroring or colour keys.",
+    "Review thickness, curve length, colours, tail point and local fringe junction. This unapproved offline S standing-reference candidate does not certify hidden surfaces, variants/facings, materials, T-pose, independent pixel artwork or final Step 6C acceptance. Step 6D has not started."
+  ]
+}

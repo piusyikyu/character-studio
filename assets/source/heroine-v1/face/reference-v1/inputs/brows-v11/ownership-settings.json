@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "method": "native-fuller-brows-with-original-fringe-depth",
+  "coverageSamples": 4,
+  "sideConvention": "Physical character right=screen-left; left=screen-right in S.",
+  "rightBrow": [
+    [
+      447,
+      179
+    ],
+    [
+      451,
+      176.8
+    ],
+    [
+      457,
+      174.8
+    ],
+    [
+      463,
+      174.8
+    ],
+    [
+      470,
+      175.3
+    ],
+    [
+      477,
+      176.5
+    ],
+    [
+      484,
+      179
+    ],
+    [
+      488,
+      182
+    ],
+    [
+      486,
+      185
+    ],
+    [
+      480,
+      182.7
+    ],
+    [
+      473,
+      181
+    ],
+    [
+      466,
+      180
+    ],
+    [
+      459,
+      179.3
+    ],
+    [
+      453,
+      181.3
+    ],
+    [
+      449,
+      183.5
+    ]
+  ],
+  "leftBrow": [
+    [
+      516,
+      178
+    ],
+    [
+      518,
+      174.5
+    ],
+    [
+      524,
+      170.5
+    ],
+    [
+      530,
+      167.5
+    ],
+    [
+      536,
+      165
+    ],
+    [
+      542,
+      163
+    ],
+    [
+      548,
+      161.3
+    ],
+    [
+      553,
+      160.5
+    ],
+    [
+      554,
+      162
+    ],
+    [
+      551,
+      164.3
+    ],
+    [
+      547,
+      167
+    ],
+    [
+      542,
+      170
+    ],
+    [
+      536,
+      173.5
+    ],
+    [
+      529,
+      177
+    ],
+    [
+      522,
+      180
+    ],
+    [
+      517,
+      181.5
+    ]
+  ],
+  "limitations": [
+    "Both revision-10 brow layers, masks, native study and coverage remain exact.",
+    "The original approved-v5 front hair retains its complete opacity and normal plane order above both brows. No tail reveal override is applied.",
+    "The complete left curve is preserved beneath the foreground fringe; no new pixels, transforms, scaling, mirroring or colour keys.",
+    "Review the left-tail depth transition. This is not final Step 6C acceptance or production anatomy approval."
+  ]
+}

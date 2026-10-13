@@ -27,15 +27,31 @@ it('reviews native S facial features with approved ears, actual hair depth, dete
     const before = await Promise.all(files.map(async (path) => ({ path, hash: sha256(await readFile(path)), mtime: (await stat(path)).mtimeMs })));
     const options = { sourceDirectory, earDirectory, headDirectory, referenceDirectory, outputDirectory: resolve(temporary, 'review') };
     const report = await prepareFaceReview(options);
-    expect(report).toMatchObject({ assetVersion: 5, anatomyApproved: false, published: false, paletteReady: false, supportedReviewDirections: ['S'], missingDirections: ['N', 'NE', 'E', 'SE', 'SW', 'W', 'NW'], nativePosition: { x: 0, y: 0 } });
+    expect(report).toMatchObject({ assetVersion: 11, anatomyApproved: false, published: false, paletteReady: false, supportedReviewDirections: ['S'], missingDirections: ['N', 'NE', 'E', 'SE', 'SW', 'W', 'NW'], nativePosition: { x: 0, y: 0 } });
     const approval = JSON.parse(await readFile(resolve(earDirectory, 'review-fit-v2.json'), 'utf8'));
     expect(report.approvedEarFitSha256).toBe(approval.fitMeasurements[0].outputSha256);
     expect(report.faceFitSha256).not.toBe(report.approvedEarFitSha256);
     expect(report.measurements.some((m) => m.foregroundHairOverlapPixels > 0)).toBe(true);
-    const config = faceReviewSchema.parse(JSON.parse(await readFile(resolve(sourceDirectory, 'authoring-v5.json'), 'utf8')));
+    const config = faceReviewSchema.parse(JSON.parse(await readFile(resolve(sourceDirectory, 'authoring-v11.json'), 'utf8')));
+    const depth = await prepareFaceReview({ ...options, configFile: 'authoring-v10.json', outputDirectory: resolve(temporary, 'historical-v10') });
+    expect(depth.faceFitSha256).toBe('6e920d4722d9b8e42662c2331fe3d0fe8979af66cd8d0849b2ad2e5d7dd64bb6');
+    expect(report.rejectedBrowFitSha256).toBe(depth.faceFitSha256);
+    expect(config.browRepair!.front).toBeUndefined(); expect(report.frontRevealMeasurements).toBeUndefined();
+    const thin = await prepareFaceReview({ ...options, configFile: 'authoring-v9.json', outputDirectory: resolve(temporary, 'historical-v9') });
+    expect(thin.faceFitSha256).toBe('14b587818bd43507ef034422e2dd4fc49013a1269b475aa405bb508233cc792c');
+    expect(thin.rejectedBrowFitSha256).toBe('8dc1cf5cdcdfd131e6c9caa077d5c3f8a4a3363cb46fda57cc34aee55f4acd92');
+    const lines = await prepareFaceReview({ ...options, configFile: 'authoring-v7.json', outputDirectory: resolve(temporary, 'historical-v7') });
+    expect(lines.faceFitSha256).toBe('19a9ad67a73ae671d06e735c88cc5728aa9cb85ca518636ab04d87cdf844a9c2');
+    expect(depth.rejectedBrowFitSha256).toBe(thin.faceFitSha256);
+    expect(lines.rejectedBrowFitSha256).toBe('f263cec9a9593251cdab8cdd2ed30606a798d3d01eca6e1e35736640e664113d');
+    const approved = await prepareFaceReview({ ...options, configFile: 'authoring-v5.json', outputDirectory: resolve(temporary, 'historical-v5') });
     const aligned = await prepareFaceReview({ ...options, configFile: 'authoring-v4.json', outputDirectory: resolve(temporary, 'historical-v4') });
     const historical = await prepareFaceReview({ ...options, configFile: 'authoring-v3.json', outputDirectory: resolve(temporary, 'historical-v3') });
-    expect(report.previousFitSha256).toBe(aligned.faceFitSha256);
+    expect(report.previousFitSha256).toBe(approved.faceFitSha256);
+    expect(approved.previousFitSha256).toBe(aligned.faceFitSha256);
+    expect(approved.faceFitSha256).toBe('d91ba3564312f1bacbd7f4822709e93a2a4b9db9e9c388a828f88481e3525ea9');
+    expect(report.approvedPreviousFit?.outputSha256).toBe(approved.faceFitSha256);
+    expect(report.eyelidFolds).toMatchObject([{ side: 'right', plane: 'eyes', pixels: 70 }, { side: 'left', plane: 'eyes', pixels: 56 }]);
     expect(aligned.previousFitSha256).toBe(historical.faceFitSha256);
     expect(aligned.faceFitSha256).toBe('e850aca7d6ae7f04c503524dd472a3f9a8bc1b6cd84695650bff24099b202545');
     expect(report.faceFitSha256).not.toBe(historical.faceFitSha256);
@@ -46,7 +62,8 @@ it('reviews native S facial features with approved ears, actual hair depth, dete
     expect(historical.previousFitSha256).toBe(rejected.faceFitSha256);
     expect(report.faceFitSha256).not.toBe(rejected.faceFitSha256);
     const prior = faceReviewSchema.parse(JSON.parse(await readFile(resolve(sourceDirectory, 'authoring-v1.json'), 'utf8')));
-    for (const name of ['rightEye', 'leftEye', 'rightBrow', 'leftBrow', 'mouth'] as const) expect({ ...config.features[name], owner: undefined }).toEqual({ ...prior.features[name], owner: undefined });
+    for (const name of ['rightEye', 'leftEye', 'mouth'] as const) expect({ ...config.features[name], owner: undefined }).toEqual({ ...prior.features[name], owner: undefined });
+    for (const name of ['rightBrow', 'leftBrow'] as const) expect(config.features[name].sourceSha256).not.toBe(prior.features[name].sourceSha256);
     const ears = JSON.parse(await readFile(resolve(earDirectory, 'authoring-v2.json'), 'utf8'));
     const load = async (directory: string, source: string) => {
       const image = decodePng(await readFile(resolve(directory, source)));
@@ -63,6 +80,11 @@ it('reviews native S facial features with approved ears, actual hair depth, dete
     ]);
     for (const part of Object.values(config.features)) {
       const image = await load(sourceDirectory, part.source); parts.set(part.plane, [...(parts.get(part.plane) ?? []), image]);
+    }
+    for (const side of ['right', 'left'] as const) {
+      const fold = await load(options.outputDirectory, `layers/S-${side}UpperLidFold.png`);
+      expect(sha256(encodePng(fold))).toBe(sha256(encodePng(await load(sourceDirectory, prior.features[side === 'right' ? 'rightBrow' : 'leftBrow'].source))));
+      parts.set('eyes', [...parts.get('eyes')!, fold]);
     }
     const expected = blankImage(1024, 1536);
     for (const plane of DIRECTION_PLANE_ORDER.S) for (const image of parts.get(plane) ?? []) drawRgba(expected, image, 0, 0);
@@ -86,6 +108,56 @@ it('reviews native S facial features with approved ears, actual hair depth, dete
     for (const [x, y] of [[544, 293], [545, 296], [545, 297], [546, 299], [547, 302]]) expect(parts.get('hair-front')![0]!.data[(y! * 1024 + x!) * 4 + 3]).toBe(0);
     expect(sha256(await readFile(resolve(options.outputDirectory, 'layers/S-head-underlay.png')))).toBe(sha256(await readFile(resolve(temporary, 'historical-v4/layers/S-head-underlay.png'))));
     expect(sha256(await readFile(resolve(options.outputDirectory, 'layers/S-left-ear.png')))).toBe(sha256(await readFile(resolve(temporary, 'historical-v4/layers/S-left-ear.png'))));
+    for (const path of ['layers/S-neck.png', 'layers/S-front-hair.png', 'layers/S-rear-hair.png']) expect(sha256(await readFile(resolve(options.outputDirectory, path)))).toBe(sha256(await readFile(resolve(temporary, 'historical-v5', path))));
+    // Eyelid folds stay on the eye plane; real reference brows change only the selected forehead pixels.
+    const oldApprovedFit = decodePng(await readFile(resolve(temporary, 'historical-v5/fit/S.png')));
+    const browMasks = await Promise.all((['rightBrow', 'leftBrow'] as const).map(name => load(sourceDirectory, config.features[name].selection.source)));
+    const outsideCurrent = expected.data.slice(), outsideApproved = oldApprovedFit.data.slice();
+    for (let p = 0; p < 1024 * 1536; p++) if (browMasks.some(mask => mask.data[p * 4 + 3]! > 0)) { outsideCurrent.fill(0, p * 4, p * 4 + 4); outsideApproved.fill(0, p * 4, p * 4 + 4); }
+    expect(sha256(outsideCurrent)).toBe(sha256(outsideApproved));
+    // Both full study curves retain native RGB with authored coverage in actual composition.
+    const junctionStudy = await load(sourceDirectory, config.browRepair!.study!.source);
+    const clippedConfig = faceReviewSchema.parse(JSON.parse(await readFile(resolve(sourceDirectory, 'authoring-v6.json'), 'utf8')));
+    for (const [name, x, y] of [['rightBrow', 459, 176], ['leftBrow', 547, 164]] as const) {
+      const i = (y * 1024 + x) * 4, brow = await load(sourceDirectory, config.features[name].source), oldBrow = await load(sourceDirectory, clippedConfig.features[name].source);
+      expect(oldBrow.data[i + 3]).toBe(0);
+      const mask = await load(sourceDirectory, config.features[name].selection.source), owner = junctionStudy;
+      const covered = owner.data.slice(i, i + 4); covered[3] = Math.round(covered[3]! * mask.data[i + 3]! / 255);
+      expect(brow.data.slice(i, i + 4)).toEqual(covered);
+      expect(parts.get('hair-front')![0]!.data[i + 3]).toBe(0);
+      const joinedPixel = blankImage(1, 1); joinedPixel.data.set(oldApprovedFit.data.subarray(i, i + 4));
+      drawRgba(joinedPixel, { width: 1, height: 1, data: brow.data.slice(i, i + 4) }, 0, 0);
+      expect(expected.data.slice(i, i + 4)).toEqual(joinedPixel.data);
+    }
+    // Reference fringe stubs from the rejected brow extraction are excluded, without editing foreground hair.
+    const linesConfig = faceReviewSchema.parse(JSON.parse(await readFile(resolve(sourceDirectory, 'authoring-v7.json'), 'utf8')));
+    for (const [name, x, y] of [['rightBrow', 461, 173], ['leftBrow', 549, 167]] as const) {
+      const i = (y * 1024 + x) * 4, brow = await load(sourceDirectory, config.features[name].source), stub = await load(sourceDirectory, linesConfig.features[name].source);
+      expect(stub.data[i + 3]).toBeGreaterThan(0); expect(brow.data[i + 3]).toBe(0);
+    }
+    // The full left brow is retained beneath original foreground opacity, not painted over the hair.
+    const tail = await load(sourceDirectory, config.features.leftBrow.source), currentFront = parts.get('hair-front')![0]!;
+    const oldDepthConfig = faceReviewSchema.parse(JSON.parse(await readFile(resolve(sourceDirectory, 'authoring-v10.json'), 'utf8')));
+    expect(config.features).toEqual(oldDepthConfig.features);
+    const oldDepthFront = await load(sourceDirectory, oldDepthConfig.browRepair!.front!.source);
+    for (const [x, y] of [[549, 162], [550, 161]]) {
+      const i = (y! * 1024 + x!) * 4;
+      expect(oldDepthFront.data[i + 3]).toBe(0); expect(currentFront.data[i + 3]).toBeGreaterThan(250);
+      expect(tail.data[i + 2]!).toBeGreaterThan(tail.data[i]! + 20);
+      expect(expected.data.slice(i, i + 4)).not.toEqual(tail.data.slice(i, i + 4));
+      for (let c = 0; c < 3; c++) expect(Math.abs(expected.data[i + c]! - currentFront.data[i + c]!)).toBeLessThanOrEqual(2);
+    }
+    const oldDepthFit = await load(resolve(temporary, 'historical-v10'), 'fit/S.png');
+    for (let y = 148; y <= 188; y++) {
+      const start = (y * 1024 + 435) * 4, end = (y * 1024 + 490) * 4;
+      expect(expected.data.slice(start, end)).toEqual(oldDepthFit.data.slice(start, end));
+    }
+    const thinConfig = faceReviewSchema.parse(JSON.parse(await readFile(resolve(sourceDirectory, 'authoring-v9.json'), 'utf8')));
+    // Native right-brow bands retain the fuller study, including pixels lost by the thin v9 curve.
+    const right = await load(sourceDirectory, config.features.rightBrow.source), thinRight = await load(sourceDirectory, thinConfig.features.rightBrow.source);
+    const fullnessPixel = (175 * 1024 + 466) * 4;
+    expect(right.data[fullnessPixel + 2]!).toBeGreaterThan(right.data[fullnessPixel]! + 20);
+    expect(right.data[fullnessPixel + 3]!).toBeGreaterThan(thinRight.data[fullnessPixel + 3]!);
     const incorrectDepth = blankImage(1024, 1536);
     for (const plane of ['hair-rear', 'neck', 'head', 'ears', 'hair-front', 'eyes', 'eyebrows', 'mouth']) for (const image of parts.get(plane) ?? []) drawRgba(incorrectDepth, image, 0, 0);
     expect(sha256(incorrectDepth.data)).not.toBe(sha256(expected.data));
@@ -95,7 +167,7 @@ it('reviews native S facial features with approved ears, actual hair depth, dete
     const altered = await load(copied, config.features.leftEye.source);
     altered.data.set([255, 255, 255, 255], (100 * 1024 + 511) * 4);
     const alteredBytes = encodePng(altered); await writeFile(resolve(copied, config.features.leftEye.source), alteredBytes); config.features.leftEye.sourceSha256 = sha256(alteredBytes);
-    await writeFile(resolve(copied, 'authoring-v5.json'), JSON.stringify(config));
+    await writeFile(resolve(copied, 'authoring-v11.json'), JSON.stringify(config));
     await expect(prepareFaceReview({ ...options, sourceDirectory: copied, outputDirectory: resolve(temporary, 'forged-layer') })).rejects.toThrow('restore exact original reference feature layers');
     // A re-pinned mask cannot expand into a different feature or direction's artwork.
     await cp(sourceDirectory, copied, { recursive: true });
@@ -122,7 +194,19 @@ it('reviews native S facial features with approved ears, actual hair depth, dete
     changedRear.data.set([255, 255, 255, 255], (500 * 1024 + 511) * 4);
     const edgeBytes = encodePng(changedRear); await writeFile(resolve(copied, outsideEdgeConfig.neckEdgeRepair!.rear.source), edgeBytes); outsideEdgeConfig.neckEdgeRepair!.rear.sourceSha256 = sha256(edgeBytes);
     await writeFile(resolve(copied, 'authoring-v5.json'), JSON.stringify(outsideEdgeConfig));
-    await expect(prepareFaceReview({ ...options, sourceDirectory: copied, outputDirectory: resolve(temporary, 'forged-neck-edge') })).rejects.toThrow('Rear hair: neck-edge correction must preserve native source ownership');
+    await expect(prepareFaceReview({ ...options, sourceDirectory: copied, configFile: 'authoring-v5.json', outputDirectory: resolve(temporary, 'forged-neck-edge') })).rejects.toThrow('Rear hair: neck-edge correction must preserve native source ownership');
+    await cp(sourceDirectory, copied, { recursive: true });
+    const browConfig = faceReviewSchema.parse(JSON.parse(await readFile(resolve(copied, 'authoring-v11.json'), 'utf8'))), changedBrow = await load(copied, browConfig.features.rightBrow.source);
+    changedBrow.data.set([255, 255, 255, 255], (170 * 1024 + 529) * 4);
+    const browBytes = encodePng(changedBrow); await writeFile(resolve(copied, browConfig.features.rightBrow.source), browBytes); browConfig.features.rightBrow.sourceSha256 = sha256(browBytes);
+    await writeFile(resolve(copied, 'authoring-v11.json'), JSON.stringify(browConfig));
+    await expect(prepareFaceReview({ ...options, sourceDirectory: copied, outputDirectory: resolve(temporary, 'forged-brow-side') })).rejects.toThrow('preserve both exact revision-10 brow layers');
+    await cp(sourceDirectory, copied, { recursive: true });
+    const fringeConfig = faceReviewSchema.parse(JSON.parse(await readFile(resolve(copied, 'authoring-v10.json'), 'utf8'))), expandedFront = await load(copied, fringeConfig.browRepair!.front!.source);
+    expandedFront.data.set([255, 255, 255, 255], (500 * 1024 + 511) * 4);
+    const expandedBytes = encodePng(expandedFront); await writeFile(resolve(copied, fringeConfig.browRepair!.front!.source), expandedBytes); fringeConfig.browRepair!.front!.sourceSha256 = sha256(expandedBytes);
+    await writeFile(resolve(copied, 'authoring-v10.json'), JSON.stringify(fringeConfig));
+    await expect(prepareFaceReview({ ...options, sourceDirectory: copied, configFile: 'authoring-v10.json', outputDirectory: resolve(temporary, 'forged-fringe') })).rejects.toThrow('Front hair: brow-tail reveal must preserve native ownership');
     for (const source of before) { expect(sha256(await readFile(source.path))).toBe(source.hash); expect((await stat(source.path)).mtimeMs).toBe(source.mtime); }
   } finally { await rm(temporary, { recursive: true, force: true }); }
-}, 180_000);
+}, 300_000);

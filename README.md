@@ -95,11 +95,17 @@ pnpm head:review:front-diagonals:v1 # Reproduce the rejected visible-only ear/of
 pnpm head:review:back-diagonals # Review independent NE/NW posterior head/neck candidates with approved rear hair
 pnpm ears:review # Review smaller S human-ear revision 2 against reference and accepted oversized-ear fit
 pnpm ears:review:v1 # Reproduce the original exact ear separation separately
-pnpm face:review # Review revision-5 S neck-side hair backing with unchanged head/ear/features
+pnpm face:review # Review revision-11 unchanged S brows beneath restored foreground fringe
 pnpm face:review:v1 # Reproduce the rejected reference-coordinate facial fit separately
 pnpm face:review:v2 # Reproduce the rejected eye redesign on the broader head separately
 pnpm face:review:v3 # Reproduce the preceding slimmer-face candidate and alignment presets
 pnpm face:review:v4 # Reproduce the preceding head/ear fit and disconnected neck-side strips
+pnpm face:review:v5 # Reproduce the approved S neck-side fit with unfinished eyebrows
+pnpm face:review:v6 # Reproduce the rejected gapped/shortened native brow extraction
+pnpm face:review:v7 # Reproduce the rejected fringe-crossing brow extraction
+pnpm face:review:v8 # Reproduce the rejected abrupt-tail and sharp-transition fit
+pnpm face:review:v9 # Reproduce the rejected thin-right and short-left brow fit
+pnpm face:review:v10 # Reproduce the fuller brow candidate with excessive tail reveal
 pnpm head:review:profiles # Review E/W local ear size/placement and visible-hair fit candidates
 pnpm head:review:profiles:v1 # Reproduce the original profile hair mismatch separately
 pnpm head:review:profiles:v2 # Reproduce the rejected large/misaligned profile ear fit
