@@ -1,6 +1,14 @@
 # Source artwork
 
-`ears/human-v1/front-diagonals-v1/authoring.json` selects the unapproved
+Current NE/NW ear candidate: `heroine-v1/ears/human-v1/back-diagonals-v1/` retains
+same-facing guides/studies, native original ears, bounded ear-free root underlays,
+alpha-join and human-retention masks, authoring/replay scripts and review audit.
+Its standing-reference root/ear fit is approved in `back-diagonals-v1/review-fit-v1.json`; production anatomy remains unfinished. Full human posterior fits remain exact;
+far ears are hidden. The SE/SW ear-size concern for alternate hairstyles remains
+open in that package's approval record and is carried into the new review.
+
+
+`ears/human-v1/front-diagonals-v1/authoring.json` selects the approved
 SE/right and SW/left near-ear separation and local ear-free scalp/root studies.
 Far ears are explicitly hidden; complete concealed geometry remains unauthored.
 Manual native contour masks retain selected study RGBA inside bounded windows;

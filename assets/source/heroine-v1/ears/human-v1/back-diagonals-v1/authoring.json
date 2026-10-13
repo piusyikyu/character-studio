@@ -1,0 +1,199 @@
+{
+  "schemaVersion": 1,
+  "id": "ears.human.v1",
+  "scope": "back-diagonals",
+  "assetVersion": 1,
+  "target": "detailed",
+  "nativeSize": {
+    "width": 1024,
+    "height": 1536
+  },
+  "sourcePose": "standing-reference",
+  "intendedRuntimePose": "tpose",
+  "status": "draft-needs-human-review",
+  "published": false,
+  "paletteReady": false,
+  "minimumVisibleAlpha": 8,
+  "method": "native-ear-patches/authored-root-alpha-join/variant-retention",
+  "headConfig": {
+    "source": "back-diagonals-authoring-v1.json",
+    "sourceSha256": "8fe3259b3a80fc3ddfff366ca5ea1e32fd21d6f8a6a65c93545783ec1ae90e74"
+  },
+  "headApproval": {
+    "source": "back-diagonals-review-fit-v1.json",
+    "sourceSha256": "e76e0d38f3d44a900c9350507a0544ac9596bcd90b3990cd434e44a66cc52fe5"
+  },
+  "futureBodyFitObligations": [
+    "Check the circled neck/shoulder hair starts against actual independently authored same-facing body and clothing layers.",
+    "Rear hair must sit behind the torso/shoulders where physically appropriate; intentional foreground curls retain their proper depth.",
+    "Inspect real native-layer composition for exposed abrupt starts and mask seams. Do not move inspection panels, clip valid hair or use a stand-in torso to certify production fit.",
+    "If any abrupt starts remain visible after the true body composition, repair them in a new version."
+  ],
+  "futureHairstyleFitObligations": [
+    "SE and SW anatomy ears differ in apparent size in the bare-head review. Current reference hair conceals this discrepancy; approval does not establish compatibility with alternate hairstyles. Before shorter/open-ear hairstyles or ear-size variants are accepted, compare native ear proportions, attachment and exposure across independently authored facings and review the actual layered fit. If exposed differences look incoherent, author versioned corrections rather than silently scaling or mirroring approved ears."
+  ],
+  "settings": {
+    "source": "selections.json",
+    "sourceSha256": "2c04fc0e450000038c3824140fd47622aa093bae87351978935536523d04a88b"
+  },
+  "prompts": {
+    "source": "prompts.json",
+    "sourceSha256": "3d7a944182f5e7c13b0dabb10b6a3d245f15aebb50462f641b972dbca76cc9ee"
+  },
+  "frames": {
+    "NE": {
+      "side": "right",
+      "hiddenEar": "left",
+      "region": [
+        [
+          604,
+          145
+        ],
+        [
+          641,
+          145
+        ],
+        [
+          641,
+          218
+        ],
+        [
+          604,
+          218
+        ]
+      ],
+      "origin": {
+        "x": 581,
+        "y": 162
+      },
+      "originalHead": {
+        "source": "NE-head-v1.png",
+        "sourceSha256": "3d11ebe22062d99fbda8317d3a97fb5cf715616b6cc5f743abbe371b421f17e3"
+      },
+      "study": {
+        "source": "inputs/NE-earless-study-v1.png",
+        "sourceSha256": "aadc8d96a12cc979d637dbbd06f8bfc2b6f9e2ec4b1c3e5b69dcc8e7372d9bf8"
+      },
+      "skinContour": [
+        [
+          604,
+          145
+        ],
+        [
+          641,
+          145
+        ],
+        [
+          641,
+          218
+        ],
+        [
+          604,
+          218
+        ]
+      ],
+      "skinSelection": {
+        "source": "NE-skin-selection-v1.png",
+        "sourceSha256": "0554e33ecfa4469c79ce29cb0a37ba0a5ffb86b6ff4ca703db4cce41703d52ef"
+      },
+      "head": {
+        "source": "NE-head-underlay-v1.png",
+        "sourceSha256": "7e81593ef381070a7a38729f4ad8d0f6e637be369ad60ae8179915225a72a827"
+      },
+      "headRetention": {
+        "source": "NE-human-head-retention-v1.png",
+        "sourceSha256": "fe84f8e47eda91bb5378ef7146840db5433716abf6c646997a972d3b3e708748"
+      },
+      "ear": {
+        "source": "NE-right-ear-v1.png",
+        "sourceSha256": "d3910702aee3cffd987dca24ed8413fe002b6a43cece90c4025b0521beaf16d1",
+        "selection": {
+          "source": "NE-ear-selection-v1.png",
+          "sourceSha256": "a00d2f76b360531ce8adef309f83b11bd3830095d27e59e042c8bbd2f6e7cf72"
+        },
+        "pixelCount": 2701
+      },
+      "authoredRootPixels": 2701
+    },
+    "NW": {
+      "side": "left",
+      "hiddenEar": "right",
+      "region": [
+        [
+          411,
+          148
+        ],
+        [
+          442,
+          148
+        ],
+        [
+          442,
+          214
+        ],
+        [
+          411,
+          214
+        ]
+      ],
+      "origin": {
+        "x": 447,
+        "y": 158
+      },
+      "originalHead": {
+        "source": "NW-head-v1.png",
+        "sourceSha256": "d86b1966b7c83a340e45a219f7432494ea12abf2ade54483d4c19c0f565643b6"
+      },
+      "study": {
+        "source": "inputs/NW-earless-study-v1.png",
+        "sourceSha256": "f49390000d3334c4f93afdb04af428a308a5dc9d5c4f681eab60d8cb29a87f5c"
+      },
+      "skinContour": [
+        [
+          411,
+          148
+        ],
+        [
+          442,
+          148
+        ],
+        [
+          442,
+          214
+        ],
+        [
+          411,
+          214
+        ]
+      ],
+      "skinSelection": {
+        "source": "NW-skin-selection-v1.png",
+        "sourceSha256": "f5139a5cca88b19aeb29a5fa431f66f31fbff5549da6a8f0e9b291221c18a19b"
+      },
+      "head": {
+        "source": "NW-head-underlay-v1.png",
+        "sourceSha256": "0a9df16e1f10edc638fda6f6632c50f53e28e2aeb4a197dbdc64715afa5621a4"
+      },
+      "headRetention": {
+        "source": "NW-human-head-retention-v1.png",
+        "sourceSha256": "06642bf120e0c59718169ccf35b92cb1a0c07bc0b26999337a20ef1bbb9da5c1"
+      },
+      "ear": {
+        "source": "NW-left-ear-v1.png",
+        "sourceSha256": "1a014722cfe5bb720c0060c0d4caba8679b5bbf5224732663fd118e808c9ad23",
+        "selection": {
+          "source": "NW-ear-selection-v1.png",
+          "sourceSha256": "d3778aa56a3349b9b99c1d7a6677bba5489a7f6fa2914c8993250b92c942d1d5"
+        },
+        "pixelCount": 2046
+      },
+      "authoredRootPixels": 2046
+    }
+  },
+  "knownReviewIssues": [
+    "New local ear-free root RGBA needs visual approval of shade/joins. Original head RGBA outside the ear windows remains exact. Native study RGB stays unpainted; a four-native-pixel alpha join composites it over original skin within independently selected interior windows; outer contours remain exact; far ears remain hidden and unauthored.",
+    "The human-specific head mask removes underlay coverage in the ear window before original partial-alpha ear/collar RGBA is drawn; accepted posterior head and rear-hair fits reconstruct exactly.",
+    "Ear-free previews use the full underlay without human retention. Future ancestry/size variants require their own independent anatomy, geometry and retention masks.",
+    "N anatomy/ears and other ancestry/size variants, concealed surfaces, expressions/materials, N review, full body/clothing/hair occlusion, production T-pose, independent pixel art and final Step 6C remain unfinished; Step 6D has not started."
+  ]
+}

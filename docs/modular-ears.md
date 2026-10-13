@@ -1,5 +1,96 @@
 # Step 6C — separate S human ears
 
+## NE/NW ear approval and next N anatomy review — 2026-10-13
+
+The user approved the independent NE/NW near-ear/root checkpoint and requested
+cleanup, a local commit and continued Step 6C work. Approval is pinned in
+`ears/human-v1/back-diagonals-v1/review-fit-v1.json`, including local studies,
+masks, source/config hashes and unchanged posterior human-fit outputs. All
+approved source artwork/configurations and derivation baselines stay unchanged.
+The future alternate-hairstyle check for unequal bare SE/SW ear sizes and the
+body-occlusion obligations for abrupt neck/shoulder hair remain open.
+
+Next review the existing independently authored N full-back head/neck draft and
+its actual accepted-hair composition on their own. N was never covered by S or
+NE/NW anatomy approval. Inspect skull/nape shape, both ear proportions and neck
+transition with eyes, brows, mouth and frontal fringe hidden. Prepare a dedicated
+N review from retained sources before changing its anatomy or separating ears;
+no new generation is needed just to recover this pending visual gate.
+Other variants, concealed geometry, materials, actual body/clothing, production
+T-pose, independent pixel artwork and final Step 6C remain unfinished. Step 6D has
+not started; older selected/pending-approval statements below are historical.
+
+
+## Independent NE/NW near-ear/root candidate — 2026-10-13
+
+Local commit `8e3c16d` records qualified SE/SW near-ear/root approval after
+32 regenerated build files (1.3 MiB) were removed. Its approval record preserves
+the user's concern about unequal bare SE/SW ear sizes: current reference hair
+conceals the difference, but future shorter/open-ear hairstyles need cross-facing
+proportion, attachment and actual exposure review. No size redesign is made now.
+
+The next bounded Step 6C candidate is
+`ears/human-v1/back-diagonals-v1/authoring.json`, exported by
+`pnpm ears:review:back-diagonals`. NE/right and NW/left near ears/collars retain
+original native RGBA; opposite ears are explicitly hidden and unauthored.
+Baselines are the approved independent posterior heads in
+`head/soft-oval-v1/back-diagonals-authoring-v1.json` and their approval record.
+Origins stay NE (581,162), NW (447,158), with all images drawn at (0,0).
+Eyes, brows, mouth and frontal fringe remain hidden. N remains an unapproved draft.
+
+Built-in imagegen independently supplies same-facing ear-erasure studies from
+exact accepted native head guides. Local `prompts.json` retains prompts/input
+roles and selected local PNG pins. Retention is bounded to interior windows
+NE x604–640/y145–217 and NW x411–441/y148–213. Both ears lie inside the existing
+skin silhouette, so every original outer contour, nape/neck and out-of-window RGBA
+pixel remains exact. No image transformations, mirroring, global key or accepted
+source overwrite. Generated halo/background and all unselected changes are excluded.
+
+The first rectangular study-only draft showed shade joins in close-ups and was
+refined before review. A four-native-pixel alpha coverage transition composites
+unpainted study RGB over the original same-facing skin at window boundaries, using
+the shared compositor's exact source-over rounding. Complete ear marks lie inside
+full study coverage; no blur/resampling is used. Human-specific retention clears
+the entire window before original ear/collar RGBA draws in the core ears plane,
+reconstructing the accepted head and full posterior neck/rear-hair fit exactly.
+Ear-free previews use the complete underlay without human retention.
+
+Review `ears/human-v1/back-diagonals/anatomy-overview.png`: NE above NW;
+approved skin / new ear-free roots / original ear-collar / reconstructed skin.
+Column two needs visual approval of shade, faint root marks and local transitions.
+Native 6x root comparisons are in `inspection/NE-root-comparison.png` and its
+NW counterpart. `overview.png` shows reference / approved posterior fit /
+identical separate-human-ear fit. Current hair heavily covers the ears; this does
+not establish compatibility with other hairstyles or correct cross-facing sizes.
+
+Asset-validator typecheck, root lint (zero warnings), JavaScript/declaration build
+and the new CLI passed. Focused ear/cleanup integration workflows passed: two
+tests, 41.26 seconds, three unrelated S/E/W/SE/SW ear workflows skipped. They cover
+actual core plane order, hidden frontal layers, native alpha joins, exact accepted
+head/fit reconstruction, determinism, immutable inputs, rejection of re-pinned
+out-of-window/ear/side edits and preservation of all current reviews through cleanup.
+An initial test assertion incorrectly expected the word "different" in the recorded
+"differ" feedback; it now compares the complete inherited review obligations with
+the authoritative SE/SW approval. Initial new-module naming errors were corrected
+before the final passing checks.
+
+All 635 prior source/reference hashes and mtimes stay unchanged; only the source
+README text changes intentionally. Eleven partition/config outputs and two guides
+replay byte-for-byte in scratch. All 187 current facial/ear PNG hashes and the S
+viewer verify. The final cleanup removes 34 regenerated files (1.3 MiB), preserving
+six current reviews and all pinned source dependencies. See the new local
+`back-diagonals-v1/fit-audit.json`. Authoring scripts replay only in scratch.
+Full application build and studio browser E2E were not rerun for this offline
+increment. This new candidate is uncommitted and unapproved.
+
+N anatomy/ears, complete concealed far-ear/hair geometry, ancestry/size variants,
+expressions/materials, actual body/clothing occlusion, production T-pose,
+independently authored pixel artwork and final Step 6C remain unfinished.
+Both future body-occlusion and alternate-hairstyle ear-size obligations remain
+open and are carried into the current review. Step 6D has not started; older
+selected/pending-approval statements below are historical.
+
+
 ## Qualified SE/SW ear approval and hairstyle review debt — 2026-10-13
 
 The user approved the diagonal near-ear/root checkpoint, requested cleanup and a

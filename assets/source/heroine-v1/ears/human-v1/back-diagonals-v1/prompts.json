@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "tool": "built-in imagegen",
+  "useCase": "precise-object-edit",
+  "selected": {
+    "NE": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the EXACT EDIT TARGET: the native 1024x1536 transparent NE posterior three-quarter bald head from our modular female anime anatomy. Remove ONLY the embedded near human ear, filling its former interior position with continuous ear-free peach scalp/side-head skin matching the adjacent local shading. Ear/root patch is x604..640 y145..217, near screen-right. Skull bounds x511..656 y70..259. These ears are inside the existing head silhouette: do NOT shrink or change the outer skull, cheek or nape silhouette. Keep the complete original posterior scalp shape, soft lighting, thin outline and partial transparency around edges. Retain EXACT full canvas, head size and upper-canvas position and huge margins. No zoom, recenter, scaling, mirroring, rotation or shifts. NO eyes, eyebrows, eyelids, eyelashes, nose marks, mouth, frontal features, hair, clothing, body, accessories, labels, glow or background. Only change the local ear into smooth believable concealed skin, no residual ear rim/crease. Independent same-facing study; do not use any other direction. All existing transparent areas stay transparent.",
+      "output": "inputs/NE-earless-study-v1.png",
+      "sourceSha256": "aadc8d96a12cc979d637dbbd06f8bfc2b6f9e2ec4b1c3e5b69dcc8e7372d9bf8",
+      "inputs": [
+        {
+          "source": "inputs/NE-earless-guide.png",
+          "sourceSha256": "3d11ebe22062d99fbda8317d3a97fb5cf715616b6cc5f743abbe371b421f17e3",
+          "role": "exact same-facing accepted native posterior head edit target"
+        }
+      ]
+    },
+    "NW": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the EXACT EDIT TARGET: the native 1024x1536 transparent NW posterior three-quarter bald head from our modular female anime anatomy. Remove ONLY the embedded near human ear, filling its former interior position with continuous ear-free peach scalp/side-head skin matching the adjacent local shading. Ear/root patch is x411..441 y148..213, near screen-left. Skull bounds x383..519 y61..254. These ears are inside the existing head silhouette: do NOT shrink or change the outer skull, cheek or nape silhouette. Keep the complete original posterior scalp shape, soft lighting, thin outline and partial transparency around edges. Retain EXACT full canvas, head size and upper-canvas position and huge margins. No zoom, recenter, scaling, mirroring, rotation or shifts. NO eyes, eyebrows, eyelids, eyelashes, nose marks, mouth, frontal features, hair, clothing, body, accessories, labels, glow or background. Only change the local ear into smooth believable concealed skin, no residual ear rim/crease. Independent same-facing study; do not use any other direction. All existing transparent areas stay transparent.",
+      "output": "inputs/NW-earless-study-v1.png",
+      "sourceSha256": "f49390000d3334c4f93afdb04af428a308a5dc9d5c4f681eab60d8cb29a87f5c",
+      "inputs": [
+        {
+          "source": "inputs/NW-earless-guide.png",
+          "sourceSha256": "d86b1966b7c83a340e45a219f7432494ea12abf2ade54483d4c19c0f565643b6",
+          "role": "exact same-facing accepted native posterior head edit target"
+        }
+      ]
+    }
+  },
+  "restrictions": [
+    "Only same-facing interior ear/root RGBA is retained; generated background and unselected changes are excluded.",
+    "Native coordinates and approved outer silhouette stay exact. No image transformations or mirrored sources.",
+    "Raw studies are retained locally as provenance; normal review never needs historical Codex output paths."
+  ]
+}

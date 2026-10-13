@@ -1,5 +1,40 @@
 # MVP Plan — Female Character Studio
 
+## NE/NW ear approval and next N anatomy review — 2026-10-13
+
+The user approved the independent NE/NW near-ear/root checkpoint and requested
+cleanup, a local commit and continued Step 6C work. Approval is pinned in
+`ears/human-v1/back-diagonals-v1/review-fit-v1.json`, including local studies,
+masks, source/config hashes and unchanged posterior human-fit outputs. All
+approved source artwork/configurations and derivation baselines stay unchanged.
+The future alternate-hairstyle check for unequal bare SE/SW ear sizes and the
+body-occlusion obligations for abrupt neck/shoulder hair remain open.
+
+Next review the existing independently authored N full-back head/neck draft and
+its actual accepted-hair composition on their own. N was never covered by S or
+NE/NW anatomy approval. Inspect skull/nape shape, both ear proportions and neck
+transition with eyes, brows, mouth and frontal fringe hidden. Prepare a dedicated
+N review from retained sources before changing its anatomy or separating ears;
+no new generation is needed just to recover this pending visual gate.
+Other variants, concealed geometry, materials, actual body/clothing, production
+T-pose, independent pixel artwork and final Step 6C remain unfinished. Step 6D has
+not started; older selected/pending-approval statements below are historical.
+
+
+Current candidate update — 2026-10-13: commit `8e3c16d` records qualified
+SE/SW ear approval, with differing bare ear sizes retained as future alternate-
+hairstyle review debt. The next independent NE/NW near-ear/root candidate selects
+`ears/human-v1/back-diagonals-v1/authoring.json`; export with
+`pnpm ears:review:back-diagonals`. Original human ears reconstruct the approved
+posterior heads/hair fits exactly; new local ear-free roots with bounded native
+alpha joins need visual review in anatomy-overview column two. Both hide frontal
+features/fringe and far ears. Cleanup preserves six current reviews. Typecheck,
+lint, build/CLI and focused ear/cleanup workflows pass (2 passed, 3 skipped).
+N remains an unapproved draft; variants, concealed geometry, expressions/materials,
+real body/clothing occlusion, production T-pose, independent pixel art and final
+Step 6C remain open. Step 6D has not started. See modular-ears.md for the audit.
+
+
 ## Qualified SE/SW ear approval and hairstyle review debt — 2026-10-13
 
 The user approved the diagonal near-ear/root checkpoint, requested cleanup and a

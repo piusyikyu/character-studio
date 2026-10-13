@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "method": "native-ear-patches/authored-root-alpha-join/variant-retention",
+  "regions": {
+    "NE": [
+      [
+        604,
+        145
+      ],
+      [
+        641,
+        145
+      ],
+      [
+        641,
+        218
+      ],
+      [
+        604,
+        218
+      ]
+    ],
+    "NW": [
+      [
+        411,
+        148
+      ],
+      [
+        442,
+        148
+      ],
+      [
+        442,
+        214
+      ],
+      [
+        411,
+        214
+      ]
+    ]
+  },
+  "skinContours": {
+    "NE": [
+      [
+        604,
+        145
+      ],
+      [
+        641,
+        145
+      ],
+      [
+        641,
+        218
+      ],
+      [
+        604,
+        218
+      ]
+    ],
+    "NW": [
+      [
+        411,
+        148
+      ],
+      [
+        442,
+        148
+      ],
+      [
+        442,
+        214
+      ],
+      [
+        411,
+        214
+      ]
+    ]
+  },
+  "coverageSamples": 4,
+  "sideConvention": "NE character-right near ear on screen-right; NW character-left on screen-left. Opposite ears are hidden.",
+  "rationale": "Posterior near ears are entirely inside the approved skin silhouette. Native interior windows retain study RGBA without removing or changing the outer contour; original ear/collar patches reconstruct exact approved heads. A four-native-pixel coverage transition blends study skin over original skin at the interior window boundary. The complete ear marks lie inside full study coverage. This is local source-over alpha composition, without blur, image transforms or source RGB painting.",
+  "edgeJoinPixels": 4
+}

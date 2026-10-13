@@ -222,3 +222,56 @@ it('reviews independent SE/SW ears with authored ear-free contour, exact approve
     for (const file of before) { expect(sha256(await readFile(file.path))).toBe(file.hash); expect((await stat(file.path)).mtimeMs).toBe(file.mtime); }
   } finally { await rm(temporary, { recursive: true, force: true }); }
 }, 300_000);
+
+it('reviews independent NE/NW ears with native roots, exact approved posterior fit, hidden fringe and immutable ownership', async () => {
+  const { prepareBackEarReview, backEarReviewSchema, backEarRegions } = await import('./ear-back-review');
+  const temporary = await mkdtemp(resolve(tmpdir(), 'character-back-ear-review-'));
+  try {
+    const sourceDirectory = resolve(repository, 'assets/source/heroine-v1/ears/human-v1/back-diagonals-v1'), headDirectory = resolve(repository, 'assets/source/heroine-v1/head/soft-oval-v1'), hairDirectory = resolve(repository, 'assets/source/heroine-v1/hair/long-waves-v1'), referenceDirectory = resolve(temporary, 'references');
+    await mkdir(referenceDirectory);
+    const settings = referenceImportSettingsSchema.parse(JSON.parse(await readFile(resolve(repository, 'assets/references/heroine-v1/import-v1.json'), 'utf8')));
+    for (const direction of ['NE', 'NW'] as const) {
+      const raw = decode(await readFile(resolve(repository, `assets/references/heroine-v1/detailed/${direction}.png`)), { checkCrc: true }), image = blankImage(1024, 1536);
+      for (let p = 0; p < 1024 * 1536; p++) { image.data.set(raw.data.subarray(p * raw.channels, p * raw.channels + 3), p * 4); image.data[p * 4 + 3] = raw.channels === 4 ? raw.data[p * 4 + 3]! : 255; }
+      const frame = settings.frames[direction]; await writeFile(resolve(referenceDirectory, `${direction}.png`), encodePng(matteReference(image, frame.labelExclusions, settings.matte, frame.backgroundCorrections).image));
+    }
+    const files: string[] = [];
+    for (const directory of [resolve(sourceDirectory, '..'), headDirectory, hairDirectory]) for (const path of await readdir(directory, { recursive: true })) if ((await stat(resolve(directory, path))).isFile()) files.push(resolve(directory, path));
+    const before = await Promise.all(files.map(async path => ({ path, hash: sha256(await readFile(path)), mtime: (await stat(path)).mtimeMs })));
+    const options = { sourceDirectory, headDirectory, hairDirectory, referenceDirectory, outputDirectory: resolve(temporary, 'review') }, report = await prepareBackEarReview(options);
+    expect(report).toMatchObject({ supportedReviewDirections: ['NE', 'NW'], anatomyApproved: false, published: false, humanAssemblyMatchesApprovedHead: true, humanFitMatchesApprovedPosteriorFit: true, originalRgbaPreservedOutsideEarWindows: true, hiddenEars: { NE: 'left', NW: 'right' }, hiddenFrontalLayers: ['eyes', 'eyebrows', 'mouth', 'hair-front'], bodyOcclusionVerified: false, nativePosition: { x: 0, y: 0 } });
+    const config = backEarReviewSchema.parse(JSON.parse(await readFile(resolve(sourceDirectory, 'authoring.json'), 'utf8'))), approval = JSON.parse(await readFile(resolve(headDirectory, 'back-diagonals-review-fit-v1.json'), 'utf8'));
+    const load = async (directory: string, file: string) => { const image = decodePng(await readFile(resolve(directory, file))); for (let i = 0; i < image.data.length; i += 4) if (image.data[i + 3]! < 8) image.data.fill(0, i, i + 4); return image; };
+    for (const direction of ['NE', 'NW'] as const) {
+      const f = config.frames[direction], original = await load(headDirectory, f.originalHead.source), underlay = await load(sourceDirectory, f.head.source), study = await load(sourceDirectory, f.study.source), ear = await load(sourceDirectory, f.ear.source), retention = await load(sourceDirectory, f.headRetention.source), masked = { ...underlay, data: underlay.data.slice() }, [[x0, y0], , [x1, y1]] = backEarRegions[direction];
+      const outsideUnderlay = underlay.data.slice(), outsideOriginal = original.data.slice(), rootMask = await load(sourceDirectory, f.skinSelection.source), overlay = blankImage(1024, 1536);
+      for (let y = y0; y < y1; y++) for (let x = x0; x < x1; x++) {
+        const i = (y * 1024 + x) * 4; expect(retention.data[i + 3]).toBe(0); masked.data.fill(0, i, i + 4); outsideUnderlay.fill(0, i, i + 4); outsideOriginal.fill(0, i, i + 4);
+        overlay.data.set(study.data.slice(i, i + 4), i); overlay.data[i + 3] = Math.round(study.data[i + 3]! * rootMask.data[i + 3]! / 255); expect(underlay.data[i + 3]!).toBeGreaterThanOrEqual(8);
+      }
+      const expected = { ...original, data: original.data.slice() }; drawRgba(expected, overlay, 0, 0);
+      expect(sha256(underlay.data)).toBe(sha256(expected.data)); expect(sha256(outsideUnderlay)).toBe(sha256(outsideOriginal)); expect(sha256(underlay.data)).not.toBe(sha256(original.data));
+      const reconstructed = blankImage(1024, 1536); drawRgba(reconstructed, masked, 0, 0); drawRgba(reconstructed, ear, 0, 0);
+      expect(sha256(reconstructed.data)).toBe(sha256(original.data)); expect(sha256((await load(options.outputDirectory, `assembled/${direction}-head-human.png`)).data)).toBe(sha256(original.data));
+      const neck = await load(options.outputDirectory, `layers/${direction}-neck.png`), rear = await load(options.outputDirectory, `layers/${direction}-rear-hair.png`), planes = new Map<RenderPlane, RgbaImage>([['head', masked], ['ears', ear], ['neck', neck], ['hair-rear', rear]]), human = blankImage(1024, 1536);
+      for (const plane of DIRECTION_PLANE_ORDER[direction]) { const layer = planes.get(plane); if (layer) drawRgba(human, layer, 0, 0); }
+      const measurement = report.fitMeasurements.find(m => m.direction === direction)!; expect(sha256(encodePng(human))).toBe(measurement.humanFitSha256); expect(measurement.humanFitSha256).toBe(approval.fitMeasurements.find((m: { direction: string }) => m.direction === direction).outputSha256);
+      // Rear-facing hair must actually cover the skin; reverse order exposes the skull.
+      const wrong = blankImage(1024, 1536); drawRgba(wrong, rear, 0, 0); drawRgba(wrong, neck, 0, 0); drawRgba(wrong, reconstructed, 0, 0); expect(sha256(wrong.data)).not.toBe(sha256(human.data));
+    }
+    const diagonalApproval = JSON.parse(await readFile(resolve(repository, 'assets/source/heroine-v1/ears/human-v1/front-diagonals-v1/review-fit-v1.json'), 'utf8'));
+    expect(report.futureHairstyleFitObligations).toEqual(diagonalApproval.futureHairstyleFitObligations); expect(report.futureBodyFitObligations).toEqual(diagonalApproval.futureBodyFitObligations);
+    expect(await prepareBackEarReview({ ...options, outputDirectory: resolve(temporary, 'repeat') })).toEqual(report);
+    for (const output of report.outputs) expect(sha256(await readFile(resolve(options.outputDirectory, output.path)))).toBe(output.sha256);
+    const copied = resolve(temporary, 'forged'); await cp(sourceDirectory, copied, { recursive: true });
+    const altered = await load(copied, config.frames.NE.head.source); altered.data.set([255, 255, 255, 255], (400 * 1024 + 511) * 4); const alteredBytes = encodePng(altered); await writeFile(resolve(copied, config.frames.NE.head.source), alteredBytes); config.frames.NE.head.sourceSha256 = sha256(alteredBytes); await writeFile(resolve(copied, 'authoring.json'), JSON.stringify(config));
+    await expect(prepareBackEarReview({ ...options, sourceDirectory: copied, outputDirectory: resolve(temporary, 'outside-window') })).rejects.toThrow('root underlay must preserve bounded native RGBA ownership');
+    await cp(sourceDirectory, copied, { recursive: true });
+    const earConfig = backEarReviewSchema.parse(JSON.parse(await readFile(resolve(copied, 'authoring.json'), 'utf8'))), changedEar = await load(copied, earConfig.frames.NW.ear.source), earPixel = (180 * 1024 + 426) * 4; changedEar.data[earPixel] = changedEar.data[earPixel]! ^ 1; const earBytes = encodePng(changedEar); await writeFile(resolve(copied, earConfig.frames.NW.ear.source), earBytes); earConfig.frames.NW.ear.sourceSha256 = sha256(earBytes); await writeFile(resolve(copied, 'authoring.json'), JSON.stringify(earConfig));
+    await expect(prepareBackEarReview({ ...options, sourceDirectory: copied, outputDirectory: resolve(temporary, 'changed-ear') })).rejects.toThrow('ear must retain exact original native RGBA');
+    await cp(sourceDirectory, copied, { recursive: true });
+    const sideConfig = backEarReviewSchema.parse(JSON.parse(await readFile(resolve(copied, 'authoring.json'), 'utf8'))); sideConfig.frames.NE.side = 'left'; await writeFile(resolve(copied, 'authoring.json'), JSON.stringify(sideConfig));
+    await expect(prepareBackEarReview({ ...options, sourceDirectory: copied, outputDirectory: resolve(temporary, 'wrong-side') })).rejects.toThrow('Native diagonal ear side');
+    for (const file of before) { expect(sha256(await readFile(file.path))).toBe(file.hash); expect((await stat(file.path)).mtimeMs).toBe(file.mtime); }
+  } finally { await rm(temporary, { recursive: true, force: true }); }
+}, 300_000);
