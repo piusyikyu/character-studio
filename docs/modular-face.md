@@ -1,5 +1,69 @@
 # Step 6C — native S facial-feature separation
 
+## E/W visible facial approval — 2026-10-13
+
+The user approved the E/W revision-1 candidate and requested cleanup, a local
+commit and continued work. `profiles-v1/review-fit-v1.json` pins its accepted
+configuration, visible native features/masks and actual standing-reference fit.
+The far-side eye/brow remain hidden. No source/configuration is rewritten.
+S, SE/SW and E/W now have visible facial-fit checkpoints; concealed surfaces,
+expressions/materials, other ear facings, N anatomy, body/clothing, production
+T-pose, independent pixel assets and final Step 6C remain incomplete.
+Next separate E/W human ears with bounded same-facing ear-free root skin and
+exact accepted facial/head/hair reconstruction. The new concealed anatomy will
+need visual approval. Step 6D has not started; earlier approval statements are
+historical.
+
+## Independent E/W facial-layer candidate — 2026-10-13
+
+Local commit `61acfb7` records the approved SE/SW revision-2 facial fit and its
+native cheek-tint correction. Cleanup removed 24 regenerated build files; no
+additional obsolete source images were found. Current S/SE/SW reviews and all
+pinned sources/references remain intact.
+
+The next candidate is `face/reference-v1/profiles-v1/authoring.json`.
+Six transparent layers and their manually traced masks independently retain the
+visible eye, brow and mouth from each profile's own reference. E exposes the
+character-right eye/brow; W exposes the character-left eye/brow. The far eye and
+brow are explicitly hidden, with no synthesized or reflected counterpart.
+Native origins remain E (558,165), W (451,176); every image draws at (0,0).
+Deterministic 4x4 contour coverage affects alpha only. Source RGB is not painted,
+scaled, shifted or resampled; tight lower-lid contours avoid broad cheek tint.
+
+`pnpm face:review:profiles` validates the selected source ownership and rebuilds
+actual core-plane composition over approved `profiles-authoring-v3.json`
+head/neck/front/rear hair. The anatomy-only baseline must match its approval hash
+before adding features. Nose, chin, visible ears, all accepted anatomy/hair and
+S/SE/SW sources remain exact. The source partition script is replayed only in
+an isolated scratch copy. Initial unreviewed W contours were refined in scratch
+after native inspection caught clipped eye/mouth detail and a fringe fragment.
+
+Review `face/reference-v1/profiles/overview.png`: E above W, with reference /
+approved anatomy-hair / facial candidate. Native 4x comparisons are in
+`inspection/E-face-fit-comparison.png` and `inspection/W-face-fit-comparison.png`.
+Cleanup preserves all three current facial reviews. This new candidate is
+uncommitted and needs visual approval of full extraction, eye/brow/mouth fit,
+skin rims and fringe depth. Concealed surfaces, independent expressions, material
+maps, other ear facings, N anatomy review, body/clothing occlusion, production
+T-pose, independent pixel artwork and final Step 6C remain open. Step 6D has not
+started. Earlier selected-candidate and pending-approval paragraphs are historical.
+
+Profile validation: asset-validator typecheck, root lint (zero warnings),
+JavaScript/declaration build and the new profile CLI export passed. The existing
+face-review file's new E/W public workflow and cleanup workflow passed (two tests,
+55.44 seconds; S/SE/SW skipped). Actual core composition, hidden far-side features,
+native eye/lid/nose/chin/visible-ear samples, unchanged approved anatomy/hair,
+determinism, immutable inputs and rejection of re-pinned out-of-mask/mirrored/
+wrong-side edits are covered. An initial reverse-order inequality assertion was
+invalid for overlapping same-reference RGB and was corrected to check actual
+export/core composition and opaque foreground samples. All 584 prior artwork/
+reference files retain hashes and mtimes; only the source README text changed.
+Thirteen selected outputs replayed byte-for-byte in scratch. All 111 current S,
+SE/SW and E/W PNG hashes plus the S viewer verified. See `profiles-v1/fit-audit.json`.
+Full app build and studio browser E2E were not rerun for this offline PNG-only
+increment. Generated build caches are cleared, preserving all current reviews,
+native references and pinned historical source assets.
+
 ## SE/SW approval and next profile increment — 2026-10-13
 
 `front-diagonals-v1/review-fit-v2.json` records the user's approval of the current

@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "assetId": "face.reference.v1",
+  "scope": "profiles",
+  "assetVersion": 1,
+  "config": "authoring.json",
+  "configSha256": "93c8e7c150ebb8b8eaaaad6a1f986ca4ba99d83f462e3e2301097f5f2c570519",
+  "decision": "approved-standing-reference-fit",
+  "approvalEvidence": "approved. removed unneeded files and commit. then proceed to next step",
+  "date": "2026-10-13",
+  "sources": [
+    {
+      "source": "selections.json",
+      "sourceSha256": "5ea238000e3b89be019c66e37c12c6ee291404f9b709577306aa35fc9ce51752"
+    },
+    {
+      "source": "E-rightEye.png",
+      "sourceSha256": "f8472ad4a9b7814fc44dd79de7959e425f6ee4d124283552f39de0cb148a7319"
+    },
+    {
+      "source": "E-rightEye-mask.png",
+      "sourceSha256": "a9dadd727cf327423f496107e333b1f116ae9ce0ab6a88b84dbd803ec7e4c166"
+    },
+    {
+      "source": "E-rightBrow.png",
+      "sourceSha256": "bc4a49136e06373d5794a9f63045a4ede501a28b90a8a21711f3c974e1dca5ae"
+    },
+    {
+      "source": "E-rightBrow-mask.png",
+      "sourceSha256": "8b2340534e7b904f9ca2e06c16f13d60c74808df4551ee9f6869dffeecf42d96"
+    },
+    {
+      "source": "E-mouth.png",
+      "sourceSha256": "65345b347e8d002951864eb09f647736419de0fd748c9261c0f4f8b9162e842c"
+    },
+    {
+      "source": "E-mouth-mask.png",
+      "sourceSha256": "8f130a95ed92adb9dae603b484c9ab2817520a7d42b438b0b8898c31d7a6dfc3"
+    },
+    {
+      "source": "W-leftEye.png",
+      "sourceSha256": "5b34268b9182dcdb328ea53e184228ffe8391d4bd13750c339c4e91ddbf9e533"
+    },
+    {
+      "source": "W-leftEye-mask.png",
+      "sourceSha256": "119875171d48e91cff14d78f25bc604d102210b49649dfd224309bf9549a182a"
+    },
+    {
+      "source": "W-leftBrow.png",
+      "sourceSha256": "3f491180418231ef1daa59956622c0aaee1d011a5e583456c597fb63c12de929"
+    },
+    {
+      "source": "W-leftBrow-mask.png",
+      "sourceSha256": "e8927477a7c2377bf783c2a661d2f25336109099ef9fc2f460bb848f5eb89b18"
+    },
+    {
+      "source": "W-mouth.png",
+      "sourceSha256": "81b61aa35e019a7d39ec369af0130298802281a501fb5009573abd10a995dc1e"
+    },
+    {
+      "source": "W-mouth-mask.png",
+      "sourceSha256": "14cb2bcbab2617256e25963b2a5cac53d1b1751c463fed6ea6807c2673622329"
+    }
+  ],
+  "headConfig": {
+    "source": "profiles-authoring-v3.json",
+    "sourceSha256": "9d332412510eaca683b05dc2437ab53af7941e138570c606c4bf7dc428682fee"
+  },
+  "headApproval": {
+    "source": "profiles-review-fit-v3.json",
+    "sourceSha256": "9706391b1c4750e95b3deb0c80035cdf0e472169e5fe679eaa7448b9e0f7cbae"
+  },
+  "hiddenFeatures": {
+    "E": [
+      "leftEye",
+      "leftBrow"
+    ],
+    "W": [
+      "rightEye",
+      "rightBrow"
+    ]
+  },
+  "fitMeasurements": [
+    {
+      "direction": "E",
+      "baselineSha256": "e6d55f666456d8fbde0b34b84af954c1b08dd0f12a134172eb2c666c25e166ed",
+      "outputSha256": "970e7f224a7cecfa46d3553ce990b4cb14aa6345bcdd4136864ba33dc38cad77",
+      "bareSha256": "b07274d59d67261323aa02b319cff2e57d75558c7264b848ded68eb8c386523b"
+    },
+    {
+      "direction": "W",
+      "baselineSha256": "a1bc94736e2b4237c37603eb97910b10ecf4fcc992e0bd04d7997ca48b88fdbe",
+      "outputSha256": "4fa001263e2747fc36ff7b275857d37fc22297b8b18db9c84b9b7ee70a2d66de",
+      "bareSha256": "35020cec3a4004095b63c1d93f4f2a4a91dc9ca8711210a3d7a05184c1ceb51a"
+    }
+  ],
+  "approvalScope": "Visible independent E/W eye, brow and mouth fit over accepted standing-reference profile anatomy/hair. Opposite eye/brow remain hidden. Concealed surfaces, variants, materials and production poses are outside this checkpoint.",
+  "productionAnatomyApproved": false,
+  "bodyOcclusionVerified": false,
+  "tposeApproved": false,
+  "finalStep6CAccepted": false,
+  "outstanding": [
+    "Separate reusable ears and reviewed ear-free scalp/root skin in other facings",
+    "Concealed facial/hair surfaces, expression variants and material maps",
+    "N anatomy review and actual full body/clothing/hair occlusion",
+    "Production T-pose, independently authored pixel artwork and final Step 6C acceptance"
+  ]
+}

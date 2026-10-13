@@ -2,6 +2,52 @@
 
 > Purpose: This file transfers the **requirements and decisions** from a ChatGPT planning conversation into the WSL2/VS Code Codex development workflow. It is project context, **not** proof that any implementation is complete. Review actual repository files and tests before assuming a feature exists.
 
+## E/W facial approval and separate-profile-ear increment — 2026-10-13
+
+The user approved E/W facial revision 1 and requested generated-data cleanup,
+a local commit and continued Step 6C work. The approval is pinned in
+`face/reference-v1/profiles-v1/review-fit-v1.json`, including native feature/mask
+sources, physical side visibility, accepted profile anatomy and actual fit hashes.
+This is a visible standing-reference checkpoint, not final production approval.
+The selected artwork/configurations and required derivation history remain intact.
+
+Next separate the E/W human ears and their attachment collars from the accepted
+same-facing head anatomy, with locally authored ear-free scalp/root skin beneath
+them. E uses the character-right ear; W uses the character-left. Preserve every
+accepted head/neck/hair/nose/facial source and reconstruct the accepted actual fit
+exactly through native human-specific retention masks. The ear-free contour and
+root skin need their own visual review. No mirroring, image transforms, ear-size
+redesign or runtime catalog publication. Other ear facings/variants, concealed
+geometry, N anatomy, body/clothing, production poses, independent pixel art and
+final Step 6C remain open. Step 6D has not started. Earlier current/pending-approval
+statements below are historical.
+
+## Independent E/W facial-layer candidate — 2026-10-13
+
+Commit `61acfb7` records approved SE/SW facial revision 2, its cheek-tint trim,
+approval pins and required derivation history. Generated-data cleanup removed
+24 regenerated build files; current reviews and all source/reference dependencies
+were preserved. No additional obsolete source imagery was found.
+
+The next Step 6C candidate is `face/reference-v1/profiles-v1/authoring.json`.
+`pnpm face:review:profiles` validates six independent native reference-owned
+eye/brow/mouth layers over approved `head/soft-oval-v1/profiles-authoring-v3.json`.
+E exposes character-right eye/brow, W character-left; the opposite eye/brow are
+explicitly hidden. Origins stay E (558,165), W (451,176), with all images drawn
+at (0,0). Manually traced 4x4 contour coverage changes alpha only, without RGB
+painting, scaling, image movement or mirroring. The visible ear, native nose/chin,
+head/neck/front/rear hair and accepted S/SE/SW sources remain unchanged.
+
+Review staging `face/reference-v1/profiles/overview.png`: E above W, columns
+reference / approved anatomy-hair / facial candidate. The `inspection/` directory
+holds E/W native 4x comparisons. Partition authoring is replayed only in scratch;
+the initial W masks were refined there before review to retain complete eye/mouth
+detail and exclude a fringe fragment. Cleanup preserves all three current facial
+reviews. This increment is uncommitted and unapproved. Hidden feature geometry,
+expressions/materials, other ear facings, N anatomy review, body/clothing occlusion,
+production T-pose, independent pixel assets and final Step 6C remain unfinished.
+Step 6D has not started. Earlier current-selection statements are historical.
+
 ## SE/SW facial approval and profile increment — 2026-10-13
 
 The user approved SE/SW facial revision 2 and requested cleanup, a local commit

@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 1,
+  "id": "face.reference.v1",
+  "scope": "profiles",
+  "assetVersion": 1,
+  "target": "detailed",
+  "nativeSize": {
+    "width": 1024,
+    "height": 1536
+  },
+  "sourcePose": "standing-reference",
+  "intendedRuntimePose": "tpose",
+  "published": false,
+  "paletteReady": false,
+  "status": "draft-needs-human-review",
+  "headConfig": {
+    "source": "profiles-authoring-v3.json",
+    "sourceSha256": "9d332412510eaca683b05dc2437ab53af7941e138570c606c4bf7dc428682fee"
+  },
+  "headApproval": {
+    "source": "profiles-review-fit-v3.json",
+    "sourceSha256": "9706391b1c4750e95b3deb0c80035cdf0e472169e5fe679eaa7448b9e0f7cbae"
+  },
+  "settings": {
+    "source": "selections.json",
+    "sourceSha256": "5ea238000e3b89be019c66e37c12c6ee291404f9b709577306aa35fc9ce51752"
+  },
+  "frames": {
+    "E": {
+      "reference": {
+        "source": "E.png",
+        "sourceSha256": "d81679768bcf8fe648d7af248f514124f7a01bfde256b7e8abf370239411798f"
+      },
+      "features": {
+        "eye": {
+          "source": "E-rightEye.png",
+          "sourceSha256": "f8472ad4a9b7814fc44dd79de7959e425f6ee4d124283552f39de0cb148a7319",
+          "selection": {
+            "source": "E-rightEye-mask.png",
+            "sourceSha256": "a9dadd727cf327423f496107e333b1f116ae9ce0ab6a88b84dbd803ec7e4c166"
+          },
+          "plane": "eyes",
+          "side": "right",
+          "owner": "reference",
+          "pixelCount": 673,
+          "origin": {
+            "x": 558,
+            "y": 165
+          }
+        },
+        "brow": {
+          "source": "E-rightBrow.png",
+          "sourceSha256": "bc4a49136e06373d5794a9f63045a4ede501a28b90a8a21711f3c974e1dca5ae",
+          "selection": {
+            "source": "E-rightBrow-mask.png",
+            "sourceSha256": "8b2340534e7b904f9ca2e06c16f13d60c74808df4551ee9f6869dffeecf42d96"
+          },
+          "plane": "eyebrows",
+          "side": "right",
+          "owner": "reference",
+          "pixelCount": 113,
+          "origin": {
+            "x": 558,
+            "y": 165
+          }
+        },
+        "mouth": {
+          "source": "E-mouth.png",
+          "sourceSha256": "65345b347e8d002951864eb09f647736419de0fd748c9261c0f4f8b9162e842c",
+          "selection": {
+            "source": "E-mouth-mask.png",
+            "sourceSha256": "8f130a95ed92adb9dae603b484c9ab2817520a7d42b438b0b8898c31d7a6dfc3"
+          },
+          "plane": "mouth",
+          "side": "center",
+          "owner": "reference",
+          "pixelCount": 87,
+          "origin": {
+            "x": 558,
+            "y": 165
+          }
+        }
+      },
+      "hiddenFeatures": [
+        "leftEye",
+        "leftBrow"
+      ]
+    },
+    "W": {
+      "reference": {
+        "source": "W.png",
+        "sourceSha256": "b9ef27952e8a2dc7ee2e5f668bf75468dae2630c927c18009fe8c660bde603db"
+      },
+      "features": {
+        "eye": {
+          "source": "W-leftEye.png",
+          "sourceSha256": "5b34268b9182dcdb328ea53e184228ffe8391d4bd13750c339c4e91ddbf9e533",
+          "selection": {
+            "source": "W-leftEye-mask.png",
+            "sourceSha256": "119875171d48e91cff14d78f25bc604d102210b49649dfd224309bf9549a182a"
+          },
+          "plane": "eyes",
+          "side": "left",
+          "owner": "reference",
+          "pixelCount": 692,
+          "origin": {
+            "x": 451,
+            "y": 176
+          }
+        },
+        "brow": {
+          "source": "W-leftBrow.png",
+          "sourceSha256": "3f491180418231ef1daa59956622c0aaee1d011a5e583456c597fb63c12de929",
+          "selection": {
+            "source": "W-leftBrow-mask.png",
+            "sourceSha256": "e8927477a7c2377bf783c2a661d2f25336109099ef9fc2f460bb848f5eb89b18"
+          },
+          "plane": "eyebrows",
+          "side": "left",
+          "owner": "reference",
+          "pixelCount": 140,
+          "origin": {
+            "x": 451,
+            "y": 176
+          }
+        },
+        "mouth": {
+          "source": "W-mouth.png",
+          "sourceSha256": "81b61aa35e019a7d39ec369af0130298802281a501fb5009573abd10a995dc1e",
+          "selection": {
+            "source": "W-mouth-mask.png",
+            "sourceSha256": "14cb2bcbab2617256e25963b2a5cac53d1b1751c463fed6ea6807c2673622329"
+          },
+          "plane": "mouth",
+          "side": "center",
+          "owner": "reference",
+          "pixelCount": 98,
+          "origin": {
+            "x": 451,
+            "y": 176
+          }
+        }
+      },
+      "hiddenFeatures": [
+        "rightEye",
+        "rightBrow"
+      ]
+    }
+  },
+  "knownReviewIssues": [
+    "Only independently visible profile features are selected; concealed features and expressions are not authored.",
+    "Tight native lower-lid contours exclude broad cheek makeup; skin rims, forehead/fringe boundaries and complete visible extraction need visual review.",
+    "Nose, ears, head, neck and front/rear hair remain pinned to approved profile head-fit revision 3.",
+    "Concealed surfaces, materials, body/clothing occlusion, N anatomy, production T-pose, independent pixel assets and final Step 6C remain unfinished."
+  ]
+}

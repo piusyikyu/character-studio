@@ -15,7 +15,7 @@ export async function cleanWorkspace(options: { repository: string; dryRun?: boo
     keep.add(resolve(repository, base, path));
   };
   const preserveWholeReviews: string[] = [];
-  for (const review of [face, `${face}/front-diagonals`]) try {
+  for (const review of [face, `${face}/front-diagonals`, `${face}/profiles`]) try {
     const bytes = await readFile(resolve(repository, review, 'metadata.json'));
     const metadata: unknown = JSON.parse(bytes.toString('utf8'));
     if (!metadata || typeof metadata !== 'object' || !('outputs' in metadata) || !Array.isArray(metadata.outputs)) throw new Error('Current review metadata must declare outputs.');
@@ -59,5 +59,5 @@ export async function cleanWorkspace(options: { repository: string; dryRun?: boo
     }
   }
   return { dryRun: options.dryRun ?? false, deletedFiles: files.length, deletedBytes: files.reduce((sum, file) => sum + file.bytes, 0), files,
-    preserved: ['All source/reference artwork and approval/configuration records', 'Current S and SE/SW face-review outputs and S viewer', 'Native transparent reference dependency and import audit'], buildOutputs: options.buildOutputs ?? false };
+    preserved: ['All source/reference artwork and approval/configuration records', 'Current S, SE/SW and E/W face-review outputs and S viewer', 'Native transparent reference dependency and import audit'], buildOutputs: options.buildOutputs ?? false };
 }

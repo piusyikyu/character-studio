@@ -5,6 +5,14 @@ Packs are grouped by type under `heroine-v1/{hair,head,ears,face}/`. See
 checkpoint archive. Keep selected derivation baselines here; obsolete previews
 belong in ignored staging and can be removed with `pnpm assets:clean`.
 
+`face/reference-v1/profiles-v1/authoring.json` selects the approved E/W
+visible eye/brow/mouth layers. Each profile uses its own reference and explicitly
+hides its opposite eye/brow. Native mask coverage changes alpha only; approved
+profile anatomy/hair and accepted S/SE/SW sources stay unchanged. Replay its
+partition script only in scratch. Review with `pnpm face:review:profiles`.
+`profiles-v1/review-fit-v1.json` pins the visible standing-reference approval;
+complete concealed surfaces, variants and production anatomy remain unfinished.
+
 `heroine-v1/face/reference-v1/authoring-v5.json` selects the approved S neck-edge
 hair-backing correction. Its generated study is an authoring input; only locally
 masked hair pixels are consumed. Head/ear/facial inputs remain pinned to v4.

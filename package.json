@@ -55,7 +55,8 @@
     "face:review:v9": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/face-review-cli.js --v9",
     "face:review:v10": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/face-review-cli.js --v10",
     "face:review:front-diagonals": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/face-diagonal-review-cli.js",
-    "face:review:front-diagonals:v1": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/face-diagonal-review-cli.js --v1"
+    "face:review:front-diagonals:v1": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/face-diagonal-review-cli.js --v1",
+    "face:review:profiles": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/face-profile-review-cli.js"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.0",

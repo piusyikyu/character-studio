@@ -40,15 +40,18 @@ pnpm assets:clean --build-outputs
 The cleanup command removes generated placeholder assets, obsolete staging
 previews, render-demo exports and test reports. `--build-outputs` also removes
 workspace `dist` folders. It preserves the current S face review's declared outputs
-and interactive viewer, plus the current SE/SW face review's declared outputs, eight native transparent references and their import
-metadata/audit. Source/reference artwork, dependencies, legacy packages and Git
+and interactive viewer, plus the current SE/SW and E/W face reviews' declared
+outputs, eight native transparent references and their import metadata/audit.
+Source/reference artwork, dependencies, legacy packages and Git
 history are outside its deletion targets. Unsafe metadata paths or symlinks
 abort before deletion. If current face metadata is missing, its entire staging
 folder is retained.
 
-The retained review is
+The retained S viewer is
 `assets/staging/heroine-v1/face/reference-v1/inspection/head-reference-overlay.html`.
-Other review previews are intentionally absent after cleanup. Rebuild them with
+The current SE/SW and E/W facial overviews/comparisons are retained in
+`front-diagonals/` and `profiles/` below that face-review root. Other review
+previews are intentionally absent after cleanup. Rebuild them with
 the existing `hair:review`, `head:review`, `ears:review` or historical face commands;
 `pnpm reference:import` rebuilds reference contact sheets and inspection outputs.
 Normal review commands consume retained transparent references. `pnpm dev` and

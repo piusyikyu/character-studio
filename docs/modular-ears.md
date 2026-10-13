@@ -1,5 +1,22 @@
 # Step 6C — separate S human ears
 
+## Next separate E/W ear increment — 2026-10-13
+
+The user approved E/W visible facial revision 1, pinned in
+`face/reference-v1/profiles-v1/review-fit-v1.json`, and requested cleanup, a local
+commit and continued work. The next bounded increment separates native E/W ears
+and attachment collars from accepted `profiles-authoring-v3.json` head anatomy.
+New same-facing ear-free scalp/root skin is retained only in local ear windows.
+E exposes character-right, W character-left. Human-specific head retention masks
+must let the unchanged original ears reconstruct accepted head/skin and complete
+facial/hair fits exactly, including partial alpha. Ear-free previews use the full
+underlay without the human mask; they need independent contour/root review.
+Accepted S and every profile facial/head/neck/hair/nose source remain unchanged.
+No ear-size redesign, mirroring, runtime control or publication. Other facings,
+variants, concealed surfaces, materials, N anatomy, body/clothing occlusion,
+production T-pose, independent pixel artwork and final Step 6C remain unfinished.
+Step 6D has not started; earlier next/pending-approval statements are historical.
+
 ## Current approval and ear-size design choice — 2026-10-12
 
 The user approved keeping revision 2's current smaller S ears and requested a

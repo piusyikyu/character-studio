@@ -10,12 +10,14 @@ it('cleans generated data while preserving current reviews and sources, and reje
     const face = 'assets/staging/heroine-v1/face/reference-v1', refs = 'assets/staging/heroine-v1/references/import-v1';
     const save = async (path: string, data = path) => { await mkdir(resolve(repository, path, '..'), { recursive: true }); await writeFile(resolve(repository, path), data); };
     const diagonal = `${face}/front-diagonals`, diagonalMetadata = { outputs: [{ path: 'fit/SE.png' }, { path: 'fit/SW.png' }, { path: 'overview.png' }] };
+    const profiles = `${face}/profiles`, profileMetadata = { outputs: [{ path: 'fit/E.png' }, { path: 'fit/W.png' }, { path: 'overview.png' }] };
     const metadata = { outputs: [{ path: 'fit/S.png' }], interactiveInspection: { path: 'inspection/head-reference-overlay.html' } };
-    const preserved = [`${diagonal}/fit/SE.png`, `${diagonal}/fit/SW.png`, `${diagonal}/overview.png`,'assets/source/heroine-v1/face/reference-v1/authoring-v4.json', 'assets/source/heroine-v1/head/soft-oval-v1/approved.png', 'assets/references/heroine-v1/detailed/S.png', 'packages/renderer-canvas/src/index.ts', `${face}/fit/S.png`, `${face}/inspection/head-reference-overlay.html`, `${refs}/transparent/S.png`, `${refs}/audit.md`, `${refs}/metadata.json`];
-    const obsolete = [`${diagonal}/historical-v0/overview.png`,`${face}/historical-v3/overview.png`, `${refs}/inspection/checker/S.png`, 'assets/staging/heroine-v1/head/soft-oval-v1/overview.png', 'assets/detailed/placeholder-v1/S.png', 'test-results/report.json', 'packages/core/dist/index.js'];
+    const preserved = [`${profiles}/fit/E.png`, `${profiles}/fit/W.png`, `${profiles}/overview.png`, `${diagonal}/fit/SE.png`, `${diagonal}/fit/SW.png`, `${diagonal}/overview.png`,'assets/source/heroine-v1/face/reference-v1/authoring-v4.json', 'assets/source/heroine-v1/head/soft-oval-v1/approved.png', 'assets/references/heroine-v1/detailed/S.png', 'packages/renderer-canvas/src/index.ts', `${face}/fit/S.png`, `${face}/inspection/head-reference-overlay.html`, `${refs}/transparent/S.png`, `${refs}/audit.md`, `${refs}/metadata.json`];
+    const obsolete = [`${profiles}/historical-v0/overview.png`, `${diagonal}/historical-v0/overview.png`,`${face}/historical-v3/overview.png`, `${refs}/inspection/checker/S.png`, 'assets/staging/heroine-v1/head/soft-oval-v1/overview.png', 'assets/detailed/placeholder-v1/S.png', 'test-results/report.json', 'packages/core/dist/index.js'];
     for (const path of [...preserved, ...obsolete]) await save(path);
     await save(`${face}/metadata.json`, JSON.stringify(metadata));
     await save(`${diagonal}/metadata.json`, JSON.stringify(diagonalMetadata));
+    await save(`${profiles}/metadata.json`, JSON.stringify(profileMetadata));
     const dry = await cleanWorkspace({ repository, dryRun: true, buildOutputs: true });
     expect(dry.files.map(file => file.path).sort()).toEqual(obsolete.slice().sort());
     for (const path of obsolete) expect(await readFile(resolve(repository, path), 'utf8')).toBe(path);
@@ -25,6 +27,10 @@ it('cleans generated data while preserving current reviews and sources, and reje
     for (const path of obsolete) expect(await readFile(resolve(repository, path), 'utf8')).toBe(path);
     await save(`${face}/metadata.json`, JSON.stringify(metadata));
     await save(`${diagonal}/metadata.json`, JSON.stringify(diagonalMetadata));
+    await save(`${profiles}/metadata.json`, JSON.stringify({ outputs: [{ path: '../../../../../source/approved.png' }] }));
+    await expect(cleanWorkspace({ repository, buildOutputs: true })).rejects.toThrow('unsafe output path');
+    for (const path of obsolete) expect(await readFile(resolve(repository, path), 'utf8')).toBe(path);
+    await save(`${profiles}/metadata.json`, JSON.stringify(profileMetadata));
     await save(`${diagonal}/metadata.json`, JSON.stringify({ outputs: [{ path: '../../../../../source/approved.png' }] }));
     await expect(cleanWorkspace({ repository, buildOutputs: true })).rejects.toThrow('unsafe output path');
     for (const path of obsolete) expect(await readFile(resolve(repository, path), 'utf8')).toBe(path);
