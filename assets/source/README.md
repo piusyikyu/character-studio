@@ -1,5 +1,15 @@
 # Source artwork
 
+`ears/human-v1/profiles-v1/authoring.json` selects the approved E/W
+native ear/collar separation and ear-free root studies. Manually traced interior
+masks retain study RGBA; original head pixels/alpha stay exact elsewhere. Human
+retention restores original ears and full approved facial/hair fits byte-for-byte.
+Prompts and selected inputs remain local. Guide/partition scripts replay only in
+scratch; review with `pnpm ears:review:profiles`.
+`profiles-v1/review-fit-v1.json` pins the standing-reference ear/root approval;
+other facings, variants and production geometry remain unfinished.
+
+
 Packs are grouped by type under `heroine-v1/{hair,head,ears,face}/`. See
 [asset-cleanup.md](../../docs/asset-cleanup.md) for the folder migration and
 checkpoint archive. Keep selected derivation baselines here; obsolete previews

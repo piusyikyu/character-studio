@@ -4,7 +4,10 @@ import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { decode } from 'fast-png';
 import { expect, it } from 'vitest';
+import { DIRECTION_PLANE_ORDER } from '@character-studio/core';
+import type { RenderPlane } from '@character-studio/core';
 import { blankImage, decodePng, drawRgba, encodePng } from '@character-studio/render-utils';
+import type { RgbaImage } from '@character-studio/render-utils';
 import { prepareEarReview, earReviewSchema } from './ear-review';
 import { matteReference } from './matte';
 import { referenceImportSettingsSchema } from './schema';
@@ -90,3 +93,66 @@ it('reviews separate S human ears and smaller revision with concealed skin, boun
     for (const file of before) { expect(sha256(await readFile(file.path))).toBe(file.hash); expect((await stat(file.path)).mtimeMs).toBe(file.mtime); }
   } finally { await rm(temporary, { recursive: true, force: true }); }
 }, 120_000);
+
+it('reviews independent E/W ears with authored root skin, exact approved facial fit, retained alpha and immutable native ownership', async () => {
+  const { prepareProfileEarReview, profileEarReviewSchema, profileEarRegions } = await import('./ear-profile-review');
+  const temporary = await mkdtemp(resolve(tmpdir(), 'character-profile-ear-review-'));
+  try {
+    const sourceDirectory = resolve(repository, 'assets/source/heroine-v1/ears/human-v1/profiles-v1'), headDirectory = resolve(repository, 'assets/source/heroine-v1/head/soft-oval-v1'), faceDirectory = resolve(repository, 'assets/source/heroine-v1/face/reference-v1/profiles-v1'), hairDirectory = resolve(repository, 'assets/source/heroine-v1/hair/long-waves-v1'), referenceDirectory = resolve(temporary, 'references');
+    await mkdir(referenceDirectory);
+    const settings = referenceImportSettingsSchema.parse(JSON.parse(await readFile(resolve(repository, 'assets/references/heroine-v1/import-v1.json'), 'utf8')));
+    for (const direction of ['E', 'W'] as const) {
+      const raw = decode(await readFile(resolve(repository, `assets/references/heroine-v1/detailed/${direction}.png`)), { checkCrc: true }), image = blankImage(1024, 1536);
+      for (let p = 0; p < 1024 * 1536; p++) { image.data.set(raw.data.subarray(p * raw.channels, p * raw.channels + 3), p * 4); image.data[p * 4 + 3] = raw.channels === 4 ? raw.data[p * 4 + 3]! : 255; }
+      await writeFile(resolve(referenceDirectory, `${direction}.png`), encodePng(matteReference(image, settings.frames[direction].labelExclusions, settings.matte, settings.frames[direction].backgroundCorrections).image));
+    }
+    const files: string[] = [];
+    for (const root of [headDirectory, hairDirectory, resolve(repository, 'assets/source/heroine-v1/ears/human-v1'), resolve(repository, 'assets/source/heroine-v1/face/reference-v1')]) for (const path of await readdir(root, { recursive: true })) if ((await stat(resolve(root, path))).isFile()) files.push(resolve(root, path));
+    const before = await Promise.all(files.map(async path => ({ path, hash: sha256(await readFile(path)), mtime: (await stat(path)).mtimeMs })));
+    const options = { sourceDirectory, headDirectory, faceDirectory, hairDirectory, referenceDirectory, outputDirectory: resolve(temporary, 'review') }, report = await prepareProfileEarReview(options);
+    expect(report).toMatchObject({ supportedReviewDirections: ['E', 'W'], published: false, anatomyApproved: false, bodyOcclusionVerified: false, humanAssemblyMatchesApprovedHead: true, humanFitMatchesApprovedFacialFit: true, originalAlphaPreservedOutsideRootMasks: true, nativePosition: { x: 0, y: 0 } });
+    const config = profileEarReviewSchema.parse(JSON.parse(await readFile(resolve(sourceDirectory, 'authoring.json'), 'utf8'))), face = JSON.parse(await readFile(resolve(faceDirectory, 'authoring.json'), 'utf8')), faceApproval = JSON.parse(await readFile(resolve(faceDirectory, 'review-fit-v1.json'), 'utf8'));
+    const load = async (root: string, file: string) => { const image = decodePng(await readFile(resolve(root, file))); for (let i = 0; i < image.data.length; i += 4) if (image.data[i + 3]! < 8) image.data.fill(0, i, i + 4); return image; };
+    for (const direction of ['E', 'W'] as const) {
+      const f = config.frames[direction], original = await load(headDirectory, f.originalHead.source), underlay = await load(sourceDirectory, f.head.source), retention = await load(sourceDirectory, f.headRetention.source), ear = await load(sourceDirectory, f.ear.source), study = await load(sourceDirectory, f.study.source), masked = { ...underlay, data: underlay.data.slice() }, [[x0, y0], , [x1, y1]] = profileEarRegions[direction];
+      let changed = 0, replacedPartialEarMarks = 0; const originalAlpha = new Uint8Array(1024 * 1536), underlayAlpha = new Uint8Array(1024 * 1536), rootMask = await load(sourceDirectory, f.rootSelection.source);
+      for (let p = 0; p < 1024 * 1536; p++) {
+        const i = p * 4, selected = p % 1024 >= x0 && p % 1024 < x1 && Math.floor(p / 1024) >= y0 && Math.floor(p / 1024) < y1;
+        originalAlpha[p] = rootMask.data[i + 3] ? 0 : original.data[i + 3]!; underlayAlpha[p] = rootMask.data[i + 3] ? 0 : underlay.data[i + 3]!;
+        if (!retention.data[i + 3]) masked.data.fill(0, i, i + 4);
+        if (underlay.data.subarray(i, i + 4).some((v, c) => v !== original.data[i + c])) { expect(selected).toBe(true); expect(rootMask.data[i + 3]).toBe(255); expect(underlay.data.slice(i, i + 4)).toEqual(study.data.slice(i, i + 4)); changed++; }
+        if (rootMask.data[i + 3] && original.data[i + 3]! > 0 && original.data[i + 3]! < 255 && underlay.data.subarray(i, i + 4).some((v, c) => v !== original.data[i + c])) replacedPartialEarMarks++;
+      }
+      expect(sha256(underlayAlpha)).toBe(sha256(originalAlpha));
+      expect(changed).toBeGreaterThan(0);
+      expect(replacedPartialEarMarks).toBeGreaterThan(0);
+      const reconstructed = blankImage(1024, 1536); drawRgba(reconstructed, masked, 0, 0); drawRgba(reconstructed, ear, 0, 0);
+      expect(sha256(reconstructed.data)).toBe(sha256(original.data));
+      expect(sha256((await load(options.outputDirectory, `assembled/${direction}-head-human.png`)).data)).toBe(sha256(original.data));
+      const [rootX, rootY] = direction === 'E' ? [522, 186] : [489, 193], rootPixel = (rootY! * 1024 + rootX!) * 4;
+      expect(underlay.data.slice(rootPixel, rootPixel + 3)).toEqual(study.data.slice(rootPixel, rootPixel + 3));
+      expect(underlay.data.slice(rootPixel, rootPixel + 3)).not.toEqual(original.data.slice(rootPixel, rootPixel + 3));
+      const layers = new Map<RenderPlane, RgbaImage[]>([['head', [masked]], ['ears', [ear]], ['neck', [await load(options.outputDirectory, `layers/${direction}-neck.png`)]], ['hair-front', [await load(options.outputDirectory, `layers/${direction}-front-hair.png`)]], ['hair-rear', [await load(options.outputDirectory, `layers/${direction}-rear-hair.png`)]]]);
+      for (const feature of Object.values(face.frames[direction].features) as { source: string; plane: RenderPlane }[]) { const image = await load(faceDirectory, feature.source); layers.set(feature.plane, [...layers.get(feature.plane) ?? [], image]); }
+      const human = blankImage(1024, 1536); for (const plane of DIRECTION_PLANE_ORDER[direction]) for (const image of layers.get(plane) ?? []) drawRgba(human, image, 0, 0);
+      const measurement = report.fitMeasurements.find(m => m.direction === direction)!;
+      expect(sha256(encodePng(human))).toBe(measurement.humanFitSha256);
+      expect(measurement.humanFitSha256).toBe(faceApproval.fitMeasurements.find((m: { direction: string }) => m.direction === direction).outputSha256);
+      expect(measurement.earlessFitSha256).not.toBe(measurement.humanFitSha256);
+    }
+    expect(await prepareProfileEarReview({ ...options, outputDirectory: resolve(temporary, 'repeat') })).toEqual(report);
+    for (const output of report.outputs) expect(sha256(await readFile(resolve(options.outputDirectory, output.path)))).toBe(output.sha256);
+    const copied = resolve(temporary, 'forged'); await cp(sourceDirectory, copied, { recursive: true });
+    const altered = await load(copied, config.frames.E.head.source); altered.data.set([255, 255, 255, 255], (400 * 1024 + 511) * 4);
+    const alteredBytes = encodePng(altered); await writeFile(resolve(copied, config.frames.E.head.source), alteredBytes); config.frames.E.head.sourceSha256 = sha256(alteredBytes); await writeFile(resolve(copied, 'authoring.json'), JSON.stringify(config));
+    await expect(prepareProfileEarReview({ ...options, sourceDirectory: copied, outputDirectory: resolve(temporary, 'outside-window') })).rejects.toThrow('root underlay must preserve bounded native RGBA ownership');
+    await cp(sourceDirectory, copied, { recursive: true });
+    const earConfig = profileEarReviewSchema.parse(JSON.parse(await readFile(resolve(copied, 'authoring.json'), 'utf8'))), changedEar = await load(copied, earConfig.frames.W.ear.source), earPixel = (193 * 1024 + 489) * 4; changedEar.data[earPixel] = changedEar.data[earPixel]! ^ 1;
+    const earBytes = encodePng(changedEar); await writeFile(resolve(copied, earConfig.frames.W.ear.source), earBytes); earConfig.frames.W.ear.sourceSha256 = sha256(earBytes); await writeFile(resolve(copied, 'authoring.json'), JSON.stringify(earConfig));
+    await expect(prepareProfileEarReview({ ...options, sourceDirectory: copied, outputDirectory: resolve(temporary, 'changed-ear') })).rejects.toThrow('ear must retain exact original native RGBA');
+    await cp(sourceDirectory, copied, { recursive: true });
+    const sideConfig = profileEarReviewSchema.parse(JSON.parse(await readFile(resolve(copied, 'authoring.json'), 'utf8'))); sideConfig.frames.E.side = 'left'; await writeFile(resolve(copied, 'authoring.json'), JSON.stringify(sideConfig));
+    await expect(prepareProfileEarReview({ ...options, sourceDirectory: copied, outputDirectory: resolve(temporary, 'wrong-side') })).rejects.toThrow('Native profile ear side, geometry, source or anchor changed');
+    for (const file of before) { expect(sha256(await readFile(file.path))).toBe(file.hash); expect((await stat(file.path)).mtimeMs).toBe(file.mtime); }
+  } finally { await rm(temporary, { recursive: true, force: true }); }
+}, 300_000);

@@ -1,5 +1,71 @@
 # Step 6C — separate S human ears
 
+## E/W ear/root approval — 2026-10-13
+
+The user approved revision 1 and requested cleanup, a local commit and continued
+work. `profiles-v1/review-fit-v1.json` pins accepted E/right and W/left ears,
+local ear-free root RGBA, masks and exact approved facial/hair fit hashes.
+This is a standing-reference checkpoint; source configs/artwork remain unchanged.
+Next separate both native SE/SW ears/collars and bounded ear-free root skin over
+accepted diagonal anatomy/facial/hair fits. Preserve all existing source pixels
+and anchors; human assembly must reconstruct exactly, while new concealed skin
+needs visual review. Other facings/variants, N review, hidden surfaces, materials,
+body/clothing, T-pose, independent pixel art and final Step 6C remain unfinished.
+Step 6D has not started; earlier selected/pending-approval statements are historical.
+
+
+## Independent E/W ear/root candidate — 2026-10-13
+
+Commit `2b267ff` records the approved E/W facial checkpoint. Cleanup removed
+26 regenerated build files, preserving current reviews and pinned sources.
+`ears/human-v1/profiles-v1/authoring.json` is the next unapproved candidate;
+export it with `pnpm ears:review:profiles`.
+
+Original E/right and W/left ear/collar RGBA are independently retained in native
+E x510–543/y166–212 and W x472–506/y172–220 windows. Origins remain E (558,165),
+W (451,176), with all parts drawn at (0,0). Built-in imagegen supplies same-facing
+ear-erasure studies from the exact native head guides; `prompts.json` pins
+prompts, roles and retained local inputs. Only manually traced interior root
+polygons supply study RGBA; original head pixels, alpha and contour remain exact
+everywhere else. The initial RGB-only draft retained old colours in partial-alpha
+ear-rim pixels and was discarded before review. Current RGBA ownership replaces
+those marks with complete study skin. Generated background and all unselected
+changes are excluded locally; no global colour key, transforms or source overwrite.
+
+Human-specific retention masks clear the whole ear/collar windows before original
+ears draw in the core ears plane. This reconstructs the accepted head RGBA and
+full approved facial/neck/front/rear-hair fit exactly, including partial alpha.
+Ear-free previews use the full underlay without human retention. Future ear/size/
+ancestry variants require their own geometry, compatible attachments and masks.
+
+Review `ears/human-v1/profiles/anatomy-overview.png`: E above W; approved skin /
+new ear-free root skin / original ear-collar / reconstructed skin. Column two
+contains the new anatomy needing visual review of shade and local joins. Native
+6x comparisons are in `inspection/E-root-comparison.png` and the W equivalent.
+`overview.png` shows reference / approved facial fit / identical human-ear fit.
+Cleanup protects this review and all three current facial reviews. Guide/partition
+scripts replay only in scratch. Other ear facings/variants, complete concealed
+surfaces, expressions/materials, N review, real body/clothing/hair occlusion,
+production T-pose, independent pixel art and final Step 6C remain unfinished.
+Step 6D has not started. Earlier selected/pending-approval statements are history.
+
+Validation: asset-validator typecheck, root lint (zero warnings), JavaScript/
+declaration build and the profile-ear CLI passed. The existing ear-review file's
+new E/W public workflow and cleanup workflow passed (two tests, 71.91 seconds;
+unrelated S workflow skipped). They cover actual core composition, complete
+local study RGBA, changed partial-alpha ear pixels, preserved outside-mask alpha,
+exact accepted head/fit reconstruction, deterministic exports, immutable inputs
+and rejection of re-pinned out-of-mask/ear/side edits. An initial unused authoring
+variable was fixed. A later test's assumption of alpha 255 for every replaced
+pixel was corrected: complete study RGBA may itself retain partial alpha.
+All 601 prior artwork/reference hashes and mtimes stay unchanged; only the source
+README text changed intentionally. Eleven partition/config outputs and both native
+guides replayed byte-for-byte in scratch. All 137 current facial/ear review PNGs
+and the S viewer hashes verified. See `profiles-v1/fit-audit.json`. Full app build
+and studio browser E2E were not rerun for this offline increment. Generated build
+caches are cleared; all current reviews, references and pinned sources remain.
+
+
 ## Next separate E/W ear increment — 2026-10-13
 
 The user approved E/W visible facial revision 1, pinned in

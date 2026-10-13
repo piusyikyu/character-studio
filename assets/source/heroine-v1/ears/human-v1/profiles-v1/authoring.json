@@ -1,0 +1,212 @@
+{
+  "schemaVersion": 1,
+  "id": "ears.human.v1",
+  "scope": "profiles",
+  "assetVersion": 1,
+  "target": "detailed",
+  "nativeSize": {
+    "width": 1024,
+    "height": 1536
+  },
+  "sourcePose": "standing-reference",
+  "intendedRuntimePose": "tpose",
+  "status": "draft-needs-human-review",
+  "published": false,
+  "paletteReady": false,
+  "minimumVisibleAlpha": 8,
+  "method": "native-ear-patches/authored-root-rgba/variant-retention",
+  "faceConfig": {
+    "source": "authoring.json",
+    "sourceSha256": "93c8e7c150ebb8b8eaaaad6a1f986ca4ba99d83f462e3e2301097f5f2c570519"
+  },
+  "faceApproval": {
+    "source": "review-fit-v1.json",
+    "sourceSha256": "e6af48d9ec02955beaa98b914bd051a1914d311effa532020e582e977425ad2a"
+  },
+  "headConfig": {
+    "source": "profiles-authoring-v3.json",
+    "sourceSha256": "9d332412510eaca683b05dc2437ab53af7941e138570c606c4bf7dc428682fee"
+  },
+  "settings": {
+    "source": "selections.json",
+    "sourceSha256": "ae373e6953ef201b0086a750daeb1e83fd96da73588d527e2e21d3fdb4a5d8a3"
+  },
+  "prompts": {
+    "source": "prompts.json",
+    "sourceSha256": "2e31d1b24ae521c76fb3852858a81efe135ed9434f46b7c55ae6dddc543f7af2"
+  },
+  "frames": {
+    "E": {
+      "side": "right",
+      "region": [
+        [
+          510,
+          166
+        ],
+        [
+          544,
+          166
+        ],
+        [
+          544,
+          213
+        ],
+        [
+          510,
+          213
+        ]
+      ],
+      "origin": {
+        "x": 558,
+        "y": 165
+      },
+      "originalHead": {
+        "source": "E-head-v3.png",
+        "sourceSha256": "a335c0623ebd86773724ca7e7fa00e2e7936a1a778cdc92156b3d4671754f9f2"
+      },
+      "study": {
+        "source": "inputs/E-earless-study-v1.png",
+        "sourceSha256": "b58598f52f3efa6ec31ab9e4616f754ad4e0c05b77e2c5b07c665f43a09f8dd2"
+      },
+      "rootRegion": [
+        [
+          510,
+          166
+        ],
+        [
+          544,
+          166
+        ],
+        [
+          544,
+          213
+        ],
+        [
+          518,
+          213
+        ],
+        [
+          514,
+          202
+        ],
+        [
+          510,
+          194
+        ]
+      ],
+      "rootSelection": {
+        "source": "E-root-selection-v1.png",
+        "sourceSha256": "ab791849baaa53bb59a0ef8c2a32e8aa1882fdeeb0d35dac4242b997dd8c9217"
+      },
+      "head": {
+        "source": "E-head-underlay-v1.png",
+        "sourceSha256": "2c903abbac36729947dcdf4d73bc93d4bb26538debcb4562058572bbe95ee762"
+      },
+      "headRetention": {
+        "source": "E-human-head-retention-v1.png",
+        "sourceSha256": "d3204f4bc4ee5939b0ef83d995621eb95e9c0cec52ab8fc0b2eb67620838e89b"
+      },
+      "ear": {
+        "source": "E-right-ear-v1.png",
+        "sourceSha256": "65dd3a11955dfc0e7b737696a59a2a4536f418c5423ca8d2bb3e89b9ce293ecc",
+        "selection": {
+          "source": "E-ear-selection-v1.png",
+          "sourceSha256": "58bde529ef827451a348f585527a5fff47f90cf9d917aa10d9c6d88c6dbf2641"
+        },
+        "pixelCount": 1598
+      },
+      "authoredRootPixels": 1516
+    },
+    "W": {
+      "side": "left",
+      "region": [
+        [
+          472,
+          172
+        ],
+        [
+          507,
+          172
+        ],
+        [
+          507,
+          221
+        ],
+        [
+          472,
+          221
+        ]
+      ],
+      "origin": {
+        "x": 451,
+        "y": 176
+      },
+      "originalHead": {
+        "source": "W-head-v3.png",
+        "sourceSha256": "7c73174b7dde57dff7abcb77b8aba7b832ca878ec9abd64f24653767d4c34c47"
+      },
+      "study": {
+        "source": "inputs/W-earless-study-v1.png",
+        "sourceSha256": "f089134133747b2d921d29eb4622052427c22e6c8d033e4ba4d63b1e54fcfe8f"
+      },
+      "rootRegion": [
+        [
+          472,
+          172
+        ],
+        [
+          507,
+          172
+        ],
+        [
+          507,
+          205
+        ],
+        [
+          500,
+          212
+        ],
+        [
+          489,
+          220
+        ],
+        [
+          476,
+          221
+        ],
+        [
+          472,
+          214
+        ]
+      ],
+      "rootSelection": {
+        "source": "W-root-selection-v1.png",
+        "sourceSha256": "09c220243d95bc36577ec8d9a69716ecf9f940d54ad6eb20990845166651bd4f"
+      },
+      "head": {
+        "source": "W-head-underlay-v1.png",
+        "sourceSha256": "603a5236ec80dc2e2d0e19319771543c49e7f1b770412923f5add8b9d02ca371"
+      },
+      "headRetention": {
+        "source": "W-human-head-retention-v1.png",
+        "sourceSha256": "cb5cca19cf1836cbebc93ed360484b3ad804ab2fce505d592ace384174ba94e8"
+      },
+      "ear": {
+        "source": "W-left-ear-v1.png",
+        "sourceSha256": "80254d1a415edee4034a0d4167a8d07ccb11a2313bbd9f6ad0f7f691a90e52cb",
+        "selection": {
+          "source": "W-ear-selection-v1.png",
+          "sourceSha256": "b113b6b6d71c4ffc52097cf69a15bfee54408dc7487ee1e052685a0a4c065853"
+        },
+        "pixelCount": 1687
+      },
+      "authoredRootPixels": 1548
+    }
+  },
+  "knownReviewIssues": [
+    "New local ear-free root RGBA needs visual approval of shade/joins. Original head pixels, alpha and contour outside the interior root masks remain exact.",
+    "The human-specific head mask removes underlay coverage in the ear window before original partial-alpha ear/collar RGBA is drawn; accepted head and facial/hair fits reconstruct exactly.",
+    "Ear-free previews use the full underlay without human retention. Future ancestry/size variants require their own independent anatomy, geometry and retention masks.",
+    "Other ear facings, concealed surfaces, expressions/materials, N review, full body/clothing/hair occlusion, production T-pose, independent pixel art and final Step 6C remain unfinished; Step 6D has not started."
+  ]
+}

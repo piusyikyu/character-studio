@@ -2,6 +2,50 @@
 
 > Purpose: This file transfers the **requirements and decisions** from a ChatGPT planning conversation into the WSL2/VS Code Codex development workflow. It is project context, **not** proof that any implementation is complete. Review actual repository files and tests before assuming a feature exists.
 
+## E/W ear approval and next SE/SW increment — 2026-10-13
+
+The user approved independent E/W ear/root revision 1 and requested cleanup,
+a local commit and continued Step 6C work. Approval is pinned in
+`ears/human-v1/profiles-v1/review-fit-v1.json`, including source/configuration
+and actual human/ear-free fit hashes. Approved source imagery/configs and all
+required derivation baselines remain unchanged.
+
+Next separate both physical ears/collars for each independently authored SE/SW
+head and author bounded same-facing ear-free root skin. Native human retention
+must reconstruct accepted diagonal heads and full approved facial/neck/hair fits
+exactly, including partial alpha. Preserve nose ownership, S/E/W approvals,
+all framing and the future body-occlusion obligation for abrupt shoulder hair.
+New concealed root anatomy needs its own visual approval. No ear-size redesign,
+mirroring or runtime publication. Other ear facings/variants, hidden geometry,
+N anatomy, expressions/materials, body/clothing, production poses, independent
+pixel art and final Step 6C remain open; Step 6D has not started. Earlier current/
+pending-approval statements below are historical.
+
+
+## Independent E/W human-ear/root candidate — 2026-10-13
+
+Commit `2b267ff` preserves approved E/W facial revision 1 after cleanup of
+26 regenerated build files. The next Step 6C candidate is
+`ears/human-v1/profiles-v1/authoring.json`, exported by
+`pnpm ears:review:profiles`. Independent E/right and W/left original ears/collars
+retain native anchors, framing and pixels. Same-facing built-in imagegen studies
+supply ear-free skin only inside manually traced interior root masks. Original
+head RGBA and contour stay exact elsewhere; human retention masks reconstruct
+accepted heads and full facial/hair fits exactly. The initial RGB-only attempt
+left partial-alpha ear-rim colours and was discarded before review; current
+ownership retains complete study RGBA. No global key, resampling or mirroring.
+
+Review `ears/human-v1/profiles/anatomy-overview.png`: E above W; approved skin /
+ear-free roots / original ear-collar / reconstructed skin. New concealed skin is
+in column two and awaits visual approval of colour and joins. Local 6x comparisons
+are in inspection/. Prompts, guides, selected studies and scripts remain local;
+authoring replays only in scratch. Cleanup preserves this review and all three
+current facial reviews. The increment is uncommitted/unapproved. Other ear
+facings/variants, complete hidden geometry, expressions/materials, N anatomy,
+real body/clothing occlusion, production poses, independent pixel assets and final
+Step 6C remain open. Step 6D has not started; earlier current statements are history.
+
+
 ## E/W facial approval and separate-profile-ear increment — 2026-10-13
 
 The user approved E/W facial revision 1 and requested generated-data cleanup,

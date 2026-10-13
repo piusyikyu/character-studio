@@ -1,0 +1,172 @@
+{
+  "schemaVersion": 1,
+  "assetVersion": 1,
+  "status": "draft-needs-human-review",
+  "configSha256": "f32d37f1f5c1d9430b88fa6de5e68a9259053901d77757edba6eef5722cf2dcd",
+  "approvedFacialCommit": "2b267ff",
+  "scope": "Independent E/W human-ear/collar separation and bounded ear-free root skin; exact accepted head and facial/hair reconstruction",
+  "method": "Built-in imagegen supplies same-facing native studies. Only complete study RGBA inside manually traced interior root polygons is selected; every accepted head pixel and alpha outside those polygons remains exact. A separate human-specific window retention mask allows exact original ear RGBA reconstruction.",
+  "commands": [
+    {
+      "command": "pnpm --filter @character-studio/asset-validator typecheck",
+      "result": "passed"
+    },
+    {
+      "command": "pnpm lint",
+      "result": "passed; zero warnings after fixing an initially unused source-script variable"
+    },
+    {
+      "command": "pnpm --filter @character-studio/asset-validator build",
+      "result": "passed; ESM and declarations"
+    },
+    {
+      "command": "node tools/asset-validator/dist/ear-profile-review-cli.js",
+      "result": "passed; complete accepted facial/hair fits retained exactly"
+    },
+    {
+      "command": "pnpm exec vitest run tools/asset-validator/src/ear-review.integration.test.ts tools/asset-validator/src/workspace-cleanup.integration.test.ts -t 'independent E/W ears|cleans generated data'",
+      "result": "passed; 2 workflows, unrelated S workflow skipped; 71.91 seconds"
+    }
+  ],
+  "authoringRefinement": "The initial RGB-only/original-alpha draft retained original ear colours at partial-alpha pixels. It passed mechanical preservation checks but failed native visual inspection and was discarded before user review. Final interior masks retain complete study RGBA. A subsequent test assertion incorrectly required every replaced partial pixel to become alpha 255; corrected to verify exact complete study RGBA ownership at changed partial-alpha ear pixels. Generated study skin can itself retain partial alpha.",
+  "regressions": [
+    "Actual core neck/head/ear/facial/hair order and exact accepted E/W fit hashes",
+    "Original head RGBA reconstructed exactly, including partial alpha",
+    "Complete selected root RGBA, replacement of partial-alpha ear-rim marks, original alpha exact outside root masks",
+    "Every underlay change bounded to native interior masks; background and unselected changes excluded",
+    "Independent facing/physical side/origin and ear-free/human distinction",
+    "Deterministic outputs and immutable source hashes/mtimes",
+    "Re-pinned outside-mask underlay edits, altered native ear pixels and wrong-side assignments rejected",
+    "Cleanup protects current facial and profile-ear reviews and rejects unsafe metadata/symlinks"
+  ],
+  "fitMeasurements": [
+    {
+      "direction": "E",
+      "approvedSha256": "970e7f224a7cecfa46d3553ce990b4cb14aa6345bcdd4136864ba33dc38cad77",
+      "humanFitSha256": "970e7f224a7cecfa46d3553ce990b4cb14aa6345bcdd4136864ba33dc38cad77",
+      "earlessFitSha256": "e49b92fa88eabd8a2127ebd957e03e83abba9de32334b095bd16ce8233b14f6c"
+    },
+    {
+      "direction": "W",
+      "approvedSha256": "4fa001263e2747fc36ff7b275857d37fc22297b8b18db9c84b9b7ee70a2d66de",
+      "humanFitSha256": "4fa001263e2747fc36ff7b275857d37fc22297b8b18db9c84b9b7ee70a2d66de",
+      "earlessFitSha256": "567813ab8bbfe2a5ecd662cd8a1e8fa52f96a2e4cd3d7a8dc13ec8295720afa7"
+    }
+  ],
+  "measurements": [
+    {
+      "direction": "E",
+      "side": "right",
+      "earPixels": 1598,
+      "authoredRootPixels": 1516,
+      "changedRootPixels": 1512,
+      "origin": {
+        "x": 558,
+        "y": 165
+      }
+    },
+    {
+      "direction": "W",
+      "side": "left",
+      "earPixels": 1687,
+      "authoredRootPixels": 1548,
+      "changedRootPixels": 1527,
+      "origin": {
+        "x": 451,
+        "y": 176
+      }
+    }
+  ],
+  "inputProtection": {
+    "files": 601,
+    "hashesAndMtimes": "unchanged",
+    "intentionalTextUpdates": [
+      "assets/source/README.md"
+    ]
+  },
+  "authoringReplay": {
+    "method": "Scratch replay: 11 partition/config outputs and 2 native guides byte-identical",
+    "outputs": [
+      {
+        "name": "E-head-underlay-v1.png",
+        "sha256": "2c903abbac36729947dcdf4d73bc93d4bb26538debcb4562058572bbe95ee762"
+      },
+      {
+        "name": "E-human-head-retention-v1.png",
+        "sha256": "d3204f4bc4ee5939b0ef83d995621eb95e9c0cec52ab8fc0b2eb67620838e89b"
+      },
+      {
+        "name": "E-right-ear-v1.png",
+        "sha256": "65dd3a11955dfc0e7b737696a59a2a4536f418c5423ca8d2bb3e89b9ce293ecc"
+      },
+      {
+        "name": "E-ear-selection-v1.png",
+        "sha256": "58bde529ef827451a348f585527a5fff47f90cf9d917aa10d9c6d88c6dbf2641"
+      },
+      {
+        "name": "W-head-underlay-v1.png",
+        "sha256": "603a5236ec80dc2e2d0e19319771543c49e7f1b770412923f5add8b9d02ca371"
+      },
+      {
+        "name": "W-human-head-retention-v1.png",
+        "sha256": "cb5cca19cf1836cbebc93ed360484b3ad804ab2fce505d592ace384174ba94e8"
+      },
+      {
+        "name": "W-left-ear-v1.png",
+        "sha256": "80254d1a415edee4034a0d4167a8d07ccb11a2313bbd9f6ad0f7f691a90e52cb"
+      },
+      {
+        "name": "W-ear-selection-v1.png",
+        "sha256": "b113b6b6d71c4ffc52097cf69a15bfee54408dc7487ee1e052685a0a4c065853"
+      },
+      {
+        "name": "authoring.json",
+        "sha256": "f32d37f1f5c1d9430b88fa6de5e68a9259053901d77757edba6eef5722cf2dcd"
+      },
+      {
+        "name": "E-root-selection-v1.png",
+        "sha256": "ab791849baaa53bb59a0ef8c2a32e8aa1882fdeeb0d35dac4242b997dd8c9217"
+      },
+      {
+        "name": "W-root-selection-v1.png",
+        "sha256": "09c220243d95bc36577ec8d9a69716ecf9f940d54ad6eb20990845166651bd4f"
+      }
+    ],
+    "guideOutputs": 2
+  },
+  "stagingValidation": [
+    {
+      "directory": "assets/staging/heroine-v1/face/reference-v1",
+      "outputs": 44,
+      "configSha256": "abc8d575982dff8d0828d7d16ee11e829ec8ebe1e5629ddb1d6d271b284b6d5e"
+    },
+    {
+      "directory": "assets/staging/heroine-v1/face/reference-v1/front-diagonals",
+      "outputs": 38,
+      "configSha256": "4698f14a40b95ec781b264e881f8d2814de2b3d24b492e078505b95e9dc94efa"
+    },
+    {
+      "directory": "assets/staging/heroine-v1/face/reference-v1/profiles",
+      "outputs": 29,
+      "configSha256": "93c8e7c150ebb8b8eaaaad6a1f986ca4ba99d83f462e3e2301097f5f2c570519"
+    },
+    {
+      "directory": "assets/staging/heroine-v1/ears/human-v1/profiles",
+      "outputs": 26,
+      "configSha256": "f32d37f1f5c1d9430b88fa6de5e68a9259053901d77757edba6eef5722cf2dcd"
+    }
+  ],
+  "limits": [
+    "Needs human approval of ear-free root shade/joins and concealed anatomy",
+    "Full application build and studio browser E2E were not rerun for this offline PNG-only increment",
+    "Other ear facings/variants, hidden geometry, expressions/materials, N anatomy review, actual body/clothing occlusion, production T-pose, independent pixel assets and final Step 6C remain open",
+    "Step 6D has not started"
+  ],
+  "cleanup": {
+    "deletedGeneratedFiles": 29,
+    "deletedGeneratedMiB": 1.3,
+    "currentReviewPngHashesVerified": 137,
+    "priorSourceReferenceFilesVerified": 601,
+    "preserved": "Three current facial reviews, S viewer, E/W ear review, eight native reference PNGs and every pinned source/revision dependency"
+  }
+}

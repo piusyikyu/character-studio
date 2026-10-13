@@ -1,5 +1,26 @@
 # MVP Plan — Female Character Studio
 
+Current approval update — 2026-10-13: independent E/W ear/root revision 1
+is approved in `ears/human-v1/profiles-v1/review-fit-v1.json`. The user requested
+cleanup, a local commit and continued Step 6C work. Next prepare separate SE/SW
+native ears/collars with locally authored ear-free root underlays and exact
+approved human facial/head/hair reconstruction. New concealed skin needs visual
+approval. Other facings/variants, hidden geometry, N review, materials, actual
+body/clothing occlusion, production poses, pixel artwork and final Step 6C remain
+open. Step 6D has not started; older pending-approval statements are historical.
+
+
+Current candidate update — 2026-10-13: commit `2b267ff` records approved
+E/W facial revision 1. The new `ears/human-v1/profiles-v1/authoring.json`
+separates original E/W ears/collars over locally authored ear-free root RGBA,
+retaining original head pixels/alpha outside interior masks. Human-specific
+retention reconstructs approved heads and full facial/hair fits exactly. Run
+`pnpm ears:review:profiles`; review column two of the anatomy overview for new
+concealed skin and joins. The candidate needs visual approval. Other ear facings/
+variants, hidden geometry, N review, materials, actual body/clothing occlusion,
+production poses, pixel art and final Step 6C remain open. Step 6D has not started.
+
+
 Current approval update — 2026-10-13: E/W facial revision 1 is approved in
 `face/reference-v1/profiles-v1/review-fit-v1.json`. The user requested cleanup,
 a local commit and the next Step 6C increment: separate native E/W human ears

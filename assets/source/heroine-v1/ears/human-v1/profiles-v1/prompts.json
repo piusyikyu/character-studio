@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "ears.human.v1",
+  "scope": "profiles",
+  "assetVersion": 1,
+  "tool": "built-in imagegen",
+  "transparentBackgroundRequested": true,
+  "selected": {
+    "E": {
+      "output": "inputs/E-earless-study-v1.png",
+      "sourceSha256": "b58598f52f3efa6ec31ab9e4616f754ad4e0c05b77e2c5b07c665f43a09f8dd2",
+      "prompt": "Use case: precise-object-edit. Asset type: local concealed scalp/root skin study under a detachable E human ear. Input image is the EXACT EDIT TARGET: a native 1024x1536 transparent right-facing E bald female head/upper neck near upper-center, soft peach anime shading, with no eyes/brows/mouth. Remove ONLY the embedded human ear's pink rim, concha, lobe and dark ear marks at x511..536 y171..207. Replace them with believable smooth, subtle peach temple/scalp/root skin matching the surrounding same-facing head. Edit only in x510..543 y166..212. The existing skull/jaw/neck outside contour must remain unchanged and the root must become ear-free continuous skin, without a hole, ear imprint, scar or square patch. Preserve native tiny scale and position: skull top near (555,72), nose tip (627,202), chin (596,249), neck and all framing. Keep the huge transparent margins and genuine transparent alpha on the full 1024x1536 canvas. No image shifts, zoom, recentering, scaling, rotation or mirroring. No new ear, eye, eyebrow, mouth, hair, jewelry, body, background, haze, glow, text or labels. Only native pixels inside that bounded ear/root window will be retained; all other generated changes are discarded.",
+      "inputs": [
+        {
+          "source": "inputs/E-earless-guide.png",
+          "sourceSha256": "a335c0623ebd86773724ca7e7fa00e2e7936a1a778cdc92156b3d4671754f9f2",
+          "role": "Exact same-facing native approved head edit guide; remove only local embedded ear marks"
+        }
+      ]
+    },
+    "W": {
+      "output": "inputs/W-earless-study-v1.png",
+      "sourceSha256": "f089134133747b2d921d29eb4622052427c22e6c8d033e4ba4d63b1e54fcfe8f",
+      "prompt": "Use case: precise-object-edit. Asset type: local concealed scalp/root skin study under a detachable W human ear. Input image is the EXACT EDIT TARGET: a native 1024x1536 transparent left-facing W bald female head/upper neck near upper-center, soft peach anime shading, with no eyes/brows/mouth. Remove ONLY the embedded human ear's pink rim, concha, lobe and dark ear marks at x476..505 y177..217. Replace them with believable smooth, subtle peach temple/scalp/root skin matching the surrounding same-facing head. Edit only in x472..506 y172..220. The existing skull/jaw/neck outside contour must remain unchanged and the root must become ear-free continuous skin, without a hole, ear imprint, scar or square patch. Preserve native tiny scale and position: skull top near (459,85), nose tip (380,209), chin (403,254), neck and all framing. Keep the huge transparent margins and genuine transparent alpha on the full 1024x1536 canvas. No image shifts, zoom, recentering, scaling, rotation or mirroring. No new ear, eye, eyebrow, mouth, hair, jewelry, body, background, haze, glow, text or labels. Only native pixels inside that bounded ear/root window will be retained; all other generated changes are discarded.",
+      "inputs": [
+        {
+          "source": "inputs/W-earless-guide.png",
+          "sourceSha256": "7c73174b7dde57dff7abcb77b8aba7b832ca878ec9abd64f24653767d4c34c47",
+          "role": "Exact same-facing native approved head edit guide; remove only local embedded ear marks"
+        }
+      ]
+    }
+  },
+  "rejected": [],
+  "postprocessing": "Only native study RGBA inside independently traced interior root polygons is retained. Original head pixels, alpha and contour remain exact everywhere else. Partial-alpha ear-rim marks inside the root are replaced with complete study skin. Generated background and all unselected changes are discarded locally; no global color key, resampling, mirroring or image shifts."
+}
