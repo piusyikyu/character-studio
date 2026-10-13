@@ -1,0 +1,199 @@
+{
+  "schemaVersion": 1,
+  "id": "ears.human.v1",
+  "scope": "north",
+  "assetVersion": 1,
+  "target": "detailed",
+  "nativeSize": {
+    "width": 1024,
+    "height": 1536
+  },
+  "sourcePose": "standing-reference",
+  "intendedRuntimePose": "tpose",
+  "status": "draft-needs-human-review",
+  "published": false,
+  "paletteReady": false,
+  "minimumVisibleAlpha": 8,
+  "method": "native-ear-pair/authored-scalp-contours/variant-retention",
+  "headConfig": {
+    "source": "authoring-v5.json",
+    "sourceSha256": "b953e1eeff3e797eb4f32189f7a9e433d7503a7accf0900eef4f5f9e15b2dc0a"
+  },
+  "headApproval": {
+    "source": "north-review-fit-v1.json",
+    "sourceSha256": "c4fe75b390b0eb0bdc0ab9b93bb5971e947eab0d326b6264eda1531f063af452"
+  },
+  "settings": {
+    "source": "selections.json",
+    "sourceSha256": "d2c30c84831e1ff86ef644da92611fe76147d327d0746c564a8cd61f23a1caa9"
+  },
+  "prompts": {
+    "source": "prompts.json",
+    "sourceSha256": "2bb1231171437b9560e46ed48a14219b80909c821c1815337661e11982cf74ef"
+  },
+  "frame": {
+    "origin": {
+      "x": 510,
+      "y": 175
+    },
+    "originalHead": {
+      "source": "N-head-v1.png",
+      "sourceSha256": "0551734b677bd85fbd6c91124566bfbb9757a5b7533b141fc5306a3f2fdcbae6"
+    },
+    "study": {
+      "source": "inputs/N-earless-study-v1.png",
+      "sourceSha256": "e678a5ca75235bff2c7629b7885db88d92b82a9e0196516feaa1c665e1e7a5b2"
+    },
+    "head": {
+      "source": "N-head-underlay-v1.png",
+      "sourceSha256": "2c54dea90474198900b4d4ded14b0e9ea231a9859c5d31c8efe21b08d6075fc6"
+    },
+    "headRetention": {
+      "source": "N-human-head-retention-v1.png",
+      "sourceSha256": "d08543d6c640e76edb26b6594de3aa43fbdd3bc514626399c3b83438764e585c"
+    },
+    "skinSelection": {
+      "source": "N-skin-selection-v1.png",
+      "sourceSha256": "a16604eb96d3b96b19d58dafb6d9c5e956285923b8caabfeb97161bc137d3859"
+    },
+    "skinJoin": {
+      "source": "N-skin-join-v1.png",
+      "sourceSha256": "d80dec3ddcbbe3565b5298027ff3ae5c05fdc9479f38158122137864c44a8010"
+    },
+    "sides": {
+      "left": {
+        "region": [
+          [
+            420,
+            181
+          ],
+          [
+            464,
+            181
+          ],
+          [
+            464,
+            244
+          ],
+          [
+            420,
+            244
+          ]
+        ],
+        "skinContour": [
+          [
+            438,
+            181
+          ],
+          [
+            464,
+            181
+          ],
+          [
+            464,
+            244
+          ],
+          [
+            458,
+            244
+          ],
+          [
+            449,
+            230
+          ],
+          [
+            442,
+            214
+          ],
+          [
+            438,
+            201
+          ],
+          [
+            435,
+            190
+          ]
+        ],
+        "ear": {
+          "source": "N-left-ear-v1.png",
+          "sourceSha256": "48985a7101dc2814fe62fe706fb94484c9d213e7527d9c821fb72d88aa6d75b2",
+          "selection": {
+            "source": "N-left-ear-selection-v1.png",
+            "sourceSha256": "16eb723b27a82fffffdb23e27d13ba1fa6e9579fc270f223fde23cba18007541"
+          },
+          "pixelCount": 1998
+        }
+      },
+      "right": {
+        "region": [
+          [
+            562,
+            181
+          ],
+          [
+            605,
+            181
+          ],
+          [
+            605,
+            244
+          ],
+          [
+            562,
+            244
+          ]
+        ],
+        "skinContour": [
+          [
+            562,
+            181
+          ],
+          [
+            585,
+            181
+          ],
+          [
+            588,
+            190
+          ],
+          [
+            585,
+            201
+          ],
+          [
+            580,
+            214
+          ],
+          [
+            573,
+            230
+          ],
+          [
+            566,
+            244
+          ],
+          [
+            562,
+            244
+          ]
+        ],
+        "ear": {
+          "source": "N-right-ear-v1.png",
+          "sourceSha256": "38dd2ef28238c64eb6e2e0a2c0cd4f153c5f53f88b89e31727db5d48ff2dcc30",
+          "selection": {
+            "source": "N-right-ear-selection-v1.png",
+            "sourceSha256": "05a356150f98ea4442056f138a562c59e3f00d36bccc92c59bea6b52e47c0413"
+          },
+          "pixelCount": 1869
+        }
+      }
+    },
+    "authoredRootPixels": 2248
+  },
+  "knownReviewIssues": [
+    "New same-facing N ear-free scalp roots require review of outline, shading and local joins. Both original ears/collars retain native RGBA and physical side identity; no mirroring or resizing.",
+    "Study RGBA is selected within manual native scalp contours; selected transparent exterior is cleared. Four native pixels at interior/top/bottom window boundaries join to original skin with source-over alpha. Outer contours use study alpha without blending old ear rims.",
+    "Human retention removes underlay coverage in the ear windows before original ears draw, reconstructing the approved head and rear-hair fit exactly. Other hairstyles need separate exposure and ear-size review.",
+    "Concealed geometry, ancestry/size variants, expressions/materials, actual body/clothing occlusion, production T-pose, independent pixel artwork and final Step 6C remain unfinished; Step 6D has not started."
+  ]
+}

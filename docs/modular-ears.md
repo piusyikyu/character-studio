@@ -1,5 +1,80 @@
 # Step 6C — separate S human ears
 
+## N ear approval and consolidated head checkpoint — 2026-10-13
+
+The user approved separate N ears/root skin and requested cleanup, a local commit
+and continued Step 6C work. `ears/human-v1/north-v1/review-fit-v1.json` pins the
+selected sources/configuration and exact native human head/hair fit. Approved
+imagery remains unchanged. This approves the standing-reference ear/root checkpoint,
+not complete production anatomy or compatibility with other hairstyles.
+
+Next consolidate the selected S/N/E/W/SE/SW/NE/NW head, facial and ear fits into
+one offline eight-facing review, validating each against its own approval record.
+Reuse retained source validators and real plane composition; preserve current
+native images and hidden posterior features. Compare assembled and hair-free
+anatomy across facings before body authoring. This is a head-module consistency
+checkpoint, not final Step 6C or runtime publication. The noted SE/SW bare-ear
+size discrepancy and actual body/clothing occlusion of abrupt hair starts remain
+open. Concealed geometry, variants/materials, full body/clothing, production T-pose
+and independent pixel assets remain unfinished. Step 6D has not started; older
+pending-approval statements below are historical.
+
+
+## Separate N human-ear/root candidate — 2026-10-13
+
+Commit `7cf808e` records the approved N revision-1 full-back anatomy and its
+dedicated review after cleanup of 34 generated files (1.3 MiB). The next bounded
+Step 6C candidate is `ears/human-v1/north-v1/authoring.json`; export with
+`pnpm ears:review:north`. Physical left is screen-left and right screen-right
+in N. Both original ear/collar patches retain their own native RGBA. Original
+head, neck, hair, anchors and all other approved facings remain unchanged.
+
+Built-in imagegen supplies one independently authored N ear-erasure study from
+the exact native approved head guide. `north-v1/prompts.json` pins the complete
+prompt, local input roles and selected study. Only manually traced same-facing
+scalp/root contours within left x420–463/y181–243 and right x562–604/y181–243
+retain study RGB/alpha with 4x4 coverage. The selected exterior is cleared; faint
+study pixels below the inherited 8/255 threshold remain transparent. Generated
+halo/background and all unselected changes are excluded. No transformations,
+mirroring, global colour key or accepted-source overwrite.
+
+Four native pixels at interior/top/bottom window boundaries join selected study
+skin to original skin using exact source-over alpha rounding. Contour-edge alpha
+uses the study alone so old ear-rim colours are excluded. Original RGBA remains
+exact outside both windows. A human-specific retention mask clears those windows
+before both original ears draw in the core ears plane, reconstructing the approved
+head and posterior neck/rear-hair fit exactly. Ear-free previews use the complete
+underlay without human retention. Guide/partition scripts replay only in scratch.
+
+Review `ears/human-v1/north/anatomy-overview.png`: approved bare skin / new
+ear-free roots / original ear-collars / reconstructed human skin. Column two is
+new and needs approval of outline, shade and local transitions. A native 4x root
+comparison is in `inspection/N-root-comparison.png`. `overview.png` compares
+reference / approved posterior fit / identical separate-ear fit. Eyes, brows,
+mouth and frontal fringe remain hidden. Current rear hair covers all head pixels;
+this does not approve cross-facing sizes or alternative hairstyles.
+
+Asset-validator typecheck, root lint (zero warnings), JavaScript/declaration build
+and the new CLI passed. The existing ear-review file's new N public workflow plus
+cleanup workflow passed (2 tests, 26.12 seconds; 4 unrelated S/E/W/SE/SW/NE/NW ear
+workflows skipped). They check actual plane order, complete native reconstruction,
+ear removal/root samples, own-study RGB, deterministic exports, immutable sources,
+rejection of re-pinned out-of-window/ear/side edits and protected current reviews.
+All 658 prior source/reference hashes and mtimes remain exact; source README text
+changes intentionally. Nine partition/config outputs and one guide replay byte-
+for-byte in scratch. All 217 current PNG hashes and the S viewer verify. Final
+cleanup removes 36 regenerated files (1.4 MiB), preserving eight reviews and all
+pinned sources. See `north-v1/fit-audit.json`. Full app build and studio browser
+E2E were not rerun for this offline increment. This candidate is uncommitted and
+unapproved. Earlier pending/selected statements below are historical.
+
+The SE/SW bare-ear size discrepancy remains an alternate-hairstyle review debt,
+alongside actual body/clothing occlusion of abrupt neck/shoulder hair. Both are
+carried into the current review. Complete concealed geometry, ancestry/size
+variants, expressions/materials, full body/clothing, production T-pose, independent
+pixel artwork and final Step 6C remain unfinished. Step 6D has not started.
+
+
 ## N anatomy approval and next separate full-back ears — 2026-10-13
 
 The user approved the dedicated N full-back anatomy review and requested cleanup,

@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 1,
+  "scope": "north",
+  "date": "2026-10-13",
+  "status": "draft-needs-human-review",
+  "anatomyApproved": false,
+  "published": false,
+  "paletteReady": false,
+  "alternateHairstyleCompatibilityApproved": false,
+  "bodyOcclusionVerified": false,
+  "tposeApproved": false,
+  "finalStep6CAccepted": false,
+  "validation": {
+    "typecheck": "pnpm --filter @character-studio/asset-validator typecheck passed",
+    "lint": "pnpm lint passed; zero warnings",
+    "buildAndCli": "pnpm ears:review:north passed; JavaScript and declarations built",
+    "integration": "Existing ear-review N workflow and cleanup: 2 passed, 4 skipped",
+    "durationSeconds": 26.12,
+    "fullApplicationBuild": "not rerun",
+    "studioBrowserE2E": "not rerun"
+  },
+  "protectedInputs": 658,
+  "intentionalSourceTextUpdates": [
+    "assets/source/README.md"
+  ],
+  "replayOutputs": [
+    {
+      "name": "authoring.json",
+      "sha256": "9b6e962977577f44d82d4b83c370cf2809e5d848d10355c7fde4306df76b64a3"
+    },
+    {
+      "name": "N-head-underlay-v1.png",
+      "sha256": "2c54dea90474198900b4d4ded14b0e9ea231a9859c5d31c8efe21b08d6075fc6"
+    },
+    {
+      "name": "N-human-head-retention-v1.png",
+      "sha256": "d08543d6c640e76edb26b6594de3aa43fbdd3bc514626399c3b83438764e585c"
+    },
+    {
+      "name": "N-skin-selection-v1.png",
+      "sha256": "a16604eb96d3b96b19d58dafb6d9c5e956285923b8caabfeb97161bc137d3859"
+    },
+    {
+      "name": "N-skin-join-v1.png",
+      "sha256": "d80dec3ddcbbe3565b5298027ff3ae5c05fdc9479f38158122137864c44a8010"
+    },
+    {
+      "name": "N-left-ear-v1.png",
+      "sha256": "48985a7101dc2814fe62fe706fb94484c9d213e7527d9c821fb72d88aa6d75b2"
+    },
+    {
+      "name": "N-right-ear-v1.png",
+      "sha256": "38dd2ef28238c64eb6e2e0a2c0cd4f153c5f53f88b89e31727db5d48ff2dcc30"
+    },
+    {
+      "name": "N-left-ear-selection-v1.png",
+      "sha256": "16eb723b27a82fffffdb23e27d13ba1fa6e9579fc270f223fde23cba18007541"
+    },
+    {
+      "name": "N-right-ear-selection-v1.png",
+      "sha256": "05a356150f98ea4442056f138a562c59e3f00d36bccc92c59bea6b52e47c0413"
+    }
+  ],
+  "guideReplayOutputs": 1,
+  "stagingValidation": [
+    {
+      "directory": "assets/staging/heroine-v1/face/reference-v1",
+      "outputs": 44,
+      "configSha256": "abc8d575982dff8d0828d7d16ee11e829ec8ebe1e5629ddb1d6d271b284b6d5e"
+    },
+    {
+      "directory": "assets/staging/heroine-v1/face/reference-v1/front-diagonals",
+      "outputs": 38,
+      "configSha256": "4698f14a40b95ec781b264e881f8d2814de2b3d24b492e078505b95e9dc94efa"
+    },
+    {
+      "directory": "assets/staging/heroine-v1/face/reference-v1/profiles",
+      "outputs": 29,
+      "configSha256": "93c8e7c150ebb8b8eaaaad6a1f986ca4ba99d83f462e3e2301097f5f2c570519"
+    },
+    {
+      "directory": "assets/staging/heroine-v1/ears/human-v1/profiles",
+      "outputs": 26,
+      "configSha256": "f32d37f1f5c1d9430b88fa6de5e68a9259053901d77757edba6eef5722cf2dcd"
+    },
+    {
+      "directory": "assets/staging/heroine-v1/ears/human-v1/front-diagonals",
+      "outputs": 26,
+      "configSha256": "6069c9c9e98e7a7e92111365cdb1eebbf4401ee3b2c56f58f272e83fa39cc72f"
+    },
+    {
+      "directory": "assets/staging/heroine-v1/ears/human-v1/back-diagonals",
+      "outputs": 24,
+      "configSha256": "c82b65aa9665724ff894f5fbda2a23d6ae6ef21c1fc948693583b73089d69b78"
+    },
+    {
+      "directory": "assets/staging/heroine-v1/head/soft-oval-v1/north",
+      "outputs": 14,
+      "configSha256": "b953e1eeff3e797eb4f32189f7a9e433d7503a7accf0900eef4f5f9e15b2dc0a"
+    },
+    {
+      "directory": "assets/staging/heroine-v1/ears/human-v1/north",
+      "outputs": 16,
+      "configSha256": "9b6e962977577f44d82d4b83c370cf2809e5d848d10355c7fde4306df76b64a3"
+    }
+  ],
+  "fitMeasurements": [
+    {
+      "direction": "N",
+      "approvedSha256": "0a804f17591307be3752fcfdeb14905651aa6038ddc299a61049c2a86b473bdb",
+      "humanFitSha256": "0a804f17591307be3752fcfdeb14905651aa6038ddc299a61049c2a86b473bdb",
+      "earlessFitSha256": "3cbc8f4d0c0c71c386dd364ba73e7962312b3e6c1fab8ec950eb684109f8d38f"
+    }
+  ],
+  "measurements": {
+    "earPixels": {
+      "left": 1998,
+      "right": 1869
+    },
+    "authoredRootPixels": 2248,
+    "changedRootPixels": 3810,
+    "origin": {
+      "x": 510,
+      "y": 175
+    }
+  },
+  "futureBodyFitObligations": [
+    "Check the circled neck/shoulder hair starts against actual independently authored same-facing body and clothing layers.",
+    "Rear hair must sit behind the torso/shoulders where physically appropriate; intentional foreground curls retain their proper depth.",
+    "Inspect real native-layer composition for exposed abrupt starts and mask seams. Do not move inspection panels, clip valid hair or use a stand-in torso to certify production fit.",
+    "If any abrupt starts remain visible after the true body composition, repair them in a new version."
+  ],
+  "futureHairstyleFitObligations": [
+    "SE and SW anatomy ears differ in apparent size in the bare-head review. Current reference hair conceals this discrepancy; approval does not establish compatibility with alternate hairstyles. Before shorter/open-ear hairstyles or ear-size variants are accepted, compare native ear proportions, attachment and exposure across independently authored facings and review the actual layered fit. If exposed differences look incoherent, author versioned corrections rather than silently scaling or mirroring approved ears."
+  ],
+  "headConfig": {
+    "source": "authoring-v5.json",
+    "sourceSha256": "b953e1eeff3e797eb4f32189f7a9e433d7503a7accf0900eef4f5f9e15b2dc0a"
+  },
+  "headApproval": {
+    "source": "north-review-fit-v1.json",
+    "sourceSha256": "c4fe75b390b0eb0bdc0ab9b93bb5971e947eab0d326b6264eda1531f063af452"
+  },
+  "cleanup": {
+    "generatedFiles": 36,
+    "approximatelyMiB": 1.4,
+    "preservedCurrentPngs": 217,
+    "pinnedSourcesRemoved": 0
+  },
+  "reviewRequired": [
+    "New ear-free N scalp contour, shade and local joins in anatomy column two",
+    "Original ear proportions/exposure under other hairstyles and cross-facing size coherence",
+    "Complete concealed geometry, variants/materials, actual body/clothing occlusion, production poses, independent pixel artwork and final Step 6C"
+  ]
+}

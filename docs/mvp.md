@@ -1,5 +1,38 @@
 # MVP Plan — Female Character Studio
 
+## N ear approval and consolidated head checkpoint — 2026-10-13
+
+The user approved separate N ears/root skin and requested cleanup, a local commit
+and continued Step 6C work. `ears/human-v1/north-v1/review-fit-v1.json` pins the
+selected sources/configuration and exact native human head/hair fit. Approved
+imagery remains unchanged. This approves the standing-reference ear/root checkpoint,
+not complete production anatomy or compatibility with other hairstyles.
+
+Next consolidate the selected S/N/E/W/SE/SW/NE/NW head, facial and ear fits into
+one offline eight-facing review, validating each against its own approval record.
+Reuse retained source validators and real plane composition; preserve current
+native images and hidden posterior features. Compare assembled and hair-free
+anatomy across facings before body authoring. This is a head-module consistency
+checkpoint, not final Step 6C or runtime publication. The noted SE/SW bare-ear
+size discrepancy and actual body/clothing occlusion of abrupt hair starts remain
+open. Concealed geometry, variants/materials, full body/clothing, production T-pose
+and independent pixel assets remain unfinished. Step 6D has not started; older
+pending-approval statements below are historical.
+
+
+Current candidate update — 2026-10-13: commit `7cf808e` records approved N
+full-back anatomy. Next `ears/human-v1/north-v1/authoring.json` separates both
+native N ears/collars with locally authored ear-free scalp roots. Run
+`pnpm ears:review:north`; review anatomy-overview column two for new contour,
+shade and mask/skin transitions. Original human head and full posterior fit
+reconstruct exactly; eyes/front fringe remain hidden. This candidate needs visual
+approval. Typecheck, lint, build/CLI and focused N-ear/cleanup workflows pass
+(2 passed, 4 skipped; 26.12 seconds). Eight current reviews are protected.
+Alternate-hairstyle ear-size and body-occlusion review debt, concealed geometry,
+variants/materials, full body/clothing, production poses, independent pixel art
+and final Step 6C remain open. Step 6D has not started. See modular-ears.md.
+
+
 ## N anatomy approval and next separate full-back ears — 2026-10-13
 
 The user approved the dedicated N full-back anatomy review and requested cleanup,

@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "method": "native-ear-pair/authored-scalp-contours/variant-retention",
+  "regions": {
+    "left": [
+      [
+        420,
+        181
+      ],
+      [
+        464,
+        181
+      ],
+      [
+        464,
+        244
+      ],
+      [
+        420,
+        244
+      ]
+    ],
+    "right": [
+      [
+        562,
+        181
+      ],
+      [
+        605,
+        181
+      ],
+      [
+        605,
+        244
+      ],
+      [
+        562,
+        244
+      ]
+    ]
+  },
+  "skinContours": {
+    "left": [
+      [
+        438,
+        181
+      ],
+      [
+        464,
+        181
+      ],
+      [
+        464,
+        244
+      ],
+      [
+        458,
+        244
+      ],
+      [
+        449,
+        230
+      ],
+      [
+        442,
+        214
+      ],
+      [
+        438,
+        201
+      ],
+      [
+        435,
+        190
+      ]
+    ],
+    "right": [
+      [
+        562,
+        181
+      ],
+      [
+        585,
+        181
+      ],
+      [
+        588,
+        190
+      ],
+      [
+        585,
+        201
+      ],
+      [
+        580,
+        214
+      ],
+      [
+        573,
+        230
+      ],
+      [
+        566,
+        244
+      ],
+      [
+        562,
+        244
+      ]
+    ]
+  },
+  "edgeJoinPixels": 4,
+  "coverageSamples": 4,
+  "sideConvention": "N is full back: character-left is screen-left; character-right is screen-right. Both ears retain their own N source pixels.",
+  "rationale": "Manual independent native contours exclude protruding ear geometry; local study supplies ear-free roots. Interior edge alpha joins preserve adjacent native skin. Exterior scalp alpha excludes old ear rim pixels. No blur, sampling transforms or source RGB painting."
+}

@@ -1,5 +1,12 @@
 # Source artwork
 
+Current N ear/root candidate: `heroine-v1/ears/human-v1/north-v1/` retains the
+same-facing study/guide, native ear pair, bounded scalp underlay, masks and replay
+script. `pnpm ears:review:north` exports the approved standing-reference ear/root fit, pinned in `north-v1/review-fit-v1.json`.
+Original N human head/hair fits stay exact; `fit-audit.json` records validation
+and inherited alternate-hairstyle/body-occlusion obligations.
+
+
 The current N full-back review uses retained `heroine-v1/head/soft-oval-v1/N-*-v1.png`
 and the unchanged N frame in `authoring-v5.json`. Export with `pnpm head:review:north`.
 N standing-reference anatomy is approved in `north-review-fit-v1.json`; both ears remain embedded pending separation. No new images/masks were authored.

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "tool": "built-in imagegen",
+  "useCase": "precise-object-edit",
+  "selected": {
+    "N": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the exact edit target: a 1024x1536 transparent native canvas with a tiny independently authored FULL BACK bald female anime head near x510,y175, skull top y83 and head/nape cut ending y265. Remove BOTH human ears, replacing their roots with continuous ear-free posterior scalp skin and natural scalp outline. Left ear/root is near x424..458 y184..238; right near x568..600 y184..238. Preserve exact skull size, top, center and original native framing, upper-canvas location and all huge transparent margins. Only modify these two local ear/root areas. Smooth ear-free side outlines should continue the existing skull down toward the narrow nape: approximate left edge x437 at y185, x440 at y210, x450 at y230 and x458 at y244; right edge x586 at y185, x583 at y210, x573 at y230 and x565 at y244. Match adjacent warm-peach anime skin, restrained soft shade and thin warm outline. Do not retain ear rims, helix marks, holes or ear shadows. N is strictly a FULL BACK view with no visible face, eyes, brows, eyelids, eyelashes, nose or mouth. Do not create a profile or three-quarter view. Keep the existing nape and horizontal bottom at y265; no neck extension, shoulders, body, hair, clothing, text, labels, glow or background. No zoom, recentering, shifting, resizing, rotation, mirroring or source-facings collage. Both roots belong to this independently authored N head; do not reflect a side. All previously empty pixels stay truly transparent except the tiny newly completed scalp where the ears were removed. Output full native 1024x1536 RGBA with genuine transparency.",
+      "output": "inputs/N-earless-study-v1.png",
+      "sourceSha256": "e678a5ca75235bff2c7629b7885db88d92b82a9e0196516feaa1c665e1e7a5b2",
+      "inputs": [
+        {
+          "source": "inputs/N-earless-guide.png",
+          "sourceSha256": "0551734b677bd85fbd6c91124566bfbb9757a5b7533b141fc5306a3f2fdcbae6",
+          "role": "exact approved independently authored N head edit target and native framing"
+        }
+      ]
+    }
+  },
+  "retention": "Only bounded same-facing root RGBA is retained; generated halo/background and all unselected changes are excluded. No old Codex path is a required dependency."
+}
