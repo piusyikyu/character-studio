@@ -1,5 +1,25 @@
 # Step 6C — separate S human ears
 
+## N anatomy approval and next separate full-back ears — 2026-10-13
+
+The user approved the dedicated N full-back anatomy review and requested cleanup,
+a local commit and continued Step 6C work. `head/soft-oval-v1/north-review-fit-v1.json`
+pins the unchanged revision-1 N head/neck, selected `authoring-v5.json`, hair
+approval and native fit. This standing-reference checkpoint covers bare skull,
+embedded human ears, nape and neck; it does not establish production poses or
+other-hairstyle fit. Current rear hair covers all 24,270 head pixels.
+
+Next separate both N human ears/collars and locally author complete ear-free scalp
+roots beneath them, preserving approved skull/neck/hair and native anchors.
+Physical left is screen-left and right screen-right in this full-back facing.
+Human retention must reconstruct the original head and accepted fit exactly;
+new concealed skin needs visual approval. Keep eyes, brows, mouth and frontal
+fringe hidden. The SE/SW cross-facing bare-ear size concern and future body/hair
+occlusion checks remain open. Variants, concealed geometry, materials, full body/
+clothing, production T-pose, independent pixel art and final Step 6C remain open.
+Step 6D has not started; earlier pending N approval statements are historical.
+
+
 ## NE/NW ear approval and next N anatomy review — 2026-10-13
 
 The user approved the independent NE/NW near-ear/root checkpoint and requested

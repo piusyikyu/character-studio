@@ -2,6 +2,66 @@
 
 > Purpose: This file transfers the **requirements and decisions** from a ChatGPT planning conversation into the WSL2/VS Code Codex development workflow. It is project context, **not** proof that any implementation is complete. Review actual repository files and tests before assuming a feature exists.
 
+## N anatomy approval and next separate full-back ears — 2026-10-13
+
+The user approved the dedicated N full-back anatomy review and requested cleanup,
+a local commit and continued Step 6C work. `head/soft-oval-v1/north-review-fit-v1.json`
+pins the unchanged revision-1 N head/neck, selected `authoring-v5.json`, hair
+approval and native fit. This standing-reference checkpoint covers bare skull,
+embedded human ears, nape and neck; it does not establish production poses or
+other-hairstyle fit. Current rear hair covers all 24,270 head pixels.
+
+Next separate both N human ears/collars and locally author complete ear-free scalp
+roots beneath them, preserving approved skull/neck/hair and native anchors.
+Physical left is screen-left and right screen-right in this full-back facing.
+Human retention must reconstruct the original head and accepted fit exactly;
+new concealed skin needs visual approval. Keep eyes, brows, mouth and frontal
+fringe hidden. The SE/SW cross-facing bare-ear size concern and future body/hair
+occlusion checks remain open. Variants, concealed geometry, materials, full body/
+clothing, production T-pose, independent pixel art and final Step 6C remain open.
+Step 6D has not started; earlier pending N approval statements are historical.
+
+
+## Dedicated N full-back anatomy review — 2026-10-13
+
+Commit `af5a206` records approved NE/NW ear/root revision 1 after removal of
+34 regenerated files (1.3 MiB). Next review the retained N anatomy on its own:
+`pnpm head:review:north` selects the unchanged N frame in `authoring-v5.json`.
+The artwork remains `N-master-v1.png`, `N-head-v1.png`, `N-neck-v1.png`.
+No new generation, source-image/mask edits, transforms or mirrored facings.
+Origins remain head (510,175), neck (510,288), with every part drawn at (0,0).
+The inherited 8/255 alpha normalization is unchanged. The scoped export avoids S
+artwork dependencies; existing paired commands and their image outputs remain intact.
+
+Review `head/soft-oval-v1/north/overview.png`: reference / bare head-neck skin /
+actual accepted-hair fit. Inspect column two for full-back skull/nape shape,
+both ear proportions and neck transitions. Eyes, brows, mouth and frontal fringe
+are hidden. Hair covers all 24,270 head pixels, so the assembly cannot establish
+anatomy or alternate-hairstyle compatibility. N was never approved with S or NE/NW
+and remains unapproved; both ears remain embedded pending separation after this
+visual gate. Report coverage is specific to N, not repository-wide coverage.
+
+Fourteen N inspection PNGs are protected by cleanup alongside six facial/ear
+reviews. `head/soft-oval-v1/north-fit-audit-v1.json` pins inputs, outputs and
+outstanding obligations. Future alternate-hairstyle checks for unequal bare SE/SW
+ear sizes and actual body/clothing occlusion of abrupt hair starts remain open.
+Variants, concealed geometry, expressions/materials, body/clothing, production
+T-pose, independently authored pixel art and final Step 6C remain unfinished.
+Step 6D has not started. This review implementation is uncommitted; N visual
+approval is pending. Earlier pending/next statements below are historical.
+
+Validation: asset-validator typecheck, root lint (zero warnings), JavaScript/
+declaration build and `pnpm head:review:north` passed. The existing expanded S/N
+and cleanup workflows passed: 2 tests, 74.91 seconds, 3 unrelated head workflows
+skipped. They verify exact N equivalence to paired review, native depth and source
+ownership, N-only outputs/preview, no S master dependency, deterministic exports,
+invalid-scope rejection and preservation of current reviews. All 656 prior source/
+reference hashes and mtimes remain exact; source README text changes intentionally.
+All 201 current PNG hashes and the S viewer verify. Final cleanup removes another
+34 generated files (1.3 MiB), preserving seven reviews and pinned sources. Full
+application build and studio browser E2E were not rerun for this offline increment.
+
+
 ## NE/NW ear approval and next N anatomy review — 2026-10-13
 
 The user approved the independent NE/NW near-ear/root checkpoint and requested

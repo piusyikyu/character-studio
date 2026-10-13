@@ -1,5 +1,37 @@
 # MVP Plan — Female Character Studio
 
+## N anatomy approval and next separate full-back ears — 2026-10-13
+
+The user approved the dedicated N full-back anatomy review and requested cleanup,
+a local commit and continued Step 6C work. `head/soft-oval-v1/north-review-fit-v1.json`
+pins the unchanged revision-1 N head/neck, selected `authoring-v5.json`, hair
+approval and native fit. This standing-reference checkpoint covers bare skull,
+embedded human ears, nape and neck; it does not establish production poses or
+other-hairstyle fit. Current rear hair covers all 24,270 head pixels.
+
+Next separate both N human ears/collars and locally author complete ear-free scalp
+roots beneath them, preserving approved skull/neck/hair and native anchors.
+Physical left is screen-left and right screen-right in this full-back facing.
+Human retention must reconstruct the original head and accepted fit exactly;
+new concealed skin needs visual approval. Keep eyes, brows, mouth and frontal
+fringe hidden. The SE/SW cross-facing bare-ear size concern and future body/hair
+occlusion checks remain open. Variants, concealed geometry, materials, full body/
+clothing, production T-pose, independent pixel art and final Step 6C remain open.
+Step 6D has not started; earlier pending N approval statements are historical.
+
+
+Current review update — 2026-10-13: commit `af5a206` records approved NE/NW
+ear/root separation. Next review unchanged N revision-1 anatomy independently with
+`pnpm head:review:north`, using `authoring-v5.json`. Columns: reference / bare
+skin / accepted-hair fit. Hair covers every head pixel; inspect the middle column
+before ear separation. N remains unapproved with both ears embedded. No new art.
+Typecheck, lint, build/CLI and expanded existing S/N plus cleanup workflows pass
+(2 passed, 3 skipped; 74.91 seconds). Seven current reviews are protected.
+Alternate-hairstyle ear-size/body-occlusion review debt and all remaining production
+work stay open. Step 6C is unfinished; Step 6D has not started. See modular-head.md
+and `head/soft-oval-v1/north-fit-audit-v1.json` for source/validation evidence.
+
+
 ## NE/NW ear approval and next N anatomy review — 2026-10-13
 
 The user approved the independent NE/NW near-ear/root checkpoint and requested

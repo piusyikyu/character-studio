@@ -41,7 +41,8 @@ The cleanup command removes generated placeholder assets, obsolete staging
 previews, render-demo exports and test reports. `--build-outputs` also removes
 workspace `dist` folders. It preserves the current S face review's declared outputs
 and interactive viewer, plus the current SE/SW and E/W face reviews' declared
-outputs, the current E/W, SE/SW and NE/NW ear-review outputs, eight native transparent references
+outputs, the current E/W, SE/SW and NE/NW ear-review outputs, the dedicated N anatomy review,
+eight native transparent references
 and their import metadata/audit.
 Source/reference artwork, dependencies, legacy packages and Git
 history are outside its deletion targets. Unsafe metadata paths or symlinks
@@ -52,6 +53,8 @@ The retained S viewer is
 `assets/staging/heroine-v1/face/reference-v1/inspection/head-reference-overlay.html`.
 The E/W, SE/SW and NE/NW ear anatomy/fit reviews are retained under
 `assets/staging/heroine-v1/ears/human-v1/{profiles,front-diagonals,back-diagonals}/`.
+The dedicated N anatomy review is retained under
+`assets/staging/heroine-v1/head/soft-oval-v1/north/`.
 The current SE/SW and E/W facial overviews/comparisons are retained in
 `front-diagonals/` and `profiles/` below that face-review root. Other review
 previews are intentionally absent after cleanup. Rebuild them with

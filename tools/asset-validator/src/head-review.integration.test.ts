@@ -213,6 +213,20 @@ it('reviews authored S/N anatomy with exact partitions, approved hair, native de
     }
     expect(await prepareHeadReview(coherentOptions)).toEqual(coherent);
     for (const output of coherent.outputs) expect(sha256(await readFile(resolve(coherentOptions.outputDirectory, output.path)))).toBe(output.sha256);
+    // The pending full-back visual gate exports only retained N anatomy, without S dependencies.
+    const northOptions = { ...coherentOptions, reviewDirection: 'N' as const, outputDirectory: resolve(temporary, 'north') }, north = await prepareHeadReview(northOptions);
+    expect(north).toMatchObject({ supportedReviewDirections: ['N'], anatomyApproved: false, published: false, reviewScope: 'north-only', hiddenFrontalLayers: ['eyes', 'eyebrows', 'mouth', 'hair-front'], previewColumns: ['reference', 'bare-head-neck-skin-base', 'accepted-hair+head+neck'] });
+    expect(north.measurements).toEqual(coherent.measurements.filter(m => m.direction === 'N'));
+    expect(north.masters).toEqual(coherent.masters.filter(m => m.direction === 'N'));
+    expect(north.hairMeasurements).toEqual(coherent.hairMeasurements.filter(m => m.direction === 'N'));
+    expect(north.fitMeasurements).toEqual(coherent.fitMeasurements.filter(m => m.direction === 'N'));
+    const northOverview = decodePng(await readFile(resolve(northOptions.outputDirectory, 'overview.png')));
+    expect([northOverview.width, northOverview.height]).toEqual([1152, 440]);
+    expect(north.outputs.some(o => /(?:^|\/)S(?:[.-]|$)/.test(o.path))).toBe(false);
+    for (const output of north.outputs) expect(sha256(await readFile(resolve(northOptions.outputDirectory, output.path)))).toBe(output.sha256);
+    const northSources = resolve(temporary, 'north-sources'); await cp(sourceDirectory, northSources, { recursive: true }); await rm(resolve(northSources, 'S-master-v1.png'));
+    expect(await prepareHeadReview({ ...northOptions, sourceDirectory: northSources, outputDirectory: resolve(temporary, 'north-repeat') })).toEqual(north);
+    await expect(prepareHeadReview({ ...northOptions, configSource: 'profiles-authoring-v3.json', outputDirectory: resolve(temporary, 'wrong-north-scope') })).rejects.toThrow('Dedicated N review requires');
     const copy = resolve(temporary, 'invalid-source'); await cp(sourceDirectory, copy, { recursive: true });
     const draft = headReviewSchema.parse(JSON.parse(await readFile(resolve(copy, 'authoring-v1.json'), 'utf8')));
     // Re-pinning an altered partition must still fail semantic pixel preservation.
