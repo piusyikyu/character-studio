@@ -1,5 +1,82 @@
 # Step 6C — native S facial-feature separation
 
+## Revision-5 approval and reference brow ownership — 2026-10-13
+
+The user approved revision 5 and requested cleanup, commit and continued work.
+`review-fit-v5.json` pins the accepted S standing-reference fit without rewriting
+the source config/artwork. Complete brows and all production review debt remain
+open. Current exports omit redundant `baseline-v3/` copies and duplicate eye/face
+comparison aliases; historical commands preserve their previous export sets.
+
+The reference's actual brows are purple curves above the eyes. The old 70/56-pixel
+layers labelled brows contain pale upper-eyelid folds instead. The next bounded
+increment separates the true reference brow curves and retains those folds with
+eye detail. Approved head, ears, neck, hair and native positions stay fixed.
+
+## Current neck-edge correction — revision 5, 2026-10-13
+
+The user authorised continuing after the asset cleanup. `pnpm face:review` now
+selects `authoring-v5.json`: a bounded S neck-side ownership correction. The
+head/retention, both ears, nose and original eye/brow/mouth layers are exactly
+the revision-4 inputs. Native origins and core plane order are unchanged.
+
+A built-in imagegen study supplies 1,524 manually selected same-facing hair
+pixels in two independently traced neck-side corridors. This backing composes
+behind the existing anatomy, including partially transparent skin edges that
+the earlier empty-pixel repair skipped. Twenty-eight generated jaw/skin boundary
+pixels are explicitly excluded. The full generated image is not accepted: its
+opaque background and changes outside the selected corridors are discarded.
+The final layers remain transparent; no shifting, resizing, mirroring or global
+colour-key cleanup is used.
+
+The new front-clear mask selects 476 coordinates and removes 217 active pixels
+at the proximal selection edges, including five isolated dark/warm fragments.
+The new rear layer resets all 109 earlier reference-gap selections to their
+original coherent-hair ownership before adding the continuous backing. The
+neck resets its 23 scattered reference overrides to the original revision-4
+anatomy study. These are the complete permitted changes; all other source
+pixels remain exact. The anatomy's continuous dark neck outline is retained.
+
+Review **reference / revision 4 / revision 5** in
+`assets/staging/heroine-v1/face/reference-v1/inspection/neck-edge-comparison.png`.
+Its native crop is x455/y242/120×76, magnified 4× for inspection. The full face
+comparison is `inspection/head-ear-fit-comparison.png`; the overview, actual
+layers and zero-transform anatomy/reference viewer also show revision 5.
+Both existing bounded cheek-gap diagnostics remain zero; this does not certify
+all hair geometry, mask transitions or future body occlusion.
+
+`pnpm face:review:v4` rebuilds the previous checkpoint under `historical-v4/`.
+Older version commands and their pinned sources remain available. Selected
+study/guide/settings are in `inputs/neck-edges-v5/`, with the exact built-in prompt
+and input roles in `prompts-v5.json`. The guide and partition scripts are
+`inputs/create-s-neck-backing-guide-v5.js` and
+`inputs/partition-s-neck-edges-v5.js`; replay only in a separate scratch copy.
+Normal review consumes local pinned inputs and needs no generation service.
+
+Revision 5 is an **unapproved** offline standing-reference candidate. Review the
+neck-side shading, hair continuity and skin/alpha joins before another increment.
+Complete eyebrows are still unfinished. Other facial/ear variants, materials,
+concealed full hair, body/clothing, production T-pose, independent pixel assets
+and final Step 6C acceptance remain open. Step 6D has not started. The previous
+revision descriptions below are historical.
+
+Revision-5 verification: asset-validator typecheck, root lint (zero warnings),
+JavaScript/declaration build, current/default and historical-v4 CLI exports,
+the existing face and workspace-cleanup integration workflows (two passed,
+132.30 seconds), and the local Chromium v4/v5 viewer check passed. Coverage
+includes actual core-plane composition, unchanged head/ears/features, native
+backing at partial-alpha skin samples, deterministic output, source preservation
+and rejection of re-pinned edits outside the masks. All 464 earlier artwork,
+configuration, reference and script files retain hashes/mtimes; the source README
+was updated intentionally. Fifty-one current PNGs, 47 historical PNGs and both
+viewer hashes verified. Seven authoring/guide outputs replayed byte-for-byte in
+scratch. The sampled alpha values changed from 19/40 to 254/253. An initial
+test assertion requiring 255 was corrected to accept >=250, preserving native
+study alpha. `fit-audit-v5.json` records evidence and review debt. Full application
+build/browser E2E were not rerun for this local artwork increment. Generated
+historical previews and build caches are cleared after validation; current
+review outputs and native reference staging remain available.
+
 ## Revision-4 cheek/neck line diagnosis — 2026-10-13
 
 The user found the fit better but flagged the short lines beside the jaw/neck

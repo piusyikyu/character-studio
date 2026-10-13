@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-13",
+  "direction": "S",
+  "assetVersion": 5,
+  "decision": "draft-needs-human-review",
+  "configSha256": "856bca856e02c799d3ce15bb3b7a55245513c3c57bb2a23fc0a07fa0dd0d89c6",
+  "faceFitSha256": "d91ba3564312f1bacbd7f4822709e93a2a4b9db9e9c388a828f88481e3525ea9",
+  "previousFitSha256": "e850aca7d6ae7f04c503524dd472a3f9a8bc1b6cd84695650bff24099b202545",
+  "baselineCommit": "cddba17",
+  "nativePosition": {
+    "x": 0,
+    "y": 0
+  },
+  "comparison": {
+    "path": "inspection/neck-edge-comparison.png",
+    "columns": [
+      "reference",
+      "revision-4",
+      "revision-5"
+    ],
+    "crop": {
+      "x": 455,
+      "y": 242,
+      "width": 120,
+      "height": 76
+    },
+    "displayMagnification": 4,
+    "sampling": "native-copy"
+  },
+  "measurements": {
+    "frontCleared": 476,
+    "frontActiveCleared": 217,
+    "rearBacking": 1524,
+    "rearReset": 109,
+    "neckReset": 23
+  },
+  "unchanged": [
+    "Revision-4 head and retention",
+    "Both ears",
+    "Reference nose and original eye/brow/mouth layers",
+    "Native anchors and core plane order",
+    "All previously retained artwork/configuration inputs"
+  ],
+  "validation": {
+    "assetValidatorTypecheck": "passed",
+    "rootLint": "passed, zero warnings",
+    "assetValidatorBuild": "passed: ESM and declarations",
+    "currentAndHistoricalV4Exports": "passed",
+    "existingIntegrationWorkflows": {
+      "command": "pnpm exec vitest run tools/asset-validator/src/face-review.integration.test.ts tools/asset-validator/src/workspace-cleanup.integration.test.ts",
+      "result": "2 passed",
+      "seconds": 132.3,
+      "coverage": [
+        "Actual core-plane composition",
+        "Continuous backing behind partial-alpha anatomy samples",
+        "Removal of disconnected foreground fragments and rear skin ownership",
+        "Unchanged head/ear/features",
+        "Historical revision-4 fit hash",
+        "Deterministic output and immutable source hashes/mtimes",
+        "Rejection of re-pinned edits outside the local masks",
+        "Current-review preservation during cleanup"
+      ]
+    },
+    "offlineChromium": "passed: current v5 and historical v4 native/default/opacity/transform controls, unchanged head overlay, native assembly isolation, zero cheek gaps and changed neck backing",
+    "scratchReplay": "7 guide/asset/config outputs byte-for-byte",
+    "verification": {
+      "priorSourceInputsUnchanged": 464,
+      "updatedDocumentation": "assets/source/README.md",
+      "currentPNG": 51,
+      "previousPNG": 47,
+      "htmlHashesMatched": 2,
+      "continuity": [
+        {
+          "x": 488,
+          "y": 271,
+          "previousAlpha": 19,
+          "currentAlpha": 254
+        },
+        {
+          "x": 540,
+          "y": 272,
+          "previousAlpha": 40,
+          "currentAlpha": 253
+        }
+      ]
+    },
+    "earlierFailedCheck": "The first integration run required alpha 255 at a generated hair sample with native alpha 254. The coverage assertion now accepts >=250; artwork alpha was not changed.",
+    "scope": "Full application build and studio browser E2E were not rerun for this local artwork increment."
+  },
+  "limitations": [
+    "Revision 5 replaces disconnected neck-side strips with bounded native S hair backing, clears proximal foreground selection fragments and restores the 23 reference-neck overrides to their original anatomy-study pixels.",
+    "Head, both ears, nose, facial feature layers and native anchors remain byte-identical to revision 4. Original coherent hair outside the selected corridors is preserved; no shifts, scaling, mirroring or broad colour keys are applied.",
+    "The generated study supplied only manually selected hair pixels. Its changed artwork and opaque background outside those masks are discarded. Source layers remain transparent.",
+    "Review neck-side shading, alpha/skin joins and local hair ownership. Complete eyebrows, other facings/expressions/materials, concealed hair, body/clothing, production T-pose, independent pixel artwork and final Step 6C acceptance remain unfinished. Step 6D has not started."
+  ]
+}

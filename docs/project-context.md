@@ -2,6 +2,45 @@
 
 > Purpose: This file transfers the **requirements and decisions** from a ChatGPT planning conversation into the WSL2/VS Code Codex development workflow. It is project context, **not** proof that any implementation is complete. Review actual repository files and tests before assuming a feature exists.
 
+## Approved S neck-side fit and next eyebrow increment — 2026-10-13
+
+The user approved revision 5 and requested cleanup, a local commit, and continued
+Step 6C work. `face/reference-v1/review-fit-v5.json` pins the unchanged config,
+current sources and native fit hash. This approves the S standing-reference
+head/ear/neck and neck-side hair fit checkpoint, with eyebrows still unfinished.
+It does not approve production anatomy, body occlusion, T-pose or final Step 6C.
+
+Current review exports omit redundant revision-3 baseline copies and two duplicate
+comparison aliases. Historical version commands still rebuild their earlier
+outputs; all pinned source studies, masks and configurations remain local.
+Generated caches are cleared with the existing cleanup command.
+
+Native reference inspection shows the old layers labelled brows are pale upper
+eyelid folds. The actual visible eyebrows are the purple curves higher on the
+forehead. Next separate those same-facing reference curves at native coordinates,
+retaining the existing folds with the eye detail and preserving approved head,
+ears, neck and hair. Review the new assembly before further work. Step 6D has
+not started. Earlier pending-approval statements below are historical.
+
+## S neck-side hair backing candidate — revision 5, 2026-10-13
+
+The user authorised continuing after cleanup. `pnpm face:review` now selects
+`face/reference-v1/authoring-v5.json`; `face:review:v4` reproduces the preceding
+checkpoint. The new version adds continuous local S hair backing behind the
+neck and clears cropped foreground fragments. It resets 109 earlier rear-gap
+selections and 23 scattered reference-neck overrides before applying the new
+native ownership. Head, ears, nose and all facial features stay byte-identical
+to revision 4. The raw generated study has an unwanted opaque background;
+only 1,524 manually selected native hair pixels are retained in transparent
+layers, with 28 jaw/skin boundary pixels excluded.
+
+Review `face/reference-v1/inspection/neck-edge-comparison.png` in staging:
+reference / revision 4 / revision 5. The current viewer retains zero rotation
+and offsets. Neck-edge shading, alpha transitions and hair ownership still
+need human approval; full eyebrows remain unfinished. See modular-face.md for
+selected masks, prompts and scratch replay. This is uncommitted candidate work,
+not final Step 6C acceptance or approval to start Step 6D.
+
 ## Asset folder consolidation and investigation archive — 2026-10-13
 
 Commit `831093c` preserves the current face work before the user-requested

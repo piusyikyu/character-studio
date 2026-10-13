@@ -12,6 +12,7 @@ import { sha256 } from './reference-import';
 import { faceProportionSchema, validateFaceProportionRepair } from './face-proportion-repair';
 import { prepareFaceOverlayInspection } from './face-overlay-inspection';
 import { faceAlignmentRepairSchema, faceAlignmentGeometry, validateFaceAlignmentRepair } from './face-alignment-repair';
+import { faceNeckEdgeRepairSchema, faceNeckEdgeGeometry, validateFaceNeckEdgeRepair, faceNeckEdgeComparison } from './face-neck-edge-repair';
 
 const hash = z.string().regex(/^[a-f0-9]{64}$/);
 const pin = z.strictObject({ source: assetSourceSchema, sourceSha256: hash });
@@ -21,19 +22,20 @@ const featureNames = ['rightEye', 'leftEye', 'rightBrow', 'leftBrow', 'mouth'] a
 const sides = { rightEye: 'right', leftEye: 'left', rightBrow: 'right', leftBrow: 'left', mouth: 'center' } as const;
 const planes = { rightEye: 'eyes', leftEye: 'eyes', rightBrow: 'eyebrows', leftBrow: 'eyebrows', mouth: 'mouth' } as const;
 export const faceReviewSchema = z.strictObject({
-  schemaVersion: z.literal(1), id: z.literal('face.reference.v1'), assetVersion: z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4)]), direction: z.literal('S'), target: z.literal('detailed'),
+  schemaVersion: z.literal(1), id: z.literal('face.reference.v1'), assetVersion: z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4), z.literal(5)]), direction: z.literal('S'), target: z.literal('detailed'),
   sourcePose: z.literal('standing-reference'), intendedRuntimePose: z.literal('tpose'), published: z.literal(false), paletteReady: z.literal(false), status: z.literal('draft-needs-human-review'),
   method: z.enum(['manually-selected-native-S-reference-features', 'locally-authored-native-S-eye-fit', 'reference-proportioned-native-S-head-fit']), nativeSize: z.strictObject({ width: z.literal(1024), height: z.literal(1536) }),
   earConfig: z.strictObject({ source: z.literal('authoring-v2.json'), sourceSha256: hash }), earApproval: z.strictObject({ source: z.literal('review-fit-v2.json'), sourceSha256: hash }),
   reference: pin, settings: z.strictObject({ source: z.enum(['inputs/feature-selections-v2.json', 'inputs/eye-fit-selections-v2.json', 'inputs/slim-face-features-v3.json']), sourceSha256: hash }),
   baseline: z.strictObject({ source: z.literal('authoring-v1.json'), sourceSha256: hash }).optional(), study: pin.optional(),
-  previous: z.strictObject({ source: z.enum(['authoring-v2.json', 'authoring-v3.json']), sourceSha256: hash }).optional(), headFit: faceProportionSchema.optional(), alignmentRepair: faceAlignmentRepairSchema.optional(),
+  previous: z.strictObject({ source: z.enum(['authoring-v2.json', 'authoring-v3.json', 'authoring-v4.json']), sourceSha256: hash }).optional(), headFit: faceProportionSchema.optional(), alignmentRepair: faceAlignmentRepairSchema.optional(), neckEdgeRepair: faceNeckEdgeRepairSchema.optional(),
   features: z.strictObject({
     rightEye: layer.extend({ plane: z.literal('eyes'), side: z.literal('right') }), leftEye: layer.extend({ plane: z.literal('eyes'), side: z.literal('left') }),
     rightBrow: layer.extend({ plane: z.literal('eyebrows'), side: z.literal('right') }), leftBrow: layer.extend({ plane: z.literal('eyebrows'), side: z.literal('left') }),
     mouth: layer.extend({ plane: z.literal('mouth'), side: z.literal('center') }),
   }), knownReviewIssues: z.array(z.string().min(1)).min(1),
-}).refine((d) => (d.assetVersion === 4 ? !!d.alignmentRepair && d.previous?.source === 'authoring-v3.json' : !d.alignmentRepair && (!d.previous || d.previous.source === 'authoring-v2.json')) && (d.assetVersion === 1
+}).refine((d) => (d.assetVersion === 5 ? !!d.neckEdgeRepair && !!d.alignmentRepair && d.previous?.source === 'authoring-v4.json'
+  : !d.neckEdgeRepair && (d.assetVersion === 4 ? !!d.alignmentRepair && d.previous?.source === 'authoring-v3.json' : !d.alignmentRepair && (!d.previous || d.previous.source === 'authoring-v2.json'))) && (d.assetVersion === 1
   ? d.method === 'manually-selected-native-S-reference-features' && !d.baseline && !d.study && !d.previous && !d.headFit && d.settings.source === 'inputs/feature-selections-v2.json' && featureNames.every((name) => !d.features[name].owner || d.features[name].owner === 'reference')
   : d.assetVersion === 2
     ? d.method === 'locally-authored-native-S-eye-fit' && !!d.baseline && !!d.study && !d.previous && !d.headFit && d.settings.source === 'inputs/eye-fit-selections-v2.json' && featureNames.every((name) => d.features[name].owner === (name === 'mouth' ? 'reference' : 'study'))
@@ -62,7 +64,7 @@ export interface FaceReviewOptions {
   readonly headDirectory: string;
   readonly referenceDirectory: string;
   readonly outputDirectory: string;
-  readonly configFile?: 'authoring-v1.json' | 'authoring-v2.json' | 'authoring-v3.json' | 'authoring-v4.json';
+  readonly configFile?: 'authoring-v1.json' | 'authoring-v2.json' | 'authoring-v3.json' | 'authoring-v4.json' | 'authoring-v5.json';
 }
 
 /** Local S facial-feature review over approved modular ears; never publishes runtime assets. */
@@ -89,13 +91,14 @@ export async function prepareFaceReview(options: FaceReviewOptions) {
     for (let i = 0; i < image.data.length; i += 4) if (image.data[i + 3]! < 8) image.data.fill(0, i, i + 4);
     return image;
   };
-  const configBytes = await read(sourceDirectory!, options.configFile ?? 'authoring-v4.json'), config = faceReviewSchema.parse(JSON.parse(configBytes.toString('utf8')));
+  const configBytes = await read(sourceDirectory!, options.configFile ?? 'authoring-v5.json'), config = faceReviewSchema.parse(JSON.parse(configBytes.toString('utf8')));
   const prior = config.baseline ? faceReviewSchema.parse(JSON.parse((await read(sourceDirectory!, config.baseline.source, config.baseline.sourceSha256)).toString('utf8'))) : undefined;
   const unchangedMouth = { ...config.features.mouth }; delete unchangedMouth.owner;
   if (prior && (prior.assetVersion !== 1 || JSON.stringify(prior.reference) !== JSON.stringify(config.reference) || JSON.stringify(prior.earConfig) !== JSON.stringify(config.earConfig) || JSON.stringify(prior.earApproval) !== JSON.stringify(config.earApproval) || JSON.stringify(prior.features.mouth) !== JSON.stringify(unchangedMouth))) throw new Error('Eye fit must preserve the pinned reference, approved ears and original mouth layer.');
   const previous = config.previous ? faceReviewSchema.parse(JSON.parse((await read(sourceDirectory!, config.previous.source, config.previous.sourceSha256)).toString('utf8'))) : prior;
   if (config.assetVersion >= 3 && featureNames.some((name) => { const current = { ...config.features[name] }; delete current.owner; return JSON.stringify(current) !== JSON.stringify(prior!.features[name]); })) throw new Error('Face proportion revision must restore exact original reference feature layers.');
   if (config.assetVersion === 4 && (previous?.assetVersion !== 3 || ['headFit', 'study', 'settings'].some(key => JSON.stringify(config[key as 'headFit' | 'study' | 'settings']) !== JSON.stringify(previous[key as 'headFit' | 'study' | 'settings'])))) throw new Error('Alignment repair must preserve its exact pinned revision-3 anatomy baseline.');
+  if (config.assetVersion === 5 && (previous?.assetVersion !== 4 || (['headFit', 'study', 'settings', 'alignmentRepair', 'reference', 'earConfig', 'earApproval', 'baseline', 'features'] as const).some(key => JSON.stringify(config[key]) !== JSON.stringify(previous[key])))) throw new Error('Neck-edge repair must preserve its exact pinned revision-4 anatomy and feature baseline.');
   const settings = settingsSchema.parse(JSON.parse((await read(sourceDirectory!, config.settings.source, config.settings.sourceSha256)).toString('utf8')));
   if (settings.method !== config.method) throw new Error('Facial study ownership method differs from its configuration.');
   const earBytes = await read(earDirectory!, config.earConfig.source, config.earConfig.sourceSha256), ears = earReviewSchema.parse(JSON.parse(earBytes.toString('utf8')));
@@ -159,6 +162,8 @@ export async function prepareFaceReview(options: FaceReviewOptions) {
     };
     const unrepairedFit = compose(true, true);
     let alignmentMeasurements: ReturnType<typeof validateFaceAlignmentRepair> | undefined;
+    let neckEdgeMeasurements: ReturnType<typeof validateFaceNeckEdgeRepair> | undefined;
+    let neckEdgePreviousFit: RgbaImage | undefined;
     if (config.alignmentRepair) {
       const r = config.alignmentRepair, ownership = JSON.parse((await read(sourceDirectory!, r.settings.source, r.settings.sourceSha256)).toString('utf8'));
       if (ownership.schemaVersion !== 1 || Object.entries(faceAlignmentGeometry).some(([key, value]) => JSON.stringify(ownership[key]) !== JSON.stringify(value))) throw new Error('Alignment masks must preserve the reviewed native geometry.');
@@ -180,10 +185,29 @@ export async function prepareFaceReview(options: FaceReviewOptions) {
         { path: 'layers/S-front-hair.png', image: alignedFront }, { path: 'layers/S-rear-hair.png', image: alignedRear }, { path: 'masks/S-head-retention.png', image: alignedRetention },
         ...[{ path: 'head', image: headSelection }, { path: 'neck', image: neckSelection }, { path: 'reference-neck', image: neckReferenceSelection }, { path: 'left-ear', image: earSelection }, { path: 'reference-left-ear', image: earReferenceSelection }, { path: 'front-hair', image: frontSelection }, { path: 'rear-hair', image: rearSelection }].map(out => ({ ...out, path: `masks/S-aligned-${out.path}.png` })));
     }
+    if (config.neckEdgeRepair) {
+      const r = config.neckEdgeRepair;
+      const ownership = JSON.parse((await read(sourceDirectory!, r.settings.source, r.settings.sourceSha256)).toString('utf8'));
+      if (ownership.schemaVersion !== 1 || Object.entries(faceNeckEdgeGeometry).some(([key, value]) => JSON.stringify(ownership[key]) !== JSON.stringify(value))) throw new Error('Neck-edge masks must preserve the manually reviewed native geometry.');
+      const [backingStudy, correctedFront, frontSelection, correctedRear, rearSelection, correctedNeck, neckSelection, anatomyStudy, previousRearSelection, previousNeckSelection] = await Promise.all([
+        load(sourceDirectory!, r.study), load(sourceDirectory!, r.front), load(sourceDirectory!, r.front.selection), load(sourceDirectory!, r.rear), load(sourceDirectory!, r.rear.selection), load(sourceDirectory!, r.neck), load(sourceDirectory!, r.neck.selection),
+        load(sourceDirectory!, config.alignmentRepair!.study), load(sourceDirectory!, config.alignmentRepair!.rear.selection), load(sourceDirectory!, config.alignmentRepair!.neck.referenceSelection),
+      ]);
+      neckEdgePreviousFit = compose(true, true);
+      neckEdgeMeasurements = validateFaceNeckEdgeRepair({ study: backingStudy, anatomyStudy, originalRear: rear, previousFront: composedFront, previousRear: composedRear, previousNeck: composedNeck, previousRearSelection, previousNeckSelection,
+        front: correctedFront, frontSelection, rear: correctedRear, rearSelection, neck: correctedNeck, neckSelection });
+      composedFront = correctedFront; composedRear = correctedRear; composedNeck = correctedNeck;
+      for (const output of proportionOutputs) {
+        if (output.path === 'layers/S-front-hair.png') output.image = correctedFront;
+        if (output.path === 'layers/S-rear-hair.png') output.image = correctedRear;
+        if (output.path === 'layers/S-neck.png') output.image = correctedNeck;
+      }
+      proportionOutputs.push({ path: 'masks/S-neck-edge-front-clear.png', image: frontSelection }, { path: 'masks/S-neck-edge-rear-backing.png', image: rearSelection }, { path: 'masks/S-neck-edge-skin-reset.png', image: neckSelection });
+    }
     const baselineFit = compose(false, true, [], approvedMaskedHead, approvedEarPair, neck, front, rear), bareFit = compose(true, false), faceFit = compose(true, true), features = blankImage(1024, 1536);
     for (const layer of layers) drawRgba(features, layer.image, 0, 0);
     const previousLayers = previous ? await Promise.all(featureNames.map(async (name) => ({ name, image: await load(sourceDirectory!, previous.features[name]), mask: await load(sourceDirectory!, previous.features[name].selection), plane: previous.features[name].plane, pixels: previous.features[name].pixelCount, occluded: 0 }))) : layers;
-    const previousFit = config.assetVersion === 4 ? unrepairedFit : compose(true, true, previousLayers, approvedMaskedHead, approvedEarPair, neck, front, rear), comparison = blankImage(1152, 440);
+    const previousFit = neckEdgePreviousFit ?? (config.assetVersion === 4 ? unrepairedFit : compose(true, true, previousLayers, approvedMaskedHead, approvedEarPair, neck, front, rear)), comparison = blankImage(1152, 440);
     for (const [column, image] of [reference, previousFit, faceFit].entries()) drawRgba(comparison, checkerPreview(crop(image), 'S'), column * 384, 0);
     if (sha256(encodePng(baselineFit)) !== baseline.humanFitSha256) throw new Error('Facial assembly must preserve approved ear/head/hair composition.');
     const overview = blankImage(1152, 440), anatomy = blankImage(1152, 440);
@@ -198,12 +222,16 @@ export async function prepareFaceReview(options: FaceReviewOptions) {
       ...(prior ? [{ path: 'inspection/eye-fit-comparison.png', image: comparison }] : []),
       ...proportionOutputs,
       ...(config.headFit ? [{ path: 'inspection/face-size-comparison.png', image: comparison }] : []),
-      ...(config.assetVersion === 4 ? [{ path: 'inspection/head-ear-fit-comparison.png', image: comparison }] : []),
+      ...(config.assetVersion >= 4 ? [{ path: 'inspection/head-ear-fit-comparison.png', image: comparison }] : []),
+      ...(neckEdgePreviousFit ? [{ path: 'inspection/neck-edge-comparison.png', image: faceNeckEdgeComparison(reference, neckEdgePreviousFit, faceFit) }] : []),
       ...(overlayInspection?.images ?? []),
-    ];
+    ].filter(({ path }) => config.assetVersion < 5 || (!path.startsWith('baseline-v3/') && !['inspection/eye-fit-comparison.png', 'inspection/face-size-comparison.png'].includes(path)));
     const report = { schemaVersion: 1, id: config.id, assetVersion: config.assetVersion, configSha256: sha256(configBytes), status: config.status, anatomyApproved: false, published: false, paletteReady: false, supportedReviewDirections: ['S'], missingDirections: DIRECTIONS.filter((d) => d !== 'S'),
       earApprovalSha256: config.earApproval.sourceSha256, approvedEarFitSha256: baseline.humanFitSha256, faceFitSha256: sha256(encodePng(faceFit)), nativePosition: { x: 0, y: 0 },
-      previewColumns: ['S-reference', 'approved-smaller-ear-fit', `native-feature-fit-v${config.assetVersion}`], comparisonColumns: ['reference', config.assetVersion === 4 ? 'previous-native-fit-v3' : config.assetVersion === 3 ? 'rejected-eye-fit-on-broad-face' : 'rejected-original-placement', config.assetVersion === 4 ? 'aligned-head-left-ear-fit-v4' : config.assetVersion === 3 ? 'slimmer-face-with-reference-features' : 'local-eye-fit'], previousFitSha256: sha256(encodePng(previousFit)), retainedEarPixels: alignmentMeasurements ? { right: retainedEarPixels!.right, left: alignmentMeasurements.leftEar } : retainedEarPixels, alignmentMeasurements, anatomyColumns: ['approved-head', 'isolated-native-features', 'bare-head-with-features'], closeupRegion: { x: 320, y: 40, width: 384, height: 440, sampling: 'native-copy' },
+      previewColumns: ['S-reference', 'approved-smaller-ear-fit', `native-feature-fit-v${config.assetVersion}`], comparisonColumns: ['reference', config.assetVersion === 5 ? 'previous-native-fit-v4' : config.assetVersion === 4 ? 'previous-native-fit-v3' : config.assetVersion === 3 ? 'rejected-eye-fit-on-broad-face' : 'rejected-original-placement', config.assetVersion === 5 ? 'continuous-neck-edge-fit-v5' : config.assetVersion === 4 ? 'aligned-head-left-ear-fit-v4' : config.assetVersion === 3 ? 'slimmer-face-with-reference-features' : 'local-eye-fit'], previousFitSha256: sha256(encodePng(previousFit)), retainedEarPixels: alignmentMeasurements ? { right: retainedEarPixels!.right, left: alignmentMeasurements.leftEar } : retainedEarPixels, alignmentMeasurements, neckEdgeMeasurements,
+      neckEdgeInspection: neckEdgePreviousFit ? { path: 'inspection/neck-edge-comparison.png', columns: ['reference', 'revision-4', 'revision-5'], crop: { x: 455, y: 242, width: 120, height: 76 }, displayMagnification: 4, sampling: 'native-copy' } : undefined,
+      alignmentMeasurementsScope: config.neckEdgeRepair ? 'Pinned revision-4 baseline, before the ordered neck-edge overrides' : 'Current aligned fit',
+      anatomyColumns: ['approved-head', 'isolated-native-features', 'bare-head-with-features'], closeupRegion: { x: 320, y: 40, width: 384, height: 440, sampling: 'native-copy' },
       measurements: layers.map(({ name, pixels, occluded }) => ({ name, side: config.features[name].side, plane: config.features[name].plane, owner: config.features[name].owner ?? 'reference', pixels, foregroundHairOverlapPixels: occluded, origin: config.features[name].origin })),
       knownReviewIssues: config.knownReviewIssues, reviewRequired: ['Native eye/brow/mouth fit and mask edges', 'Skin colour joins and facial proportions', 'Concealed eye/brow surfaces and independent expression variants', 'Other facings, materials and production T-pose', 'Final Step 6C approval before Step 6D'],
       overlayInspection: overlayInspection?.metadata, interactiveInspection: overlayInspection ? { path: 'inspection/head-reference-overlay.html', sha256: sha256(new TextEncoder().encode(overlayInspection.html)) } : undefined,

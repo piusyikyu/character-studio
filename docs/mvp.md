@@ -7,6 +7,18 @@ The 2026-10-13 [asset cleanup](asset-cleanup.md) groups offline source/staging
 packs and removes regenerable caches. It changes no milestone acceptance:
 Step 6C and revision-4 facial review remain unfinished; Step 6D has not started.
 
+The subsequent revision-5 facial candidate corrects the flagged neck-side mask
+strips with local S hair backing and bounded source ownership. `pnpm face:review`
+selects v5 and `face:review:v4` retains v4. Head, ears and facial features are
+unchanged; the new neck-edge comparison needs visual approval. This remains
+Step 6C work. Complete eyebrows and later production anatomy are unfinished.
+
+The user subsequently approved revision-5 S standing-reference fit, pinned in
+`face/reference-v1/review-fit-v5.json`, and authorised continuing with eyebrows
+after cleanup and a local commit. The current brow-labelled patches are upper
+eyelid folds; the true reference eyebrow curves require separate native masks.
+This approval does not complete Step 6C or advance Step 6D.
+
 ## MVP scope
 - Target resolutions: detailed `1024x1536` in authored `tpose`; pixel `128x192` in authored `idle`.
 - Facings: all eight `N, NE, E, SE, S, SW, W, NW` separately authored; no automatic mirroring.

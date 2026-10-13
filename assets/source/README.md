@@ -5,6 +5,12 @@ Packs are grouped by type under `heroine-v1/{hair,head,ears,face}/`. See
 checkpoint archive. Keep selected derivation baselines here; obsolete previews
 belong in ignored staging and can be removed with `pnpm assets:clean`.
 
+`heroine-v1/face/reference-v1/authoring-v5.json` selects the approved S neck-edge
+hair-backing correction. Its generated study is an authoring input; only locally
+masked hair pixels are consumed. Head/ear/facial inputs remain pinned to v4.
+`review-fit-v5.json` pins standing-reference approval; brows and production anatomy
+remain unfinished. See [modular-face.md](../../docs/modular-face.md).
+
 Contains versioned layered source files and authoring inputs. The initial
 `heroine-v1/hair/long-waves-v1` PNGs have S/N design approval and remain unpublished authoring drafts, with
 hashes, selected imagegen prompts and provisional geometry in their review JSON.

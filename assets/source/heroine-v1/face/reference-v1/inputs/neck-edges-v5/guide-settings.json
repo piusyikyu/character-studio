@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "source": "fit/S.png",
+  "polygon": [
+    [
+      481,
+      250
+    ],
+    [
+      490,
+      256
+    ],
+    [
+      507,
+      267
+    ],
+    [
+      519,
+      268
+    ],
+    [
+      537,
+      254
+    ],
+    [
+      547,
+      246
+    ],
+    [
+      551,
+      268
+    ],
+    [
+      549,
+      285
+    ],
+    [
+      557,
+      307
+    ],
+    [
+      557,
+      322
+    ],
+    [
+      476,
+      322
+    ],
+    [
+      477,
+      306
+    ],
+    [
+      483,
+      291
+    ],
+    [
+      485,
+      279
+    ],
+    [
+      485,
+      260
+    ]
+  ],
+  "role": "Paint marked concealed backing as continuous S silver-lilac hair; anatomy will be restored above."
+}
