@@ -1,7 +1,12 @@
 # Source artwork
 
+Packs are grouped by type under `heroine-v1/{hair,head,ears,face}/`. See
+[asset-cleanup.md](../../docs/asset-cleanup.md) for the folder migration and
+checkpoint archive. Keep selected derivation baselines here; obsolete previews
+belong in ignored staging and can be removed with `pnpm assets:clean`.
+
 Contains versioned layered source files and authoring inputs. The initial
-`heroine-v1/hair-long-waves-v1` PNGs have S/N design approval and remain unpublished authoring drafts, with
+`heroine-v1/hair/long-waves-v1` PNGs have S/N design approval and remain unpublished authoring drafts, with
 hashes, selected imagegen prompts and provisional geometry in their review JSON.
 The E/W profile PNGs also have standing-reference design approval; their config
 and prompts are prefixed `profiles-`, with accepted hashes in
@@ -33,7 +38,7 @@ frontal fringe. NE design approval is pinned in `back-diagonals-ne-review-v1.jso
 NW shoulder-curl restoration is approved in `back-diagonals-review-v1.json`. The raw NW version1 is retained for
 native mask reproduction in `inputs/back-diagonals-v2/`. Complete anatomy remains pending.
 
-`heroine-v1/head-soft-oval-v1/` contains independent S/N bald skin masters,
+`heroine-v1/head/soft-oval-v1/` contains independent S/N bald skin masters,
 head/neck partitions, native ownership masks and placement-guide provenance.
 These anatomy drafts are unapproved and omit eyes/brows/mouth. Human ears
 remain embedded pending independent variants. See

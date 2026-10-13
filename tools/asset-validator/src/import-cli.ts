@@ -7,8 +7,8 @@ try {
   const metadata = await importReferencePack({
     sourceDirectory: resolve(repository, 'assets/references/heroine-v1/detailed'),
     settingsPath: resolve(repository, 'assets/references/heroine-v1/import-v1.json'),
-    outputDirectory: resolve(repository, 'assets/staging/heroine-v1/reference-import-v1'),
+    outputDirectory: resolve(repository, 'assets/staging/heroine-v1/references/import-v1'),
   });
-  console.log(`Validated ${metadata.frames.length} native references; originals preserved. Staging: assets/staging/heroine-v1/reference-import-v1`);
+  console.log(`Validated ${metadata.frames.length} native references; originals preserved. Staging: assets/staging/heroine-v1/references/import-v1`);
   console.log(`Baseline spread: ${metadata.baselineAudit.range} px. Human review required; no assets published.`);
 } catch (error) { console.error(error); process.exitCode = 1; }

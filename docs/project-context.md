@@ -2,6 +2,23 @@
 
 > Purpose: This file transfers the **requirements and decisions** from a ChatGPT planning conversation into the WSL2/VS Code Codex development workflow. It is project context, **not** proof that any implementation is complete. Review actual repository files and tests before assuming a feature exists.
 
+## Asset folder consolidation and investigation archive — 2026-10-13
+
+Commit `831093c` preserves the current face work before the user-requested
+cleanup. This supersedes earlier statements that facial work is uncommitted;
+revision 4 still needs visual approval and the diagnosed seams remain open.
+Source/staging packs are now grouped under `heroine-v1/{hair,head,ears,face}/`,
+with reference staging at `heroine-v1/references/import-v1/`. Config/approval
+bytes and retained artwork are unchanged. Historical full paths in immutable
+provenance JSON use the migration table in [asset-cleanup.md](asset-cleanup.md).
+
+Five unused images and three abandoned mask drafts are archived in the checkpoint
+and listed with hashes in `asset-cleanup-manifest.json`. Required historical
+derivation baselines stay local. The new `pnpm assets:clean` removes generated
+previews/caches while retaining current face-review outputs/viewer and native
+transparent reference dependencies; other reviews rebuild on demand. The legacy
+demo packages remain intact. Cleanup does not approve art or advance milestones.
+
 ## Revision-4 neck-side seams identified — 2026-10-13
 
 The user finds the fit better but flags short lines beside the jaw/neck. Native
@@ -22,7 +39,7 @@ See `docs/modular-face.md` for native samples and layer evidence.
 ## S native head/left-ear fit revision 4 — 2026-10-13
 
 The user authorised a new S candidate following the three registration studies.
-`face-reference-v1/authoring-v4.json` is now the default offline `pnpm face:review`
+`face/reference-v1/authoring-v4.json` is now the default offline `pnpm face:review`
 selection. The reviewed −5°/X−0.245/Y−2.945 setting guided authored jaw/neck anatomy;
 it is not a baked image/recipe transform. Start the current overlay viewer at zero.
 A smaller complete character-left ear retains visible native S reference pixels;
@@ -73,7 +90,7 @@ final Step 6C acceptance remain pending. See `docs/modular-face.md` for controls
 
 The user identified cheek-to-hair gaps and requested the head anatomy directly
 over the reference to judge face size. The new outputs from `pnpm face:review`
-include `face-reference-v1/inspection/S-head-overlay-closeup.png` (50% head and
+include `face/reference-v1/inspection/S-head-overlay-closeup.png` (50% head and
 cyan contour over the reference), full native overlays, a self-contained
 `head-reference-overlay.html` opacity/zoom viewer and magenta cheek-gap previews.
 All source/native positions are unchanged; zoom affects inspection display only.
@@ -93,11 +110,11 @@ No new artwork, commit or milestone advancement was requested or performed.
 ## S face-size mismatch and revision-3 candidate — 2026-10-12
 
 The user rejected eye-fit revision 2 and identified the broader/heavier face
-relative to the source reference. `face-reference-v1/review-fit-v2.json` pins the
+relative to the source reference. `face/reference-v1/review-fit-v2.json` pins the
 rejection. Revising eye placement on the same broad cheeks/jaw did not address
 the underlying anatomical mismatch.
 
-`face-reference-v1/authoring-v3.json` now selects a local slimmer S lower-head
+`face/reference-v1/authoring-v3.json` now selects a local slimmer S lower-head
 candidate and restores the original S reference eyes/brows/mouth and native nose
 shading. Approved head/neck/ear/hair sources and normal head-review selections
 are preserved. New ear masks retain the current native ear size/pixels while
@@ -105,7 +122,7 @@ trimming old cheek collars. A locally authored root/upper-neck join study suppli
 bounded new head/neck-fit pixels. No artwork is resized, shifted or mirrored.
 
 `pnpm face:review` builds revision 3. Review
-`assets/staging/heroine-v1/face-reference-v1/inspection/face-size-comparison.png`
+`assets/staging/heroine-v1/face/reference-v1/inspection/face-size-comparison.png`
 (reference / rejected revision 2 / revision 3), `overview.png` and
 `anatomy-overview.png`. Both rejected revisions remain available through
 `pnpm face:review:v1` and `pnpm face:review:v2`. The first shape study changed
@@ -121,11 +138,11 @@ Step 6D has not started. Older pending/current descriptions below are historical
 ## S eye-placement rejection and local correction — 2026-10-12
 
 The user rejected the first facial overview for incorrect eye position.
-`face-reference-v1/review-fit-v1.json` pins that rejection. Copying reference
+`face/reference-v1/review-fit-v1.json` pins that rejection. Copying reference
 features at their original coordinates proved source ownership but did not
 establish anatomical placement on the separately authored S head.
 
-`face-reference-v1/authoring-v2.json` now selects locally authored native S eyes
+`face/reference-v1/authoring-v2.json` now selects locally authored native S eyes
 and brows from a retained built-in imagegen study using approved S skin plus
 manual placement guides. Only four bounded same-side feature masks are retained;
 approved head, ears, neck, both hair layers and the reference-owned mouth stay
@@ -133,7 +150,7 @@ unchanged. No source image is shifted, scaled or mirrored. New eye geometry and
 brow colour also need visual review, alongside placement and skin joins.
 
 `pnpm face:review` shows the current candidate. Inspect
-`assets/staging/heroine-v1/face-reference-v1/inspection/eye-fit-comparison.png`
+`assets/staging/heroine-v1/face/reference-v1/inspection/eye-fit-comparison.png`
 (reference / rejected revision 1 / revision 2), `overview.png` and the bare
 `anatomy-overview.png`. `pnpm face:review:v1` retains the rejected overview under
 `historical-v1/`. Exact prompts, raw study, native guide, masks and scratch-replay
@@ -150,11 +167,11 @@ manual masks preserve source RGBA and physical sides; a local refinement exclude
 a brow hair fragment and excess adjacent skin. Earlier extraction outputs remain
 as provenance. All 360 pre-increment source/reference files remain unchanged.
 
-`face-reference-v1/authoring-v1.json` pins the approved ear configuration and
+`face/reference-v1/authoring-v1.json` pins the approved ear configuration and
 approval, reference and selected native layer/mask hashes. `pnpm face:review`
 rebuilds and verifies the approved ear baseline, then uses actual S plane order
 with eyes/brows/mouth beneath foreground hair. Inspect
-`assets/staging/heroine-v1/face-reference-v1/overview.png` and `anatomy-overview.png`.
+`assets/staging/heroine-v1/face/reference-v1/overview.png` and `anatomy-overview.png`.
 The candidate awaits visual approval of contours, skin joins, proportions and
 hair coverage. See `docs/modular-face.md` for source ownership and validation.
 
@@ -168,7 +185,7 @@ N stays an unapproved draft. Step 6C is unfinished and Step 6D has not started.
 ## S ear approval and future size variants — 2026-10-12
 
 The user approved keeping the current smaller S ear size and requested a commit
-and continuation. `ears-human-v1/review-fit-v2.json` records the limited S
+and continuation. `ears/human-v1/review-fit-v2.json` records the limited S
 standing-reference anatomy/underlay/hair-fit checkpoint. Preserve the original
 larger pair too: ear size can become another authored character-design choice,
 with independently authored facing/attachment coverage. This is design intent,
@@ -184,7 +201,7 @@ history below retains superseded pending-review statements.
 
 The user rejected the inherited S ear size as too large relative to the original
 reference and requested smaller ears. Revision 1's exact separation preserved
-that anatomical mismatch. `ears-human-v1/authoring-v2.json` now selects a new,
+that anatomical mismatch. `ears/human-v1/authoring-v2.json` now selects a new,
 unapproved local correction: independently authored smaller S ears from a retained
 built-in imagegen study, with a narrow native selection mask and the prior
 concealed-skin underlay elsewhere. The first study did not reduce size sufficiently
@@ -192,7 +209,7 @@ and was rejected. All accepted head/neck/hair sources and head-review command
 selections remain unchanged; no native artwork is moved, mirrored or resized.
 
 `pnpm ears:review` shows reference / accepted oversized-ear fit / smaller-ear
-candidate. Inspect `assets/staging/heroine-v1/ears-human-v1/overview.png` and
+candidate. Inspect `assets/staging/heroine-v1/ears/human-v1/overview.png` and
 `anatomy-overview.png`. `pnpm ears:review:v1` retains historical separation output
 under `historical-v1/`. Exact prompts, source ownership and replay scripts are
 retained locally; see `docs/modular-ears.md`. Ear size, complete anatomy, contour
@@ -210,9 +227,9 @@ under the active human-ear pair; the restored head and actual S hair fit remain
 byte-identical to the accepted checkpoint. With ears absent, use the complete
 skin underlay without that human mask. Other variants need their own masks.
 
-Selected authoring: `assets/source/heroine-v1/ears-human-v1/authoring-v1.json`.
+Selected authoring: `assets/source/heroine-v1/ears/human-v1/authoring-v1.json`.
 Run `pnpm ears:review` and inspect
-`assets/staging/heroine-v1/ears-human-v1/anatomy-overview.png`, then `overview.png`.
+`assets/staging/heroine-v1/ears/human-v1/anatomy-overview.png`, then `overview.png`.
 The new concealed skin and ear-free contour require approval. See
 `docs/modular-ears.md` for native windows, retained studies, exact prompt records
 and derivation limits. This is S-only; other ear facings/ancestry variants and
@@ -237,9 +254,9 @@ adds independent posterior three-quarter NE/NW bald head/neck candidates, with
 front fringe explicitly hidden and no authored eyes, brows or mouth. Existing
 accepted sources and command selections stay unchanged.
 
-The selected configuration is `head-soft-oval-v1/back-diagonals-authoring-v1.json`.
+The selected configuration is `head/soft-oval-v1/back-diagonals-authoring-v1.json`.
 Run `pnpm head:review:back-diagonals`; review
-`assets/staging/heroine-v1/head-soft-oval-v1/back-diagonals/overview.png` (NE above
+`assets/staging/heroine-v1/head/soft-oval-v1/back-diagonals/overview.png` (NE above
 NW; reference / bare head and neck / actual approved rear hair over skin).
 Raw imagegen studies, complete head/neck partitions, native masks, independent
 placement guides and exact prompt/derivation records are retained in source.
@@ -285,8 +302,8 @@ unchanged. This is a depth correction, with no new image generation or broad
 colour cleanup. Other seams in the circled region still need visual review.
 
 `pnpm head:review:front-diagonals` now selects
-`head-soft-oval-v1/front-diagonals-authoring-v4.json`; its current overview stays at
-`assets/staging/heroine-v1/head-soft-oval-v1/front-diagonals/overview.png`.
+`head/soft-oval-v1/front-diagonals-authoring-v4.json`; its current overview stays at
+`assets/staging/heroine-v1/head/soft-oval-v1/front-diagonals/overview.png`.
 `pnpm head:review:front-diagonals:v3` retains the accepted checkpoint separately.
 The comparison shows reference / revision 3 / revision 4. The latest qualified
 approval above supersedes the prior pending-review state. S/N v5 and E/W v3
@@ -350,13 +367,13 @@ not approved runtime assets. The current review entry points are:
 
 | Scope | Selected source config | Command | Staging overview |
 | --- | --- | --- | --- |
-| S/N head fit | `head-soft-oval-v1/authoring-v5.json` | `pnpm head:review` | `head-soft-oval-v1/overview.png` |
-| E/W head fit | `head-soft-oval-v1/profiles-authoring-v3.json` | `pnpm head:review:profiles` | `head-soft-oval-v1/profiles/overview.png` |
-| SE/SW head fit | `head-soft-oval-v1/front-diagonals-authoring-v3.json` | `pnpm head:review:front-diagonals` | `head-soft-oval-v1/front-diagonals/overview.png` |
+| S/N head fit | `head/soft-oval-v1/authoring-v5.json` | `pnpm head:review` | `head/soft-oval-v1/overview.png` |
+| E/W head fit | `head/soft-oval-v1/profiles-authoring-v3.json` | `pnpm head:review:profiles` | `head/soft-oval-v1/profiles/overview.png` |
+| SE/SW head fit | `head/soft-oval-v1/front-diagonals-authoring-v3.json` | `pnpm head:review:front-diagonals` | `head/soft-oval-v1/front-diagonals/overview.png` |
 
 Config paths in the table are relative to `assets/source/heroine-v1/`; overview
 paths are relative to `assets/staging/heroine-v1/`. For the latest SW repair,
-also inspect `head-soft-oval-v1/front-diagonals/inspection/SW-fit-comparison.png`
+also inspect `head/soft-oval-v1/front-diagonals/inspection/SW-fit-comparison.png`
 (reference / revision 2 / revision 3). Revision-1 and revision-2 head-fit commands
 remain available separately. See `docs/modular-head.md` and
 `front-diagonals-fit-audit-v3.json` for measurements and review limits.
@@ -375,7 +392,7 @@ pnpm install --frozen-lockfile
 Reinstall dependencies rather than transferring `node_modules`, build outputs
 or browser binaries. To regenerate reference staging if it has not been
 transferred, run `pnpm reference:import` first: hair/head review commands read
-`assets/staging/heroine-v1/reference-import-v1/transparent/`. The head commands
+`assets/staging/heroine-v1/references/import-v1/transparent/`. The head commands
 above then rebuild their current inspections from checked-in source assets.
 Hair inspections can be regenerated with `pnpm hair:review`,
 `pnpm hair:review:profiles`, `pnpm hair:review:front-diagonals`,
@@ -518,8 +535,8 @@ browser workflows passed. The user then approved proceeding with Step 6C.
 
 The first Step 6C increment authors S/N long silver-lilac hair as versioned front
 and rear components, with review inputs in
-`assets/source/heroine-v1/hair-long-waves-v1/` and generated inspection outputs in
-`assets/staging/heroine-v1/hair-long-waves-v1/`. N's front fringe is explicitly
+`assets/source/heroine-v1/hair/long-waves-v1/` and generated inspection outputs in
+`assets/staging/heroine-v1/hair/long-waves-v1/`. N's front fringe is explicitly
 hidden. See `docs/modular-hair.md` for provenance, provisional attachments and
 review criteria. Source/import artwork stays immutable. The standing-reference
 draft does not certify T-pose, head/body fit, candidate anatomy or the outstanding
@@ -749,7 +766,7 @@ Near human ears remain embedded, facial features need separate layers, and
 production T-pose/body compatibility remains unverified.
 
 The initial profile review reproduced the reference / bare skin / existing
-hair composition in `assets/staging/heroine-v1/head-soft-oval-v1/profiles/`.
+hair composition in `assets/staging/heroine-v1/head/soft-oval-v1/profiles/`.
 The actual comparison confirms a fit failure: E's hair cap leaves scalp exposed,
 and both front fringes overlap the nose. Earlier hair design approval did not
 approve this head fit. No geometry shift, scalp clipping, contour collage or

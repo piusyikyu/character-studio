@@ -53,7 +53,7 @@ so regeneration repeats the fix. Staging remains subject to human review.
 ## Staging outputs
 
 Everything generated goes into the ignored directory
-`assets/staging/heroine-v1/reference-import-v1/`. Re-running the same inputs and
+`assets/staging/heroine-v1/references/import-v1/`. Re-running the same inputs and
 settings overwrites these derived outputs with identical bytes. No timestamps or
 machine paths enter metadata; PNGs use the existing fixed codec settings.
 

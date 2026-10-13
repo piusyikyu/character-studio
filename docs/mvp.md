@@ -3,6 +3,10 @@
 ## Purpose
 Validate an entire loop from editable character recipe to **two correct independent outputs**, using placeholder layered artwork before scaling up asset generation.
 
+The 2026-10-13 [asset cleanup](asset-cleanup.md) groups offline source/staging
+packs and removes regenerable caches. It changes no milestone acceptance:
+Step 6C and revision-4 facial review remain unfinished; Step 6D has not started.
+
 ## MVP scope
 - Target resolutions: detailed `1024x1536` in authored `tpose`; pixel `128x192` in authored `idle`.
 - Facings: all eight `N, NE, E, SE, S, SW, W, NW` separately authored; no automatic mirroring.
@@ -122,7 +126,7 @@ reference/baseline/candidate comparison awaits visual approval; revision 1 remai
 available through `pnpm ears:review:v1`. Exact preservation of the old fit did
 not establish anatomically correct ear proportions.
 The user has now approved keeping revision 2's smaller S ear size; approval is
-pinned in `ears-human-v1/review-fit-v2.json`. Original larger ears remain available
+pinned in `ears/human-v1/review-fit-v2.json`. Original larger ears remain available
 as a potential future authored design option. Ear-size controls and runtime
 contract changes are not implemented. The next bounded increment separates and
 reviews S eyes/brows/mouth over the approved ear/head/hair assembly.

@@ -57,7 +57,7 @@ see [Playwright's browser setup](https://playwright.dev/docs/browsers).
 | `tools/asset-validator` | Portable Node reference import, transparency staging, candidate anchors and audit CLI |
 | `assets/references` | Approved flattened references and versioned import review settings |
 | `assets/staging` | Ignored transparent reference outputs and inspection reports; unpublished |
-| `assets/source` | Reserved for versioned approved source imagery |
+| `assets/source` | Versioned offline artwork, selected studies, masks and approval records |
 | `assets/detailed`, `assets/pixel` | Reserved for independently authored target-native asset families |
 | `packages/character-engine` | Preserved legacy demo Character and DOM renderer contracts |
 | `packages/renderer-pixi`, `packages/renderer-canvas` | Preserved legacy empty-preview backends; unused by the editor |
@@ -77,6 +77,7 @@ pnpm dev          # Generate placeholders and start the interactive editor
 pnpm demo:assets  # Generate independent temporary native layer PNGs and catalog
 pnpm demo:export  # Save eight detailed PNGs, eight pixel PNGs and one pixel sheet
 pnpm reference:import # Prepare heroine-v1 reference staging and audit, without publishing
+pnpm assets:clean # Remove generated caches; preserve current face review and transparent references
 pnpm hair:review # Prepare S/N modular hair draft inspection; human approval required
 pnpm hair:review:profiles # Prepare independent E/W hair draft inspection
 pnpm hair:review:front-diagonals # Prepare SE/SW reference/study/masked-reconstruction inspection

@@ -359,7 +359,7 @@ The original larger pair remains available as a future authored design option;
 ear-size controls and automatic resizing are not implemented.
 
 The next bounded increment separates visible eyes, brows and mouth from S's own
-reference. `assets/source/heroine-v1/face-reference-v1/authoring-v1.json` pins
+reference. `assets/source/heroine-v1/face/reference-v1/authoring-v1.json` pins
 the approved ear configuration and approval, same-facing transparent reference,
 selected manual polygons and native layers/masks. It stays outside the runtime
 catalog and is an unapproved S-only standing-reference fit candidate.
@@ -406,7 +406,7 @@ other facings, new expressions and ancestry variants remain unfinished.
 pnpm face:review
 ```
 
-Ignored staging under `assets/staging/heroine-v1/face-reference-v1/` includes:
+Ignored staging under `assets/staging/heroine-v1/face/reference-v1/` includes:
 
 - `overview.png`: original S reference / approved smaller-ear head and hair /
   candidate with native facial features.

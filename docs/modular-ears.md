@@ -26,7 +26,7 @@ The new facial fit awaits its own visual approval.
 On 2026-10-13 the authorised separate-face revision 4 prepares a new local
 character-left S ear fit against newly authored jaw/neck anatomy. It selects a
 complete smaller study ear and visible native reference pixels, retaining the
-right ear. This candidate lives under `face-reference-v1/`, awaits approval and
+right ear. This candidate lives under `face/reference-v1/`, awaits approval and
 does not replace or revoke this approved ear package. See `modular-face.md`.
 
 ## Smaller S ear candidate — revision 2, 2026-10-12
@@ -94,8 +94,8 @@ facial features, body/clothing and production T-pose remain unfinished.
 
 ## Native source ownership and concealed skin
 
-`assets/source/heroine-v1/ears-human-v1/authoring-v1.json` pins the accepted
-`head-soft-oval-v1/authoring-v5.json` and `review-fit-v5.json`. Original head,
+`assets/source/heroine-v1/ears/human-v1/authoring-v1.json` pins the accepted
+`head/soft-oval-v1/authoring-v5.json` and `review-fit-v5.json`. Original head,
 neck and accepted S front/rear hair are unchanged.
 
 - `S-right-ear-v1.png` retains 1,331 original RGBA pixels in native
@@ -143,7 +143,7 @@ pnpm ears:review
 ```
 
 Generated inspection outputs are ignored under
-`assets/staging/heroine-v1/ears-human-v1/`:
+`assets/staging/heroine-v1/ears/human-v1/`:
 
 - `anatomy-overview.png`: accepted skin / ear-free concealed skin / isolated
   human-ear pair / reconstructed human skin. Each column is a native copy of

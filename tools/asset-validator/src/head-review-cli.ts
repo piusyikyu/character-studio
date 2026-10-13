@@ -10,11 +10,11 @@ try {
   const diagonals = flag?.startsWith('--front-diagonals') ?? false;
   const profiles = flag?.startsWith('--profiles') ?? false;
   const backDiagonals = flag === '--back-diagonals';
-  const staging = `assets/staging/heroine-v1/head-soft-oval-v1${backDiagonals ? '/back-diagonals' : diagonals ? (flag === '--front-diagonals-v1' ? '/front-diagonals/v1' : flag === '--front-diagonals-v2' ? '/front-diagonals/v2' : flag === '--front-diagonals-v3' ? '/front-diagonals/v3' : '/front-diagonals') : profiles ? (flag === '--profiles-v1' ? '/profiles/v1' : flag === '--profiles-v2' ? '/profiles/v2' : '/profiles') : version < 5 ? `/v${version}` : ''}`;
+  const staging = `assets/staging/heroine-v1/head/soft-oval-v1${backDiagonals ? '/back-diagonals' : diagonals ? (flag === '--front-diagonals-v1' ? '/front-diagonals/v1' : flag === '--front-diagonals-v2' ? '/front-diagonals/v2' : flag === '--front-diagonals-v3' ? '/front-diagonals/v3' : '/front-diagonals') : profiles ? (flag === '--profiles-v1' ? '/profiles/v1' : flag === '--profiles-v2' ? '/profiles/v2' : '/profiles') : version < 5 ? `/v${version}` : ''}`;
   const report = await prepareHeadReview({
-    sourceDirectory: resolve(repository, 'assets/source/heroine-v1/head-soft-oval-v1'),
-    hairDirectory: resolve(repository, 'assets/source/heroine-v1/hair-long-waves-v1'),
-    referenceDirectory: resolve(repository, 'assets/staging/heroine-v1/reference-import-v1/transparent'),
+    sourceDirectory: resolve(repository, 'assets/source/heroine-v1/head/soft-oval-v1'),
+    hairDirectory: resolve(repository, 'assets/source/heroine-v1/hair/long-waves-v1'),
+    referenceDirectory: resolve(repository, 'assets/staging/heroine-v1/references/import-v1/transparent'),
     outputDirectory: resolve(repository, staging),
     configSource: backDiagonals ? 'back-diagonals-authoring-v1.json' : diagonals ? (flag === '--front-diagonals-v1' ? 'front-diagonals-authoring-v1.json' : flag === '--front-diagonals-v2' ? 'front-diagonals-authoring-v2.json' : flag === '--front-diagonals-v3' ? 'front-diagonals-authoring-v3.json' : 'front-diagonals-authoring-v4.json') : profiles ? (flag === '--profiles-v1' ? 'profiles-authoring-v1.json' : flag === '--profiles-v2' ? 'profiles-authoring-v2.json' : 'profiles-authoring-v3.json') : version === 1 ? 'authoring-v1.json' : version === 2 ? 'authoring-v2.json' : version === 3 ? 'authoring-v3.json' : version === 4 ? 'authoring-v4.json' : 'authoring-v5.json',
   });

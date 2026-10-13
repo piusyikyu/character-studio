@@ -15,7 +15,7 @@ import { referenceImportSettingsSchema } from './schema';
 import { sha256 } from './reference-import';
 
 const repository = fileURLToPath(new URL('../../../', import.meta.url));
-const sourceDirectory = resolve(repository, 'assets/source/heroine-v1/hair-long-waves-v1');
+const sourceDirectory = resolve(repository, 'assets/source/heroine-v1/hair/long-waves-v1');
 
 // Recreate the requested facings from tracked inputs; never depend on ignored staging.
 async function references(directory: string, directions: readonly Direction[] = ['S', 'N']) {

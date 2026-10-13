@@ -15,7 +15,7 @@ const repository = fileURLToPath(new URL('../../../', import.meta.url));
 it('reviews separate S human ears and smaller revision with concealed skin, bounded native ownership and immutable sources', async () => {
   const temporary = await mkdtemp(resolve(tmpdir(), 'character-ear-review-'));
   try {
-    const sourceDirectory = resolve(repository, 'assets/source/heroine-v1/ears-human-v1'), headDirectory = resolve(repository, 'assets/source/heroine-v1/head-soft-oval-v1');
+    const sourceDirectory = resolve(repository, 'assets/source/heroine-v1/ears/human-v1'), headDirectory = resolve(repository, 'assets/source/heroine-v1/head/soft-oval-v1');
     const referenceDirectory = resolve(temporary, 'references'); await mkdir(referenceDirectory);
     const settings = referenceImportSettingsSchema.parse(JSON.parse(await readFile(resolve(repository, 'assets/references/heroine-v1/import-v1.json'), 'utf8')));
     const raw = decode(await readFile(resolve(repository, 'assets/references/heroine-v1/detailed/S.png')), { checkCrc: true }), reference = blankImage(1024, 1536);

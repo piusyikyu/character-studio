@@ -13,7 +13,7 @@ certified anatomy. Detailed production artwork still requires an authored T-pose
 
 ## Authoring inputs and provenance
 
-`assets/source/heroine-v1/hair-long-waves-v1/` holds versioned
+`assets/source/heroine-v1/hair/long-waves-v1/` holds versioned
 reference-based authoring inputs. Built-in imagegen edits created the PNGs;
 `prompts.json` records the selected prompts. The original eight references and
 reference-import staging are preserved. New hair surfaces previously hidden by
@@ -46,7 +46,7 @@ pnpm hair:review
 The review command never calls imagegen. It validates tracked authoring inputs,
 prepares deterministic inspection PNGs and leaves source files unchanged. All
 outputs live in the ignored directory
-`assets/staging/heroine-v1/hair-long-waves-v1/`:
+`assets/staging/heroine-v1/hair/long-waves-v1/`:
 
 - `layers/`: three transparent, label-free, native PNGs.
 - `assembled/`: detached hair combinations for S and N.
@@ -132,7 +132,7 @@ inputs are kept for lineage. Attempts that enlarged the drape were rejected.
 pnpm hair:review:profiles
 ```
 
-Outputs go to `assets/staging/heroine-v1/hair-long-waves-v1/profiles/`, following
+Outputs go to `assets/staging/heroine-v1/hair/long-waves-v1/profiles/`, following
 the same layers/assembled/checker/green/comparison conventions as S/N. The E/W
 configuration has its own pinned hashes and explicitly visible front hair for
 both profiles; neither is filled from a reflection or copied source. Reports
@@ -228,7 +228,7 @@ pnpm hair:review:front-diagonals
 ```
 
 Outputs live in ignored
-`assets/staging/heroine-v1/hair-long-waves-v1/front-diagonals/`:
+`assets/staging/heroine-v1/hair/long-waves-v1/front-diagonals/`:
 
 - `overview.png`: three columns, reference / corrected master / masked reconstruction;
   SE above SW, reduced only for inspection.
@@ -295,7 +295,7 @@ pnpm hair:review:front-diagonals:completion
 ```
 
 The new review uses separate ignored staging at
-`assets/staging/heroine-v1/hair-long-waves-v1/front-diagonals-v5/`:
+`assets/staging/heroine-v1/hair/long-waves-v1/front-diagonals-v5/`:
 
 - `overview.png`: reference / approved visible master / candidate composition,
   with SE above SW. It is reduced only for inspection.
@@ -355,7 +355,7 @@ pnpm hair:review:back-diagonals
 ```
 
 Inspection outputs are separate ignored staging under
-`assets/staging/heroine-v1/hair-long-waves-v1/back-diagonals/`.
+`assets/staging/heroine-v1/hair/long-waves-v1/back-diagonals/`.
 `overview.png` compares original reference (left) and detached hair (right),
 with NE above NW. Native `inspection/comparison/`, checker/green previews,
 transparent `layers/` and `assembled/`, and hashed `metadata.json` support

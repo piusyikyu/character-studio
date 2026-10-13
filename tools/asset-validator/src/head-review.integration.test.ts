@@ -13,8 +13,8 @@ import { referenceImportSettingsSchema } from './schema';
 import { sha256 } from './reference-import';
 
 const repository = fileURLToPath(new URL('../../../', import.meta.url));
-const sourceDirectory = resolve(repository, 'assets/source/heroine-v1/head-soft-oval-v1');
-const hairDirectory = resolve(repository, 'assets/source/heroine-v1/hair-long-waves-v1');
+const sourceDirectory = resolve(repository, 'assets/source/heroine-v1/head/soft-oval-v1');
+const hairDirectory = resolve(repository, 'assets/source/heroine-v1/hair/long-waves-v1');
 
 it('reviews independent NE/NW posterior anatomy with hidden fringe, native back-facing depth and immutable sources', async () => {
   const temporary = await mkdtemp(resolve(tmpdir(), 'character-back-diagonal-head-review-'));
