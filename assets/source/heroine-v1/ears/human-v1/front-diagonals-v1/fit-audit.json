@@ -1,0 +1,191 @@
+{
+  "schemaVersion": 1,
+  "assetVersion": 1,
+  "status": "draft-needs-human-review",
+  "configSha256": "6069c9c9e98e7a7e92111365cdb1eebbf4401ee3b2c56f58f272e83fa39cc72f",
+  "priorApprovalCommit": "3dd1436",
+  "scope": "Independent SE/right and SW/left near-ear/collar separation with bounded ear-free scalp/root contours; hidden far ears remain unauthored",
+  "method": "Built-in imagegen native studies selected only in independently bounded ear windows through manually traced scalp contours and 4x4 alpha coverage. Original head RGBA stays exact outside windows; human-specific retention and original ears reconstruct accepted heads and full approved facial/hair fits exactly.",
+  "hiddenEars": {
+    "SE": "left",
+    "SW": "right"
+  },
+  "futureBodyFitObligations": [
+    "Check the circled neck/shoulder hair starts against actual independently authored same-facing body and clothing layers.",
+    "Rear hair must sit behind the torso/shoulders where physically appropriate; intentional foreground curls retain their proper depth.",
+    "Inspect real native-layer composition for exposed abrupt starts and mask seams. Do not move inspection panels, clip valid hair or use a stand-in torso to certify production fit.",
+    "If any abrupt starts remain visible after the true body composition, repair them in a new version."
+  ],
+  "commands": [
+    {
+      "command": "pnpm --filter @character-studio/asset-validator typecheck",
+      "result": "passed"
+    },
+    {
+      "command": "pnpm lint",
+      "result": "passed; zero warnings"
+    },
+    {
+      "command": "pnpm --filter @character-studio/asset-validator build",
+      "result": "passed; ESM and declarations"
+    },
+    {
+      "command": "node tools/asset-validator/dist/ear-diagonal-review-cli.js",
+      "result": "passed; approved SE/SW facial fits retained exactly"
+    },
+    {
+      "command": "pnpm exec vitest run tools/asset-validator/src/ear-review.integration.test.ts tools/asset-validator/src/workspace-cleanup.integration.test.ts -t 'independent SE/SW ears|cleans generated data'",
+      "result": "passed; 2 workflows, unrelated S/E/W ear workflows skipped; 85.52 seconds"
+    }
+  ],
+  "authoringNotes": [
+    "Source inspection superseded the initial two-ear scope: each accepted diagonal head exposes only its near ear; no concealed far ear was fabricated.",
+    "Initial scratch authoring incorrectly required nontransparent study alpha at every contour-edge sample and rejected legitimate transparent edge pixels. Corrected to retain source alpha through local coverage and verify native interior root landmarks; no transformations or opaque fill.",
+    "Remaining inherited edge noise and local skin/mask transitions require human visual review; no production approval is inferred."
+  ],
+  "regressions": [
+    "Actual core neck/head/ear/facial/hair composition and exact accepted SE/SW fit hashes",
+    "Exact original head reconstruction including partial alpha",
+    "Local native study RGBA/coverage ownership and unchanged RGBA outside ear windows",
+    "Removed original ear protrusion samples and retained native SE/SW nose landmarks",
+    "Hidden opposite ears and preserved future body-occlusion obligations",
+    "Independent physical sides, native sources and anchors; deterministic output and immutable input hashes/mtimes",
+    "Re-pinned outside-window underlay, altered original ear pixels and wrong-side assignments rejected",
+    "Cleanup preserves all current facial/profile/diagonal ear reviews and rejects unsafe metadata/symlinks"
+  ],
+  "fitMeasurements": [
+    {
+      "direction": "SE",
+      "approvedSha256": "5f36de6d95e80f070f66d17c80f9c303495c01dd3074564a943d631060021797",
+      "humanFitSha256": "5f36de6d95e80f070f66d17c80f9c303495c01dd3074564a943d631060021797",
+      "earlessFitSha256": "263c32716e5435b660bde3bbfe9e3f70a78d896b5c96277a23783ed8a66581d0"
+    },
+    {
+      "direction": "SW",
+      "approvedSha256": "11c8442abf2b30beb7c0b3abbd7c0d127568be7822b3490853364875b2a722b7",
+      "humanFitSha256": "11c8442abf2b30beb7c0b3abbd7c0d127568be7822b3490853364875b2a722b7",
+      "earlessFitSha256": "5c67589dd079c246c8ae7ceba754666a441b319dd7249caef6ac7fc77efe756d"
+    }
+  ],
+  "measurements": [
+    {
+      "direction": "SE",
+      "side": "right",
+      "earPixels": 2061,
+      "authoredRootPixels": 1655,
+      "changedRootPixels": 2057,
+      "origin": {
+        "x": 554,
+        "y": 164
+      }
+    },
+    {
+      "direction": "SW",
+      "side": "left",
+      "earPixels": 2377,
+      "authoredRootPixels": 1931,
+      "changedRootPixels": 2375,
+      "origin": {
+        "x": 454,
+        "y": 175
+      }
+    }
+  ],
+  "inputProtection": {
+    "files": 622,
+    "hashesAndMtimes": "unchanged",
+    "intentionalTextUpdates": [
+      "assets/source/README.md"
+    ]
+  },
+  "authoringReplay": {
+    "method": "11 partition/config outputs and two native guides replayed byte-for-byte in scratch",
+    "outputs": [
+      {
+        "name": "SE-head-underlay-v1.png",
+        "sha256": "75bacb0425f2f52639bd8875d97f8be16a2984292580b5d9be3e4ba1a4c1b40e"
+      },
+      {
+        "name": "SE-human-head-retention-v1.png",
+        "sha256": "bf939a2ddba73552b1fc1e864da6123a2e435ecf3d68ad646428f56432682d84"
+      },
+      {
+        "name": "SE-right-ear-v1.png",
+        "sha256": "0352de8efdac93e588f1ea24c0aa2ff99661e4cb77e696d0ae95938409f8a754"
+      },
+      {
+        "name": "SE-ear-selection-v1.png",
+        "sha256": "8be21724bdcd5bfcdf7c945a9a2e11e75ea7335991520270b104278ece04486f"
+      },
+      {
+        "name": "SE-skin-selection-v1.png",
+        "sha256": "bc4b54aae94ffbc9590d9053ee05a9543f552bce87b9b1b0113482e6da2465d6"
+      },
+      {
+        "name": "SW-head-underlay-v1.png",
+        "sha256": "74ff27207c7b9facd89992c2295c22b36026a9f7864f956ecd777f8d076308d9"
+      },
+      {
+        "name": "SW-human-head-retention-v1.png",
+        "sha256": "476f4cbe521954e177a1a766b23cece5777b40ea4d39405fd1d0736d2d89f7b5"
+      },
+      {
+        "name": "SW-left-ear-v1.png",
+        "sha256": "1e5f6bf513a04bfa03cb548e9518b15801d57c8a21d300e7744cd9641d305f6c"
+      },
+      {
+        "name": "SW-ear-selection-v1.png",
+        "sha256": "32f99862a57bdae0e069c426aec37b3a16ba085b4f668a4d04854281534e23c1"
+      },
+      {
+        "name": "SW-skin-selection-v1.png",
+        "sha256": "c876a9ac218abfcff1eed11008f527c52945de4f6f4881ed5647f7be3f472118"
+      },
+      {
+        "name": "authoring.json",
+        "sha256": "6069c9c9e98e7a7e92111365cdb1eebbf4401ee3b2c56f58f272e83fa39cc72f"
+      }
+    ],
+    "guideOutputs": 2
+  },
+  "stagingValidation": [
+    {
+      "directory": "assets/staging/heroine-v1/face/reference-v1",
+      "outputs": 44,
+      "configSha256": "abc8d575982dff8d0828d7d16ee11e829ec8ebe1e5629ddb1d6d271b284b6d5e"
+    },
+    {
+      "directory": "assets/staging/heroine-v1/face/reference-v1/front-diagonals",
+      "outputs": 38,
+      "configSha256": "4698f14a40b95ec781b264e881f8d2814de2b3d24b492e078505b95e9dc94efa"
+    },
+    {
+      "directory": "assets/staging/heroine-v1/face/reference-v1/profiles",
+      "outputs": 29,
+      "configSha256": "93c8e7c150ebb8b8eaaaad6a1f986ca4ba99d83f462e3e2301097f5f2c570519"
+    },
+    {
+      "directory": "assets/staging/heroine-v1/ears/human-v1/profiles",
+      "outputs": 26,
+      "configSha256": "f32d37f1f5c1d9430b88fa6de5e68a9259053901d77757edba6eef5722cf2dcd"
+    },
+    {
+      "directory": "assets/staging/heroine-v1/ears/human-v1/front-diagonals",
+      "outputs": 26,
+      "configSha256": "6069c9c9e98e7a7e92111365cdb1eebbf4401ee3b2c56f58f272e83fa39cc72f"
+    }
+  ],
+  "limits": [
+    "New ear-free contours, root shade and local transitions need human visual approval",
+    "Full application build and studio browser E2E were not rerun for this offline PNG-only increment",
+    "Back-facing ears, concealed geometry, variants, N anatomy review, expressions/materials, real body/clothing occlusion, production T-pose, independently authored pixel art and final Step 6C remain open",
+    "Step 6D has not started"
+  ],
+  "cleanup": {
+    "deletedGeneratedFiles": 32,
+    "deletedGeneratedMiB": 1.3,
+    "currentReviewPngHashesVerified": 163,
+    "priorSourceReferenceFilesVerified": 622,
+    "preserved": "All three facial reviews, S viewer, E/W and SE/SW ear reviews, eight native reference PNGs and every pinned source/revision dependency"
+  }
+}

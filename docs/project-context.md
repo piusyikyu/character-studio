@@ -2,6 +2,57 @@
 
 > Purpose: This file transfers the **requirements and decisions** from a ChatGPT planning conversation into the WSL2/VS Code Codex development workflow. It is project context, **not** proof that any implementation is complete. Review actual repository files and tests before assuming a feature exists.
 
+## Qualified SE/SW ear approval and hairstyle review debt — 2026-10-13
+
+The user approved the diagonal near-ear/root checkpoint, requested cleanup and a
+local commit, and noted that the bare SE/SW ears have different apparent sizes.
+`ears/human-v1/front-diagonals-v1/review-fit-v1.json` pins the selected config,
+sources and unchanged accepted head/facial/hair fit hashes. SE and SW anatomy ears differ in apparent size in the bare-head review. Current reference hair conceals this discrepancy; approval does not establish compatibility with alternate hairstyles. Before shorter/open-ear hairstyles or ear-size variants are accepted, compare native ear proportions, attachment and exposure across independently authored facings and review the actual layered fit. If exposed differences look incoherent, author versioned corrections rather than silently scaling or mirroring approved ears.
+
+This concern remains open. It does not revoke approval of the current reference
+hair fit or authorize an ear-size redesign now. Existing body-occlusion obligations
+remain open. Next inspect and separate independently authored NE/NW near ears
+with bounded ear-free roots, preserving their approved posterior anatomy/hair
+checkpoint and native anchors. Both must hide eyes, brows, mouth and frontal fringe.
+N remains an unapproved anatomy draft. Other variants, concealed surfaces, materials,
+body/clothing, production T-pose, independent pixel art and final Step 6C remain
+unfinished; Step 6D has not started. Earlier pending-approval statements are history.
+
+
+## Separate SE/SW near-ear and root candidate — 2026-10-13
+
+Commit `3dd1436` records approved E/W ear/root revision 1 after cleanup of
+29 regenerated build files. The next bounded Step 6C candidate is
+`ears/human-v1/front-diagonals-v1/authoring.json`, exported by
+`pnpm ears:review:front-diagonals`. Inspection of the accepted diagonal heads
+shows only SE's character-right and SW's character-left near ear. The far ears
+are explicitly hidden; complete concealed far-ear geometry remains unfinished.
+This supersedes the earlier proposed two-ear scope without inventing anatomy.
+
+Original near-ear/collar RGBA stays at native anchors SE (554,164), SW (454,175).
+Built-in imagegen supplies independently authored ear-free studies from each
+exact same-facing guide. Only local ear windows retain study RGB/alpha through
+manually traced scalp contours with deterministic 4x4 coverage; exterior pixels
+inside the windows are cleared. Original RGBA stays exact elsewhere. Generated
+background and all unselected edits are discarded locally. No mirroring, image
+transforms, global colour key or approved-source overwrite. Study transparency
+at contour edges is retained; it is not forced into opaque skin.
+
+Human-specific retention clears the whole ear/collar window before original ears
+draw, reconstructing exact accepted heads and full approved facial/neck/hair fits.
+Native SE/SW nose ownership, all existing S/E/W sources and future abrupt
+neck/shoulder hair body-occlusion obligations stay intact. Ear-free previews use
+the full underlay without human retention. Review
+`ears/human-v1/front-diagonals/anatomy-overview.png`: SE above SW; approved skin /
+ear-free root skin / original ear-collar / reconstructed skin. Column two is new
+and needs visual approval of contour, shade and local transitions. Native 6x root
+comparisons are in inspection/. All facial and E/W/SE/SW ear reviews are protected
+by cleanup. Authoring guides/partition replay only in scratch. The candidate is
+uncommitted/unapproved. Remaining back-facing ears, hidden geometry, variants,
+N review, expressions/materials, body/clothing, production poses, independent
+pixel art and final Step 6C remain open. Step 6D has not started.
+
+
 ## E/W ear approval and next SE/SW increment — 2026-10-13
 
 The user approved independent E/W ear/root revision 1 and requested cleanup,

@@ -1,5 +1,78 @@
 # Step 6C — separate S human ears
 
+## Qualified SE/SW ear approval and hairstyle review debt — 2026-10-13
+
+The user approved the diagonal near-ear/root checkpoint, requested cleanup and a
+local commit, and noted that the bare SE/SW ears have different apparent sizes.
+`ears/human-v1/front-diagonals-v1/review-fit-v1.json` pins the selected config,
+sources and unchanged accepted head/facial/hair fit hashes. SE and SW anatomy ears differ in apparent size in the bare-head review. Current reference hair conceals this discrepancy; approval does not establish compatibility with alternate hairstyles. Before shorter/open-ear hairstyles or ear-size variants are accepted, compare native ear proportions, attachment and exposure across independently authored facings and review the actual layered fit. If exposed differences look incoherent, author versioned corrections rather than silently scaling or mirroring approved ears.
+
+This concern remains open. It does not revoke approval of the current reference
+hair fit or authorize an ear-size redesign now. Existing body-occlusion obligations
+remain open. Next inspect and separate independently authored NE/NW near ears
+with bounded ear-free roots, preserving their approved posterior anatomy/hair
+checkpoint and native anchors. Both must hide eyes, brows, mouth and frontal fringe.
+N remains an unapproved anatomy draft. Other variants, concealed surfaces, materials,
+body/clothing, production T-pose, independent pixel art and final Step 6C remain
+unfinished; Step 6D has not started. Earlier pending-approval statements are history.
+
+
+## Independent SE/SW near-ear/root candidate — 2026-10-13
+
+Local commit `3dd1436` pins E/W ear/root approval. Cleanup removed 29 regenerated
+build files; current reviews and all source baselines remain. The next candidate
+is `front-diagonals-v1/authoring.json`, exported by
+`pnpm ears:review:front-diagonals`. Accepted diagonal heads contain only the near
+ear: physical right in SE, left in SW. Opposite ears are explicitly hidden, not
+fabricated; complete concealed far-ear anatomy remains later work. Earlier plans
+to separate both ears are superseded by this inspected source coverage.
+
+Native near-ear/collar windows are SE x472–513/y135–206 and SW x503–549/y144–219,
+with origins SE (554,164), SW (454,175), drawn at (0,0). Ears keep exact original
+RGBA. Built-in imagegen supplies independent native ear-erasure studies from
+same-facing head guides; local `prompts.json` pins prompts/inputs. Within each
+window, a manually traced ear-free scalp contour retains native study RGB/alpha
+with 4x4 coverage. Pixels outside the new contour inside the window are cleared;
+original head RGBA remains exact everywhere else. Native transparency at study
+contour edges is retained. No image resampling, shifts, mirroring, global key,
+background inclusion or accepted-source overwrite. Normal review consumes retained
+sources; guides and partition scripts replay only in an isolated scratch copy.
+
+Human-specific retention removes underlay coverage throughout the ear window
+before original partial-alpha ear/collar RGBA draws in the core ears plane. Exact
+original head reconstruction and complete approved facial/neck/front/rear-hair
+hashes are required. Ear-free previews use the full underlay without that mask.
+Native SE/SW nose landmarks and all S/E/W approvals stay exact. Existing future
+body-occlusion obligations for abrupt neck/shoulder hair remain unverified.
+
+Review `ears/human-v1/front-diagonals/anatomy-overview.png`: SE above SW;
+approved skin / new ear-free roots / original ear-collar / reconstructed skin.
+Column two needs visual review of contour, colour and mask/skin transitions.
+Local 6x comparisons are in `inspection/SE-root-comparison.png` and the SW
+counterpart. `overview.png` shows reference / approved facial fit / identical
+separate-ear human fit. Cleanup preserves this review, approved E/W ear review
+and all three facial reviews. This increment is uncommitted/unapproved. Other
+back-facing ears, concealed geometry, ancestry/size variants, expressions/materials,
+N anatomy, actual body/clothing occlusion, production T-pose, independently authored
+pixel art and final Step 6C remain unfinished; Step 6D has not started.
+
+Diagonal-ear validation: asset-validator typecheck, root lint (zero warnings),
+JavaScript/declaration build and the new CLI export passed. The ear-review file's
+SE/SW public workflow and cleanup workflow passed (two tests, 85.52 seconds;
+unrelated S/E/W ear workflows skipped). Actual core composition, exact accepted
+head and facial-fit hashes, native nose landmarks, ear removal samples, hidden
+far ears, deterministic exports, immutable inputs and rejection of re-pinned
+out-of-window/ear/side edits are covered. A scratch guard initially rejected
+legitimate transparent study contour-edge samples; corrected to retain native
+alpha through authored coverage while checking interior root landmarks.
+All 622 prior artwork/reference hashes and mtimes stay exact; only the source
+README text changed intentionally. Eleven partition/config outputs and both
+guides replayed byte-for-byte in scratch. All 163 current facial/ear PNG hashes
+and the S viewer verified. See `front-diagonals-v1/fit-audit.json`. Full app build
+and studio browser E2E were not rerun for this offline increment. Generated build
+caches are cleared, preserving every current review and pinned source dependency.
+
+
 ## E/W ear/root approval — 2026-10-13
 
 The user approved revision 1 and requested cleanup, a local commit and continued

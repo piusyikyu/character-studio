@@ -99,6 +99,7 @@ pnpm face:review:front-diagonals # Review revision-2 SE cheek trim and unchanged
 pnpm face:review:front-diagonals:v1 # Reproduce the preceding facial fit with SE cheek tint
 pnpm face:review:profiles # Review independent E/W visible facial layers over approved profile anatomy
 pnpm ears:review:profiles # Review new E/W ear-free root skin and exact separate-ear human fits
+pnpm ears:review:front-diagonals # Review independent SE/SW ear-free contours and exact near-ear human fits
 pnpm face:review # Review revision-11 unchanged S brows beneath restored foreground fringe
 pnpm face:review:v1 # Reproduce the rejected reference-coordinate facial fit separately
 pnpm face:review:v2 # Reproduce the rejected eye redesign on the broader head separately

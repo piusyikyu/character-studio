@@ -1,5 +1,15 @@
 # Source artwork
 
+`ears/human-v1/front-diagonals-v1/authoring.json` selects the unapproved
+SE/right and SW/left near-ear separation and local ear-free scalp/root studies.
+Far ears are explicitly hidden; complete concealed geometry remains unauthored.
+Manual native contour masks retain selected study RGBA inside bounded windows;
+original head pixels stay exact elsewhere. Human retention restores exact original
+ears and full approved facial/hair fits. Prompts/selected inputs remain local;
+guide/partition scripts replay only in scratch. Review with
+`pnpm ears:review:front-diagonals`.
+
+
 `ears/human-v1/profiles-v1/authoring.json` selects the approved E/W
 native ear/collar separation and ear-free root studies. Manually traced interior
 masks retain study RGBA; original head pixels/alpha stay exact elsewhere. Human
@@ -145,3 +155,5 @@ moves 247 existing side-lock pixels behind the complete ear/lobe. It introduces
 no newly generated or recoloured hair. `authoring-v5.json` pins the previous
 config, unchanged hair master and new ownership masks; the reproducible script
 is `inputs/partition-ear-depth-v5.js`. The user generally approved this standing-reference fit with known hair noise; `review-fit-v5.json` pins that limited approval. Production anatomy remains unfinished.
+
+SE/SW near-ear/root revision 1 is approved for its current standing-reference hair fit in `heroine-v1/ears/human-v1/front-diagonals-v1/review-fit-v1.json`. Bare ear-size differences remain a future alternate-hairstyle compatibility obligation; source artwork/configs stay unchanged.

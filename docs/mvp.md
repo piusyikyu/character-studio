@@ -1,5 +1,34 @@
 # MVP Plan — Female Character Studio
 
+## Qualified SE/SW ear approval and hairstyle review debt — 2026-10-13
+
+The user approved the diagonal near-ear/root checkpoint, requested cleanup and a
+local commit, and noted that the bare SE/SW ears have different apparent sizes.
+`ears/human-v1/front-diagonals-v1/review-fit-v1.json` pins the selected config,
+sources and unchanged accepted head/facial/hair fit hashes. SE and SW anatomy ears differ in apparent size in the bare-head review. Current reference hair conceals this discrepancy; approval does not establish compatibility with alternate hairstyles. Before shorter/open-ear hairstyles or ear-size variants are accepted, compare native ear proportions, attachment and exposure across independently authored facings and review the actual layered fit. If exposed differences look incoherent, author versioned corrections rather than silently scaling or mirroring approved ears.
+
+This concern remains open. It does not revoke approval of the current reference
+hair fit or authorize an ear-size redesign now. Existing body-occlusion obligations
+remain open. Next inspect and separate independently authored NE/NW near ears
+with bounded ear-free roots, preserving their approved posterior anatomy/hair
+checkpoint and native anchors. Both must hide eyes, brows, mouth and frontal fringe.
+N remains an unapproved anatomy draft. Other variants, concealed surfaces, materials,
+body/clothing, production T-pose, independent pixel art and final Step 6C remain
+unfinished; Step 6D has not started. Earlier pending-approval statements are history.
+
+
+Current candidate update — 2026-10-13: commit `3dd1436` records approved
+E/W ear/root revision 1. The next `ears/human-v1/front-diagonals-v1/authoring.json`
+separates native SE/right and SW/left near ears over independently authored local
+ear-free scalp contours. Source inspection shows the far ears hidden, so their
+concealed anatomy remains unfinished. Human retention reconstructs accepted heads
+and full facial/hair fits exactly, preserving native noses and body-occlusion
+review debt. Run `pnpm ears:review:front-diagonals`; review anatomy column two
+for new root geometry/joins. Visual approval is pending. Back-facing ears, hidden
+surfaces, variants, N review, materials, body/clothing, T-pose, independent pixel
+art and final Step 6C remain open. Step 6D has not started.
+
+
 Current approval update — 2026-10-13: independent E/W ear/root revision 1
 is approved in `ears/human-v1/profiles-v1/review-fit-v1.json`. The user requested
 cleanup, a local commit and continued Step 6C work. Next prepare separate SE/SW
