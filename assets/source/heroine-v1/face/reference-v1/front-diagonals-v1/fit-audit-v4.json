@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "assetVersion": 4,
+  "date": "2026-10-13",
+  "status": "draft-needs-human-review",
+  "configSha256": "aa38bfaa7a014c42503fdc9819b732e84a257df59350473a5818d8a158539730",
+  "previousFeedback": {
+    "revision": 3,
+    "decision": "rejected",
+    "configSha256": "f069b899578842babd9e981c96e112030b8fb1ed88f5c5a738adf89a076071b1",
+    "reason": "User marked reference/new extraction: the new eye did not retain the reference shape. The local trim cut the lower-left visible eye arc."
+  },
+  "method": "Manual native contour recovery with source-reference RGB and 4x4 alpha coverage; separate masks retain outer/fringe hair ownership and release foreground coverage over the recovered opaque eye arc.",
+  "featureCoverage": {
+    "previousPixels": 197,
+    "currentPixels": 246,
+    "recoveredPixels": 49,
+    "changedCoordinatesFromRevision3": 63,
+    "partialCoveragePixels": 37,
+    "frontHairOwnershipPixels": 277,
+    "eyeReleasePixels": 34,
+    "assembledChangedCoordinatesFromApprovedRevision2": 89
+  },
+  "validation": {
+    "typecheck": "pnpm --filter @character-studio/asset-validator typecheck passed",
+    "lint": "pnpm lint passed; zero warnings",
+    "build": "pnpm --filter @character-studio/asset-validator build passed; ESM/declaration output",
+    "faceCli": "node tools/asset-validator/dist/face-diagonal-review-cli.js passed; current revision 4",
+    "headSetCli": "node tools/asset-validator/dist/head-set-review-cli.js passed; pending SE revision 4 and seven unchanged approved fits",
+    "facialIntegration": "Existing independent SE/SW facial workflow passed; 1 passed, 2 unrelated workflows skipped; 153.17 seconds",
+    "headSetIntegration": "Existing all-eight head and cleanup workflows passed; 2 passed, 4 unrelated head workflows skipped",
+    "fullApplicationBuild": "not rerun",
+    "studioBrowserE2E": "not rerun",
+    "headSetDurationSeconds": 329.18,
+    "historicalCli": "node tools/asset-validator/dist/face-diagonal-review-cli.js --v3 passed; exact prior fit hashes and all 40 output hashes verified"
+  },
+  "inputProtection": {
+    "files": 683,
+    "hashesAndMtimes": "unchanged; includes the entire rejected revision-3 source pack",
+    "intentionalUncommittedSourceTextUpdates": [
+      "assets/source/README.md",
+      "head/assembly-v1/review-selection.json",
+      "head/assembly-v1/fit-audit.json"
+    ]
+  },
+  "authoringReplay": {
+    "method": "Scratch-only portable authoring; seven outputs byte-identical",
+    "outputs": [
+      {
+        "source": "SE-leftEye-v4.png",
+        "sourceSha256": "dbf84a5b9dd46670006fdb7632e6a5f984c218776459b4430b253cb22ecd66b3"
+      },
+      {
+        "source": "SE-leftEye-mask-v4.png",
+        "sourceSha256": "84a93250d6e75ba12782abfec31dc93950fdf27c7dc73449af3434367da7f658"
+      },
+      {
+        "source": "SE-front-hair-v4.png",
+        "sourceSha256": "6664c449a33ab6e9ed578e2b808bc0eea675c31ed9c5a068fa0bd10f3051be99"
+      },
+      {
+        "source": "SE-front-hair-mask-v4.png",
+        "sourceSha256": "4b19a4e133cd07de47fd5ef0ee8058f76363bb2a978035776ea06b49e075d1b2"
+      },
+      {
+        "source": "SE-eye-release-mask-v4.png",
+        "sourceSha256": "e60e381632605969bba02b72cca0be4776a3b14f126a0d8577da047fff1f9cea"
+      },
+      {
+        "source": "selections-v4.json",
+        "sourceSha256": "70ec76b3666eef09ce28cd1589c044a3506762db915bde605d929e5dee249ac0"
+      },
+      {
+        "source": "authoring-v4.json",
+        "sourceSha256": "aa38bfaa7a014c42503fdc9819b732e84a257df59350473a5818d8a158539730"
+      }
+    ]
+  },
+  "unchanged": [
+    "Nine other facial feature pins, including SE near-eye cheek revision 2",
+    "All seven other full/bare facing fits and all eight reference panels",
+    "SE head, neck, native nose, separate ears, rear hair and anchors",
+    "All earlier source artwork and approval/configuration records"
+  ],
+  "inspection": {
+    "comparisonColumns": [
+      "reference",
+      "rejected-revision-3",
+      "far-eye-candidate-revision-4"
+    ],
+    "closeUp": {
+      "source": "inspection/SE-eye-close-comparison.png",
+      "nativeCrop": {
+        "x": 590,
+        "y": 165,
+        "width": 35,
+        "height": 32
+      },
+      "magnification": 10,
+      "sampling": "native integer-copy",
+      "columns": [
+        "reference",
+        "rejected revision-3 bare",
+        "revision-4 bare"
+      ]
+    }
+  },
+  "fitMeasurements": [
+    {
+      "direction": "SE",
+      "baselineSha256": "f71de0d9c6dd8f0ffcff9e27f91872006de83346eb503ca25b5d47d9806437a0",
+      "outputSha256": "efb62d5ecf467372cc6fc155b2237bc56aa800ffcfaac3c0debad3c8ba23801e",
+      "bareSha256": "bae18dbdc9d11563df2b4c9358ed3a1b516a4e4a44422e2e384b70923f794858"
+    },
+    {
+      "direction": "SW",
+      "baselineSha256": "ead5d980d6aa5970a9bb080e5cbfd3700a0b2ba55421f81d37905fc2a0f6a102",
+      "outputSha256": "11c8442abf2b30beb7c0b3abbd7c0d127568be7822b3490853364875b2a722b7",
+      "bareSha256": "fe38beee272e14c7741c28e556ad757c0a96fa73cf4bb8a1303a9fe71e00018a"
+    }
+  ],
+  "currentReviewPngHashesVerified": 224,
+  "published": false,
+  "paletteReady": false,
+  "bodyOcclusionVerified": false,
+  "tposeApproved": false,
+  "finalStep6CAccepted": false,
+  "reviewRequired": [
+    "Human review of recovered eye silhouette and iris/lid colours against native reference",
+    "Actual foreground hair transition at the locally released arc",
+    "Concealed eye/brow geometry, expressions/materials, body/clothing, production T-pose and independent pixel art"
+  ],
+  "cleanup": {
+    "generatedFilesRemoved": 83,
+    "generatedMiBRemoved": 7.2,
+    "currentReviewPngsVerified": 224,
+    "priorSourceReferenceFilesProtected": 683,
+    "requiredRevision3Baselines": "retained; byte-identical"
+  }
+}

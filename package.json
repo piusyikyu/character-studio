@@ -55,13 +55,18 @@
     "face:review:v9": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/face-review-cli.js --v9",
     "face:review:v10": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/face-review-cli.js --v10",
     "face:review:front-diagonals": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/face-diagonal-review-cli.js",
+    "face:review:front-diagonals:v4": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/face-diagonal-review-cli.js --v4",
+    "face:review:front-diagonals:v5": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/face-diagonal-review-cli.js --v5",
+    "face:review:front-diagonals:v3": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/face-diagonal-review-cli.js --v3",
+    "face:review:front-diagonals:v2": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/face-diagonal-review-cli.js --v2",
     "face:review:front-diagonals:v1": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/face-diagonal-review-cli.js --v1",
     "face:review:profiles": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/face-profile-review-cli.js",
     "ears:review:profiles": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/ear-profile-review-cli.js",
     "ears:review:front-diagonals": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/ear-diagonal-review-cli.js",
     "ears:review:back-diagonals": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/ear-back-review-cli.js",
     "head:review:north": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/head-review-cli.js --north",
-    "ears:review:north": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/ear-north-review-cli.js"
+    "ears:review:north": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/ear-north-review-cli.js",
+    "head:review:all": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/head-set-review-cli.js"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.0",

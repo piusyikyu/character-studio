@@ -1,5 +1,11 @@
 # Asset workspace cleanup — 2026-10-13
 
+Current SE review: facial revision 6 supersedes the revision-5 previews in the
+current staging folder. Cleanup retains the metadata-declared brow comparisons,
+native fit/layer/mask outputs and consolidated sheets; obsolete eye-comparison
+previews can rebuild with `face:review:front-diagonals:v5`. The accepted full-eye
+source, scoped approval record and all required derivation baselines are retained.
+
 Local commit `831093c` preserves the face investigation before cleanup. It records
 work in progress, not artwork approval. Face revision 4 and its neck-side seams
 remain under review; Step 6C is unfinished and Step 6D has not started.
@@ -41,7 +47,7 @@ The cleanup command removes generated placeholder assets, obsolete staging
 previews, render-demo exports and test reports. `--build-outputs` also removes
 workspace `dist` folders. It preserves the current S face review's declared outputs
 and interactive viewer, plus the current SE/SW and E/W face reviews' declared
-outputs, the current E/W, SE/SW, NE/NW and N ear-review outputs, the dedicated N anatomy review,
+outputs, the current E/W, SE/SW, NE/NW and N ear-review outputs, the dedicated N anatomy review and three consolidated head sheets,
 eight native transparent references
 and their import metadata/audit.
 Source/reference artwork, dependencies, legacy packages and Git
@@ -53,6 +59,8 @@ The retained S viewer is
 `assets/staging/heroine-v1/face/reference-v1/inspection/head-reference-overlay.html`.
 The E/W, SE/SW, NE/NW and N ear anatomy/fit reviews are retained under
 `assets/staging/heroine-v1/ears/human-v1/{profiles,front-diagonals,back-diagonals,north}/`.
+The compact eight-facing head review is retained under
+`assets/staging/heroine-v1/head/assembly-v1/` (three sheets and metadata).
 The dedicated N anatomy review is retained under
 `assets/staging/heroine-v1/head/soft-oval-v1/north/`.
 The current SE/SW and E/W facial overviews/comparisons are retained in

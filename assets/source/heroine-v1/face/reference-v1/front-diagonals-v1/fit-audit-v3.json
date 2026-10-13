@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "assetVersion": 3,
+  "date": "2026-10-13",
+  "status": "draft-needs-human-review",
+  "configSha256": "f069b899578842babd9e981c96e112030b8fb1ed88f5c5a738adf89a076071b1",
+  "scope": "SE physical-left/far-eye ownership only, with local foreground strand/fringe restoration",
+  "method": "Manual visible-eye contour with 4x4 native alpha coverage; retained eye RGB exact. Removed strand/fringe pixels return beneath original same-facing front hair through a bounded ownership mask.",
+  "featureCoverage": {
+    "previousPixels": 545,
+    "currentPixels": 197,
+    "removedPixels": 348,
+    "partialCoveragePixels": 36,
+    "changedCoordinates": 384,
+    "frontHairOwnershipPixels": 306
+  },
+  "unchanged": [
+    "Nine other facial features, including the approved SE near-eye cheek trim",
+    "SW full/bare fits and the other six facings",
+    "SE head, neck, native nose, ears, rear hair and anchors",
+    "All prior approved source artwork/configurations and approval records"
+  ],
+  "validation": {
+    "typecheck": "pnpm --filter @character-studio/asset-validator typecheck passed",
+    "lint": "pnpm lint passed; zero warnings",
+    "build": "pnpm --filter @character-studio/asset-validator build passed; ESM/declarations",
+    "faceCli": "node tools/asset-validator/dist/face-diagonal-review-cli.js passed; revision 3",
+    "headSetCli": "node tools/asset-validator/dist/head-set-review-cli.js passed; SE candidate explicitly pending",
+    "facialIntegration": "Existing independent SE/SW facial workflow: passed; 2 unrelated workflows skipped",
+    "headSetIntegration": "Existing all-eight head and cleanup workflows: 2 passed; 4 unrelated head workflows skipped",
+    "initialIssues": "Typecheck caught an optional comparison-report property access and a shadowed local baseline variable; both corrected. Early mask-only candidate was refined after actual layered inspection to restore missing hair ownership. Initial head-set runs were intentionally interrupted before source changes.",
+    "fullApplicationBuild": "not rerun",
+    "studioBrowserE2E": "not rerun",
+    "facialDurationSeconds": 154.1,
+    "headSetDurationSeconds": 329.49
+  },
+  "inputProtection": {
+    "sourceReferenceFiles": 675,
+    "hashesAndMtimes": "unchanged",
+    "intentionalUncommittedSourceTextUpdates": [
+      "assets/source/README.md",
+      "head/assembly-v1/review-selection.json",
+      "head/assembly-v1/fit-audit.json"
+    ]
+  },
+  "authoringReplay": {
+    "method": "Scratch-only deterministic authoring; six outputs byte-identical",
+    "outputs": [
+      {
+        "source": "SE-leftEye-v3.png",
+        "sourceSha256": "bd263f73af2b64c47372fe834c1fe14a4ff15ed1b89800f2fb7a434df9dc91dc"
+      },
+      {
+        "source": "SE-leftEye-mask-v3.png",
+        "sourceSha256": "0990f0546480f45bdb5347d6ee80a012d88285c0e75de21e18e8e89eb20a88a2"
+      },
+      {
+        "source": "SE-front-hair-v3.png",
+        "sourceSha256": "88183411ff97ebbcf7dc201610f4b7ae19d4592842f9cc96d7f7b66117a194a4"
+      },
+      {
+        "source": "SE-front-hair-mask-v3.png",
+        "sourceSha256": "396dba287f3b7ee7d14645451ef818cebb88b093181e88f96c66e24d0afef9c4"
+      },
+      {
+        "source": "selections-v3.json",
+        "sourceSha256": "9aec3ae678c01cf0143c684d4a4594910f859d4f29e2f6f1ec21e8fb3cfb29bc"
+      },
+      {
+        "source": "authoring-v3.json",
+        "sourceSha256": "f069b899578842babd9e981c96e112030b8fb1ed88f5c5a738adf89a076071b1"
+      }
+    ]
+  },
+  "fitMeasurements": [
+    {
+      "direction": "SE",
+      "baselineSha256": "f71de0d9c6dd8f0ffcff9e27f91872006de83346eb503ca25b5d47d9806437a0",
+      "outputSha256": "7eb265eeb066027957fbe204aee0b3daf3ce4c7745a343b201cc7e1248e9f7ac",
+      "bareSha256": "8963dd38b5201be04ede9a5b842f24c6c95f2ae5c0bf148f5d32822c8011c6cc"
+    },
+    {
+      "direction": "SW",
+      "baselineSha256": "ead5d980d6aa5970a9bb080e5cbfd3700a0b2ba55421f81d37905fc2a0f6a102",
+      "outputSha256": "11c8442abf2b30beb7c0b3abbd7c0d127568be7822b3490853364875b2a722b7",
+      "bareSha256": "fe38beee272e14c7741c28e556ad757c0a96fa73cf4bb8a1303a9fe71e00018a"
+    }
+  ],
+  "staging": {
+    "facePngs": 40,
+    "currentReviewPngs": 222
+  },
+  "reviewRequired": [
+    "Bare far-eye contour and iris/lash retention",
+    "Actual same-facing foreground hair and local mask transitions",
+    "Complete concealed feature geometry, expressions/materials, body/clothing, production T-pose, independent pixel art and final Step 6C"
+  ],
+  "published": false,
+  "paletteReady": false,
+  "bodyOcclusionVerified": false,
+  "step6DStarted": false,
+  "cleanup": {
+    "generatedFilesRemoved": 43,
+    "generatedMiBRemoved": 1.5,
+    "preservedCurrentReviewPngs": 222,
+    "protectedPriorSourceReferenceFiles": 675
+  }
+}

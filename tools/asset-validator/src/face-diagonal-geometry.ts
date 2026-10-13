@@ -21,3 +21,36 @@ export const diagonalEyeCheekTrim = {
   direction: 'SE', feature: 'rightEye', coverageSamples: 4,
   polygon: [[520,150],[572,150],[572,176],[569,177],[566,179],[562,181],[558,182],[554,182],[550,182],[546,181.5],[542,180],[538,178],[534,176],[530,174],[526,171],[522,168],[520,166]],
 } as const;
+
+// Visible far-eye boundary excludes reference fringe and the downward outer strand.
+// Preserve native iris/lash RGB; this does not author the eye concealed by the fringe.
+export const diagonalFarEyeTrim = {
+  direction: 'SE', feature: 'leftEye', coverageSamples: 4,
+  polygon: [[598,170],[607,170],[611.5,170],[611.5,174],[613,176.5],[610.5,178.5],[608.5,180],[607.5,181.5],[606.5,183],[606.5,185],[605,187],[602.5,187],[601.5,185],[600.5,182],[598.5,179],[597,177],[596.5,174],[597,172]],
+} as const;
+
+// Restore only the removed same-facing fringe/strand pixels to foreground hair.
+export const diagonalFarEyeHairOwnership = {
+  direction: 'SE', feature: 'leftEye',
+  outer: [[611.5,169],[620,169],[620,201],[603,201],[604,196],[604.5,192],[605.5,188],[606.5,185],[607.5,182],[609,180],[611,178],[613,176.5],[611.5,174]],
+  inner: [[593,169],[598,169],[597,172],[596.5,174],[597,177],[598.5,179],[600.5,182],[601.5,185],[602.5,187],[598,187],[592,177]],
+} as const;
+
+// Revision 4 restores the visible lower-left iris/lid arc lost by the preceding trim.
+export const diagonalFarEyeTrimV4 = {
+  direction: 'SE', feature: 'leftEye', coverageSamples: 4,
+  polygon: [[598,170],[607,170],[611.5,170],[611.5,174],[613,176.5],[610.5,178.5],[608.5,180],[607.5,181.5],[606.5,183],[606.5,185],[606,187],[603,189],[600,189],[597,188],[595.5,185.5],[595.5,182],[597.5,180],[597,177],[596.5,174],[597,172]],
+} as const;
+
+// Complete independently authored eye/lids, including geometry concealed by the fringe.
+export const diagonalCompleteFarEye = {
+  direction: 'SE', feature: 'leftEye', coverageSamples: 4,
+  polygon: [[588,174],[592,169],[598,165],[605,163.5],[611,164],[615,166],[619,170],[621,171.5],[619,174],[614,175.5],[610,183.5],[608,187],[603,190],[596,190],[591,187],[587,183],[587,178]],
+} as const;
+
+// Local reference brow pigment only; the old polygon also copied a pale skin stripe.
+// Intersect with the original selection, retaining native RGB and foreground hair.
+export const diagonalRightBrowTrim = {
+  direction: 'SE', feature: 'rightBrow', coverageSamples: 4,
+  polygon: [[528,140],[538,140],[543,142.5],[545,144.5],[544,145.5],[541.5,146.5],[540,147],[536,145.5],[528,145.5]],
+} as const;

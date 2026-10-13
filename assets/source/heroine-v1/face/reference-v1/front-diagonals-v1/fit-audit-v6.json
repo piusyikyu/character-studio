@@ -1,0 +1,172 @@
+{
+  "schemaVersion": 1,
+  "assetVersion": 6,
+  "date": "2026-10-13",
+  "status": "draft-needs-human-review",
+  "configSha256": "9505aef012d3a03fa94b0bf7948469479b322a5eaa0f5b8cce22a31e7211a183",
+  "acceptedNativeFeatures": [
+    "SE-leftEye"
+  ],
+  "leftEyeApproval": {
+    "source": "review-left-eye-v5.json",
+    "sourceSha256": "66bc73ca33030f75e81016a070166b69ca1f202c5aaea7995cc864b103fa9898"
+  },
+  "wholeFitApproved": false,
+  "productionAnatomyApproved": false,
+  "published": false,
+  "finalStep6CAccepted": false,
+  "reportedIssue": "Pale diagonal line beneath the SE physical-right brow, screen-left; accepted complete physical-left eye stays unchanged.",
+  "diagnosis": "The original right-brow polygon retained a reference skin strip with a pink rim. Native isolated-brow, head and foreground inspection identifies the facial extraction as the contributor.",
+  "method": "Manually drawn local contour intersects the original brow selection. 4x4 subpixel coverage changes alpha only, retaining native reference RGB. Original head skin supplies the removed strip. Foreground hair, all other features and anchors remain pinned.",
+  "coverage": {
+    "originalBrowPixels": 162,
+    "retainedBrowPixels": 55,
+    "removedPixels": 107,
+    "alphaChangedPixels": 115,
+    "bounds": {
+      "x0": 536,
+      "y0": 144,
+      "x1": 567,
+      "y1": 158
+    }
+  },
+  "unchanged": [
+    "Accepted complete SE left eye: 627 selected native study pixels, original mask/study/guide/foreground and prompts pins",
+    "Nine other facial features, including the accepted SE near-eye cheek correction",
+    "All seven other assembled and bare fits; all eight reference panels",
+    "SE head/neck/nose, separate ears, rear hair and native attachment coordinates",
+    "Every preceding facial configuration, artwork, mask, study, prompt and approval record"
+  ],
+  "validation": {
+    "typecheck": "pnpm --filter @character-studio/asset-validator typecheck passed",
+    "lint": "pnpm lint passed; zero warnings",
+    "build": "pnpm --filter @character-studio/asset-validator build passed; ESM and declarations",
+    "faceCli": "node tools/asset-validator/dist/face-diagonal-review-cli.js passed; current revision 6",
+    "headSetCli": "node tools/asset-validator/dist/head-set-review-cli.js passed; current SE brow candidate and seven preserved fits",
+    "facialIntegration": "pnpm exec vitest run tools/asset-validator/src/face-review.integration.test.ts -t 'independent SE/SW' passed; 1 passed, 2 unrelated workflows skipped; 284.73 seconds",
+    "cleanupIntegration": "pnpm exec vitest run tools/asset-validator/src/workspace-cleanup.integration.test.ts passed; 1 passed; 0.259 seconds",
+    "headSetIntegration": "not repeated for this local brow-only increment; all-eight CLI and hashes/actual component composition verified",
+    "fullApplicationBuild": "not rerun",
+    "studioBrowserE2E": "not rerun"
+  },
+  "sourceProtection": {
+    "files": 702,
+    "hashesAndMtimes": "unchanged",
+    "intentionalSourceTextUpdates": [
+      "assets/source/README.md",
+      "head/assembly-v1/review-selection.json",
+      "head/assembly-v1/fit-audit.json"
+    ]
+  },
+  "authoringReplay": {
+    "method": "Fresh independent scratch replay; four image/mask/settings/config outputs byte-identical",
+    "outputs": [
+      {
+        "source": "SE-rightBrow-v6.png",
+        "sourceSha256": "57e2366225289c660359d4e93f7bb1ef76f2da317aeda3b7c83df8d72e6b9258"
+      },
+      {
+        "source": "SE-rightBrow-mask-v6.png",
+        "sourceSha256": "4f65ae2a85b9708848b51809e26faa93c83038ba06af70e9854f4518a10d0d15"
+      },
+      {
+        "source": "selections-v6.json",
+        "sourceSha256": "1bfd2df55281fd572a76b0e97d40b43dfe71eb04bdf3411e35de1a3d17a4f0cc"
+      },
+      {
+        "source": "authoring-v6.json",
+        "sourceSha256": "9505aef012d3a03fa94b0bf7948469479b322a5eaa0f5b8cce22a31e7211a183"
+      }
+    ]
+  },
+  "stagingValidation": [
+    {
+      "directory": "assets/staging/heroine-v1/face/reference-v1",
+      "outputs": 44,
+      "configSha256": "abc8d575982dff8d0828d7d16ee11e829ec8ebe1e5629ddb1d6d271b284b6d5e"
+    },
+    {
+      "directory": "assets/staging/heroine-v1/face/reference-v1/front-diagonals",
+      "outputs": 40,
+      "configSha256": "9505aef012d3a03fa94b0bf7948469479b322a5eaa0f5b8cce22a31e7211a183"
+    },
+    {
+      "directory": "assets/staging/heroine-v1/face/reference-v1/profiles",
+      "outputs": 29,
+      "configSha256": "93c8e7c150ebb8b8eaaaad6a1f986ca4ba99d83f462e3e2301097f5f2c570519"
+    },
+    {
+      "directory": "assets/staging/heroine-v1/ears/human-v1/profiles",
+      "outputs": 26,
+      "configSha256": "f32d37f1f5c1d9430b88fa6de5e68a9259053901d77757edba6eef5722cf2dcd"
+    },
+    {
+      "directory": "assets/staging/heroine-v1/ears/human-v1/front-diagonals",
+      "outputs": 26,
+      "configSha256": "6069c9c9e98e7a7e92111365cdb1eebbf4401ee3b2c56f58f272e83fa39cc72f"
+    },
+    {
+      "directory": "assets/staging/heroine-v1/ears/human-v1/back-diagonals",
+      "outputs": 24,
+      "configSha256": "c82b65aa9665724ff894f5fbda2a23d6ae6ef21c1fc948693583b73089d69b78"
+    },
+    {
+      "directory": "assets/staging/heroine-v1/ears/human-v1/north",
+      "outputs": 16,
+      "configSha256": "9b6e962977577f44d82d4b83c370cf2809e5d848d10355c7fde4306df76b64a3"
+    },
+    {
+      "directory": "assets/staging/heroine-v1/head/soft-oval-v1/north",
+      "outputs": 14,
+      "configSha256": "b953e1eeff3e797eb4f32189f7a9e433d7503a7accf0900eef4f5f9e15b2dc0a"
+    },
+    {
+      "directory": "assets/staging/heroine-v1/head/assembly-v1",
+      "outputs": 3,
+      "configSha256": "dad60ba6ee4d7562f26b9aaf7859644a91835ec9372bdc49400292ea4f23e982"
+    }
+  ],
+  "currentReviewPngHashesVerified": 222,
+  "fitMeasurements": [
+    {
+      "direction": "SE",
+      "baselineSha256": "f71de0d9c6dd8f0ffcff9e27f91872006de83346eb503ca25b5d47d9806437a0",
+      "outputSha256": "83be6444c7ef87c5e72bc5458db2c9223b3795e4bef6c1a2e0e3b0b39ca926e7",
+      "bareSha256": "1f71d249ada2564a25b72b341a4abbb7bb9f61990d6a21d2582f03930db4303c"
+    },
+    {
+      "direction": "SW",
+      "baselineSha256": "ead5d980d6aa5970a9bb080e5cbfd3700a0b2ba55421f81d37905fc2a0f6a102",
+      "outputSha256": "11c8442abf2b30beb7c0b3abbd7c0d127568be7822b3490853364875b2a722b7",
+      "bareSha256": "fe38beee272e14c7741c28e556ad757c0a96fa73cf4bb8a1303a9fe71e00018a"
+    }
+  ],
+  "comparisons": {
+    "fit": "inspection/SE-brow-fit-comparison.png",
+    "close": "inspection/SE-brow-close-comparison.png",
+    "columns": [
+      "reference",
+      "revision-5-before-brow-trim",
+      "revision-6-brow-candidate"
+    ],
+    "closeCrop": {
+      "x": 526,
+      "y": 136,
+      "width": 47,
+      "height": 28,
+      "magnification": 10
+    }
+  },
+  "reviewRequired": [
+    "Local brow contour and skin/hair transition in the actual assembled fit",
+    "Complete concealed brow geometry under alternative hairstyles remains unauthored",
+    "Whole head-set consistency, body/clothing occlusion, expressions/materials, production T-pose and independent pixel artwork",
+    "Final Step 6C remains open; Step 6D has not started"
+  ],
+  "cleanup": {
+    "generatedFilesRemoved": 45,
+    "generatedMiBRemoved": 1.7,
+    "currentReviewPngsVerified": 222,
+    "priorSourceReferenceFilesProtected": 702
+  }
+}

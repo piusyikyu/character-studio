@@ -16,6 +16,7 @@ it('cleans generated data while preserving current reviews and sources, and reje
     const backEars = 'assets/staging/heroine-v1/ears/human-v1/back-diagonals', backEarMetadata = { outputs: [{ path: 'fit/NE-human.png' }, { path: 'fit/NW-earless.png' }, { path: 'anatomy-overview.png' }] };
     const north = 'assets/staging/heroine-v1/head/soft-oval-v1/north', northMetadata = { outputs: [{ path: 'fit/N.png' }, { path: 'layers/N-head.png' }, { path: 'overview.png' }] };
     const northEars = 'assets/staging/heroine-v1/ears/human-v1/north', northEarMetadata = { outputs: [{ path: 'fit/N-human.png' }, { path: 'layers/N-left-ear.png' }, { path: 'anatomy-overview.png' }] };
+    const headSet = 'assets/staging/heroine-v1/head/assembly-v1', headSetMetadata = { outputs: [{ path: 'overview.png' }, { path: 'anatomy-overview.png' }, { path: 'reference-overview.png' }] };
     const metadata = { outputs: [{ path: 'fit/S.png' }], interactiveInspection: { path: 'inspection/head-reference-overlay.html' } };
     const preserved = [`${diagonalEars}/fit/SE-human.png`, `${diagonalEars}/fit/SW-earless.png`, `${diagonalEars}/anatomy-overview.png`, `${ears}/fit/E-human.png`, `${ears}/fit/W-earless.png`, `${ears}/anatomy-overview.png`, `${profiles}/fit/E.png`, `${profiles}/fit/W.png`, `${profiles}/overview.png`, `${diagonal}/fit/SE.png`, `${diagonal}/fit/SW.png`, `${diagonal}/overview.png`,'assets/source/heroine-v1/face/reference-v1/authoring-v4.json', 'assets/source/heroine-v1/head/soft-oval-v1/approved.png', 'assets/references/heroine-v1/detailed/S.png', 'packages/renderer-canvas/src/index.ts', `${face}/fit/S.png`, `${face}/inspection/head-reference-overlay.html`, `${refs}/transparent/S.png`, `${refs}/audit.md`, `${refs}/metadata.json`];
     const obsolete = [`${diagonalEars}/historical-v0/overview.png`, `${ears}/historical-v0/overview.png`, `${profiles}/historical-v0/overview.png`, `${diagonal}/historical-v0/overview.png`,`${face}/historical-v3/overview.png`, `${refs}/inspection/checker/S.png`, 'assets/staging/heroine-v1/head/soft-oval-v1/overview.png', 'assets/detailed/placeholder-v1/S.png', 'test-results/report.json', 'packages/core/dist/index.js'];
@@ -23,6 +24,8 @@ it('cleans generated data while preserving current reviews and sources, and reje
     for (const file of backEarMetadata.outputs) { const path = `${backEars}/${file.path}`; preserved.push(path); await save(path); }
     for (const file of northMetadata.outputs) { const path = `${north}/${file.path}`; preserved.push(path); await save(path); }
     for (const file of northEarMetadata.outputs) { const path = `${northEars}/${file.path}`; preserved.push(path); await save(path); }
+    for (const file of headSetMetadata.outputs) { const path = `${headSet}/${file.path}`; preserved.push(path); await save(path); }
+    obsolete.push(`${headSet}/historical-v0/overview.png`); await save(obsolete.at(-1)!);
     obsolete.push(`${northEars}/historical-v0/overview.png`); await save(obsolete.at(-1)!);
     obsolete.push(`${north}/historical-v0/overview.png`); await save(obsolete.at(-1)!);
     obsolete.push(`${backEars}/historical-v0/overview.png`); await save(obsolete.at(-1)!);
@@ -34,6 +37,7 @@ it('cleans generated data while preserving current reviews and sources, and reje
     await save(`${backEars}/metadata.json`, JSON.stringify(backEarMetadata));
     await save(`${north}/metadata.json`, JSON.stringify(northMetadata));
     await save(`${northEars}/metadata.json`, JSON.stringify(northEarMetadata));
+    await save(`${headSet}/metadata.json`, JSON.stringify(headSetMetadata));
     const dry = await cleanWorkspace({ repository, dryRun: true, buildOutputs: true });
     expect(dry.files.map(file => file.path).sort()).toEqual(obsolete.slice().sort());
     for (const path of obsolete) expect(await readFile(resolve(repository, path), 'utf8')).toBe(path);
@@ -42,6 +46,10 @@ it('cleans generated data while preserving current reviews and sources, and reje
     await expect(cleanWorkspace({ repository, buildOutputs: true })).rejects.toThrow('unsafe output path');
     for (const path of obsolete) expect(await readFile(resolve(repository, path), 'utf8')).toBe(path);
     await save(`${face}/metadata.json`, JSON.stringify(metadata));
+    await save(`${headSet}/metadata.json`, JSON.stringify({ outputs: [{ path: '../../../../../../source/approved.png' }] }));
+    await expect(cleanWorkspace({ repository, buildOutputs: true })).rejects.toThrow('unsafe output path');
+    for (const path of obsolete) expect(await readFile(resolve(repository, path), 'utf8')).toBe(path);
+    await save(`${headSet}/metadata.json`, JSON.stringify(headSetMetadata));
     await save(`${northEars}/metadata.json`, JSON.stringify({ outputs: [{ path: '../../../../../../source/approved.png' }] }));
     await expect(cleanWorkspace({ repository, buildOutputs: true })).rejects.toThrow('unsafe output path');
     for (const path of obsolete) expect(await readFile(resolve(repository, path), 'utf8')).toBe(path);

@@ -1,5 +1,218 @@
 # Step 6C — native S facial-feature separation
 
+## SE revision-6 fit approval — 2026-10-13
+
+The user approved the local right-brow repair, requested removal of unneeded
+files and a local commit, and authorized the next Step 6C increment.
+`face/reference-v1/front-diagonals-v1/review-fit-v6.json` pins the accepted
+SE standing-reference fit, completed revision-5 left eye, selected sources and
+native full/bare hashes. The original SW approval and all source imagery remain
+unchanged. Rejected revisions 3/4 remain required pinned derivation baselines.
+
+Next complete the all-eight head consistency review with this SE approval
+attached to the selected revision-6 fit. Individual standing-reference approvals
+remain distinct from the cross-facing checkpoint and production acceptance.
+Review shared identity, skull/jaw/neck/ear proportions and actual hair depth before
+body authoring. Carry forward alternate-hairstyle ear-size and real body/clothing
+occlusion obligations, concealed brows/hair, variants/materials, production poses
+and independent pixel artwork. Step 6C is unfinished; Step 6D has not started.
+Earlier pending revision-6 statements below describe the pre-approval history.
+
+## SE right-brow skin-stripe correction — revision 6, 2026-10-13
+
+The user accepted the complete SE physical-left eye from revision 5 and found a
+line near the physical-right brow (screen-left). Native layer inspection traced
+it to the original `SE-rightBrow.png` selection: a pale reference skin strip and
+pink boundary were copied beneath the pigment. The approved head skin and retained
+foreground hair do not create that strip.
+
+`front-diagonals-v1/review-left-eye-v5.json` records approval of that individual
+completed eye, with exact configuration, feature, study and foreground pins. It
+does not approve the whole facial fit, the head set or production anatomy. All
+revision-5 files remain unchanged, including the accepted 627-pixel eye/mask.
+
+`authoring-v6.json` derives from revision 5 and changes only the right-brow
+feature/mask. A manually traced local contour intersects the original selection
+with 4x4 alpha coverage. Retained RGB remains at native reference coordinates;
+the approved head skin supplies the discarded pale strip. No colour key,
+resampling, mirroring, newly generated artwork or foreground-hair change is used.
+Replay `trim-se-right-brow-v6.js` only in scratch. This local cleanup does not
+author complete concealed brow geometry for alternative hairstyles.
+
+`pnpm face:review:front-diagonals` now selects revision 6. Inspect
+`inspection/SE-brow-fit-comparison.png`: reference / revision 5 / revision 6,
+with the real native foreground depth. `SE-brow-close-comparison.png` compares
+the reference and two bare brows at 10x (native x526/y136/47x28 crop).
+`:v5` reproduces the completed-eye checkpoint separately. The consolidated
+head selector pins revision 6; separate-ear approvals remain pinned to revision 2.
+Nine other features, SW and the other six facings retain their preceding pins.
+The brow correction needs visual approval. Step 6C remains unfinished;
+Step 6D has not started. Validation is recorded in `fit-audit-v6.json`.
+
+Validation: asset-validator typecheck, root lint (zero warnings), ESM/declaration
+build and current facial/all-eight head CLIs passed. The existing independent
+SE/SW facial workflow passed (1 passed, 2 unrelated workflows skipped; 284.73
+seconds). It verifies removal of the reported skin strip, native retained pigment,
+every other feature pin and accepted eye/foreground, unchanged SW, assembled/bare
+changes confined to the brow boundary, deterministic output, immutable inputs and
+rejection of re-pinned stripe restoration or accepted-eye edits. The existing
+cleanup workflow passed (1 passed; 0.259 seconds). All 702 prior source/reference
+hashes and mtimes remain exact; four authoring outputs independently replayed
+byte-for-byte in fresh scratch. All 222 current review PNG hashes verify, including
+seven unchanged full/bare fits and all eight reference panels. Cleanup removed
+45 generated files (1.7 MiB), retaining current outputs and all source baselines.
+The local mask changes alpha at 115 coordinates, discards 107 imported strip/rim
+pixels and retains 55 native reference pigment pixels. The full all-eight test,
+application build and browser E2E were not repeated for this brow-only increment;
+the all-eight CLI rebuild verifies actual component composition. Artwork approval
+of revision 6 remains pending; no commit was made.
+
+## Complete SE character-left eye — revision 5, 2026-10-13
+
+The user clarified the requirement: author a proper complete physical-left/far
+eye even where hair conceals it, just as concealed ear anatomy was authored.
+Extraction cleanup cannot supply missing geometry. The revision-3/4 mask-only
+approach misunderstood this requirement and is superseded; neither is approved.
+This principle applies to reusable anatomy and facial features under other hair
+styles, not only the currently visible reference fragments.
+
+`face/reference-v1/front-diagonals-v1/authoring-v5.json` selects a new independent
+SE complete-eye study from built-in imagegen. The exact native guide composes the
+accepted head/neck and four retained SE features while omitting the partial far
+eye. The same-facing reference guides identity/style, not a mirrored eye or a
+part from another direction. `prompts-v5.json` records the exact prompt and two
+pinned input roles; both guide and selected study are retained locally in `inputs/`.
+The study supplies the full iris, sclera, pupil/glints, corners and continuous
+lids. A manually traced contour retains native generated RGBA with 4x4 coverage
+and a small skin rim. Study haze, changed brows/near eye and all unselected anatomy
+are discarded. There are no image transforms or approved-source overwrites.
+
+The complete transparent eye is an independent `eyes` layer. The retained
+revision-3 foreground hair draws above it through the actual SE core plane order,
+covering the concealed inner iris naturally. Revision 4's experimental eye-reveal
+cuts are not selected. The bald anatomy shows the full eye without hair. The
+approved near-eye cheek correction, eight other facial features, SW and six other
+facings, head/neck/nose/ear/rear-hair sources and native anchors stay unchanged.
+Previous revisions remain required derivation/comparison inputs. Guide and
+partition scripts replay only in scratch.
+
+`pnpm face:review:front-diagonals` now selects revision 5; `:v4` reproduces the
+incomplete preceding extraction separately. Inspect `SE-eye-anatomy-comparison.png`
+and `SE-eye-fit-comparison.png` in the current `inspection/` directory: original
+reference / incomplete revision 4 / newly authored full-eye candidate. The enlarged
+`SE-eye-close-comparison.png` uses native crop x580/y158/47x38 at 10x. The eight-
+facing selector pins pending SE revision 5; prior separate-ear approval commands
+remain on their recorded facial revision 2. This is uncommitted and requires human
+review of full eye shape/perspective/style, lid/skin transitions and actual hair
+coverage. Other concealed facial geometry, expressions/materials, body/T-pose,
+independent pixel art and final Step 6C remain open. Step 6D has not started.
+
+
+Validation: asset-validator typecheck, root lint (zero warnings), JavaScript/
+declaration build and current facial/head-set CLIs passed. The existing SE/SW
+facial integration workflow passed (217.27 seconds; 2 unrelated workflows skipped),
+including complete authored iris/sclera/lash samples, concealed iris retained in
+the bare head, actual foreground alpha blending, real core composition, unchanged
+near eye/SW, deterministic exports, immutable inputs and out-of-mask rejection.
+Head-set/cleanup workflows passed (2 passed, 4 unrelated head workflows skipped;
+325.29 seconds). The initial occlusion assertion incorrectly expected opaque
+255 at a retained fringe sample with alpha 254; the test now verifies the actual
+source-over result and does not alter artwork. All 693 prior source/reference
+hashes and mtimes remain exact. Five guide/partition outputs replay byte-for-byte
+in scratch. All 223 current review PNG hashes verify. The eye retains 627 selected
+native study pixels; 262 lie under near-opaque foreground hair. Seven other full/
+bare fits and all eight reference panels are unchanged. Full app build/browser
+E2E were not rerun. See `front-diagonals-v1/fit-audit-v5.json`. Human review remains
+pending; the new complete eye has not been committed or approved.
+
+
+## SE far-eye shape recovery — revision 4, 2026-10-13
+
+The user rejected revision 3: its marked far-eye contour did not retain the
+reference shape. The manual trim had cut the lower-left visible iris/lid arc.
+`face/reference-v1/front-diagonals-v1/authoring-v4.json` restores that local curve
+from the original SE reference pixels at native coordinates. It derives from
+revision 3, retaining revision 2 as the approved facial/ear baseline. Revision-3
+source imagery, masks, settings and authoring script stay byte-identical.
+
+A new 34-pixel eye-release mask removes foreground coverage from the recovered
+opaque eye arc in the revision-4 front-hair layer. The restored native eye owns
+those pixels. A separate bounded mask keeps the removed outer strand/fringe in
+hair ownership. Every other front-hair pixel retains the original approved source;
+there are no image transforms or broad colour operations. Nine other facial
+features, including the approved near-eye cheek correction, and all other facings
+remain unchanged. Replay `restore-se-far-eye-v4.js` only in scratch.
+
+The default `pnpm face:review:front-diagonals` selects revision 4; `:v3` reproduces
+the rejected predecessor separately. The two face comparisons now show reference /
+rejected revision 3 / revision 4 in bare and assembled views. Inspect
+`inspection/SE-eye-close-comparison.png` for a 10x native-copy close-up of the
+same eye (reference / rejected bare / candidate bare). The eight-facing selector
+explicitly pins the pending revision-4 SE candidate. Existing approved separate-ear
+commands remain pinned to revision 2. Human approval of the eye contour and hair
+transition is pending. Concealed eye/brow geometry and final Step 6C remain open;
+Step 6D has not started. This correction is uncommitted.
+
+
+Validation: asset-validator typecheck, root lint (zero warnings), JavaScript/
+declaration build and the current facial/head-set CLIs passed. The existing
+SE/SW facial workflow passed (153.17 seconds; 2 unrelated workflows skipped),
+including recovered native eye samples, the 34-pixel foreground release, real
+composition, unchanged near eye/SW, deterministic exports and rejection of
+re-pinned out-of-mask edits. Head-set/cleanup workflows passed (2 passed,
+4 unrelated workflows skipped; 329.18 seconds). All 683 prior source/reference
+hashes and mtimes remain exact, including revision 3; seven authoring outputs
+match scratch byte-for-byte. All 224 current review PNG hashes verify. The
+new mask restores 49 previously omitted eye pixels, changes alpha at 63 native
+coordinates relative to revision 3, and retains 246 eye pixels in total. Seven
+other full/bare fits and all eight reference panels remain exact. Full app build
+and browser E2E were not rerun. See `front-diagonals-v1/fit-audit-v4.json`.
+This source checkpoint still requires visual approval.
+
+
+## SE far-eye ownership correction — 2026-10-13
+
+The user rejected the SE eye in the consolidated hair-free anatomy sheet.
+Inspection of the native layers found reference fringe and a downward outer hair
+strand inside `SE-leftEye.png` (physical left/far eye, screen-right). Facial
+revision 3 in `face/reference-v1/front-diagonals-v1/authoring-v3.json` traces the
+visible eye boundary with 4x4 alpha coverage. Retained iris/lash RGB and coordinates
+stay native. The approved revision-2 near-eye cheek correction and all nine other
+facial features remain pinned and exact; SW is unchanged.
+
+A bounded same-facing ownership mask restores removed fringe/outer-strand pixels
+in `SE-front-hair-v3.png`, using their original reference colour beneath the
+unchanged original foreground hair. This prevents an introduced gap in the
+assembled hairstyle. Original front hair is exact outside that mask. Head, neck,
+nose, ears, rear hair, anchors and prior approved artwork/configurations remain
+unchanged. The replay script runs only in scratch. This is visible feature
+separation; it does not complete the eye concealed by the fringe or diagonal brows.
+
+`pnpm face:review:front-diagonals` selects revision 3; `:v2` and `:v1` reproduce
+pinned preceding fits. Inspect `inspection/SE-eye-anatomy-comparison.png` and
+`SE-eye-fit-comparison.png`: reference / approved revision 2 / candidate revision 3.
+The consolidated selector explicitly pins the pending SE candidate. Its component
+validators still check all eight approved baselines, then compose the new SE from
+actual layers; the other seven fit hashes stay exact. Approval records and the
+approved ear pipeline continue to select facial revision 2. Both current sheets
+and the SE correction require human review. No commit, production publication,
+final Step 6C acceptance or Step 6D advancement is implied.
+
+
+Validation for this correction: asset-validator typecheck, root lint (zero
+warnings), JavaScript/declaration build, current facial CLI and head-set CLI
+passed. The existing SE/SW facial workflow passed (154.10 seconds; 2 unrelated
+workflows skipped), and the all-eight head/cleanup workflows passed (2 passed,
+4 unrelated head workflows skipped; 329.49 seconds). All 675 protected prior
+source/reference hashes and mtimes remain exact; six authoring outputs match
+scratch byte-for-byte. All 222 current review PNG hashes verify, including the
+updated three head-set sheets. The other seven full/bare fits and eight reference
+panels are exact. The eye mask changes 384 coordinates; 306 local hair-owned
+coordinates preserve their prior assembled colour. Only 61 assembled SE pixels
+change. Full app build/browser E2E were not rerun. See facial `fit-audit-v3.json`.
+The correction remains uncommitted and awaits visual approval.
+
+
 ## E/W visible facial approval — 2026-10-13
 
 The user approved the E/W revision-1 candidate and requested cleanup, a local

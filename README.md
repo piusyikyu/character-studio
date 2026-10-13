@@ -83,6 +83,7 @@ pnpm hair:review:profiles # Prepare independent E/W hair draft inspection
 pnpm hair:review:front-diagonals # Prepare SE/SW reference/study/masked-reconstruction inspection
 pnpm hair:review:front-diagonals:completion # Review approved SE/SW rear roots and connections
 pnpm hair:review:back-diagonals # Prepare approved independent NE/NW rear hair
+pnpm head:review:all # Compare all eight approved head fits and hair-free anatomy before body authoring
 pnpm head:review:north # Review retained N full-back anatomy independently before ear separation
 pnpm head:review # Review revision-5 S ear depth with coherent hair and unchanged N anatomy draft
 pnpm head:review:v1 # Reproduce the initial S mismatch separately
@@ -96,7 +97,11 @@ pnpm head:review:front-diagonals:v1 # Reproduce the rejected visible-only ear/of
 pnpm head:review:back-diagonals # Review independent NE/NW posterior head/neck candidates with approved rear hair
 pnpm ears:review # Review smaller S human-ear revision 2 against reference and accepted oversized-ear fit
 pnpm ears:review:v1 # Reproduce the original exact ear separation separately
-pnpm face:review:front-diagonals # Review revision-2 SE cheek trim and unchanged SW over approved anatomy
+pnpm face:review:front-diagonals # Review revision-6 right-brow cleanup with the accepted complete SE left eye
+pnpm face:review:front-diagonals:v5 # Reproduce the accepted complete left eye before local brow cleanup
+pnpm face:review:front-diagonals:v4 # Reproduce the incomplete extraction-only eye predecessor
+pnpm face:review:front-diagonals:v3 # Reproduce the rejected narrow far-eye extraction
+pnpm face:review:front-diagonals:v2 # Reproduce the approved facial fit before far-eye ownership correction
 pnpm face:review:front-diagonals:v1 # Reproduce the preceding facial fit with SE cheek tint
 pnpm face:review:profiles # Review independent E/W visible facial layers over approved profile anatomy
 pnpm ears:review:profiles # Review new E/W ear-free root skin and exact separate-ear human fits

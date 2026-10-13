@@ -80,7 +80,7 @@ export async function prepareDiagonalEarReview(options: DiagonalEarReviewOptions
   }
   const temporary = await mkdtemp(resolve(tmpdir(), 'diagonal-ear-review-'));
   try {
-    const baseline = await prepareDiagonalFaceReview({ sourceDirectory: faceRoot!, headDirectory: headRoot!, hairDirectory: hairRoot!, referenceDirectory: refs!, outputDirectory: resolve(temporary, 'face') });
+    const baseline = await prepareDiagonalFaceReview({ sourceDirectory: faceRoot!, configFile: config.faceConfig.source, headDirectory: headRoot!, hairDirectory: hairRoot!, referenceDirectory: refs!, outputDirectory: resolve(temporary, 'face') });
     const overview = blankImage(1152, 880), anatomy = blankImage(1536, 880), fitMeasurements: { direction: 'SE' | 'SW'; approvedSha256: string; humanFitSha256: string; earlessFitSha256: string }[] = [];
     for (const [row, direction] of directions.entries()) {
       const f = parts.get(direction)!, stage = async (path: string) => decodePng(await readFile(resolve(temporary, 'face', path))), front = await stage(`layers/${direction}-front-hair.png`), rear = await stage(`layers/${direction}-rear-hair.png`), neck = await stage(`layers/${direction}-neck.png`), reference = await load(refs!, face.frames[direction].reference);

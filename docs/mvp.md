@@ -1,5 +1,73 @@
 # MVP Plan — Female Character Studio
 
+## SE revision-6 fit approval — 2026-10-13
+
+The user approved the local right-brow repair, requested removal of unneeded
+files and a local commit, and authorized the next Step 6C increment.
+`face/reference-v1/front-diagonals-v1/review-fit-v6.json` pins the accepted
+SE standing-reference fit, completed revision-5 left eye, selected sources and
+native full/bare hashes. The original SW approval and all source imagery remain
+unchanged. Rejected revisions 3/4 remain required pinned derivation baselines.
+
+Next complete the all-eight head consistency review with this SE approval
+attached to the selected revision-6 fit. Individual standing-reference approvals
+remain distinct from the cross-facing checkpoint and production acceptance.
+Review shared identity, skull/jaw/neck/ear proportions and actual hair depth before
+body authoring. Carry forward alternate-hairstyle ear-size and real body/clothing
+occlusion obligations, concealed brows/hair, variants/materials, production poses
+and independent pixel artwork. Step 6C is unfinished; Step 6D has not started.
+Earlier pending revision-6 statements below describe the pre-approval history.
+
+Current SE revision-6 update — 2026-10-13: the completed revision-5 left eye
+is accepted as an individual feature. A pale strip in the original right-brow
+extraction is locally trimmed in a new revision, retaining the accepted eye and
+all other facial/hair sources. The default diagonal facial review and consolidated
+head selector now use revision 6. Review `SE-brow-fit-comparison.png` before
+approving this repair. Whole head-set consistency and final Step 6C remain open;
+Step 6D has not started. See modular-face.md and `fit-audit-v6.json`.
+
+Current SE revision-5 update — 2026-10-13: the user clarified that the far eye
+must be independently authored in full, including parts covered by hair. Earlier
+extraction-only revisions misunderstood this and are not approved. A retained
+local imagegen study supplies a complete SE physical-left eye at native framing;
+manual selection isolates it, and the retained foreground fringe draws above it.
+Bare and assembled full-eye candidates need human approval. Nine other facial
+features and seven other fits remain unchanged. Step 6C remains unfinished;
+Step 6D has not started.
+
+
+Current SE revision-4 update — 2026-10-13: revision 3 was rejected for changing
+the reference eye shape. A local native contour restores the lower-left eye arc;
+34 overlapping foreground pixels transfer to eye ownership in a new front-hair
+revision. Both bare and assembled comparisons need visual approval. Other seven
+fits, original approved sources and the near-eye cheek trim stay unchanged.
+Consolidated SE selection is explicitly pending; Step 6C/production acceptance
+remain incomplete and Step 6D has not started.
+
+
+Current SE correction — 2026-10-13: the consolidated bare sheet exposed hair
+inside the SE far/physical-left eye extraction. Facial revision 3 trims its native
+alpha and restores the local strand/fringe to front-hair ownership. Nine other
+facial layers, the near-eye cheek correction and seven other facings remain exact.
+The consolidated review explicitly labels SE as a pending candidate; prior
+approval records remain pinned to revision 2. Review bare/assembled SE eye
+comparisons before continuing. Step 6C is unfinished; Step 6D has not started.
+
+
+Current checkpoint update — 2026-10-13: commit `63ece36` records approved
+N ear/root separation. Next `pnpm head:review:all` consolidates all eight selected
+head/facial/ear/hair fits through retained source validators and pinned approvals.
+Three native contact sheets in `head/assembly-v1/` show assembled heads, hair-free
+anatomy/features and original references. All individual fit hashes remain exact;
+no artwork changes, transforms or runtime publication. Cross-facing consistency
+needs human review before body authoring; concealed diagonal brows and alternate-
+hairstyle ear sizes remain review debt. Typecheck, lint, build/CLI and public
+head-set/cleanup workflows pass (2 passed, 4 skipped; 270.26 seconds). Nine current
+reviews are protected. Real body/clothing occlusion, concealed geometry, variants/
+materials, production T-pose, independent pixel art and final Step 6C remain open.
+Step 6D has not started. See modular-head.md and head/assembly-v1/fit-audit.json.
+
+
 ## N ear approval and consolidated head checkpoint — 2026-10-13
 
 The user approved separate N ears/root skin and requested cleanup, a local commit

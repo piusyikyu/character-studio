@@ -1,0 +1,232 @@
+{
+  "schemaVersion": 1,
+  "id": "face.reference.v1",
+  "scope": "front-diagonals",
+  "assetVersion": 3,
+  "target": "detailed",
+  "nativeSize": {
+    "width": 1024,
+    "height": 1536
+  },
+  "sourcePose": "standing-reference",
+  "intendedRuntimePose": "tpose",
+  "published": false,
+  "paletteReady": false,
+  "status": "draft-needs-human-review",
+  "headConfig": {
+    "source": "front-diagonals-authoring-v4.json",
+    "sourceSha256": "5659c95b20c9ec5b32d8fc9071445bd801aa4c75016b01d1ebb7b1494de11e9c"
+  },
+  "headApproval": {
+    "source": "front-diagonals-review-fit-v4.json",
+    "sourceSha256": "34b5c1b5c6738a9c184b2209eceb807ea4f67b2955ef3bfb409135f2a3dc471c"
+  },
+  "settings": {
+    "source": "selections-v3.json",
+    "sourceSha256": "9aec3ae678c01cf0143c684d4a4594910f859d4f29e2f6f1ec21e8fb3cfb29bc"
+  },
+  "frames": {
+    "SE": {
+      "reference": {
+        "source": "SE.png",
+        "sourceSha256": "392d4b7ec7c6a0119b1087c55f304f6a250f50272e51d0ce5aadd8b79df40a51"
+      },
+      "features": {
+        "rightEye": {
+          "source": "SE-rightEye-v2.png",
+          "sourceSha256": "244e0c0a839b3f100cf05cce280e12dec84e519602f64f034576851dff8d64cc",
+          "selection": {
+            "source": "SE-rightEye-mask-v2.png",
+            "sourceSha256": "21f2cfd4135e38d9d6e0a037593f6c63d114f28caa10991b18a443a5bdf491f2"
+          },
+          "plane": "eyes",
+          "side": "right",
+          "owner": "reference",
+          "pixelCount": 795,
+          "origin": {
+            "x": 554,
+            "y": 164
+          }
+        },
+        "leftEye": {
+          "source": "SE-leftEye-v3.png",
+          "sourceSha256": "bd263f73af2b64c47372fe834c1fe14a4ff15ed1b89800f2fb7a434df9dc91dc",
+          "selection": {
+            "source": "SE-leftEye-mask-v3.png",
+            "sourceSha256": "0990f0546480f45bdb5347d6ee80a012d88285c0e75de21e18e8e89eb20a88a2"
+          },
+          "plane": "eyes",
+          "side": "left",
+          "owner": "reference",
+          "pixelCount": 197,
+          "origin": {
+            "x": 554,
+            "y": 164
+          }
+        },
+        "rightBrow": {
+          "source": "SE-rightBrow.png",
+          "sourceSha256": "22dcb8ce09479f3374c5109ab4074f1d50252e511c38473a437d31a29055f359",
+          "selection": {
+            "source": "SE-rightBrow-mask.png",
+            "sourceSha256": "769d49c5ac865dd67ff15d7908ed1ceb890499f6f714a6a3351dad10af87b76d"
+          },
+          "plane": "eyebrows",
+          "side": "right",
+          "owner": "reference",
+          "pixelCount": 162,
+          "origin": {
+            "x": 554,
+            "y": 164
+          }
+        },
+        "leftBrow": {
+          "source": "SE-leftBrow.png",
+          "sourceSha256": "7da4f01f1cbcab192cd0f64ce2411f631f229a4160de411f4c06d221c17b7255",
+          "selection": {
+            "source": "SE-leftBrow-mask.png",
+            "sourceSha256": "231cd52eb1ace9551bdbd88898a7e7645bcf4a77eb912203d532f5ea37cacc61"
+          },
+          "plane": "eyebrows",
+          "side": "left",
+          "owner": "reference",
+          "pixelCount": 79,
+          "origin": {
+            "x": 554,
+            "y": 164
+          }
+        },
+        "mouth": {
+          "source": "SE-mouth.png",
+          "sourceSha256": "711ef265558f3b77cd99ed87ffba1ff5476048c803f46989f2e5685b1bd8f4d2",
+          "selection": {
+            "source": "SE-mouth-mask.png",
+            "sourceSha256": "745bbbc2834b25be55fb4d2c6d2398a32a6dc4dafa1c0688e99914cd05ee8b8f"
+          },
+          "plane": "mouth",
+          "side": "center",
+          "owner": "reference",
+          "pixelCount": 144,
+          "origin": {
+            "x": 554,
+            "y": 164
+          }
+        }
+      }
+    },
+    "SW": {
+      "reference": {
+        "source": "SW.png",
+        "sourceSha256": "4d288310e7fbf452f9bf7cd842172b5201ce061249f2eade711d31518c34b870"
+      },
+      "features": {
+        "rightEye": {
+          "source": "SW-rightEye.png",
+          "sourceSha256": "8aa8d53d684c21b27963629fa8220771bc5245c19bcc145a39311e7bb20abb0b",
+          "selection": {
+            "source": "SW-rightEye-mask.png",
+            "sourceSha256": "08ec98fe7f30835f431be18eb6d0ba0e8e270726548644282f02c03681a92f49"
+          },
+          "plane": "eyes",
+          "side": "right",
+          "owner": "reference",
+          "pixelCount": 631,
+          "origin": {
+            "x": 454,
+            "y": 175
+          }
+        },
+        "leftEye": {
+          "source": "SW-leftEye.png",
+          "sourceSha256": "7aeefdcb1f003d64a1d3d6536d94342125891cdda32d3fe69cd89d26b1777544",
+          "selection": {
+            "source": "SW-leftEye-mask.png",
+            "sourceSha256": "4cda0d82fbfeaabc8767730beb3ac11f67f5730c5ac91fc6290d6691f4a079cb"
+          },
+          "plane": "eyes",
+          "side": "left",
+          "owner": "reference",
+          "pixelCount": 1043,
+          "origin": {
+            "x": 454,
+            "y": 175
+          }
+        },
+        "rightBrow": {
+          "source": "SW-rightBrow.png",
+          "sourceSha256": "517115fa97c0d8c0889f34fe628444e6b6509449099744322ebb53b75636d3f1",
+          "selection": {
+            "source": "SW-rightBrow-mask.png",
+            "sourceSha256": "d46a407d377fca57a07adbbc048ee7ad955f1cf53dde66a5ca655bfaac833274"
+          },
+          "plane": "eyebrows",
+          "side": "right",
+          "owner": "reference",
+          "pixelCount": 76,
+          "origin": {
+            "x": 454,
+            "y": 175
+          }
+        },
+        "leftBrow": {
+          "source": "SW-leftBrow.png",
+          "sourceSha256": "00045b044025c4db3ec8561a0c8fdcaa151bedccbe9325f2c7134bd4958752bb",
+          "selection": {
+            "source": "SW-leftBrow-mask.png",
+            "sourceSha256": "e6480b1047b072071bb8d17f904287c0e834345b2e33e00402bf140d5d781b94"
+          },
+          "plane": "eyebrows",
+          "side": "left",
+          "owner": "reference",
+          "pixelCount": 185,
+          "origin": {
+            "x": 454,
+            "y": 175
+          }
+        },
+        "mouth": {
+          "source": "SW-mouth.png",
+          "sourceSha256": "276a0d914215231bcaf7b9608f9a0165032455933e973ac704f7994a71faa13f",
+          "selection": {
+            "source": "SW-mouth-mask.png",
+            "sourceSha256": "63b229cde33e155e3130343ffe5128e84a179c8c344ad71e14efe9880eed5738"
+          },
+          "plane": "mouth",
+          "side": "center",
+          "owner": "reference",
+          "pixelCount": 149,
+          "origin": {
+            "x": 454,
+            "y": 175
+          }
+        }
+      }
+    }
+  },
+  "knownReviewIssues": [
+    "Removed same-facing fringe/outer-strand pixels return to a bounded front-hair layer; original front hair remains exact outside the local ownership mask.",
+    "SE left/far-eye revision 3 removes reference fringe and the outer/downward hair patch from eye ownership. Only alpha coverage changes; retained iris/lash RGB and coordinates remain native.",
+    "This is the visible same-facing eye extraction, not newly authored concealed eye geometry. Human review of bare and current-hair fits is pending.",
+    "SE right-eye revision 2 excludes the broad rosy reference cheek tint through a locally traced lower-lid mask. Only native alpha coverage changes; eye RGB is not repainted or resampled.",
+    "Only visible reference features are selected. Hair/background/fringe boundaries and local skin rims need visual review.",
+    "Head/neck/hair and native nose remain pinned to approved diagonal head-fit revision 4. Ears remain embedded in these head bases.",
+    "Concealed features, expressions, materials, other facings, production T-pose, independent pixel assets and final Step 6C remain unfinished."
+  ],
+  "previous": {
+    "source": "authoring-v2.json",
+    "sourceSha256": "4698f14a40b95ec781b264e881f8d2814de2b3d24b492e078505b95e9dc94efa"
+  },
+  "hairRepair": {
+    "original": {
+      "source": "SE-front-fit-v2.png",
+      "sourceSha256": "9bbef14f40d008220c8a4efdc473989be5c01bda5afdd2f3fff9556f6bd692e5"
+    },
+    "source": "SE-front-hair-v3.png",
+    "sourceSha256": "88183411ff97ebbcf7dc201610f4b7ae19d4592842f9cc96d7f7b66117a194a4",
+    "selection": {
+      "source": "SE-front-hair-mask-v3.png",
+      "sourceSha256": "396dba287f3b7ee7d14645451ef818cebb88b093181e88f96c66e24d0afef9c4"
+    },
+    "pixelCount": 306
+  }
+}

@@ -1,0 +1,266 @@
+{
+  "schemaVersion": 1,
+  "id": "head.assembly.review.v1",
+  "date": "2026-10-13",
+  "scope": "all-eight-standing-reference",
+  "status": "needs-cross-facing-human-review",
+  "newArtwork": true,
+  "individualFitsMatchApprovals": false,
+  "wholeHeadSetApproved": false,
+  "published": false,
+  "paletteReady": false,
+  "productionAnatomyApproved": false,
+  "bodyOcclusionVerified": false,
+  "tposeApproved": false,
+  "finalStep6CAccepted": false,
+  "validation": {
+    "typecheck": "pnpm --filter @character-studio/asset-validator typecheck passed",
+    "lint": "pnpm lint passed; zero warnings",
+    "build": "pnpm --filter @character-studio/asset-validator build passed; ESM and declarations",
+    "faceCli": "node tools/asset-validator/dist/face-diagonal-review-cli.js passed; current revision 6",
+    "headSetCli": "node tools/asset-validator/dist/head-set-review-cli.js passed; current SE brow candidate and seven preserved fits",
+    "facialIntegration": "pnpm exec vitest run tools/asset-validator/src/face-review.integration.test.ts -t 'independent SE/SW' passed; 1 passed, 2 unrelated workflows skipped; 284.73 seconds",
+    "cleanupIntegration": "pnpm exec vitest run tools/asset-validator/src/workspace-cleanup.integration.test.ts passed; 1 passed; 0.259 seconds",
+    "headSetIntegration": "not repeated for this local brow-only increment; all-eight CLI and hashes/actual component composition verified",
+    "fullApplicationBuild": "not rerun",
+    "studioBrowserE2E": "not rerun"
+  },
+  "protectedInputs": 702,
+  "intentionalSourceTextUpdates": [
+    "assets/source/README.md"
+  ],
+  "selectionSha256": "dad60ba6ee4d7562f26b9aaf7859644a91835ec9372bdc49400292ea4f23e982",
+  "stagingValidation": [
+    {
+      "directory": "assets/staging/heroine-v1/face/reference-v1",
+      "outputs": 44,
+      "configSha256": "abc8d575982dff8d0828d7d16ee11e829ec8ebe1e5629ddb1d6d271b284b6d5e"
+    },
+    {
+      "directory": "assets/staging/heroine-v1/face/reference-v1/front-diagonals",
+      "outputs": 40,
+      "configSha256": "9505aef012d3a03fa94b0bf7948469479b322a5eaa0f5b8cce22a31e7211a183"
+    },
+    {
+      "directory": "assets/staging/heroine-v1/face/reference-v1/profiles",
+      "outputs": 29,
+      "configSha256": "93c8e7c150ebb8b8eaaaad6a1f986ca4ba99d83f462e3e2301097f5f2c570519"
+    },
+    {
+      "directory": "assets/staging/heroine-v1/ears/human-v1/profiles",
+      "outputs": 26,
+      "configSha256": "f32d37f1f5c1d9430b88fa6de5e68a9259053901d77757edba6eef5722cf2dcd"
+    },
+    {
+      "directory": "assets/staging/heroine-v1/ears/human-v1/front-diagonals",
+      "outputs": 26,
+      "configSha256": "6069c9c9e98e7a7e92111365cdb1eebbf4401ee3b2c56f58f272e83fa39cc72f"
+    },
+    {
+      "directory": "assets/staging/heroine-v1/ears/human-v1/back-diagonals",
+      "outputs": 24,
+      "configSha256": "c82b65aa9665724ff894f5fbda2a23d6ae6ef21c1fc948693583b73089d69b78"
+    },
+    {
+      "directory": "assets/staging/heroine-v1/ears/human-v1/north",
+      "outputs": 16,
+      "configSha256": "9b6e962977577f44d82d4b83c370cf2809e5d848d10355c7fde4306df76b64a3"
+    },
+    {
+      "directory": "assets/staging/heroine-v1/head/soft-oval-v1/north",
+      "outputs": 14,
+      "configSha256": "b953e1eeff3e797eb4f32189f7a9e433d7503a7accf0900eef4f5f9e15b2dc0a"
+    },
+    {
+      "directory": "assets/staging/heroine-v1/head/assembly-v1",
+      "outputs": 3,
+      "configSha256": "dad60ba6ee4d7562f26b9aaf7859644a91835ec9372bdc49400292ea4f23e982"
+    }
+  ],
+  "frames": [
+    {
+      "direction": "N",
+      "pack": "north",
+      "fitSha256": "0a804f17591307be3752fcfdeb14905651aa6038ddc299a61049c2a86b473bdb",
+      "approvedFitSha256": "0a804f17591307be3752fcfdeb14905651aa6038ddc299a61049c2a86b473bdb",
+      "reviewStatus": "approved-standing-reference-fit",
+      "bareSha256": "b03813a64dbea0f7362d32788905ff37de54b30c8efd1d6aa4e3c43b7b8584b8",
+      "fitPanelSha256": "5e91b457d5a30793c8b9b78b9456cd3779caaf40c01c2ce855cc75b3085c2add",
+      "barePanelSha256": "4852acb13a9da687dc29ae3f2d333ec427fde9236b057372907bb96917d3b61f",
+      "referencePanelSha256": "3bc98138785ba7c84bc9f0cbcec1b25f77e4905a2c835c7b3fdcd0f48027747b"
+    },
+    {
+      "direction": "NE",
+      "pack": "backDiagonals",
+      "fitSha256": "59b02d8fd07380bac390210f4d2c58b5e4ef45d0b3ca255bd5d9848ce695b669",
+      "approvedFitSha256": "59b02d8fd07380bac390210f4d2c58b5e4ef45d0b3ca255bd5d9848ce695b669",
+      "reviewStatus": "approved-standing-reference-fit",
+      "bareSha256": "3e01ae59794bdd1253740e9e3b9525a8b442aaecefe1eb02f3d1a5c9351a6b9a",
+      "fitPanelSha256": "cfec5b91b347d1300d2185e037c50daae0edeea6f2524e2f5455c0bbc9f9ef8e",
+      "barePanelSha256": "957bc81eb96b7b1aa70afcc2c20e0228988b09d604c45f4877e5df15ced65dc3",
+      "referencePanelSha256": "a56afdc6ca68fb508dec5d3ba041bce94354fb713951eb30374673faa63f994e"
+    },
+    {
+      "direction": "E",
+      "pack": "profiles",
+      "fitSha256": "970e7f224a7cecfa46d3553ce990b4cb14aa6345bcdd4136864ba33dc38cad77",
+      "approvedFitSha256": "970e7f224a7cecfa46d3553ce990b4cb14aa6345bcdd4136864ba33dc38cad77",
+      "reviewStatus": "approved-standing-reference-fit",
+      "bareSha256": "b07274d59d67261323aa02b319cff2e57d75558c7264b848ded68eb8c386523b",
+      "fitPanelSha256": "7e1c0d440ae580b9d47321368c94f3c44d958489dd0b2cbb1fcfc9a6d8c46e47",
+      "barePanelSha256": "40148f6b245a218bbedef476400f4ed32806a0255604b9a6aef9af06f9ed236a",
+      "referencePanelSha256": "36d403b9a365d0a7c7c53005502c101ca7293a8d00d0a383262a31ad80d3c0b9"
+    },
+    {
+      "direction": "SE",
+      "pack": "frontDiagonals",
+      "fitSha256": "83be6444c7ef87c5e72bc5458db2c9223b3795e4bef6c1a2e0e3b0b39ca926e7",
+      "approvedFitSha256": "5f36de6d95e80f070f66d17c80f9c303495c01dd3074564a943d631060021797",
+      "reviewStatus": "candidate-needs-human-review",
+      "bareSha256": "1f71d249ada2564a25b72b341a4abbb7bb9f61990d6a21d2582f03930db4303c",
+      "fitPanelSha256": "fed577ca583800c170a700419d4d8cf6ca04b161382edb337039f8c93a4ea495",
+      "barePanelSha256": "f00118cf801d4f5ba4fc999279e653edfe1f0e4585f67b08a7e9d70e81498718",
+      "referencePanelSha256": "15b03b83176c2de0b636701b9c4e7e969fe9366cd39920f59d7649a61beda4a4"
+    },
+    {
+      "direction": "S",
+      "pack": "front",
+      "fitSha256": "0b51a0d1d6a1f2caf54324c715cf8aa27767e756aa71159ba717cc5e47576634",
+      "approvedFitSha256": "0b51a0d1d6a1f2caf54324c715cf8aa27767e756aa71159ba717cc5e47576634",
+      "reviewStatus": "approved-standing-reference-fit",
+      "bareSha256": "5fa588d0903203653dd139fc1823f41e722a373b9bab7d7f2ffd83a844a276ec",
+      "fitPanelSha256": "c458264522605d0c69b8390871e248fd2b6e10124447681e67c1186cf47c7fb7",
+      "barePanelSha256": "de19056994fe1f8dfaf56501d3819729d6688be15ab1df83528d5a0adcfa44eb",
+      "referencePanelSha256": "4ed34ca66c0408e6e15fc2f1917d9e69786c506f6d2e2117aacb791e94e5d9be"
+    },
+    {
+      "direction": "SW",
+      "pack": "frontDiagonals",
+      "fitSha256": "11c8442abf2b30beb7c0b3abbd7c0d127568be7822b3490853364875b2a722b7",
+      "approvedFitSha256": "11c8442abf2b30beb7c0b3abbd7c0d127568be7822b3490853364875b2a722b7",
+      "reviewStatus": "approved-standing-reference-fit",
+      "bareSha256": "fe38beee272e14c7741c28e556ad757c0a96fa73cf4bb8a1303a9fe71e00018a",
+      "fitPanelSha256": "d144f60db307bb2ceb5fdf1749afec640d09621b8e03beeeb97a6a8588af68da",
+      "barePanelSha256": "7cff21fc069bf7805d901a514c4f9c1a080c545b94e8e88f62fb8f367ed90070",
+      "referencePanelSha256": "301ef50bfb0e6a6a4bf70c918f776a843e838820b71ce9c30453dc4cc143b8fb"
+    },
+    {
+      "direction": "W",
+      "pack": "profiles",
+      "fitSha256": "4fa001263e2747fc36ff7b275857d37fc22297b8b18db9c84b9b7ee70a2d66de",
+      "approvedFitSha256": "4fa001263e2747fc36ff7b275857d37fc22297b8b18db9c84b9b7ee70a2d66de",
+      "reviewStatus": "approved-standing-reference-fit",
+      "bareSha256": "35020cec3a4004095b63c1d93f4f2a4a91dc9ca8711210a3d7a05184c1ceb51a",
+      "fitPanelSha256": "a3ebe3dadc246fb40e4700028db349fee7972cb72ada99175dda9338ce29e201",
+      "barePanelSha256": "6568ee9ea28f816a90c02b46e983000e4c22bfe5aeeab3350fce8ae5c3e60f3b",
+      "referencePanelSha256": "161e8f5f18c8d48f88b0673ae64de95ad6949f98a0187583fffd65e8f8c0eba3"
+    },
+    {
+      "direction": "NW",
+      "pack": "backDiagonals",
+      "fitSha256": "2848e2ebcabc08b88aced4a781d2e9fb5c6c93d2db44ff7d429ed47abb93a99a",
+      "approvedFitSha256": "2848e2ebcabc08b88aced4a781d2e9fb5c6c93d2db44ff7d429ed47abb93a99a",
+      "reviewStatus": "approved-standing-reference-fit",
+      "bareSha256": "286fddec4137c5e1d710e809533355ff3660538fa1eb236dcc7f4ddd85c09c3a",
+      "fitPanelSha256": "27cd06dd27a7fe425c26c16682d9378ec95229d91c3b4b40fc6afb2845440b0a",
+      "barePanelSha256": "799600c4dc5155e883ce26e9b2ff6efbb377acbe3a63fc0006159b20af27a96f",
+      "referencePanelSha256": "6b5041d05d53b7c0952915fb0f42682816aa615d14a9f47b5c527deeec9f13ff"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "overview.png",
+      "sha256": "4b8adab756c384137d363d20ee0b8038cf047d5745df5b384bd2c812eef67a79"
+    },
+    {
+      "path": "anatomy-overview.png",
+      "sha256": "fabf251bd1a605fb9043108d10c4739249888bc8f1b9a43bb1a778186c4f9407"
+    },
+    {
+      "path": "reference-overview.png",
+      "sha256": "5ba14e942f83d11d4fb5d6abdc2d3bbf31649f84d1dfde82b96b5eab4e6d4ece"
+    }
+  ],
+  "futureBodyFitObligations": [
+    "Check the circled neck/shoulder hair starts against actual independently authored same-facing body and clothing layers.",
+    "Rear hair must sit behind the torso/shoulders where physically appropriate; intentional foreground curls retain their proper depth.",
+    "Inspect real native-layer composition for exposed abrupt starts and mask seams. Do not move inspection panels, clip valid hair or use a stand-in torso to certify production fit.",
+    "If any abrupt starts remain visible after the true body composition, repair them in a new version."
+  ],
+  "futureHairstyleFitObligations": [
+    "SE and SW anatomy ears differ in apparent size in the bare-head review. Current reference hair conceals this discrepancy; approval does not establish compatibility with alternate hairstyles. Before shorter/open-ear hairstyles or ear-size variants are accepted, compare native ear proportions, attachment and exposure across independently authored facings and review the actual layered fit. If exposed differences look incoherent, author versioned corrections rather than silently scaling or mirroring approved ears."
+  ],
+  "storage": {
+    "newReviewSheets": 3,
+    "newNativeFitCopies": 0,
+    "temporaryComponentExportsRetained": 0
+  },
+  "reviewRequired": [
+    "The SE complete left eye from facial revision 5 is accepted and retained exactly. Review the revision-6 right-brow skin-stripe correction in bare and actual foreground composition; whole head-set approval is still pending.",
+    "Cross-facing skull/jaw/ear proportions and shared character identity",
+    "Current front/rear hair depth and inherited edges without treating body-free cutouts as production defects",
+    "Actual future body/clothing fit, concealed geometry, expressions/materials, authored production T-pose and independent pixel assets"
+  ],
+  "approvedBaselineFitsMatchApprovals": true,
+  "pendingCandidateDirections": [
+    "SE"
+  ],
+  "frontDiagonalCandidate": {
+    "direction": "SE",
+    "configuration": {
+      "source": "authoring-v6.json",
+      "sourceSha256": "9505aef012d3a03fa94b0bf7948469479b322a5eaa0f5b8cce22a31e7211a183"
+    }
+  },
+  "initialConsolidationValidation": {
+    "typecheck": "pnpm --filter @character-studio/asset-validator typecheck passed",
+    "lint": "pnpm lint passed; zero warnings",
+    "buildAndCli": "pnpm head:review:all passed; JavaScript/declarations built",
+    "integration": "Existing head-review all-eight workflow and cleanup: 2 passed, 4 skipped",
+    "durationSeconds": 270.26,
+    "initialIssue": "New selector initially reused PNG-only runtime paths for JSON/folders; corrected private path validation. Final checks passed.",
+    "fullApplicationBuild": "not rerun",
+    "studioBrowserE2E": "not rerun"
+  },
+  "currentReviewPngHashesVerified": 222,
+  "eyeRepairAudit": "../../face/reference-v1/front-diagonals-v1/fit-audit-v5.json",
+  "previousCorrectionValidation": {
+    "typecheck": "pnpm --filter @character-studio/asset-validator typecheck passed",
+    "lint": "pnpm lint passed; zero warnings",
+    "build": "pnpm --filter @character-studio/asset-validator build passed; ESM/declaration output",
+    "faceCli": "node tools/asset-validator/dist/face-diagonal-review-cli.js passed; current revision 4",
+    "headSetCli": "node tools/asset-validator/dist/head-set-review-cli.js passed; pending SE revision 4 and seven unchanged approved fits",
+    "facialIntegration": "Existing independent SE/SW facial workflow passed; 1 passed, 2 unrelated workflows skipped; 153.17 seconds",
+    "headSetIntegration": "Existing all-eight head and cleanup workflows passed; 2 passed, 4 unrelated head workflows skipped",
+    "fullApplicationBuild": "not rerun",
+    "studioBrowserE2E": "not rerun",
+    "headSetDurationSeconds": 329.18,
+    "historicalCli": "node tools/asset-validator/dist/face-diagonal-review-cli.js --v3 passed; exact prior fit hashes and all 40 output hashes verified"
+  },
+  "completeEyeRevision5Validation": {
+    "typecheck": "pnpm --filter @character-studio/asset-validator typecheck passed",
+    "lint": "pnpm lint passed; zero warnings",
+    "build": "pnpm --filter @character-studio/asset-validator build passed; ESM/declarations",
+    "faceCli": "node tools/asset-validator/dist/face-diagonal-review-cli.js passed; complete-eye revision 5",
+    "headSetCli": "node tools/asset-validator/dist/head-set-review-cli.js passed; current SE candidate and seven preserved fits",
+    "facialIntegration": "Existing independent SE/SW facial workflow passed; 1 passed, 2 unrelated workflows skipped; 217.27 seconds",
+    "headSetIntegration": "Existing all-eight head and cleanup workflows passed; 2 passed, 4 unrelated head workflows skipped; 325.29 seconds",
+    "initialIssues": [
+      "Typecheck required explicit guards before accessing preceding revision pins.",
+      "Native contour ownership caught a half-pixel bound omitted by integer bounding-box checks; corrected floor/ceil bounds before export.",
+      "Initial occlusion assertion assumed alpha 255; the retained fringe uses alpha 254 at the selected point. Corrected the test to verify actual source-over RGBA without changing hair artwork."
+    ],
+    "fullApplicationBuild": "not rerun",
+    "studioBrowserE2E": "not rerun"
+  },
+  "browRepairAudit": "../../face/reference-v1/front-diagonals-v1/fit-audit-v6.json",
+  "acceptedNativeFeatures": [
+    "SE-leftEye"
+  ],
+  "cleanup": {
+    "generatedFilesRemoved": 45,
+    "generatedMiBRemoved": 1.7,
+    "currentReviewPngsVerified": 222,
+    "priorSourceReferenceFilesProtected": 702
+  }
+}
