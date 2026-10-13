@@ -1,5 +1,99 @@
 # Step 6C — native S facial-feature separation
 
+## SE/SW approval and next profile increment — 2026-10-13
+
+`front-diagonals-v1/review-fit-v2.json` records the user's approval of the current
+SE/SW visible facial fit, including the SE right-eye cheek correction, and pins
+the actual source/configuration/fit hashes. The approval is a standing-reference
+checkpoint; all approved source pixels and pinned historical derivations remain.
+The user requested generated-data cleanup and a local commit before continuing.
+
+Next separate the independently visible E/W eyes, brows and mouth over accepted
+profile head-fit revision 3. Preserve native nose/head/neck/ear/hair geometry and
+physical side identity; author each selection from its own reference. S and
+SE/SW remain exact. New profiles need human visual approval. Concealed surfaces,
+variants, materials, body/clothing occlusion, production poses, pixel artwork and
+final Step 6C remain open. Step 6D has not started. Earlier approval statements
+below are historical.
+
+## SE right-eye cheek ownership — revision 2, 2026-10-13
+
+The user found the SE/SW facial fit otherwise good but requested removal of the
+shade beneath SE's character-right/near eye. `front-diagonals-v1/review-fit-v1.json`
+records that feedback; it does not certify final artwork or Step 6C acceptance.
+The broad lower portion of the reference eye extraction carried rosy cheek skin
+that contrasted with the accepted head skin.
+
+`pnpm face:review:front-diagonals` now selects
+`front-diagonals-v1/authoring-v2.json`. A manually traced native lower-lid contour
+removes that cheek patch from `SE-rightEye-v2.png`, revealing the unchanged head
+skin. Deterministic 4x4 mask coverage changes only source alpha along the contour;
+eye RGB, coordinates, lashes, iris and whites retain native reference ownership.
+All nine other features, the entire SW fit, approved head/neck/nose/hair and S
+revision 11 stay exact. No new image generation, transformations or skin repaint.
+`trim-se-eye-cheek-v2.js` must be replayed only in an isolated scratch copy.
+
+Review `front-diagonals/inspection/SE-cheek-fit-comparison.png`: reference /
+revision 1 / revision 2. The overview and ordinary face comparisons use revision 2.
+`pnpm face:review:front-diagonals:v1` rebuilds the retained preceding candidate.
+The correction needs visual approval. Body occlusion, concealed geometry,
+expressions/materials, other facings, production poses, independent pixel art and
+final Step 6C remain unfinished; Step 6D has not started. Earlier command defaults
+and selected-candidate statements below are historical.
+
+Revision-2 validation: asset-validator typecheck, root lint (zero warnings),
+JavaScript/declaration build and current-v2/historical-v1 CLI exports passed.
+The existing SE/SW face and cleanup integration workflows passed (two tests,
+96.01 seconds; the unrelated S workflow skipped). They cover actual plane order,
+removed cheek samples, retained iris/lashes/whites/lower lid, unchanged SW and
+nine other feature pins, exact historical fits, deterministic output, immutable
+inputs and rejection of re-pinned out-of-mask/restored-cheek/facing edits.
+All 576 prior artwork/reference inputs retain hashes and mtimes; the source README
+changed intentionally. Four authoring outputs replayed byte-for-byte in scratch.
+Current S (44), current diagonal (38) and historical diagonal (37) PNG hashes and
+the S viewer hash verified. See `front-diagonals-v1/fit-audit-v2.json`. Full app
+build and studio browser E2E were not rerun for this offline mask-only increment.
+Generated historical previews and build outputs are cleared after validation;
+both current reviews, native references and all pinned source baselines remain.
+
+## Independent SE/SW facial-layer candidate — 2026-10-13
+
+Local commit `e590858` records the approved S revision-11 facial/fringe fit,
+its approval record and required brow derivation baselines. Cleanup before that
+commit found no remaining regenerable files. The S source and default review
+configuration remain unchanged.
+
+The next Step 6C candidate is
+`face/reference-v1/front-diagonals-v1/authoring.json`. Ten native transparent
+feature layers and binary masks independently select each facing's visible
+right/left eyes, right/left brows and mouth from its own approved reference.
+SE uses origin (554,164), SW (454,175); every layer draws at (0,0). Physical
+right is screen-left in these front diagonals: the near eye in SE and far eye
+in SW. No mirroring, image transforms, anatomy edits or new generation occur.
+Ears remain embedded in the accepted diagonal head bases.
+
+`pnpm face:review:front-diagonals` validates the retained layers and rebuilds
+actual native composition over `head/soft-oval-v1/front-diagonals-authoring-v4.json`.
+The head/hair baselines must match their approval hashes before adding features;
+existing nose/head/neck/front/rear pixels remain exact. True foreground hair
+occludes the facial layers in the core direction-specific order. The source
+partition script is replayed only in an isolated scratch copy.
+
+Review staging `face/reference-v1/front-diagonals/overview.png`:
+SE above SW, with reference / approved anatomy-hair / new face candidate.
+Native 4x face comparisons are in `inspection/SE-face-fit-comparison.png` and
+`inspection/SW-face-fit-comparison.png`. Current S and SE/SW review outputs are
+both preserved by `assets:clean`. Historical exports/build caches are removable;
+all pinned sources and native reference dependencies remain protected.
+
+This pair is uncommitted and unapproved. Review actual eye/brow/mouth placement,
+reference skin rims, forehead/fringe ownership and baseline face proportions.
+Visible reference shapes do not certify complete concealed surfaces, neutral/
+stern expressions or material maps. The existing future body-occlusion obligation
+for abrupt neck/shoulder hair remains unchanged and unverified. Other facings/
+ears, full body/clothing, production T-pose, independent pixel assets and final
+Step 6C acceptance remain open; Step 6D has not started.
+
 ## S facial fit approval and next front-diagonal increment — 2026-10-13
 
 The user approved revision 11 and requested cleanup, a local commit and continued

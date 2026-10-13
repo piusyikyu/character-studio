@@ -1,5 +1,32 @@
 # MVP Plan — Female Character Studio
 
+Current approval update — 2026-10-13: the user approved the SE/SW facial revision-2
+fit in `face/reference-v1/front-diagonals-v1/review-fit-v2.json` and requested
+cleanup, a local commit and continued Step 6C work. Next separate independently
+visible E/W facial components over accepted profile anatomy/hair revision 3.
+This approval does not complete concealed geometry, variants/materials, body
+occlusion, production poses, independent pixel artwork or Step 6C. Step 6D has
+not started; previous selected-candidate/pending-approval statements are historical.
+
+Current selection update — 2026-10-13: the SE/SW facial candidate received positive
+feedback with a requested SE right-eye cheek-tint correction. The current
+`face:review:front-diagonals` selects `front-diagonals-v1/authoring-v2.json`, trimming
+only the broad under-eye reference skin patch with native mask coverage. Eye
+detail, the other nine features, SW, S and approved anatomy/hair stay exact.
+Review reference / v1 / v2 in `inspection/SE-cheek-fit-comparison.png`;
+`face:review:front-diagonals:v1` reproduces the preceding candidate. Visual approval
+of this correction and the existing Step 6C review debt remain pending. Step 6D
+has not started. Earlier selections below are historical.
+
+Current candidate update — 2026-10-13: commit `e590858` preserves approved S
+revision 11. The next native SE/SW facial-layer candidate is in
+`face/reference-v1/front-diagonals-v1/`; run `pnpm face:review:front-diagonals`.
+Its same-facing reference features compose over exact approved diagonal head/
+hair baselines. Human review of feature placement, skin rims and true fringe
+occlusion is pending. Cleanup preserves both current facial reviews. This remains
+Step 6C, with body-occlusion, hidden geometry, expressions/materials, production
+poses and independent pixel art still outstanding. Step 6D has not started.
+
 Current approval update — 2026-10-13: the user approved the S revision-11
 facial/fringe fit in `face/reference-v1/review-fit-v11.json` and authorised
 cleanup, a local commit and continued Step 6C work. Next prepare native SE/SW

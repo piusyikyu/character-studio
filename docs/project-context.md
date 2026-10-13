@@ -2,6 +2,83 @@
 
 > Purpose: This file transfers the **requirements and decisions** from a ChatGPT planning conversation into the WSL2/VS Code Codex development workflow. It is project context, **not** proof that any implementation is complete. Review actual repository files and tests before assuming a feature exists.
 
+## SE/SW facial approval and profile increment — 2026-10-13
+
+The user approved SE/SW facial revision 2 and requested cleanup, a local commit
+and continued work. `face/reference-v1/front-diagonals-v1/review-fit-v2.json`
+pins the accepted configuration, feature/mask sources and actual fit hashes.
+This approves the visible standing-reference facial checkpoint, including the
+SE cheek-tint trim; source configs and artwork remain unchanged. Historical
+revisions, masks and reference dependencies remain required baselines.
+
+The next bounded Step 6C increment separates E/W visible eyes, brows and mouth
+from each profile's own reference over accepted `profiles-authoring-v3.json`
+head/neck/hair anatomy. Keep physical side identity, native framing, nose and
+ear ownership. Inspect the actual layers and composition, preserve S/SE/SW and
+do not mirror a profile. New profile features need visual approval. Body
+occlusion, concealed surfaces, expressions/materials, N anatomy review, production
+T-pose, independent pixel art and final Step 6C remain open. Step 6D has not started.
+Earlier current/pending-approval statements below are historical.
+
+## SE right-eye cheek correction — 2026-10-13
+
+The user found the diagonal facial candidate otherwise good but asked to remove
+the shade under SE's character-right/near eye. Its reference extraction included
+a broad rosy cheek patch. Feedback is retained in
+`face/reference-v1/front-diagonals-v1/review-fit-v1.json` without inferring final
+approval. `pnpm face:review:front-diagonals` selects `authoring-v2.json` in that
+folder: a manually traced lower-lid contour removes the cheek tint through native
+4x4 alpha coverage. The unchanged approved head supplies the underlying skin;
+no painting, mirroring, image movement or resampling occurs.
+
+Eye RGB/detail, the nine other facial layers, the entire SW fit, approved
+head/neck/nose/hair and approved S revision 11 remain exact. Review reference /
+revision 1 / revision 2 in staging
+`face/reference-v1/front-diagonals/inspection/SE-cheek-fit-comparison.png`.
+`face:review:front-diagonals:v1` exports the pinned prior candidate separately.
+The authoring script is replayed only in scratch. New visual approval is pending;
+future body occlusion, complete concealed geometry, expressions/materials, other
+facings, production T-pose, independent pixel artwork and final Step 6C remain
+open. Step 6D has not started. Earlier current-selection paragraphs are historical.
+
+## Independent SE/SW facial-layer candidate — 2026-10-13
+
+Local commit `e590858` records the approved S revision-11 facial/fringe fit,
+its approval record and required brow derivation baselines. Cleanup before that
+commit found no remaining regenerable files. The S source and default review
+configuration remain unchanged.
+
+The next Step 6C candidate is
+`face/reference-v1/front-diagonals-v1/authoring.json`. Ten native transparent
+feature layers and binary masks independently select each facing's visible
+right/left eyes, right/left brows and mouth from its own approved reference.
+SE uses origin (554,164), SW (454,175); every layer draws at (0,0). Physical
+right is screen-left in these front diagonals: the near eye in SE and far eye
+in SW. No mirroring, image transforms, anatomy edits or new generation occur.
+Ears remain embedded in the accepted diagonal head bases.
+
+`pnpm face:review:front-diagonals` validates the retained layers and rebuilds
+actual native composition over `head/soft-oval-v1/front-diagonals-authoring-v4.json`.
+The head/hair baselines must match their approval hashes before adding features;
+existing nose/head/neck/front/rear pixels remain exact. True foreground hair
+occludes the facial layers in the core direction-specific order. The source
+partition script is replayed only in an isolated scratch copy.
+
+Review staging `face/reference-v1/front-diagonals/overview.png`:
+SE above SW, with reference / approved anatomy-hair / new face candidate.
+Native 4x face comparisons are in `inspection/SE-face-fit-comparison.png` and
+`inspection/SW-face-fit-comparison.png`. Current S and SE/SW review outputs are
+both preserved by `assets:clean`. Historical exports/build caches are removable;
+all pinned sources and native reference dependencies remain protected.
+
+This pair is uncommitted and unapproved. Review actual eye/brow/mouth placement,
+reference skin rims, forehead/fringe ownership and baseline face proportions.
+Visible reference shapes do not certify complete concealed surfaces, neutral/
+stern expressions or material maps. The existing future body-occlusion obligation
+for abrupt neck/shoulder hair remains unchanged and unverified. Other facings/
+ears, full body/clothing, production T-pose, independent pixel assets and final
+Step 6C acceptance remain open; Step 6D has not started.
+
 ## S facial fit approval and next front-diagonal increment — 2026-10-13
 
 The user approved revision 11 and requested cleanup, a local commit and continued

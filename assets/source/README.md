@@ -11,6 +11,17 @@ masked hair pixels are consumed. Head/ear/facial inputs remain pinned to v4.
 `review-fit-v5.json` pins standing-reference approval; brows and production anatomy
 remain unfinished. See [modular-face.md](../../docs/modular-face.md).
 
+`face/reference-v1/front-diagonals-v1/authoring-v2.json` selects the current SE/SW
+facial candidate. A locally traced SE right-eye lower-lid mask excludes the broad
+reference cheek tint with native alpha coverage. The other nine features and all
+approved anatomy/hair stay exact; no source RGB is resampled or repainted.
+Revision 1 and its feedback remain pinned derivation baselines. Both the original
+partition and `trim-se-eye-cheek-v2.js` scripts must run only in scratch.
+`front-diagonals-v1/review-fit-v2.json` pins the approved visible standing-reference
+SE/SW facial fit, including that cheek correction. Production approval remains open.
+Each direction retains only its own reference pixels and accepted anatomy/hair.
+The approved S revision-11 source/configuration remains unchanged.
+
 `face/reference-v1/review-fit-v11.json` pins approval of the S visible facial
 and fringe-depth fit. Its selected layers, masks, studies and historical
 configurations remain required baselines. Production approval is still pending.

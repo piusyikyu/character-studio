@@ -210,3 +210,86 @@ it('reviews native S facial features with approved ears, actual hair depth, dete
     for (const source of before) { expect(sha256(await readFile(source.path))).toBe(source.hash); expect((await stat(source.path)).mtimeMs).toBe(source.mtime); }
   } finally { await rm(temporary, { recursive: true, force: true }); }
 }, 300_000);
+
+it('reviews independent SE/SW facial layers with approved native anatomy, real foreground depth and immutable ownership', async () => {
+  const { prepareDiagonalFaceReview, diagonalFaceReviewSchema } = await import('./face-diagonal-review');
+  const temporary = await mkdtemp(resolve(tmpdir(), 'character-diagonal-face-review-'));
+  try {
+    const sourceDirectory = resolve(repository, 'assets/source/heroine-v1/face/reference-v1/front-diagonals-v1'), headDirectory = resolve(repository, 'assets/source/heroine-v1/head/soft-oval-v1'), hairDirectory = resolve(repository, 'assets/source/heroine-v1/hair/long-waves-v1'), referenceDirectory = resolve(temporary, 'references');
+    await mkdir(referenceDirectory);
+    const settings = referenceImportSettingsSchema.parse(JSON.parse(await readFile(resolve(repository, 'assets/references/heroine-v1/import-v1.json'), 'utf8')));
+    for (const direction of ['SE', 'SW'] as const) {
+      const raw = decode(await readFile(resolve(repository, `assets/references/heroine-v1/detailed/${direction}.png`)), { checkCrc: true }), image = blankImage(1024, 1536);
+      for (let p = 0; p < 1024 * 1536; p++) { image.data.set(raw.data.subarray(p * raw.channels, p * raw.channels + 3), p * 4); image.data[p * 4 + 3] = raw.channels === 4 ? raw.data[p * 4 + 3]! : 255; }
+      await writeFile(resolve(referenceDirectory, `${direction}.png`), encodePng(matteReference(image, settings.frames[direction].labelExclusions, settings.matte, settings.frames[direction].backgroundCorrections).image));
+    }
+    const files: string[] = [];
+    for (const root of [sourceDirectory, headDirectory, hairDirectory, resolve(repository, 'assets/source/heroine-v1/face/reference-v1')]) for (const path of await readdir(root, { recursive: true })) if ((await stat(resolve(root, path))).isFile()) files.push(resolve(root, path));
+    const before = await Promise.all([...new Set(files)].map(async path => ({ path, hash: sha256(await readFile(path)), mtime: (await stat(path)).mtimeMs })));
+    const options = { sourceDirectory, headDirectory, hairDirectory, referenceDirectory, outputDirectory: resolve(temporary, 'review') }, report = await prepareDiagonalFaceReview(options);
+    expect(report).toMatchObject({ supportedReviewDirections: ['SE', 'SW'], published: false, anatomyApproved: false, bodyOcclusionVerified: false, nativePosition: { x: 0, y: 0 } });
+    expect(report.measurements).toHaveLength(10); expect(report.measurements.some(m => m.foregroundHairOverlapPixels > 0)).toBe(true);
+    expect(report.futureBodyFitObligations.length).toBeGreaterThan(0);
+    const approval = JSON.parse(await readFile(resolve(headDirectory, 'front-diagonals-review-fit-v4.json'), 'utf8'));
+    const config = diagonalFaceReviewSchema.parse(JSON.parse(await readFile(resolve(sourceDirectory, 'authoring-v2.json'), 'utf8')));
+    const previousConfig = diagonalFaceReviewSchema.parse(JSON.parse(await readFile(resolve(sourceDirectory, 'authoring.json'), 'utf8')));
+    const historical = await prepareDiagonalFaceReview({ ...options, configFile: 'authoring.json', outputDirectory: resolve(temporary, 'historical-v1') });
+    expect(config.assetVersion).toBe(2);
+    expect(historical.fitMeasurements.find(m => m.direction === 'SE')!.outputSha256).toBe('7800ce09aee55e3191ab2e2f8625a0a7548246c725caf6ed9b1a14debf15dcd7');
+    expect(historical.fitMeasurements.find(m => m.direction === 'SW')!.outputSha256).toBe('11c8442abf2b30beb7c0b3abbd7c0d127568be7822b3490853364875b2a722b7');
+    expect(report.fitMeasurements.find(m => m.direction === 'SW')).toEqual(historical.fitMeasurements.find(m => m.direction === 'SW'));
+    for (const direction of ['SE', 'SW'] as const) for (const name of ['rightEye', 'leftEye', 'rightBrow', 'leftBrow', 'mouth'] as const) if (!(direction === 'SE' && name === 'rightEye')) expect(config.frames[direction].features[name]).toEqual(previousConfig.frames[direction].features[name]);
+    const load = async (root: string, file: string) => { const image = decodePng(await readFile(resolve(root, file))); for (let i = 0; i < image.data.length; i += 4) if (image.data[i + 3]! < 8) image.data.fill(0, i, i + 4); return image; };
+    for (const direction of ['SE', 'SW'] as const) {
+      const parts = new Map<string, RgbaImage[]>([
+        ['head', [await load(options.outputDirectory, `layers/${direction}-head.png`)]], ['neck', [await load(options.outputDirectory, `layers/${direction}-neck.png`)]],
+        ['hair-front', [await load(options.outputDirectory, `layers/${direction}-front-hair.png`)]], ['hair-rear', [await load(options.outputDirectory, `layers/${direction}-rear-hair.png`)]],
+      ]);
+      const headConfig = JSON.parse(await readFile(resolve(headDirectory, 'front-diagonals-authoring-v4.json'), 'utf8'));
+      for (const part of ['head', 'neck'] as const) expect(sha256(encodePng(parts.get(part)![0]!))).toBe(sha256(encodePng(await load(headDirectory, headConfig.frames[direction][part].source))));
+      const baseline = blankImage(1024, 1536); for (const plane of DIRECTION_PLANE_ORDER[direction]) for (const part of parts.get(plane) ?? []) drawRgba(baseline, part, 0, 0);
+      expect(sha256(encodePng(baseline))).toBe(approval.fitMeasurements.find((m: { direction: string }) => m.direction === direction).outputSha256);
+      for (const feature of Object.values(config.frames[direction].features)) { const part = await load(sourceDirectory, feature.source); parts.set(feature.plane, [...parts.get(feature.plane) ?? [], part]); }
+      const expected = blankImage(1024, 1536); for (const plane of DIRECTION_PLANE_ORDER[direction]) for (const part of parts.get(plane) ?? []) drawRgba(expected, part, 0, 0);
+      expect(sha256(encodePng(expected))).toBe(report.fitMeasurements.find(m => m.direction === direction)!.outputSha256);
+      if (direction === 'SE') {
+        const eye = await load(sourceDirectory, config.frames.SE.features.rightEye.source), oldEye = await load(sourceDirectory, previousConfig.frames.SE.features.rightEye.source), oldFit = await load(resolve(temporary, 'historical-v1'), 'fit/SE.png');
+        // The rosy cheek patch is excluded; approved head skin supplies these pixels.
+        for (const [x, y] of [[550, 187], [546, 184], [557, 187]]) {
+          const i = (y! * 1024 + x!) * 4; expect(oldEye.data[i + 3]).toBe(255); expect(eye.data[i + 3]).toBe(0);
+          expect(expected.data.slice(i, i + 4)).toEqual(baseline.data.slice(i, i + 4));
+          expect(expected.data.slice(i, i + 4)).not.toEqual(oldFit.data.slice(i, i + 4));
+        }
+        // Iris, lashes, whites and the retained lower-lid edge stay native and exact.
+        for (const [x, y] of [[548, 170], [545, 177], [541, 162], [562, 177], [550, 180]]) {
+          const i = (y! * 1024 + x!) * 4; expect(eye.data.slice(i, i + 4)).toEqual(oldEye.data.slice(i, i + 4));
+          expect(expected.data.slice(i, i + 4)).toEqual(oldFit.data.slice(i, i + 4));
+        }
+        const outsideCurrent = expected.data.slice(), outsideOld = oldFit.data.slice(); let changedPixels = 0;
+        for (let p = 0; p < 1024 * 1536; p++) {
+          const i = p * 4; if (eye.data.subarray(i, i + 4).some((v, c) => v !== oldEye.data[i + c])) { changedPixels++; outsideCurrent.fill(0, i, i + 4); outsideOld.fill(0, i, i + 4); }
+        }
+        expect(changedPixels).toBe(306); expect(sha256(outsideCurrent)).toBe(sha256(outsideOld));
+      }
+      const wrongDepth = blankImage(1024, 1536); for (const plane of ['hair-rear', 'neck', 'head', 'hair-front', 'eyes', 'eyebrows', 'mouth']) for (const part of parts.get(plane) ?? []) drawRgba(wrongDepth, part, 0, 0);
+      expect(sha256(wrongDepth.data)).not.toBe(sha256(expected.data));
+    }
+    expect(await prepareDiagonalFaceReview({ ...options, outputDirectory: resolve(temporary, 'repeat') })).toEqual(report);
+    for (const output of report.outputs) expect(sha256(await readFile(resolve(options.outputDirectory, output.path)))).toBe(output.sha256);
+    const copied = resolve(temporary, 'forged'); await cp(sourceDirectory, copied, { recursive: true });
+    const changed = await load(copied, config.frames.SE.features.rightEye.source); changed.data.set([255, 255, 255, 255], (200 * 1024 + 405) * 4);
+    const changedBytes = encodePng(changed); await writeFile(resolve(copied, config.frames.SE.features.rightEye.source), changedBytes); config.frames.SE.features.rightEye.sourceSha256 = sha256(changedBytes); await writeFile(resolve(copied, 'authoring-v2.json'), JSON.stringify(config));
+    await expect(prepareDiagonalFaceReview({ ...options, sourceDirectory: copied, outputDirectory: resolve(temporary, 'wrong-side') })).rejects.toThrow('SE-rightEye: layer/mask must retain only its own native reference pixels');
+    // Re-pinning both files cannot restore excluded cheek pixels inside the old eye polygon.
+    await cp(sourceDirectory, copied, { recursive: true });
+    const expanded = diagonalFaceReviewSchema.parse(JSON.parse(await readFile(resolve(copied, 'authoring-v2.json'), 'utf8'))), newEye = await load(copied, expanded.frames.SE.features.rightEye.source), newMask = await load(copied, expanded.frames.SE.features.rightEye.selection.source), originalEye = await load(sourceDirectory, previousConfig.frames.SE.features.rightEye.source), cheekPixel = (187 * 1024 + 550) * 4;
+    newEye.data.set(originalEye.data.subarray(cheekPixel, cheekPixel + 4), cheekPixel); newMask.data.fill(255, cheekPixel, cheekPixel + 4);
+    const newEyeBytes = encodePng(newEye), newMaskBytes = encodePng(newMask); await writeFile(resolve(copied, expanded.frames.SE.features.rightEye.source), newEyeBytes); await writeFile(resolve(copied, expanded.frames.SE.features.rightEye.selection.source), newMaskBytes);
+    expanded.frames.SE.features.rightEye.sourceSha256 = sha256(newEyeBytes); expanded.frames.SE.features.rightEye.selection.sourceSha256 = sha256(newMaskBytes); await writeFile(resolve(copied, 'authoring-v2.json'), JSON.stringify(expanded));
+    await expect(prepareDiagonalFaceReview({ ...options, sourceDirectory: copied, outputDirectory: resolve(temporary, 'expanded-cheek') })).rejects.toThrow('SE-rightEye: layer/mask must retain only its own native reference pixels');
+    await cp(sourceDirectory, copied, { recursive: true });
+    const mirrored = diagonalFaceReviewSchema.parse(JSON.parse(await readFile(resolve(copied, 'authoring-v2.json'), 'utf8'))); mirrored.frames.SE.reference = mirrored.frames.SW.reference; await writeFile(resolve(copied, 'authoring-v2.json'), JSON.stringify(mirrored));
+    await expect(prepareDiagonalFaceReview({ ...options, sourceDirectory: copied, outputDirectory: resolve(temporary, 'mirrored') })).rejects.toThrow('Eye cheek trim must retain both native references');
+    for (const file of before) { expect(sha256(await readFile(file.path))).toBe(file.hash); expect((await stat(file.path)).mtimeMs).toBe(file.mtime); }
+  } finally { await rm(temporary, { recursive: true, force: true }); }
+}, 240_000);

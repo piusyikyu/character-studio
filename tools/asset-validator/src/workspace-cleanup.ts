@@ -14,24 +14,24 @@ export async function cleanWorkspace(options: { repository: string; dryRun?: boo
     if (typeof path !== 'string' || !path || isAbsolute(path) || !inside(resolve(repository, base), resolve(repository, base, path))) throw new Error('Review metadata contains an unsafe output path.');
     keep.add(resolve(repository, base, path));
   };
-  let preserveWholeFace = false;
-  try {
-    const bytes = await readFile(resolve(repository, face, 'metadata.json'));
+  const preserveWholeReviews: string[] = [];
+  for (const review of [face, `${face}/front-diagonals`]) try {
+    const bytes = await readFile(resolve(repository, review, 'metadata.json'));
     const metadata: unknown = JSON.parse(bytes.toString('utf8'));
     if (!metadata || typeof metadata !== 'object' || !('outputs' in metadata) || !Array.isArray(metadata.outputs)) throw new Error('Current review metadata must declare outputs.');
     for (const output of metadata.outputs as unknown[]) {
       if (!output || typeof output !== 'object' || !('path' in output)) throw new Error('Current review metadata contains an invalid output.');
-      keepPath(face, output.path);
+      keepPath(review, output.path);
     }
     if ('interactiveInspection' in metadata && metadata.interactiveInspection) {
       if (typeof metadata.interactiveInspection !== 'object' || !('path' in metadata.interactiveInspection)) throw new Error('Current review metadata contains an invalid viewer.');
-      keepPath(face, metadata.interactiveInspection.path);
+      keepPath(review, metadata.interactiveInspection.path);
     }
-    keepPath(face, 'metadata.json');
-  } catch (error) { if (!missing(error)) throw error; preserveWholeFace = true; }
+    keepPath(review, 'metadata.json');
+  } catch (error) { if (!missing(error)) throw error; preserveWholeReviews.push(review); }
   const keepFile = (path: string) => keep.has(path) || inside(resolve(repository, references, 'transparent'), path)
     || path === resolve(repository, references, 'metadata.json') || path === resolve(repository, references, 'audit.md')
-    || preserveWholeFace && inside(resolve(repository, face), path);
+    || preserveWholeReviews.some(review => inside(resolve(repository, review), path));
   const roots = generated.map(path => resolve(repository, path));
   if (options.buildOutputs) {
     for (const group of ['apps', 'packages', 'tools']) {
@@ -59,5 +59,5 @@ export async function cleanWorkspace(options: { repository: string; dryRun?: boo
     }
   }
   return { dryRun: options.dryRun ?? false, deletedFiles: files.length, deletedBytes: files.reduce((sum, file) => sum + file.bytes, 0), files,
-    preserved: ['All source/reference artwork and approval/configuration records', 'Current face-review outputs and viewer', 'Native transparent reference dependency and import audit'], buildOutputs: options.buildOutputs ?? false };
+    preserved: ['All source/reference artwork and approval/configuration records', 'Current S and SE/SW face-review outputs and S viewer', 'Native transparent reference dependency and import audit'], buildOutputs: options.buildOutputs ?? false };
 }

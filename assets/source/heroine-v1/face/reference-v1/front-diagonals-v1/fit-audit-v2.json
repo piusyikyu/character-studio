@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 1,
+  "assetVersion": 2,
+  "status": "draft-needs-human-review",
+  "configSha256": "4698f14a40b95ec781b264e881f8d2814de2b3d24b492e078505b95e9dc94efa",
+  "scope": "SE right-eye reference cheek trim only",
+  "method": "Manual native lower-lid contour, 4x4 point coverage of source alpha; original eye RGB retained. Approved underlying head skin supplies removed cheek pixels.",
+  "featureCoverage": {
+    "previousPixels": 1061,
+    "currentPixels": 795,
+    "changedCoordinates": 306,
+    "fullCoveragePixels": 755,
+    "partialCoveragePixels": 40,
+    "removedCheekPixels": 266
+  },
+  "unchanged": [
+    "All nine other facial feature pins",
+    "SW complete fit and bare fit",
+    "SE/SW approved head, neck, nose, front/rear hair and native anchors",
+    "Approved S revision-11 sources and current staging"
+  ],
+  "commands": [
+    {
+      "command": "pnpm --filter @character-studio/asset-validator typecheck",
+      "result": "passed"
+    },
+    {
+      "command": "pnpm lint",
+      "result": "passed; zero warnings"
+    },
+    {
+      "command": "pnpm --filter @character-studio/asset-validator build",
+      "result": "passed; ESM and declaration output"
+    },
+    {
+      "command": "node tools/asset-validator/dist/face-diagonal-review-cli.js",
+      "result": "passed; default revision 2"
+    },
+    {
+      "command": "node tools/asset-validator/dist/face-diagonal-review-cli.js --v1",
+      "result": "passed; historical revision 1 retained exact fit hashes"
+    },
+    {
+      "command": "pnpm exec vitest run tools/asset-validator/src/face-review.integration.test.ts tools/asset-validator/src/workspace-cleanup.integration.test.ts -t 'independent SE/SW|cleans generated data'",
+      "result": "passed; 2 workflows, 1 unrelated S workflow skipped; 96.01 seconds"
+    }
+  ],
+  "regressions": [
+    "Actual core plane composition and native anchors",
+    "Removed rosy cheek samples now equal approved head skin",
+    "Retained iris, eyelash, sclera and lower-lid samples unchanged",
+    "Whole fit unchanged outside corrected eye coordinates",
+    "Exact historical fits, unchanged SW and nine other source pins",
+    "Deterministic output, immutable input hashes/mtimes",
+    "Re-pinned out-of-mask edits, restored cheek pixels and facing substitutions rejected"
+  ],
+  "inputProtection": {
+    "files": 576,
+    "hashesAndMtimes": "unchanged",
+    "intentionalTextUpdates": [
+      "assets/source/README.md"
+    ]
+  },
+  "authoringReplay": {
+    "method": "Isolated scratch copy; four outputs replayed byte-for-byte",
+    "outputs": [
+      {
+        "name": "SE-rightEye-v2.png",
+        "sha256": "244e0c0a839b3f100cf05cce280e12dec84e519602f64f034576851dff8d64cc"
+      },
+      {
+        "name": "SE-rightEye-mask-v2.png",
+        "sha256": "21f2cfd4135e38d9d6e0a037593f6c63d114f28caa10991b18a443a5bdf491f2"
+      },
+      {
+        "name": "selections-v2.json",
+        "sha256": "3a41695c32e7d403d0d88c75dd84940085db1facb4470a88927f5b76277a5c11"
+      },
+      {
+        "name": "authoring-v2.json",
+        "sha256": "4698f14a40b95ec781b264e881f8d2814de2b3d24b492e078505b95e9dc94efa"
+      }
+    ]
+  },
+  "stagingValidation": [
+    {
+      "directory": "assets/staging/heroine-v1/face/reference-v1",
+      "outputs": 44,
+      "configSha256": "abc8d575982dff8d0828d7d16ee11e829ec8ebe1e5629ddb1d6d271b284b6d5e"
+    },
+    {
+      "directory": "assets/staging/heroine-v1/face/reference-v1/front-diagonals",
+      "outputs": 38,
+      "configSha256": "4698f14a40b95ec781b264e881f8d2814de2b3d24b492e078505b95e9dc94efa",
+      "fitMeasurements": [
+        {
+          "direction": "SE",
+          "baselineSha256": "f71de0d9c6dd8f0ffcff9e27f91872006de83346eb503ca25b5d47d9806437a0",
+          "outputSha256": "5f36de6d95e80f070f66d17c80f9c303495c01dd3074564a943d631060021797",
+          "bareSha256": "6969e63ae3120d00a06da9457e8331e4eeb88fe562c31c248d053241f17e1b13"
+        },
+        {
+          "direction": "SW",
+          "baselineSha256": "ead5d980d6aa5970a9bb080e5cbfd3700a0b2ba55421f81d37905fc2a0f6a102",
+          "outputSha256": "11c8442abf2b30beb7c0b3abbd7c0d127568be7822b3490853364875b2a722b7",
+          "bareSha256": "fe38beee272e14c7741c28e556ad757c0a96fa73cf4bb8a1303a9fe71e00018a"
+        }
+      ]
+    },
+    {
+      "directory": "assets/staging/heroine-v1/face/reference-v1/front-diagonals/historical-v1",
+      "outputs": 37,
+      "configSha256": "92c71db3e2a51afaa29f90f77165f7bb0ada150f625907f57f4279f98747730d",
+      "fitMeasurements": [
+        {
+          "direction": "SE",
+          "baselineSha256": "f71de0d9c6dd8f0ffcff9e27f91872006de83346eb503ca25b5d47d9806437a0",
+          "outputSha256": "7800ce09aee55e3191ab2e2f8625a0a7548246c725caf6ed9b1a14debf15dcd7",
+          "bareSha256": "5591ad39a73732508ef0dfef0ca42281ac3aab373bfab546446d61e440ce1f80"
+        },
+        {
+          "direction": "SW",
+          "baselineSha256": "ead5d980d6aa5970a9bb080e5cbfd3700a0b2ba55421f81d37905fc2a0f6a102",
+          "outputSha256": "11c8442abf2b30beb7c0b3abbd7c0d127568be7822b3490853364875b2a722b7",
+          "bareSha256": "fe38beee272e14c7741c28e556ad757c0a96fa73cf4bb8a1303a9fe71e00018a"
+        }
+      ]
+    }
+  ],
+  "fitMeasurements": [
+    {
+      "direction": "SE",
+      "baselineSha256": "f71de0d9c6dd8f0ffcff9e27f91872006de83346eb503ca25b5d47d9806437a0",
+      "outputSha256": "5f36de6d95e80f070f66d17c80f9c303495c01dd3074564a943d631060021797",
+      "bareSha256": "6969e63ae3120d00a06da9457e8331e4eeb88fe562c31c248d053241f17e1b13"
+    },
+    {
+      "direction": "SW",
+      "baselineSha256": "ead5d980d6aa5970a9bb080e5cbfd3700a0b2ba55421f81d37905fc2a0f6a102",
+      "outputSha256": "11c8442abf2b30beb7c0b3abbd7c0d127568be7822b3490853364875b2a722b7",
+      "bareSha256": "fe38beee272e14c7741c28e556ad757c0a96fa73cf4bb8a1303a9fe71e00018a"
+    }
+  ],
+  "limits": [
+    "Corrected fit still needs human visual approval",
+    "Full application build and studio browser E2E were not rerun for this offline native-mask-only increment",
+    "Existing body-occlusion review debt and final Step 6C acceptance remain open; Step 6D has not started"
+  ],
+  "cleanup": {
+    "deletedGeneratedFiles": 62,
+    "deletedGeneratedMiB": 6.8,
+    "currentReviewPngHashesVerified": 82,
+    "sourceReferenceInputs": "576 hashes and mtimes unchanged after cleanup",
+    "preserved": "Both current reviews, S viewer, eight native reference PNGs and all source/revision dependencies"
+  }
+}

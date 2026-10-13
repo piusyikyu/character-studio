@@ -39,8 +39,8 @@ pnpm assets:clean --build-outputs
 
 The cleanup command removes generated placeholder assets, obsolete staging
 previews, render-demo exports and test reports. `--build-outputs` also removes
-workspace `dist` folders. It preserves the current face review's declared outputs
-and interactive viewer, eight native transparent references and their import
+workspace `dist` folders. It preserves the current S face review's declared outputs
+and interactive viewer, plus the current SE/SW face review's declared outputs, eight native transparent references and their import
 metadata/audit. Source/reference artwork, dependencies, legacy packages and Git
 history are outside its deletion targets. Unsafe metadata paths or symlinks
 abort before deletion. If current face metadata is missing, its entire staging

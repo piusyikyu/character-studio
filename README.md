@@ -95,6 +95,8 @@ pnpm head:review:front-diagonals:v1 # Reproduce the rejected visible-only ear/of
 pnpm head:review:back-diagonals # Review independent NE/NW posterior head/neck candidates with approved rear hair
 pnpm ears:review # Review smaller S human-ear revision 2 against reference and accepted oversized-ear fit
 pnpm ears:review:v1 # Reproduce the original exact ear separation separately
+pnpm face:review:front-diagonals # Review revision-2 SE cheek trim and unchanged SW over approved anatomy
+pnpm face:review:front-diagonals:v1 # Reproduce the preceding facial fit with SE cheek tint
 pnpm face:review # Review revision-11 unchanged S brows beneath restored foreground fringe
 pnpm face:review:v1 # Reproduce the rejected reference-coordinate facial fit separately
 pnpm face:review:v2 # Reproduce the rejected eye redesign on the broader head separately
