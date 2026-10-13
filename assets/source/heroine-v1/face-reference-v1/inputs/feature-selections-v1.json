@@ -1,0 +1,243 @@
+{
+  "schemaVersion": 1,
+  "method": "manually-selected-native-S-reference-features",
+  "sideConvention": "physical character right=screen-left; left=screen-right in S",
+  "features": {
+    "rightEye": {
+      "plane": "eyes",
+      "side": "right",
+      "polygon": [
+        [
+          450,
+          197
+        ],
+        [
+          460,
+          190
+        ],
+        [
+          472,
+          190
+        ],
+        [
+          483,
+          194
+        ],
+        [
+          496,
+          203
+        ],
+        [
+          487,
+          209
+        ],
+        [
+          477,
+          214
+        ],
+        [
+          465,
+          215
+        ],
+        [
+          455,
+          211
+        ],
+        [
+          449,
+          203
+        ]
+      ]
+    },
+    "leftEye": {
+      "plane": "eyes",
+      "side": "left",
+      "polygon": [
+        [
+          521,
+          194
+        ],
+        [
+          529,
+          187
+        ],
+        [
+          547,
+          180
+        ],
+        [
+          558,
+          175
+        ],
+        [
+          560,
+          181
+        ],
+        [
+          569,
+          183
+        ],
+        [
+          568,
+          190
+        ],
+        [
+          559,
+          198
+        ],
+        [
+          549,
+          205
+        ],
+        [
+          534,
+          207
+        ],
+        [
+          524,
+          204
+        ],
+        [
+          519,
+          199
+        ]
+      ]
+    },
+    "rightBrow": {
+      "plane": "eyebrows",
+      "side": "right",
+      "polygon": [
+        [
+          457,
+          188
+        ],
+        [
+          463,
+          185
+        ],
+        [
+          472,
+          183
+        ],
+        [
+          484,
+          183
+        ],
+        [
+          487,
+          187
+        ],
+        [
+          475,
+          187
+        ],
+        [
+          465,
+          188
+        ],
+        [
+          458,
+          190
+        ]
+      ]
+    },
+    "leftBrow": {
+      "plane": "eyebrows",
+      "side": "left",
+      "polygon": [
+        [
+          521,
+          184
+        ],
+        [
+          525,
+          181
+        ],
+        [
+          533,
+          178
+        ],
+        [
+          544,
+          176
+        ],
+        [
+          547,
+          177
+        ],
+        [
+          548,
+          179
+        ],
+        [
+          536,
+          181
+        ],
+        [
+          528,
+          184
+        ],
+        [
+          522,
+          187
+        ]
+      ]
+    },
+    "mouth": {
+      "plane": "mouth",
+      "side": "center",
+      "polygon": [
+        [
+          498,
+          235
+        ],
+        [
+          507,
+          238
+        ],
+        [
+          517,
+          238
+        ],
+        [
+          523,
+          235
+        ],
+        [
+          530,
+          230
+        ],
+        [
+          533,
+          232
+        ],
+        [
+          528,
+          237
+        ],
+        [
+          521,
+          242
+        ],
+        [
+          513,
+          244
+        ],
+        [
+          503,
+          242
+        ],
+        [
+          498,
+          240
+        ]
+      ]
+    }
+  },
+  "limitations": [
+    "Only visible same-facing reference features are separated; concealed eye/brow anatomy has not been authored.",
+    "Original reference smile is a source-study expression, not certified neutral/stern MVP coverage.",
+    "Native placement is preserved; matching the source does not approve attachment to the generated head.",
+    "Iris palettes/material maps, other facings and independent variants remain unfinished."
+  ]
+}

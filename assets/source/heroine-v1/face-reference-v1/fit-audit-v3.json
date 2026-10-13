@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "config": "authoring-v3.json",
+  "configSha256": "8e9010dddee257a22e24cef4cef654e958018025abffffa25d57d8f544aaf878",
+  "status": "draft-needs-human-review",
+  "anatomyApproved": false,
+  "method": "built-in imagegen local face/root/neck studies with manually bounded native source ownership; original reference features restored",
+  "faceFitSha256": "43ba5debb060717c6c92dcb34298a329e5ba8170d55198436c1de8be95291a6f",
+  "previousFitSha256": "75b7d7db14fe71148d06bfb1058498a5fed0b23f142ababa227e10b14a3f3ed0",
+  "approvedEarFitSha256": "0306e71ae4503281095051a642252edabba25ad388ca3701283ecb178cdf850c",
+  "retainedEarPixels": {
+    "right": 692,
+    "left": 668
+  },
+  "measurements": [
+    {
+      "name": "rightEye",
+      "side": "right",
+      "plane": "eyes",
+      "owner": "reference",
+      "pixels": 807,
+      "foregroundHairOverlapPixels": 9,
+      "origin": {
+        "x": 511,
+        "y": 169
+      }
+    },
+    {
+      "name": "leftEye",
+      "side": "left",
+      "plane": "eyes",
+      "owner": "reference",
+      "pixels": 906,
+      "foregroundHairOverlapPixels": 0,
+      "origin": {
+        "x": 511,
+        "y": 169
+      }
+    },
+    {
+      "name": "rightBrow",
+      "side": "right",
+      "plane": "eyebrows",
+      "owner": "reference",
+      "pixels": 70,
+      "foregroundHairOverlapPixels": 0,
+      "origin": {
+        "x": 511,
+        "y": 169
+      }
+    },
+    {
+      "name": "leftBrow",
+      "side": "left",
+      "plane": "eyebrows",
+      "owner": "reference",
+      "pixels": 56,
+      "foregroundHairOverlapPixels": 0,
+      "origin": {
+        "x": 511,
+        "y": 169
+      }
+    },
+    {
+      "name": "mouth",
+      "side": "center",
+      "plane": "mouth",
+      "owner": "reference",
+      "pixels": 177,
+      "foregroundHairOverlapPixels": 0,
+      "origin": {
+        "x": 511,
+        "y": 169
+      }
+    }
+  ],
+  "cheekAlphaSpanAtRow240": {
+    "original": 108,
+    "candidate": 89,
+    "definition": "Bare head-underlay alpha>=8 span at native y240. Visible reference peach measurements include hair occlusion; neither measure certifies anatomy."
+  },
+  "preservedFiles": 405,
+  "verifiedPngs": 60,
+  "replayedOutputs": 17,
+  "checks": [
+    {
+      "command": "pnpm --filter @character-studio/asset-validator typecheck",
+      "result": "passed"
+    },
+    {
+      "command": "pnpm lint",
+      "result": "passed, zero warnings"
+    },
+    {
+      "command": "pnpm face:review",
+      "result": "passed, JS/declaration build and current export"
+    },
+    {
+      "command": "node tools/asset-validator/dist/face-review-cli.js --v1",
+      "result": "passed, historical export"
+    },
+    {
+      "command": "node tools/asset-validator/dist/face-review-cli.js --v2",
+      "result": "passed, historical export"
+    },
+    {
+      "command": "pnpm exec vitest run tools/asset-validator/src/face-review.integration.test.ts tools/asset-validator/src/ear-review.integration.test.ts",
+      "result": "2 workflows passed; 56.36 seconds"
+    },
+    {
+      "command": "git diff --check",
+      "result": "passed"
+    }
+  ],
+  "resolvedValidationIssue": "A strict exactOptionalPropertyTypes mismatch for optional decoded join images failed typecheck/declaration build. The input types now explicitly allow undefined; final checks passed.",
+  "notRun": [
+    "Full application build",
+    "Browser E2E"
+  ],
+  "reviewRequired": [
+    "Native eye/brow/mouth fit and mask edges",
+    "Skin colour joins and facial proportions",
+    "Concealed eye/brow surfaces and independent expression variants",
+    "Other facings, materials and production T-pose",
+    "Final Step 6C approval before Step 6D"
+  ],
+  "knownReviewIssues": [
+    "Revision 2 was rejected for the broader/heavier face. Revision 3 corrects local S cheek/jaw and upper-neck proportions and restores original reference-owned eyes, brows and mouth at native coordinates. Face size, skin joins and feature fit await visual approval.",
+    "Only bounded face and root/neck-join windows supply new native study skin. Reference nose and all facial features retain their original source pixels. Approved upper skull, head/neck/hair/ear source files remain unchanged; the candidate contains new head and local neck-fit revisions.",
+    "Ear attachment collars are selected locally for the slimmer cheek shape, retaining the same-facing small ear geometry without scaling or shifting. Bare roots and upper-neck join still require review.",
+    "Concealed facial surfaces, other facings, expressions, palette maps, actual body/clothing occlusion and production T-pose remain unfinished. Final Step 6C approval is still required."
+  ]
+}

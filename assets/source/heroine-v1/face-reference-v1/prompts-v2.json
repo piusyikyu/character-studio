@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "tool": "built-in imagegen",
+  "transparentBackground": true,
+  "selected": {
+    "output": "inputs/S-eye-fit-study-v2.png",
+    "sourceSha256": "bda80044c57e4a208c41702c9929faf584e8826dea4dc756a4230bb830fee919",
+    "prompt": "Use case: precise-object-edit. Asset type: S full-front modular eye/brow fit study. Image1 is the EXACT native1024x1536 transparent EDIT TARGET: approved bald S female head with small ears, no eyes/mouth, nosehighlight(511,224), chin(512,275), skulltop84. Cyan outlines and crosses mark the new intended eye/brow footprints, further inward and more balanced than the rejected reference-position assembly. Replace ALL cyan markings with two independently drawn correctly placed S front-facing violet anime eyes and delicate warm eyebrows. Image2 is the SAME-FACING S character REFERENCE for violet irises, black lashes, white sclera/highlights, expression and style ONLY. Do not reuse its eye coordinates: its source placement was rejected on this different head. Draw eyes IN the image1 cyan eye footprints, upper lash aroundy193..200, lower iris edges aroundy215..218, pupils near screen-left(482,208) and screen-right(541,207). Screen-left eye fromx458..501, screen-right eye fromx521..563; avoid the old far-out eye cornerx449 or high screen-right lashy175. Eye line should suit this upright S skull, nose and cheeks, nearly level with mild original S asymmetry. Fine eyelashes and violet irises with black pupils and white highlights like image2; independent sides, no mirroring. Brows follow cyan lines nearx466..490y186..193 andx532..554y184..192. Author complete visible eyes/brows and clean peach skin joins. EXACT head, nose, cheek, jaw, ears, skull and framing must stay unchanged, native tiny upper-center placement and huge empty transparent margins. ONLY two small eye/brow regions may change: screen-leftx454..506y180..225, screen-rightx517..568y178..223. No mouth, hair, body, ornaments, text, glow, background, scaling, shifting, recentering or mirroring. Do not invent new anatomy outside the local feature patches. Transparent1024x1536 alpha. Only selected native eye/brow pixels will be retained; all generated head/ear/background changes discarded.",
+    "inputs": [
+      {
+        "source": "inputs/S-eye-fit-guide-v2.png",
+        "role": "exact edit target; approved S skin with manually drawn local eye/brow placement guides",
+        "sourceSha256": "fcd721717011659e48eb7273e9f16ec724c270be46e4d29a83292f209b8aeffa"
+      },
+      {
+        "source": "assets/staging/heroine-v1/reference-import-v1/transparent/S.png",
+        "role": "same-facing style/identity reference; previous native eye coordinates rejected for this separate head",
+        "sourceSha256": "4d835a1da05ab36992d3b97dad400233b81e1a6ad8d8f4872ed5353b771707c6"
+      }
+    ]
+  },
+  "postprocessing": "Manually bounded native same-side eye/brow selections retain study RGBA. Head, ears, neck and hair remain their existing approved sources; mouth remains exact revision-1 reference-owned artwork. No shifting, scaling, mirroring, global colour key or approved-source overwrite. Study anatomy/background outside selected polygons is discarded."
+}

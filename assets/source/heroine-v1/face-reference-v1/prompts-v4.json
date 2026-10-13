@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "tool": "built-in image_gen",
+  "headStudy": {
+    "prompt": "Use case: precise-object-edit. Asset type: independently authored S female head/neck anatomy study for local native masks. Image 1 is the EDIT TARGET and native anatomy guide, 1024x1536 transparent canvas. Image 2 is SAME-FACING reference for visible jaw/ear shape and slight head roll only, not an edit target. Keep target head tiny at its exact existing top-centre native location: skull x438..588/y85..170, jaw x447..579/y215..270, neck x475..555/y263..321; large transparent space below. Absolutely no zoom, recenter, global image rotation, shifting, scaling or mirroring. Re-author only lower head and upper neck locally so the jaw follows the cyan guide, which encodes the reviewed roughly -5 degree head roll and chin registration. Render a coherent slim anime female jaw/chin, no doubled jaw. Retain the original upper skull and all skin outside the lower-face/ear-root/upper-neck region. The nose remains centred near native(511,218). Keep no eyes, eyebrows or mouth marks: those are separate layers. Character LEFT ear is screen-right: author a smaller complete human ear anchored at x581..598/y184..219, following the magenta outline, with a restrained narrow rim/lobe matching Image 2's visible same-side ear. Retain its concealed root and make the connection to the same-side cheek continuous. Do not alter the screen-left character-right ear. Upper neck should flow naturally from the newly angled jaw into the original fixed neck below y293, without a white band or rectangular skin cutout. Same peach/pink skin, fine warm brown contours, soft anime cel shading as target. Remove the cyan/magenta guide colours in the output. No hair, eyes, brows, mouth, outfit, jewellery, text, labels, background, glow or halo. Genuine transparent PNG; final canvas 1024x1536. This is a bounded native correction; all changes outside selected local masks will be discarded.",
+    "output": "inputs/alignment-v4/S-head-alignment-study.png",
+    "selectionDecision": "Rejected as a final anatomy base for missed jaw/ear contours; retained as provenance, no selected runtime or final-candidate pixels.",
+    "sourceSha256": "b17614db4b055a7d51547de93aa5bcefe3a454bd604e5808fab10149777380a2"
+  },
+  "earStudy": {
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET, an exact native1024x1536 transparent modular S bald female head at its tiny native top-centre coordinates. Image 2 is reference for the character-left / SCREEN-RIGHT ear only. ONLY render the flat peach screen-right EAR GUIDE into a small complete anime human ear. Keep EXACT ear guide silhouette and location: top around(587,183), right rim(598,193), bottom lobe(578,220), concealed inner root around(575,190). It must be narrower and shorter than the original ear; the flat guide already gives its required final size. Preserve the guide silhouette; draw restrained cartilage/concha and rim shading WITHIN it, complete lobe and smooth concealed root continuous with cheek. Match same peach-pink skin and fine brown outline. Do not change head, jaw, nose, right ear, neck, cyan jaw guide, or any other pixels. Do not move/recenter/scale/rotate/mirror the canvas or ear. Output same1024x1536 genuinely transparent PNG, head stays withinx425..600/y85..321 with large blank transparent area below. NO opaque backdrop, halo, glow, white fringe, hair, eyes, brows, mouth, text, jewellery or outfit. Only a bounded manually selected screen-right ear region will be retained, so other edits cannot be accepted.",
+    "output": "inputs/alignment-v4/S-left-ear-study.png",
+    "selectionDecision": "Complete smaller-ear study retained as the silhouette guide for the final coherent head/neck study. No final-candidate pixels selected directly.",
+    "sourceSha256": "bb7d12a7d7c4b78208a2df630bbae4bf8f06949201b63d821d93ab49c887b96a"
+  },
+  "inputRoles": {
+    "headGuide": "inputs/alignment-v4/S-head-alignment-guide.png: native edit target",
+    "earGuide": "inputs/alignment-v4/S-left-ear-guide.png: native ear edit target",
+    "reference": "inputs/S-native-face-reference-v3.png: same-facing reference, unchanged"
+  },
+  "selected": {
+    "schemaVersion": 1,
+    "tool": "built-in image_gen",
+    "prompt": "Use case: sketch-to-render / precise anatomy edit. Image 1 is the EXACT native1024x1536 EDIT TARGET: a small bald S female head/neck in its existing top-centre location with a flat peach replacement silhouette in the lower face/neck. Image 2 is the same-facing original reference for style and anatomical tilt only. Render the FLAT PEACH shape in Image1 into coherent softly shaded anime female skin. PRESERVE its precise silhouette/size and position. Single slim angled jaw chin(native512,267), screen-left jaw approximately(468,241),(482,251),(496,260); screen-right jaw(541,246),(554,231),(566,213). Nose near(511,218), NO eyes, eyebrows, lashes or mouth: they are separate layers. Do NOT invent a second wider jaw outside the given peach silhouette. Keep all subject coordinates unchanged, skulltop(511,85), sidesaroundx437..589, small complete left ear screen-right approxx575..599/y183..220; preserve the other ear. Smooth continuous skin/shading from jaw to neck, especially y267..308: no horizontal patch line, white band, block, rectangular cutout, double outline or differently coloured skin rectangle. Keep the neck fixed where it joins the original lower neck belowy293. Restyle/repair only local skin withinx435..602/y170..308; upper skull and canvas framing unchanged. Earroot/head should form coherent concealed anatomy while ears will be separated with local masks. Same peach/pink skin, fine warm brown contour, restrained soft highlights as reference. No hair, facial marks except tiny nose, body, outfit, accessories, labels, text, guides or halo. GENUINE alpha transparency, no opaque backdrop; output1024x1536 with exact original tiny native head position, large transparent area below. Never zoom, crop, shift, rescale, rotate the image or mirror.",
+    "output": "inputs/alignment-v4/S-contour-neck-study.png",
+    "inputRoles": {
+      "editTarget": "inputs/alignment-v4/S-contour-fill-guide.png",
+      "reference": "inputs/alignment-v4/S-reference-face-neck.png"
+    },
+    "sourceSha256": "bc4c97390c71b45c269304914df792168d725b50ae84171c85b83f5d33ead052"
+  },
+  "rejectedPartitionTrials": [
+    "inputs/alignment-v4/ownership-draft-1.json",
+    "inputs/alignment-v4/ownership-draft-2.json",
+    "inputs/alignment-v4/ownership-settings.json.draft-3"
+  ]
+}

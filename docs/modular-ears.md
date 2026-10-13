@@ -19,6 +19,16 @@ reference and reviews eyes, brows and mouth over the approved smaller-ear skin
 and existing hair. Additional ear facings/ancestry variants remain unfinished.
 The historical pending-approval statements below are superseded by this record.
 
+Commit `545526a` records this approval. The S facial-feature candidate is now
+available through `pnpm face:review`; see [modular-face.md](modular-face.md).
+The new facial fit awaits its own visual approval.
+
+On 2026-10-13 the authorised separate-face revision 4 prepares a new local
+character-left S ear fit against newly authored jaw/neck anatomy. It selects a
+complete smaller study ear and visible native reference pixels, retaining the
+right ear. This candidate lives under `face-reference-v1/`, awaits approval and
+does not replace or revoke this approved ear package. See `modular-face.md`.
+
 ## Smaller S ear candidate — revision 2, 2026-10-12
 
 The user rejected the inherited S ears as too large compared with the reference

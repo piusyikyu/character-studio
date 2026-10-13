@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "config": "authoring-v2.json",
+  "configSha256": "3b0a9fadfb463a9504ce524e7b6a4eae1fdaf7d8ac16c0ff1f484dab4ec567c6",
+  "status": "draft-needs-human-review",
+  "anatomyApproved": false,
+  "method": "built-in imagegen local S eye/brow study with manual native ownership masks",
+  "approvedEarFitSha256": "0306e71ae4503281095051a642252edabba25ad388ca3701283ecb178cdf850c",
+  "faceFitSha256": "75b7d7db14fe71148d06bfb1058498a5fed0b23f142ababa227e10b14a3f3ed0",
+  "previousFitSha256": "5c141d1dfae2820068d485febd9c259bc51dcbb2d688d3201fdceae549da79bf",
+  "measurements": [
+    {
+      "name": "rightEye",
+      "side": "right",
+      "plane": "eyes",
+      "owner": "study",
+      "pixels": 1123,
+      "foregroundHairOverlapPixels": 5,
+      "origin": {
+        "x": 511,
+        "y": 169
+      }
+    },
+    {
+      "name": "leftEye",
+      "side": "left",
+      "plane": "eyes",
+      "owner": "study",
+      "pixels": 1114,
+      "foregroundHairOverlapPixels": 6,
+      "origin": {
+        "x": 511,
+        "y": 169
+      }
+    },
+    {
+      "name": "rightBrow",
+      "side": "right",
+      "plane": "eyebrows",
+      "owner": "study",
+      "pixels": 186,
+      "foregroundHairOverlapPixels": 64,
+      "origin": {
+        "x": 511,
+        "y": 169
+      }
+    },
+    {
+      "name": "leftBrow",
+      "side": "left",
+      "plane": "eyebrows",
+      "owner": "study",
+      "pixels": 192,
+      "foregroundHairOverlapPixels": 5,
+      "origin": {
+        "x": 511,
+        "y": 169
+      }
+    },
+    {
+      "name": "mouth",
+      "side": "center",
+      "plane": "mouth",
+      "owner": "reference",
+      "pixels": 177,
+      "foregroundHairOverlapPixels": 0,
+      "origin": {
+        "x": 511,
+        "y": 169
+      }
+    }
+  ],
+  "preservedHeadEarNeckHairAndMouth": true,
+  "preservationCount": 389,
+  "stagingPngCount": 33,
+  "replayedAuthoringOutputs": 10,
+  "checks": [
+    {
+      "command": "pnpm --filter @character-studio/asset-validator typecheck",
+      "result": "passed"
+    },
+    {
+      "command": "pnpm lint",
+      "result": "passed, zero warnings"
+    },
+    {
+      "command": "pnpm face:review",
+      "result": "passed, JS/declaration build and current export"
+    },
+    {
+      "command": "node tools/asset-validator/dist/face-review-cli.js --v1",
+      "result": "passed, historical export"
+    },
+    {
+      "command": "pnpm exec vitest run tools/asset-validator/src/face-review.integration.test.ts tools/asset-validator/src/ear-review.integration.test.ts",
+      "result": "2 workflows passed; 48.11 seconds"
+    },
+    {
+      "command": "git diff --check",
+      "result": "passed"
+    }
+  ],
+  "resolvedValidationIssue": "Initial JSON property order comparison incorrectly rejected the unchanged mouth after parsing the new ownership field. Compare the invariant mouth fields without that metadata; current export/tests passed.",
+  "notRun": [
+    "Full application build",
+    "Browser E2E"
+  ],
+  "reviewRequired": [
+    "Native eye/brow/mouth fit and mask edges",
+    "Skin colour joins and facial proportions",
+    "Concealed eye/brow surfaces and independent expression variants",
+    "Other facings, materials and production T-pose",
+    "Final Step 6C approval before Step 6D"
+  ],
+  "knownReviewIssues": [
+    "Revision-1 eye placement was rejected: unchanged reference coordinates did not match the separately authored head. New local eyes/brows are authored for this S skin, with native framing and actual hair depth. Position, contours and local skin joins need visual approval.",
+    "Eye/brow geometry and brow colour come from the retained local study; original violet-eye identity is a reference, not exact source-pixel equivalence. Iris material maps and independent expression variants remain unfinished.",
+    "Approved head, ears, neck, hair and the reference-owned mouth are unchanged. Concealed eyes/brows and other seven facings remain unfinished.",
+    "Source smile is not certified neutral/stern MVP coverage. Final Step 6C and production T-pose remain open."
+  ]
+}

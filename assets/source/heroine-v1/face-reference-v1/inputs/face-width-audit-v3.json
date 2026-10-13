@@ -1,0 +1,122 @@
+{
+  "rows": [
+    {
+      "y": 200,
+      "referenceVisiblePeach": [
+        459,
+        597,
+        139
+      ],
+      "authoredPeach": [
+        430,
+        598,
+        169
+      ]
+    },
+    {
+      "y": 210,
+      "referenceVisiblePeach": [
+        452,
+        592,
+        141
+      ],
+      "authoredPeach": [
+        432,
+        591,
+        160
+      ]
+    },
+    {
+      "y": 220,
+      "referenceVisiblePeach": [
+        460,
+        556,
+        97
+      ],
+      "authoredPeach": [
+        439,
+        584,
+        146
+      ]
+    },
+    {
+      "y": 230,
+      "referenceVisiblePeach": [
+        464,
+        548,
+        85
+      ],
+      "authoredPeach": [
+        451,
+        571,
+        121
+      ]
+    },
+    {
+      "y": 240,
+      "referenceVisiblePeach": [
+        471,
+        550,
+        80
+      ],
+      "authoredPeach": [
+        458,
+        565,
+        108
+      ]
+    },
+    {
+      "y": 250,
+      "referenceVisiblePeach": [
+        482,
+        539,
+        58
+      ],
+      "authoredPeach": [
+        467,
+        556,
+        90
+      ]
+    },
+    {
+      "y": 260,
+      "referenceVisiblePeach": [
+        494,
+        537,
+        44
+      ],
+      "authoredPeach": [
+        481,
+        543,
+        63
+      ]
+    },
+    {
+      "y": 267,
+      "referenceVisiblePeach": [
+        495,
+        537,
+        43
+      ],
+      "authoredPeach": [
+        481,
+        543,
+        63
+      ]
+    },
+    {
+      "y": 274,
+      "referenceVisiblePeach": [
+        495,
+        538,
+        44
+      ],
+      "authoredPeach": [
+        481,
+        540,
+        60
+      ]
+    }
+  ],
+  "limitation": "Local peach-colour samples measure visible skin and may include ears/neck. Source reference hair conceals parts of the face; these are diagnostics, not bare anatomy measurements or approval."
+}

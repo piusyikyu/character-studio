@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "tool": "built-in image_gen",
+  "prompt": "Use case: sketch-to-render / precise anatomy edit. Image 1 is the EXACT native1024x1536 EDIT TARGET: a small bald S female head/neck in its existing top-centre location with a flat peach replacement silhouette in the lower face/neck. Image 2 is the same-facing original reference for style and anatomical tilt only. Render the FLAT PEACH shape in Image1 into coherent softly shaded anime female skin. PRESERVE its precise silhouette/size and position. Single slim angled jaw chin(native512,267), screen-left jaw approximately(468,241),(482,251),(496,260); screen-right jaw(541,246),(554,231),(566,213). Nose near(511,218), NO eyes, eyebrows, lashes or mouth: they are separate layers. Do NOT invent a second wider jaw outside the given peach silhouette. Keep all subject coordinates unchanged, skulltop(511,85), sidesaroundx437..589, small complete left ear screen-right approxx575..599/y183..220; preserve the other ear. Smooth continuous skin/shading from jaw to neck, especially y267..308: no horizontal patch line, white band, block, rectangular cutout, double outline or differently coloured skin rectangle. Keep the neck fixed where it joins the original lower neck belowy293. Restyle/repair only local skin withinx435..602/y170..308; upper skull and canvas framing unchanged. Earroot/head should form coherent concealed anatomy while ears will be separated with local masks. Same peach/pink skin, fine warm brown contour, restrained soft highlights as reference. No hair, facial marks except tiny nose, body, outfit, accessories, labels, text, guides or halo. GENUINE alpha transparency, no opaque backdrop; output1024x1536 with exact original tiny native head position, large transparent area below. Never zoom, crop, shift, rescale, rotate the image or mirror.",
+  "output": "inputs/alignment-v4/S-contour-neck-study.png",
+  "inputRoles": {
+    "editTarget": "inputs/alignment-v4/S-contour-fill-guide.png",
+    "reference": "inputs/alignment-v4/S-reference-face-neck.png"
+  }
+}

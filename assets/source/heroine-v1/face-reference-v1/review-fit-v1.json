@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "assetId": "face.reference.v1",
+  "assetVersion": 1,
+  "decision": "rejected-eye-placement",
+  "config": "authoring-v1.json",
+  "configSha256": "e0834f08635a54f7a49c59b559246ec3f0362f76c2ae02604280f03e901a1b49",
+  "feedback": "@assets/staging/heroine-v1/face-reference-v1/overview.png is bad. eye position is not correct.",
+  "fitSha256": "5c141d1dfae2820068d485febd9c259bc51dcbb2d688d3201fdceae549da79bf",
+  "reason": "Reference coordinates were treated as anatomical attachment positions on an independently authored head. Native source preservation does not certify correct eye fit.",
+  "approvedEarCheckpointUnchanged": true
+}

@@ -126,7 +126,42 @@ pinned in `ears-human-v1/review-fit-v2.json`. Original larger ears remain availa
 as a potential future authored design option. Ear-size controls and runtime
 contract changes are not implemented. The next bounded increment separates and
 reviews S eyes/brows/mouth over the approved ear/head/hair assembly.
+Commit `545526a` records the ear approval. The S facial candidate now has five
+native reference-owned feature layers/masks and a repeatable `pnpm face:review`
+workflow over the approved ears. It awaits visual approval; concealed feature
+surfaces, independent expressions, iris materials and other facings remain open.
+See [modular-face.md](modular-face.md).
+The user rejected the first S facial fit for incorrect eye position. Revision 2
+now locally authors S eyes/brows for the current head while preserving approved
+anatomy/hair and the original mouth. The native comparison and bare assembly
+await visual approval; geometry, brow colour and joins also need review.
+Revision 2 was then rejected because the underlying face was broader/heavier
+than the reference. Separate-face revision 3 now authors slimmer local cheek/jaw
+skin, restores original reference eyes/brows/mouth/nose, retains the current ear
+geometry with adapted collars, and repairs local root/upper-neck joins. Existing
+approved sources remain unchanged. The new face-size fit awaits human approval.
+The user then flagged cheek/hair gaps and requested direct anatomy/reference
+overlays. Native 50%/contour overlays, an interactive opacity viewer and gap
+diagnostics now support that review without changing the candidate artwork.
+The chin is one alignment landmark, not a fixed rotation pivot. The offline
+viewer supports rotation/translation and fitting marked chin/jaw pairs together;
+screen-right contour mismatch remains an open review item after registration.
+The user's latest −5°/X−0.245/Y−2.945 inspection gives a good-looking jaw;
+character-left/screen-right ear sizing still needs local review. The three
+compared registrations are retained in the viewer, with native artwork unchanged.
+Sampled gaps correspond to missing reference hair coverage. Anatomy verification
+and a bounded same-facing hair-fit repair remain pending.
 This is not final Step 6C acceptance and does not advance Step 6D.
+
+On 2026-10-13 the user authorised separate-face revision 4: new local S jaw/neck
+anatomy guided by the reviewed registration, a smaller complete character-left
+ear with visible native reference ownership, and bounded neck-skin/front/rear-hair
+corrections. Native right-ear and original facial features and all earlier sources
+remain intact. `pnpm face:review` selects v4; `face:review:v3` retains the preceding
+candidate. Current anatomy/reference inspection starts at zero rotation/offset.
+Both bounded cheek-gap diagnostics report zero. The new actual-layer comparison
+awaits visual approval of anatomy, ear roots, joins and hair transitions; automated
+coverage checks do not certify the full hairstyle. Step 6C remains unfinished.
 
 See [reference-import.md](reference-import.md). The approved sources are flattened
 standing illustrations, including the approved NE/NW dress corrections. Staging

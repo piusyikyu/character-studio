@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "config": "authoring-v1.json",
+  "configSha256": "e0834f08635a54f7a49c59b559246ec3f0362f76c2ae02604280f03e901a1b49",
+  "status": "draft-needs-human-review",
+  "anatomyApproved": false,
+  "method": "manual native same-facing feature selection; no image generation",
+  "approvedEarFitSha256": "0306e71ae4503281095051a642252edabba25ad388ca3701283ecb178cdf850c",
+  "faceFitSha256": "5c141d1dfae2820068d485febd9c259bc51dcbb2d688d3201fdceae549da79bf",
+  "measurements": [
+    {
+      "name": "rightEye",
+      "side": "right",
+      "plane": "eyes",
+      "pixels": 807,
+      "foregroundHairOverlapPixels": 9,
+      "origin": {
+        "x": 511,
+        "y": 169
+      }
+    },
+    {
+      "name": "leftEye",
+      "side": "left",
+      "plane": "eyes",
+      "pixels": 906,
+      "foregroundHairOverlapPixels": 0,
+      "origin": {
+        "x": 511,
+        "y": 169
+      }
+    },
+    {
+      "name": "rightBrow",
+      "side": "right",
+      "plane": "eyebrows",
+      "pixels": 70,
+      "foregroundHairOverlapPixels": 0,
+      "origin": {
+        "x": 511,
+        "y": 169
+      }
+    },
+    {
+      "name": "leftBrow",
+      "side": "left",
+      "plane": "eyebrows",
+      "pixels": 56,
+      "foregroundHairOverlapPixels": 0,
+      "origin": {
+        "x": 511,
+        "y": 169
+      }
+    },
+    {
+      "name": "mouth",
+      "side": "center",
+      "plane": "mouth",
+      "pixels": 177,
+      "foregroundHairOverlapPixels": 0,
+      "origin": {
+        "x": 511,
+        "y": 169
+      }
+    }
+  ],
+  "preservationCount": 360,
+  "stagingPngCount": 16,
+  "replayedAuthoringOutputs": 11,
+  "checks": [
+    {
+      "command": "pnpm --filter @character-studio/asset-validator typecheck",
+      "result": "passed"
+    },
+    {
+      "command": "pnpm lint",
+      "result": "passed, zero warnings"
+    },
+    {
+      "command": "pnpm face:review",
+      "result": "passed, JS/declaration build and CLI export"
+    },
+    {
+      "command": "pnpm exec vitest run tools/asset-validator/src/face-review.integration.test.ts tools/asset-validator/src/ear-review.integration.test.ts",
+      "result": "2 workflows passed; 36.63 seconds"
+    },
+    {
+      "command": "git diff --check",
+      "result": "passed"
+    }
+  ],
+  "resolvedValidationIssue": "An initially untyped layer array failed strict TypeScript and declaration build. Explicit layer types added; current checks passed.",
+  "notRun": [
+    "Full application build",
+    "Browser E2E"
+  ],
+  "reviewRequired": [
+    "Native eye/brow/mouth fit and mask edges",
+    "Skin colour joins and facial proportions",
+    "Concealed eye/brow surfaces and independent expression variants",
+    "Other facings, materials and production T-pose",
+    "Final Step 6C approval before Step 6D"
+  ],
+  "knownReviewIssues": [
+    "Only visible same-facing reference features are separated; concealed eye/brow anatomy has not been authored.",
+    "Original reference smile is a source-study expression, not certified neutral/stern MVP coverage.",
+    "Native placement is preserved; matching the source does not approve attachment to the generated head.",
+    "Iris palettes/material maps, other facings and independent variants remain unfinished."
+  ]
+}

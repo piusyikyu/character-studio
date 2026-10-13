@@ -1,5 +1,12 @@
 # Step 6C — S/N head and neck skin bases
 
+The latest separate-face S head/left-ear fit candidate is revision 4 under
+`face-reference-v1/` (2026-10-13), pending visual approval. It locally authors jaw/
+neck anatomy guided by the reviewed tilt, retains native reference features and
+the right ear, and corrects bounded left-ear/hair ownership. Normal S/N head
+review still selects this package's v5; accepted sources here are unchanged.
+See [modular-face.md](modular-face.md) for the actual candidate and comparison.
+
 After approving corrected NE/NW hair, the user requested a local commit and
 the next increment. Commit `464f9e4` freezes that hair design approval. All
 eight hair facings now have design approval; production hair/head/body fit
@@ -1072,3 +1079,29 @@ the original larger ears as a potential future design option. Ear-size choice
 is recorded intent, with no runtime control or resizing implemented. The next
 bounded increment reviews independent S facial components over the approved
 smaller-ear skin/hair fit. Other ear facings and final Step 6C remain outstanding.
+
+### Separate S facial-feature candidate — 2026-10-12
+
+Commit `545526a` records the approved smaller S ears. The next facial increment
+now separates visible S reference eyes, brows and mouth with native manual masks.
+`pnpm face:review` verifies the approved ear fit, then draws these layers under
+foreground hair in actual core S order. Review the original reference, approved
+ear/head/hair baseline and new candidate under `face-reference-v1/overview.png`.
+The fit is unapproved; visible-only masks do not supply concealed eyes/brows or
+independent expression coverage. See [modular-face.md](modular-face.md).
+
+The first facial fit was then rejected for incorrect eye position. Separate-face
+`authoring-v2.json` supplies locally authored native eyes/brows fitted to the
+approved S skin, preserving head/ears/neck/hair and mouth. The normal face review
+selects revision 2; its comparison shows reference / rejected fit / revised fit.
+The local study changes eye geometry and brow colour as well as placement; this
+new checkpoint awaits human approval. `pnpm face:review:v1` preserves history.
+
+The user rejected revision 2 for the underlying broader/heavier face. The new
+separate-face `authoring-v3.json` narrows local S cheek/jaw proportions, restores
+the original reference features/nose and repairs bounded ear-root/neck joins.
+Original S5 and approved small-ear sources remain immutable. Native ear geometry
+is retained with revised attachment masks; head and features are not rescaled
+or moved. The face-size comparison and bare assembly await visual approval.
+Normal S/N head-review selection remains v5; this new offline facial candidate
+is not automatically promoted into that approved checkpoint or runtime catalog.

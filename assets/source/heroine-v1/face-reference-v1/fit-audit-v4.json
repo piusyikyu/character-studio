@@ -1,0 +1,260 @@
+{
+  "schemaVersion": 1,
+  "config": "authoring-v4.json",
+  "configSha256": "5b0cb4738cab66d9cd14f2a7f1ce1091c0d931258e459393a83cf6391f05f608",
+  "decision": "prepared-needs-human-review",
+  "anatomyApproved": false,
+  "published": false,
+  "paletteReady": false,
+  "faceFitSha256": "e850aca7d6ae7f04c503524dd472a3f9a8bc1b6cd84695650bff24099b202545",
+  "previousFitSha256": "43ba5debb060717c6c92dcb34298a329e5ba8170d55198436c1de8be95291a6f",
+  "previousApprovalPreserved": true,
+  "measurements": {
+    "leftEar": 638,
+    "referenceEar": 243,
+    "referenceNeck": 23,
+    "frontHair": 386,
+    "rearHair": 109
+  },
+  "cheekGapMeasurements": [
+    {
+      "region": {
+        "name": "screen-left-cheek",
+        "x": 445,
+        "y": 211,
+        "width": 40,
+        "height": 56
+      },
+      "pixels": 0,
+      "bounds": null
+    },
+    {
+      "region": {
+        "name": "screen-right-cheek",
+        "x": 542,
+        "y": 211,
+        "width": 50,
+        "height": 56
+      },
+      "pixels": 0,
+      "bounds": null
+    }
+  ],
+  "interactiveInspection": {
+    "path": "inspection/head-reference-overlay.html",
+    "sha256": "b9ef8fa35aa62acf0017473e7d009490a656c19162bd1e1c065f7a994f927a61"
+  },
+  "outputs": [
+    {
+      "path": "layers/S-rightEye.png",
+      "sha256": "608388de38f0f72e17a455d2ca771fca7af2f7115612fcd7f492222e745e4d0d"
+    },
+    {
+      "path": "masks/S-rightEye.png",
+      "sha256": "79e7ef328e48ea66144981698c630f8faf7beb6037fcc4c5b549061c9ee909b4"
+    },
+    {
+      "path": "layers/S-leftEye.png",
+      "sha256": "d07d78ffe08bdb546b4daae91c71e3156fbb4dfd0b0f2e6e1668658fabcb4f33"
+    },
+    {
+      "path": "masks/S-leftEye.png",
+      "sha256": "430eafac387e9f9604a69122086cc9a34a343f186cf29265bec7c956613af5fd"
+    },
+    {
+      "path": "layers/S-rightBrow.png",
+      "sha256": "f425d7916881984dbfba6d50f6b409541ab531e2791bfebaf0907a93fcde7b1a"
+    },
+    {
+      "path": "masks/S-rightBrow.png",
+      "sha256": "7952175a0108eb9f1656f1ca75f057ac10b7b48937c774c6a3196ea532ebed07"
+    },
+    {
+      "path": "layers/S-leftBrow.png",
+      "sha256": "69eadf83f82456699bc6bc35412ee5d4753b57c6dff20f5243874899b3a2e860"
+    },
+    {
+      "path": "masks/S-leftBrow.png",
+      "sha256": "86cf986fdb3e0e074d4fea09b9336311753d9792e4aadafcf34d293288062bd8"
+    },
+    {
+      "path": "layers/S-mouth.png",
+      "sha256": "538d374b2ab7d9a1a3690f16e7d463d681c1dd2c51904c7f4f5671eeb63481bd"
+    },
+    {
+      "path": "masks/S-mouth.png",
+      "sha256": "2c971a42bec32c14f5e50efb4fb998c6dcc0c356b1bb5aad744ff4d8ef60e2e5"
+    },
+    {
+      "path": "fit/S.png",
+      "sha256": "e850aca7d6ae7f04c503524dd472a3f9a8bc1b6cd84695650bff24099b202545"
+    },
+    {
+      "path": "fit/S-bare.png",
+      "sha256": "0fb6003e490e59ce9a77a408095c6f6c40f2639e54e92f0c3b1d16da0fa73d7a"
+    },
+    {
+      "path": "fit/S-approved-ear-baseline.png",
+      "sha256": "0306e71ae4503281095051a642252edabba25ad388ca3701283ecb178cdf850c"
+    },
+    {
+      "path": "layers/S-feature-pair-and-mouth.png",
+      "sha256": "73e1e352aef7aa3686ace8d6277fcf1cc7ab63c11ee1eea30a80fc1562baf20d"
+    },
+    {
+      "path": "overview.png",
+      "sha256": "3cad7014b99b2689de9a87b49d0d32ad7a9f45816b2a396585effdec165e31b2"
+    },
+    {
+      "path": "anatomy-overview.png",
+      "sha256": "afde5a5224a009ecddace7558aace48ca1c9c33575dd0ca03fa22d6f01830e79"
+    },
+    {
+      "path": "inspection/eye-fit-comparison.png",
+      "sha256": "9e7fc02e015b8b11ab2f6dd94a6c0504f863f01d7ca8802c539eb5dae0683d7a"
+    },
+    {
+      "path": "baseline-v3/layers/S-head-underlay.png",
+      "sha256": "b60a7a142836215d08515a4d94e9fe77f94dd70c48c722434bd2c0e1279d6fbc"
+    },
+    {
+      "path": "baseline-v3/masks/S-face-correction.png",
+      "sha256": "55e6f580936c5da118b0300b7134dd6913d0b98eab46cb3a26a243289a78d4d9"
+    },
+    {
+      "path": "baseline-v3/masks/S-native-nose.png",
+      "sha256": "513eb32e7c4f066decefd2cc24cc59bbe55009c770e02c26cc7f4ea3e877cc45"
+    },
+    {
+      "path": "baseline-v3/masks/S-head-retention.png",
+      "sha256": "ddc2c5e283c2cbc8a678056788ce8b6c19f4bff7fc9a7f49e3e6fdc6e75c7002"
+    },
+    {
+      "path": "baseline-v3/layers/S-right-ear.png",
+      "sha256": "7fbb23dad7e95c2f26ed4a95e936cf690107991e0ecf12b7b5a9c4621635644d"
+    },
+    {
+      "path": "baseline-v3/layers/S-left-ear.png",
+      "sha256": "2c5376bae0b88a5147cd5dc563820ac14884aff503c27c066e50c2ce12fb6f2e"
+    },
+    {
+      "path": "baseline-v3/layers/S-neck.png",
+      "sha256": "e4320486423b6d6d861f70cdfc86b7c6ba8c922bdcf80de87852981b605e82f9"
+    },
+    {
+      "path": "baseline-v3/masks/S-head-join.png",
+      "sha256": "104f15e3a75b22c3001b2ad8b6d267522fa2b542102207a9d866297d8d720a65"
+    },
+    {
+      "path": "baseline-v3/masks/S-neck-join.png",
+      "sha256": "6b2103c3998135d545a7fcfb4e73d88ff430f4e6ab900c6ceaecabadf98c5240"
+    },
+    {
+      "path": "layers/S-head-underlay.png",
+      "sha256": "3b2c2a8899b338b9eb387d4c6d3f832d7182705360c49c60c1c0d504f80fb8f1"
+    },
+    {
+      "path": "layers/S-neck.png",
+      "sha256": "9093227046b2e093c395ef40d5bd39e8984530adbf63ad152f2b47cccaf3f267"
+    },
+    {
+      "path": "layers/S-right-ear.png",
+      "sha256": "7fbb23dad7e95c2f26ed4a95e936cf690107991e0ecf12b7b5a9c4621635644d"
+    },
+    {
+      "path": "layers/S-left-ear.png",
+      "sha256": "3fe3f2a83cee8784f18bcb23bf504aa5bae2ce488b7a5c64327265bed3b0744a"
+    },
+    {
+      "path": "layers/S-front-hair.png",
+      "sha256": "9a827e34ece954a65ed90c90111ec0465abc84719bf7175dbb9f116adaeca3ff"
+    },
+    {
+      "path": "layers/S-rear-hair.png",
+      "sha256": "08aaaa3773fa3eef2c6abc25136878483da6b0d68896b2c9c37f4ab43b8a087c"
+    },
+    {
+      "path": "masks/S-head-retention.png",
+      "sha256": "002f96e7803b8f4688a11a58e5a304305581b976df29feb4b181e65a8fa3457f"
+    },
+    {
+      "path": "masks/S-aligned-head.png",
+      "sha256": "13a0ef2d3103afaea435515308b0401f51dcc1aa42fb5e907101d89eab44c9be"
+    },
+    {
+      "path": "masks/S-aligned-neck.png",
+      "sha256": "80982a21e7aa467213f5d349c306f7e51604780e134afc8597dd35f819f7554a"
+    },
+    {
+      "path": "masks/S-aligned-reference-neck.png",
+      "sha256": "359b2be8e754c01b1b00c08c746af4161bee6c57a77fe1e1e2574dfe44e62e2e"
+    },
+    {
+      "path": "masks/S-aligned-left-ear.png",
+      "sha256": "479989b7a78f13329770d00e8302e9740db82bb09d51166e1308fa7e1c18450c"
+    },
+    {
+      "path": "masks/S-aligned-reference-left-ear.png",
+      "sha256": "3d655a3a8989ef0ecf100cf12e196aff34e1f156523a1af2c41d325fa971974b"
+    },
+    {
+      "path": "masks/S-aligned-front-hair.png",
+      "sha256": "77cf61ca95f358355fd706e6b569c549ecf7c8b67f8726e79087b683e3aeda51"
+    },
+    {
+      "path": "masks/S-aligned-rear-hair.png",
+      "sha256": "d4969fb021f7a3280ae2f604a2ed68cb21a16caf72abc72cd2185f3bcdf61dc3"
+    },
+    {
+      "path": "inspection/face-size-comparison.png",
+      "sha256": "9e7fc02e015b8b11ab2f6dd94a6c0504f863f01d7ca8802c539eb5dae0683d7a"
+    },
+    {
+      "path": "inspection/head-ear-fit-comparison.png",
+      "sha256": "9e7fc02e015b8b11ab2f6dd94a6c0504f863f01d7ca8802c539eb5dae0683d7a"
+    },
+    {
+      "path": "inspection/S-head-over-reference.png",
+      "sha256": "7029c248364137be3ee90e7abfc3d9ece2fef119f155e5f3c35fe0b8af49e350"
+    },
+    {
+      "path": "inspection/S-head-contour-over-reference.png",
+      "sha256": "bb7a891483a7234f2a848023d9e3a11e7d56652dc4cd82ac00d784f39b3d6124"
+    },
+    {
+      "path": "inspection/S-head-overlay-closeup.png",
+      "sha256": "4e132f49d0d72b6b73c043816d49aea73ab980b69bfaa2fe7216e7c1155c902d"
+    },
+    {
+      "path": "inspection/S-cheek-gap-review.png",
+      "sha256": "e850aca7d6ae7f04c503524dd472a3f9a8bc1b6cd84695650bff24099b202545"
+    },
+    {
+      "path": "inspection/S-cheek-gap-closeup.png",
+      "sha256": "7c16c5bbb86af11783c6bdd2150ca4ed6fcc0a1f6f4d241d9acf960ce4961f67"
+    }
+  ],
+  "validation": {
+    "assetValidatorTypecheck": "passed",
+    "rootLint": "passed-zero-warnings",
+    "currentAndHistoricalV3Cli": "passed-JS-and-declaration-build",
+    "faceAndEarIntegration": "2 passed; 97.20 seconds",
+    "offlineBrowser": "passed current native v4 and retained v3 alignment/landmark workflows; no browser errors",
+    "priorSourceReferenceHashesAndMtimes": "438 unchanged",
+    "currentHistoricalPngHashes": "79 verified; both HTML hashes verified",
+    "scratchReplay": "21 outputs byte-for-byte: 14 selected asset/config outputs plus 7 guide/settings outputs",
+    "fullApplicationBuild": "not rerun",
+    "applicationBrowserE2E": "not rerun"
+  },
+  "requiredVisualReview": [
+    "Jaw/chin/cheek alignment against original S reference",
+    "Complete left-ear size, rim, root and visible hair occlusion",
+    "Head/neck skin transitions and facial-feature skin margins",
+    "Bounded front/rear hair-mask transitions and inherited edge noise"
+  ],
+  "limitations": [
+    "Zero bounded cheek gaps is coverage evidence, not full hairstyle or anatomy approval.",
+    "Offline S standing-reference candidate; original approved source imagery is preserved.",
+    "Other facings/variants, palette maps, body/clothing/occlusion, production T-pose, independent pixel assets and final Step 6C remain unfinished."
+  ]
+}
