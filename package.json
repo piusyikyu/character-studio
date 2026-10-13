@@ -60,6 +60,7 @@
     "face:review:front-diagonals:v3": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/face-diagonal-review-cli.js --v3",
     "face:review:front-diagonals:v2": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/face-diagonal-review-cli.js --v2",
     "face:review:front-diagonals:v1": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/face-diagonal-review-cli.js --v1",
+    "face:review:brows": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/brow-review-cli.js",
     "face:review:profiles": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/face-profile-review-cli.js",
     "ears:review:profiles": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/ear-profile-review-cli.js",
     "ears:review:front-diagonals": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/ear-diagonal-review-cli.js",

@@ -1,12 +1,20 @@
 # Source artwork
 
+Current approved brow checkpoint: `heroine-v1/face/reference-v1/brows-v1/` supplies six
+independently authored E/SE/SW/W brows and three local foreground ownership repairs.
+It is selected in the consolidated review and pinned by `brows-v1/review-fit-v1.json`. The
+accepted S brows and complete SE left eye remain exact. Selected native studies,
+guides, masks, settings and replay scripts are retained; run scripts only in
+scratch. Review with `pnpm face:review:brows` and `pnpm head:review:all`.
+
 Current consolidated head checkpoint: `heroine-v1/head/assembly-v1/` pins selected
 source configurations and individual approvals in `review-selection.json`.
 `pnpm head:review:all` rebuilds native compositions and exports only three compact
-review sheets. SE facial revision 6 is now approved in `review-fit-v6.json`,
-retaining the accepted complete left eye from revision 5;
-the other seven fits and all prior approved source artwork remain unchanged.
-Cross-facing consistency and complete production geometry remain unapproved. `fit-audit.json` records validation and debt.
+review sheets. The selected SE revision-6 facial fit pins `review-fit-v6.json`
+and the accepted complete left eye from revision 5. All eight selected standing-
+reference fits match their individual approvals. Artwork stays unchanged; the
+qualified standing-reference checkpoint is recorded in `assembly-v1/review-fit-v1.json`.
+Complete production geometry remains unapproved. `fit-audit.json` records validation and debt.
 
 
 Current N ear/root candidate: `heroine-v1/ears/human-v1/north-v1/` retains the

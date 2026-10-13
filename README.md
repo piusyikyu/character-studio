@@ -103,6 +103,7 @@ pnpm face:review:front-diagonals:v4 # Reproduce the incomplete extraction-only e
 pnpm face:review:front-diagonals:v3 # Reproduce the rejected narrow far-eye extraction
 pnpm face:review:front-diagonals:v2 # Reproduce the approved facial fit before far-eye ownership correction
 pnpm face:review:front-diagonals:v1 # Reproduce the preceding facial fit with SE cheek tint
+pnpm face:review:brows # Review complete native E/SE/SW/W brows with genuine foreground occlusion
 pnpm face:review:profiles # Review independent E/W visible facial layers over approved profile anatomy
 pnpm ears:review:profiles # Review new E/W ear-free root skin and exact separate-ear human fits
 pnpm ears:review:north # Review separate N ears and new ear-free scalp roots

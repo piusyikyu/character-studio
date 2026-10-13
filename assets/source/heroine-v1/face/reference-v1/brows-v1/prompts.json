@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "tool": "built-in imagegen",
+  "status": "native-studies-selected-with-local-contour-masks",
+  "selected": [
+    {
+      "direction": "E",
+      "role": "complete-brows",
+      "prompt": "Use case: identity-preserve. Asset type: native 1024x1536 transparent modular fantasy head brow-anatomy study. Image 1 is the edit target: a bald head/neck with approved eyes and mouth at their exact native positions. Image 2 is ONLY the same-facing character reference for brow colour, taper, attitude and perspective. Add complete smooth medium-lilac/purple eyebrows to Image 1, including the portions concealed by hair in Image 2. Real continuous coloured brow bands, clean tapered ends, no pale skin strips, no gaps, no hair, no black/brown brows, no makeup. Preserve Image 1's canvas 1024x1536, transparent background, head size, position, tilt, silhouette, neck, ears, facial anatomy, every eye, nose and mouth. Never enlarge, recenter, crop, rotate, mirror or rescale. The small head must remain near the top of the tall canvas, leaving all original empty space. Do not paint eyebrows on a hair layer or add fringe. Output a genuinely transparent PNG with the same original framing. Change only eyebrows. E independently authored right profile: face looks screen-right; ONE complete physical-right eyebrow above the existing eye, slender but substantial lilac band spanning approximately x570..610, y146..162; no far eye or far brow.",
+      "output": "inputs/E-brow-study.png",
+      "sourceSha256": "e66ab554d7fd96a44e7d0832897b70e85a1d093de087aa60840a0428e8af1093",
+      "inputs": [
+        {
+          "role": "native bald anatomy edit target",
+          "source": "inputs/E-brow-guide.png",
+          "sourceSha256": "ea66415aed8f48f2a01205bb11650079c116a9571e875e5ec7e453a8679636e3"
+        },
+        {
+          "role": "same-facing identity and brow-style reference",
+          "source": "references/E.png",
+          "sourceSha256": "d81679768bcf8fe648d7af248f514124f7a01bfde256b7e8abf370239411798f"
+        }
+      ]
+    },
+    {
+      "direction": "SE",
+      "role": "complete-brows",
+      "prompt": "Use case: identity-preserve. Asset type: native 1024x1536 transparent modular fantasy head brow-anatomy study. Image 1 is the edit target: a bald head/neck with approved eyes and mouth at their exact native positions. Image 2 is ONLY the same-facing character reference for brow colour, taper, attitude and perspective. Add complete smooth medium-lilac/purple eyebrows to Image 1, including the portions concealed by hair in Image 2. Real continuous coloured brow bands, clean tapered ends, no pale skin strips, no gaps, no hair, no black/brown brows, no makeup. Preserve Image 1's canvas 1024x1536, transparent background, head size, position, tilt, silhouette, neck, ears, facial anatomy, every eye, nose and mouth. Never enlarge, recenter, crop, rotate, mirror or rescale. The small head must remain near the top of the tall canvas, leaving all original empty space. Do not paint eyebrows on a hair layer or add fringe. Output a genuinely transparent PNG with the same original framing. Change only eyebrows. SE independently authored three-quarter front, face looks slightly screen-right: TWO complete independently drawn brows, near physical-right brow approximately x526..572,y140..160 and foreshortened physical-left brow x587..617,y146..161. Complete both tails and inner ends; respect the eye perspective. Do not modify the approved complete left eye.",
+      "output": "inputs/SE-brow-study.png",
+      "sourceSha256": "8326e15475012983b51dba5f712255963ff3c42e8671eeb144aa3c3d0c79f711",
+      "inputs": [
+        {
+          "role": "native bald anatomy edit target",
+          "source": "inputs/SE-brow-guide.png",
+          "sourceSha256": "e594e4a26e82b6e2b1eef6e2f691d3640522c62f59d2d604c94c7df95eeea0ce"
+        },
+        {
+          "role": "same-facing identity and brow-style reference",
+          "source": "references/SE.png",
+          "sourceSha256": "392d4b7ec7c6a0119b1087c55f304f6a250f50272e51d0ce5aadd8b79df40a51"
+        }
+      ]
+    },
+    {
+      "direction": "SW",
+      "role": "complete-brows",
+      "prompt": "Use case: identity-preserve. Asset type: native 1024x1536 transparent modular fantasy head brow-anatomy study. Image 1 is the edit target: a bald head/neck with approved eyes and mouth at their exact native positions. Image 2 is ONLY the same-facing character reference for brow colour, taper, attitude and perspective. Add complete smooth medium-lilac/purple eyebrows to Image 1, including the portions concealed by hair in Image 2. Real continuous coloured brow bands, clean tapered ends, no pale skin strips, no gaps, no hair, no black/brown brows, no makeup. Preserve Image 1's canvas 1024x1536, transparent background, head size, position, tilt, silhouette, neck, ears, facial anatomy, every eye, nose and mouth. Never enlarge, recenter, crop, rotate, mirror or rescale. The small head must remain near the top of the tall canvas, leaving all original empty space. Do not paint eyebrows on a hair layer or add fringe. Output a genuinely transparent PNG with the same original framing. Change only eyebrows. SW independently authored three-quarter front, face looks slightly screen-left: TWO complete independently drawn brows. Near physical-left brow approximately x426..466,y150..175; foreshortened physical-right brow approximately x397..423,y173..185. Keep this facing's upward screen-right brow slope and tilted face; do not mirror SE.",
+      "output": "inputs/SW-brow-study.png",
+      "sourceSha256": "f509192333162e320f300409b433ce64cb19415672765f731bd5aea94ed9ac46",
+      "inputs": [
+        {
+          "role": "native bald anatomy edit target",
+          "source": "inputs/SW-brow-guide.png",
+          "sourceSha256": "a5250b993ce6c2122b10593a006c3d03d3c7c9145c3c576d4beebaed5ce2e6e4"
+        },
+        {
+          "role": "same-facing identity and brow-style reference",
+          "source": "references/SW.png",
+          "sourceSha256": "4d288310e7fbf452f9bf7cd842172b5201ce061249f2eade711d31518c34b870"
+        }
+      ]
+    },
+    {
+      "direction": "W",
+      "role": "complete-brows",
+      "prompt": "Use case: identity-preserve. Asset type: native 1024x1536 transparent modular fantasy head brow-anatomy study. Image 1 is the edit target: a bald head/neck with approved eyes and mouth at their exact native positions. Image 2 is ONLY the same-facing character reference for brow colour, taper, attitude and perspective. Add complete smooth medium-lilac/purple eyebrows to Image 1, including the portions concealed by hair in Image 2. Real continuous coloured brow bands, clean tapered ends, no pale skin strips, no gaps, no hair, no black/brown brows, no makeup. Preserve Image 1's canvas 1024x1536, transparent background, head size, position, tilt, silhouette, neck, ears, facial anatomy, every eye, nose and mouth. Never enlarge, recenter, crop, rotate, mirror or rescale. The small head must remain near the top of the tall canvas, leaving all original empty space. Do not paint eyebrows on a hair layer or add fringe. Output a genuinely transparent PNG with the same original framing. Change only eyebrows. W independently authored left profile: face looks screen-left; ONE complete physical-left eyebrow above its own existing eye approximately x396..436,y155..171, a continuous lilac tapered band; no far eye or far brow. Do not mirror E.",
+      "output": "inputs/W-brow-study.png",
+      "sourceSha256": "8a5cf2bd348c95d96c371df2b30ad14d98a0e8e4410016d5fba86355625b08f6",
+      "inputs": [
+        {
+          "role": "native bald anatomy edit target",
+          "source": "inputs/W-brow-guide.png",
+          "sourceSha256": "0feed5eb11150835147af8eb8e5acfdface9dcc675e1b786768107e81062f613"
+        },
+        {
+          "role": "same-facing identity and brow-style reference",
+          "source": "references/W.png",
+          "sourceSha256": "b9ef27952e8a2dc7ee2e5f668bf75468dae2630c927c18009fe8c660bde603db"
+        }
+      ]
+    },
+    {
+      "direction": "E",
+      "role": "local-clean-hair-RGB",
+      "prompt": "Use case: precise-object-edit. Asset type: 1024x1536 transparent native E front-hair layer for a modular character. Image 1 is the edit target: the independently authored front hair at exact original framing. It contains tiny residual eyebrows/facial-colour lines incorrectly baked into the forehead/face opening. Repair only the brow-pigment neighbourhood x577..611,y144..164: REMOVE eyebrow pigment and any pale/pink skin strip from the face opening, leaving genuinely transparent empty face space. Where that pigment crosses an actual fringe strand, restore only the smooth clean silver-lilac hair strand with its normal shading, without any brow stripe across it. This is a HAIR-ONLY asset: no brows, eyes, ears, skin, head, body, makeup or accessories. Preserve all actual foreground fringe/cap/curls and their geometry, taper, bright white highlights and purple shading. Do not fill the face opening with new hair or create bridges. Change nothing outside the specified small regions. Keep the EXACT 1024x1536 canvas, scale, native hair position and original empty space. No cropping, repositioning, rotation, mirroring or scaling. Return genuinely transparent RGBA hair-only PNG.",
+      "inputs": [
+        {
+          "role": "same-facing native front-hair edit target",
+          "source": "inputs/E-hair-guide.png",
+          "sourceSha256": "3e747328530c476ff4dc1ccd9cbe72244212158f93f25f072b0c9021c5949069"
+        }
+      ],
+      "output": "inputs/E-hair-study.png",
+      "sourceSha256": "22ffb7da817639d5f49c41326ba1ea85ca4ab27e1c0769d477f67e6599776d15",
+      "selectionPolicy": "Only locally masked RGB on existing real hair is selected; original strand alpha is retained. Generated glow/face-window alpha is discarded. Exposed brow bridges are separately erased using manual masks."
+    },
+    {
+      "direction": "SE",
+      "role": "local-clean-hair-RGB",
+      "prompt": "Use case: precise-object-edit. Asset type: 1024x1536 transparent native SE front-hair layer for a modular character. Image 1 is the edit target: the independently authored front hair at exact original framing. It contains tiny residual eyebrows/facial-colour lines incorrectly baked into the forehead/face opening. Repair only the two brow-pigment neighbourhoods x524..573,y138..161 and x586..620,y145..163: REMOVE eyebrow pigment and any pale/pink skin strip from the face opening, leaving genuinely transparent empty face space. Where that pigment crosses an actual fringe strand, restore only the smooth clean silver-lilac hair strand with its normal shading, without any brow stripe across it. This is a HAIR-ONLY asset: no brows, eyes, ears, skin, head, body, makeup or accessories. Preserve all actual foreground fringe/cap/curls and their geometry, taper, bright white highlights and purple shading. Do not fill the face opening with new hair or create bridges. Change nothing outside the specified small regions. Keep the EXACT 1024x1536 canvas, scale, native hair position and original empty space. No cropping, repositioning, rotation, mirroring or scaling. Return genuinely transparent RGBA hair-only PNG.",
+      "inputs": [
+        {
+          "role": "same-facing native front-hair edit target",
+          "source": "inputs/SE-hair-guide.png",
+          "sourceSha256": "20a316ebcee97e969c7a70d1e57204c41f67c833e266d34c2de7ea2f85423633"
+        }
+      ],
+      "output": "inputs/SE-hair-study.png",
+      "sourceSha256": "fa366afec4d79481e5cbba8e44d81712371e921c0cf06cd59fde5df22d55099f",
+      "selectionPolicy": "Only locally masked RGB on existing real hair is selected; original strand alpha is retained. Generated glow/face-window alpha is discarded. Exposed brow bridges are separately erased using manual masks."
+    },
+    {
+      "direction": "SW",
+      "role": "local-clean-hair-RGB",
+      "prompt": "Use case: precise-object-edit. Asset type: 1024x1536 transparent native SW front-hair layer for a modular character. Image 1 is the edit target: the independently authored front hair at exact original framing. It contains tiny residual eyebrows/facial-colour lines incorrectly baked into the forehead/face opening. Repair only the two brow-pigment neighbourhoods x426..466,y149..176 and x393..425,y170..188: REMOVE eyebrow pigment and any pale/pink skin strip from the face opening, leaving genuinely transparent empty face space. Where that pigment crosses an actual fringe strand, restore only the smooth clean silver-lilac hair strand with its normal shading, without any brow stripe across it. This is a HAIR-ONLY asset: no brows, eyes, ears, skin, head, body, makeup or accessories. Preserve all actual foreground fringe/cap/curls and their geometry, taper, bright white highlights and purple shading. Do not fill the face opening with new hair or create bridges. Change nothing outside the specified small regions. Keep the EXACT 1024x1536 canvas, scale, native hair position and original empty space. No cropping, repositioning, rotation, mirroring or scaling. Return genuinely transparent RGBA hair-only PNG.",
+      "inputs": [
+        {
+          "role": "same-facing native front-hair edit target",
+          "source": "inputs/SW-hair-guide.png",
+          "sourceSha256": "fc063f40eb0fd83233ac9dafd864925c6555b989728f186e6eae82095a525573"
+        }
+      ],
+      "output": "inputs/SW-hair-study.png",
+      "sourceSha256": "660f4a54999d8c5e7873e3fa05582968b244680d3dcee726d2608b6cfd5f77b8",
+      "selectionPolicy": "Only locally masked RGB on existing real hair is selected; original strand alpha is retained. Generated glow/face-window alpha is discarded. Exposed brow bridges are separately erased using manual masks."
+    }
+  ],
+  "unselectedAttempts": [
+    {
+      "direction": "W",
+      "role": "local-clean-hair-RGB",
+      "prompt": "Use case: precise-object-edit. Asset type: 1024x1536 transparent native W front-hair layer for a modular character. Image 1 is the edit target: the independently authored front hair at exact original framing. It contains tiny residual eyebrows/facial-colour lines incorrectly baked into the forehead/face opening. Repair only the brow-pigment neighbourhood x394..439,y153..173: REMOVE eyebrow pigment and any pale/pink skin strip from the face opening, leaving genuinely transparent empty face space. Where that pigment crosses an actual fringe strand, restore only the smooth clean silver-lilac hair strand with its normal shading, without any brow stripe across it. This is a HAIR-ONLY asset: no brows, eyes, ears, skin, head, body, makeup or accessories. Preserve all actual foreground fringe/cap/curls and their geometry, taper, bright white highlights and purple shading. Do not fill the face opening with new hair or create bridges. Change nothing outside the specified small regions. Keep the EXACT 1024x1536 canvas, scale, native hair position and original empty space. No cropping, repositioning, rotation, mirroring or scaling. Return genuinely transparent RGBA hair-only PNG.",
+      "inputs": [
+        {
+          "role": "same-facing native front-hair edit target",
+          "source": "inputs/W-hair-guide.png",
+          "sourceSha256": "e8bff1ed01a83b6e31e3fadae8420c7e8fcee91d0a730c6c576743adab0a0888"
+        }
+      ],
+      "outputSha256": "698ff03b4e05a299898a77813ce77f8a0c7e2914324733c7e63c8a2b6a1b617d",
+      "reason": "No selected W front-hair repair. Its existing native hair is retained; generated haze and unrelated drape changes are discarded."
+    }
+  ]
+}

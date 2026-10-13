@@ -73,16 +73,31 @@
     "NW": "backDiagonals"
   },
   "reviewRequired": [
-    "The SE complete left eye from facial revision 5 is accepted and retained exactly. Review the revision-6 right-brow skin-stripe correction in bare and actual foreground composition; whole head-set approval is still pending.",
-    "Cross-facing skull/jaw/ear proportions and shared character identity",
-    "Current front/rear hair depth and inherited edges without treating body-free cutouts as production defects",
-    "Actual future body/clothing fit, concealed geometry, expressions/materials, authored production T-pose and independent pixel assets"
+    "Inherited hair edges and local mask transitions with future real body/clothing",
+    "Alternate-hairstyle SE/SW ear proportions",
+    "Remaining concealed geometry, variants/materials, production T-pose and independent pixel artwork"
   ],
   "frontDiagonalCandidate": {
     "direction": "SE",
     "configuration": {
       "source": "authoring-v6.json",
       "sourceSha256": "9505aef012d3a03fa94b0bf7948469479b322a5eaa0f5b8cce22a31e7211a183"
+    },
+    "approval": {
+      "source": "review-fit-v6.json",
+      "sourceSha256": "dfa2d3d55dd36931aaab22c4ae9e1b7b08788c3dc10151f45503c4b34314af92"
     }
+  },
+  "browCompletion": {
+    "source": "authoring.json",
+    "sourceSha256": "d0c3389011e8c3ab1a19cfc04079817e94307a50a6df9895720e25c524906358"
+  },
+  "browApproval": {
+    "source": "review-fit-v1.json",
+    "sourceSha256": "840f36620a37c5ef5d637a29c01282230aebb554130f999fcadd9e328cf56227"
+  },
+  "standingReferenceApproval": {
+    "source": "review-fit-v1.json",
+    "sourceSha256": "57106f2c4a5b57fd130aaf009572e1ba342c3c95590ded9961f84ddf363ca83a"
   }
 }

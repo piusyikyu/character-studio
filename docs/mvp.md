@@ -1,5 +1,74 @@
 # MVP Plan — Female Character Studio
 
+## Complete brow and standing-reference head checkpoint approved — 2026-10-14
+
+The user approved the six complete E/SE/SW/W brows and current layered fit,
+requested generated-data cleanup and a local commit, and authorized continuing.
+`face/reference-v1/brows-v1/review-fit-v1.json` pins the selected native sources,
+configuration and actual assembled/bare hashes. The consolidated selection now
+pins that approval. `head/assembly-v1/review-fit-v1.json` records qualified
+acceptance of the updated all-eight standing-reference sheets, preserving the
+known bare-ear size discrepancy and future body/clothing occlusion obligations.
+Neither record approves production anatomy, T-pose or final Step 6C.
+
+All eight current fits must match their selected approvals; prior derivation
+baselines remain retained. Approved S brows, all eyes (including the complete SE
+left eye), anatomy and native anchors remain exact. The three review sheets are
+unchanged by recording approval. Earlier pending statements below describe the
+pre-approval state.
+
+Next begin a bounded S body/shoulder anatomy study inside Step 6C, using the
+accepted native head/neck and reference proportions as fixed guides. Review the
+neck/shoulder join, torso/limb proportions and actual hair depth before expanding
+to other independently authored facings or fitted clothing. A new study does not
+certify production T-pose compatibility or resolve the SE/SW hair/body obligation.
+Concealed facial/hair geometry, other hairstyles/ear variants, expression/ancestry
+variants, material maps and independently authored pixel artwork remain open.
+Step 6C is unfinished; Step 6D has not started.
+
+
+Approval verification — 2026-10-14: validator typecheck, root lint (zero warnings), ESM/declaration build and both current review CLIs passed. The existing all-eight head, complete-brow and cleanup workflows passed (3 passed, 7 unrelated workflows skipped; 354.11 seconds), including rejection of a re-pinned brow approval with incorrect native fit hashes. All 710 preceding inputs retain their hashes/mtimes; 261 current PNGs, the S viewer and 30 scratch replay outputs verify. Cleanup removed 45 generated build files (1.4 MiB), preserving all required source and current reviews. Full app build and browser E2E were not rerun.
+
+
+Current brow completion — 2026-10-14: the user authorized complete independent
+brows and corrected hair ownership after questioning the bare-head differences.
+A pending `face/reference-v1/brows-v1/` pack supplies six native authored brows for
+E/SE/SW/W, with bounded front-hair corrections and actual fringe depth. S brows,
+all eyes/anatomy, posterior fits, native anchors and prior approvals stay unchanged.
+Review `face:review:brows` bare/assembled comparisons and the updated all-eight
+sheets. This is not final Step 6C or production acceptance; Step 6D has not started.
+See modular-face.md for provenance, selected masks and remaining review debt.
+
+## Head consistency review after SE approval — 2026-10-13
+
+Local commit `df8f887` records the approved complete SE eye and revision-6 brow
+fit, all required derivation files and the initial consolidated review tools.
+Cleanup removed 42 regenerated files (1.4 MiB); selected source/reference artwork
+and current review outputs were retained.
+
+The next Step 6C increment attaches `review-fit-v6.json` to the retained SE
+selection in `head/assembly-v1/review-selection.json`. `pnpm head:review:all`
+verifies both the original separate-ear baseline and the accepted SE facial fit,
+including its exact native assembled and bare hashes. All eight selected fits now
+have individual approval records; no SE candidate is still pending. The three
+compact sheets reuse the same native images without artwork edits or transforms.
+
+Review `head/assembly-v1/overview.png`, `anatomy-overview.png` and
+`reference-overview.png` for shared identity, facing and skull/jaw/neck/ear
+proportions. Individual approval does not establish the full cross-facing checkpoint.
+The known SE/SW bare-ear size difference remains an alternate-hairstyle obligation,
+and abrupt neck/shoulder hair starts still require the actual future body/clothing
+composition. Concealed brow/facial/hair surfaces, variants/materials, production
+T-pose and independent pixel artwork remain unfinished. Cross-facing review is
+pending before body authoring; final Step 6C is open and Step 6D has not started.
+This next review update is uncommitted. Earlier pending SE entries are history.
+
+Current checks passed: validator typecheck/lint/build, all-eight CLI and the
+existing all-eight head workflow (327.83 seconds), plus cleanup. All eight selected
+fits match their individual approvals; 710 prior inputs and 222 current review
+PNGs verify. Sheets remain unchanged. See modular-head.md for exact commands and
+validation scope. Cross-facing human review remains pending before body authoring.
+
 ## SE revision-6 fit approval — 2026-10-13
 
 The user approved the local right-brow repair, requested removal of unneeded

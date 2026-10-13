@@ -1,5 +1,11 @@
 # Asset workspace cleanup — 2026-10-13
 
+Current approved complete-brow review: cleanup protects `face/reference-v1/brows/` metadata-
+declared outputs alongside the consolidated head sheets and existing nine reviews.
+Selected source studies and native guides remain required derivation inputs.
+Unselected W hair output remains outside the source pack; its failed whole-layer
+changes are recorded in prompt history and are not dependencies.
+
 Current SE review: facial revision 6 supersedes the revision-5 previews in the
 current staging folder. Cleanup retains the metadata-declared brow comparisons,
 native fit/layer/mask outputs and consolidated sheets; obsolete eye-comparison
