@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 1,
+  "direction": "SW",
+  "assetVersion": 4,
+  "status": "draft-needs-human-review",
+  "configuration": {
+    "source": "authoring-sw-v4.json",
+    "sourceSha256": "a381dc6ddf1b63378406842061d58df1ffa1eedf47ea3a121d8b59f399d9bdb6"
+  },
+  "provenance": {
+    "source": "prompts-sw-v4.json",
+    "sourceSha256": "0f482ea4437715d4ab6ba348c69961aea7a45ccace638bedda3a56a2e7e825b9"
+  },
+  "reviewOutputs": [
+    {
+      "path": "fit/SW-anatomy.png",
+      "sha256": "09aa01742228e61943084c60f53797c236bc947768fb6d340d5c140e89d341ca"
+    },
+    {
+      "path": "fit/SW.png",
+      "sha256": "8f368182879eeab69b5812de44b7b052826a379e4d324b738e5510dc98779863"
+    },
+    {
+      "path": "overview.png",
+      "sha256": "6255fc3950a330e79406a1a9342f4eab9e42eed198e2dc6165e068fb776e037a"
+    },
+    {
+      "path": "inspection/SW-neck-shoulder-comparison.png",
+      "sha256": "0751910e5575f3aaea5f3d76a6e29fae2632b5fbd2aa93ef12d725d522c70c4a"
+    },
+    {
+      "path": "inspection/SW-eye-hair-comparison.png",
+      "sha256": "1cdd8622aaa8dcdc08334627fb64185bcff9bb42f08a65828e2ee2e3845bd24d"
+    },
+    {
+      "path": "inspection/SW-hand-alpha-comparison.png",
+      "sha256": "458b663c501daf291584be3706a2e08b30db2e8693bd01f559dbfaa4297e216e"
+    }
+  ],
+  "qualityMeasurements": {
+    "selectedHeadPixels": 2557,
+    "selectedHairPixels": 6352,
+    "changedHeadPixels": 1978,
+    "changedFrontPixels": 4942,
+    "changedRearPixels": 1218,
+    "bodyAndEyesChanged": false,
+    "shiftedScaledOrMirrored": false,
+    "globalColorKey": false
+  },
+  "retainedBodyAndEyeSources": true,
+  "precedingSourceHashesAndMtimesUnchanged": 945,
+  "nativeHandInteriorsRetained": 10482,
+  "nativeReplayOutputsMatched": 9,
+  "protectedCurrentMetadataOutputsVerified": 301,
+  "cleanup": {
+    "generatedFilesRemoved": 65,
+    "bytesMiBRemoved": 6.6,
+    "sourceInputsRemoved": 0
+  },
+  "validation": [
+    {
+      "command": "pnpm --filter @character-studio/asset-validator typecheck",
+      "result": "passed"
+    },
+    {
+      "command": "pnpm lint",
+      "result": "passed, zero warnings"
+    },
+    {
+      "command": "pnpm body:review:front-diagonals:southwest",
+      "result": "ESM/declaration build and current SW revision-4 export passed"
+    },
+    {
+      "command": "node tools/asset-validator/dist/body-diagonal-review-cli.js --southwest-v3",
+      "result": "historical revision-3 export passed; regenerable previews subsequently cleaned"
+    },
+    {
+      "command": "node tools/asset-validator/dist/body-diagonal-review-cli.js",
+      "result": "current approved SE revision-2 export passed"
+    },
+    {
+      "command": "pnpm exec vitest run tools/asset-validator/src/head-review.integration.test.ts tools/asset-validator/src/workspace-cleanup.integration.test.ts -t 'native E/W/SE/SW body|SW contour repairs|cleans generated' --maxWorkers=1",
+      "result": "3 passed, 7 skipped, 344.03 seconds before final rear patch; all historical facing/ownership workflows passed"
+    },
+    {
+      "command": "pnpm exec vitest run tools/asset-validator/src/head-review.integration.test.ts tools/asset-validator/src/workspace-cleanup.integration.test.ts -t 'SW contour repairs|cleans generated' --maxWorkers=1",
+      "result": "final rear patch: 2 passed, 8 skipped, 41.08 seconds; actual native layer composition, unchanged body/eyes, opacity/highlights, bounded ownership, guide sampling, determinism, source preservation and rejected re-pinned out-of-mask head edits"
+    },
+    {
+      "command": "scratch-only partition-quality-sw-v4.js replay",
+      "result": "all nine source outputs byte-identical"
+    },
+    {
+      "command": "git diff --check",
+      "result": "passed"
+    }
+  ],
+  "initialCheckFailuresResolved": [
+    "The first regression probe used row 174 rather than the actual missing fringe pixels on row 175; corrected after reading native RGBA.",
+    "Replay lint found an unused rear-guide helper; the replay now validates the pinned original crop/guide with that helper."
+  ],
+  "notRun": [
+    "full studio/app build",
+    "browser E2E; offline authoring pipeline only"
+  ],
+  "published": false,
+  "approvedArtworkOverwritten": false,
+  "wholePartsShiftedScaledOrMirrored": false,
+  "rearDetailSampling": {
+    "method": "premultiplied 16x16 area sampling",
+    "nativeWindow": {
+      "x": 424,
+      "y": 220,
+      "width": 64,
+      "height": 96
+    },
+    "selectedRegion": {
+      "x": 438,
+      "y": 246,
+      "width": 42,
+      "height": 29
+    },
+    "target": "detailed-only authoring; no pixel sprite generation"
+  },
+  "finalStep6CAccepted": false,
+  "step6DStarted": false
+}

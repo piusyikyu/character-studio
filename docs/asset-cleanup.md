@@ -1,5 +1,40 @@
 # Asset workspace cleanup — 2026-10-13
 
+SW revision-4 body/head/hair fit is approved in `review-fit-sw-v4.json`.
+Current layers and their pinned previous derivation inputs stay retained. Next
+is the independently authored NE body; Step 6C remains open and Step 6D has not
+started. Older candidate status below is historical.
+
+
+Current SW contour review selects `authoring-sw-v4.json`. Keep its selected head
+and rear-detail studies, native head guide and enlarged rear guide, nine derived
+layer/mask outputs, settings/provenance and scratch replay. Current six metadata
+PNG exports remain protected. Historical revision-3 previews are regenerable;
+all pinned previous source inputs remain retained. Discarded imagegen studies
+are not repository dependencies.
+
+
+Current SW hair fit selects `authoring-sw-v3.json`. Preserve its revision-2
+eye/body baseline, new native assembly guide and local hair study, six source
+layers/masks, settings/provenance, eye-feedback record and scratch replay script.
+Current six metadata-declared PNGs remain protected. Historical `--southwest-v2`
+previews are regenerable; neither prior source revision is deleted.
+
+Current SW correction selects `authoring-sw-v2.json`. Preserve the qualified
+revision-1 body feedback and config/body/neck baselines, native eye guide/study,
+selected complete eye, local front/rear derivatives, masks/settings/provenance
+and scratch replay scripts. The metadata-protected eye/hair comparison is current;
+`--southwest-v1` exports are historical and regenerable. No approved source is
+overwritten or deleted by the bounded correction.
+
+SW body candidate: cleanup protects current metadata-declared outputs under
+`body/front-diagonals-v1/southwest/`. The selected independent study, native head
+guide, body/mask, posed neck/mask, pinned config/settings/prompt and scratch replay
+script are required source inputs. Rebuild with
+`pnpm body:review:front-diagonals:southwest`; accepted SE baselines stay retained.
+The superseded untracked generation-blockage note was removed after successful
+SW authoring; the selected prompt/provenance is in `prompts-sw-v1.json`.
+
 Current SE body candidate: cleanup protects metadata-declared outputs/metadata
 under `body/front-diagonals-v1/`. Retain its native SE study, accepted head guide,
 manual masks/settings/config/provenance, bounded pose-neck derivative, revision-2

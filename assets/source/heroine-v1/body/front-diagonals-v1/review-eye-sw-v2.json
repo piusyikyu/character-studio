@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-14",
+  "direction": "SW",
+  "configuration": {
+    "source": "authoring-sw-v2.json",
+    "sourceSha256": "afa81c1ed54891a92863ee5ae7df72297bda7b0ab519ee9f2f3e1be6b7b147d2"
+  },
+  "decision": "improved-eyes-retain-anatomy-hair-corrections-required",
+  "userFeedback": "eyes are better now. now go handle the hair with the new eyes and body (see the red arrows)",
+  "eye": {
+    "source": "SW-rightEye-v2.png",
+    "sourceSha256": "46be1b08f0ff707b8a13a602c7c2ce3e420751c9ce6277860a6d62847bdddffa"
+  },
+  "bareSha256": "174865ed1e2b484eb4edc9e3cdc9a2e8a42aec196b01506ce634690df87cf654",
+  "fitSha256": "fe0aa5d3f59b08d8f1d5fb83541f2110c266979a1e0541c36b2012d7719cdd77",
+  "retainCurrentEyeAndBody": true,
+  "hairFitApproved": false,
+  "finalStep6CAccepted": false
+}

@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-14",
+  "direction": "SW",
+  "assetVersion": 3,
+  "configuration": "authoring-sw-v3.json",
+  "configurationSha256": "4d2b42c9612a2992a0ab23b2532810ca3d5f5c9f9dde4e047c2f7bdabd64f911",
+  "eyeFeedback": "review-eye-sw-v2.json",
+  "retainedRevision2BareSha256": "174865ed1e2b484eb4edc9e3cdc9a2e8a42aec196b01506ce634690df87cf654",
+  "fitSha256": "efd88f4a8409361010d2d47bc74a5bbfd8f1d11f128561bfd951a5f754a6a82c",
+  "baselineBodyFreeAssemblySha256": "a37e35d34642802f9091b8eb7526e5d3ef0d6dfd6ba3108aca75639dc69dbc7a",
+  "hairFitMeasurements": {
+    "selectedHairPixels": 7165,
+    "changedFrontPixels": 7132,
+    "changedRearPixels": 1615,
+    "anatomyChanged": false,
+    "shiftedScaledOrMirrored": false,
+    "globalColorKey": false
+  },
+  "nativeHandMeasurements": {
+    "retainedInteriors": 10482,
+    "sourceAlphaPreserved": true
+  },
+  "selectedOwnership": "Only local same-facing study hair at the three marked neighbourhoods; four bounded front/rear regions with 4x4 coverage and six-row parent-strand joins.",
+  "anatomyUnchanged": true,
+  "eyePixelsUnchanged": true,
+  "sourceArtworkOutsideHairRegionsUnchanged": true,
+  "verification": {
+    "assetValidatorTypecheck": "passed",
+    "rootLint": "passed-zero-warnings",
+    "assetValidatorEsmAndDeclarations": "passed",
+    "currentSWAndHistoricalV2AndCurrentSECli": "passed",
+    "existingFacialBodyAndCleanupWorkflows": {
+      "passed": 2,
+      "skipped": 7,
+      "durationSeconds": 300.71,
+      "command": "pnpm exec vitest run tools/asset-validator/src/head-review.integration.test.ts tools/asset-validator/src/workspace-cleanup.integration.test.ts -t 'native E/W/SE/SW body|cleans generated' --maxWorkers=1"
+    },
+    "unchangedPrecedingSourceHashesAndMtimes": 931,
+    "newSourceOutputsReplayedByteForByte": 6,
+    "retainedStudyHighlightOwnership": true,
+    "repinnedOutOfMaskHairEditRejected": true,
+    "deterministic": true,
+    "fullApplicationBuild": "not-rerun",
+    "browserE2E": "not-rerun"
+  },
+  "authoringHistory": [
+    "Initial local draft still showed a small inherited front-hair shoulder triangle; included it in the bounded removal before selecting revision 3.",
+    "Added a six-row native parent-strand blend to avoid a hard root join; this is detailed artwork only, not pixel-target interpolation.",
+    "All generated body/anatomy, glow and unmarked hairstyle edits are unselected; original artwork is not transformed or overwritten."
+  ],
+  "outputs": [
+    {
+      "path": "fit/SW-anatomy.png",
+      "sha256": "174865ed1e2b484eb4edc9e3cdc9a2e8a42aec196b01506ce634690df87cf654"
+    },
+    {
+      "path": "fit/SW.png",
+      "sha256": "efd88f4a8409361010d2d47bc74a5bbfd8f1d11f128561bfd951a5f754a6a82c"
+    },
+    {
+      "path": "overview.png",
+      "sha256": "9f6c71a8e620ae00a5d01c9a8bc421f6d771658dca45fc38bb5309a4a7985930"
+    },
+    {
+      "path": "inspection/SW-neck-shoulder-comparison.png",
+      "sha256": "8f8fe78bba08df7ea4197609d3fd69c42c5e11fde26eed9b3a7bfc1f8c046ddc"
+    },
+    {
+      "path": "inspection/SW-eye-hair-comparison.png",
+      "sha256": "15f5e7b66439720968137354897003f880146c0978bf6789da9674b5adb9434a"
+    },
+    {
+      "path": "inspection/SW-hand-alpha-comparison.png",
+      "sha256": "458b663c501daf291584be3706a2e08b30db2e8693bd01f559dbfaa4297e216e"
+    }
+  ],
+  "knownReviewIssues": [
+    "The user considers the revision-2 eyes better and asked to fit hair to that eye/body. All bare anatomy and eye pixels remain unchanged in revision 3.",
+    "Only the marked far-eye fringe, chest lock and neck/shoulder hair boundaries receive local same-facing study hair or removal masks. Unmarked hairstyle edits and every generated anatomy pixel are unselected.",
+    "Local native masks use 4x4 edge coverage and a bounded six-row parent-strand blend; no transforms, mirroring, global colour key or white cleanup.",
+    "Body/mask, posed neck, underwear, hands, legs/feet and all source head/ear/other facial layers remain exact. General body/eye feedback is not final hair-fit or production approval.",
+    "Remaining inherited edges and local transitions require human review. Concealed reusable geometry, garments/materials, production T-pose, footwear variants and native pixel artwork remain unfinished. Step 6C is open; Step 6D has not started."
+  ],
+  "reviewStatus": "Unapproved and uncommitted SW hair-fit candidate on unchanged improved revision-2 eye/body; human visual review pending.",
+  "published": false,
+  "paletteReady": false,
+  "productionAnatomyApproved": false,
+  "footwearCompatibilityApproved": false,
+  "tposeApproved": false,
+  "finalStep6CAccepted": false,
+  "step6DStarted": false,
+  "cleanup": {
+    "currentReviewPngsPreserved": 43,
+    "remainingObsoleteGeneratedFiles": 0
+  }
+}

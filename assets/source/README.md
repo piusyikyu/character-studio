@@ -1,5 +1,46 @@
 # Source artwork
 
+SW revision-4 body/head/hair fit is approved in `review-fit-sw-v4.json`.
+Current layers and their pinned previous derivation inputs stay retained. Next
+is the independently authored NE body; Step 6C remains open and Step 6D has not
+started. Older candidate status below is historical.
+
+
+Current SW contour candidate is `heroine-v1/body/front-diagonals-v1/authoring-sw-v4.json`.
+It selects separate repaired head/front/rear layers over the retained eye/body.
+Only selected studies, native guides, local masks/settings/provenance and scratch
+replay are required inputs. The rear detail study has an explicit 16× authoring
+crop, sampled for detailed art only. No approved sources are overwritten.
+Current comparison columns are reference / revision 3 / revision 4; the candidate
+still needs visual approval. Earlier SW selections below are historical.
+
+
+Current SW hair fit selects `authoring-sw-v3.json` in
+`heroine-v1/body/front-diagonals-v1/`. It preserves the improved revision-2 eye
+and entire body while authoring local fringe/chest/shoulder hair joins. Only
+native same-facing study hair inside manually selected regions is retained;
+generated anatomy and unmarked hairstyle changes are discarded. Current comparison
+columns are reference / revision 2 / revision 3. Hair fit remains unapproved.
+The selected guide/study, six new masks/layers and scratch replay script are
+required derivation inputs; earlier revisions stay pinned and unchanged.
+
+Previous SW body-fit correction selects `authoring-sw-v2.json` in
+`heroine-v1/body/front-diagonals-v1/`. Revision 1 body is generally good; the
+complete far/right-eye study and local native curl/shoulder ownership corrections
+still need visual approval. Body, hands, posed neck, other facial features and
+all previous approved source artwork stay unchanged. Inspect
+`SW-eye-hair-comparison.png` in current southwest staging. Revision-1 config
+and derivation inputs remain pinned; replay both new scripts in scratch only.
+
+Current independent SW body candidate: `heroine-v1/body/front-diagonals-v1/`
+selects `authoring-sw-v1.json`, with its own native study/head guide, body/mask,
+posed neck/mask and scratch replay script. Ordinary opaque bra/panties; complete
+native hand interiors retained from the first selection. Rebuild with
+`pnpm body:review:front-diagonals:southwest`; inspect the separate `southwest/`
+staging overview, native anatomy and hand/joint comparisons. SW is unapproved;
+inherited angular hair ends need review. Approved SE revision 2 and all preceding
+facings remain unchanged. Step 6C is open; Step 6D has not started.
+
 Approved SE body study (hand revision 2): `heroine-v1/body/front-diagonals-v1/` retains an
 independent SE study, native accepted head guide, tight manual body/hand masks,
 bounded pose-neck layer and scratch-only replay. `authoring-v2.json` repairs

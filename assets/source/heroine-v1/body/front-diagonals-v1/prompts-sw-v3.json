@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "tool": "built-in imagegen plus manual native masks",
+  "mode": "SW local hair fit against retained revision-2 eye/body",
+  "selectedStudy": "inputs/SW-hair-study-v3.png",
+  "guide": "inputs/SW-hair-guide-v3.png",
+  "historicalGeneratedImagePath": "/home/piusyikyu/.codex/generated_images/01a13107-1ff1-7900-ae0e-0c9fcb68e0b5/exec-b15b2032-df2f-47e2-b7dc-84587b5b2a61.png",
+  "prompt": "Use case: precise-object-edit. Image 1 is the EXACT EDIT TARGET: adult SW three-quarter-front T-pose game character, transparent1024x1536, current painted silver-lilac hair and grey everyday two-piece underwear. Fix ONLY three small local HAIR join/matte defects, keeping all anatomy including both current eyes and the entire current body pixel positions unchanged. 1) Screen-left beside the far/right eye x388..428,y180..232: make the face-framing hair smoothly join its parent lock and fit the new complete eye. Remove the hard pale notch and purple connector blob; the hair should naturally occlude the outer eye edge where appropriate, without repainting the eye or eyelids. 2) Screen-left chest/shoulder strand x345..445,y298..360: clean its skin-coloured/orange edge contamination and abrupt horizontal overlap. Make the existing silver-lilac forelock flow smoothly over the current shoulder/chest, with a coherent tapered edge and visible bra strap behind it; no pasted skin strip. 3) Screen-right neck/shoulder x495..555,y272..324: remove the detached lilac crescent wisp and tiny triangular patch, or coherently reconnect it to the existing neck curl. Match the actual current neck/shoulder height; do not copy old standing-reference skin. Keep the main bright chest curl with its white highlights and natural tip. Preserve the whole hairstyle silhouette, crown/fringe, long rear drape, all unmarked strands, face, skull, ear, eyes, brows, nose, mouth, neck, shoulders, grey bra/panties, arms/hands, legs/feet and native1024x1536 framing exactly. No new ornaments, no mirroring, shift, rotation, resize, zoom, body change, colour key, background glow, checker pattern, labels or text. Transparent background. Output full canvas at same native anchors; this is a local study and ONLY masked hair pixels will be retained. Hair-edge pixels must be hair-coloured with correct smooth edges, not skin colour patches.",
+  "anatomyChanged": false,
+  "shiftedScaledOrMirrored": false,
+  "globalColorKey": false,
+  "selection": "hair-fit-settings-sw-v3.json",
+  "postprocessing": "Select only same-facing study hair inside the three marked neighbourhoods with manually authored 4x4-coverage masks. Remove the detached front wisp, reconstruct a local rear neck boundary, and compose through actual native hair planes. All generated anatomy/body/background and unmarked hairstyle edits are discarded.",
+  "replayOnlyInScratch": "partition-hair-fit-sw-v3.js",
+  "previous": {
+    "source": "authoring-sw-v2.json",
+    "sourceSha256": "afa81c1ed54891a92863ee5ae7df72297bda7b0ab519ee9f2f3e1be6b7b147d2"
+  }
+}

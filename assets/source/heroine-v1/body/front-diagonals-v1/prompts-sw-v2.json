@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "tool": "built-in imagegen plus manual native masks",
+  "mode": "SW complete right eye and local curl ownership correction",
+  "previous": {
+    "source": "authoring-sw-v1.json",
+    "sourceSha256": "11066cee95e82408de409e351ec76883ee03e2cbeb0ae8d410cb336aaaad5586"
+  },
+  "selectedStudy": "inputs/SW-right-eye-study-v2.png",
+  "eyeGuide": "inputs/SW-right-eye-guide-v2.png",
+  "historicalGeneratedImagePath": "/home/piusyikyu/.codex/generated_images/01a13107-1ff1-7900-ae0e-0c9fcb68e0b5/exec-1e8a7f2d-2ff7-464e-93f2-094afb81639d.png",
+  "prompt": "Use case: precise-object-edit. Image 1 is the EXACT EDIT TARGET: a 1024x1536 transparent native bald adult female head/neck, small near upper centre, facing three-quarter-front SW toward screen-left. Her near physical-left eye is complete at x465,y184; the far physical-right eye on screen-left is DELIBERATELY MISSING. Image 2 is STYLE AND SAME-FACING REFERENCE ONLY; its hair must not be painted into the output. Author a COMPLETE smaller foreshortened right/far eye with black/indigo upper eyelashes, white sclera around vivid magenta/violet iris, pupil/glints, complete lower lid and a small peach skin margin. Fit this head's SW orientation and tilt. Aim outer corner near (400,189), upper lid (411,191), inner corner (427,205), lower lid (416,215), iris centre (415,203). No purple hair or blob outside the intended iris. Draw all anatomy usually concealed by bangs, not just the visible fragment, without mirroring or copying the near eye. EDIT ONLY LOCAL x398..431,y184..221. Keep the large genuinely transparent margins and exact tiny head location/size: skull top (471,69), chin near (454,260), neck bottom y316. Do not zoom or enlarge the head; the full canvas MUST remain1024x1536 and head bounds x399..545,y69..263. Preserve everything else exactly: complete near eye, both brows, nose, mouth, ear, skull, jaw, cheek shape and neck. No hair, body, clothing, labels, glow, background, translation, rotation or scaling. Only locally masked eye pixels will be retained. Return the same complete full-canvas framing as image1.",
+  "references": [
+    "inputs/SW-right-eye-guide-v2.png",
+    "references/import-v1/transparent/SW.png"
+  ],
+  "hairOwner": "SW reference pixels at native coordinates, selected only by local manually traced curl masks",
+  "bodyChanged": false,
+  "shiftedScaledOrMirrored": false,
+  "globalColorKey": false,
+  "discardedAttempt": "First generated study enlarged the head; discarded with no selected pixels.",
+  "postprocessing": "Retain only local study RGBA in a 4x4-coverage eye contour. Replace only bounded foreground curl windows with locally masked same-facing reference hair; a small rear ownership mask removes the marked shoulder fragment. Preserve all original body/neck/hand pixels and other facial features, plus hair outside permitted masks. Replay in scratch."
+}

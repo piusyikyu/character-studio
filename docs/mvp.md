@@ -1,5 +1,160 @@
 # MVP Plan — Female Character Studio
 
+## SW body and head/hair approval — 2026-10-14
+
+The user approved revision 4 and requested generated-data cleanup, a local commit
+and the next Step 6C increment. `body/front-diagonals-v1/review-fit-sw-v4.json`
+pins its configuration, six current exports, complete far eye, repaired head/hair
+layers and unchanged body/posed-neck sources. Approval covers this current SW
+study and fit; the all-eight standing head selection and preceding approved
+source art remain intact. All 10,482 checked native hand interiors remain retained.
+
+Next author the independent NE three-quarter-back body, with its own approved
+head/ear/neck guide and same-facing NE reference, ordinary opaque daily bra and
+panties, complete hands, and no eyes/brows/mouth or front hair. NW follows its own
+review and independent authoring; no mirroring or foreign-facing body fragments.
+
+Concealed geometry, reusable limbs/garments/materials, provisional heel-based feet,
+production T-pose and independent native pixel artwork remain outstanding. Carry
+forward the from-scratch per-asset authoring note and alternate-hairstyle ear
+proportion review debt. This approval stays within Step 6C; Step 6D has not started.
+Earlier candidate/pending statements below are historical.
+
+
+## SW contour quality — revision 4 — 2026-10-14
+
+Current `authoring-sw-v4.json` repairs SW jaw/chin and foreground hair contours,
+plus a small rear hair underlap. Body and eye sources retain revision 3; approved
+source art and the all-eight head selector remain unchanged. Masks affect separate
+head/front/rear layers. The rear study is painted at 16× detail and sampled into
+an explicit native window for detailed art only. This is not pixel-target work.
+
+`pnpm body:review:front-diagonals:southwest` now exports reference / revision 3 /
+revision 4 in `SW-eye-hair-comparison.png`. Historical `--southwest-v3` remains
+available. The candidate is unapproved/uncommitted; Step 6C stays open and Step 6D
+has not started. See [modular-body.md](modular-body.md) for ownership and validation.
+
+
+## SW local hair fit — revision 3 — 2026-10-14
+
+The user requested hair fitting while retaining the improved revision-2 eye/body.
+`body/front-diagonals-v1/authoring-sw-v3.json` selects local authored hair at the
+marked far-eye, chest and shoulder joins; all bare anatomy and other facings remain
+unchanged. Native masks and a bounded parent-strand blend select only same-facing
+study hair; no transforms, mirroring or broad colour cleanup.
+
+Review `body/front-diagonals-v1/southwest/inspection/SW-eye-hair-comparison.png`
+through `pnpm body:review:front-diagonals:southwest`. Columns are reference /
+revision 2 / revision 3. Approved source records and historical inputs stay pinned.
+Current hair fit remains unapproved/uncommitted; full reusable geometry, production
+T-pose, materials, footwear compatibility and independent pixel work remain open.
+Step 6C is unfinished; Step 6D has not started. See [modular-body.md](modular-body.md)
+for the selected files, native ownership and validation.
+
+## SW purple eye/curl correction — revision 2 — 2026-10-14
+
+The user considers the SW body generally good but identified purple blobs around
+the physical-right/far eye and foreground hair. This qualifies the body-study
+feedback; it does not approve the old eye/hair fit.
+`body/front-diagonals-v1/review-body-sw-v1.json` records that distinction.
+
+Inspection traced the eye blob to reference hair retained in the facial
+extraction, and the curl blobs to broad foreground ownership masks. A new
+built-in imagegen study authors the complete SW right eye, including geometry
+usually concealed by bangs. The first study enlarged the head and was discarded;
+the selected second study retains native framing. Only 480 locally selected eye
+pixels enter the candidate. All other generated anatomy/glow is discarded.
+
+Two bounded foreground windows reconstruct curl contours using only SW's own
+reference RGB with 4×4 mask coverage; a small rear mask removes the marked
+shoulder fragment. No mirroring, artwork transforms, global colour keys or
+broad white cleanup. Bright strand highlights and all hair outside these windows
+remain retained. Source head/ear/neck, other eye, brows, mouth, body/mask, posed
+neck, underwear, legs/feet and all 10,482 checked hand interiors remain exact.
+Previous approved head/hair records and revision-1 derivation inputs stay intact.
+
+`authoring-sw-v2.json` is now selected by
+`pnpm body:review:front-diagonals:southwest`. Its six current PNGs include
+`inspection/SW-eye-hair-comparison.png`: reference / revision 1 / revision 2,
+with bare anatomy above actual hair composition. Historical SW revision 1 is
+reproducible with the CLI `--southwest-v1` flag. Authoring scripts replay only
+in scratch. The corrected facial/hair candidate is scoped to this body review;
+it has not silently replaced the accepted all-eight head selection.
+
+Review the complete far eye, strand taper/openings and local transitions.
+Remaining inherited head/hair edges and anatomical seams are not certified clean.
+Corrected SW fit remains unapproved and uncommitted. General body feedback does
+not certify reusable geometry, garments/materials, production T-pose, footwear
+compatibility, independent pixel art or final Step 6C. Step 6D has not started.
+Earlier SW revision-1 selection/pending-generation entries below are historical.
+
+Validation for SW revision 2: asset-validator typecheck, root lint (zero
+warnings after removing an unused replay helper), ESM/declaration build, current
+and historical SW exports and current SE export passed. The existing composition
+and cleanup workflows passed (2 passed, 7 skipped; 256.93 seconds), including
+actual corrected facial/hair planes, retained highlights, unchanged body/hand
+interiors, unchanged pixels outside masks, deterministic output, source immutability
+and rejected re-pinned out-of-mask hair edits. All 915 preceding source hashes/
+mtimes stay exact; eight final guide/layer/mask outputs replay byte-for-byte in
+scratch. Full app build and browser E2E were not rerun. See `fit-audit-sw-v2.json`.
+
+
+## Independent SW body candidate — 2026-10-14
+
+The generation blockage below is resolved. A new built-in imagegen study supplies
+SW's own body using only the accepted native SW head guide and same-facing SW
+reference. No SE/E/W/S/N body pixels or mirrored anatomy supply this candidate.
+`body/front-diagonals-v1/authoring-sw-v1.json` selects it separately from approved
+SE revision 2. `pnpm body:review:front-diagonals:southwest` exports five PNGs
+and metadata under `assets/staging/heroine-v1/body/front-diagonals-v1/southwest/`.
+Normal `pnpm body:review:front-diagonals` continues to select SE revision 2.
+
+The body uses ordinary opaque bra/panties and native T-pose study framing. Local
+body/hand envelopes select SW study pixels; native alpha supplies finger gaps and
+contours. All 10,482 near-opaque hand pixels retain exact source RGBA in the body
+and alpha in the actual anatomy export. Generated head/background stay unselected.
+Accepted head/ears/eyes/brows/mouth and source hair retain native anchors/pixels;
+only a new posed-neck derivative transfers coverage in rows 294–316 where the
+body supplies skin. Replay `partition-study-sw-v1.js` in scratch only.
+
+Review `overview.png` (reference / anatomy / actual hair fit), the native
+`fit/SW-anatomy.png` and both joint/hand comparisons. Inherited angular front-hair
+ends remain exposed near neck/chest; current source hair was preserved and is not
+certified clean. Review projected torso/pelvis, far-hand finger overlap, near
+physical-left/far physical-right arm identity, neck transitions and provisional
+heel-raised feet. Automated checks do not certify anatomy or footwear.
+
+SW remains unapproved and uncommitted. NE/NW bodies, concealed geometry, reusable
+limbs/garments/materials, presets, production T-pose and independent pixel artwork
+remain unfinished. Step 6C is open; Step 6D has not started. Earlier pending
+generation statements are historical; selected prompt/provenance now lives in
+`assets/source/heroine-v1/body/front-diagonals-v1/prompts-sw-v1.json`.
+
+Validation for SW: asset-validator typecheck, root lint (zero warnings),
+ESM/declaration build, SW and current SE CLI exports passed. The extended existing
+E/W/SE/SW actual-plane and cleanup workflows passed (2 passed, 7 skipped;
+205.59 seconds). All 904 preceding heroine source hashes/mtimes are unchanged;
+four new source outputs replay byte-for-byte in scratch. Full app build and
+browser E2E were not rerun. See `fit-audit-sw-v1.json`.
+
+## SW body authoring checkpoint — 2026-10-14
+
+Local commit `07d2ddd` records the approved SE body and revision-2 native
+hand fit. Requested cleanup removed 58 regenerable build files (1.5 MiB),
+retaining the current reviews and pinned derivation baselines.
+
+The next independent SW body study was attempted using SW's accepted native head
+and same-facing reference with ordinary opaque bra and panties. Both built-in
+imagegen attempts were rejected at the tool's output safety stage. No generated
+output, selected SW body, masks or review candidate exists. The unused guide copy
+was removed. That blockage is resolved by the later candidate above. Its selected prompt and
+provenance are retained in `body/front-diagonals-v1/prompts-sw-v1.json`.
+
+All preceding source artwork remains unchanged. SW authoring remains the next
+bounded increment within Step 6C; NE/NW bodies, reusable geometry/materials,
+footwear compatibility and independent pixel artwork remain unfinished. Step 6D
+has not started. This pending-authoring checkpoint is uncommitted.
+
 ## SE body and native hand revision-2 approval — 2026-10-14
 
 The user approved the corrected SE study and authorized cleanup, a local commit
