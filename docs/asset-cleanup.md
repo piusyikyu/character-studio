@@ -1,5 +1,11 @@
 # Asset workspace cleanup — 2026-10-13
 
+Current S part study (2026-10-14): cleanup protects metadata-declared outputs
+and metadata under `body/parts-v1/`, alongside the approved revision-6 body
+review. Five source layers, pinned configuration/settings/provenance and the
+scratch-only authoring script remain required inputs. Obsolete part previews
+are regenerable with `pnpm body:review:parts`; no approved source is removed.
+
 Current S body study: cleanup also protects the metadata-declared previews
 and metadata under `body/reference-v1/`. The local study/head guide, selected
 body/masks, revision-2 torso study, revision-3 local joint study/guide, pose-specific

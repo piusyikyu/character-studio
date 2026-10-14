@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "method": "native-exclusive-s-body-parts",
+  "minimumAlpha": 8,
+  "sourceBody": "body/reference-v1/S-body-v4.png",
+  "geometry": {
+    "armBottom": 430,
+    "rightArmRoot": [
+      [
+        440,
+        309
+      ],
+      [
+        432,
+        336
+      ],
+      [
+        420,
+        370
+      ],
+      [
+        414,
+        412
+      ],
+      [
+        414,
+        430
+      ]
+    ],
+    "leftArmRoot": [
+      [
+        584,
+        309
+      ],
+      [
+        591,
+        338
+      ],
+      [
+        606,
+        371
+      ],
+      [
+        614,
+        412
+      ],
+      [
+        614,
+        430
+      ]
+    ],
+    "legCenter": 512,
+    "rightThighRoot": [
+      [
+        368,
+        727
+      ],
+      [
+        428,
+        735
+      ],
+      [
+        491,
+        730
+      ],
+      [
+        511,
+        733
+      ]
+    ],
+    "leftThighRoot": [
+      [
+        513,
+        733
+      ],
+      [
+        538,
+        732
+      ],
+      [
+        591,
+        736
+      ],
+      [
+        652,
+        729
+      ]
+    ]
+  }
+}

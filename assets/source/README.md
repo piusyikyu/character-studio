@@ -1,5 +1,11 @@
 # Source artwork
 
+Approved S part study: `heroine-v1/body/parts-v1/` retains five exclusive visible-pixel
+body layers at native positions. `pnpm body:review:parts` verifies their actual
+composition against the approved revision-6 fit. `review-fit-v1.json` pins the scoped approval;
+concealed joints and separate clothing remain unfinished. Authoring replay is
+scratch-only. Normal `body:review` still selects the accepted whole-body study.
+
 Approved S body revision 6: `heroine-v1/body/reference-v1/authoring-v6.json`
 selects three local rear-ownership masks for colour spill outside the curls.
 The qualified revision-4 body/neck, face, underwear and proportions remain exact.

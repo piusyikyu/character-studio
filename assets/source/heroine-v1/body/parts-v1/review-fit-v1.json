@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-14",
+  "id": "body.parts.v1",
+  "assetVersion": 1,
+  "direction": "S",
+  "target": "detailed",
+  "configuration": "authoring.json",
+  "configurationSha256": "e71462b1672fb3ce20cf969d05b32ab431d8306b4797835686d8fa33b57441d3",
+  "decision": "approved-native-s-body-part-study",
+  "userFeedback": "Approved. Remove unneeded files and commit, then go on to next step.",
+  "currentStudyPartsApproved": true,
+  "bodySha256": "934c7f300ec301c8848e3da338e574a6037e025c1937dda859d5cf6060364f45",
+  "bareSha256": "cd458b4953e07f10d8869872e37767dd915f9618b275ffa76814a6a28e33c8dc",
+  "fitSha256": "397a1c8264138a81233d275396f97719f542e42ff6537ba7cefde8b6e4751db8",
+  "parts": [
+    {
+      "id": "torso",
+      "plane": "body-torso",
+      "characterSide": "center",
+      "screenSide": "center",
+      "nativePosition": {
+        "x": 0,
+        "y": 0
+      },
+      "source": "S-torso-v1.png",
+      "sourceSha256": "48b7243dcb83cb0ecf974338e0e85a6336a263c635f584fa70ed7288f773d96e"
+    },
+    {
+      "id": "right-arm",
+      "plane": "body-back-arm",
+      "characterSide": "right",
+      "screenSide": "left",
+      "nativePosition": {
+        "x": 0,
+        "y": 0
+      },
+      "source": "S-right-arm-v1.png",
+      "sourceSha256": "eefb9bc7da5b84b90b1beab8a9250ed306c572719dc6ae4821c9c160b6b001e9"
+    },
+    {
+      "id": "left-arm",
+      "plane": "body-front-arm",
+      "characterSide": "left",
+      "screenSide": "right",
+      "nativePosition": {
+        "x": 0,
+        "y": 0
+      },
+      "source": "S-left-arm-v1.png",
+      "sourceSha256": "2a6d13305c67566293e00f407d7da179c3ab2fabe5a6dbbf24afac52e39574bf"
+    },
+    {
+      "id": "right-leg",
+      "plane": "body-back-leg",
+      "characterSide": "right",
+      "screenSide": "left",
+      "nativePosition": {
+        "x": 0,
+        "y": 0
+      },
+      "source": "S-right-leg-v1.png",
+      "sourceSha256": "65f79d80416e4b0087b07c8fbc306a0978386822d8b0a60c7f89c9b9d9644e4c"
+    },
+    {
+      "id": "left-leg",
+      "plane": "body-front-leg",
+      "characterSide": "left",
+      "screenSide": "right",
+      "nativePosition": {
+        "x": 0,
+        "y": 0
+      },
+      "source": "S-left-leg-v1.png",
+      "sourceSha256": "1c1e6ba862f4a4e8e5af28d8b54a89e74c6948a986bc24ad5e69e303677fd9fa"
+    }
+  ],
+  "baselineApproval": {
+    "source": "body/reference-v1/review-fit-v6.json",
+    "sourceSha256": "88bf0f0db2166a585eca6438aa92940e5e199218efa78b1ba805dbfdea937cd6"
+  },
+  "scope": "Native visible-pixel S torso/arm/leg study and exact actual five-plane composition; not full concealed joints or separate garments.",
+  "published": false,
+  "paletteReady": false,
+  "concealedJointsApproved": false,
+  "separateUnderwearAuthored": false,
+  "productionAnatomyApproved": false,
+  "tposeApproved": false,
+  "finalStep6CAccepted": false,
+  "step6DStarted": false
+}

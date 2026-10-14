@@ -1,5 +1,53 @@
 # Step 6C — First S body anatomy study
 
+## S body-part study approved — 2026-10-14
+
+The user approved `body/parts-v1/` and requested cleanup, a local commit and
+continued Step 6C work. `review-fit-v1.json` pins the exact native five-part
+configuration and actual body/anatomy/hair fit hashes. Existing source pixels
+stay unchanged. This accepts the visible-pixel S study only; concealed joints,
+separate garments, material maps, production anatomy and final T-pose approval
+remain open. The next bounded increment authors an independent N / full-back
+body T-pose study in ordinary opaque bra and panties, with the accepted native
+N head/hair fit. It must not mirror S or borrow S anatomy pixels. Step 6C remains
+unfinished and Step 6D has not started. Earlier pending statements are historical.
+
+## Native S body parts and actual plane review — 2026-10-14
+
+Local commit `6802004` records the approved revision-6 S body/head/hair study,
+its scoped approval, the requested future authoring note and retained derivation
+inputs. Cleanup removed 47 regenerable build files (1.5 MiB), preserving current
+reviews and all required source baselines.
+
+The next bounded Step 6C increment is `body/parts-v1/`. Five transparent native
+1024×1536 layers retain the accepted body's exact visible pixels: torso, both
+arms and both legs. `pnpm body:review:parts` validates the pinned revision-6
+configuration and approval, exclusive ownership and side identity, then uses
+`DIRECTION_PLANE_ORDER.S` at native (0,0) positions. Actual recomposition must
+match the accepted body-only, anatomy and head/hair fit pixels exactly. The
+normal `body:review` selection remains the approved revision 6.
+
+In S, character-right is screen-left. The right arm/leg use the existing back
+limb planes, and the left arm/leg use the front limb planes; this is a scoped S
+study allocation, not a new global side/facing contract. No mirroring, image
+transforms, replacement artwork or production catalog publication occurs.
+
+Review `assets/staging/heroine-v1/body/parts-v1/overview.png`: recomposed anatomy /
+accepted revision-6 fit / actual five-plane fit. In `parts-overview.png`, cells
+read left to right: top row recomposed body / torso / character-right arm;
+bottom row character-left arm / character-right leg / character-left leg.
+Source pixels remain native; checkerboard and direction labels are preview-only.
+
+These are visible-pixel study cuts, not completed reusable joints or rig anchors.
+The torso still owns the underwear and upper thigh skin; full concealed shoulder/
+hip surfaces and separate clothing require later authoring. Other facings, body
+presets, complete hair, material maps, production T-pose and independently
+authored pixel artwork remain open. The new part review is unapproved and
+uncommitted. Step 6C is unfinished and Step 6D has not started.
+Earlier pending statements below are historical.
+
+Part-study verification: asset-validator typecheck, root lint (zero warnings), ESM/declaration build and `body:review:parts` passed. The extended existing body workflow and cleanup workflow passed (2 passed, 5 unrelated workflows skipped; 95.82 seconds), covering actual five-plane composition, native left/right samples, deterministic exports, immutable inputs and rejection of re-pinned foreign part pixels or altered side identity. All 827 preceding source/reference hashes and mtimes remain unchanged, excluding the intentional source README edit. Five source outputs replay byte-for-byte in scratch, and 14 current PNG hashes verify (new parts, accepted body fit and accepted head sheets). Full app build and browser E2E were not rerun. The new part study awaits visual review; accepted artwork remains exact. Post-validation cleanup removed 50 regenerated files (1.5 MiB), kept all 14 checked PNGs and inputs, and found no remaining obsolete generated files.
+
 ## S body/head/hair revision 6 approved — 2026-10-14
 
 The user approved the current S body/head/hair fit and requested cleanup, a local

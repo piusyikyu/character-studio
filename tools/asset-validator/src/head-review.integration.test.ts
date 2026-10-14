@@ -732,6 +732,32 @@ it('reviews native S body anatomy with the exact approved head and actual hair d
     const repinned = bodyReviewSchema.parse(JSON.parse(await readFile(resolve(sourceDirectory, 'authoring-v6.json'), 'utf8'))); if (repinned.assetVersion !== 6) throw new Error('Revision 6 required.'); repinned.spillRepair.selection.sourceSha256 = sha256(maskBytes); await writeFile(resolve(copy, 'authoring-v6.json'), JSON.stringify(repinned));
     await expect(prepareBodyReview({ ...options, sourceDirectory: copy, outputDirectory: resolve(temporary, 'repinned-hair') })).rejects.toThrow('curl spill ownership mask changed');
     await expect(prepareBodyReview({ ...options, outputDirectory: resolve(sourceDirectory, 'unsafe') })).rejects.toThrow('must be disjoint');
+    // Native body parts must preserve side identity and the accepted actual composition.
+    const { prepareBodyPartsReview, bodyPartsReviewSchema } = await import('./body-parts-review');
+    const partSource = resolve(assetDirectory, 'body/parts-v1'), partOptions = { ...options, sourceDirectory: partSource, outputDirectory: resolve(temporary, 'parts') };
+    const partReport = await prepareBodyPartsReview(partOptions), partConfig = bodyPartsReviewSchema.parse(JSON.parse(await readFile(resolve(partSource, 'authoring.json'), 'utf8')));
+    expect(partReport).toMatchObject({ exactApprovedFit: true, fitSha256: report.fitSha256, bareSha256: report.bareSha256, published: false, concealedJointsApproved: false, separateUnderwearAuthored: false, tposeApproved: false, finalStep6CAccepted: false, measurements: { overlapPixels: 0, unownedPixels: 0, generatedAnatomy: false } });
+    const partPlanes = new Map<RenderPlane, RgbaImage>([['head', head], ['hair-front', front], ['hair-rear', rear]]);
+    for (const part of partConfig.parts) partPlanes.set(part.plane, await load(partSource, part.source));
+    const partFit = blankImage(1024, 1536);
+    for (const plane of DIRECTION_PLANE_ORDER.S) { const layer = partPlanes.get(plane); if (layer) drawRgba(partFit, layer, 0, 0); }
+    expect(sha256(encodePng(partFit))).toBe(report.fitSha256);
+    for (const [plane, x, y] of [['body-back-arm', 50, 370], ['body-front-arm', 970, 370], ['body-back-leg', 460, 1400], ['body-front-leg', 560, 1400]] as const) {
+      const pixel = (y * 1024 + x) * 4;
+      expect(partPlanes.get(plane)!.data[pixel + 3]).toBeGreaterThan(0);
+      expect([...partPlanes.get(plane)!.data.subarray(pixel, pixel + 4)]).toEqual([...body.data.subarray(pixel, pixel + 4)]);
+    }
+    for (const output of partReport.outputs) expect(sha256(await readFile(resolve(partOptions.outputDirectory, output.path)))).toBe(output.sha256);
+    expect(await prepareBodyPartsReview({ ...partOptions, outputDirectory: resolve(temporary, 'parts-repeat') })).toEqual(partReport);
+    const partCopy = resolve(temporary, 'part-source'); await cp(partSource, partCopy, { recursive: true });
+    const wrongSide = bodyPartsReviewSchema.parse(JSON.parse(await readFile(resolve(partSource, 'authoring.json'), 'utf8')));
+    wrongSide.parts[1]!.characterSide = 'left'; await writeFile(resolve(partCopy, 'authoring.json'), JSON.stringify(wrongSide));
+    await expect(prepareBodyPartsReview({ ...partOptions, sourceDirectory: partCopy, outputDirectory: resolve(temporary, 'wrong-part-side') })).rejects.toThrow('identity and plane assignment changed');
+    const foreignPart = decodePng(await readFile(resolve(partCopy, partConfig.parts[1]!.source))), foreignPixel = (500 * 1024 + 512) * 4;
+    foreignPart.data.set(body.data.subarray(foreignPixel, foreignPixel + 4), foreignPixel); const partBytes = encodePng(foreignPart);
+    await writeFile(resolve(partCopy, partConfig.parts[1]!.source), partBytes); partConfig.parts[1]!.sourceSha256 = sha256(partBytes);
+    await writeFile(resolve(partCopy, 'authoring.json'), JSON.stringify(partConfig));
+    await expect(prepareBodyPartsReview({ ...partOptions, sourceDirectory: partCopy, outputDirectory: resolve(temporary, 'repinned-part') })).rejects.toThrow('native body part ownership changed');
     for (const f of before) { expect(sha256(await readFile(f.path))).toBe(f.hash); expect((await stat(f.path)).mtimeMs).toBe(f.mtime); }
   } finally { await rm(temporary, { recursive: true, force: true }); }
-}, 90_000);
+}, 120_000);

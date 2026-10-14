@@ -1,0 +1,166 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-14",
+  "id": "body.parts.v1",
+  "configuration": "authoring.json",
+  "configurationSha256": "e71462b1672fb3ce20cf969d05b32ab431d8306b4797835686d8fa33b57441d3",
+  "baselineApproval": {
+    "source": "body/reference-v1/review-fit-v6.json",
+    "sourceSha256": "88bf0f0db2166a585eca6438aa92940e5e199218efa78b1ba805dbfdea937cd6"
+  },
+  "reviewStatus": "draft-needs-human-review",
+  "nativePosition": {
+    "x": 0,
+    "y": 0
+  },
+  "compositionOrder": [
+    "tail-rear",
+    "wing-rear",
+    "hair-rear",
+    "body-back-leg",
+    "body-back-arm",
+    "outfit-back",
+    "body-torso",
+    "body-front-leg",
+    "neck",
+    "outfit-torso",
+    "head",
+    "ears",
+    "eyes",
+    "eyebrows",
+    "mouth",
+    "horns",
+    "outfit-front",
+    "body-front-arm",
+    "hair-front",
+    "tail-front",
+    "wing-front"
+  ],
+  "measurements": {
+    "parts": [
+      {
+        "id": "torso",
+        "plane": "body-torso",
+        "characterSide": "center",
+        "screenSide": "center",
+        "selectedPixels": 83840,
+        "nativePosition": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "right-arm",
+        "plane": "body-back-arm",
+        "characterSide": "right",
+        "screenSide": "left",
+        "selectedPixels": 22949,
+        "nativePosition": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "left-arm",
+        "plane": "body-front-arm",
+        "characterSide": "left",
+        "screenSide": "right",
+        "selectedPixels": 22895,
+        "nativePosition": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "right-leg",
+        "plane": "body-back-leg",
+        "characterSide": "right",
+        "screenSide": "left",
+        "selectedPixels": 61122,
+        "nativePosition": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "left-leg",
+        "plane": "body-front-leg",
+        "characterSide": "left",
+        "screenSide": "right",
+        "selectedPixels": 61089,
+        "nativePosition": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ],
+    "overlapPixels": 0,
+    "unownedPixels": 0,
+    "generatedAnatomy": false,
+    "concealedJointsApproved": false,
+    "separateUnderwearAuthored": false
+  },
+  "exactApprovedFit": true,
+  "bareSha256": "cd458b4953e07f10d8869872e37767dd915f9618b275ffa76814a6a28e33c8dc",
+  "fitSha256": "397a1c8264138a81233d275396f97719f542e42ff6537ba7cefde8b6e4751db8",
+  "bodySha256": "934c7f300ec301c8848e3da338e574a6037e025c1937dda859d5cf6060364f45",
+  "sourcePreservation": {
+    "preservedPrecedingSources": 827,
+    "replayedParts": 5,
+    "verifiedCurrentPngs": 14
+  },
+  "outputs": [
+    {
+      "path": "fit/S-body-only.png",
+      "sha256": "934c7f300ec301c8848e3da338e574a6037e025c1937dda859d5cf6060364f45"
+    },
+    {
+      "path": "fit/S-anatomy.png",
+      "sha256": "cd458b4953e07f10d8869872e37767dd915f9618b275ffa76814a6a28e33c8dc"
+    },
+    {
+      "path": "fit/S.png",
+      "sha256": "397a1c8264138a81233d275396f97719f542e42ff6537ba7cefde8b6e4751db8"
+    },
+    {
+      "path": "overview.png",
+      "sha256": "8a10f636a63790dc3bdb00ce9c16190a0e6d05f1232ebedbdbf3015cf961c4f8"
+    },
+    {
+      "path": "parts-overview.png",
+      "sha256": "9b59b238c295f7498452b50d2e29014fa5afeb22de452b3d40363e3b63368849"
+    }
+  ],
+  "verification": {
+    "assetValidatorTypecheck": "passed",
+    "rootLint": "passed-zero-warnings",
+    "assetValidatorEsmAndDeclarations": "passed",
+    "bodyPartsReviewCli": "passed",
+    "existingBodyAndCleanupWorkflows": {
+      "passed": 2,
+      "skipped": 5,
+      "durationSeconds": 95.82
+    },
+    "fullApplicationBuild": "not-rerun",
+    "browserE2E": "not-rerun"
+  },
+  "limitations": [
+    "Visible-pixel study cuts only; concealed joints and rig anchors still need authoring/review.",
+    "Torso retains bra/panties and upper thigh skin; separate underwear/skin assets unfinished.",
+    "S only; no other facing or pixel artwork inferred.",
+    "Accepted head/hair/body inputs unchanged; new part candidate uncommitted and not visually approved."
+  ],
+  "productionAnatomyApproved": false,
+  "concealedJointsApproved": false,
+  "separateUnderwearAuthored": false,
+  "tposeApproved": false,
+  "finalStep6CAccepted": false,
+  "step6DStarted": false,
+  "cleanup": {
+    "removedGeneratedFiles": 50,
+    "removedMiB": 1.5,
+    "remainingUnneededGeneratedFiles": 0,
+    "currentReviewPngsPreserved": 14,
+    "sourceAndReferencesPreserved": true
+  }
+}
