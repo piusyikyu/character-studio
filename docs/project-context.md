@@ -1,5 +1,207 @@
 # Female Character Studio — Project Context and Handoff
 
+## S body/head/hair revision 6 approved — 2026-10-14
+
+The user approved the current S body/head/hair fit and requested cleanup, a local
+commit and continued Step 6C work. `body/reference-v1/review-fit-v6.json` pins the
+accepted configuration and actual bare/assembled hashes. Accepted source artwork
+stays unchanged. This is an offline S layering-study checkpoint, not production
+anatomy, full T-pose acceptance, native pixel approval or final Step 6C acceptance.
+
+The exact requested future authoring note is:
+
+> eventually we may want to create asset by asset from scratch when given a design to avoid this masking problem as long as the layering system works.
+
+Keep that preference in future asset work. Preserve the project and its existing
+approvals; complete independently authored parts from a supplied design remain a
+future option. The next bounded increment separates this accepted S body study
+into torso and left/right arm/leg layers, using the established render planes and
+native positions, with exact actual recomposition. Joint/concealed geometry and
+separate underwear remain later authoring work. Step 6D has not started.
+Earlier pending-approval statements below are historical.
+
+## Final bounded S curl-spill pass — revision 6, 2026-10-14
+
+The user identified three colour patches outside the curl outlines in revision 5
+and requested one more cleanup pass before moving on. `review-fit-v5.json`
+records that feedback against the exact candidate. `pnpm body:review` now selects
+`authoring-v6.json`: three hand-traced 8×8 antialiased native masks move those
+pixels from the front hair plane into the rear, where the actual body occludes
+them. Strand RGB, bright highlights and native framing are retained. No new hair
+is generated, globally blurred, colour-keyed, shifted, scaled or mirrored.
+
+The qualified revision-4 body/neck, face, ordinary two-piece underwear and
+proportions remain exact. Previous versions and approvals stay unchanged. Review
+`inspection/S-curl-edge-comparison.png` (reference / v5 / v6); magnification is
+4× for inspection only. `pnpm body:review:v5` rebuilds the preceding candidate.
+Source masks/settings, provenance and the scratch-only replay script retain the
+bounded derivation. Residual inherited noise and concealed geometry remain open;
+this final local pass does not certify the whole hairstyle or production anatomy.
+
+The user treats the current extracted artwork as a test of the layering system.
+For a future supplied design, consider authoring each complete modular asset
+independently from scratch: head/neck/ears/features, front/rear hair, torso/limbs,
+underwear and clothing. Include concealed surfaces from the outset. Verify real
+composition order, native attachments, occlusion, compatible geometry and exports
+before accepting the resulting asset package. Retain independently authored
+facings and target-specific pixel artwork; no mirroring or detailed downscaling.
+This is a recorded future authoring preference, not a project restart or a new
+runtime recipe/catalog contract. Existing approvals and source studies are kept.
+
+The next work should address layering/asset construction within Step 6C after this
+bounded review; do not extend the curl-polish loop without new user direction.
+No source publication, local commit, final Step 6C acceptance or Step 6D advance
+is implied. Earlier selections and pending statements are historical.
+
+## Qualified S body approval and curl-edge revision 5 — 2026-10-14
+
+The user mostly approved revision 4, with a nitpick that both shoulder curls look
+pixelated. `review-fit-v4.json` pins the exact configuration and assembled/bare
+hashes, accepting this local S body/neck study while leaving the curl edges open.
+This is not production anatomy, a final T-pose or final Step 6C acceptance.
+
+Native inspection found binary ownership-mask stair steps around the curls and
+openings. `pnpm body:review` now selects `authoring-v5.json`: manually rounded
+0.75-native-pixel corners and 8×8 subpixel coverage replace those hard boundaries.
+Original same-facing hair RGBA supplies both planes; no new hair is generated.
+The body, neck, face, ordinary bra/panties and proportions remain revision-4 exact.
+Prior source layers and approvals stay unchanged. Bright highlights are retained;
+no RGB blur, global colour key, image shifts, scaling or mirroring are applied.
+
+Review `inspection/S-curl-edge-comparison.png`: reference / qualified v4 / v5.
+This sheet magnifies native crop pixels 4× with nearest-neighbour sampling solely
+for inspection; the actual source layers and native 1024×1536 fit are unscaled.
+The regular body comparison also shows reference / v4 / v5. Rebuild v4 through
+`pnpm body:review:v4`; all earlier source baselines remain required dependencies.
+`settings-v5.json`, `provenance-v5.json` and the scratch-only authoring script
+retain the deterministic local mask derivation. Inherited native artwork/mask
+noise remains; this bounded correction does not certify the whole hairstyle.
+
+The new curl edges need visual approval. Everything remains uncommitted and
+unpublished. Other body facings/presets, concealed geometry, material maps,
+production T-pose and independently authored pixel artwork remain open.
+Step 6C is unfinished; Step 6D has not started. Earlier selections are historical.
+
+## S body revision 4 — local neck shading, 2026-10-14
+
+The user flagged the remaining lower-neck shadow in revision 3. A new native
+head/neck/shoulder-only study softens the screen-right red stripe and angular
+pale throat wedge. `pnpm body:review` selects `authoring-v4.json`; the current
+body comparison shows reference / revision 3 / revision 4. Rebuild the preceding
+candidate through `pnpm body:review:v3`.
+
+Only skin RGB inside a feathered native neck mask changes. Alpha silhouettes,
+shoulder height, body proportions, face/skull, hair and ordinary separate bra/
+panties remain exact. Prior body revisions and the accepted standing head
+source stay unchanged. One early study was too subtle; a subsequent full-body
+edit was rejected by the image tool. The final study uses only the native upper
+cutout. Prompts and replay scripts retain the selected local derivation.
+
+Review the actual neck/hair fit and shading transitions before approval. This
+candidate is uncommitted and unpublished. Production anatomy, all body facings,
+materials, true T-pose, independent pixel art and final Step 6C remain unfinished;
+Step 6D has not started. Body-proportion options are recorded separately below
+as possible authored presets; no new design controls are implemented.
+Earlier selections are historical.
+
+## Future body proportion design options — 2026-10-14
+
+The user noticed the T-pose study's body proportions differ from the standing
+reference and requested recording this as a possible future character-design
+option; this is not an objection to those proportions or approval of the body.
+The clothed standing reference and independently authored T-pose body are
+different studies, and clothing/pose also affect apparent silhouette. Revision 3
+only changed the bounded neck/shoulder region: waist, hips, abdomen, panties,
+legs and other pixels outside the joint mask remain revision-2 pixels.
+
+Consider authored body presets that vary torso/waist length, shoulder breadth,
+chest proportions and waist/hip balance after the base anatomy is reviewed.
+Document each variant's native anchors and compatible clothing/hair fit across
+all independently authored facings and both targets. Preserve head identity and
+ground baseline deliberately. Existing MVP scope remains two discrete body
+presets; this note does not implement continuous deformation, new recipe fields,
+UI controls, extra presets or production artwork. No global scaling of one
+flattened study and no detailed-to-pixel downscaling.
+
+## S body revision 3 — one neck/shoulder joint, 2026-10-14
+
+The user identified lower shoulders and two neck/clavicle joins in revision 2.
+Native skin-edge samples at x410/x610 were 17/21 pixels below the standing
+reference. The accepted head guide retained a standing clavicle base, while the
+body study painted another below it. Hair-only repair had left both in place.
+
+`pnpm body:review` now selects `body/reference-v1/authoring-v3.json`.
+A new local same-facing study raises those sampled shoulders by 12/13 pixels,
+closer to the reference but still 5/8 pixels lower; standing and T-pose contours
+are not certified identical. A pose-specific head derivative retains the face,
+skull and upper neck, then retires the old clavicle base. One locally authored
+neck/shoulder transition replaces it. The approved standing head source remains
+byte-identical. Original hair RGB is repartitioned around the raised shoulders;
+no artwork or display panels are shifted, scaled, rotated or mirrored.
+
+The native joint mask preserves revision-2 body pixels outside its bounds,
+including bra cups below the repair, abdomen, panties, legs and far arms/hands.
+Manual skin contours exclude generated glow. New skin/strap/deltoid and hair
+transitions need human visual approval. This pose-specific body-free assembly
+is deliberately different from the accepted standing head/hair checkpoint;
+its separate hash is recorded without changing standing approval records.
+
+Review `inspection/S-neck-shoulder-comparison.png` (reference / new anatomy /
+actual hair fit) and `inspection/S-body-fit-comparison.png` (reference / v2 / v3).
+`pnpm body:review:v1` and `pnpm body:review:v2` rebuild the retained baselines.
+Prompts, native guides, masks and scratch-only replay scripts are retained.
+All three body studies remain unapproved, unpublished and uncommitted.
+Other facings/presets, concealed geometry, materials, production T-pose,
+independent pixel art and final Step 6C remain open; Step 6D has not started.
+Earlier selections below are historical.
+
+
+## S body revision 2 — everyday underwear and hair/chest repair, 2026-10-14
+
+The user rejected the horizontal hair/chest joint and requested ordinary separate
+bra and panties, covering the important parts without nudity. Use plain opaque
+everyday two-piece underwear for anatomy modesty views; do not substitute a
+swimsuit, unitard or connected bodysuit unless explicitly requested.
+
+`body/reference-v1/authoring-v2.json` is now selected by `pnpm body:review`.
+A same-facing local imagegen study supplies only the manually selected native
+torso/pelvis repair. All body pixels outside that mask and the accepted S
+head/neck/face/ears remain exact. Existing source versions stay unchanged.
+Binary native contours put the concealed shoulder/collar hair and background
+inside curl openings behind the actual body, while retaining original foreground
+curl silhouettes and recovering their same-facing tips. No hair RGB is generated,
+recoloured, moved, scaled or mirrored. Body-free head/hair composition remains
+identical to the standing-reference checkpoint.
+
+Review the new actual layered result and local skin/curl/mask transitions before
+approval. Revision 1 remains a pinned derivation baseline, not approved body art;
+rebuild its historical view with `pnpm body:review:v1`. Both body revisions remain
+unpublished and uncommitted. Separate clothing/limb geometry, material maps, other
+facings/presets, true production T-pose, independently authored pixel artwork and
+final Step 6C remain open. SE/SW body occlusion and alternate-hairstyle ear-size
+obligations are carried forward. Step 6D has not started.
+
+
+## Next Step 6C candidate — S body study, 2026-10-14
+
+Commit `5cdf0bb` records approved complete brows and the qualified standing-reference
+head checkpoint after generated-data cleanup. The next uncommitted S-only body
+study is in `body/reference-v1/`, with an exact native approved head/neck guide,
+retained hair, same-facing reference, local study, manual masks and prompt record.
+`pnpm body:review` shows reference / anatomy / actual hair fit at native coordinates.
+Review body proportions and shoulder/neck attachment before other facings or
+production limb/clothing decomposition. The neutral opaque underlayer is study
+coverage, not completed torso skin, starter clothing or palette-ready geometry.
+
+The new actual fit exposes an inherited hard horizontal foreground-hair band at
+the neck/shoulder window. It remains unresolved and cannot certify production
+T-pose compatibility. Use the anatomy column for body review; a later bounded
+hair/body ownership correction must be a new version with visual approval.
+Existing head and hair source pixels remain exact. SE/SW body occlusion and
+alternate-hairstyle ear-size debt are carried forward. Step 6C is unfinished;
+Step 6D has not started. See [modular-body.md](modular-body.md).
+
+
 ## Complete brow and standing-reference head checkpoint approved — 2026-10-14
 
 The user approved the six complete E/SE/SW/W brows and current layered fit,

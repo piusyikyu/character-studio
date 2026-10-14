@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "body.reference.v1",
+  "assetVersion": 6,
+  "date": "2026-10-14",
+  "tool": "manual native mask authoring",
+  "baseline": "authoring-v5.json",
+  "selectedHairSources": [
+    "S-front-body-fit-v5.png",
+    "S-rear-body-fit-v5.png"
+  ],
+  "method": "Three manually traced antialiased native patches demote unwanted colour outside the strand outlines to the rear plane. Original revision-5 RGBA supplies each moved pixel. No generated hair, RGB blur, colour key, shift, scale or mirror.",
+  "scope": "One final bounded extraction cleanup pass; body/neck/face/underwear/proportions remain exact.",
+  "futureAuthoring": "Treat the current extracted layers as a layering test. Prefer complete asset-by-asset authoring from a supplied design for future work, after validating composition/attachment/occlusion. Existing studies and approvals remain retained."
+}

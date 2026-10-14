@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "body.reference.v1",
+  "assetVersion": 5,
+  "date": "2026-10-14",
+  "configuration": "authoring-v5.json",
+  "configurationSha256": "2630da80be791349f7390772bbdab72b9567bd507b8c502d9168ed5f2adbb814",
+  "decision": "needs-local-colour-spill-correction",
+  "fitSha256": "733f7170ec2210066f0f3960422284c1bb4910c4916ac2e8d590ed377ec3f9a8",
+  "bareSha256": "cd458b4953e07f10d8869872e37767dd915f9618b275ffa76814a6a28e33c8dc",
+  "userFeedback": "Parts of the colour patches overflow from hair. Try fix it one more time and we will move on.",
+  "scope": "One final bounded curl patch pass on this experimental layered study; retain the qualified body/neck approval.",
+  "productionAnatomyApproved": false,
+  "tposeApproved": false,
+  "finalStep6CAccepted": false
+}

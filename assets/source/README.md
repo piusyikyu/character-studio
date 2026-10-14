@@ -1,5 +1,17 @@
 # Source artwork
 
+Approved S body revision 6: `heroine-v1/body/reference-v1/authoring-v6.json`
+selects three local rear-ownership masks for colour spill outside the curls.
+The qualified revision-4 body/neck, face, underwear and proportions remain exact.
+`pnpm body:review` shows native layers and reference / v5 / v6 comparisons.
+This is the user's final bounded extraction pass; the studies test actual
+layering, with future complete assets potentially authored separately from a
+supplied design. Retain earlier studies/approvals and required native derivation
+inputs. Run authoring scripts only in scratch. The v1/v2/v3/v4/v5 commands rebuild
+historical reviews. The scoped approval is pinned in `review-fit-v6.json`. No artwork is published;
+Step 6C remains open.
+See `docs/modular-body.md` for scope, verification and remaining review debt.
+
 Current approved brow checkpoint: `heroine-v1/face/reference-v1/brows-v1/` supplies six
 independently authored E/SE/SW/W brows and three local foreground ownership repairs.
 It is selected in the consolidated review and pinned by `brows-v1/review-fit-v1.json`. The

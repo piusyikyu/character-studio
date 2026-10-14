@@ -67,7 +67,13 @@
     "ears:review:back-diagonals": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/ear-back-review-cli.js",
     "head:review:north": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/head-review-cli.js --north",
     "ears:review:north": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/ear-north-review-cli.js",
-    "head:review:all": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/head-set-review-cli.js"
+    "head:review:all": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/head-set-review-cli.js",
+    "body:review:v1": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-review-cli.js --v1",
+    "body:review": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-review-cli.js",
+    "body:review:v2": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-review-cli.js --v2",
+    "body:review:v3": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-review-cli.js --v3",
+    "body:review:v4": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-review-cli.js --v4",
+    "body:review:v5": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-review-cli.js --v5"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.0",

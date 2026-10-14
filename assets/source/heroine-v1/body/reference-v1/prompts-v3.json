@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "body.reference.v1",
+  "assetVersion": 3,
+  "date": "2026-10-14",
+  "tool": "built-in imagegen",
+  "selectedStudy": "inputs/S-shoulder-study-v3.png",
+  "prompt": "LOCAL EDIT OF FIRST IMAGE ONLY, same adult female fantasy character. First image is native 1024x1536 transparent S-facing T-pose anatomy in an everyday opaque grey bra and panties. Its cyan contour is an exact anatomy correction guide, NOT final art. Second image is original same-facing standing reference, used ONLY for shoulder height, neck and clavicle placement. Preserve first-image canvas and native coordinates, head/skull/chin/face, arms/hands/legs, grey bra cups and panties exactly. Do not copy the standing pose, hair or outfit from second image.\nCRITICAL REQUIRED CORRECTION: fill skin up to the CYAN shoulder contour in the first image, rather than leaving the shoulders at their old low height. Native top shoulder contour must pass approximately through (397,308),(413,303),(426,302),(440,304) on screen-left and (596,302),(610,303),(627,307) on screen-right. The shoulders must be about 20 pixels higher than their CURRENT outline. Follow the cyan contour precisely and remove all cyan drawing from final output. Fixed head/face/chin cannot move. Keep far T-pose upper arms/forearms/hands at current coordinates, and form a smooth natural deltoid transition from the raised shoulders back into existing arms.\nMake ONE anatomically coherent neck base and collarbone drawing where raised shoulders meet lower neck, centered around native y310, and erase the old lower duplicate clavicle shadows around y330. Natural single shallow V at throat, no double neck, doubled horizontal clavicle ledges, or hard cut seams. Neck above y280 remains identical. This local correction is bounded to x350..675,y280..420; everything outside stays original. Extend the two grey bra straps to the new shoulder surface; cups/band/abdomen/panties stay original.\nSame painterly anime style, warm peach skin, soft coherent native highlights. No hair, jewelry, labels, cyan/red lines, marks, background, haze or cast glow. Keep adult character fully covered in ordinary opaque separate bra and panties. Output native portrait 1024x1536 with transparent background. No crop, reposition, image scaling, rotation, mirroring, new pose or head size changes. The silhouette must REACH THE CYAN LINE, with one neck/clavicle junction.",
+  "previousAttempt": {
+    "prompt": "Use case: precise-object-edit.\nInput image 1: edit target, exact native 1024x1536 S/full-front adult female T-pose study wearing a plain grey everyday bra and panties.\nInput image 2: original S standing illustration, used ONLY for the native shoulder height, neck/clavicle proportions, skin rendering and attachment geometry. Do not copy the dress, hair or standing arm pose.\nRequest: locally refit the neck-base/shoulder junction. The target has shoulders too low and a doubled clavicle/neck base. Keep the single existing UPPER neck/clavicle transition, and erase the separate lower repeated collarbone/neck-base line into normal smooth upper-chest skin. Raise the lateral shoulder contours to agree with the reference's native y303..310 range, approximately at (410,306) and (610,304), instead of the target's y323..325. Make one anatomically coherent connection from the existing approved neck into these shoulders.\nOnly change the local upper-body rectangle x350..675, y285..420. Re-author the shoulder curves and upper-arm roots naturally so they flow into the existing arms. Extend the thin bra straps upward to the raised shoulders if needed. Keep the bra cups and under-bust band in their existing locations. Preserve the separate plain opaque everyday bra and panties; abdomen is exposed. Non-explicit ordinary anatomy/modesty study.\nKeep everything else exactly: the entire head, face, ears, chin, head tilt and neck above the local junction; full-front facing; arms/forearms and all fingers outside the local shoulder roots; lower chest, abdomen, hips, underwear, legs, feet and ground baseline. Do not translate the body or head, recenter, zoom, scale, rotate or mirror. Exact same 1024x1536 framing and native pixel coordinates. Five fingers per hand remain fully visible. No hair, new clothing, jewellery, labels, guides or text.\nMatch the original clean anime fantasy linework, peach skin, warm shadows and gentle highlights. Genuine transparent RGBA background; no glow or painted background. Output a whole native study, but only the bounded local shoulder/junction correction will be selected.",
+    "decision": "Not selected: shoulder elevation remained insufficient; no prior source was changed."
+  },
+  "inputs": [
+    {
+      "source": "inputs/S-shoulder-guide-v3.png",
+      "role": "Native revision-2 bare composition with manually drawn cyan desired shoulder contours."
+    },
+    {
+      "source": "references/import-v1/transparent/S.png",
+      "role": "Same-facing standing reference used for neck/clavicle/shoulder placement only."
+    }
+  ],
+  "editTargetRebuild": {
+    "configuration": "authoring-v2.json",
+    "configurationSha256": "a97134d42478fd008eb2ce35a38f60d52ebe4f5549be1905838857d240b9e5f2",
+    "nativeBareSha256": "8f688684d9c3f6ea3b80166b1d13b2fdb96f10ed7e4434695bda764248bcd36c",
+    "command": "pnpm body:review:v2"
+  },
+  "localSelection": "Only native masked neck-base/shoulder/strap pixels are selected; a manual silhouette excludes generated glow. The old standing clavicle base is removed only from the new pose-specific head derivative. No pixel transforms or global colour key.",
+  "hairMethod": "Original same-facing hair pixels are repartitioned by native foreground curl, opening and rear ownership masks around the raised shoulders. Approved source artwork remains untouched.",
+  "limitations": [
+    "Generated contour is closer to standing reference, not an exact reference silhouette or approved production T-pose.",
+    "No final anatomy or body/hair fit approval; retained local transitions need human review."
+  ]
+}

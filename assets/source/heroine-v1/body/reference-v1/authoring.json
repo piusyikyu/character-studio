@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "id": "body.reference.v1",
+  "assetVersion": 1,
+  "direction": "S",
+  "target": "detailed",
+  "nativeSize": {
+    "width": 1024,
+    "height": 1536
+  },
+  "sourcePose": "tpose-study",
+  "intendedRuntimePose": "tpose",
+  "status": "draft-needs-human-review",
+  "published": false,
+  "paletteReady": false,
+  "nativePosition": {
+    "x": 0,
+    "y": 0
+  },
+  "headSelection": {
+    "source": "head/assembly-v1/review-selection.json",
+    "sourceSha256": "1dc21188093be1afb326b74852ec9f56125910cd6c77db620b0adc73a12b5613"
+  },
+  "headApproval": {
+    "source": "head/assembly-v1/review-fit-v1.json",
+    "sourceSha256": "57106f2c4a5b57fd130aaf009572e1ba342c3c95590ded9961f84ddf363ca83a"
+  },
+  "headGuide": {
+    "source": "inputs/S-head-guide.png",
+    "sourceSha256": "5fa588d0903203653dd139fc1823f41e722a373b9bab7d7f2ffd83a844a276ec"
+  },
+  "approvedHeadBareSha256": "5fa588d0903203653dd139fc1823f41e722a373b9bab7d7f2ffd83a844a276ec",
+  "approvedHeadFitSha256": "0b51a0d1d6a1f2caf54324c715cf8aa27767e756aa71159ba717cc5e47576634",
+  "reference": {
+    "source": "S.png",
+    "sourceSha256": "4d835a1da05ab36992d3b97dad400233b81e1a6ad8d8f4872ed5353b771707c6"
+  },
+  "frontHair": {
+    "source": "face/reference-v1/S-front-fit-v5.png",
+    "sourceSha256": "530f18bd09c4028fc57f1aa88a16c3e2015f1d0a3d41f0e357a3497315ebafbe"
+  },
+  "rearHair": {
+    "source": "face/reference-v1/S-rear-fit-v5.png",
+    "sourceSha256": "0ca400e27838d03e66a338d3b8c26d853666d90fcfb228d4136b96dfad49e9df"
+  },
+  "study": {
+    "source": "inputs/S-body-study.png",
+    "sourceSha256": "ba5f9707d0daa4dd3a1a9912fdc677136721dea84da32cc7263e459a72c1f3fe"
+  },
+  "body": {
+    "source": "S-body-v1.png",
+    "sourceSha256": "79ff1ac789d72df51f2fc6c2bc54faaecd60be2d35098c26985dea5b8ce532bd"
+  },
+  "selection": {
+    "source": "S-body-mask-v1.png",
+    "sourceSha256": "63ce60ccc3e6a01ac4d2e83aae4453f40fdb93b0fa7891ff61dcb52f5ede8446"
+  },
+  "settings": {
+    "source": "selections.json",
+    "sourceSha256": "b8e6d6242697990ef0b550aec1c158d8a5d62f9ade60adc16d3895646cf61806"
+  },
+  "provenance": {
+    "source": "prompts.json",
+    "sourceSha256": "98b941fdf69507b8e10f2aea6d3db36d9313682bba3964425346849dd2345906"
+  },
+  "bodyPlane": "body-torso",
+  "partitionStatus": "whole-body-study-not-final-limb-partition",
+  "productionAnatomyApproved": false,
+  "bodyOcclusionVerified": false,
+  "tposeApproved": false,
+  "finalStep6CAccepted": false,
+  "knownReviewIssues": [
+    "Actual S T-pose composition exposes an inherited hard horizontal foreground-hair band at the neck/shoulder window. The retained standing-reference hair is not accepted as a production T-pose fit. Review body proportions in the anatomy column; any hair/body ownership correction must be a new version with visual approval.",
+    "First independently authored S T-pose body study, with a neutral opaque underlayer. The underlayer is not the starter outfit or complete concealed torso skin.",
+    "Review head/body proportion, skin matching, neck/shoulder attachment, chest/waist/hip shape, elbow/hand anatomy, leg balance and barefoot ground line. Initial fingertip/baseline guide goals are approximate, not approved rig anchors.",
+    "No approved head/neck or hair is transformed or redrawn. The whole generated body is temporarily one offline study plane; production limb/underlayer decomposition, material maps and a fixed rig remain pending.",
+    "The first coarse scratch mask clipped portions of the native contour. Bounded eight-pixel selection tolerance preserves existing study alpha; no source image moves, scaling, mirroring or colour keys. Fine study-alpha noise and transitions still need visual review.",
+    "Actual S hair/body composition is shown, but no body/hair or production T-pose acceptance is inferred. SE/SW shoulder-hair and alternate-hairstyle ear obligations remain open.",
+    "Other body facings/presets, concealed geometry, fitted clothing, pixel artwork and final Step 6C remain unfinished. Step 6D has not started."
+  ]
+}

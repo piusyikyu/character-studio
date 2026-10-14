@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "id": "body.reference.v1",
+  "assetVersion": 5,
+  "date": "2026-10-14",
+  "status": "draft-needs-human-review",
+  "configSha256": "2630da80be791349f7390772bbdab72b9567bd507b8c502d9168ed5f2adbb814",
+  "previousApproval": {
+    "source": "review-fit-v4.json",
+    "sourceSha256": "7ad08e31915d62f07c5f62f1d175e80b0b374b927abefc6b65d652f36596bb2d"
+  },
+  "scope": "Revision 4 local S body/neck mostly approved, with curled-hair boundary nitpick. No production or milestone approval.",
+  "cause": "Binary manually selected curl/opening/tip ownership produced native hard alpha stair steps, made more visible by preview enlargement.",
+  "repair": {
+    "fractionalRearPixels": 268,
+    "fractionalFrontPixels": 56,
+    "coverageSamples": 8,
+    "cornerRadius": 0.75,
+    "generatedHair": false,
+    "shiftedScaledOrMirrored": false,
+    "changedFrontPixels": 324,
+    "changedRearPixels": 324,
+    "outsideCurlChanges": 0,
+    "bareBodyUnchanged": true,
+    "noGlobalRgbBlurOrColourKey": true,
+    "method": "Original independently authored S hair RGBA; rounded 0.75-native-pixel corners, 8x8 subpixel coverage and original native framing."
+  },
+  "preservation": {
+    "precedingSourceAndReferenceHashesAndMtimes": 807,
+    "acceptedHeadSheets": 3,
+    "bodyNeckFaceUnderwearAndProportionsUnchanged": true,
+    "earlierSourcesUnchanged": true
+  },
+  "verification": {
+    "typecheck": "asset-validator passed",
+    "lint": "root lint passed, zero warnings",
+    "build": "asset-validator ESM/declarations passed",
+    "cliExports": "Current revision 5 and historical revision 4 passed.",
+    "focusedWorkflows": "Existing native S body and cleanup workflows: 2 passed, 5 unrelated head workflows skipped; 50.18 seconds. Actual core plane composition, qualified body/neck preservation, local antialiased ownership, unchanged hair outside the local region, v1/v2/v3 historical goldens, qualified-v4 comparison, deterministic output, immutable inputs and rejection of re-pinned body/foreign curl-mask edits.",
+    "authoringReplayOutputs": 4,
+    "currentPreviewHashes": 6,
+    "fullAppBuild": "not rerun for this local detailed mask change",
+    "browserE2E": "not rerun for this local detailed mask change"
+  },
+  "inspection": {
+    "path": "inspection/S-curl-edge-comparison.png",
+    "magnification": 4,
+    "sampling": "nearest-neighbour-inspection-only",
+    "columns": [
+      "same-facing reference",
+      "qualified revision 4 with binary curl masks",
+      "revision 5 with rounded antialiased masks"
+    ]
+  },
+  "humanReview": {
+    "approved": false,
+    "pending": [
+      "Rounded curl/opening/tip boundaries and local compositing at the shoulder contact.",
+      "Inherited native hair noise and complete concealed geometry remain open."
+    ],
+    "productionAnatomyApproved": false,
+    "tposeApproved": false,
+    "finalStep6CAccepted": false,
+    "step6DStarted": false
+  },
+  "outputs": [
+    {
+      "path": "fit/S-anatomy.png",
+      "sha256": "cd458b4953e07f10d8869872e37767dd915f9618b275ffa76814a6a28e33c8dc"
+    },
+    {
+      "path": "fit/S.png",
+      "sha256": "733f7170ec2210066f0f3960422284c1bb4910c4916ac2e8d590ed377ec3f9a8"
+    },
+    {
+      "path": "overview.png",
+      "sha256": "7a7f0e7c0adb9ed493deb6de8af371e2b3f03dcef10c4e9484b5fb041bfa218f"
+    },
+    {
+      "path": "inspection/S-neck-shoulder-comparison.png",
+      "sha256": "a3c7e3beac146203ab12752fa9e7e8b542f248ab8a2485319d36d52988cc8713"
+    },
+    {
+      "path": "inspection/S-body-fit-comparison.png",
+      "sha256": "433354f9a946d615767942d3ee172fcdbd2b9ae7c34a08450b028a8a4aade468"
+    },
+    {
+      "path": "inspection/S-curl-edge-comparison.png",
+      "sha256": "56d03466468ac508adccda4a8fe427513efb669150a090fef0cc14d831787ac1"
+    }
+  ]
+}

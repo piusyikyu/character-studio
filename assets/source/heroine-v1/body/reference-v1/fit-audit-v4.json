@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "id": "body.reference.v1",
+  "assetVersion": 4,
+  "date": "2026-10-14",
+  "status": "draft-needs-human-review",
+  "configSha256": "6c114ba3a000303b5ce7888d458a15837944c04d92250b38e1fe27de85db8f4d",
+  "previousFeedback": {
+    "assetVersion": 3,
+    "configurationSha256": "8fd0b84962df027d73e6ca8fa014b91aa4d110dde2c7cba6b60f63d66aab3117",
+    "decision": "needs-local-shading-correction",
+    "reason": "Remaining lower-neck shadow made the assembled neck/chest connection look strange."
+  },
+  "proportionNote": {
+    "revision2To3": "Only bounded neck/shoulder joint changed; waist/hips/abdomen/lower body outside that mask stayed exact.",
+    "revision3To4": "Skin colour only. No alpha, silhouette or proportion changes.",
+    "futureOption": "Authored discrete proportion presets may vary torso/waist length, shoulder breadth, chest and waist/hip balance, with independently reviewed compatible facings/clothing/hair and separate native pixel art. Recorded in project-context.md and modular-body.md; no new controls or recipe fields implemented."
+  },
+  "repair": {
+    "selectedNeckPixels": 2052,
+    "silhouetteChanged": false,
+    "bodyProportionsChanged": false,
+    "changedBodyPixels": 1931,
+    "changedHeadPixels": 904,
+    "alphaChanges": 0,
+    "outsideMaskChanges": 0
+  },
+  "preservation": {
+    "previousSourceAndReferenceHashesAndMtimes": 796,
+    "approvedStandingHeadSheets": 3,
+    "originalNativeFraming": true,
+    "noShiftScaleRotationOrMirroring": true,
+    "earlierSourcesUnchanged": true
+  },
+  "verification": {
+    "typecheck": "asset-validator passed",
+    "lint": "root lint passed with zero warnings",
+    "build": "asset-validator ESM/declarations passed",
+    "cliExports": "Current revision 4 and historical revision 3 passed.",
+    "focusedWorkflows": "Existing body and cleanup workflows passed: 2 passed, 5 unrelated head workflows skipped; 39.56 seconds. Actual plane composition, unchanged silhouettes/proportions/outside-mask anatomy, preserved historical v1/v2/v3 goldens, deterministic export, immutable inputs and rejection of re-pinned foreign body/neck-mask edits.",
+    "authoringReplayOutputs": 4,
+    "currentPreviewHashes": 5,
+    "fullAppBuild": "not rerun for this local skin edit",
+    "browserE2E": "not rerun for this local skin edit"
+  },
+  "humanReview": {
+    "approved": false,
+    "pending": [
+      "Softened throat shadow/highlight and local neck RGB transitions in bare anatomy and actual hair fit.",
+      "Inherited mask/alpha/hair noise and all remaining production review debt."
+    ],
+    "productionAnatomyApproved": false,
+    "tposeApproved": false,
+    "finalStep6CAccepted": false,
+    "step6DStarted": false
+  },
+  "outputs": [
+    {
+      "path": "fit/S-anatomy.png",
+      "sha256": "cd458b4953e07f10d8869872e37767dd915f9618b275ffa76814a6a28e33c8dc"
+    },
+    {
+      "path": "fit/S.png",
+      "sha256": "c9c12fe834a485824823ff77b175ac279a45a21f2c6f12faf7af5a1e8a83fd7d"
+    },
+    {
+      "path": "overview.png",
+      "sha256": "dbc6d7e988d565f488e99e9a611175f999cf5243f30a16f80b0172b518c20c8f"
+    },
+    {
+      "path": "inspection/S-neck-shoulder-comparison.png",
+      "sha256": "d1935306bfbda663d1b8133be8f7e97a052d32e596219ac5fa07f406f3e3f4af"
+    },
+    {
+      "path": "inspection/S-body-fit-comparison.png",
+      "sha256": "b9a1da947cd3444b76e138c93765102aebcd2fe839394855f525e19b9ecfd11e"
+    }
+  ]
+}

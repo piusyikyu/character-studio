@@ -1,5 +1,37 @@
 # Step 6C — S/N head and neck skin bases
 
+## S body hair-depth candidate — 2026-10-14
+
+The separate body revision-2 review corrects the new T-pose neck/chest band with
+native local hair ownership, retaining original foreground curls and clearing
+their openings against the true body. The approved head/neck and all hair RGB
+remain unchanged; body-free head/hair pixels remain exact. This is a pending S
+body-fit correction, not a replacement or new approval of the standing-reference
+head pack. Review `body/reference-v1/authoring-v2.json` through `pnpm body:review`;
+see modular-body.md for the everyday bra/panties rule and provenance. Original
+SE/SW body-occlusion and alternate-hairstyle ear obligations remain open.
+
+
+## Next Step 6C candidate — S body study, 2026-10-14
+
+Commit `5cdf0bb` records approved complete brows and the qualified standing-reference
+head checkpoint after generated-data cleanup. The next uncommitted S-only body
+study is in `body/reference-v1/`, with an exact native approved head/neck guide,
+retained hair, same-facing reference, local study, manual masks and prompt record.
+`pnpm body:review` shows reference / anatomy / actual hair fit at native coordinates.
+Review body proportions and shoulder/neck attachment before other facings or
+production limb/clothing decomposition. The neutral opaque underlayer is study
+coverage, not completed torso skin, starter clothing or palette-ready geometry.
+
+The new actual fit exposes an inherited hard horizontal foreground-hair band at
+the neck/shoulder window. It remains unresolved and cannot certify production
+T-pose compatibility. Use the anatomy column for body review; a later bounded
+hair/body ownership correction must be a new version with visual approval.
+Existing head and hair source pixels remain exact. SE/SW body occlusion and
+alternate-hairstyle ear-size debt are carried forward. Step 6C is unfinished;
+Step 6D has not started. See [modular-body.md](modular-body.md).
+
+
 ## Complete brow and standing-reference head checkpoint approved — 2026-10-14
 
 The user approved the six complete E/SE/SW/W brows and current layered fit,

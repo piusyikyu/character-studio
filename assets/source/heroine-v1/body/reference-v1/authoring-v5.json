@@ -1,0 +1,195 @@
+{
+  "schemaVersion": 1,
+  "id": "body.reference.v1",
+  "assetVersion": 5,
+  "direction": "S",
+  "target": "detailed",
+  "nativeSize": {
+    "width": 1024,
+    "height": 1536
+  },
+  "sourcePose": "tpose-study",
+  "intendedRuntimePose": "tpose",
+  "status": "draft-needs-human-review",
+  "published": false,
+  "paletteReady": false,
+  "nativePosition": {
+    "x": 0,
+    "y": 0
+  },
+  "headSelection": {
+    "source": "head/assembly-v1/review-selection.json",
+    "sourceSha256": "1dc21188093be1afb326b74852ec9f56125910cd6c77db620b0adc73a12b5613"
+  },
+  "headApproval": {
+    "source": "head/assembly-v1/review-fit-v1.json",
+    "sourceSha256": "57106f2c4a5b57fd130aaf009572e1ba342c3c95590ded9961f84ddf363ca83a"
+  },
+  "headGuide": {
+    "source": "inputs/S-head-guide.png",
+    "sourceSha256": "5fa588d0903203653dd139fc1823f41e722a373b9bab7d7f2ffd83a844a276ec"
+  },
+  "approvedHeadBareSha256": "5fa588d0903203653dd139fc1823f41e722a373b9bab7d7f2ffd83a844a276ec",
+  "approvedHeadFitSha256": "0b51a0d1d6a1f2caf54324c715cf8aa27767e756aa71159ba717cc5e47576634",
+  "reference": {
+    "source": "S.png",
+    "sourceSha256": "4d835a1da05ab36992d3b97dad400233b81e1a6ad8d8f4872ed5353b771707c6"
+  },
+  "frontHair": {
+    "source": "face/reference-v1/S-front-fit-v5.png",
+    "sourceSha256": "530f18bd09c4028fc57f1aa88a16c3e2015f1d0a3d41f0e357a3497315ebafbe"
+  },
+  "rearHair": {
+    "source": "face/reference-v1/S-rear-fit-v5.png",
+    "sourceSha256": "0ca400e27838d03e66a338d3b8c26d853666d90fcfb228d4136b96dfad49e9df"
+  },
+  "study": {
+    "source": "inputs/S-body-study.png",
+    "sourceSha256": "ba5f9707d0daa4dd3a1a9912fdc677136721dea84da32cc7263e459a72c1f3fe"
+  },
+  "body": {
+    "source": "S-body-v4.png",
+    "sourceSha256": "934c7f300ec301c8848e3da338e574a6037e025c1937dda859d5cf6060364f45"
+  },
+  "selection": {
+    "source": "S-body-mask-v1.png",
+    "sourceSha256": "63ce60ccc3e6a01ac4d2e83aae4453f40fdb93b0fa7891ff61dcb52f5ede8446"
+  },
+  "settings": {
+    "source": "selections.json",
+    "sourceSha256": "b8e6d6242697990ef0b550aec1c158d8a5d62f9ade60adc16d3895646cf61806"
+  },
+  "provenance": {
+    "source": "provenance-v5.json",
+    "sourceSha256": "7efa9d06254cddf26dc05ed4904b798e18260200d5ed89f65f4072ab7419e076"
+  },
+  "bodyPlane": "body-torso",
+  "partitionStatus": "whole-body-study-not-final-limb-partition",
+  "productionAnatomyApproved": false,
+  "bodyOcclusionVerified": false,
+  "tposeApproved": false,
+  "finalStep6CAccepted": false,
+  "knownReviewIssues": [
+    "Revision 4 body/neck is mostly approved for this local S review, with the remaining curl-edge nitpick pinned in review-fit-v4.json. Revision 5 needs visual approval of its antialiased curl boundaries.",
+    "Body, neck, face, underwear and proportions remain revision-4 exact. No hair RGB blur, global colour key, image shifts, scaling or mirroring.",
+    "Inherited native hair edges, mask transitions and concealed hair remain unfinished; this bounded correction does not clean the whole hairstyle.",
+    "The independently authored T-pose study is not production anatomy; selected shoulder contours remain 5/8 native pixels below the standing reference at x410/x610.",
+    "Actual SE/SW body/clothing occlusion and alternate-hairstyle ear-size obligations remain inherited and unresolved.",
+    "Other body facings/presets, concealed skin/limbs, clothing topology, material maps, true production T-pose and separately authored native pixel art remain future work. Step 6C is unfinished and Step 6D has not started."
+  ],
+  "previous": {
+    "source": "authoring-v4.json",
+    "sourceSha256": "6c114ba3a000303b5ce7888d458a15837944c04d92250b38e1fe27de85db8f4d"
+  },
+  "torsoRepair": {
+    "study": {
+      "source": "inputs/S-underwear-study-v2.png",
+      "sourceSha256": "9f46729a212836cbce064a08b6a3663e3f856798e051505f7e9b7fbd2ca3ce75"
+    },
+    "selection": {
+      "source": "S-torso-mask-v2.png",
+      "sourceSha256": "fff57b68edb01b8993056d5d7cc2d4593b19a8893bdf571724a661b558560a9d"
+    },
+    "settings": {
+      "source": "settings-v2.json",
+      "sourceSha256": "ec01001364f061d91819ce6dc66a0ceab073484902462cfcdfa5d3584187052b"
+    },
+    "underlayer": "ordinary-daily-bra-and-panties"
+  },
+  "hairOwnership": {
+    "front": {
+      "source": "S-front-body-fit-v3.png",
+      "sourceSha256": "1cfb8501f8f2fac96749f9044bc2346087b163d936e6ff162919ffa818c416b3"
+    },
+    "rear": {
+      "source": "S-rear-body-fit-v3.png",
+      "sourceSha256": "12657db3d10f223da162f20b330927ff648b8bf456be245e9dee7a962f56cfb5"
+    },
+    "toRear": {
+      "source": "S-hair-to-rear-mask-v3.png",
+      "sourceSha256": "de7f969c118a67a63b6f36ad73f4b8790b9f1739dd0cafaad1ebeb15c41d742b"
+    },
+    "toFront": {
+      "source": "S-hair-to-front-mask-v3.png",
+      "sourceSha256": "8e271fc0f90db7a24f4490223b5bc44341eca48889c6055eda3b77d2c51182ed"
+    }
+  },
+  "jointRepair": {
+    "study": {
+      "source": "inputs/S-shoulder-study-v3.png",
+      "sourceSha256": "e42d86baa143d6b8aaa7be6cba624ca2c53d2d45169bb313200f46ddcae8e915"
+    },
+    "guide": {
+      "source": "inputs/S-shoulder-guide-v3.png",
+      "sourceSha256": "c0da8daac7a72cb6db6bc46d72af6a257c583fe7f0c182f98d42dca11d2f3d2c"
+    },
+    "selection": {
+      "source": "S-joint-mask-v3.png",
+      "sourceSha256": "32ff0694e1b4e85c8bd3f77a7825caf8f9364f5bc9738a2c53fb1ba1e4da3098"
+    },
+    "skinSelection": {
+      "source": "S-joint-skin-mask-v3.png",
+      "sourceSha256": "a03b42a4b195da8dddfd0f3c34a7df3feef0b787da2b8cb2b67f1e77df4b3287"
+    },
+    "head": {
+      "source": "S-head-body-fit-v3.png",
+      "sourceSha256": "fa8cc503825b5c0c47b22dd31b9f6b0babb58def0abbab060b556d935a6025be"
+    },
+    "headSelection": {
+      "source": "S-head-body-mask-v3.png",
+      "sourceSha256": "8a72e2c25ff61992e06c7757e3b37cd5a3cd43e1726eee304619de1d173d3623"
+    },
+    "settings": {
+      "source": "settings-v3.json",
+      "sourceSha256": "6c9f386c12acaeddc99d669fae08b705000bfbdec5f60d7b89850de0cc0f977d"
+    }
+  },
+  "neckRepair": {
+    "study": {
+      "source": "inputs/S-neck-study-v4.png",
+      "sourceSha256": "84b194f0865b58685b126da8e1cc6e779aec3019d4cf57229282ae6cc046325b"
+    },
+    "guide": {
+      "source": "inputs/S-neck-guide-v4.png",
+      "sourceSha256": "60b39230558911c4b0bf09a0b3ba6387c6a64de766d9f4cfa30272b7fd562b8c"
+    },
+    "selection": {
+      "source": "S-neck-shading-mask-v4.png",
+      "sourceSha256": "ffe60dd41f1018d39a23d37a22bbd16573464beecb1e7384d956518033021910"
+    },
+    "head": {
+      "source": "S-head-body-fit-v4.png",
+      "sourceSha256": "8c27f47edf486f0ecaecaae2627f320117674e5c3a77ccd4055ca4ed5f083f1b"
+    },
+    "settings": {
+      "source": "settings-v4.json",
+      "sourceSha256": "21f753adef83628e4022751ed483f9b9c2b993fcdfe0c93462a0e7c72abefb05"
+    }
+  },
+  "previousReview": {
+    "source": "review-fit-v4.json",
+    "sourceSha256": "7ad08e31915d62f07c5f62f1d175e80b0b374b927abefc6b65d652f36596bb2d"
+  },
+  "curlRepair": {
+    "front": {
+      "source": "S-front-body-fit-v5.png",
+      "sourceSha256": "6b8edf472c162c21a517e357994677c0b66630d74897b2b4c925e3bc03308f06"
+    },
+    "rear": {
+      "source": "S-rear-body-fit-v5.png",
+      "sourceSha256": "8c4c5e5f13a247a91cb3305fdd3a7049e6b496d55901bb13327cda43230a5a7c"
+    },
+    "toRear": {
+      "source": "S-hair-to-rear-mask-v5.png",
+      "sourceSha256": "fbdc34acc8c99477084ae98c3a9b2d285926722ed798a7d7ee8c18e41132fead"
+    },
+    "toFront": {
+      "source": "S-hair-to-front-mask-v5.png",
+      "sourceSha256": "e3a64f85e2d04669a095bf54ee0eeeaf30e052bb4da4ea1a2be1e5f9477de6f4"
+    },
+    "settings": {
+      "source": "settings-v5.json",
+      "sourceSha256": "1806a411aff09ffb7458ee837b27c70a8cf56e30294ec7476ff9d956a2b253aa"
+    }
+  }
+}

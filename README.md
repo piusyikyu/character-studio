@@ -103,6 +103,12 @@ pnpm face:review:front-diagonals:v4 # Reproduce the incomplete extraction-only e
 pnpm face:review:front-diagonals:v3 # Reproduce the rejected narrow far-eye extraction
 pnpm face:review:front-diagonals:v2 # Reproduce the approved facial fit before far-eye ownership correction
 pnpm face:review:front-diagonals:v1 # Reproduce the preceding facial fit with SE cheek tint
+pnpm body:review # S revision-6 final local curl-spill pass over the qualified body/neck
+pnpm body:review:v5 # Rebuild the preceding antialiased curl candidate with colour spill
+pnpm body:review:v4 # Rebuild the mostly approved body/neck with the curl-edge nitpick
+pnpm body:review:v3 # Rebuild the preceding single-joint shoulder/neck candidate
+pnpm body:review:v2 # Rebuild the preceding daily bra/panties and hair-depth candidate
+pnpm body:review:v1 # Rebuild the original body study
 pnpm face:review:brows # Review complete native E/SE/SW/W brows with genuine foreground occlusion
 pnpm face:review:profiles # Review independent E/W visible facial layers over approved profile anatomy
 pnpm ears:review:profiles # Review new E/W ear-free root skin and exact separate-ear human fits

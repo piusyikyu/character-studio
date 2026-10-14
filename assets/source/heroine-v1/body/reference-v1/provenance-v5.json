@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "body.reference.v1",
+  "assetVersion": 5,
+  "date": "2026-10-14",
+  "tool": "manual native mask authoring",
+  "baseline": "authoring-v4.json",
+  "selectedHairSources": [
+    "face/reference-v1/S-front-fit-v5.png",
+    "face/reference-v1/S-rear-fit-v5.png"
+  ],
+  "method": "Rounded 0.75-native-pixel corners and 8x8 subpixel coverage for local curl, opening and tip ownership. Original same-facing RGBA supplies both planes; no image generation, RGB blur, colour key, shift, scale or mirror.",
+  "priorDecision": "Revision 4 body/neck mostly approved with a curl-edge nitpick, pinned in review-fit-v4.json.",
+  "nativeBodyAndHead": "Unchanged revision-4 layers; only local hair ownership changes.",
+  "humanReview": "New curl boundaries and original inherited hair edge noise still require visual review."
+}

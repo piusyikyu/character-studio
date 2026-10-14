@@ -1,5 +1,16 @@
 # Asset workspace cleanup — 2026-10-13
 
+Current S body study: cleanup also protects the metadata-declared previews
+and metadata under `body/reference-v1/`. The local study/head guide, selected
+body/masks, revision-2 torso study, revision-3 local joint study/guide, pose-specific
+head derivative, revision-4 local neck shading study/mask/guide and scratch
+replay scripts, revision-4 qualified approval and revision-5 curl masks/settings
+and revision-6 local spill mask/settings are necessary source dependencies.
+Revisions 1–5 remain pinned repair baselines. Their historical previews are
+regenerable; current revision-6 metadata-declared outputs stay protected. Coarse
+unselected silhouette drafts remain outside the source pack.
+
+
 Current approved complete-brow review: cleanup protects `face/reference-v1/brows/` metadata-
 declared outputs alongside the consolidated head sheets and existing nine reviews.
 Selected source studies and native guides remain required derivation inputs.

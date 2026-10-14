@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "body.reference.v1",
+  "assetVersion": 4,
+  "date": "2026-10-14",
+  "tool": "built-in imagegen",
+  "selectedStudy": "inputs/S-neck-study-v4.png",
+  "prompt": "Use case: precise-object-edit.\nEdit target: native 1024x1536 transparent technical head/neck/shoulder cutout of an adult anime character. The head and shoulders occupy exactly the top center of this large transparent canvas, between x350..680 and y85..350. Keep that native placement and scale, with the remaining canvas empty and transparent.\nPrimary request: repaint ONLY INTERIOR LOWER-NECK SHADING at x488..546 y278..323. Remove the sharp pale white triangular V down the throat and the salmon-red diagonal slash on the screen-right lower neck. Use a smooth, even warm peach skin tone in the lower throat, with gentle diffuse rounded shadows. Match upper chest tone so neck and chest look naturally continuous. Preserve subtle normal under-chin shadow and fine clavicle contours, but no white downward throat wedge, no harsh muscle streaks and no red triangular borders. The correction must visibly soften and simplify those angular markings.\nKeep head, face, expression, ears, chin, neck contour and length, shoulders and every silhouette pixel fixed. Do not redraw other anatomy, add a torso, change any garment edge, zoom, recenter, enlarge, rotate, mirror or alter framing. Paint inside the current neck, retaining shape. No hair, accessories, background colour, glow, marks, text or labels. Original empty canvas below y350 stays empty. Return native 1024x1536 transparent RGBA. Only selected local skin RGB will be used; original alpha and surrounding art are retained.",
+  "inputRoles": [
+    {
+      "source": "inputs/S-neck-guide-v4.png",
+      "role": "Retained native revision-3 bare assembly cropped by transparency to x350..680, y0..350; no transformations, body excluded from this shading edit."
+    }
+  ],
+  "editTargetRebuild": {
+    "configuration": "authoring-v3.json",
+    "configurationSha256": "8fd0b84962df027d73e6ca8fa014b91aa4d110dde2c7cba6b60f63d66aab3117",
+    "command": "pnpm body:review:v3",
+    "nativeBareSha256": "8e191c19e4233c1643d93834c6dc66f867d6084583cb7926a39c5c7972d31ed0"
+  },
+  "localSelection": "Only the manually bounded native neck RGB is selected into the retained body and pose-specific head. All alpha/silhouette pixels, proportions, face, hair, underwear and surrounding anatomy remain unchanged.",
+  "attempts": [
+    {
+      "prompt": "Use case: precise-object-edit.\nEdit target: attached 1024x1536 native transparent S-facing T-pose adult female character anatomy study, fully covered by ordinary opaque everyday grey bra and panties.\nChange ONLY the neck shading at the lower throat, native x488..546 y280..323. The current lower neck has two harsh vertical salmon-red shadows flanking a very pale angular V-shaped center highlight, especially the character-left/screen-right line leading toward the collarbone. Soften/remove this hard red stripe and angular bright throat patch. Paint a subtle smooth warm peach transition from lower neck into upper chest, with gentle continuous shading and one natural shallow throat hollow. Match the nearby peach skin; retain normal under-chin shading and natural clavicles. It must not look like a separate neck pasted onto the chest. Avoid a flat blank neck, dark vertical slash, sharp red wedge, double clavicle or bright triangular cutout.\nPreserve ALL geometry exactly: head/chin/face/eyes/brows/ears, neck outline and length, current raised shoulders at their existing native coordinates, arms/hands, breasts/bra straps/cups, abdomen, waist/hips, panties, legs and feet. Do not change body proportions, style, pose, silhouette, clothing, canvas, native framing, offsets, scale or rotation. No hair or jewelry. Only soften shading inside the marked anatomical region; outside x480..555,y275..330 should remain pixel-identical. The final pipeline will retain original pixels outside its narrow local mask.\nNative output 1024x1536 transparent RGBA; no background paint, glow, lettering, guide marks or checker pattern. Clean anime illustration in the same warm skin palette. No change to any garment or coverage.",
+      "decision": "Not selected: angular center wedge remained too pronounced."
+    },
+    {
+      "prompt": "Use case: precise-object-edit. LOCAL SKIN SHADING CORRECTION ONLY.\nEdit the supplied adult female S-facing T-pose anatomy, covered by ordinary opaque daily grey bra and panties. Exact native 1024x1536 framing stays fixed.\nThe THROAT has an unnatural very pale sharp elongated V/triangle pointing down between the clavicles, bounded by salmon-red diagonal/vertical slashes. This makes the neck appear pasted on. REMOVE that angular WHITE CENTER WEDGE and the HARD RED STRIPE on the screen-right lower neck. Replace the interior neck skin at native x488..546 y278..323 with an EVEN WARM PEACH BASE and very subtle soft rounded diffuse shadow, flowing continuously into upper chest. No white V or tapering bright central triangle, no hard muscle/tendon streaks or red wedges. The center of the lower neck should have essentially the same warm peach tone as the immediate upper chest. Keep the fine natural horizontal clavicle contours and normal shadow directly under the chin. This must visibly simplify and soften the throat shading; do not redraw the same pale V with slightly different colours.\nPreserve geometry: fixed face/head/chin, neck outline and length, shoulder contour, T-pose arms/hands, breasts and grey bra straps/cups, abdomen/waist/hips, panties, legs/feet. No shifts, scaling, mirroring, cropping, anatomical resizing, extra neck or hair. Exact existing skin silhouette and outside-region artwork. Output only the same full native 1024x1536 adult anatomy study on true transparent background, no glow, text, guide marks or checkerboard. Same anime illustration linework and palette. No nudity or change to underwear. Only the masked neck RGB will be selected; all original alpha and surrounding pixels will be retained.",
+      "decision": "No output: full-body edit was rejected by the image tool at output moderation; used the head/neck/shoulder-only input for the final local edit."
+    }
+  ],
+  "humanReview": "Pending visual approval of softened neck shading and local transitions; body/T-pose/Step 6C remain unapproved."
+}

@@ -6,6 +6,8 @@ import { decode } from 'fast-png';
 import { expect, it } from 'vitest';
 import { blankImage, decodePng, drawRgba, encodePng } from '@character-studio/render-utils';
 import { DIRECTION_PLANE_ORDER } from '@character-studio/core';
+import type { RenderPlane } from '@character-studio/core';
+import type { RgbaImage } from '@character-studio/render-utils';
 import { prepareHeadReview } from './head-review';
 import { headBackDiagonalsReviewSchema, headFrontDiagonalsRepairSchema, headFrontDiagonalsReviewSchema, headProfilesReviewSchema, headReviewSchema } from './head-review-schema';
 import { matteReference } from './matte';
@@ -664,3 +666,72 @@ it('reviews all eight selected head compositions with approval pins, native cont
     for(const f of before){expect(sha256(await readFile(f.path))).toBe(f.hash);expect((await stat(f.path)).mtimeMs).toBe(f.mtime);}
   }finally{await rm(temporary,{recursive:true,force:true});}
 },480_000);
+
+it('reviews native S body anatomy with the exact approved head and actual hair depth, without changing source artwork', async () => {
+  const { prepareBodyReview, bodyReviewSchema } = await import('./body-review');
+  const temporary = await mkdtemp(resolve(tmpdir(), 'character-body-study-test-'));
+  try {
+    const assetDirectory = resolve(repository, 'assets/source/heroine-v1'), sourceDirectory = resolve(assetDirectory, 'body/reference-v1'), referenceDirectory = resolve(temporary, 'references');
+    await mkdir(referenceDirectory);
+    const settings = referenceImportSettingsSchema.parse(JSON.parse(await readFile(resolve(repository, 'assets/references/heroine-v1/import-v1.json'), 'utf8'))), raw = decode(await readFile(resolve(repository, 'assets/references/heroine-v1/detailed/S.png')), { checkCrc: true }), reference = blankImage(1024, 1536);
+    for (let p = 0; p < 1024 * 1536; p++) { reference.data.set(raw.data.subarray(p * raw.channels, p * raw.channels + 3), p * 4); reference.data[p * 4 + 3] = raw.channels === 4 ? raw.data[p * 4 + 3]! : 255; }
+    await writeFile(resolve(referenceDirectory, 'S.png'), encodePng(matteReference(reference, settings.frames.S.labelExclusions, settings.matte, settings.frames.S.backgroundCorrections).image));
+    const files = (await readdir(assetDirectory, { recursive: true })).map(p => resolve(assetDirectory, p)), before = [];
+    for (const path of files) if ((await stat(path)).isFile()) before.push({ path, hash: sha256(await readFile(path)), mtime: (await stat(path)).mtimeMs });
+    const options = { sourceDirectory, assetDirectory, referenceDirectory, outputDirectory: resolve(temporary, 'review') }, report = await prepareBodyReview(options), config = bodyReviewSchema.parse(JSON.parse(await readFile(resolve(sourceDirectory, 'authoring-v6.json'), 'utf8')));
+    expect(report).toMatchObject({ assetVersion: 6, underlayer: 'ordinary-daily-bra-and-panties', status: 'draft-needs-human-review', supportedReviewDirections: ['S'], published: false, paletteReady: false, productionAnatomyApproved: false, bodyOcclusionVerified: false, tposeApproved: false, finalStep6CAccepted: false, nativePosition: { x: 0, y: 0 }, partitionStatus: 'whole-body-study-not-final-limb-partition', measurements: { boundaryPixels: 0 } });
+    const acceptedHead = JSON.parse(await readFile(resolve(assetDirectory, config.headApproval.source), 'utf8'));
+    expect(report.futureBodyFitObligations).toEqual(acceptedHead.futureBodyFitObligations); expect(report.futureHairstyleFitObligations).toEqual(acceptedHead.futureHairstyleFitObligations);
+    const load = async (root: string, path: string) => { const image = decodePng(await readFile(resolve(root, path))); for (let i = 0; i < image.data.length; i += 4) if (image.data[i + 3]! < 8) image.data.fill(0, i, i + 4); return image; };
+    if (config.assetVersion !== 6) throw new Error('Expected revision-6 native curl spill correction.');
+    const approvedGuide = await load(sourceDirectory, config.headGuide.source), head = await load(sourceDirectory, config.neckRepair.head.source), body = await load(sourceDirectory, config.body.source), front = await load(sourceDirectory, config.spillRepair.front.source), rear = await load(sourceDirectory, config.spillRepair.rear.source), planes = new Map<RenderPlane, RgbaImage>([['head', head], ['body-torso', body], ['hair-front', front], ['hair-rear', rear]]), fit = blankImage(1024, 1536), bare = blankImage(1024, 1536);
+    for (const plane of DIRECTION_PLANE_ORDER.S) { const layer = planes.get(plane); if (layer) { drawRgba(fit, layer, 0, 0); if (plane === 'head' || plane === 'body-torso') drawRgba(bare, layer, 0, 0); } }
+    expect(sha256(encodePng(approvedGuide))).toBe(config.approvedHeadBareSha256); expect(sha256(encodePng(head))).toBe(report.assemblyHeadSha256); expect(sha256(encodePng(fit))).toBe(report.fitSha256); expect(sha256(encodePng(bare))).toBe(report.bareSha256);
+    expect(sha256(bare.data.subarray(0, 278 * 1024 * 4))).toBe(sha256(approvedGuide.data.subarray(0, 278 * 1024 * 4)));
+    expect(approvedGuide.data[(310 * 1024 + 511) * 4 + 3]).toBeGreaterThan(0); expect(head.data[(310 * 1024 + 511) * 4 + 3]).toBe(0);
+    expect(report.bodyFreeAssemblySha256).not.toBe(config.approvedHeadFitSha256);
+    let rearOverlap = 0, frontOverlap = 0; for (let i = 0; i < body.data.length; i += 4) if (body.data[i + 3]) { if (rear.data[i + 3]) rearOverlap++; if (front.data[i + 3]) frontOverlap++; }
+    expect(rearOverlap).toBeGreaterThan(500); expect(frontOverlap).toBeGreaterThan(100);
+    for (const output of report.outputs) expect(sha256(await readFile(resolve(options.outputDirectory, output.path)))).toBe(output.sha256);
+    const historical = await prepareBodyReview({ ...options, configFile: 'authoring.json', outputDirectory: resolve(temporary, 'revision-1') });
+    expect(historical.assetVersion).toBe(1); expect(historical.fitSha256).toBe('4934333ac0f02122b28702825bdcc58660175763875e168fb2c8b0bcd316500d');
+    const oldFit = decodePng(await readFile(resolve(temporary, 'revision-1/fit/S.png'))), join = (340 * 1024 + 499) * 4;
+    expect(oldFit.data[join + 2]! - oldFit.data[join]!).toBeGreaterThan(20); expect(fit.data[join]! - fit.data[join + 2]!).toBeGreaterThan(20);
+    expect(report.repairMeasurements?.movedToRearPixels).toBeGreaterThan(1000); expect(report.repairMeasurements?.recoveredFrontCurlPixels).toBeGreaterThan(0);
+    const previousReview = await prepareBodyReview({ ...options, configFile: 'authoring-v2.json', outputDirectory: resolve(temporary, 'revision-2') });
+    expect(previousReview.fitSha256).toBe('fe6aafbf8c012d3819eaca4718a0b07cd788e57c02fbdcda1976a74cdf4bec68');
+    const revision3Review = await prepareBodyReview({ ...options, configFile: 'authoring-v3.json', outputDirectory: resolve(temporary, 'revision-3') });
+    expect(revision3Review.fitSha256).toBe('736e2a1eee88cc49b191834ce3daa21f0ddcbfb3097594febd046f80d82c9ec4');
+    const revision4Review = await prepareBodyReview({ ...options, configFile: 'authoring-v4.json', outputDirectory: resolve(temporary, 'revision-4') });
+    expect(report.bareSha256).toBe(revision4Review.bareSha256); expect(report.bodyStudyMostlyApproved).toBe(true);
+    expect(report.curlRepairMeasurements?.fractionalRearPixels).toBeGreaterThan(50); expect(report.curlRepairMeasurements?.fractionalFrontPixels).toBeGreaterThan(5);
+    const revision5Review = await prepareBodyReview({ ...options, configFile: 'authoring-v5.json', outputDirectory: resolve(temporary, 'revision-5') });
+    expect(report.baselineFitSha256).toBe(revision5Review.fitSha256); expect(report.bareSha256).toBe(revision5Review.bareSha256); expect(report.spillRepairMeasurements?.selectedSpillPixels).toBeGreaterThan(30);
+    const previousFit = decodePng(await readFile(resolve(temporary, 'revision-5/fit/S.png')));
+    for (const [x, y] of [[447, 324], [552, 322], [586, 318]]) { const i = (y! * 1024 + x!) * 4; expect(previousFit.data[i + 2]! - previousFit.data[i]!).toBeGreaterThan(20); expect(front.data[i + 3]).toBe(0); for (let c = 0; c < 3; c++) expect(Math.abs(fit.data[i + c]! - bare.data[i + c]!)).toBeLessThanOrEqual(3); }
+    const originalConfig = bodyReviewSchema.parse(JSON.parse(await readFile(resolve(sourceDirectory, config.previous.source), 'utf8'))), originalBody = await load(sourceDirectory, originalConfig.body.source), torsoMask = await load(sourceDirectory, config.neckRepair.selection.source);
+    let outsideJointChanges = 0; for (let i = 0; i < body.data.length; i += 4) if (!torsoMask.data[i + 3]) for (let c = 0; c < 4; c++) if (body.data[i + c] !== originalBody.data[i + c]) outsideJointChanges++; expect(outsideJointChanges).toBe(0);
+    if (originalConfig.assetVersion !== 5) throw new Error('Revision-5 baseline required.');
+    const originalHead = await load(sourceDirectory, originalConfig.neckRepair.head.source);
+    let changedAlpha = 0, outsideNeckHeadChanges = 0; for (let i = 0; i < body.data.length; i += 4) { if (body.data[i + 3] !== originalBody.data[i + 3] || head.data[i + 3] !== originalHead.data[i + 3]) changedAlpha++; if (!torsoMask.data[i + 3]) for (let c = 0; c < 4; c++) if (head.data[i + c] !== originalHead.data[i + c]) outsideNeckHeadChanges++; }
+    expect(sha256(encodePng(body))).toBe(sha256(encodePng(originalBody))); expect(sha256(encodePng(head))).toBe(sha256(encodePng(originalHead)));
+    const originalFront = await load(sourceDirectory, originalConfig.curlRepair.front.source), originalRear = await load(sourceDirectory, originalConfig.curlRepair.rear.source);
+    const spillMask = await load(sourceDirectory, config.spillRepair.selection.source);
+    let outsideCurls = 0; for (let i = 0; i < front.data.length; i += 4) if (!spillMask.data[i + 3]) for (let c = 0; c < 4; c++) if (front.data[i + c] !== originalFront.data[i + c] || rear.data[i + c] !== originalRear.data[i + c]) outsideCurls++;
+    for (const [x, y] of [[460, 316], [570, 325]]) { const i = (y! * 1024 + x!) * 4; expect([...front.data.subarray(i, i + 4)]).toEqual([...originalFront.data.subarray(i, i + 4)]); }
+    expect(outsideCurls).toBe(0); expect(changedAlpha).toBe(0); expect(outsideNeckHeadChanges).toBe(0); expect(report.neckRepairMeasurements).toMatchObject({ silhouetteChanged: false, bodyProportionsChanged: false });
+    const skinTop = (image: RgbaImage, x: number) => { for (let y = 285; y < 350; y++) { const i = (y * 1024 + x) * 4; if (image.data[i]! > 150 && image.data[i]! - image.data[i + 2]! > 20 && image.data[i]! - image.data[i + 1]! > 8 && image.data[i + 3]! >= 240) return y; } throw new Error('Expected native shoulder skin.'); };
+    const priorAnatomy = decodePng(await readFile(resolve(temporary, 'revision-2/fit/S-anatomy.png')));
+    for (const x of [410, 610]) expect(skinTop(priorAnatomy, x) - skinTop(bare, x)).toBeGreaterThanOrEqual(12);
+    expect(await prepareBodyReview({ ...options, outputDirectory: resolve(temporary, 'repeat') })).toEqual(report);
+    const copy = resolve(temporary, 'source'); await cp(sourceDirectory, copy, { recursive: true });
+    const forged = decodePng(await readFile(resolve(copy, config.body.source))), i = (200 * 1024 + 200) * 4; forged.data.set([255, 0, 255, 255], i); const altered = encodePng(forged); await writeFile(resolve(copy, config.body.source), altered); config.body.sourceSha256 = sha256(altered); await writeFile(resolve(copy, 'authoring-v6.json'), JSON.stringify(config));
+    await expect(prepareBodyReview({ ...options, sourceDirectory: copy, outputDirectory: resolve(temporary, 'repinned') })).rejects.toThrow(/preserve.*body|native.*ownership/);
+    await cp(sourceDirectory, copy, { recursive: true });
+    const badMask = decodePng(await readFile(resolve(copy, config.spillRepair.selection.source))), outside = (200 * 1024 + 500) * 4; badMask.data.fill(255, outside, outside + 4); const maskBytes = encodePng(badMask); await writeFile(resolve(copy, config.spillRepair.selection.source), maskBytes);
+    const repinned = bodyReviewSchema.parse(JSON.parse(await readFile(resolve(sourceDirectory, 'authoring-v6.json'), 'utf8'))); if (repinned.assetVersion !== 6) throw new Error('Revision 6 required.'); repinned.spillRepair.selection.sourceSha256 = sha256(maskBytes); await writeFile(resolve(copy, 'authoring-v6.json'), JSON.stringify(repinned));
+    await expect(prepareBodyReview({ ...options, sourceDirectory: copy, outputDirectory: resolve(temporary, 'repinned-hair') })).rejects.toThrow('curl spill ownership mask changed');
+    await expect(prepareBodyReview({ ...options, outputDirectory: resolve(sourceDirectory, 'unsafe') })).rejects.toThrow('must be disjoint');
+    for (const f of before) { expect(sha256(await readFile(f.path))).toBe(f.hash); expect((await stat(f.path)).mtimeMs).toBe(f.mtime); }
+  } finally { await rm(temporary, { recursive: true, force: true }); }
+}, 90_000);

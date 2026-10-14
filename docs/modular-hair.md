@@ -1,5 +1,36 @@
 # Step 6C — modular long-hair authoring
 
+## S body/head/hair revision 6 approved — 2026-10-14
+
+The user approved the current S body/head/hair fit and requested cleanup, a local
+commit and continued Step 6C work. `body/reference-v1/review-fit-v6.json` pins the
+accepted configuration and actual bare/assembled hashes. Accepted source artwork
+stays unchanged. This is an offline S layering-study checkpoint, not production
+anatomy, full T-pose acceptance, native pixel approval or final Step 6C acceptance.
+
+The exact requested future authoring note is:
+
+> eventually we may want to create asset by asset from scratch when given a design to avoid this masking problem as long as the layering system works.
+
+Keep that preference in future asset work. Preserve the project and its existing
+approvals; complete independently authored parts from a supplied design remain a
+future option. The next bounded increment separates this accepted S body study
+into torso and left/right arm/leg layers, using the established render planes and
+native positions, with exact actual recomposition. Joint/concealed geometry and
+separate underwear remain later authoring work. Step 6D has not started.
+Earlier pending-approval statements below are historical.
+
+## Future separate-asset authoring preference — 2026-10-14
+
+The current reference-derived head/hair/body studies test actual modular layering.
+After one final bounded S curl-spill correction (body revision 6), the user wants
+to move on. For a future supplied design, consider independently authoring complete
+front/rear hair and the other reusable parts from scratch, including concealed
+geometry from the outset. Verify native anchors, real depth/occlusion and all
+compatible independently authored facings/targets. Preserve accepted sources and
+scoped approvals; this preference does not restart the project, publish these
+studies, complete Step 6C or start Step 6D. See [modular-body.md](modular-body.md).
+
 The user approved proceeding from the verified Steps 6A–6B audit on 2026-10-09.
 The initial S/N hair design has user approval recorded in `review-v1.json`.
 The independent E/W hair design also has user approval recorded in

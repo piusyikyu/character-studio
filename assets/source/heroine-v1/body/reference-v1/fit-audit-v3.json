@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "id": "body.reference.v1",
+  "assetVersion": 3,
+  "date": "2026-10-14",
+  "status": "draft-needs-human-review",
+  "configSha256": "8fd0b84962df027d73e6ca8fa014b91aa4d110dde2c7cba6b60f63d66aab3117",
+  "previousFeedback": {
+    "assetVersion": 2,
+    "configurationSha256": "a97134d42478fd008eb2ce35a38f60d52ebe4f5549be1905838857d240b9e5f2",
+    "decision": "needs-correction",
+    "reason": "Shoulders too low compared with same-facing reference; old standing neck/clavicle base and new body clavicle produce two neck/shoulder joins."
+  },
+  "repair": {
+    "method": "New same-facing native local study, manual skin silhouette and joint mask, pose-specific lower-neck ownership and original hair repartition.",
+    "jointPixels": 36130,
+    "retiredNeckBasePixels": 2508,
+    "movedToRearPixels": 12089,
+    "recoveredFrontCurlPixels": 150,
+    "shoulderSamples": [
+      {
+        "nativeX": 410,
+        "standingReference": 306,
+        "revision2": 323,
+        "revision3": 311
+      },
+      {
+        "nativeX": 610,
+        "standingReference": 302,
+        "revision2": 323,
+        "revision3": 310
+      }
+    ],
+    "outsideJointChanges": 0,
+    "assemblyHeadSha256": "fa8cc503825b5c0c47b22dd31b9f6b0babb58def0abbab060b556d935a6025be",
+    "bodyFreeAssemblySha256": "97ed8c80f4273abefe1eb88a9d9c02c451e155dd8197fd2fe246934b8aac09c0"
+  },
+  "preservation": {
+    "oldSourceAndReferenceHashesAndMtimes": 779,
+    "standingHeadSourceUnchanged": true,
+    "approvedHeadSheetHashes": 3,
+    "originalNativeFraming": true,
+    "noShiftScaleRotationOrMirroring": true
+  },
+  "verification": {
+    "typecheck": "asset-validator passed",
+    "lint": "root lint passed, zero warnings",
+    "build": "asset-validator ESM and declarations passed",
+    "cliExports": "current revision 3 and historical revisions 2/1 passed",
+    "focusedWorkflows": "Existing native S body and cleanup workflows: 2 passed, 5 unrelated head workflows skipped; 32.02 seconds.",
+    "initialFocusedRun": "An earlier focused run exited 143 without a completed report; corrected re-pinned test configuration paths and the complete rerun passed.",
+    "determinism": "Current repeat workflow passed; 10 authoring outputs including cyan guide replayed byte-for-byte in scratch.",
+    "currentPreviewHashes": 5,
+    "fullApplicationBuild": "not rerun for this local art change",
+    "browserE2E": "not rerun for this local art change"
+  },
+  "humanReview": {
+    "approved": false,
+    "pending": [
+      "Native shoulder height, neck/clavicle shading, strap/deltoid transitions and same-facing hair ownership.",
+      "Remaining 5/8 native pixel differences at sampled shoulder contours; do not infer exact standing/T-pose equivalence.",
+      "Inherited study alpha/mask transitions and residual hair noise."
+    ],
+    "productionAnatomyApproved": false,
+    "tposeApproved": false,
+    "finalStep6CAccepted": false,
+    "step6DStarted": false
+  },
+  "outputs": [
+    {
+      "path": "fit/S-anatomy.png",
+      "sha256": "8e191c19e4233c1643d93834c6dc66f867d6084583cb7926a39c5c7972d31ed0"
+    },
+    {
+      "path": "fit/S.png",
+      "sha256": "736e2a1eee88cc49b191834ce3daa21f0ddcbfb3097594febd046f80d82c9ec4"
+    },
+    {
+      "path": "overview.png",
+      "sha256": "ec0db2618349bb9d36fdc09ec47754b5b7f6db520cd3fa968cd0687e5a1de452"
+    },
+    {
+      "path": "inspection/S-neck-shoulder-comparison.png",
+      "sha256": "043c1e2723e406fd9506c0ee7f0761ca4a897b504105a1c93cfaa9fbd258b25a"
+    },
+    {
+      "path": "inspection/S-body-fit-comparison.png",
+      "sha256": "44058ffeaa1e031be0f0c0e6f4bf866b58da5587c07cfd079ce286caba8e1186"
+    }
+  ]
+}
