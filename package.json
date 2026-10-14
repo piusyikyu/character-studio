@@ -75,7 +75,8 @@
     "body:review:v4": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-review-cli.js --v4",
     "body:review:v5": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-review-cli.js --v5",
     "body:review:parts": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-parts-review-cli.js",
-    "body:review:north": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-north-review-cli.js"
+    "body:review:north": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-north-review-cli.js",
+    "body:review:parts:north": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-parts-review-cli.js --north"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.0",

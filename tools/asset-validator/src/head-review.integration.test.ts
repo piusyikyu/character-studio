@@ -811,6 +811,31 @@ it('reviews independently authored native N body anatomy with no frontal feature
     wrongFacing.rearHair.source = 'hair/long-waves-v1/S-rear.png'; await writeFile(resolve(copied, 'authoring.json'), JSON.stringify(wrongFacing));
     await expect(prepareNorthBodyReview({ ...options, sourceDirectory: copied, outputDirectory: resolve(temporary, 'wrong-facing') })).rejects.toThrow('same-facing native head, neck and rear hair');
     await expect(prepareNorthBodyReview({ ...options, outputDirectory: resolve(sourceDirectory, 'unsafe') })).rejects.toThrow('must be disjoint');
+    const { prepareNorthBodyPartsReview, northBodyPartsReviewSchema } = await import('./body-parts-review');
+    const partSource = resolve(assetDirectory, 'body/parts-v1/north'), partOptions = { ...options, sourceDirectory: partSource, outputDirectory: resolve(temporary, 'parts') };
+    const partReport = await prepareNorthBodyPartsReview(partOptions), partConfig = northBodyPartsReviewSchema.parse(JSON.parse(await readFile(resolve(partSource, 'authoring.json'), 'utf8')));
+    expect(partReport).toMatchObject({ supportedReviewDirections: ['N'], fitSha256: report.fitSha256, bareSha256: report.bareSha256, exactApprovedFit: true, published: false, concealedJointsApproved: false, separateUnderwearAuthored: false, tposeApproved: false, finalStep6CAccepted: false, measurements: { overlapPixels: 0, unownedPixels: 0, generatedAnatomy: false } });
+    const partPlanes = new Map<RenderPlane, RgbaImage>([['head', head], ['neck', neck], ['hair-rear', rear]]);
+    for (const part of partConfig.parts) partPlanes.set(part.plane, await load(partSource, part.source));
+    const partFit = blankImage(1024, 1536);
+    for (const plane of DIRECTION_PLANE_ORDER.N) { const layer = partPlanes.get(plane); if (layer) drawRgba(partFit, layer, 0, 0); }
+    expect(sha256(encodePng(partFit))).toBe(report.fitSha256);
+    for (const [plane, x, y] of [['body-back-arm', 800, 380], ['body-front-arm', 210, 380], ['body-back-leg', 550, 1415], ['body-front-leg', 470, 1415]] as const) {
+      const pixel = (y * 1024 + x) * 4;
+      expect(partPlanes.get(plane)!.data[pixel + 3]).toBeGreaterThan(0);
+      expect([...partPlanes.get(plane)!.data.subarray(pixel, pixel + 4)]).toEqual([...body.data.subarray(pixel, pixel + 4)]);
+    }
+    for (const output of partReport.outputs) expect(sha256(await readFile(resolve(partOptions.outputDirectory, output.path)))).toBe(output.sha256);
+    expect(await prepareNorthBodyPartsReview({ ...partOptions, outputDirectory: resolve(temporary, 'parts-repeat') })).toEqual(partReport);
+    const partCopy = resolve(temporary, 'part-source'); await cp(partSource, partCopy, { recursive: true });
+    const swapped = northBodyPartsReviewSchema.parse(JSON.parse(await readFile(resolve(partSource, 'authoring.json'), 'utf8')));
+    swapped.parts[1]!.screenSide = 'left'; await writeFile(resolve(partCopy, 'authoring.json'), JSON.stringify(swapped));
+    await expect(prepareNorthBodyPartsReview({ ...partOptions, sourceDirectory: partCopy, outputDirectory: resolve(temporary, 'swapped-part') })).rejects.toThrow('identity and plane assignment changed');
+    const alteredPart = decodePng(await readFile(resolve(partCopy, partConfig.parts[1]!.source))), foreignPartPixel = (550 * 1024 + 511) * 4;
+    alteredPart.data.set(body.data.subarray(foreignPartPixel, foreignPartPixel + 4), foreignPartPixel); const partBytes = encodePng(alteredPart);
+    await writeFile(resolve(partCopy, partConfig.parts[1]!.source), partBytes); partConfig.parts[1]!.sourceSha256 = sha256(partBytes);
+    await writeFile(resolve(partCopy, 'authoring.json'), JSON.stringify(partConfig));
+    await expect(prepareNorthBodyPartsReview({ ...partOptions, sourceDirectory: partCopy, outputDirectory: resolve(temporary, 'repinned-part') })).rejects.toThrow('native body part ownership changed');
     for (const file of before) { expect(sha256(await readFile(file.path))).toBe(file.hash); expect((await stat(file.path)).mtimeMs).toBe(file.mtime); }
   } finally { await rm(temporary, { recursive: true, force: true }); }
 }, 60_000);

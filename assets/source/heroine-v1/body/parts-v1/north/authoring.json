@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "id": "body.parts.v1",
+  "assetVersion": 1,
+  "direction": "N",
+  "target": "detailed",
+  "nativeSize": {
+    "width": 1024,
+    "height": 1536
+  },
+  "nativePosition": {
+    "x": 0,
+    "y": 0
+  },
+  "sourcePose": "tpose-study",
+  "status": "draft-needs-human-review",
+  "published": false,
+  "paletteReady": false,
+  "productionAnatomyApproved": false,
+  "concealedJointsApproved": false,
+  "separateUnderwearAuthored": false,
+  "tposeApproved": false,
+  "finalStep6CAccepted": false,
+  "baselineConfiguration": {
+    "source": "body/north-v1/authoring.json",
+    "sourceSha256": "440fedb0289a94677d8565bd072f11fd19f866e170d40ce60bc32e9f9df1edc0"
+  },
+  "baselineApproval": {
+    "source": "body/north-v1/review-fit-v1.json",
+    "sourceSha256": "701ea602dcca5a015d358ffe367d68e0d9d20a791ab4a7a834602526deda3367"
+  },
+  "wholeBody": {
+    "source": "body/north-v1/N-body-v1.png",
+    "sourceSha256": "9b0e8d85a5b55bc9c16458fbb7d3d75ee0bf3bfad649877cd94506fea04bbf16"
+  },
+  "head": {
+    "source": "head/soft-oval-v1/N-head-v1.png",
+    "sourceSha256": "0551734b677bd85fbd6c91124566bfbb9757a5b7533b141fc5306a3f2fdcbae6"
+  },
+  "neck": {
+    "source": "body/north-v1/N-neck-body-fit-v1.png",
+    "sourceSha256": "6244640343b868eb4966c157f1c843b0ec750907455afbe8101a2dd3d58fd7bf"
+  },
+  "rearHair": {
+    "source": "hair/long-waves-v1/N-rear.png",
+    "sourceSha256": "92e7688eb6f10d5f3fb41ff07240b3bed88b13fb0ed98b6c53034b2e6be53878"
+  },
+  "settings": {
+    "source": "settings.json",
+    "sourceSha256": "65fabf8c76a325f7562d455f414372b036ae8768afe9dee0da9d6fe92a6cadfb"
+  },
+  "provenance": {
+    "source": "provenance.json",
+    "sourceSha256": "2232509020b488cd7f6bc9381d8df9f2078703e31ab6d2f34843bbf7c497addd"
+  },
+  "parts": [
+    {
+      "id": "torso",
+      "plane": "body-torso",
+      "characterSide": "center",
+      "screenSide": "center",
+      "nativePosition": {
+        "x": 0,
+        "y": 0
+      },
+      "source": "N-torso-v1.png",
+      "sourceSha256": "a57983899acfbd078b7c6595169fe07a6e151d0607207db43dfcd324fbf063d3"
+    },
+    {
+      "id": "right-arm",
+      "plane": "body-back-arm",
+      "characterSide": "right",
+      "screenSide": "right",
+      "nativePosition": {
+        "x": 0,
+        "y": 0
+      },
+      "source": "N-right-arm-v1.png",
+      "sourceSha256": "a033d54d8869898851fb3131f3b2ce6d5c1ad5d3bc7a747a4b632c1a5b533e1e"
+    },
+    {
+      "id": "left-arm",
+      "plane": "body-front-arm",
+      "characterSide": "left",
+      "screenSide": "left",
+      "nativePosition": {
+        "x": 0,
+        "y": 0
+      },
+      "source": "N-left-arm-v1.png",
+      "sourceSha256": "f92555f48a1dcf18ebc2472108ac862ccff190b771aa5c997e25f8896bfc468f"
+    },
+    {
+      "id": "right-leg",
+      "plane": "body-back-leg",
+      "characterSide": "right",
+      "screenSide": "right",
+      "nativePosition": {
+        "x": 0,
+        "y": 0
+      },
+      "source": "N-right-leg-v1.png",
+      "sourceSha256": "d2af6d0b6834f9455c106c00fa35ac52de5f08ff7ad8d247554c88218c49bea2"
+    },
+    {
+      "id": "left-leg",
+      "plane": "body-front-leg",
+      "characterSide": "left",
+      "screenSide": "left",
+      "nativePosition": {
+        "x": 0,
+        "y": 0
+      },
+      "source": "N-left-leg-v1.png",
+      "sourceSha256": "dad94feab9224dca310b07f5d9d06c8ee478e985f150a16d2797c7a7a1a03aac"
+    }
+  ]
+}

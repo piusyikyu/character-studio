@@ -1,5 +1,70 @@
 # MVP Plan — Female Character Studio
 
+## N parts approved; future footwear variants — 2026-10-14
+
+The user approved `body/parts-v1/north/` and requested cleanup, a local commit
+and continued Step 6C work. `review-fit-v1.json` pins the five native parts and
+actual accepted fit hashes. Existing artwork and prior approvals stay unchanged.
+
+The user explicitly noted that the current feet are made for high heels and
+may not be valid for future designs. Extra leg-and-foot parts may be needed
+for different kinds of shoes. Treat the current S/N foot posture as a provisional
+heel-based study, not a general barefoot or flat-shoe foundation. Before future
+shoe designs are accepted, review same-facing foot/ankle posture, leg attachment,
+sole contact, ground baseline and shoe compatibility. Author discrete versioned
+leg/foot alternatives when needed; preserve side identity and independently
+authored facings/targets. Do not silently deform approved legs/feet. This is
+recorded design/review debt, not a request to change the accepted feet now or
+a new CharacterRecipe/rig contract. The authoring-from-scratch preference remains.
+
+The next bounded increment is an independently authored E profile body study,
+with the accepted native E head/hair and ordinary opaque daily bra/panties.
+A profile T-pose requires foreshortened arm/hand projection; do not turn the S
+body sideways or copy its horizontal screen-space arms. Its foot posture remains
+a provisional study pending shoe-specific review. Concealed joints, separate
+garments/materials, other facings, production T-pose and native pixel art remain
+unfinished. Step 6C is open; Step 6D has not started. Earlier pending statements
+below are historical.
+
+## Native N body-part candidate — 2026-10-14
+
+Local commit `c270185` records the approved independent N full-back body study,
+its scoped approval and actual head/hair review tooling. Cleanup removed 52
+regenerated files (1.5 MiB), keeping accepted source and current reviews.
+
+The next bounded Step 6C increment is `body/parts-v1/north/`. Five transparent
+native 1024×1536 layers retain the accepted N body's exact visible RGBA: torso,
+physical right/left arms and physical right/left legs. Separate N contours follow
+its own shoulder/hip geometry; S cuts or S anatomy are not mirrored/reused.
+In N, character-right is screen-right. Right limbs use the existing back limb
+planes and left limbs the front limb planes in this scoped static study. This
+is not a new global rig/depth contract or an approved attachment model.
+
+`pnpm body:review:parts:north` consumes the pinned accepted N configuration and
+`body/north-v1/review-fit-v1.json`, validates source ownership and side identity,
+then composes through `DIRECTION_PLANE_ORDER.N` at native (0,0). It must reproduce
+the accepted body-only, anatomy and hair fit exactly, including the accepted
+pose-specific neck. Posterior hair retains its established N depth; no frontal
+hair, eyes, brows or mouth are added. Normal S commands retain their existing
+configuration and PNG outputs; both independently authored part profiles use
+the same deterministic review exporter with explicit S/N selection.
+
+Review `assets/staging/heroine-v1/body/parts-v1/north/overview.png`: recomposed
+anatomy / accepted N body fit / actual five-plane N fit. In `parts-overview.png`,
+read cells left to right: top row whole body / torso with underwear /
+character-right arm; bottom row character-left arm / character-right leg /
+character-left leg. Only previews contain checkerboard and yellow N labels.
+
+Visible-pixel cuts remain study geometry. Torso retains posterior bra/panties
+and upper thigh skin; complete concealed shoulder/hip joints, discrete rig
+anchors, separate underwear/skin and palette maps need later authoring/review.
+Other body facings/presets, complete hair, production T-pose and native pixel
+artwork remain open. The new N part candidate is unapproved and uncommitted.
+Step 6C remains unfinished; Step 6D has not started. Earlier pending statements
+below are historical.
+
+N-part verification: asset-validator typecheck, root lint (zero warnings), ESM/declaration build, the new N part CLI and existing S part CLI passed. The extended S body, N body and cleanup workflows passed (3 passed, 5 unrelated head workflows skipped; 136.48 seconds). They cover actual same-facing plane composition, preserved accepted anatomy/head/neck/hair fit, native physical-side samples, exclusive ownership, deterministic output, immutable inputs and rejection of altered side identity or re-pinned foreign part pixels. All 850 preceding source/reference hashes and mtimes stay exact, excluding the intentional source README edit; five selected outputs replay byte-for-byte in scratch, and 23 current new/accepted PNG hashes verify. Existing S part PNGs retain their prior hashes. Full app build and browser E2E were not rerun. The new N cuts remain pending visual approval and uncommitted. Post-validation cleanup removed 53 regenerated files (1.5 MiB), kept all 23 checked PNGs and accepted inputs, and left zero obsolete generated files.
+
 ## N full-back body study approved — 2026-10-14
 
 The user approved `body/north-v1/` and requested cleanup, a local commit and

@@ -1,5 +1,15 @@
 # Source artwork
 
+Approved N part study: `heroine-v1/body/parts-v1/north/` retains five native N
+visible-pixel torso/arm/leg layers at their original positions.
+`pnpm body:review:parts:north` verifies actual N-plane composition against the
+approved N body fit, including the accepted neck attachment and posterior hair.
+N right is screen-right; S right is screen-left. `review-fit-v1.json` pins the scoped approval; full
+concealed joints, rig anchors and separate underwear/skin remain unfinished.
+Current foot posture is high-heel-specific; future shoe designs may need extra
+leg-and-foot variants. General footwear compatibility remains unapproved.
+Authoring replay is scratch-only; all earlier accepted sources remain exact.
+
 Approved N study: `heroine-v1/body/north-v1/` retains the independently authored
 full-back study, manual body/hand silhouette, accepted native head guide and a
 bounded two-row pose-specific neck attachment. `pnpm body:review:north` exports

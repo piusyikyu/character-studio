@@ -1,5 +1,11 @@
 # Asset workspace cleanup — 2026-10-13
 
+Current N part candidate: cleanup protects metadata-declared previews and metadata
+under `body/parts-v1/north/`, in addition to both accepted body reviews and S
+parts. The nested N source pack retains only five selected layers, pinned
+settings/config/provenance and scratch authoring replay; S sources stay intact.
+Rebuild current N part outputs with `pnpm body:review:parts:north`.
+
 Current N body candidate: cleanup protects metadata-declared outputs and metadata
 under `body/north-v1/`, alongside both accepted S body/part reviews. Retain the
 selected native study, manual silhouettes/settings, accepted head guide, bounded

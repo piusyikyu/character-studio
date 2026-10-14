@@ -20,6 +20,7 @@ it('cleans generated data while preserving current reviews and sources, and reje
     const body = 'assets/staging/heroine-v1/body/reference-v1', bodyMetadata = { outputs: [{ path: 'fit/S.png' }, { path: 'fit/S-anatomy.png' }, { path: 'overview.png' }] };
     const bodyParts = 'assets/staging/heroine-v1/body/parts-v1', partMetadata = { outputs: [{ path: 'fit/S-body-only.png' }, { path: 'fit/S.png' }, { path: 'parts-overview.png' }] };
     const northBody = 'assets/staging/heroine-v1/body/north-v1', northBodyMetadata = { outputs: [{ path: 'fit/N.png' }, { path: 'fit/N-anatomy.png' }, { path: 'overview.png' }] };
+    const northParts = `${bodyParts}/north`, northPartMetadata = { outputs: [{ path: 'fit/N-body-only.png' }, { path: 'fit/N.png' }, { path: 'parts-overview.png' }] };
     const headSet = 'assets/staging/heroine-v1/head/assembly-v1', headSetMetadata = { outputs: [{ path: 'overview.png' }, { path: 'anatomy-overview.png' }, { path: 'reference-overview.png' }] };
     const metadata = { outputs: [{ path: 'fit/S.png' }], interactiveInspection: { path: 'inspection/head-reference-overlay.html' } };
     const preserved = [`${diagonalEars}/fit/SE-human.png`, `${diagonalEars}/fit/SW-earless.png`, `${diagonalEars}/anatomy-overview.png`, `${ears}/fit/E-human.png`, `${ears}/fit/W-earless.png`, `${ears}/anatomy-overview.png`, `${profiles}/fit/E.png`, `${profiles}/fit/W.png`, `${profiles}/overview.png`, `${diagonal}/fit/SE.png`, `${diagonal}/fit/SW.png`, `${diagonal}/overview.png`,'assets/source/heroine-v1/face/reference-v1/authoring-v4.json', 'assets/source/heroine-v1/head/soft-oval-v1/approved.png', 'assets/references/heroine-v1/detailed/S.png', 'packages/renderer-canvas/src/index.ts', `${face}/fit/S.png`, `${face}/inspection/head-reference-overlay.html`, `${refs}/transparent/S.png`, `${refs}/audit.md`, `${refs}/metadata.json`];
@@ -31,9 +32,12 @@ it('cleans generated data while preserving current reviews and sources, and reje
     await save(`${bodyParts}/metadata.json`, JSON.stringify(partMetadata));
     for (const file of northBodyMetadata.outputs) preserved.push(`${northBody}/${file.path}`);
     await save(`${northBody}/metadata.json`, JSON.stringify(northBodyMetadata));
+    for (const file of northPartMetadata.outputs) preserved.push(`${northParts}/${file.path}`);
+    await save(`${northParts}/metadata.json`, JSON.stringify(northPartMetadata));
     const obsolete = [`${body}/obsolete-study.png`, `${diagonalEars}/historical-v0/overview.png`, `${ears}/historical-v0/overview.png`, `${profiles}/historical-v0/overview.png`, `${diagonal}/historical-v0/overview.png`,`${face}/historical-v3/overview.png`, `${refs}/inspection/checker/S.png`, 'assets/staging/heroine-v1/head/soft-oval-v1/overview.png', 'assets/detailed/placeholder-v1/S.png', 'test-results/report.json', 'packages/core/dist/index.js'];
     obsolete.push(`${bodyParts}/obsolete-part.png`);
     obsolete.push(`${northBody}/obsolete-study.png`);
+    obsolete.push(`${northParts}/obsolete-part.png`);
     for (const path of [...preserved, ...obsolete]) await save(path);
     for (const file of backEarMetadata.outputs) { const path = `${backEars}/${file.path}`; preserved.push(path); await save(path); }
     for (const file of northMetadata.outputs) { const path = `${north}/${file.path}`; preserved.push(path); await save(path); }

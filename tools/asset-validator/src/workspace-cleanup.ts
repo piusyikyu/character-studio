@@ -15,7 +15,7 @@ export async function cleanWorkspace(options: { repository: string; dryRun?: boo
     keep.add(resolve(repository, base, path));
   };
   const preserveWholeReviews: string[] = [];
-  for (const review of [face, `${face}/front-diagonals`, `${face}/profiles`, `${face}/brows`, 'assets/staging/heroine-v1/body/reference-v1', 'assets/staging/heroine-v1/body/parts-v1', 'assets/staging/heroine-v1/body/north-v1', 'assets/staging/heroine-v1/ears/human-v1/profiles', 'assets/staging/heroine-v1/ears/human-v1/front-diagonals', 'assets/staging/heroine-v1/ears/human-v1/back-diagonals', 'assets/staging/heroine-v1/ears/human-v1/north', 'assets/staging/heroine-v1/head/soft-oval-v1/north', 'assets/staging/heroine-v1/head/assembly-v1']) try {
+  for (const review of [face, `${face}/front-diagonals`, `${face}/profiles`, `${face}/brows`, 'assets/staging/heroine-v1/body/reference-v1', 'assets/staging/heroine-v1/body/parts-v1', 'assets/staging/heroine-v1/body/parts-v1/north', 'assets/staging/heroine-v1/body/north-v1', 'assets/staging/heroine-v1/ears/human-v1/profiles', 'assets/staging/heroine-v1/ears/human-v1/front-diagonals', 'assets/staging/heroine-v1/ears/human-v1/back-diagonals', 'assets/staging/heroine-v1/ears/human-v1/north', 'assets/staging/heroine-v1/head/soft-oval-v1/north', 'assets/staging/heroine-v1/head/assembly-v1']) try {
     const bytes = await readFile(resolve(repository, review, 'metadata.json'));
     const metadata: unknown = JSON.parse(bytes.toString('utf8'));
     if (!metadata || typeof metadata !== 'object' || !('outputs' in metadata) || !Array.isArray(metadata.outputs)) throw new Error('Current review metadata must declare outputs.');
