@@ -1,5 +1,132 @@
 # MVP Plan — Female Character Studio
 
+## SE body and native hand revision-2 approval — 2026-10-14
+
+The user approved the corrected SE study and authorized cleanup, a local commit
+and the next bounded Step 6C increment.
+`body/front-diagonals-v1/review-fit-v2.json` pins the selected
+`authoring-v2.json`, anatomy/fit exports and local hand-repair inputs. All five
+current review PNG hashes and the configuration hash were verified. Revision-1
+source/config and selected generated study remain required derivation baselines.
+
+Approval covers the current SE whole-body study and intact native hands. It does
+not certify concealed geometry, reusable limbs/garments, remaining hair edges,
+heel-raised footwear compatibility, production T-pose, native pixel artwork or
+final Step 6C. Step 6D has not started. Existing focused validation below remains
+applicable; full application build and browser E2E were not rerun.
+
+Next independently author the SW body using its own accepted native head and SW
+reference, with ordinary daily bra and panties. Preserve the approved SE and
+other facings. Keep complete hand interiors from the first SW selection and
+review actual native head/neck/body/hair composition before human approval.
+Earlier pending SE statements below are historical and superseded.
+
+## SE native hand-export correction — revision 2 — 2026-10-14
+
+The user briefly approved SE revision 1, then reported partly transparent hands
+in the native `fit/SE-anatomy.png` before any approval commit or next increment.
+The generated study had intact hands; the exported hand masks erased finger/palm
+interiors that the reduced overview and sparse sample checks missed. Treat that
+approval as qualified by this feedback. No SE commit or SW work has occurred.
+
+Current review selects `body/front-diagonals-v1/authoring-v2.json`. This repair
+retains SE's own native study RGB and alpha inside two bounded hand windows.
+Manually selected envelopes enclose the complete hands; the study's native alpha
+supplies finger contours and spaces, instead of narrow paths through the fingers.
+All 8,247 near-opaque source hand pixels retain their exact RGBA, including
+2,521 interiors previously erased or attenuated by the masks. Boundary
+antialiasing remains; no opaque paint, colour key, generated anatomy, shifts,
+scaling or mirrors are used. Body/mask bytes outside the hand windows, posed neck,
+head/ears/eyes/brows/mouth, hair, underwear, legs and feet remain unchanged.
+Original revision-1 source/config and the selected study remain pinned baselines.
+
+`pnpm body:review:front-diagonals` now exports revision 2 to the same staging
+folder, including the corrected standalone native `fit/SE-anatomy.png` and actual
+hair fit. `inspection/SE-hand-alpha-comparison.png` compares native study /
+revision-1 export / revision-2 export for both hands on dark and light backgrounds;
+4× nearest-neighbour enlargement is inspection-only. The historical `--v1` CLI
+flag reproduces revision 1 separately. Replay `partition-hands-v2.js` only in
+scratch. Cleanup preserves current metadata-declared outputs and source baselines.
+
+The existing composition workflow now checks all near-opaque hand interiors
+against the source and the actual anatomy export, plus exact immutability outside
+the hand windows. Corrected revision-2 visual approval is pending; commit and next
+body increment remain on hold. Remaining anatomical/edge review debt, high-heel
+footwear limitations, from-scratch asset authoring, production T-pose and native
+pixel work remain open. Step 6C is unfinished; Step 6D has not started. Earlier
+SE selections and approval statements below are historical.
+
+Validation: asset-validator typecheck, root lint (zero warnings), ESM/declaration
+build and current/historical SE exports passed. The existing E/W/SE actual-plane
+and cleanup workflows passed (2 passed, 7 skipped; 171.44 seconds), including all
+8,247 near-opaque hand interiors in both source and native anatomy export, exact
+non-hand body preservation, determinism and rejected re-pinned outside edits.
+Initial test adapter/conditional/error-message expectations were corrected. All
+905 preceding source/reference files retain their hashes and mtimes, excluding
+the intentional source README update. Both new source outputs replay byte-for-byte
+in scratch; all 37 current review PNG hashes verify. App build and browser E2E
+were not rerun. See `body/front-diagonals-v1/fit-audit-v2.json`. The corrected
+revision remains uncommitted pending visual approval.
+
+## Independent SE body candidate — 2026-10-14
+
+Local commit `c144bd7` records the approved W revision-2 body/hair study and its
+scoped approval. Cleanup removed 55 regenerable files (1.5 MiB), retaining all
+current reviews and required source baselines. The next bounded Step 6C increment
+is `body/front-diagonals-v1/`, initially SE only. Its built-in imagegen study uses
+SE's own native approved head guide and SE standing reference. No E/W/S/N body
+pixels, mirrored artwork or cross-facing anatomy fragments supply this study.
+
+The selected body has ordinary opaque daily bra and panties and a three-quarter
+T-pose projection. Near physical-right arm is screen-left; far physical-left arm
+is screen-right. Review shoulders/chest/pelvis orientation, arm foreshortening,
+hands/thumbs, knees and feet. No rendered image or automated check proves coherent
+anatomy, production T-pose or general footwear compatibility. Far and near feet
+have different native endpoint heights and retain provisional heel-raised posture;
+review sole contact/baseline before accepting compatible footwear or rig anchors.
+
+Generated head and glow are unselected. Manually traced native body/hand silhouettes
+use 4×4 mask coverage without contour dilation or colour-key cleanup. Initial
+far-cup/toe clipping was corrected before this checkpoint. The accepted SE
+head/ear/eyes/complete brows/mouth and retained front/rear hair use their exact
+native coordinates. A new pose-neck derivative transfers only rows 274–297 where
+the selected body supplies skin; original source artwork is untouched. The shared
+offline facial-body reviewer verifies SE's independently authored ear/head pack,
+existing approval hashes and actual SE core-plane composition. E/W commands and
+source configs remain pinned. Scratch-only `partition-study-v1.js` replays the
+four body/mask/pose-neck outputs; source inputs are retained locally.
+
+`pnpm body:review:front-diagonals` selects `authoring.json` and exports four PNGs
+plus metadata under `assets/staging/heroine-v1/body/front-diagonals-v1/`.
+`overview.png` shows same-facing reference / new anatomy / actual layered hair fit.
+`inspection/SE-neck-shoulder-comparison.png` shows the native joint crop. Cleanup
+protects all metadata-declared current outputs. `prompts-v1.json` retains the
+built-in prompt and provenance; the historical external generated-image path
+is not a dependency. Review local silhouette transitions and inherited hair noise
+or abrupt starts against the actual body. This whole-body study does not author
+concealed reusable limbs, separate garments/skin/materials or complete hair.
+
+The SE candidate remains unapproved and uncommitted. SW/NE/NW body studies,
+body presets, full reusable geometry/materials, production T-pose and independently
+authored native pixel assets remain unfinished. The existing high-heel foot and
+from-scratch asset-authoring notes are retained. Step 6C is open; Step 6D has not
+started. Earlier W/SE statements below are historical.
+
+Validation: asset-validator typecheck, root lint (zero warnings), ESM/declaration
+build, SE CLI and accepted E/W exports passed. The extended existing E/W/SE
+actual-plane and cleanup workflows passed (2 passed, 7 skipped; 145.27 seconds),
+covering both SE eye planes, native body/neck/face ownership, hand/toe samples,
+deterministic output, immutable inputs and rejection of re-pinned body/neck/hair
+edits outside permitted ownership. The existing N body/parts workflow also passed
+during the broader shared-helper check. The first SE test compositor incorrectly
+overrode one eye; it now accumulates both. All 894 preceding source/reference
+files retain hashes and mtimes, excluding the intentional source README update.
+Four selected outputs replay byte-for-byte in scratch; all 36 current PNG hashes
+verify. Full app build and browser E2E were not rerun. See the local fit audit.
+Final cleanup removed 58 regenerable files (1.5 MiB), preserving all current
+PNGs and source baselines; dry run finds zero remaining obsolete outputs.
+The current candidate is unapproved and uncommitted.
+
 ## W revision-2 body/hair study approved — 2026-10-14
 
 The user approved the current W study, including the exposed hand and removal

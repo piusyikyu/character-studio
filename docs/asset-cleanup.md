@@ -1,5 +1,12 @@
 # Asset workspace cleanup — 2026-10-13
 
+Current SE body candidate: cleanup protects metadata-declared outputs/metadata
+under `body/front-diagonals-v1/`. Retain its native SE study, accepted head guide,
+manual masks/settings/config/provenance, bounded pose-neck derivative, revision-2
+hand envelopes/body/mask and scratch replay scripts. Revision-1 body/config remain
+pinned derivation inputs. Current native hand comparisons are metadata-protected. `pnpm body:review:front-diagonals` rebuilds current outputs.
+Accepted S/N/E/W source artwork and reviews remain protected.
+
 Current W profile body candidate: cleanup additionally protects metadata-declared
 outputs and metadata under the nested `body/profiles-v1/west/` review. The accepted
 E review remains protected at the parent root. Retain W's own selected study,

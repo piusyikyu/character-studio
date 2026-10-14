@@ -29,7 +29,16 @@ export function selectProfileBody(study: RgbaImage, input: unknown, direction: '
   if (direction !== 'E' && direction !== 'W') throw new Error('Independent profile body selections support E and W only.');
   return selectNativeBodySilhouette(study, direction === 'E' ? profileBodySelectionSchema.parse(input) : westBodySelectionSchema.parse(input));
 }
-function selectNativeBodySilhouette(study: RgbaImage, settings: z.infer<typeof northBodySelectionSchema> | z.infer<typeof profileBodySelectionSchema> | z.infer<typeof westBodySelectionSchema>) {
+const diagonalPolygon = z.array(z.tuple([z.number().int().min(0).max(1024), z.number().int().min(274).max(1536)])).min(3);
+export const frontDiagonalBodySelectionSchema = profileBodySelectionSchema.extend({
+  direction: z.literal('SE'), cutY: z.literal(274), contourTolerancePixels: z.literal(0), bodyPolygon: diagonalPolygon,
+  handPolygons: z.strictObject({ physicalLeft: diagonalPolygon, physicalRight: diagonalPolygon }),
+  neckOwnership: z.strictObject({ source: z.literal('head/soft-oval-v1/SE-neck-v1.png'), startY: z.literal(274), endY: z.literal(298), method: z.literal('remove-native-neck-coverage-only-where-selected-body-supplies-skin') }),
+});
+export function selectFrontDiagonalBody(study: RgbaImage, input: unknown) {
+  return selectNativeBodySilhouette(study, frontDiagonalBodySelectionSchema.parse(input));
+}
+function selectNativeBodySilhouette(study: RgbaImage, settings: z.infer<typeof northBodySelectionSchema> | z.infer<typeof profileBodySelectionSchema> | z.infer<typeof westBodySelectionSchema> | z.infer<typeof frontDiagonalBodySelectionSchema>) {
   if (study.width !== 1024 || study.height !== 1536) throw new Error('Native body study required.');
   const polygons = [settings.bodyPolygon, settings.handPolygons.physicalLeft, settings.handPolygons.physicalRight];
   const samples = new Uint8Array(1024 * 1536);
@@ -57,15 +66,15 @@ function selectNativeBodySilhouette(study: RgbaImage, settings: z.infer<typeof n
       }
     }
   }
-  const horizontal = new Uint8Array(samples.length), envelope = new Uint8Array(samples.length);
+  const tolerance = settings.contourTolerancePixels, horizontal = new Uint8Array(samples.length), envelope = new Uint8Array(samples.length);
   for (let y = settings.cutY; y < 1536; y++) for (let x = 0; x < 1024; x++) {
     let largest = 0;
-    for (let k = Math.max(0, x - 8); k <= Math.min(1023, x + 8); k++) largest = Math.max(largest, samples[y * 1024 + k]!);
+    for (let k = Math.max(0, x - tolerance); k <= Math.min(1023, x + tolerance); k++) largest = Math.max(largest, samples[y * 1024 + k]!);
     horizontal[y * 1024 + x] = largest;
   }
   for (let y = settings.cutY; y < 1536; y++) for (let x = 0; x < 1024; x++) {
     let largest = 0;
-    for (let k = Math.max(settings.cutY, y - 8); k <= Math.min(1535, y + 8); k++) largest = Math.max(largest, horizontal[k * 1024 + x]!);
+    for (let k = Math.max(settings.cutY, y - tolerance); k <= Math.min(1535, y + tolerance); k++) largest = Math.max(largest, horizontal[k * 1024 + x]!);
     envelope[y * 1024 + x] = largest;
   }
   const mask = blankImage(1024, 1536), body = blankImage(1024, 1536);

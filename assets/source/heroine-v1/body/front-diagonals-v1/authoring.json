@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "id": "body.front-diagonals.v1",
+  "assetVersion": 1,
+  "direction": "SE",
+  "target": "detailed",
+  "nativeSize": {
+    "width": 1024,
+    "height": 1536
+  },
+  "nativePosition": {
+    "x": 0,
+    "y": 0
+  },
+  "sourcePose": "tpose-study",
+  "intendedRuntimePose": "tpose",
+  "status": "draft-needs-human-review",
+  "published": false,
+  "paletteReady": false,
+  "productionAnatomyApproved": false,
+  "bodyOcclusionVerified": false,
+  "tposeApproved": false,
+  "finalStep6CAccepted": false,
+  "footwearCompatibilityApproved": false,
+  "underlayer": "ordinary-daily-bra-and-panties",
+  "bodyPlane": "body-torso",
+  "partitionStatus": "whole-body-study-not-final-limb-partition",
+  "headSelection": {
+    "source": "head/assembly-v1/review-selection.json",
+    "sourceSha256": "1dc21188093be1afb326b74852ec9f56125910cd6c77db620b0adc73a12b5613"
+  },
+  "headApproval": {
+    "source": "head/assembly-v1/review-fit-v1.json",
+    "sourceSha256": "57106f2c4a5b57fd130aaf009572e1ba342c3c95590ded9961f84ddf363ca83a"
+  },
+  "browConfiguration": {
+    "source": "face/reference-v1/brows-v1/authoring.json",
+    "sourceSha256": "d0c3389011e8c3ab1a19cfc04079817e94307a50a6df9895720e25c524906358"
+  },
+  "browApproval": {
+    "source": "face/reference-v1/brows-v1/review-fit-v1.json",
+    "sourceSha256": "840f36620a37c5ef5d637a29c01282230aebb554130f999fcadd9e328cf56227"
+  },
+  "earConfiguration": {
+    "source": "ears/human-v1/front-diagonals-v1/authoring.json",
+    "sourceSha256": "6069c9c9e98e7a7e92111365cdb1eebbf4401ee3b2c56f58f272e83fa39cc72f"
+  },
+  "earApproval": {
+    "source": "ears/human-v1/front-diagonals-v1/review-fit-v1.json",
+    "sourceSha256": "7ed4f3de806aa774ec141ba409168ad603b1e9cd2dda6deac0d060f5d9957ef9"
+  },
+  "headGuide": {
+    "source": "inputs/SE-head-guide.png",
+    "sourceSha256": "b94e8af78d9e973ceac795e5ec8d38447423d2d997a2a73a0b409c88738f83b1"
+  },
+  "approvedHeadBareSha256": "b94e8af78d9e973ceac795e5ec8d38447423d2d997a2a73a0b409c88738f83b1",
+  "approvedHeadFitSha256": "a96429d124e0546e972cb1189357edf07346ac221237cf640591df23371c7e8d",
+  "study": {
+    "source": "inputs/SE-body-study-v1.png",
+    "sourceSha256": "319608685d279050b7a95e882659a8a4dc237b5d76ad533d3993dadc1b3e81ff"
+  },
+  "body": {
+    "source": "SE-body-v1.png",
+    "sourceSha256": "838b02db5f22b879e96185b50e61ac402f80cc586d29c23b4bccae89dfd45f2e"
+  },
+  "selection": {
+    "source": "SE-body-mask-v1.png",
+    "sourceSha256": "f4a52b7eef59d7cc0e55c7c40b434306ef205edd53ac717e0287bcab2251006d"
+  },
+  "settings": {
+    "source": "selections-v1.json",
+    "sourceSha256": "f47863690489a2c097fe6509fcf2c8edd4da2853c74ba709c10c8e1f550d75a6"
+  },
+  "provenance": {
+    "source": "prompts-v1.json",
+    "sourceSha256": "340986746a709ba81a7a938abbfe5e004d5898b5e30f2c6c36957f53d9bac1a5"
+  },
+  "posedNeck": {
+    "source": "SE-neck-body-fit-v1.png",
+    "sourceSha256": "5682b9e960a37e17f5a07e84be2813497e605545a39a3ffe22b508840257c978"
+  },
+  "neckSelection": {
+    "source": "SE-neck-to-body-v1.png",
+    "sourceSha256": "8a1271c257d84c34278c360a56803d8cc3b2b4cb3faac8c4e368e93158fb32a3"
+  },
+  "futureFootwearFitObligations": [
+    "Current S/N feet are made for high heels; different kinds of shoes may require extra independently authored leg-and-foot parts.",
+    "SE feet remain provisional heel-raised studies. Before barefoot, flat-shoe or other footwear acceptance, review ankle posture, leg/foot attachment, sole contact and ground baseline with independently authored same-facing variants."
+  ],
+  "knownReviewIssues": [
+    "SE body is independently authored from its own SE guide/reference. Review three-quarter torso/pelvis orientation, near physical-right and far physical-left arm projection, hands/thumbs, knees and feet.",
+    "Accepted SE head/ears/eyes/complete brows/mouth and source hair remain unchanged at native coordinates. Pose-specific neck coverage transfers rows 274–297 only where the new body supplies skin. Review neck/shoulder shading.",
+    "Tight manually traced native masks reject the generated glow; review silhouette coverage, fingers and local mask transitions. No mirroring, shifts, scaling or colour-key cleanup.",
+    "Whole-body study retains ordinary opaque daily bra/panties. Concealed geometry, independent limbs/skin/clothing and materials are unfinished.",
+    "Inherited SE hair needs actual body-fit review; abrupt ends, edge noise and possible reference clothing fragments are not certified clean.",
+    "Provisional heel-raised feet do not certify barefoot, flat-shoe or arbitrary-footwear compatibility.",
+    "SW/NE/NW body facings, presets, production T-pose, independent native pixel artwork and final Step 6C remain unfinished. Step 6D has not started."
+  ]
+}

@@ -108,7 +108,8 @@ pnpm body:review:parts # Approved native S torso/arms/legs layering study
 pnpm body:review:north # Approved independent N/full-back body and posterior hair fit
 pnpm body:review:parts:north # Approved native N torso/arms/legs layering study
 pnpm body:review:profiles # Approved E body profile and actual native head/hair fit
-pnpm body:review:profiles:west # W revision-2 local hair/hand repair; separate review
+pnpm body:review:profiles:west # Approved W revision-2 body/hair study
+pnpm body:review:front-diagonals # SE hand revision-2 candidate; native anatomy/head/hair fit
 pnpm body:review:v5 # Rebuild the preceding antialiased curl candidate with colour spill
 pnpm body:review:v4 # Rebuild the mostly approved body/neck with the curl-edge nitpick
 pnpm body:review:v3 # Rebuild the preceding single-joint shoulder/neck candidate

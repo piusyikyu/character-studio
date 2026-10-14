@@ -8,8 +8,9 @@ import type { RgbaImage } from '@character-studio/render-utils';
 import { northBodyReviewSchema } from './body-north-review';
 import type { NorthBodyReviewOptions } from './body-north-review';
 import { loadBrowReview } from './brow-review';
+import { repairSeHandSilhouettes } from './body-diagonal-hand-repair';
 import { repairWestProfileHair } from './body-profile-hair-repair';
-import { selectProfileBody } from './body-silhouette';
+import { selectFrontDiagonalBody, selectProfileBody } from './body-silhouette';
 import { checkerPreview } from './inspection';
 import { sha256 } from './reference-import';
 
@@ -22,11 +23,24 @@ export const profileBodyReviewSchema = northBodyReviewSchema.omit({ headConfigur
 });
 export const westBodyReviewSchema = profileBodyReviewSchema.extend({ direction: z.literal('W') });
 export const westBodyReviewV2Schema = westBodyReviewSchema.extend({ assetVersion: z.literal(2), previous: pin, hairRepair: z.strictObject({ front: pin, rear: pin, toRear: pin, discard: pin, settings: pin, provenance: pin }) });
+export const frontDiagonalBodyReviewSchema = profileBodyReviewSchema.extend({ id: z.literal('body.front-diagonals.v1'), direction: z.literal('SE') });
+export const frontDiagonalBodyReviewV2Schema = frontDiagonalBodyReviewSchema.extend({ assetVersion: z.literal(2), previous: pin, handRepair: z.strictObject({ settings: pin, provenance: pin }) });
+export interface FrontDiagonalBodyReviewOptions extends NorthBodyReviewOptions { readonly configFile?: 'authoring.json' | 'authoring-v2.json' }
 export interface ProfileBodyReviewOptions extends NorthBodyReviewOptions { readonly configFile?: 'authoring.json' | 'authoring-w-v1.json' | 'authoring-w-v2.json' }
 const inside = (base: string, path: string) => { const p = relative(base, path); return p === '' || (!isAbsolute(p) && p !== '..' && !p.startsWith('../')); };
 
 /** Independent E/W anatomy studies; accepted facial/hair sources stay native and immutable. */
 export async function prepareProfileBodyReview(options: ProfileBodyReviewOptions) {
+  const configFile = options.configFile ?? 'authoring.json';
+  if (configFile !== 'authoring.json' && configFile !== 'authoring-w-v1.json' && configFile !== 'authoring-w-v2.json') throw new Error('Supported profile body configurations are authoring.json (E) and authoring-w-v1.json / authoring-w-v2.json (W).');
+  return prepareFacialBodyReview(options, configFile, configFile === 'authoring.json' ? 'E' : 'W');
+}
+export async function prepareFrontDiagonalBodyReview(options: FrontDiagonalBodyReviewOptions) {
+  const configFile = options.configFile ?? 'authoring-v2.json';
+  if (configFile !== 'authoring.json' && configFile !== 'authoring-v2.json') throw new Error('Supported SE body configurations are authoring.json and authoring-v2.json.');
+  return prepareFacialBodyReview(options, configFile, 'SE');
+}
+async function prepareFacialBodyReview(options: NorthBodyReviewOptions, configFile: 'authoring.json' | 'authoring-w-v1.json' | 'authoring-w-v2.json' | 'authoring-v2.json', direction: 'E' | 'W' | 'SE') {
   const [root, assets, refs] = await Promise.all([options.sourceDirectory, options.assetDirectory, options.referenceDirectory].map(p => realpath(p)));
   const out = resolve(options.outputDirectory), inputs = new Map<string, string>();
   if ([root!, assets!, refs!].some(p => inside(p, out) || inside(out, p))) throw new Error('Profile body outputs and inputs must be disjoint.');
@@ -48,33 +62,43 @@ export async function prepareProfileBodyReview(options: ProfileBodyReviewOptions
     if (normalize) for (let i = 0; i < image.data.length; i += 4) if (image.data[i + 3]! < 8) image.data.fill(0, i, i + 4);
     return image;
   };
-  const configFile = options.configFile ?? 'authoring.json';
-  if (configFile !== 'authoring.json' && configFile !== 'authoring-w-v1.json' && configFile !== 'authoring-w-v2.json') throw new Error('Supported profile body configurations are authoring.json (E) and authoring-w-v1.json / authoring-w-v2.json (W).');
-  const direction = configFile === 'authoring.json' ? 'E' : 'W';
   const bytes = await read(root!, { source: configFile }), parsed: unknown = JSON.parse(bytes.toString('utf8'));
-  const config = direction === 'E' ? profileBodyReviewSchema.parse(parsed) : configFile === 'authoring-w-v2.json' ? westBodyReviewV2Schema.parse(parsed) : westBodyReviewSchema.parse(parsed);
-  const paths = { headSelection: 'head/assembly-v1/review-selection.json', headApproval: 'head/assembly-v1/review-fit-v1.json', browConfiguration: 'face/reference-v1/brows-v1/authoring.json', browApproval: 'face/reference-v1/brows-v1/review-fit-v1.json', earConfiguration: 'ears/human-v1/profiles-v1/authoring.json', earApproval: 'ears/human-v1/profiles-v1/review-fit-v1.json' } as const;
+  const config = direction === 'SE' ? configFile === 'authoring-v2.json' ? frontDiagonalBodyReviewV2Schema.parse(parsed) : frontDiagonalBodyReviewSchema.parse(parsed) : direction === 'E' ? profileBodyReviewSchema.parse(parsed) : configFile === 'authoring-w-v2.json' ? westBodyReviewV2Schema.parse(parsed) : westBodyReviewSchema.parse(parsed);
+  const earDirectory = direction === 'SE' ? 'ears/human-v1/front-diagonals-v1' : 'ears/human-v1/profiles-v1', packKey = direction === 'SE' ? 'frontDiagonals' : 'profiles';
+  const paths = { headSelection: 'head/assembly-v1/review-selection.json', headApproval: 'head/assembly-v1/review-fit-v1.json', browConfiguration: 'face/reference-v1/brows-v1/authoring.json', browApproval: 'face/reference-v1/brows-v1/review-fit-v1.json', earConfiguration: earDirectory + '/authoring.json', earApproval: earDirectory + '/review-fit-v1.json' } as const;
   for (const [key, path] of Object.entries(paths)) if (config[key as keyof typeof paths].source !== path) throw new Error('Profile body requires the accepted native profile head/ear/brow selection.');
-  const pack = z.object({ directory: z.literal('ears/human-v1/profiles-v1'), configuration: pin, approval: pin });
-  const selected = z.object({ packs: z.object({ profiles: pack }), frames: z.object({ [direction]: z.literal('profiles') }), browCompletion: pin, browApproval: pin });
+  const pack = z.object({ directory: z.literal(earDirectory), configuration: pin, approval: pin });
+  const selected = z.object({ packs: z.object({ [packKey]: pack }), frames: z.object({ [direction]: z.literal(packKey) }), browCompletion: pin, browApproval: pin });
   const selection = selected.parse(await json(assets!, config.headSelection));
   const approval = z.object({ decision: z.literal('approved-standing-reference-head-set'), standingReferenceHeadSetApproved: z.literal(true), selectedState: selected, frames: z.array(z.object({ direction: z.string(), fitSha256: hash, bareSha256: hash })), futureBodyFitObligations: z.array(z.string()), futureHairstyleFitObligations: z.array(z.string()) }).parse(await json(assets!, config.headApproval));
   const browApproval = z.object({ configSha256: hash, decision: z.literal('approved-standing-reference-fit'), fitMeasurements: z.array(z.object({ direction: z.string(), outputSha256: hash, bareSha256: hash })) }).parse(await json(assets!, config.browApproval));
   await read(assets!, config.earConfiguration);
   const earApproval = z.object({ configSha256: hash, decision: z.literal('approved-standing-reference-fit') }).parse(await json(assets!, config.earApproval));
   const accepted = approval.frames.find(f => f.direction === direction), browFit = browApproval.fitMeasurements.find(f => f.direction === direction);
-  if (JSON.stringify(selection) !== JSON.stringify(approval.selectedState) || selection.packs.profiles.configuration.sourceSha256 !== config.earConfiguration.sourceSha256 || selection.packs.profiles.approval.sourceSha256 !== config.earApproval.sourceSha256 || earApproval.configSha256 !== config.earConfiguration.sourceSha256 || selection.browCompletion.sourceSha256 !== config.browConfiguration.sourceSha256 || selection.browApproval.sourceSha256 !== config.browApproval.sourceSha256 || browApproval.configSha256 !== config.browConfiguration.sourceSha256 || accepted?.fitSha256 !== config.approvedHeadFitSha256 || accepted.bareSha256 !== config.approvedHeadBareSha256 || browFit?.outputSha256 !== config.approvedHeadFitSha256 || browFit.bareSha256 !== config.approvedHeadBareSha256) throw new Error('Profile body approvals must match accepted same-facing facial and hair hashes.');
+  if (JSON.stringify(selection) !== JSON.stringify(approval.selectedState) || selection.packs[packKey]!.configuration.sourceSha256 !== config.earConfiguration.sourceSha256 || selection.packs[packKey]!.approval.sourceSha256 !== config.earApproval.sourceSha256 || earApproval.configSha256 !== config.earConfiguration.sourceSha256 || selection.browCompletion.sourceSha256 !== config.browConfiguration.sourceSha256 || selection.browApproval.sourceSha256 !== config.browApproval.sourceSha256 || browApproval.configSha256 !== config.browConfiguration.sourceSha256 || accepted?.fitSha256 !== config.approvedHeadFitSha256 || accepted.bareSha256 !== config.approvedHeadBareSha256 || browFit?.outputSha256 !== config.approvedHeadFitSha256 || browFit.bareSha256 !== config.approvedHeadBareSha256) throw new Error('Profile body approvals must match accepted same-facing facial and hair hashes.');
   const browBytes = await read(assets!, config.browConfiguration);
   const brow = await loadBrowReview({ sourceDirectory: resolve(assets!, 'face/reference-v1/brows-v1'), assetDirectory: assets!, referenceDirectory: refs!, configuration: { source: 'authoring.json', sourceSha256: sha256(browBytes) } });
   const frame = brow.frames.get(direction)!, baseline = brow.config.frames[direction];
   if (sha256(encodePng(frame.fit)) !== config.approvedHeadFitSha256 || sha256(encodePng(frame.bare)) !== config.approvedHeadBareSha256) throw new Error('Profile body must preserve the actual accepted same-facing native head/hair composition.');
   const [guide, study, body, mask, posedNeck, neckMask] = await Promise.all([load(root!, config.headGuide), load(root!, config.study, false), load(root!, config.body), load(root!, config.selection, false), load(root!, config.posedNeck), load(root!, config.neckSelection, false)]);
   const settings = await json(root!, config.settings); await read(root!, config.provenance);
-  const expected = selectProfileBody(study!, settings, direction);
+  let expected = direction === 'SE' ? selectFrontDiagonalBody(study!, settings) : selectProfileBody(study!, settings, direction);
+  let originalHandBody = body!, handRepairMeasurements: ReturnType<typeof repairSeHandSilhouettes>['measurements'] | undefined;
+  if (config.direction === 'SE' && config.assetVersion === 2) {
+    if (config.previous.source !== 'authoring.json') throw new Error('SE hand repair requires its pinned revision-1 baseline.');
+    const previous = frontDiagonalBodyReviewSchema.parse(await json(root!, config.previous));
+    for (const key of Object.keys(previous) as (keyof typeof previous)[]) if (!['assetVersion', 'body', 'selection', 'knownReviewIssues'].includes(key) && JSON.stringify(config[key]) !== JSON.stringify(previous[key])) throw new Error('SE hand repair must preserve all non-hand anatomy and native head/neck/hair baselines.');
+    const [oldBody, oldMask] = await Promise.all([load(root!, previous.body), load(root!, previous.selection, false)]);
+    if (oldBody!.data.some((v, i) => v !== expected.body.data[i]) || oldMask!.data.some((v, i) => v !== expected.mask.data[i])) throw new Error('Pinned SE hand baseline must preserve native study ownership.');
+    const provenance = z.object({ tool: z.literal('manual native mask authoring'), baseline: pin, generatedAnatomy: z.literal(false), shiftedScaledOrMirrored: z.literal(false), globalColorKey: z.literal(false) }).parse(await json(root!, config.handRepair.provenance));
+    if (JSON.stringify(provenance.baseline) !== JSON.stringify(config.previous)) throw new Error('SE hand repair provenance must pin revision 1.');
+    const repaired = repairSeHandSilhouettes(study!, oldBody!, oldMask!, await json(root!, config.handRepair.settings));
+    originalHandBody = oldBody!; expected = repaired; handRepairMeasurements = repaired.measurements;
+  }
   if (body!.data.some((v, i) => v !== expected.body.data[i]) || mask!.data.some((v, i) => v !== expected.mask.data[i])) throw new Error(direction + ' body must retain native study ownership in the authored silhouette.');
   if (sha256(encodePng(guide!)) !== config.approvedHeadBareSha256) throw new Error(direction + ' guide must preserve the exact accepted head/neck/ear/facial pixels.');
   let neckTransferredPixels = 0;
-  const cutY = direction === 'E' ? 300 : 306, neckEndY = direction === 'E' ? 311 : 317;
+  const cutY = direction === 'SE' ? 274 : direction === 'E' ? 300 : 306, neckEndY = direction === 'SE' ? 298 : direction === 'E' ? 311 : 317;
   for (let i = 0; i < frame.neck.data.length; i += 4) {
     const y = Math.floor(i / 4096), selected = y >= cutY && y < neckEndY && frame.neck.data[i + 3]! >= 8 && body!.data[i + 3]! >= 8;
     if (selected) neckTransferredPixels++;
@@ -83,7 +107,7 @@ export async function prepareProfileBodyReview(options: ProfileBodyReviewOptions
   if (!neckTransferredPixels) throw new Error('Profile body must supply skin at its bounded neck attachment.');
   let fittedFront = frame.front, fittedRear = frame.rear;
   let hairRepairMeasurements: ReturnType<typeof repairWestProfileHair>['measurements'] | undefined;
-  if (config.assetVersion === 2) {
+  if (config.direction === 'W' && config.assetVersion === 2) {
     if (config.previous.source !== 'authoring-w-v1.json') throw new Error('W hair repair requires its pinned revision-1 baseline.');
     const previous = westBodyReviewSchema.parse(await json(root!, config.previous));
     for (const key of Object.keys(previous) as (keyof typeof previous)[]) if (key !== 'assetVersion' && key !== 'knownReviewIssues' && JSON.stringify(config[key]) !== JSON.stringify(previous[key])) throw new Error('W hair repair must preserve the native body, neck, head, face and study baselines.');
@@ -121,13 +145,28 @@ export async function prepareProfileBodyReview(options: ProfileBodyReviewOptions
     drawRgba(join, checkerPreview(crop, direction), j * 380, 0);
   }
   const pending = [{ path: `fit/${direction}-anatomy.png`, image: anatomy }, { path: `fit/${direction}.png`, image: fit }, { path: 'overview.png', image: overview }, { path: `inspection/${direction}-neck-shoulder-comparison.png`, image: join }];
-  if (config.assetVersion === 2) {
+  if (config.direction === 'W' && config.assetVersion === 2) {
     const comparison = blankImage(2048, 1536);
     drawRgba(comparison, checkerPreview(compose(true, true, false), direction), 0, 0);
     drawRgba(comparison, checkerPreview(fit, direction), 1024, 0);
     pending.push({ path: 'inspection/W-hair-fit-comparison.png', image: comparison });
   }
-  const report = { schemaVersion: 1, id: config.id, assetVersion: config.assetVersion, hairRepairMeasurements, configuration: configFile, configSha256: sha256(bytes), status: config.status, supportedReviewDirections: [direction], sourcePose: config.sourcePose, nativePosition: config.nativePosition, independentlyAuthored: true, underlayer: config.underlayer, partitionStatus: config.partitionStatus, compositionOrder: DIRECTION_PLANE_ORDER[direction], preservedHeadBareSha256: config.approvedHeadBareSha256, bodyFreeAssemblySha256: sha256(encodePng(bodyFree)), bareSha256: sha256(encodePng(anatomy)), fitSha256: sha256(encodePng(fit)), posedNeckSha256: sha256(encodePng(posedNeck!)), measurements: { selectedBodyPixels: pixels, boundaryPixels, neckTransferredPixels, frontHairOverlapPixels: frontOverlap, rearHairOverlapPixels: rearOverlap, bounds: { left, top, right, bottom } }, comparisonColumns: ['same-facing standing reference', `independent ${direction} body with accepted facial layers and local neck attachment`, 'actual same-facing front/rear hair fit'], previewSampling: 'native-copy-no-transforms', hairComparisonColumns: config.assetVersion === 2 ? ['revision 1 hair overlap and reference clothing fragment', 'revision 2 bounded hair depth and fragment repair'] : undefined, published: false, paletteReady: false, productionAnatomyApproved: false, bodyOcclusionVerified: false, footwearCompatibilityApproved: false, tposeApproved: false, finalStep6CAccepted: false, step6DStarted: false, futureFootwearFitObligations: config.futureFootwearFitObligations, futureBodyFitObligations: approval.futureBodyFitObligations, futureHairstyleFitObligations: approval.futureHairstyleFitObligations, knownReviewIssues: config.knownReviewIssues, outputs: pending.map(p => ({ path: p.path, sha256: sha256(encodePng(p.image)) })) };
+  if (config.direction === 'SE' && config.assetVersion === 2) {
+    // Study / old export / repaired export; both hands on dark and light backgrounds.
+    const inspection = blankImage(1920, 1440), regions = [{ x: 35, y: 315 }, { x: 875, y: 330 }];
+    for (const [row, bg] of [48, 245].entries()) for (const [side, region] of regions.entries()) for (const [column, source] of [study!, originalHandBody, body!].entries()) {
+      for (let y = 0; y < 90; y++) for (let x = 0; x < 160; x++) {
+        const i = ((region.y + y) * 1024 + region.x + x) * 4, alpha = region.x + x < 1024 ? source.data[i + 3]! / 255 : 0;
+        for (let sy = 0; sy < 4; sy++) for (let sx = 0; sx < 4; sx++) {
+          const p = (((row * 2 + side) * 360 + y * 4 + sy) * inspection.width + column * 640 + x * 4 + sx) * 4;
+          for (let c = 0; c < 3; c++) inspection.data[p + c] = Math.round((alpha ? source.data[i + c]! : 0) * alpha + bg * (1 - alpha));
+          inspection.data[p + 3] = 255;
+        }
+      }
+    }
+    pending.push({ path: 'inspection/SE-hand-alpha-comparison.png', image: inspection });
+  }
+  const report = { schemaVersion: 1, id: config.id, assetVersion: config.assetVersion, hairRepairMeasurements, handRepairMeasurements, configuration: configFile, configSha256: sha256(bytes), status: config.status, supportedReviewDirections: [direction], sourcePose: config.sourcePose, nativePosition: config.nativePosition, independentlyAuthored: true, underlayer: config.underlayer, partitionStatus: config.partitionStatus, compositionOrder: DIRECTION_PLANE_ORDER[direction], preservedHeadBareSha256: config.approvedHeadBareSha256, bodyFreeAssemblySha256: sha256(encodePng(bodyFree)), bareSha256: sha256(encodePng(anatomy)), fitSha256: sha256(encodePng(fit)), posedNeckSha256: sha256(encodePng(posedNeck!)), measurements: { selectedBodyPixels: pixels, boundaryPixels, neckTransferredPixels, frontHairOverlapPixels: frontOverlap, rearHairOverlapPixels: rearOverlap, bounds: { left, top, right, bottom } }, comparisonColumns: ['same-facing standing reference', `independent ${direction} body with accepted facial layers and local neck attachment`, 'actual same-facing front/rear hair fit'], previewSampling: 'native-copy-no-transforms', handComparisonColumns: config.direction === 'SE' && config.assetVersion === 2 ? ['native generated study', 'revision 1 exported hands with missing interiors', 'revision 2 native hand masks'] : undefined, hairComparisonColumns: config.direction === 'W' && config.assetVersion === 2 ? ['revision 1 hair overlap and reference clothing fragment', 'revision 2 bounded hair depth and fragment repair'] : undefined, published: false, paletteReady: false, productionAnatomyApproved: false, bodyOcclusionVerified: false, footwearCompatibilityApproved: false, tposeApproved: false, finalStep6CAccepted: false, step6DStarted: false, futureFootwearFitObligations: config.futureFootwearFitObligations, futureBodyFitObligations: approval.futureBodyFitObligations, futureHairstyleFitObligations: approval.futureHairstyleFitObligations, knownReviewIssues: config.knownReviewIssues, outputs: pending.map(p => ({ path: p.path, sha256: sha256(encodePng(p.image)) })) };
   for (const p of [...pending.map(p => ({ path: p.path, bytes: encodePng(p.image) })), { path: 'metadata.json', bytes: Buffer.from(JSON.stringify(report, null, 2) + '\n') }]) {
     const path = resolve(out, p.path);
     for (let parent = path; inside(out, parent); parent = dirname(parent)) {

@@ -78,7 +78,8 @@
     "body:review:north": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-north-review-cli.js",
     "body:review:parts:north": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-parts-review-cli.js --north",
     "body:review:profiles": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-profile-review-cli.js",
-    "body:review:profiles:west": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-profile-review-cli.js --west"
+    "body:review:profiles:west": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-profile-review-cli.js --west",
+    "body:review:front-diagonals": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-diagonal-review-cli.js"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.0",

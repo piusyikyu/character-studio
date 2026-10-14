@@ -1,5 +1,14 @@
 # Source artwork
 
+Approved SE body study (hand revision 2): `heroine-v1/body/front-diagonals-v1/` retains an
+independent SE study, native accepted head guide, tight manual body/hand masks,
+bounded pose-neck layer and scratch-only replay. `authoring-v2.json` repairs
+hand interiors using bounded native envelopes and the retained study alpha;
+revision-1 config/body/mask remain derivation inputs. `pnpm body:review:front-diagonals`
+exports reference/anatomy/actual hair fit. SE approval is pinned in `review-fit-v2.json`; SW is not
+supplied or mirrored. Ordinary bra/panties are modesty coverage, not separated
+production garments. All approved source art and footwear limitations stay intact.
+
 Approved E body study: `heroine-v1/body/profiles-v1/` retains an independently
 authored E study with ordinary bra/panties, foreshortened near-arm projection,
 manual native silhouette and bounded pose-neck attachment.
