@@ -104,7 +104,8 @@ pnpm face:review:front-diagonals:v3 # Reproduce the rejected narrow far-eye extr
 pnpm face:review:front-diagonals:v2 # Reproduce the approved facial fit before far-eye ownership correction
 pnpm face:review:front-diagonals:v1 # Reproduce the preceding facial fit with SE cheek tint
 pnpm body:review # Approved S revision-6 body/head/hair study
-pnpm body:review:parts # Native S torso/arms/legs; actual five-plane recomposition for review
+pnpm body:review:parts # Approved native S torso/arms/legs layering study
+pnpm body:review:north # Independent N/full-back body and actual posterior hair fit
 pnpm body:review:v5 # Rebuild the preceding antialiased curl candidate with colour spill
 pnpm body:review:v4 # Rebuild the mostly approved body/neck with the curl-edge nitpick
 pnpm body:review:v3 # Rebuild the preceding single-joint shoulder/neck candidate

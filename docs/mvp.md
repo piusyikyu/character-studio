@@ -1,5 +1,57 @@
 # MVP Plan — Female Character Studio
 
+## N full-back body study approved — 2026-10-14
+
+The user approved `body/north-v1/` and requested cleanup, a local commit and
+continued Step 6C work. `review-fit-v1.json` pins the exact configuration, native
+body/pose-neck selections and actual anatomy/hair fit hashes. This accepts the
+current independent N study with everyday bra/panties and its two-row neck
+attachment. Approved original N head/neck/hair, S body and S parts stay unchanged.
+The next bounded increment partitions the accepted N body into five native
+visible-pixel torso/arm/leg layers and verifies actual N-plane recomposition.
+Concealed joints, separate clothing, rig anchors/materials, remaining facings,
+production T-pose and independent pixel artwork remain unfinished. Step 6C is
+open; Step 6D has not started. Earlier pending statements are historical.
+
+## Independent N body anatomy candidate — 2026-10-14
+
+Local commit `8212716` records the approved five-part S visible-pixel study,
+its scoped approval and actual-composition tooling. Cleanup removed 50 generated
+build files (1.5 MiB), preserving accepted sources and current reviews.
+
+The next Step 6C increment is `body/north-v1/`: an independently generated N /
+full-back T-pose body study. It uses ordinary opaque grey daily bra and full-
+coverage panties, with a posterior back band/clasp and shoulder straps. No S
+anatomy pixels, mirroring, scaling, rotation or source shifts are used. The
+accepted N head and neck supply the native guide; generated head pixels are
+unselected. Manual native body/hand contours retain only same-facing study RGBA
+below y312 and reject background glow. Scratch replay writes new files only.
+
+The standing N neck had a bottom outline exposed against the new upper back.
+A new pose-specific neck derivative transfers coverage only at rows 312–313,
+where the selected body supplies skin. Original head/neck, hair, ear variants
+and approvals remain unchanged. Body-free composition still matches the approved
+posterior head/hair fit exactly; the actual body composition uses this bounded
+neck attachment. Skin transitions and anatomical coherence still need review.
+
+`pnpm body:review:north` builds four PNGs and metadata under
+`assets/staging/heroine-v1/body/north-v1/`. `overview.png` shows same-facing
+standing reference / new anatomy / actual layered hair fit. Review shoulders,
+neck shading, back-view hands/thumbs, bra/panty topology, leg proportions and
+heel baseline, including `inspection/N-neck-shoulder-comparison.png`.
+The actual `DIRECTION_PLANE_ORDER.N` draws posterior hair after the body;
+eyes, brows, mouth and frontal hair remain absent. No display-panel alignment
+changes are used. Existing S body and part commands retain their accepted inputs.
+
+This is an unapproved, uncommitted whole-body modesty study, not fully concealed
+skin, separate underwear/limbs, production T-pose or a new runtime catalog.
+Manual contour edges, inherited N hair noise, concealed geometry, rig anchors,
+materials, other body facings/presets and independent native pixel artwork remain
+open. Step 6C is unfinished; Step 6D has not started. Earlier pending statements
+below are historical.
+
+N-study verification: asset-validator typecheck, root lint (zero warnings), ESM/declaration build and `body:review:north` passed. The native N body workflow and extended cleanup workflow passed (2 passed, 6 unrelated head/body workflows skipped; 14.09 seconds), covering actual posterior hair order, hidden frontal features, exact retained body-free approved head fit, bounded pose-neck ownership, native hand/heel samples, deterministic exports, immutable inputs and rejection of re-pinned body/neck edits or wrong-facing hair. All 838 preceding source/reference hashes and mtimes remain unchanged, excluding the intentional source README edit. Four selected authoring outputs replay byte-for-byte in scratch, and 18 new/accepted review PNG hashes verify. Initial metadata-reader and occlusion-witness errors were corrected; no checks remain failing. Full app build and browser E2E were not rerun. The N candidate remains uncommitted pending visual approval. Post-validation cleanup removed 52 regenerated files (1.5 MiB), preserved all 18 checked PNGs and accepted sources, and left zero obsolete generated files.
+
 ## S body-part study approved — 2026-10-14
 
 The user approved `body/parts-v1/` and requested cleanup, a local commit and

@@ -1,5 +1,12 @@
 # Asset workspace cleanup — 2026-10-13
 
+Current N body candidate: cleanup protects metadata-declared outputs and metadata
+under `body/north-v1/`, alongside both accepted S body/part reviews. Retain the
+selected native study, manual silhouettes/settings, accepted head guide, bounded
+neck derivative/mask and scratch replay script. Historical external generated
+paths in prompt records are not dependencies. Rebuild the current four PNGs
+through `pnpm body:review:north`; obsolete generated previews remain removable.
+
 Current S part study (2026-10-14): cleanup protects metadata-declared outputs
 and metadata under `body/parts-v1/`, alongside the approved revision-6 body
 review. Five source layers, pinned configuration/settings/provenance and the

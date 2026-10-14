@@ -1,5 +1,13 @@
 # Source artwork
 
+Approved N study: `heroine-v1/body/north-v1/` retains the independently authored
+full-back study, manual body/hand silhouette, accepted native head guide and a
+bounded two-row pose-specific neck attachment. `pnpm body:review:north` exports
+reference / anatomy / actual hair fit. `review-fit-v1.json` pins the scoped approval. Plain opaque daily bra
+and full-coverage panties are modesty clothing; separate garments/limbs and
+concealed skin remain unfinished. No S pixels, mirrors or transforms are used.
+Replay authoring only in scratch. Existing approvals and sources stay unchanged.
+
 Approved S part study: `heroine-v1/body/parts-v1/` retains five exclusive visible-pixel
 body layers at native positions. `pnpm body:review:parts` verifies their actual
 composition against the approved revision-6 fit. `review-fit-v1.json` pins the scoped approval;

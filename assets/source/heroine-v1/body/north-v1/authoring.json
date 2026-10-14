@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "id": "body.north.v1",
+  "assetVersion": 1,
+  "direction": "N",
+  "target": "detailed",
+  "nativeSize": {
+    "width": 1024,
+    "height": 1536
+  },
+  "nativePosition": {
+    "x": 0,
+    "y": 0
+  },
+  "sourcePose": "tpose-study",
+  "intendedRuntimePose": "tpose",
+  "status": "draft-needs-human-review",
+  "published": false,
+  "paletteReady": false,
+  "productionAnatomyApproved": false,
+  "bodyOcclusionVerified": false,
+  "tposeApproved": false,
+  "finalStep6CAccepted": false,
+  "underlayer": "ordinary-daily-bra-and-panties",
+  "bodyPlane": "body-torso",
+  "partitionStatus": "whole-body-study-not-final-limb-partition",
+  "headConfiguration": {
+    "source": "head/soft-oval-v1/authoring-v5.json",
+    "sourceSha256": "b953e1eeff3e797eb4f32189f7a9e433d7503a7accf0900eef4f5f9e15b2dc0a"
+  },
+  "hairConfiguration": {
+    "source": "hair/long-waves-v1/authoring-v1.json",
+    "sourceSha256": "8f88d9a4d5aae1003ffebd28edfe07d7fbd51306050b0d766917ef9e913c82c3"
+  },
+  "headSelection": {
+    "source": "head/assembly-v1/review-selection.json",
+    "sourceSha256": "1dc21188093be1afb326b74852ec9f56125910cd6c77db620b0adc73a12b5613"
+  },
+  "headApproval": {
+    "source": "head/assembly-v1/review-fit-v1.json",
+    "sourceSha256": "57106f2c4a5b57fd130aaf009572e1ba342c3c95590ded9961f84ddf363ca83a"
+  },
+  "earConfiguration": {
+    "source": "ears/human-v1/north-v1/authoring.json",
+    "sourceSha256": "9b6e962977577f44d82d4b83c370cf2809e5d848d10355c7fde4306df76b64a3"
+  },
+  "earApproval": {
+    "source": "ears/human-v1/north-v1/review-fit-v1.json",
+    "sourceSha256": "22eccd66e6f1c763914faa88a191a58bee150ceeead3d6efb842d9d7c9b92607"
+  },
+  "originalHead": {
+    "source": "head/soft-oval-v1/N-head-v1.png",
+    "sourceSha256": "0551734b677bd85fbd6c91124566bfbb9757a5b7533b141fc5306a3f2fdcbae6"
+  },
+  "originalNeck": {
+    "source": "head/soft-oval-v1/N-neck-v1.png",
+    "sourceSha256": "52e437d6e78ab93ffbf0f4b1367032b8f8df825b953e6bc0c98bf19e7ec8e9c4"
+  },
+  "rearHair": {
+    "source": "hair/long-waves-v1/N-rear.png",
+    "sourceSha256": "92e7688eb6f10d5f3fb41ff07240b3bed88b13fb0ed98b6c53034b2e6be53878"
+  },
+  "headGuide": {
+    "source": "inputs/N-head-guide.png",
+    "sourceSha256": "b03813a64dbea0f7362d32788905ff37de54b30c8efd1d6aa4e3c43b7b8584b8"
+  },
+  "approvedHeadBareSha256": "b03813a64dbea0f7362d32788905ff37de54b30c8efd1d6aa4e3c43b7b8584b8",
+  "approvedHeadFitSha256": "0a804f17591307be3752fcfdeb14905651aa6038ddc299a61049c2a86b473bdb",
+  "reference": {
+    "source": "N.png",
+    "sourceSha256": "299756dbb6e643707daa0d899c440980501da9f138f8043fbb1d299214959539"
+  },
+  "study": {
+    "source": "inputs/N-body-study.png",
+    "sourceSha256": "c0737f9031e13b28bf5b8b8d82602b9de534a176d09ccc130d076e7251164895"
+  },
+  "body": {
+    "source": "N-body-v1.png",
+    "sourceSha256": "9b0e8d85a5b55bc9c16458fbb7d3d75ee0bf3bfad649877cd94506fea04bbf16"
+  },
+  "selection": {
+    "source": "N-body-mask-v1.png",
+    "sourceSha256": "ea49d5241f595dcbf37c1cdb2bc888889711dfde5d2577c14b5f1ed550295054"
+  },
+  "settings": {
+    "source": "selections.json",
+    "sourceSha256": "633da9f0f3a9855bd31fab38ab4f4becc040911ba4c3216336f426b79a7be349"
+  },
+  "provenance": {
+    "source": "prompts.json",
+    "sourceSha256": "9046977ceb1d3e13d1fe5e7422cc5fa4c5ab0d9826917486ae80e3fb7fdea8c7"
+  },
+  "knownReviewIssues": [
+    "Two native attachment rows (312–313) transfer neck coverage to the same-facing body, removing the standing neck bottom outline. Review skin matching and the pose-specific transition; approved original head/neck stay unchanged.",
+    "Plain grey bra back band/clasp and full-coverage panties are anatomy modesty garments, not the starter outfit or complete concealed skin.",
+    "Whole-body study: limbs, underwear, concealed shoulder/hip joints, materials and rig anchors remain unpartitioned/unapproved.",
+    "Check natural back-view hand/thumb identity, elbows, posterior legs and heel baseline against compatible S proportions. No S pixels, mirroring or deformation is used.",
+    "Inherited N hair edges/cap geometry and manual silhouette transitions remain review debt; actual N hair-rear draws after the body under the existing core order.",
+    "Other body facings, production T-pose, independently authored pixel artwork and final Step 6C remain unfinished; Step 6D has not started."
+  ],
+  "posedNeck": {
+    "source": "N-neck-body-fit-v1.png",
+    "sourceSha256": "6244640343b868eb4966c157f1c843b0ec750907455afbe8101a2dd3d58fd7bf"
+  },
+  "neckSelection": {
+    "source": "N-neck-to-body-v1.png",
+    "sourceSha256": "ef312b041e3b0a8e9c29cc81f29006e64030ee775421f59612f1b6a86b38f39d"
+  }
+}
