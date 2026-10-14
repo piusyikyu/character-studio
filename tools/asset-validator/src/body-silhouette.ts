@@ -13,7 +13,19 @@ export const northBodySelectionSchema = z.strictObject({
 /** Native manual selection only; preserve study RGB and alpha without transforming art. */
 export function selectNorthBody(study: RgbaImage, input: unknown) {
   const settings = northBodySelectionSchema.parse(input);
-  if (study.width !== 1024 || study.height !== 1536) throw new Error('Native N body study required.');
+  return selectNativeBodySilhouette(study, settings);
+}
+const profilePolygon = z.array(z.tuple([z.number().int().min(0).max(1024), z.number().int().min(299).max(1536)])).min(3);
+export const profileBodySelectionSchema = northBodySelectionSchema.extend({
+  direction: z.literal('E'), cutY: z.literal(300), bodyPolygon: profilePolygon,
+  handPolygons: z.strictObject({ physicalLeft: profilePolygon, physicalRight: profilePolygon }),
+  neckOwnership: z.strictObject({ source: z.literal('head/soft-oval-v1/E-neck-v1.png'), startY: z.literal(300), endY: z.literal(311), method: z.literal('remove-native-neck-coverage-only-where-selected-body-supplies-skin') }),
+});
+export function selectProfileBody(study: RgbaImage, input: unknown) {
+  return selectNativeBodySilhouette(study, profileBodySelectionSchema.parse(input));
+}
+function selectNativeBodySilhouette(study: RgbaImage, settings: z.infer<typeof northBodySelectionSchema> | z.infer<typeof profileBodySelectionSchema>) {
+  if (study.width !== 1024 || study.height !== 1536) throw new Error('Native body study required.');
   const polygons = [settings.bodyPolygon, settings.handPolygons.physicalLeft, settings.handPolygons.physicalRight];
   const samples = new Uint8Array(1024 * 1536);
   for (let row = settings.cutY * 4; row < 1536 * 4; row++) {
@@ -41,14 +53,14 @@ export function selectNorthBody(study: RgbaImage, input: unknown) {
     }
   }
   const horizontal = new Uint8Array(samples.length), envelope = new Uint8Array(samples.length);
-  for (let y = 312; y < 1536; y++) for (let x = 0; x < 1024; x++) {
+  for (let y = settings.cutY; y < 1536; y++) for (let x = 0; x < 1024; x++) {
     let largest = 0;
     for (let k = Math.max(0, x - 8); k <= Math.min(1023, x + 8); k++) largest = Math.max(largest, samples[y * 1024 + k]!);
     horizontal[y * 1024 + x] = largest;
   }
-  for (let y = 312; y < 1536; y++) for (let x = 0; x < 1024; x++) {
+  for (let y = settings.cutY; y < 1536; y++) for (let x = 0; x < 1024; x++) {
     let largest = 0;
-    for (let k = Math.max(312, y - 8); k <= Math.min(1535, y + 8); k++) largest = Math.max(largest, horizontal[k * 1024 + x]!);
+    for (let k = Math.max(settings.cutY, y - 8); k <= Math.min(1535, y + 8); k++) largest = Math.max(largest, horizontal[k * 1024 + x]!);
     envelope[y * 1024 + x] = largest;
   }
   const mask = blankImage(1024, 1536), body = blankImage(1024, 1536);

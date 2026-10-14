@@ -1,5 +1,12 @@
 # Asset workspace cleanup — 2026-10-13
 
+Current E body candidate: cleanup protects metadata-declared PNGs/metadata under
+`body/profiles-v1/`. Retain the selected native E study, exact accepted head guide,
+manual masks/settings, bounded pose-neck layer and scratch replay script.
+Historical generated-image paths are provenance only. Unselected drafts and
+obsolete generated views are removable; rebuild current E outputs through
+`pnpm body:review:profiles`. All accepted S/N studies/parts remain protected.
+
 Current N part candidate: cleanup protects metadata-declared previews and metadata
 under `body/parts-v1/north/`, in addition to both accepted body reviews and S
 parts. The nested N source pack retains only five selected layers, pinned

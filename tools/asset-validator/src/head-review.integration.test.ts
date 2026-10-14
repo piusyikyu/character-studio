@@ -839,3 +839,47 @@ it('reviews independently authored native N body anatomy with no frontal feature
     for (const file of before) { expect(sha256(await readFile(file.path))).toBe(file.hash); expect((await stat(file.path)).mtimeMs).toBe(file.mtime); }
   } finally { await rm(temporary, { recursive: true, force: true }); }
 }, 60_000);
+
+it('reviews independent native E body anatomy with retained facial planes, bounded neck ownership and explicit footwear review debt', async () => {
+  const { prepareProfileBodyReview, profileBodyReviewSchema } = await import('./body-profile-review');
+  const temporary = await mkdtemp(resolve(tmpdir(), 'character-profile-body-study-test-'));
+  try {
+    const assetDirectory = resolve(repository, 'assets/source/heroine-v1'), sourceDirectory = resolve(assetDirectory, 'body/profiles-v1'), referenceDirectory = resolve(temporary, 'references');
+    await mkdir(referenceDirectory);
+    const settings = referenceImportSettingsSchema.parse(JSON.parse(await readFile(resolve(repository, 'assets/references/heroine-v1/import-v1.json'), 'utf8')));
+    for (const direction of ['E', 'SE', 'SW', 'W'] as const) {
+      const raw = decode(await readFile(resolve(repository, `assets/references/heroine-v1/detailed/${direction}.png`)), { checkCrc: true }), im = blankImage(1024, 1536);
+      for (let p = 0; p < 1024 * 1536; p++) { im.data.set(raw.data.subarray(p * raw.channels, p * raw.channels + 3), p * 4); im.data[p * 4 + 3] = raw.channels === 4 ? raw.data[p * raw.channels + 3]! : 255; }
+      const f = settings.frames[direction]; await writeFile(resolve(referenceDirectory, direction + '.png'), encodePng(matteReference(im, f.labelExclusions, settings.matte, f.backgroundCorrections).image));
+    }
+    const before = [];
+    for (const p of await readdir(assetDirectory, { recursive: true })) { const path = resolve(assetDirectory, p), s = await stat(path); if (s.isFile()) before.push({ path, hash: sha256(await readFile(path)), mtime: s.mtimeMs }); }
+    const options = { sourceDirectory, assetDirectory, referenceDirectory, outputDirectory: resolve(temporary, 'review') }, report = await prepareProfileBodyReview(options);
+    expect(report).toMatchObject({ supportedReviewDirections: ['E'], independentlyAuthored: true, underlayer: 'ordinary-daily-bra-and-panties', nativePosition: { x: 0, y: 0 }, published: false, paletteReady: false, productionAnatomyApproved: false, footwearCompatibilityApproved: false, tposeApproved: false, finalStep6CAccepted: false, measurements: { boundaryPixels: 0 } });
+    const config = profileBodyReviewSchema.parse(JSON.parse(await readFile(resolve(sourceDirectory, 'authoring.json'), 'utf8'))), brows = JSON.parse(await readFile(resolve(assetDirectory, config.browConfiguration.source), 'utf8')).frames.E;
+    const load = async (base: string, source: string) => { const im = decodePng(await readFile(resolve(base, source))); for (let i = 0; i < im.data.length; i += 4) if (im.data[i + 3]! < 8) im.data.fill(0, i, i + 4); return im; };
+    const body = await load(sourceDirectory, config.body.source), guide = await load(sourceDirectory, config.headGuide.source), head = await load(assetDirectory, brows.baseline.head.source), originalNeck = await load(assetDirectory, brows.baseline.neck.source), neck = await load(sourceDirectory, config.posedNeck.source), rear = await load(assetDirectory, brows.baseline.rear.source), front = await load(resolve(assetDirectory, 'face/reference-v1/brows-v1'), brows.frontRepair.source);
+    const planes = new Map<RenderPlane, RgbaImage[]>([['body-torso', [body]], ['head', [head]], ['neck', [neck]], ['hair-rear', [rear]], ['hair-front', [front]], ['eyebrows', []]]);
+    for (const b of Object.values(brows.brows) as { source: string }[]) planes.get('eyebrows')!.push(await load(resolve(assetDirectory, 'face/reference-v1/brows-v1'), b.source));
+    for (const f of brows.baseline.features as { source: string; plane: RenderPlane }[]) if (f.plane !== 'eyebrows') planes.set(f.plane, [await load(assetDirectory, f.source)]);
+    const fit = blankImage(1024, 1536), anatomy = blankImage(1024, 1536), bodyFree = blankImage(1024, 1536);
+    for (const plane of DIRECTION_PLANE_ORDER.E) for (const layer of planes.get(plane) ?? []) { drawRgba(fit, layer, 0, 0); if (plane !== 'hair-rear' && plane !== 'hair-front') drawRgba(anatomy, layer, 0, 0); if (plane !== 'body-torso') drawRgba(bodyFree, plane === 'neck' ? originalNeck : layer, 0, 0); }
+    expect(sha256(encodePng(fit))).toBe(report.fitSha256); expect(sha256(encodePng(anatomy))).toBe(report.bareSha256); expect(sha256(encodePng(bodyFree))).toBe(config.approvedHeadFitSha256);
+    expect(sha256(encodePng(guide))).toBe(config.approvedHeadBareSha256); expect(sha256(anatomy.data.subarray(0, 300 * 4096))).toBe(sha256(guide.data.subarray(0, 300 * 4096)));
+    expect(body.data.subarray(0, 300 * 4096).some(v => v !== 0)).toBe(false); expect(report.measurements.neckTransferredPixels).toBeGreaterThan(0);
+    for (const [x, y] of [[475, 385], [550, 1400], [600, 1460]]) { const i = (y! * 1024 + x!) * 4; expect(body.data[i + 3]).toBeGreaterThan(0); }
+    expect(report.futureFootwearFitObligations).toEqual(config.futureFootwearFitObligations);
+    for (const o of report.outputs) expect(sha256(await readFile(resolve(options.outputDirectory, o.path)))).toBe(o.sha256);
+    expect(await prepareProfileBodyReview({ ...options, outputDirectory: resolve(temporary, 'repeat') })).toEqual(report);
+    const copied = resolve(temporary, 'source'); await cp(sourceDirectory, copied, { recursive: true });
+    const forged = decodePng(await readFile(resolve(copied, config.body.source))), outside = (200 * 1024 + 550) * 4; forged.data.set([255, 0, 255, 255], outside); const altered = encodePng(forged);
+    await writeFile(resolve(copied, config.body.source), altered); config.body.sourceSha256 = sha256(altered); await writeFile(resolve(copied, 'authoring.json'), JSON.stringify(config));
+    await expect(prepareProfileBodyReview({ ...options, sourceDirectory: copied, outputDirectory: resolve(temporary, 'foreign-body') })).rejects.toThrow('native study ownership');
+    await cp(sourceDirectory, copied, { recursive: true });
+    const neckConfig = profileBodyReviewSchema.parse(JSON.parse(await readFile(resolve(sourceDirectory, 'authoring.json'), 'utf8'))), badNeck = decodePng(await readFile(resolve(copied, neckConfig.posedNeck.source))), neckPixel = (285 * 1024 + 540) * 4;
+    badNeck.data[neckPixel] = badNeck.data[neckPixel]! ^ 1; const badBytes = encodePng(badNeck); await writeFile(resolve(copied, neckConfig.posedNeck.source), badBytes); neckConfig.posedNeck.sourceSha256 = sha256(badBytes); await writeFile(resolve(copied, 'authoring.json'), JSON.stringify(neckConfig));
+    await expect(prepareProfileBodyReview({ ...options, sourceDirectory: copied, outputDirectory: resolve(temporary, 'foreign-neck') })).rejects.toThrow('outside its bounded attachment rows');
+    await expect(prepareProfileBodyReview({ ...options, outputDirectory: resolve(sourceDirectory, 'unsafe') })).rejects.toThrow('must be disjoint');
+    for (const file of before) { expect(sha256(await readFile(file.path))).toBe(file.hash); expect((await stat(file.path)).mtimeMs).toBe(file.mtime); }
+  } finally { await rm(temporary, { recursive: true, force: true }); }
+}, 120_000);

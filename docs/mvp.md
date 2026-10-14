@@ -1,5 +1,68 @@
 # MVP Plan — Female Character Studio
 
+## E profile body study approved — 2026-10-14
+
+The user approved the current E anatomy/head/hair review and requested cleanup,
+a local commit and continued Step 6C work. `body/profiles-v1/review-fit-v1.json`
+pins the E configuration, body/pose-neck selections and actual anatomy/fit hashes.
+Existing E artwork, native head/face/hair and S/N approvals stay unchanged.
+This accepts the E whole-body study only. Concealed far-side anatomy, independent
+limbs/garments, production T-pose and general footwear compatibility remain open.
+
+The next bounded increment independently authors W using its own accepted native
+head/hair and same-facing reference, with ordinary opaque bra/panties and profile
+arm projection. Never mirror E to fill W. Retain the high-heel-specific foot
+limitation and future leg-and-foot variants for other shoes. Use a new W config
+and studies; the accepted E config/source and normal E command stay pinned.
+Remaining body facings/presets, concealed geometry, materials and native pixel
+artwork remain unfinished. Step 6C is open; Step 6D has not started. Earlier
+pending statements below are historical.
+
+## Independent E profile body candidate — 2026-10-14
+
+Local commit `2e7b183` records the approved N visible-pixel parts and the user's
+footwear limitation. The note is also saved in Codex memory: current feet are
+made for high heels; different shoe types may need extra leg-and-foot parts.
+Future barefoot/flat-shoe/general footwear compatibility remains unapproved.
+Cleanup removed 53 regenerated files (1.5 MiB), preserving accepted source and
+current reviews. Previous sources/approvals and the from-scratch authoring note
+remain intact.
+
+The next Step 6C increment is `body/profiles-v1/`, initially E only. A built-in
+imagegen study independently authors the side-facing body in ordinary opaque
+grey bra and full-coverage panties. Near right-arm projection is strongly
+foreshortened, and the far left arm/leg is largely occluded. Human review must
+verify the T-pose projection, visible hand/thumb, chest/pelvis alignment and
+hidden-side coherence; image existence/checks do not establish correct anatomy.
+W is missing and must be independently authored later, never mirrored from E.
+
+The exact accepted native E guide, head/ear/eye/complete brow/mouth and front/rear
+hair remain sourced from the approved head/face packs. Generated head pixels are
+unselected. A manual native silhouette selects body/hand pixels below y300;
+a new pose-specific lower neck transfers coverage only at rows 300–310 where the
+body supplies skin. Approved neck source and face pixels stay unchanged. No
+images or preview panels are shifted, scaled, rotated or mirrored, and no broad
+white/color key is used. Authoring replay runs only in scratch.
+
+`pnpm body:review:profiles` exports four PNGs and metadata under
+`assets/staging/heroine-v1/body/profiles-v1/`. `overview.png` shows reference /
+new E anatomy / actual layered E hair fit. Inspect the neck/shoulder/hand crop in
+`inspection/E-neck-shoulder-comparison.png`. Actual composition uses
+`DIRECTION_PLANE_ORDER.E` with separate retained facial planes and native (0,0)
+positions. Body-free fit matches the accepted E head/hair hashes exactly.
+
+Feet retain provisional heel-compatible posture, including raised heel and
+forefoot/toe contact. This is not general footwear acceptance or a fixed rig
+baseline. Record shoe-specific leg/foot alternatives as future authoring work.
+The whole-body study still includes underwear and near-arm pixels on one body
+plane; full concealed joints, separate skin/limbs/garments and palette maps remain
+unfinished. Inherited E hair edge noise and local transitions also need review.
+Other facings/presets, production T-pose and independently authored pixel assets
+remain open. The new E candidate is unapproved and uncommitted. Step 6C remains
+unfinished; Step 6D has not started. Earlier pending statements are historical.
+
+E-study verification: asset-validator typecheck, root lint (zero warnings), ESM/declaration build and `body:review:profiles` passed. The new E body workflow, existing N body/parts workflow and cleanup workflow passed (3 passed, 6 unrelated head/S workflows skipped; 71.76 seconds), covering actual retained facial/hair planes, unchanged accepted body-free E head fit, local neck ownership, native hand/heel/toe samples, future footwear debt, deterministic output, immutable inputs and rejection of re-pinned foreign body/neck edits. All 861 preceding source/reference hashes and mtimes stay unchanged, excluding the intentional source README edit; four authoring outputs replay byte-for-byte in scratch, and 27 new/accepted PNG hashes verify. Full app build and browser E2E were not rerun. Anatomy, profile T-pose projection and heel-based feet require visual review. The E candidate remains unapproved and uncommitted. Post-validation cleanup removed 55 regenerated files (1.5 MiB), kept all 27 checked PNGs and accepted inputs, and left zero obsolete generated files.
+
 ## N parts approved; future footwear variants — 2026-10-14
 
 The user approved `body/parts-v1/north/` and requested cleanup, a local commit

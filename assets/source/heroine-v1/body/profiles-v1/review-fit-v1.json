@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "id": "body.profiles.v1",
+  "assetVersion": 1,
+  "date": "2026-10-14",
+  "direction": "E",
+  "target": "detailed",
+  "configuration": "authoring.json",
+  "configurationSha256": "694902c1ef41774bdb173d9f9dd084c1baa2bda7e21ce314c16f859571b3c5a9",
+  "decision": "approved-independent-e-profile-body-study",
+  "userFeedback": "Approved. Remove unneeded files and commit, then go on to next step.",
+  "currentStudyFitApproved": true,
+  "bareSha256": "a3aa484dfbf64cb26a7aeb122c6f7bf061a19f3d3624a5bc6fdb9d98fa1d338b",
+  "fitSha256": "16a4489a973442a0d78c881cfa62364907bdde70d500adedf251299c2a779d86",
+  "body": {
+    "source": "E-body-v1.png",
+    "sourceSha256": "7760c7a05153fb031e03e8111f302740abdee96a6aaba83c17dc23439d171cc1"
+  },
+  "posedNeck": {
+    "source": "E-neck-body-fit-v1.png",
+    "sourceSha256": "4debcd506e230cbf74a469cf2427eda41e04b1ee29f1d048ed63b87dc0706d96"
+  },
+  "bodyFreeAssemblySha256": "b5db338d619f62b6874dd3c193120b483d2b3f9cbe5e99a397d6734ef7fb2889",
+  "futureFootwearFitObligations": [
+    "Current S/N feet are made for high heels; different kinds of shoes may require extra independently authored leg-and-foot parts.",
+    "E feet remain a provisional heel-based study. Before barefoot, flat-shoe or other footwear designs are accepted, review ankle posture, leg/foot attachment, sole contact and ground baseline with compatible independently authored facing/target variants."
+  ],
+  "futureBodyFitObligations": [
+    "Check the circled neck/shoulder hair starts against actual independently authored same-facing body and clothing layers.",
+    "Rear hair must sit behind the torso/shoulders where physically appropriate; intentional foreground curls retain their proper depth.",
+    "Inspect real native-layer composition for exposed abrupt starts and mask seams. Do not move inspection panels, clip valid hair or use a stand-in torso to certify production fit.",
+    "If any abrupt starts remain visible after the true body composition, repair them in a new version."
+  ],
+  "futureHairstyleFitObligations": [
+    "SE and SW anatomy ears differ in apparent size in the bare-head review. Current reference hair conceals this discrepancy; approval does not establish compatibility with alternate hairstyles. Before shorter/open-ear hairstyles or ear-size variants are accepted, compare native ear proportions, attachment and exposure across independently authored facings and review the actual layered fit. If exposed differences look incoherent, author versioned corrections rather than silently scaling or mirroring approved ears."
+  ],
+  "scope": "Independent E whole-body modesty study with foreshortened near arm, retained native facial/hair planes and bounded pose-neck attachment. Hidden-side anatomy, separate reusable limbs/garments and production rig remain unfinished.",
+  "published": false,
+  "paletteReady": false,
+  "productionAnatomyApproved": false,
+  "footwearCompatibilityApproved": false,
+  "tposeApproved": false,
+  "finalStep6CAccepted": false,
+  "step6DStarted": false
+}

@@ -1,5 +1,15 @@
 # Source artwork
 
+Approved E body study: `heroine-v1/body/profiles-v1/` retains an independently
+authored E study with ordinary bra/panties, foreshortened near-arm projection,
+manual native silhouette and bounded pose-neck attachment.
+`pnpm body:review:profiles` shows the accepted E reference/anatomy/layered fit;
+`review-fit-v1.json` pins its scoped approval.
+W is not authored yet; never mirror E. Current feet are heel-based studies;
+future shoe designs may need extra leg-and-foot variants. T-pose projection,
+concealed anatomy, clothing separation and footwear compatibility need review.
+Replay only in scratch. Approved S/N and native E head/hair source stay intact.
+
 Approved N part study: `heroine-v1/body/parts-v1/north/` retains five native N
 visible-pixel torso/arm/leg layers at their original positions.
 `pnpm body:review:parts:north` verifies actual N-plane composition against the
