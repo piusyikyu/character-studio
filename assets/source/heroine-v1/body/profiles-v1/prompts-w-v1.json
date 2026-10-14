@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "body.profiles.v1",
+  "date": "2026-10-14",
+  "tool": "built-in imagegen",
+  "direction": "W",
+  "selectedStudy": "inputs/W-body-study-v1.png",
+  "prompt": "Use case: precise-object-edit.\nAsset type: one independently authored native 1024x1536 detailed W / west side-profile adult female character body anatomy study, nonsexual technical T-pose.\nInput image 1 is the EXACT accepted W bald head, neck, left ear, left eye, complete brow and mouth, at original native coordinates. Input image 2 is the original same-facing W standing design, for its mature balanced body build, skin tone, left-facing anatomy, clean anime illustration and provisional high-heel foot posture.\nAdd a complete adult body below the guide, in anatomical T-pose VIEWED FROM HER LEFT SIDE, facing LEFT. Preserve image 1's head/face/ear/neck placement and artwork exactly: skull about x390..534 y84..267; neck ends y316 around x470, with lower edge spanning roughly x430..509. Body center near x470; shoulder tops y325..345. Head, chest, pelvis, knees and feet all agree with this W facing. Same balanced mature build as the reference: rounded chest, narrow waist, balanced hips, long legs; not an unrelated broad or stocky figure.\nCritical pose projection: both straight arms are abducted sideways in 3D at 90 degrees, as a T-pose. From W/left-side view the near PHYSICAL LEFT ARM points toward the viewer and is strongly foreshortened; draw a short depth projection of shoulder, upper arm, forearm and anatomically coherent open hand at shoulder height. The far physical RIGHT arm points away and may be naturally occluded. Palms face the character's forward/left direction; the near hand is substantially edge-on with sensible thumb and visible fingers. Do not draw a long horizontal arm extending to screen-left or screen-right; no hands at hips, A-pose, bent elbows or extra limbs. Visible hand/arm anatomy must not replace the accepted head/neck above y316. Draw this W facing independently, never mirror or rotate E/S/N artwork. Input 2 is W, not a reflected E image.\nOrdinary plain opaque LIGHT GREY TWO-PIECE DAILY UNDERWEAR for modesty: normal bra with shoulder straps and side/back band, normal full-coverage panties covering breasts and pelvis/buttocks, bare midriff between pieces. No swimsuit, unitard, bodysuit, thong, corset, gloves, original dress, accessories, decorations, exposed breasts or genitals. Draw proper side-view garment topology. Complete legs and feet, with naturally occluded far-side limb where appropriate.\nFoot posture is a provisional high-heel-compatible study: bare plantar-flexed ankles, heels raised, forefeet/toes pointing LEFT and contacting a common ground line near y1455. No actual shoes or heel objects. This is not a generic barefoot/flat-shoe foundation and does not approve future shoe compatibility. Entire body, heels, toes and visible fingers remain inside the canvas with margin. No clipping.\nStyle: same clean anime fantasy illustration as W reference, peach skin, restrained warm shadows, subtle highlights, smooth indigo outlines. One figure only. EXACT native 1024x1536 RGBA framing, genuine transparent background. No hair (retained W hair layers will be composited separately), background glow, shadow halo, text, labels, diagrams, panels, watermark or floating fragments. The accepted W head/neck will be retained and only the independently authored body will be locally selected below its native attachment.",
+  "referenceInputs": [
+    "inputs/W-head-guide.png",
+    "assets/staging/heroine-v1/references/import-v1/transparent/W.png"
+  ],
+  "externalGeneratedPath": "/home/piusyikyu/.codex/generated_images/01a13107-1ff1-7900-ae0e-0c9fcb68e0b5/exec-527b4b2f-2c56-4a4f-a22b-5085e4ccbbe9.png",
+  "notes": [
+    "Study copied into source; external generated path is historical provenance, not a dependency.",
+    "W is independently authored from its own W head guide and W reference; no E/S/N anatomy pixels, mirroring, image rotation, scaling or shifts.",
+    "Generated head is unselected; accepted W facial/hair planes remain exact.",
+    "Manual native silhouette retains body/thumb below y306, with bounded lower-neck ownership at rows306..316 where the study supplies skin.",
+    "Visible near left hand/forearm and far-side concealment require human visual review; hidden anatomy is not certified.",
+    "Feet are a provisional high-heel-compatible study. Future shoes may require extra independent leg-and-foot variants."
+  ]
+}

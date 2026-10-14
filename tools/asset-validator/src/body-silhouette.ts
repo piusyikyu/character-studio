@@ -21,10 +21,15 @@ export const profileBodySelectionSchema = northBodySelectionSchema.extend({
   handPolygons: z.strictObject({ physicalLeft: profilePolygon, physicalRight: profilePolygon }),
   neckOwnership: z.strictObject({ source: z.literal('head/soft-oval-v1/E-neck-v1.png'), startY: z.literal(300), endY: z.literal(311), method: z.literal('remove-native-neck-coverage-only-where-selected-body-supplies-skin') }),
 });
-export function selectProfileBody(study: RgbaImage, input: unknown) {
-  return selectNativeBodySilhouette(study, profileBodySelectionSchema.parse(input));
+export const westBodySelectionSchema = profileBodySelectionSchema.extend({
+  direction: z.literal('W'), cutY: z.literal(306),
+  neckOwnership: z.strictObject({ source: z.literal('head/soft-oval-v1/W-neck-v1.png'), startY: z.literal(306), endY: z.literal(317), method: z.literal('remove-native-neck-coverage-only-where-selected-body-supplies-skin') }),
+});
+export function selectProfileBody(study: RgbaImage, input: unknown, direction: 'E' | 'W' = 'E') {
+  if (direction !== 'E' && direction !== 'W') throw new Error('Independent profile body selections support E and W only.');
+  return selectNativeBodySilhouette(study, direction === 'E' ? profileBodySelectionSchema.parse(input) : westBodySelectionSchema.parse(input));
 }
-function selectNativeBodySilhouette(study: RgbaImage, settings: z.infer<typeof northBodySelectionSchema> | z.infer<typeof profileBodySelectionSchema>) {
+function selectNativeBodySilhouette(study: RgbaImage, settings: z.infer<typeof northBodySelectionSchema> | z.infer<typeof profileBodySelectionSchema> | z.infer<typeof westBodySelectionSchema>) {
   if (study.width !== 1024 || study.height !== 1536) throw new Error('Native body study required.');
   const polygons = [settings.bodyPolygon, settings.handPolygons.physicalLeft, settings.handPolygons.physicalRight];
   const samples = new Uint8Array(1024 * 1536);

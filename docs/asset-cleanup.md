@@ -1,6 +1,14 @@
 # Asset workspace cleanup — 2026-10-13
 
-Current E body candidate: cleanup protects metadata-declared PNGs/metadata under
+Current W profile body candidate: cleanup additionally protects metadata-declared
+outputs and metadata under the nested `body/profiles-v1/west/` review. The accepted
+E review remains protected at the parent root. Retain W's own selected study,
+head guide, masks/settings/config/provenance, bounded pose-neck derivative and
+scratch-only replay scripts, revision-2 hair layers and local transfer/discard
+masks, and pinned revision-1 config/art. Rebuild W with `pnpm body:review:profiles:west`;
+unselected generated variants and obsolete views remain removable.
+
+Approved E body study: cleanup protects metadata-declared PNGs/metadata under
 `body/profiles-v1/`. Retain the selected native E study, exact accepted head guide,
 manual masks/settings, bounded pose-neck layer and scratch replay script.
 Historical generated-image paths are provenance only. Unselected drafts and

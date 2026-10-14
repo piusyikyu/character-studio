@@ -1,5 +1,104 @@
 # MVP Plan — Female Character Studio
 
+## W revision-2 body/hair study approved — 2026-10-14
+
+The user approved the current W study, including the exposed hand and removal
+of the marked red clothing fragment, and requested cleanup, a local commit and
+continued Step 6C work. `body/profiles-v1/review-fit-w-v2.json` pins its scoped
+approval. E/S/N source artwork and approvals remain unchanged. Revision 1 is a
+required derivation baseline; cleanup removes regenerable outputs only.
+
+The next bounded increment independently authors the SE full-body modesty study
+from its own accepted native head/face/hair and same-facing reference. Preserve
+ordinary opaque bra/panties, physical side identity and native composition.
+Current profile studies do not supply complete concealed far-side limbs; no
+mirroring or cross-facing anatomy fragments may fill SE. The high-heel foot
+limitation, future footwear alternatives and from-scratch asset-authoring note
+remain in force. Concealed geometry, separate clothing/materials, remaining body
+facings, production T-pose and independent native pixel art are unfinished.
+Step 6C stays open; Step 6D has not started. Earlier pending W notes below
+are historical.
+
+## W hair/hand revision 2 pending review — 2026-10-14
+
+The user rejected W revision 1 because foreground hair hid the near hand/thumb
+and the lower hair retained a red reference-clothing fragment. Revision 2 uses
+`body/profiles-v1/authoring-w-v2.json`. Two local manually traced masks transfer
+the upper-back hair to the rear plane and discard only the clothing fragment.
+Native hair RGB/highlights are retained; no generated artwork, mirroring,
+scaling, shifts or global colour key is used. Body, posed neck and all facial
+layers remain byte-identical to revision 1. Accepted E sources/approval and the
+normal E command remain unchanged. This changes actual source-plane composition.
+
+`pnpm body:review:profiles:west` now selects revision 2 in the existing `west/`
+staging folder. Inspect `overview.png`, `inspection/W-neck-shoulder-comparison.png`
+and `inspection/W-hair-fit-comparison.png` (revision 1 / revision 2).
+The historical `--west-v1` CLI flag reproduces pinned revision 1 separately;
+its source config/art and required head/hair derivation baselines remain intact.
+`partition-hair-w-v2.js` is scratch-only. Revision 2 remains unapproved and
+uncommitted. Remaining inherited hair/mask transitions, arm anatomy, concealed
+geometry, materials, production T-pose and independent pixel artwork stay open.
+The existing heel-foot and from-scratch authoring notes still apply. Step 6C is
+unfinished; Step 6D has not started. Earlier W selections below are historical.
+
+Validation: asset-validator typecheck, root lint (zero warnings), ESM/declaration
+build and current W revision-2, historical W revision-1 and accepted E exports
+passed. The extended existing E/W actual-plane and cleanup workflows passed
+(2 passed, 7 skipped; 105.03 seconds). They cover visible hand depth, the discarded
+clothing fragment, determinism, input immutability and rejection of re-pinned
+body/neck/hair edits outside bounded ownership. Two invalid initial test sampling
+points were corrected to actual opaque artwork. All 884 pre-repair source/reference
+files retain hashes and mtimes. Four repair outputs replay byte-for-byte in
+scratch; all 32 current PNG hashes verify. Cleanup removed 60 regenerable files
+(4.3 MiB), retaining current previews and all source baselines. Full app build
+and browser E2E were not rerun. See `fit-audit-w-v2.json`; visual approval is pending.
+
+## Independent W profile body candidate — 2026-10-14
+
+Local commit `aec7031` records the approved E whole-body study. Cleanup removed
+55 regenerable files (1.5 MiB), preserving source baselines and current reviews.
+The next Step 6C increment independently authors W in the same profile pack,
+using only its own native head guide and W reference. Ordinary opaque grey bra
+and full-coverage panties provide modesty coverage. No E pixels or mirrors are
+used. The normal E command, configuration, source and scoped approval stay pinned.
+
+`authoring-w-v1.json`, `prompts-w-v1.json` and `selections-w-v1.json` retain the
+new native study and manual body/hand contours. Generated head pixels are
+unselected. A new pose-neck derivative transfers coverage only at rows 306–316
+where the selected body supplies skin. Accepted head/ear/eyes/complete brows/mouth
+and native front/rear hair retain their original coordinates and source pixels.
+No shifts, scaling, rotation, panel movement or broad colour key is used.
+Replay `partition-study-w-v1.js` only in scratch.
+
+`pnpm body:review:profiles:west` exports four PNGs and metadata separately under
+`assets/staging/heroine-v1/body/profiles-v1/west/`. Review `overview.png`:
+reference / new anatomy / actual native W hair fit. The close join/hand comparison
+is `inspection/W-neck-shoulder-comparison.png`. Composition uses the established
+W plane order, retaining separate facial layers and exact approved body-free fit.
+
+The W candidate is unapproved and uncommitted. Inspect the near physical-left
+arm projection, palm/thumb/fingers, occluded far right arm/leg, neck/shoulder
+transition and chest/pelvis proportions. Inherited hair has abrupt ends near the
+upper back/hand and remaining edge noise; this study does not certify reusable
+concealed hair or production body occlusion. Feet remain provisional heel-based
+studies. Future shoes may require discrete independently authored leg-and-foot
+variants; general footwear, flat-shoe and barefoot compatibility remain open.
+Separate limbs/garments, concealed anatomy, materials, remaining facings/presets,
+production T-pose and independently authored native pixel artwork remain open.
+Step 6C is unfinished; Step 6D has not started. Earlier pending notes below
+are historical. See `body/profiles-v1/fit-audit-w-v1.json` for current verification.
+
+Validation: asset-validator typecheck, root lint (zero warnings), ESM/declaration
+build and current W/accepted E CLI exports passed. The existing E/W actual-plane
+composition and cleanup workflows passed (2 passed, 7 skipped; 65.27 seconds),
+including deterministic output, source immutability and rejection of re-pinned
+outside-mask body/neck changes. All 873 preceding source/reference files retain
+their hashes and mtimes, excluding the intentional source README text update.
+Four W authoring outputs replay byte-for-byte in scratch, and all 31 current
+body/part/head-sheet PNG hashes verify. Final cleanup removed 55 regenerable
+files (1.5 MiB); dry run finds zero remaining obsolete generated files. Full app
+build and browser E2E were not rerun. W remains uncommitted pending visual review.
+
 ## E profile body study approved — 2026-10-14
 
 The user approved the current E anatomy/head/hair review and requested cleanup,

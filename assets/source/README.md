@@ -5,7 +5,13 @@ authored E study with ordinary bra/panties, foreshortened near-arm projection,
 manual native silhouette and bounded pose-neck attachment.
 `pnpm body:review:profiles` shows the accepted E reference/anatomy/layered fit;
 `review-fit-v1.json` pins its scoped approval.
-W is not authored yet; never mirror E. Current feet are heel-based studies;
+The approved independent W study uses `authoring-w-v2.json`, its own W
+study/head guide and manual native masks. Revision 2 additionally moves the
+marked upper hair behind the hand and removes a local red clothing fragment;
+revision-1 source baselines remain pinned. `review-fit-w-v2.json` records the
+scoped W approval; complete concealed anatomy and production fit stay open. `pnpm body:review:profiles:west`
+exports its separate approved study review under `body/profiles-v1/west/`.
+E sources/approval remain pinned; no E pixels or mirrors supply W. Current feet are heel-based studies;
 future shoe designs may need extra leg-and-foot variants. T-pose projection,
 concealed anatomy, clothing separation and footwear compatibility need review.
 Replay only in scratch. Approved S/N and native E head/hair source stay intact.

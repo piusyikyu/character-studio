@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-14",
+  "id": "body.profiles.v1",
+  "direction": "W",
+  "assetVersion": 2,
+  "status": "draft-needs-human-review",
+  "configuration": "authoring-w-v2.json",
+  "configSha256": "36c9bce31871cce6c78567152e50eb9e01bba67260fe1297ad398f5d04f52a22",
+  "previous": {
+    "source": "authoring-w-v1.json",
+    "sourceSha256": "13a727fca297f4b2639d2b1f2b656489e04122281a1b31bed163e4594f050725"
+  },
+  "hairRepair": {
+    "front": {
+      "source": "W-front-body-fit-v2.png",
+      "sourceSha256": "5d8ca34f41cb69d69827f9b6c5f59d090d2f4d3b15bfb087555560b42dd9dd6b"
+    },
+    "rear": {
+      "source": "W-rear-body-fit-v2.png",
+      "sourceSha256": "118bbaeb9a3d95df8e5142d49d4b0e1a356a751287d71eee7e9786afdae55f65"
+    },
+    "toRear": {
+      "source": "W-hair-to-rear-v2.png",
+      "sourceSha256": "0619fdd78949bee2c8899dcb66c3f05a98c3a01d0316173591be288d43c7cd5c"
+    },
+    "discard": {
+      "source": "W-reference-clothing-discard-v2.png",
+      "sourceSha256": "c9e62dab2ccedee8aadaf4bfb4ab35afc067ca03bff3f054cc1450a8152631af"
+    },
+    "settings": {
+      "source": "hair-repair-settings-w-v2.json",
+      "sourceSha256": "00c358b93c7240688df437ff770c6a618e0680ac9f8f0a4c30d60a2d44da7e0a"
+    },
+    "provenance": {
+      "source": "hair-repair-provenance-w-v2.json",
+      "sourceSha256": "45f5abd9d08c9e2ba987087269cd5410e90945289a2e90e462941750869aca63"
+    }
+  },
+  "method": "bounded manually traced native hair depth and clothing-fragment ownership",
+  "hairRepairMeasurements": {
+    "transferredPixels": 8839,
+    "discardedPixels": 256,
+    "generatedHair": false,
+    "shiftedScaledOrMirrored": false
+  },
+  "measurements": {
+    "selectedBodyPixels": 141499,
+    "boundaryPixels": 0,
+    "neckTransferredPixels": 789,
+    "frontHairOverlapPixels": 305,
+    "rearHairOverlapPixels": 3282,
+    "bounds": {
+      "left": 316,
+      "top": 306,
+      "right": 566,
+      "bottom": 1464
+    }
+  },
+  "bareSha256": "4c7183524b04aabeb897152d808b9fccf7b7b128de29fac1c67fc0aadbdc7c73",
+  "fitSha256": "dc1ec961928a79ceaa0c334751dca84e8c3e3ce66b1641d8a9f1d7ef59924f77",
+  "posedNeckSha256": "c225da1e0964a91ad1c9f3336e3e22c0bedc51971b01528210a83badbd39a8cf",
+  "bodyFreeBaselineSha256": "304d4403c145b7baccd8298e20f83c80597c21594764d6f124d5758da38e27c3",
+  "outputs": [
+    {
+      "path": "fit/W-anatomy.png",
+      "sha256": "4c7183524b04aabeb897152d808b9fccf7b7b128de29fac1c67fc0aadbdc7c73"
+    },
+    {
+      "path": "fit/W.png",
+      "sha256": "dc1ec961928a79ceaa0c334751dca84e8c3e3ce66b1641d8a9f1d7ef59924f77"
+    },
+    {
+      "path": "overview.png",
+      "sha256": "dc90835173d0018b2f8403f85439f8a5a2824090f4c9a4203499f42970e7effc"
+    },
+    {
+      "path": "inspection/W-neck-shoulder-comparison.png",
+      "sha256": "41a9d3bba7980334f39b55ac21c272a084daa9b19dbaadf4c6205d65b2b1a013"
+    },
+    {
+      "path": "inspection/W-hair-fit-comparison.png",
+      "sha256": "c3e9fa7d095e044a836483da814db759ce5bd72ccf044b4ca107aaf9a198d07b"
+    }
+  ],
+  "sourcePreservation": {
+    "preservedPreRepairSourceAndReferenceFiles": 884,
+    "replayedAuthoringOutputs": 4,
+    "verifiedCurrentPngs": 32,
+    "bodyAndPosedNeckByteIdenticalToRevision1": true,
+    "acceptedEArtworkAndOutputsUnchanged": true
+  },
+  "verification": {
+    "assetValidatorTypecheck": "passed",
+    "rootLint": "passed-zero-warnings",
+    "assetValidatorEsmAndDeclarations": "passed",
+    "currentWAndHistoricalWAndAcceptedECli": "passed",
+    "profileAndCleanupWorkflows": {
+      "passed": 2,
+      "skipped": 7,
+      "durationSeconds": 105.03,
+      "command": "pnpm exec vitest run tools/asset-validator/src/head-review.integration.test.ts tools/asset-validator/src/workspace-cleanup.integration.test.ts -t 'native E/W body|cleans generated' --maxWorkers=1"
+    },
+    "initialTestSamplingCorrections": [
+      "Replaced a transparent coordinate outside the thumb with an interior hand sample.",
+      "Used an opaque hair pixel for the foreign-edit boundary check; invisible RGB is intentionally normalized."
+    ],
+    "fullApplicationBuild": "not-rerun",
+    "browserE2E": "not-rerun"
+  },
+  "cleanup": {
+    "removedRegenerableFiles": 60,
+    "removedMiB": 4.3,
+    "remainingObsoleteGeneratedFiles": 0,
+    "currentPngsPreserved": 32
+  },
+  "knownReviewIssues": [
+    "Revision 1 was rejected for hair hiding the near left thumb/hand and a red reference clothing fragment. Revision 2 changes only the traced W hair depth and clothing-fragment ownership; visual approval remains pending.",
+    "W profile body is independently authored from its own W references; review near physical-left arm projection, visible hand/thumb, occluded far right arm/leg and side-facing body proportions.",
+    "The accepted native W head/ear/eye/brow/mouth stays unchanged. Pose-specific lower-neck coverage transfers only rows306–316 where the new body supplies skin; review local shoulder/neck shading.",
+    "E source/config/approval and its normal CLI remain exact. No mirroring or E anatomy fragments supply W.",
+    "Whole-body study retains ordinary opaque bra/panties; full hidden-side anatomy, independent limbs/skin/clothing and materials remain unfinished.",
+    "Feet retain provisional heel-based posture and an unapproved forefoot baseline; no general shoe, barefoot or flat-shoe compatibility.",
+    "Inherited W hair edge noise and local transitions need review in actual core-plane composition.",
+    "Production T-pose, other body facings/presets, independent native pixel artwork and final Step6C remain open; Step6D has not started."
+  ],
+  "published": false,
+  "productionAnatomyApproved": false,
+  "footwearCompatibilityApproved": false,
+  "tposeApproved": false,
+  "finalStep6CAccepted": false,
+  "step6DStarted": false
+}
