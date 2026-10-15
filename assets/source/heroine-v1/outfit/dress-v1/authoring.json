@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "outfit.reference-dress.s.v1",
+  "inputs": {
+    "source": "inputs.json",
+    "sourceSha256": "88852f0d7b6de1ae9fd5fad69cfdec772b99b3411286e68a7d03c53b96bfc8b6"
+  },
+  "layers": {
+    "skinBase": {
+      "source": "S-skinBase-v1.png",
+      "sourceSha256": "a65e913798412ea6cba8aeabfa42c5a515645f13d21a2feb3cb92d7f7900d722"
+    },
+    "bra": {
+      "source": "S-bra-v1.png",
+      "sourceSha256": "11d3658465d9c3a736ddb7f6c4b220b1e3ab6f3c82129b46c9511102b1f209f9"
+    },
+    "panties": {
+      "source": "S-panties-v1.png",
+      "sourceSha256": "1355da387bb2601c6a2f9b8857ab0eb48f83ebd6f2337cc9141ab8c37e44caea"
+    },
+    "skinPatches": {
+      "source": "S-skinPatches-v1.png",
+      "sourceSha256": "a2fbc636120e8e58ec7c4699e9e5671f8407c1a78228a63c850f5d077ba3b3e6"
+    },
+    "dress": {
+      "source": "S-dress-v1.png",
+      "sourceSha256": "ab277702b492deb118ad63d0cc42ec96555af166f36343dfe7de8ca01c53def2"
+    },
+    "lining": {
+      "source": "S-lining-v1.png",
+      "sourceSha256": "8c6dc262862a404db76da94d4b996e33e0776e21f6ba2468e32afafaa45a6761"
+    }
+  }
+}

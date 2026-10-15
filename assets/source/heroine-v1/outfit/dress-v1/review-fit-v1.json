@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-15",
+  "id": "outfit.reference-dress.s.v1",
+  "direction": "S",
+  "target": "detailed",
+  "sourcePose": "tpose-study",
+  "decision": "approved-s-covered-wardrobe-study",
+  "userFeedback": "Approved. Remove unneeded files and commit, then go on to next step.",
+  "configuration": "authoring.json",
+  "configurationSha256": "2d5c5219444e1c5720a8f80b5f2f8c3880ec4f972dbaf5d7ef8d70d21d3f07f5",
+  "currentStudyApproved": true,
+  "inputs": {
+    "source": "inputs.json",
+    "sourceSha256": "88852f0d7b6de1ae9fd5fad69cfdec772b99b3411286e68a7d03c53b96bfc8b6"
+  },
+  "layers": {
+    "skinBase": {
+      "source": "S-skinBase-v1.png",
+      "sourceSha256": "a65e913798412ea6cba8aeabfa42c5a515645f13d21a2feb3cb92d7f7900d722"
+    },
+    "bra": {
+      "source": "S-bra-v1.png",
+      "sourceSha256": "11d3658465d9c3a736ddb7f6c4b220b1e3ab6f3c82129b46c9511102b1f209f9"
+    },
+    "panties": {
+      "source": "S-panties-v1.png",
+      "sourceSha256": "1355da387bb2601c6a2f9b8857ab0eb48f83ebd6f2337cc9141ab8c37e44caea"
+    },
+    "skinPatches": {
+      "source": "S-skinPatches-v1.png",
+      "sourceSha256": "a2fbc636120e8e58ec7c4699e9e5671f8407c1a78228a63c850f5d077ba3b3e6"
+    },
+    "dress": {
+      "source": "S-dress-v1.png",
+      "sourceSha256": "ab277702b492deb118ad63d0cc42ec96555af166f36343dfe7de8ca01c53def2"
+    },
+    "lining": {
+      "source": "S-lining-v1.png",
+      "sourceSha256": "8c6dc262862a404db76da94d4b996e33e0776e21f6ba2468e32afafaa45a6761"
+    }
+  },
+  "approvedLooks": [
+    "reference-dress",
+    "midriff-high-slit-coverage-test"
+  ],
+  "bodySha256": "934c7f300ec301c8848e3da338e574a6037e025c1937dda859d5cf6060364f45",
+  "fitSha256": "397a1c8264138a81233d275396f97719f542e42ff6537ba7cefde8b6e4751db8",
+  "measurements": {
+    "reference-dress": {
+      "coverage": {
+        "bust": 6842,
+        "pelvis": 3328
+      },
+      "bodyGapPixels": 0,
+      "visibleLiningPixels": 0,
+      "bellyVisible": false
+    },
+    "midriff-high-slit": {
+      "coverage": {
+        "bust": 6842,
+        "pelvis": 3328
+      },
+      "bodyGapPixels": 0,
+      "visibleLiningPixels": 0,
+      "bellyVisible": true
+    }
+  },
+  "reviewOutputs": [
+    {
+      "path": "fit/S.png",
+      "sha256": "56f71a5e1ee31569a15a21593f45e3cf87fbe1f91d612f3188989953cf929a60"
+    },
+    {
+      "path": "fit/S-midriff-high-slit.png",
+      "sha256": "b691e039eeb4cfbab6f73d7d2d7b8691d5dc5cafb816fd7268a4bca971183376"
+    },
+    {
+      "path": "inspection/S-wardrobe.html",
+      "sha256": "c650b685c68badab0c63d5aadf48031cedbbf85f2f93b9ab627f4c08ab0ef3ec"
+    }
+  ],
+  "scope": "S everyday underwear separation, reference gown and the midriff/high-slit coverage construction test only. The second look is not a finished additional outfit. No complete unclothed anatomy, alternate openings or other facings are accepted.",
+  "separateUnderwearAuthored": true,
+  "skinBelowCoveredAreasAuthored": false,
+  "coveredAssembliesOnly": true,
+  "published": false,
+  "productionAnatomyApproved": false,
+  "productionRigApproved": false,
+  "footwearCompatibilityApproved": false,
+  "finalStep6CAccepted": false,
+  "step6DStarted": false
+}

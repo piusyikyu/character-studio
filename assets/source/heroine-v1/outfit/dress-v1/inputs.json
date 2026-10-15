@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "id": "outfit.reference-dress.s.v1",
+  "direction": "S",
+  "target": "detailed",
+  "sourcePose": "tpose-study",
+  "status": "draft-needs-human-review",
+  "baselineConfiguration": {
+    "source": "body/parts-v1/authoring.json",
+    "sourceSha256": "e71462b1672fb3ce20cf969d05b32ab431d8306b4797835686d8fa33b57441d3"
+  },
+  "shoulderConfiguration": {
+    "source": "body/shoulders-v1/authoring.json",
+    "sourceSha256": "4bdd23e95e900f262c2e35ffedb3ffe15b0c9dd007e87063fd76ea181362dbba"
+  },
+  "shoulderApproval": {
+    "source": "body/shoulders-v1/review-fit-v1.json",
+    "sourceSha256": "3e2f04df805898e628779ae38b7e802310fe0494d7d2133f895a14a4396b7315"
+  },
+  "study": {
+    "source": "inputs/S-neckline-study-v1.png",
+    "sourceSha256": "1f8baff87ce421431dde25c4530c91c957c8277dca7d4f35cc7d4b57efa41333"
+  },
+  "designGuide": {
+    "source": "inputs/S-dress-study-v1.png",
+    "sourceSha256": "1308cfbfdaea146fecd9466e308b33ad87386738b9a3a8c739042fc2fce78476"
+  },
+  "prompts": {
+    "source": "prompts.json",
+    "sourceSha256": "0f99de05e2583e6dc54dbb12bfbce14cb90f33f620911c1fd08c58a8d64173d1"
+  },
+  "settings": {
+    "source": "settings.json",
+    "sourceSha256": "71a7bdb95bd45c73523bf49b1fc6f0d3967dcb7509cfe874c1a9b0d72fcc20d9"
+  },
+  "replay": {
+    "source": "construct-study-v1.js",
+    "sourceSha256": "69f8bd7b3ffcc5cdfda65f4b521d13599d351fbd53ed197dc4925314ff700c37"
+  },
+  "published": false,
+  "productionAnatomyApproved": false,
+  "finalStep6CAccepted": false
+}

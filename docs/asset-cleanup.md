@@ -1,5 +1,9 @@
 # Asset workspace cleanup — 2026-10-13
 
+Preserve the current `assets/staging/heroine-v1/outfit/dress-v1/` metadata-declared pair of clothed fit PNGs and inspection HTML. Six source layers, two fully clothed imagegen inputs, exact prompts, replay, settings, construction notes and configuration pins are construction dependencies. Do not delete these as obsolete investigation images.
+
+Preserve the current nested N attachment review in `body/attachments-v1/north/` and its existing N part anatomy/hair PNG dependencies. Metadata declares the retained HTML page; obsolete previews in the same folder can be removed.
+
 Current S attachment review: preserve metadata and `body/attachments-v1/inspection/S-attachments.html`, as well as its existing S anatomy and shoulder-fit PNG dependencies. There are no new raster image outputs. Source JSON and approval records stay protected.
 
 S hip authoring is pending generation; `body/hips-v1/` staging protects one small native diagnostic PNG and its labelled HTML page. Preserve the pending source checkpoint, settings/prompts and exact native cropped guide. There are no generated hip/leg assets or masks to retain. Approved shoulder and all previous source/review dependencies remain protected; temporary baseline exports are removed.

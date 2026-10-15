@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "tool": "built-in imagegen",
+  "prompts": [
+    {
+      "file": "inputs/S-dress-study-v1.png",
+      "role": "reference gown fitted to approved S T-pose",
+      "prompt": "Edit Image 1 into a fully clothed adult fantasy-character wardrobe fitting study. Image 1 is the exact 1024x1536 front-facing T-pose body/face/hair/limb registration to preserve. Image 2 is ONLY the dress design reference, not its pose or body shape. Dress the adult woman from Image 1 in the deep-purple strapless sweetheart corset gown from Image 2, with the red draped hip sash and purple floor-length flowing skirt, red slit trim, and a front opening showing the character's left leg (screen right). Match the reference's purple bodice panel seams, red fabric wrap and elegant skirt folds, fitted to Image 1's existing torso and hips. Keep opaque fabric covering the entire bust and pelvis, including the top of the leg opening, with no underwear visible. Exposed shoulders and neckline should show continuous natural skin with no grey bra straps, grey cup edges or bra shadows. This is an ordinary fully clothed fashion asset, no nudity. Preserve exactly the original head, face, hair, body proportions, both horizontally outstretched bare arms, hands, legs, feet, position and 1024x1536 canvas from Image 1. Keep arms bare; the gloves from Image 2 are a separate future item and should not be included. Keep the feet visible, existing footwear posture unchanged, skirt hem above the toe baseline. Transparent background, no text, no labels, no props. Output one single full-body dressed T-pose matching Image 1's native coordinates."
+    },
+    {
+      "file": "inputs/S-neckline-study-v1.png",
+      "role": "selected clothed wardrobe and unobstructed neckline study",
+      "prompt": "Edit this fully clothed adult fantasy character fitting study. Remove all of her long purple hair to make a bald-headed wardrobe construction view with an unobstructed neckline and shoulders. Keep exactly the same face, head, shoulder height, body proportions, both bare outstretched arms and hands, legs, feet, native position and 1024x1536 framing. Keep the same completely opaque purple strapless sweetheart corset, red hip sash, long purple skirt, red slit trim and coverage over the whole bust and pelvis. Reconstruct continuous natural skin only where hair previously covered the neck, shoulders and upper chest, including along the clavicles; no hair fragments, no bra straps, no grey underwear edges. The outfit stays on and all intimate areas remain covered. No nudity. Transparent background; no labels. This image supplies only neckline/shoulder skin patches beneath a separate hair layer; do not redesign the dress or body."
+    }
+  ]
+}

@@ -1,5 +1,87 @@
 # Female Character Studio — Project Context and Handoff
 
+## S covered wardrobe approved — 2026-10-15
+
+The user approved the S everyday underwear separation, reference gown and
+midriff/high-slit coverage test in `outfit/dress-v1/review-fit-v1.json`.
+Six source layers and both actual clothed fits are pinned. This does not approve
+a finished second outfit, other openings/facings, concealed anatomy or footwear.
+Next: independently author and fit the N posterior dress and separate underwear
+against its approved body/head/hair. The back must preserve posterior garment
+construction and must not inherit the front thigh opening or S coverage masks.
+The earlier N attachment registration draft remains unapproved and is preserved
+as a draft in the same local checkpoint. Step 6C stays open; Step 6D has not
+started. Earlier pending entries below are historical.
+
+
+## S covered wardrobe separation candidate — 2026-10-15
+
+The user asked to separate underwear, prepare the reference dress without visible
+straps/brief edges, and account for high slits together with exposed bellies.
+New work is `outfit/dress-v1/`; the pending N attachment study remains unapproved.
+S everyday bra and panties are separate native partitions and still reconstruct
+the approved body/head/hair exactly. The exposed-surface torso is incomplete
+under clothing and cannot be exported alone. No intimate anatomy is authored.
+
+The reference gown uses independently layered opaque bust and high-cut pelvic
+lining behind its neckline/slit, plus bounded skin/interface patches. The
+midriff/high-slit construction test retains original belly pixels up to the red
+sash. Coverage is independently required at bust and pelvis; an exposed waist is
+valid. Missing coverage, body gaps or visible lining reject export. An opening
+that exceeds this fitted lining requires new compatible parts, not automatic
+underwear erasure or invented skin. These are S-specific measured masks, not a
+general anatomical or clothing-topology guarantee.
+
+`pnpm outfit:review:dress` replays actual approved shoulder/body/head/hair and
+checks six new source layers against deterministic construction. Review the two
+clothed frames in `outfit/dress-v1/inspection/S-wardrobe.html` in staging.
+Both whole-character imagegen studies remained fully clothed; only native
+clothing and bounded interface patches are selected. No approved body, limb,
+head, hair or foot source is overwritten or transformed. A bounded lateral
+seam allowance fits the new corset to the existing body.
+
+See `outfit/dress-v1/construction-notes.md` for exact replay, scope and real-world
+seamless-underwear, strapless-support and lined-slit references. Everyday views
+still use ordinary two-piece underwear. The midriff frame is a construction
+test, not a finished additional outfit; gloves and footwear are not authored.
+All wardrobe outputs await visual approval. Other facings/material maps and
+runtime catalog integration remain unfinished. Step 6C stays open; Step 6D has
+not started. Earlier entries below are historical.
+
+
+Wardrobe validation: asset-validator typecheck, root lint (zero warnings), ESM/declaration build and native review CLI passed. Wardrobe and cleanup integration workflows passed (2 tests, none skipped, 46.15 seconds), covering actual approved composition, exact separated-underwear replay, independent bust/pelvic coverage, exposed native waist, missing-support rejection, deterministic exports, immutable inputs, re-pinned altered lining and unsafe output rejection. Both looks were rendered and visually inspected in Chromium. Initial boundary/fit failures were resolved by the explicit covered pelvic contour, interface patches and bounded new-garment seam allowance; a TypeScript literal inference error was corrected. Six source PNGs replay byte-for-byte. All 1107 previous source SHA/mtime pairs remain exact (source README documentation excluded); generation-reference hashes also verify. Removed 81 generated files (1.7 MiB). All 354 current output hashes and 4 hashed viewers verify after cleanup. Full Studio build/E2E were not rerun. The S wardrobe remains unapproved/uncommitted; see `outfit/dress-v1/review-audit-v1.json`.
+
+## N attachment registration candidate — 2026-10-15
+
+Commit `061c584` records the approved eleven S registrations and cleanup
+(75 generated files, 1.7 MiB). The S checkpoint is
+`body/attachments-v1/review-landmarks-v1.json`; its coordinates remain unchanged.
+
+The next Step 6C review is `body/attachments-v1/north/authoring.json`: eleven
+independently placed N registrations on the accepted posterior body/head/hair.
+Both hip anchors remain unavailable. Physical left is screen left and physical
+right screen right; S coordinates are not mirrored or copied. The measured
+N image baseline is row 1454 (alpha >=128), compared with S row 1472. This
+records the native artwork, not a new ground-normalisation or footwear decision.
+
+`pnpm body:review:attachments:north` replays the actual approved N five-part fit
+and checks its approval, native image dependencies, side identity, supported
+pixels and baseline. Review `body/attachments-v1/north/inspection/N-attachments.html`
+in staging: matching numbered markers over the anatomy and hair views, plus a
+coordinate/definition table. It references existing PNGs and creates no raster
+image copies. The S command remains available and its existing page stays exact.
+
+N registrations await human review and remain uncommitted. They are not
+validated joint pivots or a complete production rig. Concealed anatomy, remaining
+facing registrations, garment/material separation and the current provisional
+heel-footwear limitation remain open. Step 6C stays open; Step 6D has not started.
+Earlier pending notes below are historical.
+
+
+The initial N neck-base check failed because it considered only body pixels; it now checks the approved separate neck layer, with regression coverage.
+
+N attachment verification: asset-validator typecheck, root lint (zero warnings), ESM/declaration build and both S/N attachment CLIs passed. The S/N attachment and cleanup workflows passed (3 tests, none skipped, 111.61 seconds), checking real approved compositions, posterior side identity, unavailable hips, foreign-facing rejection, native image dependencies, measured baseline, determinism and immutable inputs. Chromium rendered the N page and its numbered overlay was visually inspected. All 1105 prior source SHA/mtime pairs remain exact (source README documentation excluded), and the approved S attachment page retains its original hash. Removed 75 generated files (1.7 MiB). All 351 current output hashes and 4 hashed viewers verify afterward. No raster images were added; full Studio build/E2E were not rerun. N landmarks await human review; see `body/attachments-v1/north/review-audit-v1.json`.
+
 ## S attachment registrations approved — 2026-10-15
 
 The user approved the eleven S image registrations in

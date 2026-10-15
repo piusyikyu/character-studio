@@ -1,5 +1,9 @@
 # Source artwork
 
+Current wardrobe review: `pnpm outfit:review:dress` builds the S reference gown and a midriff/high-slit coverage test from independent underwear, opaque lining and exposed-surface patches. Sources/provenance are in `heroine-v1/outfit/dress-v1/` under `assets/source`; no complete unclothed body is authored. N attachment approval remains pending.
+
+Current review: independent native N attachment registrations in `body/attachments-v1/north/authoring.json`, via `pnpm body:review:attachments:north`. S registrations are approved; N awaits review. No new PNGs or production rig.
+
 Current review: native S attachment candidates in `body/attachments-v1/authoring.json` and `pnpm body:review:attachments`. The eleven S registrations are approved in `body/attachments-v1/review-landmarks-v1.json`; concealed hip anchors stay unavailable. Existing anatomy/hair PNGs are referenced without extra copies.
 
 The S hip planning checkpoint is approved in `body/hips-v1/review-plan-v1.json`; hip art remains blocked and unauthored. Next is a native S attachment landmark candidate study within Step 6C.
