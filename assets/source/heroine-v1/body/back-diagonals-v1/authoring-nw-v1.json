@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "id": "body.back-diagonals.v1",
+  "assetVersion": 1,
+  "direction": "NW",
+  "target": "detailed",
+  "nativeSize": {
+    "width": 1024,
+    "height": 1536
+  },
+  "nativePosition": {
+    "x": 0,
+    "y": 0
+  },
+  "sourcePose": "tpose-study",
+  "intendedRuntimePose": "tpose",
+  "status": "draft-needs-human-review",
+  "published": false,
+  "paletteReady": false,
+  "productionAnatomyApproved": false,
+  "bodyOcclusionVerified": false,
+  "tposeApproved": false,
+  "finalStep6CAccepted": false,
+  "underlayer": "ordinary-daily-bra-and-panties",
+  "bodyPlane": "body-torso",
+  "partitionStatus": "whole-body-study-not-final-limb-partition",
+  "headConfiguration": {
+    "source": "head/soft-oval-v1/back-diagonals-authoring-v1.json",
+    "sourceSha256": "8fe3259b3a80fc3ddfff366ca5ea1e32fd21d6f8a6a65c93545783ec1ae90e74"
+  },
+  "hairConfiguration": {
+    "source": "hair/long-waves-v1/back-diagonals-authoring-v1.json",
+    "sourceSha256": "9b24a58bd7a77d172bde8caa12c401aca1060c8b8b6ddceed27b4cfcf3086270"
+  },
+  "headSelection": {
+    "source": "head/assembly-v1/review-selection.json",
+    "sourceSha256": "1dc21188093be1afb326b74852ec9f56125910cd6c77db620b0adc73a12b5613"
+  },
+  "headApproval": {
+    "source": "head/assembly-v1/review-fit-v1.json",
+    "sourceSha256": "57106f2c4a5b57fd130aaf009572e1ba342c3c95590ded9961f84ddf363ca83a"
+  },
+  "earConfiguration": {
+    "source": "ears/human-v1/back-diagonals-v1/authoring.json",
+    "sourceSha256": "c82b65aa9665724ff894f5fbda2a23d6ae6ef21c1fc948693583b73089d69b78"
+  },
+  "earApproval": {
+    "source": "ears/human-v1/back-diagonals-v1/review-fit-v1.json",
+    "sourceSha256": "36d8a7b927e53aef66f5e22564a70de0fd673cb1c6605401e67117a3bdd89e78"
+  },
+  "originalHead": {
+    "source": "head/soft-oval-v1/NW-head-v1.png",
+    "sourceSha256": "d86b1966b7c83a340e45a219f7432494ea12abf2ade54483d4c19c0f565643b6"
+  },
+  "originalNeck": {
+    "source": "head/soft-oval-v1/NW-neck-v1.png",
+    "sourceSha256": "ff5ea7bb2b6287eca50f2af6d4986f47191f8c483dbef9b96f9503194d514f10"
+  },
+  "rearHair": {
+    "source": "hair/long-waves-v1/NW-rear-v2.png",
+    "sourceSha256": "d9f9588b48b112d64f544557c45037532719d9b7c888aebfdd2ee16eb3c0b658"
+  },
+  "headGuide": {
+    "source": "inputs/NW-head-guide-v1.png",
+    "sourceSha256": "286fddec4137c5e1d710e809533355ff3660538fa1eb236dcc7f4ddd85c09c3a"
+  },
+  "approvedHeadBareSha256": "286fddec4137c5e1d710e809533355ff3660538fa1eb236dcc7f4ddd85c09c3a",
+  "approvedHeadFitSha256": "2848e2ebcabc08b88aced4a781d2e9fb5c6c93d2db44ff7d429ed47abb93a99a",
+  "reference": {
+    "source": "NW.png",
+    "sourceSha256": "ec34f6f12044aaeeb649c320c17635470ec6aeb99cc50ff0da430e9d333dd11d"
+  },
+  "study": {
+    "source": "inputs/NW-body-study-v1.png",
+    "sourceSha256": "7f4f35df77582578bd7ac692b557d07d901fd07eb97474995a9c13f45aa74b8f"
+  },
+  "body": {
+    "source": "NW-body-v1.png",
+    "sourceSha256": "46ac75187b5fac429064f9fad6eeca548bf383195584ca9bb0330be1af3bfb94"
+  },
+  "selection": {
+    "source": "NW-body-mask-v1.png",
+    "sourceSha256": "8fc4f390be1211be137bce219ea126b712e3a9ff35a9886039d48c7e57f24993"
+  },
+  "settings": {
+    "source": "selections-nw-v1.json",
+    "sourceSha256": "16de8f8fca221d6ba94363f96e4546b74745cdc6c53f4188ce26552bace4ac25"
+  },
+  "provenance": {
+    "source": "prompts-nw-v1.json",
+    "sourceSha256": "38584b9a4abaa5856d84a431734a9b5531db65ea985bb4bb84e0fa68ce6b8075"
+  },
+  "knownReviewIssues": [
+    "Independent NW three-quarter-back whole-body T-pose study, guided by its exact approved native head and approved N/NE body proportions. No opposite-facing fragments, mirrors or image transforms.",
+    "Ordinary opaque grey daily bra with posterior band/clasp and two straps, and normal full-coverage briefs. Human review must verify topology and facing.",
+    "All 245582 near-opaque source body interiors survive native body/hand envelopes unchanged. Intrinsic source alpha supplies finger/leg gaps.",
+    "Original NW head/ear and retained NW-rear-v2 posterior hair remain exact; no eyes, eyebrows, mouth or front fringe. Only matching source neck pixels in rows 288..302 transfer to supplied body skin.",
+    "Inspect near physical-left/screen-left hand, far physical-right/screen-right hand, joint alignment, hair depth, and rear-diagonal pelvis/legs/feet. Automated composition/alpha checks do not establish anatomy or arbitrary footwear compatibility.",
+    "Proportion comparison columns: approved N / approved NE revision 2 / independent NW candidate. Same native panel scale, no alignment transforms.",
+    "Whole-body directional studies do not establish reusable concealed geometry, separate limbs/garments/materials, production T-pose, independent pixel assets or final Step 6C approval. Step 6D has not started."
+  ],
+  "posedNeck": {
+    "source": "NW-neck-body-fit-v1.png",
+    "sourceSha256": "7b93f490f2c785803f8e0a12a269a94f86e5d8a4fd5e726a43a1ea9e05bf82f2"
+  },
+  "neckSelection": {
+    "source": "NW-neck-to-body-v1.png",
+    "sourceSha256": "39082e18923ae16967d1336746518920db2bff2111eabc9fb0dc7b32c489a2d7"
+  },
+  "footwearCompatibilityApproved": false,
+  "futureFootwearFitObligations": [
+    "Current S/N feet are a provisional high-heel study; different kinds of shoes may require extra independently authored leg-and-foot parts.",
+    "Review NW same-facing ankle posture, leg/foot attachment, sole contact and ground baseline before barefoot, flat-shoe or any footwear acceptance. Do not mirror, deform or overwrite approved limbs."
+  ],
+  "backProportionComparison": {
+    "north": {
+      "source": "inputs/N-proportion-guide-v2.png",
+      "sourceSha256": "028e3fc09de708e530ec3ec4e4021cd8affe5d2d6359e1d95c7fbb7294445fb0"
+    },
+    "northeast": {
+      "source": "inputs/NW-northeast-proportion-guide-v1.png",
+      "sourceSha256": "ea60ba48b756dee96529b30e1aa75452ad55b6963af11ecc305e09e9affb5488"
+    }
+  }
+}

@@ -1,5 +1,63 @@
 # Step 6C — First S body anatomy study
 
+## NW body approval and eight-facing review — 2026-10-15
+
+The user approved the independent NW body and posterior head/hair fit.
+`body/back-diagonals-v1/review-fit-nw-v1.json` pins its configuration, six current
+exports and exact source dependencies. Keep the approved source pack and replay
+inputs; cleanup removes only obsolete generated data.
+
+All eight whole-body direction studies now have individual fit approval. Next
+consolidate the selected native S/N/E/W/SE/SW/NE/NW body/head/hair compositions for
+a cross-facing review, retaining each exact approved local head/hair revision,
+physical side identity and natural pose/baseline differences. No mirrored or
+rescaled panels, silent substitutions or source-art edits. Consolidated review
+requires its own visual approval. Remaining independent part partitions and
+concealed joints, separate garments/materials, production anatomy/T-pose,
+provisional footwear geometry and native pixel artwork remain unfinished.
+Step 6C stays open; Step 6D has not started. Earlier entries are historical.
+
+## Independent NW body candidate — 2026-10-15
+
+Local commit `39fc7ab` records the approved NE revision-2 proportion refit and
+requested cleanup (60 generated files, 1.6 MiB). NW is now independently authored
+using its own exact accepted head/neck guide and approved N/NE anatomy as build
+and style references. It is not a mirrored NE or a collection of foreign-facing
+body fragments. Built-in imagegen prompt and native reference pins are saved in
+`body/back-diagonals-v1/prompts-nw-v1.json`.
+
+`authoring-nw-v1.json` selects the new native 1024×1536 T-pose study, with ordinary
+opaque grey daily bra and full-coverage briefs. Approved NW head/ear and
+`NW-rear-v2.png` hair remain exact; eyes, brows, mouth and front hair stay hidden.
+Only matching body-covered neck pixels in rows 288–302 transfer ownership.
+All 245,582 near-opaque body pixels and all 13,407 checked hand/forearm interiors
+retain source RGBA; intrinsic alpha supplies the finger/leg gaps. Native manual
+envelopes use no transforms, mirrors, colour keys, white cleanup or global blur.
+
+`pnpm body:review:back-diagonals:northwest` exports six PNGs and metadata to
+`assets/staging/heroine-v1/body/back-diagonals-v1/northwest/`. The overview shows
+original NW reference / native anatomy / actual retained-hair composition.
+`inspection/NW-proportion-comparison.png` shows approved N / approved NE revision 2 /
+new NW at identical native panel scale. Hand inspections use actual alpha on
+dark/light backgrounds. NE current views and pinned approval stay intact.
+
+Keep the selected study, exact NW head guide, approved NE proportion guide,
+body/mask and posed-neck/mask, settings/prompts and scratch-only replay. The
+existing identical N proportion guide is reused. Generated head and invisible
+background RGB are unselected. Current metadata protects the nested NW review
+from cleanup; missing independent inputs fail explicitly rather than using NE.
+
+NW remains unapproved and uncommitted. Review its torso/pelvis/leg orientation,
+near physical-left and far physical-right hands, underwear topology, actual
+neck/hair joint and inherited hair edges, and provisional feet/sole posture.
+Directional whole-body studies do not certify concealed geometry, separate
+reusable limbs/garments/materials, a production T-pose rig, arbitrary footwear or
+independent native pixel artwork. Step 6C stays open; Step 6D has not started.
+Earlier candidate/next-step statements below are historical.
+
+Validation: asset-validator typecheck, root lint (zero warnings), ESM/declaration build and native NW export passed. Five focused integration tests passed in 59.41 seconds, covering both historical NE revisions, independent NW composition, preserved head/hair, complete body/hand alpha, bounded neck ownership, determinism, missing-art rejection and nested-review cleanup protection. Four source outputs replay byte-for-byte; all 989 preceding source hashes/mtimes and approved NE review hashes remain unchanged. Final cleanup removed 60 generated files (1.6 MiB); all 313 current metadata-declared output hashes verify afterward. Initial subset-schema and test-type errors were corrected; no final check remains failed. Full app build and browser E2E were not rerun. NW remains unapproved; see `fit-audit-nw-v1.json`.
+
+
 ## NE body approval — revision 2 — 2026-10-15
 
 The user approved the NE proportion refit and current posterior head/hair fit.

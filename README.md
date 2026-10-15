@@ -112,6 +112,7 @@ pnpm body:review:profiles:west # Approved W revision-2 body/hair study
 pnpm body:review:front-diagonals # Approved SE body/hand revision-2 study
 pnpm body:review:front-diagonals:southwest # Approved SW revision-4 body and head/hair fit
 pnpm body:review:back-diagonals # NE proportion refit revision 2, native comparison and posterior hair fit
+pnpm body:review:back-diagonals:northwest # Independent NW body, N/NE comparison and actual posterior hair fit
 pnpm body:review:v5 # Rebuild the preceding antialiased curl candidate with colour spill
 pnpm body:review:v4 # Rebuild the mostly approved body/neck with the curl-edge nitpick
 pnpm body:review:v3 # Rebuild the preceding single-joint shoulder/neck candidate

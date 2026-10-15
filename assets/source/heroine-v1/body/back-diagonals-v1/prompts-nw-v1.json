@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "id": "body.back-diagonals.v1",
+  "direction": "NW",
+  "revision": 1,
+  "date": "2026-10-15",
+  "tool": "built-in imagegen",
+  "prompt": "Use case: precise-object-edit. Create one technical character-rig fitting illustration of an adult woman around 30 years old. Image 1 is the exact accepted NW three-quarter-back bald head/neck on a native 1024x1536 transparent canvas. Add a complete body beneath that head, preserving the head size and coordinates. Image 2 (approved full-back N) and image 3 (approved opposite rear-diagonal NE) supply this same character's slender build, normal underwear and detailed anime rendering style ONLY. Draw NW anatomy independently; DO NOT mirror image 3 or copy foreign-facing limb/body fragments.\nNW means THREE-QUARTER BACK facing toward screen-left, showing the back and her near physical-left side, as image 1. Torso, shoulders, pelvis, knees and feet must all agree with this facing. No visible eyes, brows or mouth. Keep the head bald; hair is a separate retained layer.\nExact framing: 1024x1536 canvas; head x383..519,y61..254, head anchor (447,158); neck x417..501,y255..302, anchor (438,275). Do not move or enlarge the head. Body joins this neck at y288..302 with shoulders about y300. Torso descends beneath x440..460. Keep full body around the same height as references, both complete feet near y1450..1480 and inside frame.\nNeutral anatomical T-pose: arms straight and horizontally extended at shoulder height, natural elbows/wrists, complete opaque palms and five fingers each; all fingers fit within x18..1006, with natural gaps and margins. Correct NW hand side identity, and independent natural foreshortening.\nMatch the established build closely: slender arms, defined but natural waist, tapered thighs/knees/calves and ankles like images 2 and 3. Do not widen waist or thicken limbs. Keep adult proportions and smooth clean detailed anime linework, warm peach skin, restrained shaded planes and clean highlights, thin dark outlines matching references.\nClothing is plain opaque grey DAILY two-piece underwear: regular bra with two shoulder straps, physical posterior band and center clasp; ordinary full-coverage briefs with waist height matching image 2. Show the back of garments, with only a plausible near-side cup edge. Neutral practical fitting pose. No swimsuit/bodysuit, decoration, hair, footwear, accessories, labels, guides, panels or background.\nOne complete NW figure only. True transparent empty background; skin and garments opaque inside their contours. No blur, pixel-art grid, glow or haze.\n",
+  "selectedStudy": {
+    "source": "inputs/NW-body-study-v1.png",
+    "sourceSha256": "7f4f35df77582578bd7ac692b557d07d901fd07eb97474995a9c13f45aa74b8f"
+  },
+  "referenceInputs": [
+    {
+      "source": "inputs/NW-head-guide-v1.png",
+      "sourceSha256": "286fddec4137c5e1d710e809533355ff3660538fa1eb236dcc7f4ddd85c09c3a",
+      "role": "Exact accepted independently authored native NW bald head/neck, sole placement/identity guide."
+    },
+    {
+      "source": "inputs/N-proportion-guide-v2.png",
+      "sourceSha256": "028e3fc09de708e530ec3ec4e4021cd8affe5d2d6359e1d95c7fbb7294445fb0",
+      "role": "Approved N anatomy build, style and ordinary bra/brief proportions only; reused existing identical guide."
+    },
+    {
+      "source": "inputs/NW-northeast-proportion-guide-v1.png",
+      "sourceSha256": "ea60ba48b756dee96529b30e1aa75452ad55b6963af11ecc305e09e9affb5488",
+      "role": "Approved NE revision-2 anatomy build/style only; NW drawn independently without copying or mirroring fragments."
+    }
+  ],
+  "referenceForComparison": {
+    "source": "NW.png",
+    "sourceSha256": "ec34f6f12044aaeeb649c320c17635470ec6aeb99cc50ff0da430e9d333dd11d"
+  },
+  "bodyReferenceApprovals": [
+    {
+      "source": "body/north-v1/review-fit-v1.json",
+      "sourceSha256": "701ea602dcca5a015d358ffe367d68e0d9d20a791ab4a7a834602526deda3367"
+    },
+    {
+      "source": "review-fit-ne-v2.json",
+      "sourceSha256": "8a04026cf72d57c577e5e3eb1dfd59949883b4960ad1671bb9a9d0ffc2a8a587"
+    }
+  ],
+  "selectedFraming": {
+    "width": 1024,
+    "height": 1536,
+    "nativePosition": {
+      "x": 0,
+      "y": 0
+    },
+    "headAnchor": {
+      "x": 447,
+      "y": 158
+    },
+    "neckAnchor": {
+      "x": 438,
+      "y": 275
+    }
+  },
+  "bodyStartsAtY": 288,
+  "neckOwnershipRows": [
+    288,
+    303
+  ],
+  "minimumVisibleAlpha": 8,
+  "shiftedScaledOrMirrored": false,
+  "headFromGeneratedStudySelected": false,
+  "globalColorKey": false,
+  "nativeWholeBodyInteriorsRetained": 245582,
+  "notes": [
+    "New independently authored NW three-quarter-back body with ordinary opaque grey two-piece daily underwear. N/NE are proportion/style references only.",
+    "Generated head is unselected. Approved NW head/ear, original neck outside bounded attachment and posterior NW-rear-v2 hair remain unchanged.",
+    "Native manual body/hand envelopes preserve source RGB/alpha, all 245582 near-opaque body interiors and intrinsic finger/leg gaps. No transforms, colour keys, white cleanup or global opacity changes.",
+    "Feet remain provisional; review same-facing posture, attachment, sole contact and ground baseline before footwear acceptance.",
+    "Concealed geometry, production anatomy, reusable limbs/garments/materials, pixel artwork and final Step 6C remain unfinished."
+  ]
+}

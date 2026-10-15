@@ -1,5 +1,9 @@
 # Asset workspace cleanup — 2026-10-13
 
+NW is approved in `review-fit-nw-v1.json`. Preserve all six current nested review PNGs and pinned native source/replay inputs; next consolidate the eight individually approved body studies. Older candidate entries below are historical.
+
+Current NW body review is metadata-protected in `body/back-diagonals-v1/northwest/`, including all six exported PNGs. Retain its native source pack, selected study/guide inputs, masks/settings/prompts and scratch replay, along with approved NE/source derivations. Reuse the existing N guide; discarded generation attempts and obsolete build/review output are not source dependencies.
+
 NE revision 2 is approved in `review-fit-ne-v2.json`. Cleanup preserves all six current metadata-declared review PNGs and every pinned source/guide/replay input, while removing regenerable build files. Next is independently authored NW. Earlier candidate notes below are historical.
 
 Current NE revision-2 proportion review protects six metadata-declared PNGs, including `inspection/NE-proportion-comparison.png`. Keep the selected v2 study, N/SE/old-NE prompt/comparison guides, native layers/masks, settings/prompts and scratch replay, plus pinned revision-1 sources. Historical review outputs are regenerable; original approved source art is unchanged. Older NE entries below are historical.

@@ -1,5 +1,9 @@
 # Source artwork
 
+NW is approved in `heroine-v1/body/back-diagonals-v1/review-fit-nw-v1.json`. All eight whole-body studies now have individual approvals. Next consolidate their exact native compositions for cross-facing review; source inputs and earlier derivations remain retained. Older candidate notes below are historical.
+
+Current independent NW body candidate: `heroine-v1/body/back-diagonals-v1/authoring-nw-v1.json`. Keep its selected study/head/NE proportion guides, reused N guide, native body/neck layers and masks, settings/prompts and scratch replay. `pnpm body:review:back-diagonals:northwest` rebuilds six native review PNGs in nested northwest staging. NW awaits its own approval; approved NE and all preceding art stay intact.
+
 NE revision 2 is approved in `heroine-v1/body/back-diagonals-v1/review-fit-ne-v2.json`. Its native source revisions and pinned guide/study/replay dependencies remain retained. Next author NW independently; earlier candidate notes below are historical.
 
 Current NE proportion refit selects `heroine-v1/body/back-diagonals-v1/authoring-ne-v2.json`. Preserve both native source revisions, selected study, N/SE/old-NE guide inputs, masks/settings/provenance and scratch replay. Rebuild six current review PNGs with `pnpm body:review:back-diagonals`; NE revision 2 awaits approval. All approved preceding art stays unchanged. Older candidate notes below are historical.

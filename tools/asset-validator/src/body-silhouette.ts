@@ -51,10 +51,17 @@ export const northeastBodySelectionSchema = northBodySelectionSchema.extend({
   handPolygons: z.strictObject({ physicalLeft: backDiagonalPolygon, physicalRight: backDiagonalPolygon }),
   neckOwnership: z.strictObject({ source: z.literal('head/soft-oval-v1/NE-neck-v1.png'), startY: z.literal(294), endY: z.literal(308), method: z.literal('remove-native-neck-coverage-only-where-selected-body-supplies-skin') }),
 });
-export function selectBackDiagonalBody(study: RgbaImage, input: unknown) {
-  return selectNativeBodySilhouette(study, northeastBodySelectionSchema.parse(input));
+const northwestPolygon = z.array(z.tuple([z.number().int().min(0).max(1024), z.number().int().min(288).max(1536)])).min(3);
+export const northwestBodySelectionSchema = northeastBodySelectionSchema.extend({
+  direction: z.literal('NW'), cutY: z.literal(288), bodyPolygon: northwestPolygon,
+  handPolygons: z.strictObject({ physicalLeft: northwestPolygon, physicalRight: northwestPolygon }),
+  neckOwnership: z.strictObject({ source: z.literal('head/soft-oval-v1/NW-neck-v1.png'), startY: z.literal(288), endY: z.literal(303), method: z.literal('remove-native-neck-coverage-only-where-selected-body-supplies-skin') }),
+});
+export function selectBackDiagonalBody(study: RgbaImage, input: unknown, direction: 'NE' | 'NW' = 'NE') {
+  if (direction !== 'NE' && direction !== 'NW') throw new Error('Independent rear-diagonal body selections support NE and NW only.');
+  return selectNativeBodySilhouette(study, direction === 'NW' ? northwestBodySelectionSchema.parse(input) : northeastBodySelectionSchema.parse(input));
 }
-function selectNativeBodySilhouette(study: RgbaImage, settings: z.infer<typeof northBodySelectionSchema> | z.infer<typeof profileBodySelectionSchema> | z.infer<typeof westBodySelectionSchema> | z.infer<typeof frontDiagonalBodySelectionSchema> | z.infer<typeof southwestBodySelectionSchema> | z.infer<typeof northeastBodySelectionSchema>) {
+function selectNativeBodySilhouette(study: RgbaImage, settings: z.infer<typeof northBodySelectionSchema> | z.infer<typeof profileBodySelectionSchema> | z.infer<typeof westBodySelectionSchema> | z.infer<typeof frontDiagonalBodySelectionSchema> | z.infer<typeof southwestBodySelectionSchema> | z.infer<typeof northeastBodySelectionSchema> | z.infer<typeof northwestBodySelectionSchema>) {
   if (study.width !== 1024 || study.height !== 1536) throw new Error('Native body study required.');
   const polygons = [settings.bodyPolygon, settings.handPolygons.physicalLeft, settings.handPolygons.physicalRight];
   const samples = new Uint8Array(1024 * 1536);
