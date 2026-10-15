@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "id": "body.attachments.s.v1",
+  "target": "detailed",
+  "direction": "S",
+  "sourcePose": "tpose-study",
+  "status": "draft-needs-human-review",
+  "nativeSize": {
+    "width": 1024,
+    "height": 1536
+  },
+  "baselineConfiguration": {
+    "source": "body/parts-v1/authoring.json",
+    "sourceSha256": "e71462b1672fb3ce20cf969d05b32ab431d8306b4797835686d8fa33b57441d3"
+  },
+  "shoulderConfiguration": {
+    "source": "body/shoulders-v1/authoring.json",
+    "sourceSha256": "4bdd23e95e900f262c2e35ffedb3ffe15b0c9dd007e87063fd76ea181362dbba"
+  },
+  "shoulderApproval": {
+    "source": "body/shoulders-v1/review-fit-v1.json",
+    "sourceSha256": "3e2f04df805898e628779ae38b7e802310fe0494d7d2133f895a14a4396b7315"
+  },
+  "landmarks": [
+    {
+      "id": "head_center",
+      "position": {
+        "x": 511,
+        "y": 175
+      },
+      "evidence": "manual-registration",
+      "definition": "Head registration near the central facial axis; not a rotation pivot."
+    },
+    {
+      "id": "neck_base",
+      "position": {
+        "x": 512,
+        "y": 322
+      },
+      "evidence": "manual-registration",
+      "definition": "Neck-to-torso registration near the clavicle centre."
+    },
+    {
+      "id": "shoulder_left",
+      "position": {
+        "x": 597,
+        "y": 356
+      },
+      "evidence": "manual-registration",
+      "definition": "Physical-left shoulder attachment region; provisional centre within the shoulder study."
+    },
+    {
+      "id": "shoulder_right",
+      "position": {
+        "x": 427,
+        "y": 356
+      },
+      "evidence": "manual-registration",
+      "definition": "Physical-right shoulder attachment region; provisional centre within the shoulder study."
+    },
+    {
+      "id": "chest_center",
+      "position": {
+        "x": 512,
+        "y": 426
+      },
+      "evidence": "manual-registration",
+      "definition": "Central torso registration at chest height."
+    },
+    {
+      "id": "waist_center",
+      "position": {
+        "x": 512,
+        "y": 554
+      },
+      "evidence": "manual-registration",
+      "definition": "Central torso registration near the narrow waist."
+    },
+    {
+      "id": "hip_left",
+      "position": null,
+      "evidence": "unavailable-concealed",
+      "definition": "Concealed hip joint has not been authored; the brief silhouette is not a joint centre."
+    },
+    {
+      "id": "hip_right",
+      "position": null,
+      "evidence": "unavailable-concealed",
+      "definition": "Concealed hip joint has not been authored; the brief silhouette is not a joint centre."
+    },
+    {
+      "id": "hand_left",
+      "position": {
+        "x": 947,
+        "y": 380
+      },
+      "evidence": "manual-registration",
+      "definition": "Physical-left palm centre; intended hand-held attachment location."
+    },
+    {
+      "id": "hand_right",
+      "position": {
+        "x": 77,
+        "y": 380
+      },
+      "evidence": "manual-registration",
+      "definition": "Physical-right palm centre; intended hand-held attachment location."
+    },
+    {
+      "id": "foot_left",
+      "position": {
+        "x": 546,
+        "y": 1355
+      },
+      "evidence": "manual-registration",
+      "definition": "Physical-left ankle registration; not the sole or a shoe compatibility claim."
+    },
+    {
+      "id": "foot_right",
+      "position": {
+        "x": 475,
+        "y": 1355
+      },
+      "evidence": "manual-registration",
+      "definition": "Physical-right ankle registration; not the sole or a shoe compatibility claim."
+    },
+    {
+      "id": "ground_baseline",
+      "position": {
+        "x": 512,
+        "y": 1472
+      },
+      "evidence": "measured-alpha-bound",
+      "definition": "Lowest body row with alpha at least 128; image registration only, not a biomechanical sole plane."
+    }
+  ],
+  "published": false,
+  "productionRigApproved": false,
+  "concealedJointsApproved": false,
+  "footwearCompatibilityApproved": false,
+  "finalStep6CAccepted": false
+}

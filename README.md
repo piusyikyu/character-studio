@@ -1,5 +1,7 @@
 # Female Character Studio
 
+Current review: native S attachment candidates in `body/attachments-v1/authoring.json` and `pnpm body:review:attachments`. The eleven S registrations are approved in `body/attachments-v1/review-landmarks-v1.json`; concealed hip anchors stay unavailable. Existing anatomy/hair PNGs are referenced without extra copies.
+
 The S hip planning checkpoint is approved in `body/hips-v1/review-plan-v1.json`; hip art remains blocked and unauthored. Next is a native S attachment landmark candidate study within Step 6C.
 
 A TypeScript pnpm workspace for one versioned CharacterRecipe and two independent

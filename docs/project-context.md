@@ -1,5 +1,49 @@
 # Female Character Studio — Project Context and Handoff
 
+## S attachment registrations approved — 2026-10-15
+
+The user approved the eleven S image registrations in
+`body/attachments-v1/review-landmarks-v1.json`. Both hip joints remain unavailable;
+rotation pivots, concealed anatomy and the production rig are unfinished.
+Next: independently place N registration candidates against the approved native
+posterior body/head/hair, preserving physical sides and heel-oriented feet.
+S coordinates will not be reflected or reused for N. Step 6C stays open; Step 6D
+has not started. Earlier pending entries below are historical.
+
+
+## S attachment landmark candidate review — 2026-10-15
+
+Local commit `d3a2619` records approval of the hip planning checkpoint and cleanup
+(73 generated files, 1.7 MiB); hip artwork remains blocked and unauthored.
+The next independent Step 6C increment is `body/attachments-v1/authoring.json`:
+11 manually proposed or measured native S registrations, with both concealed hip
+anchors explicitly unavailable. All 13 core semantic anchor IDs are accounted
+for, but no complete anchor table or production RenderPlan is exported.
+
+`pnpm body:review:attachments` replays the actual approved S shoulder/body/head/
+hair fit, validates pins, supported pixels, physical-side identity, vertical
+registration order and measured alpha baseline (row 1472 at alpha >=128).
+The baseline is an image bound, not a biomechanical sole plane. Foot points
+identify ankle registration and preserve provisional heel-oriented footwear
+scope. Other points are registration candidates, not validated rotation pivots.
+
+Review `body/attachments-v1/inspection/S-attachments.html` in staging. It shows
+numbered markers on native anatomy and hair views, plus definitions/coordinates.
+Physical right is orange (screen left), physical left green (screen right),
+central points cyan and the measured baseline yellow. The page references
+existing approved PNGs; no extra PNG copies, new anatomy or art edits are made.
+The source records and actual composition are pinned; cleanup preserves this
+current page and its referenced native reviews. Run the existing S part and
+shoulder review commands first if their review PNGs are missing.
+
+The candidate awaits human review and remains uncommitted. Concealed hips/
+other joints, independent anchors for other facings, separate garments/materials
+and the production rig remain unfinished. Step 6C stays open; Step 6D has not
+started. Earlier notes below are historical.
+
+
+Attachment-review verification: asset-validator typecheck, root lint (zero warnings), ESM/declaration build and the native review CLI passed. Attachment and cleanup integration workflows passed (2 tests, none skipped, 78.93 seconds), including actual accepted composition, explicit unavailable hips, physical-side identity, measured baseline, deterministic output, external native-image dependencies, immutable inputs and unsafe input/output rejection. Chromium rendered the local page and the numbered overlays were visually inspected; its initial sandbox launch failed and the approved outside-sandbox retry passed. All 1102 preceding source SHA/mtime pairs remain exact (source README documentation excluded). Removed 75 generated files (1.7 MiB). All 350 current output hashes and 4 hashed viewers verify after cleanup. No additional raster images were created. Full Studio build/E2E were not rerun because no app UI/runtime changed. See `body/attachments-v1/review-audit-v1.json`; the registrations await human review.
+
 ## S hip planning checkpoint approved — 2026-10-15
 
 The user approved the planning checkpoint in `body/hips-v1/review-plan-v1.json`.

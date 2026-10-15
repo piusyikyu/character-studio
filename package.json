@@ -80,6 +80,7 @@
     "body:review:parts:northwest": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-parts-review-cli.js --northwest",
     "body:review:parts:all": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-part-set-review-cli.js",
     "body:review:shoulders": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-shoulder-review-cli.js",
+    "body:review:attachments": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-attachment-review-cli.js",
     "body:review:hips:plan": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-hip-plan-cli.js",
     "body:review:parts:southwest": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-parts-review-cli.js --southwest",
     "body:review:parts:southeast": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-parts-review-cli.js --southeast",

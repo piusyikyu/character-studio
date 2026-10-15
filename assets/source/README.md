@@ -1,5 +1,7 @@
 # Source artwork
 
+Current review: native S attachment candidates in `body/attachments-v1/authoring.json` and `pnpm body:review:attachments`. The eleven S registrations are approved in `body/attachments-v1/review-landmarks-v1.json`; concealed hip anchors stay unavailable. Existing anatomy/hair PNGs are referenced without extra copies.
+
 The S hip planning checkpoint is approved in `body/hips-v1/review-plan-v1.json`; hip art remains blocked and unauthored. Next is a native S attachment landmark candidate study within Step 6C.
 
 Current S hip-root authoring is blocked by two built-in imagegen output-moderation rejections. `heroine-v1/body/hips-v1/` retains a pinned pending checkpoint, independent planning contours, exact prompts and one native upper-leg reference crop. No new hip/leg art or pose masks exist. `pnpm body:review:hips:plan` exports diagnostics only and verifies the approved shoulder/body/head/hair fit. The current heel-based legs/feet remain unchanged. Older candidate notes are historical.

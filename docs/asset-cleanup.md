@@ -1,5 +1,7 @@
 # Asset workspace cleanup — 2026-10-13
 
+Current S attachment review: preserve metadata and `body/attachments-v1/inspection/S-attachments.html`, as well as its existing S anatomy and shoulder-fit PNG dependencies. There are no new raster image outputs. Source JSON and approval records stay protected.
+
 S hip authoring is pending generation; `body/hips-v1/` staging protects one small native diagnostic PNG and its labelled HTML page. Preserve the pending source checkpoint, settings/prompts and exact native cropped guide. There are no generated hip/leg assets or masks to retain. Approved shoulder and all previous source/review dependencies remain protected; temporary baseline exports are removed.
 
 S shoulder staging at `body/shoulders-v1/` protects only the metadata-declared full fit and shoulder comparison. Keep two new source arms, two pose masks, the selected generated study, prompt, settings/provenance and scratch replay. All earlier approved sources/reviews remain protected; temporary baseline exports and obsolete shoulder previews are removed.
