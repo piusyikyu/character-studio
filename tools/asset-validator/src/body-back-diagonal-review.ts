@@ -17,7 +17,7 @@ const source = z.string().regex(/^(?:[a-zA-Z0-9_.-]+\/)*[a-zA-Z0-9_.-]+$/).refin
 const pin = z.strictObject({ source, sourceSha256: hash });
 export const backDiagonalBodyReviewSchema = northBodyReviewSchema.extend({ id: z.literal('body.back-diagonals.v1'), direction: z.enum(['NE', 'NW']), reference: pin.extend({ source: z.enum(['NE.png', 'NW.png']) }), footwearCompatibilityApproved: z.literal(false), futureFootwearFitObligations: z.array(z.string().min(1)).min(1), proportionComparison: z.strictObject({ north: pin, previous: pin, southeast: pin }).optional(), backProportionComparison: z.strictObject({ north: pin, northeast: pin }).optional() });
 const inside = (base: string, path: string) => { const p = relative(base, path); return p === '' || (!isAbsolute(p) && p !== '..' && !p.startsWith('../')); };
-export interface BackDiagonalBodyReviewOptions { readonly sourceDirectory: string; readonly assetDirectory: string; readonly referenceDirectory: string; readonly outputDirectory: string; readonly configuration?: 'authoring-ne-v1.json' | 'authoring-ne-v2.json' | 'authoring-nw-v1.json' }
+export interface BackDiagonalBodyReviewOptions { readonly sourceDirectory: string; readonly assetDirectory: string; readonly referenceDirectory: string; readonly outputDirectory: string; readonly bodyParts?: readonly { readonly plane: RenderPlane; readonly image: RgbaImage }[]; readonly configuration?: 'authoring-ne-v1.json' | 'authoring-ne-v2.json' | 'authoring-nw-v1.json' }
 
 /** Independently authored rear-diagonal anatomy and native posterior hair depth, offline only. */
 export async function prepareBackDiagonalBodyReview(options: BackDiagonalBodyReviewOptions) {
@@ -76,9 +76,20 @@ export async function prepareBackDiagonalBodyReview(options: BackDiagonalBodyRev
   if (!neckTransferredPixels) throw new Error(`${direction} body must supply skin at its bounded neck attachment.`);
   const nativeHead = blankImage(1024, 1536); drawRgba(nativeHead, neck!, 0, 0); drawRgba(nativeHead, head!, 0, 0);
   if (sha256(encodePng(nativeHead)) !== config.approvedHeadBareSha256 || sha256(encodePng(guide!)) !== config.approvedHeadBareSha256) throw new Error(`${direction} body guide must preserve accepted head and neck pixels exactly.`);
+  if (options.bodyParts) {
+    const required = ['body-torso', 'body-front-arm', 'body-back-arm', 'body-front-leg', 'body-back-leg'];
+    if (options.bodyParts.length !== 5 || new Set(options.bodyParts.map(p => p.plane)).size !== 5 || options.bodyParts.some(p => !required.includes(p.plane) || p.image.width !== 1024 || p.image.height !== 1536)) throw new Error('Five explicitly assigned native posterior body planes required; frontal feature planes are forbidden.');
+    const reconstructed = blankImage(1024, 1536);
+    for (const plane of DIRECTION_PLANE_ORDER[direction]) for (const part of options.bodyParts) if (part.plane === plane) drawRgba(reconstructed, part.image, 0, 0);
+    if (reconstructed.data.some((v, i) => v !== body!.data[i])) throw new Error('Posterior body planes must reconstruct the accepted native body exactly.');
+  }
   const compose = (withBody: boolean, withHair: boolean) => {
     const im = blankImage(1024, 1536), planes = new Map<RenderPlane, RgbaImage>([['head', head!], ['neck', withBody ? posedNeck! : neck!]]);
-    if (withBody) planes.set('body-torso', body!); if (withHair) planes.set('hair-rear', rear!);
+    if (withBody) {
+      if (options.bodyParts) for (const part of options.bodyParts) planes.set(part.plane, part.image);
+      else planes.set('body-torso', body!);
+    }
+    if (withHair) planes.set('hair-rear', rear!);
     for (const plane of DIRECTION_PLANE_ORDER[direction]) { const layer = planes.get(plane); if (layer) drawRgba(im, layer, 0, 0); }
     return im;
   };

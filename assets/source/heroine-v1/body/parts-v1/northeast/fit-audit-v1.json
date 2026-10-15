@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-15",
+  "scope": "NE native visible five-part ownership study",
+  "configSha256": "7e25abd76d85145e138519d54fad33ea330d77b162111c8ac35a85c5378fb827",
+  "measurements": {
+    "parts": [
+      {
+        "id": "torso",
+        "plane": "body-torso",
+        "characterSide": "center",
+        "visibility": "visible",
+        "selectedPixels": 73530,
+        "nativePosition": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "right-arm",
+        "plane": "body-front-arm",
+        "characterSide": "right",
+        "visibility": "visible",
+        "selectedPixels": 19558,
+        "nativePosition": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "left-arm",
+        "plane": "body-back-arm",
+        "characterSide": "left",
+        "visibility": "visible",
+        "selectedPixels": 20899,
+        "nativePosition": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "right-leg",
+        "plane": "body-front-leg",
+        "characterSide": "right",
+        "visibility": "visible",
+        "selectedPixels": 73241,
+        "nativePosition": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "left-leg",
+        "plane": "body-back-leg",
+        "characterSide": "left",
+        "visibility": "visible",
+        "selectedPixels": 59722,
+        "nativePosition": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ],
+    "overlapPixels": 0,
+    "unownedPixels": 0,
+    "generatedAnatomy": false
+  },
+  "hiddenFrontalLayers": [
+    "eyes",
+    "eyebrows",
+    "mouth",
+    "hair-front"
+  ],
+  "unavailableGeometry": [],
+  "allFiveVisiblePartsAuthored": true,
+  "exactApprovedFit": true,
+  "bodySha256": "7471594e2b48d2d6ebc2292bff7b7f69e083d21e70a63d74b5a550fc664c7421",
+  "bareSha256": "ea60ba48b756dee96529b30e1aa75452ad55b6963af11ecc305e09e9affb5488",
+  "fitSha256": "aacfba527c052f540ecf9da352233c2621a7306764a8dc2e170d89162c95270e",
+  "nativeNearOpaqueHandPixels": {
+    "left": 4986,
+    "right": 6108
+  },
+  "outputs": [
+    {
+      "path": "fit/NE-body-only.png",
+      "sha256": "7471594e2b48d2d6ebc2292bff7b7f69e083d21e70a63d74b5a550fc664c7421"
+    },
+    {
+      "path": "fit/NE-anatomy.png",
+      "sha256": "ea60ba48b756dee96529b30e1aa75452ad55b6963af11ecc305e09e9affb5488"
+    },
+    {
+      "path": "fit/NE.png",
+      "sha256": "aacfba527c052f540ecf9da352233c2621a7306764a8dc2e170d89162c95270e"
+    },
+    {
+      "path": "overview.png",
+      "sha256": "ab4835e0f442718ea6ba1b83f86c4159778c532962af9dd31a16d0f1f9442334"
+    },
+    {
+      "path": "parts-overview.png",
+      "sha256": "d297327c57c7b435be52eed61d280c68de37ab997ca546a7a7a067e9a553cc84"
+    }
+  ],
+  "validation": {
+    "typecheck": "pnpm --filter @character-studio/asset-validator typecheck: passed",
+    "lint": "pnpm lint: passed, zero warnings",
+    "build": "pnpm --filter @character-studio/asset-validator build: ESM and declarations passed",
+    "exports": [
+      "body-parts-review-cli.js --northeast: passed",
+      "body-parts-review-cli.js --southeast: regression export passed with exact accepted native fit"
+    ],
+    "integration": {
+      "command": "pnpm exec vitest run tools/asset-validator/src/body-back-diagonal-parts-review.integration.test.ts tools/asset-validator/src/body-back-diagonal-review.integration.test.ts tools/asset-validator/src/body-diagonal-parts-review.integration.test.ts tools/asset-validator/src/workspace-cleanup.integration.test.ts --maxWorkers=1 -t 'NE|native SE|cleans generated'",
+      "passed": 3,
+      "skipped": 5,
+      "seconds": 49.81,
+      "selectionNote": "The name filter selected NE parts, the NE boundary fixture and cleanup. Parameterized front-diagonal and other rear revision cases were skipped; actual SE regression was verified separately through its CLI.",
+      "checks": [
+        "Five native NE planes reproduce the approved slimmer body and posterior head/ear/neck/hair fit exactly.",
+        "No eyes, brows, mouth or front hair; unchanged approved pixels above native row 294 and rejection of frontal feature planes.",
+        "Exclusive complete source RGBA ownership, physical-side palms/feet, intact native hand alpha and repeated deterministic export.",
+        "Rejected side/alpha changes, foreign-facing baselines and previous broader NE body.",
+        "Selected input hashes and mtimes unchanged; unsafe outputs rejected; current cleanup outputs protected.",
+        "Default posterior fixture still preserves native masking, hand alpha, bounded neck attachment and actual hair depth."
+      ]
+    },
+    "fullAppBuild": "not rerun; runtime app unchanged",
+    "browserE2E": "not rerun; no UI changes"
+  },
+  "replayedByteExact": 5,
+  "precedingSourcesUnchanged": 1059,
+  "cleanup": {
+    "deletedGeneratedFiles": 64,
+    "deletedMiB": 1.7,
+    "verifiedCurrentOutputHashes": 340,
+    "verifiedViewerHashes": 2
+  },
+  "visualApprovalPending": true,
+  "published": false,
+  "productionAnatomyApproved": false,
+  "concealedJointsApproved": false,
+  "separateUnderwearAuthored": false,
+  "footwearCompatibilityApproved": false,
+  "finalStep6CAccepted": false,
+  "step6DStarted": false
+}

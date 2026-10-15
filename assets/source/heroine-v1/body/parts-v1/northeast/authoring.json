@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "id": "body.parts.northeast.v1",
+  "assetVersion": 1,
+  "direction": "NE",
+  "target": "detailed",
+  "sourcePose": "tpose-study",
+  "status": "draft-needs-human-review",
+  "published": false,
+  "paletteReady": false,
+  "productionAnatomyApproved": false,
+  "concealedJointsApproved": false,
+  "separateUnderwearAuthored": false,
+  "tposeApproved": false,
+  "finalStep6CAccepted": false,
+  "baselineConfiguration": {
+    "source": "body/back-diagonals-v1/authoring-ne-v2.json",
+    "sourceSha256": "bcc4ac654438b2d3b64f0e05d8f214550403810533241bec917c0a83c63e5d13"
+  },
+  "baselineApproval": {
+    "source": "body/back-diagonals-v1/review-fit-ne-v2.json",
+    "sourceSha256": "8a04026cf72d57c577e5e3eb1dfd59949883b4960ad1671bb9a9d0ffc2a8a587"
+  },
+  "wholeBody": {
+    "source": "body/back-diagonals-v1/NE-body-v2.png",
+    "sourceSha256": "7471594e2b48d2d6ebc2292bff7b7f69e083d21e70a63d74b5a550fc664c7421"
+  },
+  "settings": {
+    "source": "settings.json",
+    "sourceSha256": "bf18c510d23d143177c2dd38700a3230e2bc2b72041bd64e751fc3b23019f0ab"
+  },
+  "provenance": {
+    "source": "provenance.json",
+    "sourceSha256": "08a2d536a4632eb1b02daf64180bac0f9c91caaa817e3742df6f89fd87e14889"
+  },
+  "parts": [
+    {
+      "id": "torso",
+      "plane": "body-torso",
+      "characterSide": "center",
+      "visibility": "visible",
+      "artwork": {
+        "source": "NE-torso-v1.png",
+        "sourceSha256": "9bf6447a953d8634cc5f5658eda6ed4f6b51b7a507e1d0591b6cb9e4f6b673e0"
+      }
+    },
+    {
+      "id": "right-arm",
+      "plane": "body-front-arm",
+      "characterSide": "right",
+      "visibility": "visible",
+      "artwork": {
+        "source": "NE-right-arm-v1.png",
+        "sourceSha256": "376523f608ad8eb93ab2d3bec4a8c965b1c5c959a1589cc7d8c1d5797c91a16a"
+      }
+    },
+    {
+      "id": "left-arm",
+      "plane": "body-back-arm",
+      "characterSide": "left",
+      "visibility": "visible",
+      "artwork": {
+        "source": "NE-left-arm-v1.png",
+        "sourceSha256": "948ba6509f5779684189d5e7c0ed801e95d6414f8b269cf65150cdecb3c954e5"
+      }
+    },
+    {
+      "id": "right-leg",
+      "plane": "body-front-leg",
+      "characterSide": "right",
+      "visibility": "visible",
+      "artwork": {
+        "source": "NE-right-leg-v1.png",
+        "sourceSha256": "76b50e6a693463b9945124b26a61af021239dcf0135277fb11215148998f925f"
+      }
+    },
+    {
+      "id": "left-leg",
+      "plane": "body-back-leg",
+      "characterSide": "left",
+      "visibility": "visible",
+      "artwork": {
+        "source": "NE-left-leg-v1.png",
+        "sourceSha256": "de06b5f521e3e96753ff62e8cf3571da885eb24cc230b4829f71f9b62a0c1641"
+      }
+    }
+  ]
+}

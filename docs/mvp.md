@@ -1,5 +1,59 @@
 # MVP Plan — Female Character Studio
 
+## NE visible-part approval — 2026-10-15
+
+The user approved the five native NE visible-body partitions and exact static
+fit with the slimmer revision-2 body, intact hands and posterior head/ear/neck/
+hair. `body/parts-v1/northeast/review-fit-v1.json` pins the configuration, five
+source parts and body/anatomy/fit hashes. Frontal features remain hidden. This
+approval covers visible cuts and composition; concealed anatomy, separate
+underwear/materials, production rig and footwear compatibility remain open.
+Next: independently traced NW parts using its approved native body and posterior
+hair fit. Step 6C stays open; Step 6D has not started. Earlier pending NE notes
+below are historical.
+
+
+## NE visible-body-part study — 2026-10-15
+
+Local commit `6049ce4` records the approved five SW visible-body partitions and
+exact light-grey clothing/head/eye/hair fit after generated cleanup (64 files,
+1.7 MiB). All approved source files and scoped reviews remain unchanged.
+
+The next bounded Step 6C increment is `body/parts-v1/northeast/`. Five original
+NE native RGBA regions select torso with posterior bra/briefs and physical-right/
+left arms and legs. Shoulder sockets, posterior brief openings and inter-leg
+seam are independently traced on the accepted slimmer NE revision-2 body. No
+other-facing artwork, mirrors, transformations, colour edits or new anatomy.
+Near physical-right limbs on screen right use front limb planes; far physical-
+left limbs on screen left use back limb planes.
+
+`pnpm body:review:parts:northeast` pins `authoring-ne-v2.json` and its exact
+`review-fit-ne-v2.json` approval. The previous broader NE body cannot substitute
+for the selected native anatomy. The actual five body planes are composed with
+the accepted same-facing head/ear, posed neck and retained posterior hair in
+core NE order. Body RGBA and both anatomy/fit PNG hashes must match approval
+exactly. Eyes, eyebrows, mouth and front hair remain hidden. Part inputs cannot
+introduce frontal feature planes; the posterior loader validates five body
+planes and native reconstruction before composing them.
+
+Review `assets/staging/heroine-v1/body/parts-v1/northeast/overview.png`: anatomy
+from parts / accepted NE fit / actual five-plane fit. Read `parts-overview.png`
+top row whole body / torso / near right arm, then bottom row far left arm /
+near right leg / far left leg. The five review PNGs and metadata are protected
+by cleanup; temporary baseline/composition exports are removed. Keep five
+source partitions, settings, provenance and scratch replay. Approved earlier
+facing sources and review PNGs remain intact.
+
+NE shoulder/thigh/inter-leg cuts await human review and remain uncommitted.
+Only visible source ownership is authored: full concealed joints, separate
+underwear/skin/materials, NW partitions, production rig and alternate anatomy
+remain unfinished. Existing heel-based feet stay provisional with no new
+footwear compatibility approval. No runtime recipe/catalog/UI changes.
+Step 6C stays open; Step 6D has not started. Earlier entries are historical.
+
+
+NE-part verification: asset-validator typecheck, root lint (zero warnings), ESM/declaration build and the current NE part CLI passed. Selected NE part, default posterior-boundary and cleanup integration workflows passed (3 tests, 49.81 seconds; 5 unselected parameterized cases skipped). The SE CLI separately verifies its unchanged accepted anatomy/fit. Checks cover actual posterior composition, no frontal features, exclusive source RGBA ownership, physical-side palms/feet, intact hands, repeated determinism, immutable inputs and rejection of frontal feature planes, wrong side/alpha/facing or the prior wider NE body. All five source PNGs replay byte-for-byte; all 1,059 preceding source SHA/mtime pairs remain exact. Final cleanup removed 64 regenerated files (1.7 MiB), preserving all 340 current output hashes and both hashed viewers. Full app build and browser E2E were not rerun. See `body/parts-v1/northeast/fit-audit-v1.json`.
+
 ## SW visible-part approval — 2026-10-15
 
 The user approved the five native SW visible-body partitions and exact static

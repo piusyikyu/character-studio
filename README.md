@@ -106,6 +106,7 @@ pnpm face:review:front-diagonals:v1 # Reproduce the preceding facial fit with SE
 pnpm body:review # Approved S revision-6 body/head/hair study
 pnpm body:review:parts # Approved native S torso/arms/legs layering study
 pnpm body:review:north # Approved independent N/full-back body and posterior hair fit
+pnpm body:review:parts:northeast # Five native NE planes with the approved slimmer posterior fit
 pnpm body:review:parts:southwest # Five native SW planes with approved light-grey fabric and head/hair repairs
 pnpm body:review:parts:southeast # Five visible SE body planes with complete approved hands
 pnpm body:review:parts:west # W visible torso/left limbs with approved hand/hair depth
