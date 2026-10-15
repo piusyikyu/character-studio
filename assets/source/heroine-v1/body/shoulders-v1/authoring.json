@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "id": "body.shoulders.s.v1",
+  "assetVersion": 1,
+  "target": "detailed",
+  "direction": "S",
+  "sourcePose": "tpose-study",
+  "status": "draft-needs-human-review",
+  "published": false,
+  "productionAnatomyApproved": false,
+  "concealedJointsApproved": false,
+  "separateUnderwearAuthored": false,
+  "footwearCompatibilityApproved": false,
+  "tposeApproved": false,
+  "finalStep6CAccepted": false,
+  "baselineConfiguration": {
+    "source": "body/parts-v1/authoring.json",
+    "sourceSha256": "e71462b1672fb3ce20cf969d05b32ab431d8306b4797835686d8fa33b57441d3"
+  },
+  "baselineApproval": {
+    "source": "body/parts-v1/review-fit-v1.json",
+    "sourceSha256": "ee8f994ede2d1f5c029f09c540cfa610a4bb590e116445d047abb259586fe69e"
+  },
+  "combinedApproval": {
+    "source": "body/parts-assembly-v1/review-fit-v1.json",
+    "sourceSha256": "6a227f392336afcea6df9f8925b2e33f612dc6e8f2a3d2c72b48c63144501827"
+  },
+  "study": {
+    "source": "inputs/S-shoulder-root-study-v1.png",
+    "sourceSha256": "0eb9b4839a01a5785753525d3594b8c2dda113aaf4a846824ffa3e754d0f5a47"
+  },
+  "settings": {
+    "source": "settings.json",
+    "sourceSha256": "9c4ac6981f5f41dc73f7314c9003efa8d5b18b9ce084daa688dcfe5e5829f0c7"
+  },
+  "provenance": {
+    "source": "provenance.json",
+    "sourceSha256": "3d47e5109cd0a613c0576de81cb496a00e78c7a2034c662b37c82cc913eb2c3b"
+  },
+  "rightArm": {
+    "source": "S-right-arm-v1.png",
+    "sourceSha256": "2d55bce5464a03070d3b2c995931ba107eb06e85ef4e7bad87631eca16427125"
+  },
+  "leftArm": {
+    "source": "S-left-arm-v1.png",
+    "sourceSha256": "8a4faaeac33ef469c6e026050b2cc76b992393f863885093b7d7da19f8c9e339"
+  },
+  "rightRetention": {
+    "source": "S-right-arm-retention-v1.png",
+    "sourceSha256": "a26864112c31add7e1ad1445d5e2eeef1bae63af6d9186f410e3b262dac56a19"
+  },
+  "leftRetention": {
+    "source": "S-left-arm-retention-v1.png",
+    "sourceSha256": "6ebedc0f875fa5c11cee361821435d05753eeb703595b1b6829332e93565f960"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-15",
+  "id": "body.shoulders.s.v1",
+  "assetVersion": 1,
+  "target": "detailed",
+  "direction": "S",
+  "configuration": "authoring.json",
+  "configurationSha256": "4bdd23e95e900f262c2e35ffedb3ffe15b0c9dd007e87063fd76ea181362dbba",
+  "decision": "approved-s-concealed-shoulder-root-study",
+  "userFeedback": "Approved. Remove unneeded files and commit, then go on to next step.",
+  "currentStudyRootsApproved": true,
+  "rootAssets": {
+    "rightArm": {
+      "source": "S-right-arm-v1.png",
+      "sourceSha256": "2d55bce5464a03070d3b2c995931ba107eb06e85ef4e7bad87631eca16427125"
+    },
+    "leftArm": {
+      "source": "S-left-arm-v1.png",
+      "sourceSha256": "8a4faaeac33ef469c6e026050b2cc76b992393f863885093b7d7da19f8c9e339"
+    },
+    "rightRetention": {
+      "source": "S-right-arm-retention-v1.png",
+      "sourceSha256": "a26864112c31add7e1ad1445d5e2eeef1bae63af6d9186f410e3b262dac56a19"
+    },
+    "leftRetention": {
+      "source": "S-left-arm-retention-v1.png",
+      "sourceSha256": "6ebedc0f875fa5c11cee361821435d05753eeb703595b1b6829332e93565f960"
+    }
+  },
+  "baselineConfiguration": {
+    "source": "body/parts-v1/authoring.json",
+    "sourceSha256": "e71462b1672fb3ce20cf969d05b32ab431d8306b4797835686d8fa33b57441d3"
+  },
+  "baselineApproval": {
+    "source": "body/parts-v1/review-fit-v1.json",
+    "sourceSha256": "ee8f994ede2d1f5c029f09c540cfa610a4bb590e116445d047abb259586fe69e"
+  },
+  "combinedApproval": {
+    "source": "body/parts-assembly-v1/review-fit-v1.json",
+    "sourceSha256": "6a227f392336afcea6df9f8925b2e33f612dc6e8f2a3d2c72b48c63144501827"
+  },
+  "bodySha256": "934c7f300ec301c8848e3da338e574a6037e025c1937dda859d5cf6060364f45",
+  "bareSha256": "cd458b4953e07f10d8869872e37767dd915f9618b275ffa76814a6a28e33c8dc",
+  "fitSha256": "397a1c8264138a81233d275396f97719f542e42ff6537ba7cefde8b6e4751db8",
+  "measurements": {
+    "addedRootPixels": {
+      "right": 2524,
+      "left": 2536
+    },
+    "changedApprovedArmPixels": 0,
+    "unmaskedChangedPixels": 5015,
+    "poseMasksRequired": [
+      "right-arm",
+      "left-arm"
+    ],
+    "generatedVisiblePixels": 0
+  },
+  "reviewOutputs": [
+    {
+      "path": "fit/S.png",
+      "sha256": "397a1c8264138a81233d275396f97719f542e42ff6537ba7cefde8b6e4751db8"
+    },
+    {
+      "path": "inspection/shoulder-comparison.png",
+      "sha256": "6508a5e848a1447fdfbeb12a29882b3d50bf36d8e618a60742c3b126ed64a01b"
+    }
+  ],
+  "scope": "Only independently painted S proximal shoulder roots, their explicit pose masks and exact retained visible arm/hand/body/head/hair composition. Other concealed joints, torso/limbs, separate garments/materials, production rig and footwear compatibility remain unfinished.",
+  "published": false,
+  "paletteReady": false,
+  "productionAnatomyApproved": false,
+  "concealedJointsApproved": false,
+  "separateUnderwearAuthored": false,
+  "footwearCompatibilityApproved": false,
+  "tposeApproved": false,
+  "finalStep6CAccepted": false,
+  "step6DStarted": false
+}

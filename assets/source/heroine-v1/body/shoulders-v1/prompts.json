@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "method": "built-in-imagegen",
+  "intent": "edit",
+  "useCase": "precise-object-edit",
+  "prompt": "Use case: precise-object-edit. Asset type: modular adult female character arm sprite, shoulder-root completion study. Input image 1 is the character's RIGHT arm on SCREEN LEFT; input image 2 is her LEFT arm on SCREEN RIGHT. They are independently drawn native 1024x1536 transparent layers from the same front-facing T-pose. Combine them in their EXACT existing positions on one 1024x1536 transparent canvas, then complete only their currently amputated medial shoulder edges with rounded, fully painted proximal deltoid roots. Existing visible arms, elbows, palms, five fingers and all details must stay in place and retain their proportions, skin shading, peach palette and thin warm outlines. Right-arm inner cut is at x440,y309 curving to x414,y430: extend its shoulder root inward to about x478,y360 and round it closed; left-arm inner cut is at x584,y309 curving to x614,y430: extend inward to about x548,y360 and round it closed. The two roots stay SEPARATE with transparent gap around x495..530. Paint smooth, modest shoulder volumes with continuous shading that blends into the current arms. These are complete arm sprites, NOT a torso or a person. No torso, breasts, bra, neck, head, hair, legs, floating decorations, labels, text, checkerboard, shadows outside the arm, cutaway cross-section, bone or anatomical diagram. Use genuinely transparent alpha. Preserve the 1024x1536 framing and original hand/arm locations. Change only the small inner shoulder completion areas; do not mirror one arm into the other.",
+  "inputs": [
+    "body/parts-v1/S-right-arm-v1.png",
+    "body/parts-v1/S-left-arm-v1.png"
+  ],
+  "scope": "New concealed S shoulder-root study only; approved source images remain unchanged."
+}

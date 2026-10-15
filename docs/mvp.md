@@ -1,5 +1,58 @@
 # MVP Plan — Female Character Studio
 
+## S shoulder roots approved — 2026-10-15
+
+The user approved the bounded S proximal shoulder-root study and its two pose
+retention masks. `body/shoulders-v1/review-fit-v1.json` pins both new arms, masks
+and exact accepted body/anatomy/hair hashes. Visible arms and hands stay exact.
+This is scoped root-study approval, not full concealed joint or rig acceptance.
+Next: independently paint S proximal thigh/hip roots and test their actual pose
+with the approved shoulders. Preserve every existing leg/foot pixel and current
+heel-based posture; no new footwear compatibility is implied. Other facings,
+concealed torso/joints, separate underwear/materials and anchors remain open.
+Step 6C stays open; Step 6D has not started. Earlier pending notes are historical.
+
+
+## S concealed shoulder-root study — 2026-10-15
+
+Local commit `c155a19` records the approved combined eight-facing visible-part
+and isolation review after generated cleanup (67 files, 1.7 MiB). This approval
+does not supply the four unavailable profile limbs or certify concealed joints.
+
+The next bounded Step 6C increment is `body/shoulders-v1/`: new versioned S arm
+sources append 2,524 physical-right and 2,536 physical-left proximal-root pixels
+from one built-in imagegen study. Native (0,0) framing, every existing visible
+arm/hand RGBA byte and all other anatomy remain intact. No transforms, mirrors,
+whole-arm replacement or recolouring. The exact prompt is in `prompts.json`.
+
+The selected roots have independent manually traced contours with 8x8 alpha
+coverage. Selection extends slightly into the old cut to avoid fractional-alpha
+seams, then excludes every original arm pixel. Only existing torso coverage with
+alpha >=245 can receive a root. Unselected generated glow and repainted hands
+are excluded. The original torso is not uniformly alpha 255: both arms therefore
+need explicit binary pose-retention masks, even the back arm. Without them,
+5,015 body pixels differ; with them, native body/anatomy/hair hashes stay exact.
+The new source roots remain visible for unmasked asset inspection.
+
+`pnpm body:review:shoulders` pins the individual S part approval and the approved
+eight-facing selection, recomputes native source ownership, validates actual
+masked body planes in core S order, and rebuilds the accepted S pipeline as a
+regression. Changed hand/visible pixels, wrong-side roots, altered pose masks,
+foreign checkpoints and unsafe outputs are rejected. Current staging keeps only
+`fit/S.png`, `inspection/shoulder-comparison.png` and metadata. The comparison
+reads columns original cut / unmasked new root / actual retained torso fit;
+rows physical-right (screen-left), then physical-left (screen-right). Its 3x
+nearest zoom is inspection only; source assets and fit remain native.
+
+New proximal roots remain uncommitted and await human visual approval. This is
+not complete joint/torso anatomy or a reusable rig. Other concealed surfaces,
+profile far limbs, separate underwear/materials, anchors, alternate poses and
+footwear compatibility remain unfinished. No recipe/catalog/editor changes.
+Step 6C stays open; Step 6D has not started. Earlier entries are historical.
+
+
+Shoulder-study verification: asset-validator typecheck, root lint (zero warnings), ESM/declaration build and the current shoulder CLI passed. Native shoulder composition and cleanup integration workflows passed (2 tests, none skipped, 41.72 seconds), covering unchanged original arm/hand RGBA, same-side bounded additions, required pose masks, exact accepted body/anatomy/hair hashes, deterministic export, immutable inputs and rejection of hand/side/mask/checkpoint substitutions or unsafe outputs. Both source arms and both masks replay byte-for-byte; all 1,084 preceding source SHA/mtime pairs remain exact. Final cleanup removed 70 generated files (1.7 MiB), preserving all 348 current output hashes and 3 hashed viewers. Full Studio build/E2E were not rerun. See `body/shoulders-v1/fit-audit-v1.json`.
+
 ## Eight-facing visible-part review approved — 2026-10-15
 
 The user approved the combined native visible-part compositions and isolation
