@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-15",
+  "configuration": "authoring-ne-v2.json",
+  "configSha256": "bcc4ac654438b2d3b64f0e05d8f214550403810533241bec917c0a83c63e5d13",
+  "protectedPrecedingSources": {
+    "count": 975,
+    "sha256Unchanged": true,
+    "mtimeUnchanged": true
+  },
+  "replayOutputs": [
+    "NE-body-v2.png",
+    "NE-body-mask-v2.png",
+    "NE-neck-body-fit-v2.png",
+    "NE-neck-to-body-v2.png"
+  ],
+  "currentOutputHashesVerified": 6,
+  "nativeBodyNearOpaqueInteriors": 236841,
+  "bodyInteriorsClipped": 0,
+  "nativeHandMeasurements": {
+    "retainedInteriors": 11094,
+    "sourceAlphaPreserved": true
+  },
+  "bodyFreeAssemblySha256": "59b02d8fd07380bac390210f4d2c58b5e4ef45d0b3ca255bd5d9848ce695b669",
+  "bareSha256": "ea60ba48b756dee96529b30e1aa75452ad55b6963af11ecc305e09e9affb5488",
+  "fitSha256": "aacfba527c052f540ecf9da352233c2621a7306764a8dc2e170d89162c95270e",
+  "projectedWaistComparisons": {
+    "north": {
+      "width": 143,
+      "y": 538
+    },
+    "previous": {
+      "width": 141,
+      "y": 536
+    },
+    "current": {
+      "width": 118,
+      "y": 540
+    },
+    "southeast": {
+      "width": 128,
+      "y": 496
+    }
+  },
+  "comparisonCaveat": "Projected alpha silhouette widths are inspection aids, not circumferences or proof of anatomical consistency.",
+  "visualApproval": false,
+  "validation": {
+    "typecheck": "passed",
+    "rootLint": "passed-zero-warnings",
+    "validatorBuild": "passed-ESM-and-declarations",
+    "nativeExport": "passed",
+    "focusedTests": {
+      "passed": 4,
+      "durationSeconds": 43.13
+    },
+    "fullAppBuild": "not-rerun",
+    "browserE2E": "not-rerun"
+  }
+}

@@ -1,5 +1,22 @@
 # Asset workspace cleanup — 2026-10-13
 
+NE revision 2 is approved in `review-fit-ne-v2.json`. Cleanup preserves all six current metadata-declared review PNGs and every pinned source/guide/replay input, while removing regenerable build files. Next is independently authored NW. Earlier candidate notes below are historical.
+
+Current NE revision-2 proportion review protects six metadata-declared PNGs, including `inspection/NE-proportion-comparison.png`. Keep the selected v2 study, N/SE/old-NE prompt/comparison guides, native layers/masks, settings/prompts and scratch replay, plus pinned revision-1 sources. Historical review outputs are regenerable; original approved source art is unchanged. Older NE entries below are historical.
+
+Current NE study retains its selected body study, exact head guide, four native
+derived layers/masks, settings, prompts and scratch replay. Five metadata-declared
+NE review PNGs are protected under `body/back-diagonals-v1/`. The resolved pending
+JSON checkpoint was removed after generation succeeded; its failed-attempt
+provenance is retained with the selected study. Approved source art is unchanged.
+
+
+NE authoring returned no usable image after two output-stage tool rejections.
+The unused native head guide copy was removed; only the pending JSON checkpoint
+and tested offline pipeline remain. Future NE current review metadata is now
+protected by cleanup; no placeholder or NE artwork was published.
+
+
 SW revision-4 body/head/hair fit is approved in `review-fit-sw-v4.json`.
 Current layers and their pinned previous derivation inputs stay retained. Next
 is the independently authored NE body; Step 6C remains open and Step 6D has not

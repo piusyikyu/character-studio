@@ -1,5 +1,125 @@
 # Step 6C — First S body anatomy study
 
+## NE body approval — revision 2 — 2026-10-15
+
+The user approved the NE proportion refit and current posterior head/hair fit.
+`body/back-diagonals-v1/review-fit-ne-v2.json` pins the configuration, six review
+exports and native source dependencies. Both NE revisions and their replay/prompt
+inputs remain retained; approved preceding artwork stays unchanged. Requested
+cleanup removes regenerable build/obsolete review data, preserving current views.
+
+Next independently author NW using its own accepted head/neck/ear guide and the
+approved N/NE body proportions. Keep ordinary opaque daily bra and briefs,
+complete native hands, three-quarter-back torso/pelvis/feet and no eyes, brows,
+mouth or front hair. Never mirror NE or copy foreign-facing body fragments.
+NW requires its own visual review. Concealed geometry, reusable limbs/garments,
+material maps, production T-pose, provisional feet and independent pixel assets
+remain outstanding. Step 6C stays open; Step 6D has not started. Earlier candidate
+statements below are historical.
+
+## NE body proportion refit — revision 2 — 2026-10-15
+
+The user requested NE consistency with the established body build. The current
+`body/back-diagonals-v1/authoring-ne-v2.json` selects a new built-in imagegen edit
+of revision 1, explicitly guided by the approved native N and SE anatomy exports.
+The waist/limbs are more tapered, shading follows the established detailed style,
+and ordinary full-coverage briefs sit lower, closer to the N reference waistband.
+This remains the same body design, not an additional preset or recipe lever.
+
+Native 1024×1536 placement stays unchanged. The exact accepted NE head/ear and
+posterior hair sources remain intact; generated head pixels are unselected.
+Only body-covered neck pixels in rows 294–307 transfer ownership, retaining the
+closed sloped neck joint. The prior native silhouette and hand envelopes preserve
+all 236,841 near-opaque study body pixels and all 11,094 checked hand interiors.
+No mirroring, foreign-facing body fragments, scaling, warping, colour key or blur.
+The invisible RGB glow below alpha 8 is cleared; source alpha supplies the edges.
+
+`pnpm body:review:back-diagonals` selects revision 2 and exports six PNGs plus
+metadata. `inspection/NE-proportion-comparison.png` columns are approved N /
+previous NE revision 1 / new NE revision 2 / approved SE, at identical native
+panel scale. `overview.png` remains original NE reference / anatomy / actual hair
+composition. The CLI's `--northeast-v1` option regenerates historical review in
+its own `revision-1/` folder. Keep both source revisions, selected edit/proportion
+guides and study, settings, prompt provenance and scratch-only replay scripts.
+
+NE revision 2 awaits visual approval. Review rear-diagonal projection, ordinary
+bra/brief topology, hands and foreshortening, neck/hair roots and provisional
+foot posture. Source/alpha checks do not establish anatomical coherence or shoe
+compatibility. NW remains missing; Step 6C stays open and Step 6D has not started.
+Earlier NE candidate statements below are historical.
+
+Validation: asset-validator typecheck, root lint (zero warnings), ESM/declaration build and current NE export passed. Four focused integration tests passed in 43.13 seconds, covering both native revisions, preserved posterior head/hair, body/hand alpha, neck ownership, determinism and cleanup protection. An initial revision-2 probe landed on the newly authored antialiased neck contour; its interior probe and exact edge-alpha check now distinguish that valid edge from a gap. All 975 preceding source hashes/mtimes remain unchanged, all four derived source outputs replay byte-for-byte, and all six current review PNG hashes verify. Full app build and browser E2E were not rerun. NE remains unapproved/uncommitted; see `fit-audit-ne-v2.json`.
+
+
+## Independent NE body candidate — 2026-10-14
+
+The previous output-generation blockage is resolved. A new built-in imagegen
+study uses only the exact accepted native NE posterior head/neck guide. NE is
+independently authored; no foreign-facing body fragments, mirrors or transforms.
+The original same-facing standing reference is retained for the review comparison.
+
+`body/back-diagonals-v1/authoring-ne-v1.json` selects the new whole-body T-pose
+study with ordinary opaque daily bra and high-waisted full-coverage briefs. The
+bra has a posterior band/clasp and two straps. Approved NE head/ear and rear hair
+sources remain exact; eyes, brows, mouth and front hair stay absent. Native
+body/hand envelopes retain source RGB and alpha, including all 253,975 near-opaque
+body interiors and all 11,336 checked hand/forearm interiors. Intrinsic alpha
+supplies finger and leg gaps; no white cleanup, colour key or global opacity edit.
+
+The first row-300 body cut exposed a gap at the sloped native NE neck base.
+Selection now starts at row 294. Only body-covered source neck pixels in rows
+294–307 transfer to the new body, preserving all other head/neck pixels. The
+actual core posterior plane order overlays the retained hair on the new body.
+This closes the local gap without moving anatomy or inspection panels.
+
+`pnpm body:review:back-diagonals` rebuilds five PNGs and metadata at
+`assets/staging/heroine-v1/body/back-diagonals-v1/`: `overview.png` shows reference /
+anatomy / actual hair fit, `fit/NE-anatomy.png` and `fit/NE.png` are native RGBA,
+and the two inspections show the neck/shoulder fit and hands on dark/light
+backgrounds. Replay `partition-study-ne-v1.js` only in scratch. The selected
+study, exact head guide, four derived layer/mask outputs, settings and prompt
+provenance remain required source inputs. The redundant pending JSON was removed;
+failed-attempt details remain in `prompts-ne-v1.json`. No CLI/API fallback was used.
+
+Review rear-diagonal torso/pelvis/leg orientation, physical hand identity and far
+finger overlap, bra/brief topology, head/neck/hair roots, inherited hair edges
+and provisional foot/sole posture and native endpoint heights. Automated checks
+do not establish anatomical coherence or arbitrary footwear compatibility.
+NE remains unapproved/uncommitted; NW is not supplied or mirrored. Reusable
+concealed geometry, limbs/garments/materials, presets, production T-pose and
+independent native pixel artwork remain unfinished. Step 6C stays open; Step 6D
+has not started. Earlier pending entries below are historical.
+
+
+Validation: asset-validator typecheck, root lint (zero warnings), ESM/declaration build and current native NE exports passed. Three focused integration tests passed in 25.71 seconds, including actual source composition, all body/hand interiors, the closed sloped neck joint, deterministic output, foreign-facing/ownership rejection and current-review cleanup protection. Four source outputs replay byte-for-byte; all 964 preceding source hashes/mtimes remain unchanged. Cleanup removed 60 generated files (1.6 MiB); 306 current metadata-declared output hashes verify. Full app build and browser E2E were not rerun. See `body/back-diagonals-v1/fit-audit-ne-v1.json`.
+
+## NE body authoring checkpoint — 2026-10-14
+
+Local commit `30fe9ad` records approved SW revision-4 body/head/hair fit.
+Requested cleanup removed 58 generated build files (1.6 MiB), preserving current
+reviews and all pinned source/approval records.
+
+The next independently authored NE body used its accepted native rear-facing
+head/neck guide and NE reference. Both built-in imagegen attempts were rejected
+at the output safety stage. No image was returned, selected or published. The
+unused guide copy was removed; prompts, request IDs, native guide pins and resume
+constraints are saved in [selected NE provenance](../assets/source/heroine-v1/body/back-diagonals-v1/prompts-ne-v1.json).
+
+The offline NE review schema, native silhouette/neck ownership, CLI and metadata
+cleanup support are prepared. Typecheck, lint and ESM/declaration build pass. Two
+focused integration workflows pass using a scratch-only synthetic body fixture:
+actual posterior composition, hidden facial planes, unchanged approved head,
+opaque hand interiors and natural source-alpha gaps/edges, determinism, native
+source ownership, rejected foreign-facing head, and protected metadata cleanup.
+These checks do not validate anatomy or supply a production asset. Real NE export
+fails explicitly while artwork is missing; NW is not supplied or mirrored.
+
+NE generation remains pending; this preparation is uncommitted. The CLI/API
+fallback was not invoked: the imagegen skill requires an explicit user request
+and a configured `OPENAI_API_KEY`. Approved source art is unchanged. Step 6C
+remains open; Step 6D has not started. Earlier next-step entries are historical.
+
+
 ## SW body and head/hair approval — 2026-10-14
 
 The user approved revision 4 and requested generated-data cleanup, a local commit

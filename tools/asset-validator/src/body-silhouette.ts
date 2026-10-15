@@ -45,7 +45,16 @@ export function selectFrontDiagonalBody(study: RgbaImage, input: unknown, direct
   if (direction !== 'SE' && direction !== 'SW') throw new Error('Independent front-diagonal body selections support SE and SW only.');
   return selectNativeBodySilhouette(study, direction === 'SW' ? southwestBodySelectionSchema.parse(input) : frontDiagonalBodySelectionSchema.parse(input));
 }
-function selectNativeBodySilhouette(study: RgbaImage, settings: z.infer<typeof northBodySelectionSchema> | z.infer<typeof profileBodySelectionSchema> | z.infer<typeof westBodySelectionSchema> | z.infer<typeof frontDiagonalBodySelectionSchema> | z.infer<typeof southwestBodySelectionSchema>) {
+const backDiagonalPolygon = z.array(z.tuple([z.number().int().min(0).max(1024), z.number().int().min(294).max(1536)])).min(3);
+export const northeastBodySelectionSchema = northBodySelectionSchema.extend({
+  direction: z.literal('NE'), cutY: z.literal(294), contourTolerancePixels: z.literal(0), bodyPolygon: backDiagonalPolygon,
+  handPolygons: z.strictObject({ physicalLeft: backDiagonalPolygon, physicalRight: backDiagonalPolygon }),
+  neckOwnership: z.strictObject({ source: z.literal('head/soft-oval-v1/NE-neck-v1.png'), startY: z.literal(294), endY: z.literal(308), method: z.literal('remove-native-neck-coverage-only-where-selected-body-supplies-skin') }),
+});
+export function selectBackDiagonalBody(study: RgbaImage, input: unknown) {
+  return selectNativeBodySilhouette(study, northeastBodySelectionSchema.parse(input));
+}
+function selectNativeBodySilhouette(study: RgbaImage, settings: z.infer<typeof northBodySelectionSchema> | z.infer<typeof profileBodySelectionSchema> | z.infer<typeof westBodySelectionSchema> | z.infer<typeof frontDiagonalBodySelectionSchema> | z.infer<typeof southwestBodySelectionSchema> | z.infer<typeof northeastBodySelectionSchema>) {
   if (study.width !== 1024 || study.height !== 1536) throw new Error('Native body study required.');
   const polygons = [settings.bodyPolygon, settings.handPolygons.physicalLeft, settings.handPolygons.physicalRight];
   const samples = new Uint8Array(1024 * 1536);

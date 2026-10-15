@@ -1,5 +1,18 @@
 # Source artwork
 
+NE revision 2 is approved in `heroine-v1/body/back-diagonals-v1/review-fit-ne-v2.json`. Its native source revisions and pinned guide/study/replay dependencies remain retained. Next author NW independently; earlier candidate notes below are historical.
+
+Current NE proportion refit selects `heroine-v1/body/back-diagonals-v1/authoring-ne-v2.json`. Preserve both native source revisions, selected study, N/SE/old-NE guide inputs, masks/settings/provenance and scratch replay. Rebuild six current review PNGs with `pnpm body:review:back-diagonals`; NE revision 2 awaits approval. All approved preceding art stays unchanged. Older candidate notes below are historical.
+
+Current independent NE body candidate: `heroine-v1/body/back-diagonals-v1/`
+selects `authoring-ne-v1.json`. Its native study and exact approved head guide
+supply an ordinary bra-and-briefs rear-diagonal whole-body study. Source head/ear
+and rear hair remain unchanged; only rows 294–307 transfer neck coverage where
+the new body supplies skin. Keep all selected derivation inputs; replay only in
+scratch. Rebuild with `pnpm body:review:back-diagonals`. NE is unapproved, NW is
+not authored, and Step 6C remains open.
+
+
 SW revision-4 body/head/hair fit is approved in `review-fit-sw-v4.json`.
 Current layers and their pinned previous derivation inputs stay retained. Next
 is the independently authored NE body; Step 6C remains open and Step 6D has not

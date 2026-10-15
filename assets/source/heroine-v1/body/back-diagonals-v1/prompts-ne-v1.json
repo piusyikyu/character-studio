@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "id": "body.back-diagonals.v1",
+  "direction": "NE",
+  "tool": "built-in imagegen",
+  "date": "2026-10-14",
+  "selectedStudy": {
+    "source": "inputs/NE-body-study-v1.png",
+    "sourceSha256": "29645a2518a4981d77b6746d819c2d21067880eafbeba6ac4805d9296286ce2a"
+  },
+  "prompt": "Create a clean illustrated character-rig fitting sheet: a fully grown adult woman, around 30 years old, wearing plain opaque light-grey everyday underwear consisting of a regular bra with a wide back band, two shoulder straps and center clasp, plus ordinary full-coverage high-waisted briefs. These are two separate garments. Her expression and presentation are neutral; this is a practical clothing and pose study.\nUse the attached image as a STRICT native placement and drawing-style guide. It is her NE three-quarter-back bald head and neck. Add the body beneath it without changing that head's size or coordinates: skull x511..656,y70..259; neck x539..627,y260..307; head anchor (581,162), neck anchor (590,285). Preserve the complete 1024x1536 canvas and all empty margins. Shoulder tops around y315. Her head, torso, hips, knees and feet all face diagonally away from the viewer toward screen-right, NE/three-quarter BACK. Show the back of the bra and the back/near side of the briefs. No eyes, eyebrows or mouth are visible from this viewpoint. Keep the head bald because hair is a separate layer.\nNeutral anatomical T-pose, both arms straight and extended at shoulder height, complete opaque hands with five fingers each and natural gaps, fingers contained between x18 and x1006. A balanced adult build consistent with the head scale; keep torso under the neck around x570..590, legs straight and complete feet near y1450..1480 with ample margin. Feet must agree with the rear-diagonal orientation. Smooth detailed anime line art, restrained peach skin shading, clean dark outlines, natural joints, no pixel-art grid, labels, panels, accessories, halo or background. Genuinely transparent empty canvas with opaque skin and garment interiors. Independently draw this facing, without mirroring another pose.\n",
+  "referenceInputs": [
+    {
+      "source": "inputs/NE-head-guide-v1.png",
+      "sourceSha256": "3e01ae59794bdd1253740e9e3b9525a8b442aaecefe1eb02f3d1a5c9351a6b9a",
+      "role": "Exact accepted same-facing bald posterior head/neck; sole image supplied to selected generation."
+    }
+  ],
+  "referenceForComparison": {
+    "source": "NE.png",
+    "sourceSha256": "e974063089cd95ca1e7d2ca008c6846b91c33d8563145cbe73b8745b7379300f"
+  },
+  "earlierAttempts": [
+    {
+      "tool": "built-in imagegen",
+      "prompt": "Use case: precise-object-edit. Asset: one independently authored NE three-quarter-back adult female body anatomy study for an offline modular character layer test.\nInput 1 is the exact accepted NE bald posterior head/neck on a transparent 1024x1536 canvas. Input 2 is the SAME-FACING NE adult character design, for skin tone, balanced mature proportions and clean detailed anime illustration style only.\nAdd a COMPLETE body in anatomical T-pose below input 1. Keep the input head, visible right ear and neck EXACTLY at the same tiny native coordinates and scale: skull x511..656 y70..259, neck x539..627 y260..307, native head anchor (581,162), neck anchor (590,285). Do not recenter, enlarge, rotate or shift the head. New body neck meets the retained neck around y300..307, shoulders around y314..335. Torso, shoulders, pelvis, knees and feet MUST ALL face NE/three-quarter BACK, oriented toward screen-right like the reference: a broad back is visible and the near right side foreshortened naturally. This is NOT a front view or full side profile. No eyes, eyebrows, mouth or facial expression anywhere; the head is seen from behind. A tiny cheek silhouette is fine, but do not turn her head toward the viewer.\nBoth arms fully extended at shoulder height in projected T-pose, straight elbows, anatomically coherent shoulders, wrists, thumbs and 5 distinct fingers per hand, opaque palm/finger interiors and natural transparent finger gaps. Keep all fingertips within x18..1006, leaving margins. Draw each arm/leg independently, with natural three-quarter-back foreshortening and physical side identity. Torso and pelvis descend roughly below x570..590; legs straight, whole figure visible, soles/heels near y1450..1480. Feet agree with the rear diagonal and provisional heel-raised posture, not front-facing toe views. Do not mirror another facing or copy N/S/SE/SW/E/W anatomy.\nShe wears ordinary PLAIN OPAQUE LIGHT-GREY DAILY TWO-PIECE UNDERWEAR: a normal bra with two straps, a physical posterior horizontal back band and center clasp; normal full-coverage panties/briefs covering pelvis and buttocks. Bare midriff between pieces. This is modest coverage for a nonsexual anatomy study. No swimsuit, bodysuit, unitard, thong, decorative lingerie, gloves, heels, reference dress or accessories. Never turn front bra cups into back-view cups; only an anatomically plausible near side edge may be visible.\nClean smooth detailed anime shading, opaque peach skin, warm restrained highlights and thin indigo/dark warm outlines matching the reference; no square pixel-art grid or jagged masking. Render one whole figure ONLY at exact native 1024x1536 on a truly transparent background. No hair (it is retained as a separate source layer), panels, labels, rulers, guide lines, shadows, glow, haze, fragments or watermark. Preserve original head placement and all margins. The generated body below the native neck will be selected without transforming any artwork.",
+      "stage": "output",
+      "result": "moderation_blocked",
+      "reportedCategory": "sexual",
+      "requestId": "6f276522-62ae-4308-b99d-261ecc9e393d"
+    },
+    {
+      "tool": "built-in imagegen",
+      "prompt": "Create one technical character clothing-fit illustration of an ADULT WOMAN wearing plain opaque grey everyday underwear: a normal daily bra and full-coverage high-waisted briefs, two separate garments with her midriff visible. Everyday clothing, neutral pose and neutral presentation.\nUse image 1 as the exact placement guide for her bald head and neck. Use image 2 only for the same character's NE three-quarter-back facing, peach color palette and smooth anime drawing style. Add her complete body in a neutral T-pose viewed from three-quarter BEHIND, looking toward screen-right. Show the bra's back band, center clasp and two straps. Briefs must be ordinary opaque full-coverage daily underwear. Preserve image 1 head size and placement EXACTLY: skull x511..656 y70..259, neck x539..627 ending y307. Shoulders begin about y315. Both arms extend at shoulder height, with complete opaque hands and five fingers on each. Legs and feet face the same rear diagonal; all of the figure and both hands must fit inside the canvas with margins, feet ending before y1490. The body should match the reference adult character's balanced build. No visible eyes, eyebrows or mouth because this is a rear-facing view. Keep her bald because hair will be added as a separate layer. Do not move or resize the head or canvas. One figure, 1024x1536 transparent PNG, detailed clean line art, smooth restrained warm shading, opaque skin and garment interiors, no labels, panels, glow or background. Draw this NE facing independently; do not mirror any other direction.",
+      "stage": "output",
+      "result": "moderation_blocked",
+      "reportedCategory": "sexual",
+      "requestId": "9c49ebb0-5fe7-4436-ab40-69be128bd431"
+    }
+  ],
+  "selectedFraming": {
+    "width": 1024,
+    "height": 1536,
+    "nativePosition": {
+      "x": 0,
+      "y": 0
+    },
+    "headAnchor": {
+      "x": 581,
+      "y": 162
+    },
+    "neckAnchor": {
+      "x": 590,
+      "y": 285
+    }
+  },
+  "method": "native own-alpha study pixels within authored silhouette/hand envelopes; bounded lower neck ownership",
+  "minimumVisibleAlpha": 8,
+  "bodyStartsAtY": 294,
+  "shiftedScaledOrMirrored": false,
+  "globalColorKey": false,
+  "headFromGeneratedStudySelected": false,
+  "nativeWholeBodyInteriorsRetained": 253975,
+  "notes": [
+    "Generated head and transparent background/glow RGB are unselected; approved native head/neck/ears remain the baseline.",
+    "NE body is authored independently; no other-facing body fragments or mirrors.",
+    "Normal opaque daily bra and full-coverage briefs are coverage within this whole-body study, not final separated production garments.",
+    "Feet/posture and foreshortened hands require human review; existing high-heel study approval does not establish arbitrary footwear compatibility.",
+    "Native NE neck bottom is sloped. Body selection starts at row 294 and only matching body-covered neck pixels in rows 294..307 transfer to the body, closing the initial base gap."
+  ]
+}
