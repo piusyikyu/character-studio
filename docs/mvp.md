@@ -1,5 +1,53 @@
 # MVP Plan — Female Character Studio
 
+## Eight-facing visible-part review approved — 2026-10-15
+
+The user approved the combined native visible-part compositions and isolation
+review. `body/parts-assembly-v1/review-fit-v1.json` pins all eight checkpoints,
+exact body/anatomy/hair hashes, the contact sheet and viewer. E far physical-left
+and W far physical-right limbs remain explicitly unavailable; this approval
+does not create concealed geometry. Next: a bounded S shoulder-joint completion
+study using new versioned arm/torso assets, retaining approved visible pixels
+and testing their actual composition. Separate underwear/materials, other
+concealed joints, reusable rig/anchors and footwear compatibility remain open.
+Step 6C stays open; Step 6D has not started. Earlier pending notes are historical.
+
+
+## Eight-facing visible-part review — 2026-10-15
+
+Local commit `82a8fa6` records the approved NW native visible cuts and exact
+posterior fit after generated cleanup (64 files, 1.7 MiB). All eight facings now
+have individual visible-part study approvals. This remains within Step 6C.
+
+`body/parts-assembly-v1/review-selection.json` pins each same-facing part
+configuration and approval. `pnpm body:review:parts:all` rebuilds the actual
+part composition through every existing same-facing review pipeline. Original
+body, anatomy and head/face/hair PNG hashes must match the individual approvals.
+The complete eight-facing selection is validated before component exports;
+foreign/stale selections, unavailable profile substitutions and unsafe paths
+cannot silently become accepted anatomy.
+
+The combined staging folder retains one native 4096x3072 body-only contact sheet,
+metadata and `inspection/body-parts-review.html`. No duplicate native per-facing
+fits or new source art. The viewer reuses pinned existing source parts and
+approved anatomy/hair reviews. Isolate torso, physical-right/left arms or legs;
+switch facing, anatomy/hair, background and CSS preview zoom. Native canvas
+composition stays 1024x1536 at (0,0) in the real facing-specific body order.
+
+E still lacks separately recoverable far physical-left arm/leg art; W lacks far
+physical-right arm/leg art. The viewer explicitly labels these unavailable
+regions and creates no blank or mirrored source substitutes. N/NE/NW approved
+fits retain posterior hair with no eyes, brows, mouth or front fringe.
+
+This combined review is uncommitted and awaits visual approval. Full concealed
+joints and anatomy, separate underwear/skin/materials, reusable rig/anchors and
+alternate poses remain unfinished. Existing heel-based feet do not approve
+barefoot, flat-shoe or arbitrary footwear fit. No recipe/catalog/editor changes.
+Step 6C stays open; Step 6D has not started. Older candidate notes are historical.
+
+
+Combined-part verification: asset-validator typecheck, root lint (zero warnings), ESM/declaration build and the all-eight part CLI passed. Native reconstruction and cleanup workflows passed (2 integration tests, none skipped, 138.33 seconds), including real Chromium checks of all eight canvas alpha hashes, torso isolation/reset, profile availability, modes, native zoom and backgrounds. The initial browser run was blocked by sandbox localhost permissions; the permitted rerun passed after correcting the test hash invocation and disabled-control assertion. All 1,081 preceding source SHA/mtime pairs and 69 selected dependency hashes remain exact. Final cleanup removed 67 generated files (1.7 MiB), preserving all 346 current output hashes and 3 hashed viewers. No new source PNGs. Full Studio build/E2E were not rerun. See `body/parts-assembly-v1/fit-audit-v1.json`.
+
 ## NW visible-part approval — 2026-10-15
 
 The user approved the five native NW visible-body partitions and exact static
@@ -1900,7 +1948,7 @@ The editor operates on the temporary geometric catalog, not approved artwork.
 - [x] Record background/alpha/bounds/baseline measurements and versioned candidate anchors.
 - [x] Add repeatable import/export and source-preservation workflow tests.
 - [ ] Human review of matte edges, uncertain regions, anchors and baseline inconsistency.
-- [ ] Step 6C: Eight detailed whole-body study baselines are individually approved. SW now has a clothing-only colour candidate, and the native all-eight comparison awaits visual approval. S/N visible-part partitions are approved studies; remaining partitions, complete concealed anatomy, separate garments/materials, production rig, variants and independent pixel artwork remain unfinished. Step 6D has not started.
+- [ ] Step 6C: Eight detailed whole-body studies and all eight visible-part studies have individual approvals. The combined visible-part and isolation review is approved. Profile far-side limbs, full concealed anatomy/joints, separate underwear/materials, production rig, variants and independent native pixel artwork remain unfinished. Step 6D has not started.
 
 On 2026-10-12 the user generally approved SE/SW head-fit revision 3 while flagging
 abrupt SW neck hair. Revision 4 clears 157 duplicate foreground pixels already

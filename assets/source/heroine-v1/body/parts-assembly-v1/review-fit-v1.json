@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-15",
+  "id": "body.parts.assembly.review.v1",
+  "target": "detailed",
+  "configuration": "review-selection.json",
+  "configurationSha256": "41817c5c84087334440869f325efa5725a0e0ccec81d9ab9b606e0ed66172a71",
+  "decision": "approved-eight-facing-visible-body-part-studies-and-isolation-review",
+  "userFeedback": "Approved. Remove unneeded files and commit, then go on to next step.",
+  "crossFacingPartSetApproved": true,
+  "individualPartsMatchApprovals": true,
+  "frames": [
+    {
+      "direction": "N",
+      "directory": "body/parts-v1/north",
+      "configuration": {
+        "source": "authoring.json",
+        "sourceSha256": "be21f85b592e85a5fbf48889dec2ff8940a59c17924310f0e629995ea299d908"
+      },
+      "approval": {
+        "source": "review-fit-v1.json",
+        "sourceSha256": "8ddf18b4c794a93a8ee38201eddf8d29e8806fffb4ddaedfa57a46a5784da0ae"
+      },
+      "bodySha256": "9b0e8d85a5b55bc9c16458fbb7d3d75ee0bf3bfad649877cd94506fea04bbf16",
+      "bareSha256": "028e3fc09de708e530ec3ec4e4021cd8affe5d2d6359e1d95c7fbb7294445fb0",
+      "fitSha256": "ca11fe06b68f83d217610a00a73764d854e96bff00ac8f1ea3e6fa2f8af5f823"
+    },
+    {
+      "direction": "NE",
+      "directory": "body/parts-v1/northeast",
+      "configuration": {
+        "source": "authoring.json",
+        "sourceSha256": "7e25abd76d85145e138519d54fad33ea330d77b162111c8ac35a85c5378fb827"
+      },
+      "approval": {
+        "source": "review-fit-v1.json",
+        "sourceSha256": "24159a072ce40c4b5b47712782824187dd6ae0af9027dcd9aa872f8fd1208eda"
+      },
+      "bodySha256": "7471594e2b48d2d6ebc2292bff7b7f69e083d21e70a63d74b5a550fc664c7421",
+      "bareSha256": "ea60ba48b756dee96529b30e1aa75452ad55b6963af11ecc305e09e9affb5488",
+      "fitSha256": "aacfba527c052f540ecf9da352233c2621a7306764a8dc2e170d89162c95270e"
+    },
+    {
+      "direction": "E",
+      "directory": "body/parts-v1/east",
+      "configuration": {
+        "source": "authoring.json",
+        "sourceSha256": "b3e6bccbca8363992e95409bebe01b8fdc4ca2645f8a1f2523643ed5536393e0"
+      },
+      "approval": {
+        "source": "review-fit-v1.json",
+        "sourceSha256": "ebde2398ca87b2ee3633504566474236f22a17ba783710cd89712f434c1eec92"
+      },
+      "bodySha256": "7760c7a05153fb031e03e8111f302740abdee96a6aaba83c17dc23439d171cc1",
+      "bareSha256": "a3aa484dfbf64cb26a7aeb122c6f7bf061a19f3d3624a5bc6fdb9d98fa1d338b",
+      "fitSha256": "16a4489a973442a0d78c881cfa62364907bdde70d500adedf251299c2a779d86"
+    },
+    {
+      "direction": "SE",
+      "directory": "body/parts-v1/southeast",
+      "configuration": {
+        "source": "authoring.json",
+        "sourceSha256": "8e91a9532875f8ae857aefa63b0c5c6faa1f849e0ff61fef4d693160cbd0f40f"
+      },
+      "approval": {
+        "source": "review-fit-v1.json",
+        "sourceSha256": "6a0898582aec3c68ffd8e7d9c08223c7d8867ac36a8a80ffc9d8515393320214"
+      },
+      "bodySha256": "c0721c79114284bd2af4a3f13fe495e8eea567490ebb016279223e80bf717d81",
+      "bareSha256": "b7536ea63f3c2f55e3bf4a4a1e1a8642c4e7caf0056518aa3c8f5d044d9af815",
+      "fitSha256": "e261a857c427769891c69cec8daf09cc01951ff47dc7156a35a254791092ec1d"
+    },
+    {
+      "direction": "S",
+      "directory": "body/parts-v1",
+      "configuration": {
+        "source": "authoring.json",
+        "sourceSha256": "e71462b1672fb3ce20cf969d05b32ab431d8306b4797835686d8fa33b57441d3"
+      },
+      "approval": {
+        "source": "review-fit-v1.json",
+        "sourceSha256": "ee8f994ede2d1f5c029f09c540cfa610a4bb590e116445d047abb259586fe69e"
+      },
+      "bodySha256": "934c7f300ec301c8848e3da338e574a6037e025c1937dda859d5cf6060364f45",
+      "bareSha256": "cd458b4953e07f10d8869872e37767dd915f9618b275ffa76814a6a28e33c8dc",
+      "fitSha256": "397a1c8264138a81233d275396f97719f542e42ff6537ba7cefde8b6e4751db8"
+    },
+    {
+      "direction": "SW",
+      "directory": "body/parts-v1/southwest",
+      "configuration": {
+        "source": "authoring.json",
+        "sourceSha256": "e8658d2751fd1c4506ec21777ddcbeb2030d30387e60cde3bb618f0cd74d5488"
+      },
+      "approval": {
+        "source": "review-fit-v1.json",
+        "sourceSha256": "766d3f509fc8a2a892ba278a8636caaa256fe76aec44a1bfaf5bbcfc8da38cf9"
+      },
+      "bodySha256": "8250febe0d6518f648af8ec394739506fb1b031a581b50cdee2846c48314c2dd",
+      "bareSha256": "5d74e8d2e32f97ce2790f23765b81d91944def3ee298e4ddf4d3997afadb5c6b",
+      "fitSha256": "a2b5d725f1d92a0063468aad90eaf170cef2c137030adcf4a93ade04771dc3a7"
+    },
+    {
+      "direction": "W",
+      "directory": "body/parts-v1/west",
+      "configuration": {
+        "source": "authoring.json",
+        "sourceSha256": "596780dcc690d45dd2d095b09baecefaf35851173c24ce061add7486e7722221"
+      },
+      "approval": {
+        "source": "review-fit-v1.json",
+        "sourceSha256": "ad187963ee8a4d7a57cef4d1cd01cd5b8ac14c8c5b9cbdb8ba0a605886a033e7"
+      },
+      "bodySha256": "5132e3ecdedff63a279f63997c1048f1068d8dde3e920d5f2109bff7dd634d25",
+      "bareSha256": "4c7183524b04aabeb897152d808b9fccf7b7b128de29fac1c67fc0aadbdc7c73",
+      "fitSha256": "dc1ec961928a79ceaa0c334751dca84e8c3e3ce66b1641d8a9f1d7ef59924f77"
+    },
+    {
+      "direction": "NW",
+      "directory": "body/parts-v1/northwest",
+      "configuration": {
+        "source": "authoring.json",
+        "sourceSha256": "f4105cd87203af4d8f5a8cc64c85c6d15eb8cb2db24cc2e70f3bb92081917d6d"
+      },
+      "approval": {
+        "source": "review-fit-v1.json",
+        "sourceSha256": "a6c135ef3dbb1b5fa795dfb65b8e54d8b987e4983ad519c88a87aa1547d12644"
+      },
+      "bodySha256": "46ac75187b5fac429064f9fad6eeca548bf383195584ca9bb0330be1af3bfb94",
+      "bareSha256": "5200368b2e49b78c67dd0944754445dd6b5778ca6191b5164ca3132d792da47d",
+      "fitSha256": "fdaf2efacfd7cae2e65a383ffdcdde1a5a0516497f40a89e32cfdc7fe28c3790"
+    }
+  ],
+  "unavailableGeometry": [
+    {
+      "direction": "E",
+      "parts": [
+        "left-arm",
+        "left-leg"
+      ]
+    },
+    {
+      "direction": "W",
+      "parts": [
+        "right-arm",
+        "right-leg"
+      ]
+    }
+  ],
+  "reviewOutputs": [
+    {
+      "path": "body-only-overview.png",
+      "sha256": "8429e3be78a810ccffc9b4a2b76ad17359c8c1739ee4f38fa1281a6f9a5a744b"
+    }
+  ],
+  "interactiveInspection": {
+    "path": "inspection/body-parts-review.html",
+    "sha256": "cda176d89865333828af713e5575f85d8b2a6bab14c61ab92be0640947132a99"
+  },
+  "scope": "Combined eight-facing visible-pixel cuts, physical-side ownership, native composition and part-isolation review. No approval of full concealed anatomy/joints, separate underwear/materials, production rig, alternate poses or footwear compatibility.",
+  "published": false,
+  "paletteReady": false,
+  "productionAnatomyApproved": false,
+  "concealedJointsApproved": false,
+  "separateUnderwearAuthored": false,
+  "footwearCompatibilityApproved": false,
+  "tposeApproved": false,
+  "finalStep6CAccepted": false,
+  "step6DStarted": false
+}

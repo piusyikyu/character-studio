@@ -1,5 +1,7 @@
 # Asset workspace cleanup — 2026-10-13
 
+The eight-facing visible-part review at `body/parts-assembly-v1/` keeps one metadata-declared native body-only sheet and its hashed viewer. The viewer reuses existing approved per-facing source and staging images; preserve those dependencies. Keep the pinned selection and audit, without duplicate component exports or new source PNGs. Cleanup protects the combined viewer/sheet and all earlier per-facing reviews.
+
 NW part staging at `body/parts-v1/northwest/` protects five metadata-declared PNGs. Preserve five original native source partitions, settings, provenance and scratch replay plus approved NW body/head/hair dependencies. All earlier source art and current reviews stay intact; temporary composition exports and obsolete part previews are removed.
 
 NE part staging at `body/parts-v1/northeast/` protects five metadata-declared PNGs. Preserve five original native source partitions, settings, provenance and scratch replay plus the approved NE revision-2 body/head/hair dependencies. Existing SW/SE/E/W sources remain intact; temporary composition exports and obsolete part previews are removed.

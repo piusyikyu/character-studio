@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-15",
+  "scope": "Eight individually approved native visible-body-part studies, actual composition and read-only isolation viewer",
+  "selectionSha256": "41817c5c84087334440869f325efa5725a0e0ccec81d9ab9b606e0ed66172a71",
+  "individualPartsMatchApprovals": true,
+  "visibleSourceParts": 36,
+  "unavailableGeometry": [
+    {
+      "direction": "E",
+      "parts": [
+        "left-arm",
+        "left-leg"
+      ]
+    },
+    {
+      "direction": "W",
+      "parts": [
+        "right-arm",
+        "right-leg"
+      ]
+    }
+  ],
+  "precedingSourceShaAndMtimePairsUnchanged": 1081,
+  "verifiedPinnedDependencies": 69,
+  "newSourceImages": 0,
+  "outputs": [
+    {
+      "path": "body-only-overview.png",
+      "sha256": "8429e3be78a810ccffc9b4a2b76ad17359c8c1739ee4f38fa1281a6f9a5a744b"
+    }
+  ],
+  "interactiveInspection": {
+    "path": "inspection/body-parts-review.html",
+    "sha256": "cda176d89865333828af713e5575f85d8b2a6bab14c61ab92be0640947132a99"
+  },
+  "validation": {
+    "typecheck": "pnpm --filter @character-studio/asset-validator typecheck: passed",
+    "lint": "pnpm lint: passed with zero warnings",
+    "build": "pnpm --filter @character-studio/asset-validator build: ESM and declarations passed",
+    "exports": [
+      "node tools/asset-validator/dist/body-part-set-review-cli.js: passed, actual eight-facing native body/anatomy/hair hashes match all individual approvals"
+    ],
+    "integration": {
+      "command": "pnpm exec vitest run tools/asset-validator/src/body-part-set-review.integration.test.ts tools/asset-validator/src/workspace-cleanup.integration.test.ts --maxWorkers=1",
+      "passed": 2,
+      "skipped": 0,
+      "seconds": 138.33,
+      "browser": "Chromium headless; temporary read-only localhost server with sandbox escalation",
+      "checks": [
+        "Complete eight-facing selection and exact per-facing part configuration/approval/source pins.",
+        "Actual same-facing body plane reconstruction matches accepted body, anatomy and head/face/hair PNG hashes.",
+        "Native row-major body-only contact sheet matches independently accepted per-facing RGBA and labels exactly.",
+        "No frontal features in posterior fits; E far-left and W far-right limbs explicitly unavailable without replacement artwork.",
+        "Browser alpha hashes of all eight actual canvases match accepted bodies; isolate S torso exactly, reset all parts, inspect E availability and switch hair/anatomy, native zoom and black background.",
+        "Reject foreign/stale selections, unsafe input/output overlap and output symlinks; preserve current combined sheet/viewer during cleanup.",
+        "Pinned input SHA/mtime pairs and all preceding source files remain unchanged."
+      ],
+      "earlierAttempts": [
+        "Initial sandboxed browser server could not bind localhost (EPERM); that run timed out. The server now rejects errors promptly and permitted runs use sandbox escalation.",
+        "Corrected two browser test assertions: invoke string hash expressions and check a disabled input rather than its fieldset. Final integration and standalone browser checks passed."
+      ]
+    },
+    "fullStudioBuild": "not rerun; runtime app unchanged",
+    "studioBrowserE2E": "not rerun; read-only review viewer tested in real Chromium"
+  },
+  "cleanup": {
+    "deletedGeneratedFiles": 67,
+    "deletedMiB": 1.7,
+    "verifiedCurrentOutputHashes": 346,
+    "verifiedViewerHashes": 3
+  },
+  "visualApprovalPending": true,
+  "crossFacingPartSetApproved": false,
+  "published": false,
+  "paletteReady": false,
+  "productionAnatomyApproved": false,
+  "concealedJointsApproved": false,
+  "separateUnderwearAuthored": false,
+  "footwearCompatibilityApproved": false,
+  "tposeApproved": false,
+  "finalStep6CAccepted": false,
+  "step6DStarted": false
+}

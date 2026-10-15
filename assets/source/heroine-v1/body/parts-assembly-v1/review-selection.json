@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "id": "body.parts.assembly.review.v1",
+  "target": "detailed",
+  "scope": "all-eight-visible-body-part-studies",
+  "published": false,
+  "frames": {
+    "N": {
+      "directory": "body/parts-v1/north",
+      "configuration": {
+        "source": "authoring.json",
+        "sourceSha256": "be21f85b592e85a5fbf48889dec2ff8940a59c17924310f0e629995ea299d908"
+      },
+      "approval": {
+        "source": "review-fit-v1.json",
+        "sourceSha256": "8ddf18b4c794a93a8ee38201eddf8d29e8806fffb4ddaedfa57a46a5784da0ae"
+      }
+    },
+    "NE": {
+      "directory": "body/parts-v1/northeast",
+      "configuration": {
+        "source": "authoring.json",
+        "sourceSha256": "7e25abd76d85145e138519d54fad33ea330d77b162111c8ac35a85c5378fb827"
+      },
+      "approval": {
+        "source": "review-fit-v1.json",
+        "sourceSha256": "24159a072ce40c4b5b47712782824187dd6ae0af9027dcd9aa872f8fd1208eda"
+      }
+    },
+    "E": {
+      "directory": "body/parts-v1/east",
+      "configuration": {
+        "source": "authoring.json",
+        "sourceSha256": "b3e6bccbca8363992e95409bebe01b8fdc4ca2645f8a1f2523643ed5536393e0"
+      },
+      "approval": {
+        "source": "review-fit-v1.json",
+        "sourceSha256": "ebde2398ca87b2ee3633504566474236f22a17ba783710cd89712f434c1eec92"
+      }
+    },
+    "SE": {
+      "directory": "body/parts-v1/southeast",
+      "configuration": {
+        "source": "authoring.json",
+        "sourceSha256": "8e91a9532875f8ae857aefa63b0c5c6faa1f849e0ff61fef4d693160cbd0f40f"
+      },
+      "approval": {
+        "source": "review-fit-v1.json",
+        "sourceSha256": "6a0898582aec3c68ffd8e7d9c08223c7d8867ac36a8a80ffc9d8515393320214"
+      }
+    },
+    "S": {
+      "directory": "body/parts-v1",
+      "configuration": {
+        "source": "authoring.json",
+        "sourceSha256": "e71462b1672fb3ce20cf969d05b32ab431d8306b4797835686d8fa33b57441d3"
+      },
+      "approval": {
+        "source": "review-fit-v1.json",
+        "sourceSha256": "ee8f994ede2d1f5c029f09c540cfa610a4bb590e116445d047abb259586fe69e"
+      }
+    },
+    "SW": {
+      "directory": "body/parts-v1/southwest",
+      "configuration": {
+        "source": "authoring.json",
+        "sourceSha256": "e8658d2751fd1c4506ec21777ddcbeb2030d30387e60cde3bb618f0cd74d5488"
+      },
+      "approval": {
+        "source": "review-fit-v1.json",
+        "sourceSha256": "766d3f509fc8a2a892ba278a8636caaa256fe76aec44a1bfaf5bbcfc8da38cf9"
+      }
+    },
+    "W": {
+      "directory": "body/parts-v1/west",
+      "configuration": {
+        "source": "authoring.json",
+        "sourceSha256": "596780dcc690d45dd2d095b09baecefaf35851173c24ce061add7486e7722221"
+      },
+      "approval": {
+        "source": "review-fit-v1.json",
+        "sourceSha256": "ad187963ee8a4d7a57cef4d1cd01cd5b8ac14c8c5b9cbdb8ba0a605886a033e7"
+      }
+    },
+    "NW": {
+      "directory": "body/parts-v1/northwest",
+      "configuration": {
+        "source": "authoring.json",
+        "sourceSha256": "f4105cd87203af4d8f5a8cc64c85c6d15eb8cb2db24cc2e70f3bb92081917d6d"
+      },
+      "approval": {
+        "source": "review-fit-v1.json",
+        "sourceSha256": "a6c135ef3dbb1b5fa795dfb65b8e54d8b987e4983ad519c88a87aa1547d12644"
+      }
+    }
+  }
+}
