@@ -1,5 +1,7 @@
 # Female Character Studio
 
+The S hip planning checkpoint is approved in `body/hips-v1/review-plan-v1.json`; hip art remains blocked and unauthored. Next is a native S attachment landmark candidate study within Step 6C.
+
 A TypeScript pnpm workspace for one versioned CharacterRecipe and two independent
 asset-backed outputs: detailed 1024 × 1536 T-pose artwork and pixel 128 × 192 idle
 sprites, each with eight separately authored facings.
@@ -106,6 +108,7 @@ pnpm face:review:front-diagonals:v1 # Reproduce the preceding facial fit with SE
 pnpm body:review # Approved S revision-6 body/head/hair study
 pnpm body:review:parts # Approved native S torso/arms/legs layering study
 pnpm body:review:north # Approved independent N/full-back body and posterior hair fit
+pnpm body:review:hips:plan # Diagnostic coverage only; hip artwork is blocked
 pnpm body:review:shoulders # S concealed shoulder roots with explicit pose masks
 pnpm body:review:parts:all # Eight approved part compositions with visible-part isolation
 pnpm body:review:parts:northwest # Five native NW planes with the approved posterior fit

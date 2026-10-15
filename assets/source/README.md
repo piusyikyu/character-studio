@@ -1,5 +1,9 @@
 # Source artwork
 
+The S hip planning checkpoint is approved in `body/hips-v1/review-plan-v1.json`; hip art remains blocked and unauthored. Next is a native S attachment landmark candidate study within Step 6C.
+
+Current S hip-root authoring is blocked by two built-in imagegen output-moderation rejections. `heroine-v1/body/hips-v1/` retains a pinned pending checkpoint, independent planning contours, exact prompts and one native upper-leg reference crop. No new hip/leg art or pose masks exist. `pnpm body:review:hips:plan` exports diagnostics only and verifies the approved shoulder/body/head/hair fit. The current heel-based legs/feet remain unchanged. Older candidate notes are historical.
+
 Current S concealed shoulder-root candidate: `heroine-v1/body/shoulders-v1/` appends independently painted proximal roots while retaining all approved visible arm/hand pixels. Preserve the selected built-in imagegen study, prompt, source arms, two pose masks, settings/provenance and scratch replay. S shoulder roots are approved in `body/shoulders-v1/review-fit-v1.json`; actual body/anatomy/hair fits remain exact. The combined eight-facing visible-part review is approved. Other concealed joints, separate garments/materials and the production rig remain unfinished. Older entries are historical.
 
 Current eight-facing visible-part review: `heroine-v1/body/parts-assembly-v1/review-selection.json` pins all eight individual part approvals, including NW. The combined review is approved in `body/parts-assembly-v1/review-fit-v1.json`. Rebuild actual native part compositions with `pnpm body:review:parts:all`; the viewer reuses existing source parts and anatomy/hair fits. No new source images. E far-left and W far-right limbs remain explicitly unavailable; concealed joints and separate garments/materials remain unfinished. Older candidate notes below are historical.

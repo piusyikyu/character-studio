@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "id": "body.hips.s.plan.v1",
+  "target": "detailed",
+  "direction": "S",
+  "sourcePose": "tpose-study",
+  "status": "blocked-image-generation",
+  "generatedArtProduced": false,
+  "selectedStudy": null,
+  "baselineConfiguration": {
+    "source": "body/parts-v1/authoring.json",
+    "sourceSha256": "e71462b1672fb3ce20cf969d05b32ab431d8306b4797835686d8fa33b57441d3"
+  },
+  "shoulderConfiguration": {
+    "source": "body/shoulders-v1/authoring.json",
+    "sourceSha256": "4bdd23e95e900f262c2e35ffedb3ffe15b0c9dd007e87063fd76ea181362dbba"
+  },
+  "shoulderApproval": {
+    "source": "body/shoulders-v1/review-fit-v1.json",
+    "sourceSha256": "3e2f04df805898e628779ae38b7e802310fe0494d7d2133f895a14a4396b7315"
+  },
+  "settings": {
+    "source": "settings.json",
+    "sourceSha256": "c8f0b7b8d25425619f1a8690c3ada07a5a4e63a9cae94abb24b5b4abdc9c5c4a"
+  },
+  "prompts": {
+    "source": "prompts.json",
+    "sourceSha256": "373558df59dd06dd2703e739b4431815a8cfdf8ddf1fec5690ea88f237cc512e"
+  },
+  "guide": {
+    "source": "inputs/S-thigh-guide-v1.png",
+    "sourceSha256": "41f6bacd9c3aaf3903ea30f84e6624b7901edb0d23332c7787ab266b0b27beb1"
+  },
+  "attempts": [
+    {
+      "requestId": "c7a657ce-deb2-4f84-8f16-c96fbb3d2b8a",
+      "result": "output-moderation-rejected",
+      "category": "sexual"
+    },
+    {
+      "requestId": "c18932ba-245e-4d53-be26-17ed1bdf9349",
+      "result": "output-moderation-rejected",
+      "category": "sexual"
+    }
+  ],
+  "published": false,
+  "productionAnatomyApproved": false,
+  "concealedJointsApproved": false,
+  "finalStep6CAccepted": false
+}

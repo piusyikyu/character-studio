@@ -1,5 +1,54 @@
 # MVP Plan — Female Character Studio
 
+## S hip planning checkpoint approved — 2026-10-15
+
+The user approved the planning checkpoint in `body/hips-v1/review-plan-v1.json`.
+Hip artwork remains absent after the recorded generation rejections; approval
+covers the diagnostic only. No further image generation is attempted.
+Next: a native S attachment landmark candidate review against the approved
+body/head/hair and shoulder fit, without changing artwork or publishing a rig.
+Concealed hips and other facings remain unfinished. Heel-based feet retain their
+provisional footwear scope. Step 6C stays open; Step 6D has not started.
+Earlier pending notes below are historical.
+
+
+## S hip-root authoring checkpoint — generation blocked — 2026-10-15
+
+Local commit `f7c3688` records the approved S proximal shoulder roots and masks
+after generated cleanup (70 files, 1.7 MiB). The next bounded Step 6C work is
+independent S proximal-thigh coverage with the approved shoulders retained.
+
+Both built-in imagegen attempts were rejected at output moderation with category
+`sexual`: first the full leg study, then a cropped upper-thigh-only construction
+edit. No generated hip artwork exists. `body/hips-v1/authoring-pending.json`
+records both request IDs, exact prompts, pins and `selectedStudy: null`. The
+only new source PNG is a native upper-leg reference crop at origin (0,512),
+retaining original RGBA without shifts, resampling or new skin pixels.
+
+`pnpm body:review:hips:plan` validates the approved S part and shoulder inputs,
+rebuilds the actual accepted shoulder/body/head/hair composition, checks the
+native crop, and exports diagnostic coverage only. Proposed contours are
+independently specified for physical-right/left thighs; original legs and feet
+are excluded from edits and only existing torso alpha >=245 can receive future
+root pixels. The planned roots require explicit pose masks. No leg source or
+mask is manufactured, mirrored, deformed or published while artwork is missing.
+
+Review `body/hips-v1/inspection/hip-root-plan.html` in staging: accepted S body /
+cyan physical-right coverage / orange physical-left coverage. One small native
+PNG plus its labelled page and metadata are retained; cleanup protects them.
+These coloured regions are planning overlays, not completed anatomy or an art
+candidate for approval. Settings, prompts and the cropped guide remain pinned.
+
+Hip asset construction requires independently authored artwork matching the
+native guide, followed by actual pose-mask fit review. The source checkpoint
+and planning tool remain uncommitted. All existing heel-based foot geometry is
+retained with no new footwear acceptance. Other facings, concealed surfaces,
+separate underwear/materials and production rig/anchors remain unfinished.
+Step 6C stays open; Step 6D has not started. Older entries are historical.
+
+
+Hip-plan verification: asset-validator typecheck, root lint (zero warnings), ESM/declaration build and the diagnostic plan CLI passed. Native checkpoint/coverage and cleanup integration workflows passed (2 tests, none skipped, 39.96 seconds). Checks cover the actual accepted shoulder/body/head/hair fit, exact native upper-leg guide, bounded same-side diagnostic overlays, absence of generated leg assets, deterministic exports, immutable inputs and rejection of modified guides, foreign baselines or unsafe output paths. The reference guide replays byte-for-byte; all 1,096 preceding source SHA/mtime pairs remain exact. Final cleanup removed 73 generated files (1.7 MiB), preserving all 349 current output hashes and 4 hashed pages/viewers. Full Studio build/E2E were not rerun. Image generation remains blocked after two output-moderation rejections; the hip roots are not authored. See `body/hips-v1/planning-audit-v1.json`.
+
 ## S shoulder roots approved — 2026-10-15
 
 The user approved the bounded S proximal shoulder-root study and its two pose
