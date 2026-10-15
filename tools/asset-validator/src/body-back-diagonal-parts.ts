@@ -17,6 +17,23 @@ export const northeastBodyPartsGeometry = {
   rightThighRoot: [[557,751],[578,719],[612,690],[649,671],[680,661],[696,663]],
   leftThighRoot: [[468,670],[473,699],[495,726],[525,743],[557,751]],
 } as const;
+export const northwestBodyPartLayout = [
+  { id: 'torso', plane: 'body-torso', characterSide: 'center', visibility: 'visible' },
+  { id: 'right-arm', plane: 'body-back-arm', characterSide: 'right', visibility: 'visible' },
+  { id: 'left-arm', plane: 'body-front-arm', characterSide: 'left', visibility: 'visible' },
+  { id: 'right-leg', plane: 'body-back-leg', characterSide: 'right', visibility: 'visible' },
+  { id: 'left-leg', plane: 'body-front-leg', characterSide: 'left', visibility: 'visible' },
+] as const;
+/** Independently traced NW visible cuts on its approved source; no mirroring or concealed joints. */
+export const northwestBodyPartsGeometry = {
+  armBottom: 455,
+  rightArmRoot: [[555,300],[568,322],[575,344],[571,365],[566,382],[557,408],[550,435],[545,455]],
+  leftArmRoot: [[408,300],[421,320],[425,342],[415,365],[397,382],[332,397],[320,425],[315,455]],
+  legSeam: [[505,752],[494,800],[486,880],[492,940],[505,1000],[510,1100],[510,1536]],
+  rightThighRoot: [[505,752],[542,745],[568,731],[586,710],[597,685]],
+  leftThighRoot: [[360,665],[390,657],[420,662],[450,677],[479,699],[503,727],[514,743]],
+} as const;
+type BodyPartsGeometry = { readonly armBottom: number } & Record<'rightArmRoot' | 'leftArmRoot' | 'legSeam' | 'rightThighRoot' | 'leftThighRoot', readonly (readonly [number, number])[]>;
 const lineValue = (value: number, line: readonly (readonly [number,number])[], axis: 0 | 1) => {
   const output = axis === 0 ? 1 : 0;
   if (value <= line[0]![axis]) return line[0]![output];
@@ -26,9 +43,11 @@ const lineValue = (value: number, line: readonly (readonly [number,number])[], a
   }
   return line.at(-1)![output];
 };
-export function partitionNortheastBody(body: RgbaImage) {
-  if (body.width !== 1024 || body.height !== 1536) throw new Error('Native NE body required.');
-  const g = northeastBodyPartsGeometry, parts = northeastBodyPartLayout.map(() => blankImage(1024, 1536)), pixelCounts = northeastBodyPartLayout.map(() => 0);
+export const partitionNortheastBody = (body: RgbaImage) => partitionPosteriorBody(body, northeastBodyPartsGeometry);
+export const partitionNorthwestBody = (body: RgbaImage) => partitionPosteriorBody(body, northwestBodyPartsGeometry);
+function partitionPosteriorBody(body: RgbaImage, g: BodyPartsGeometry) {
+  if (body.width !== 1024 || body.height !== 1536) throw new Error('Native posterior body required.');
+  const parts = Array.from({ length: 5 }, () => blankImage(1024, 1536)), pixelCounts = Array<number>(5).fill(0);
   for (let y = 0; y < 1536; y++) for (let x = 0; x < 1024; x++) {
     const p = (y * 1024 + x) * 4; if (body.data[p + 3]! < 8) continue;
     const px = x + .5, py = y + .5, rightLeg = px >= lineValue(py, g.legSeam, 1);

@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-15",
+  "scope": "NW native visible five-part ownership study",
+  "configSha256": "f4105cd87203af4d8f5a8cc64c85c6d15eb8cb2db24cc2e70f3bb92081917d6d",
+  "measurements": {
+    "parts": [
+      {
+        "id": "torso",
+        "plane": "body-torso",
+        "characterSide": "center",
+        "visibility": "visible",
+        "selectedPixels": 70811,
+        "nativePosition": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "right-arm",
+        "plane": "body-back-arm",
+        "characterSide": "right",
+        "visibility": "visible",
+        "selectedPixels": 22991,
+        "nativePosition": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "left-arm",
+        "plane": "body-front-arm",
+        "characterSide": "left",
+        "visibility": "visible",
+        "selectedPixels": 23138,
+        "nativePosition": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "right-leg",
+        "plane": "body-back-leg",
+        "characterSide": "right",
+        "visibility": "visible",
+        "selectedPixels": 57877,
+        "nativePosition": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "left-leg",
+        "plane": "body-front-leg",
+        "characterSide": "left",
+        "visibility": "visible",
+        "selectedPixels": 82137,
+        "nativePosition": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ],
+    "overlapPixels": 0,
+    "unownedPixels": 0,
+    "generatedAnatomy": false
+  },
+  "hiddenFrontalLayers": [
+    "eyes",
+    "eyebrows",
+    "mouth",
+    "hair-front"
+  ],
+  "unavailableGeometry": [],
+  "allFiveVisiblePartsAuthored": true,
+  "exactApprovedFit": true,
+  "bodySha256": "46ac75187b5fac429064f9fad6eeca548bf383195584ca9bb0330be1af3bfb94",
+  "bareSha256": "5200368b2e49b78c67dd0944754445dd6b5778ca6191b5164ca3132d792da47d",
+  "fitSha256": "fdaf2efacfd7cae2e65a383ffdcdde1a5a0516497f40a89e32cfdc7fe28c3790",
+  "nativeNearOpaqueHandPixels": {
+    "left": 7355,
+    "right": 6052
+  },
+  "outputs": [
+    {
+      "path": "fit/NW-body-only.png",
+      "sha256": "46ac75187b5fac429064f9fad6eeca548bf383195584ca9bb0330be1af3bfb94"
+    },
+    {
+      "path": "fit/NW-anatomy.png",
+      "sha256": "5200368b2e49b78c67dd0944754445dd6b5778ca6191b5164ca3132d792da47d"
+    },
+    {
+      "path": "fit/NW.png",
+      "sha256": "fdaf2efacfd7cae2e65a383ffdcdde1a5a0516497f40a89e32cfdc7fe28c3790"
+    },
+    {
+      "path": "overview.png",
+      "sha256": "32eaba69a5bde4b8be085a02399ac5e3d3b573ea55458274f8890c86a39b7a69"
+    },
+    {
+      "path": "parts-overview.png",
+      "sha256": "c86593d5fa913e0f77c326b17bc71076e5ba51fec5846194d190322d2bb8a2c7"
+    }
+  ],
+  "validation": {
+    "typecheck": "pnpm --filter @character-studio/asset-validator typecheck: passed",
+    "lint": "pnpm lint: passed, zero warnings",
+    "build": "pnpm --filter @character-studio/asset-validator build: ESM and declarations passed",
+    "exports": [
+      "body-parts-review-cli.js --northwest: passed with exact accepted native anatomy/fit"
+    ],
+    "integration": {
+      "command": "pnpm exec vitest run tools/asset-validator/src/body-back-diagonal-parts-review.integration.test.ts tools/asset-validator/src/workspace-cleanup.integration.test.ts --maxWorkers=1",
+      "passed": 3,
+      "skipped": 0,
+      "seconds": 72.82,
+      "checks": [
+        "Both actual NE and NW five-plane compositions reproduce their approved native body, anatomy and head/ear/neck/hair fit exactly.",
+        "No eyes, eyebrows, mouth or front hair; unchanged accepted head pixels above native neck transfer rows.",
+        "Exclusive complete source RGBA ownership, physical-side palms/feet, intact native hand alpha and repeated deterministic export.",
+        "Rejected side/alpha changes, foreign-facing baselines, frontal feature planes and previous broader NE body.",
+        "Selected input hashes and mtimes unchanged; unsafe outputs rejected; current NW cleanup outputs protected."
+      ]
+    },
+    "fullAppBuild": "not rerun; runtime app unchanged",
+    "browserE2E": "not rerun; no UI changes"
+  },
+  "replayedByteExact": 5,
+  "precedingSourcesUnchanged": 1070,
+  "cleanup": {
+    "deletedGeneratedFiles": 64,
+    "deletedMiB": 1.7,
+    "verifiedCurrentOutputHashes": 345,
+    "verifiedViewerHashes": 2
+  },
+  "visualApprovalPending": true,
+  "published": false,
+  "productionAnatomyApproved": false,
+  "concealedJointsApproved": false,
+  "separateUnderwearAuthored": false,
+  "footwearCompatibilityApproved": false,
+  "finalStep6CAccepted": false,
+  "step6DStarted": false
+}

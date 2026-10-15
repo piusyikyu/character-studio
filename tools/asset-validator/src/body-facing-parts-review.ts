@@ -10,7 +10,7 @@ import type { BodyPartsReviewOptions } from './body-parts-review';
 import { southeastBodyPartLayout, southeastBodyPartsGeometry, partitionSoutheastBody, southwestBodyPartLayout, southwestBodyPartsGeometry, partitionSouthwestBody } from './body-diagonal-parts';
 import { prepareSouthwestClothingReview, southwestClothingReviewSchema } from './body-clothing-review';
 import { prepareBackDiagonalBodyReview, backDiagonalBodyReviewSchema } from './body-back-diagonal-review';
-import { northeastBodyPartLayout, northeastBodyPartsGeometry, partitionNortheastBody } from './body-back-diagonal-parts';
+import { northeastBodyPartLayout, northeastBodyPartsGeometry, partitionNortheastBody, northwestBodyPartLayout, northwestBodyPartsGeometry, partitionNorthwestBody } from './body-back-diagonal-parts';
 import { checkerPreview } from './inspection';
 import { sha256 } from './reference-import';
 
@@ -29,6 +29,7 @@ export const westBodyPartsReviewSchema = eastBodyPartsReviewSchema.extend({ id: 
 export const southeastBodyPartsReviewSchema = eastBodyPartsReviewSchema.extend({ id: z.literal('body.parts.southeast.v1'), direction: z.literal('SE'), parts: z.array(identity.extend({ visibility: z.literal('visible'), artwork: pin })).length(5) });
 export const southwestBodyPartsReviewSchema = southeastBodyPartsReviewSchema.extend({ id: z.literal('body.parts.southwest.v1'), direction: z.literal('SW') });
 export const northeastBodyPartsReviewSchema = southeastBodyPartsReviewSchema.extend({ id: z.literal('body.parts.northeast.v1'), direction: z.literal('NE') });
+export const northwestBodyPartsReviewSchema = southeastBodyPartsReviewSchema.extend({ id: z.literal('body.parts.northwest.v1'), direction: z.literal('NW') });
 const inside = (base: string, path: string) => { const p = relative(base, path); return p === '' || (!isAbsolute(p) && p !== '..' && !p.startsWith('../')); };
 const missing = (e: unknown) => (e as NodeJS.ErrnoException).code === 'ENOENT';
 
@@ -38,15 +39,16 @@ export const prepareWestBodyPartsReview = (options: BodyPartsReviewOptions) => p
 export const prepareSoutheastBodyPartsReview = (options: BodyPartsReviewOptions) => prepareNativeFacingPartsReview(options, 'SE');
 export const prepareSouthwestBodyPartsReview = (options: BodyPartsReviewOptions) => prepareNativeFacingPartsReview(options, 'SW');
 export const prepareNortheastBodyPartsReview = (options: BodyPartsReviewOptions) => prepareNativeFacingPartsReview(options, 'NE');
-async function prepareNativeFacingPartsReview(options: BodyPartsReviewOptions, direction: 'E' | 'W' | 'SE' | 'SW' | 'NE') {
-  const schema = direction === 'E' ? eastBodyPartsReviewSchema : direction === 'W' ? westBodyPartsReviewSchema : direction === 'SE' ? southeastBodyPartsReviewSchema : direction === 'SW' ? southwestBodyPartsReviewSchema : northeastBodyPartsReviewSchema;
-  const layout = direction === 'E' ? eastBodyPartLayout : direction === 'W' ? westBodyPartLayout : direction === 'SE' ? southeastBodyPartLayout : direction === 'SW' ? southwestBodyPartLayout : northeastBodyPartLayout;
-  const geometry = direction === 'E' ? eastBodyPartsGeometry : direction === 'W' ? westBodyPartsGeometry : direction === 'SE' ? southeastBodyPartsGeometry : direction === 'SW' ? southwestBodyPartsGeometry : northeastBodyPartsGeometry;
-  const partition = direction === 'E' ? partitionEastBody : direction === 'W' ? partitionWestBody : direction === 'SE' ? partitionSoutheastBody : direction === 'SW' ? partitionSouthwestBody : partitionNortheastBody;
-  const baselineFile = direction === 'E' ? 'authoring.json' as const : direction === 'W' ? 'authoring-w-v2.json' as const : direction === 'SE' ? 'authoring-v2.json' as const : direction === 'SW' ? 'authoring-sw-v5.json' as const : 'authoring-ne-v2.json' as const;
-  const baselineDirectory = direction === 'NE' ? 'body/back-diagonals-v1' : direction === 'SE' || direction === 'SW' ? 'body/front-diagonals-v1' : 'body/profiles-v1';
-  const approvalFile = direction === 'E' ? 'review-fit-v1.json' : direction === 'W' ? 'review-fit-w-v2.json' : direction === 'SE' ? 'review-fit-v2.json' : direction === 'SW' ? 'review-fit-sw-v5.json' : 'review-fit-ne-v2.json';
-  const decision = direction === 'E' ? 'approved-independent-e-profile-body-study' : direction === 'W' ? 'approved-independent-w-profile-body-study-with-local-hair-repair' : direction === 'SE' ? 'approved-independent-se-body-study-with-native-hand-repair' : direction === 'SW' ? 'approved-independent-sw-body-study-and-clothing-colour' : 'approved-independent-ne-body-study-and-proportion-refit';
+export const prepareNorthwestBodyPartsReview = (options: BodyPartsReviewOptions) => prepareNativeFacingPartsReview(options, 'NW');
+async function prepareNativeFacingPartsReview(options: BodyPartsReviewOptions, direction: 'E' | 'W' | 'SE' | 'SW' | 'NE' | 'NW') {
+  const schema = direction === 'E' ? eastBodyPartsReviewSchema : direction === 'W' ? westBodyPartsReviewSchema : direction === 'SE' ? southeastBodyPartsReviewSchema : direction === 'SW' ? southwestBodyPartsReviewSchema : direction === 'NE' ? northeastBodyPartsReviewSchema : northwestBodyPartsReviewSchema;
+  const layout = direction === 'E' ? eastBodyPartLayout : direction === 'W' ? westBodyPartLayout : direction === 'SE' ? southeastBodyPartLayout : direction === 'SW' ? southwestBodyPartLayout : direction === 'NE' ? northeastBodyPartLayout : northwestBodyPartLayout;
+  const geometry = direction === 'E' ? eastBodyPartsGeometry : direction === 'W' ? westBodyPartsGeometry : direction === 'SE' ? southeastBodyPartsGeometry : direction === 'SW' ? southwestBodyPartsGeometry : direction === 'NE' ? northeastBodyPartsGeometry : northwestBodyPartsGeometry;
+  const partition = direction === 'E' ? partitionEastBody : direction === 'W' ? partitionWestBody : direction === 'SE' ? partitionSoutheastBody : direction === 'SW' ? partitionSouthwestBody : direction === 'NE' ? partitionNortheastBody : partitionNorthwestBody;
+  const baselineFile = direction === 'E' ? 'authoring.json' as const : direction === 'W' ? 'authoring-w-v2.json' as const : direction === 'SE' ? 'authoring-v2.json' as const : direction === 'SW' ? 'authoring-sw-v5.json' as const : direction === 'NE' ? 'authoring-ne-v2.json' as const : 'authoring-nw-v1.json' as const;
+  const baselineDirectory = direction === 'NE' || direction === 'NW' ? 'body/back-diagonals-v1' : direction === 'SE' || direction === 'SW' ? 'body/front-diagonals-v1' : 'body/profiles-v1';
+  const approvalFile = direction === 'E' ? 'review-fit-v1.json' : direction === 'W' ? 'review-fit-w-v2.json' : direction === 'SE' ? 'review-fit-v2.json' : direction === 'SW' ? 'review-fit-sw-v5.json' : direction === 'NE' ? 'review-fit-ne-v2.json' : 'review-fit-nw-v1.json';
+  const decision = direction === 'E' ? 'approved-independent-e-profile-body-study' : direction === 'W' ? 'approved-independent-w-profile-body-study-with-local-hair-repair' : direction === 'SE' ? 'approved-independent-se-body-study-with-native-hand-repair' : direction === 'SW' ? 'approved-independent-sw-body-study-and-clothing-colour' : direction === 'NE' ? 'approved-independent-ne-body-study-and-proportion-refit' : 'approved-independent-nw-body-study-and-posterior-fit';
   const [root, assets, refs] = await Promise.all([options.sourceDirectory, options.assetDirectory, options.referenceDirectory].map(p => realpath(p)));
   const out = resolve(options.outputDirectory), inputs = new Map<string, string>();
   if ([root!, assets!, refs!].some(p => inside(p, out) || inside(out, p))) throw new Error(`${direction} body part outputs and inputs must be disjoint.`);
@@ -88,8 +90,8 @@ async function prepareNativeFacingPartsReview(options: BodyPartsReviewOptions, d
   const temporary = await mkdtemp(resolve(tmpdir(), `character-${direction.toLowerCase()}-parts-`));
   try {
     const common = { sourceDirectory: resolve(assets!, baselineDirectory), assetDirectory: assets!, referenceDirectory: refs! };
-    const prepare = (outputDirectory: string, bodyParts?: Parameters<typeof prepareProfileBodyReview>[0]['bodyParts']) => direction === 'NE'
-      ? prepareBackDiagonalBodyReview({ ...common, configuration: 'authoring-ne-v2.json', ...(bodyParts ? { bodyParts } : {}), outputDirectory })
+    const prepare = (outputDirectory: string, bodyParts?: Parameters<typeof prepareProfileBodyReview>[0]['bodyParts']) => direction === 'NE' || direction === 'NW'
+      ? prepareBackDiagonalBodyReview({ ...common, configuration: direction === 'NE' ? 'authoring-ne-v2.json' : 'authoring-nw-v1.json', ...(bodyParts ? { bodyParts } : {}), outputDirectory })
       : direction === 'SW'
       ? prepareSouthwestClothingReview({ ...common, ...(bodyParts ? { bodyParts } : {}), outputDirectory })
       : direction === 'SE'
@@ -113,7 +115,7 @@ async function prepareNativeFacingPartsReview(options: BodyPartsReviewOptions, d
       published: false, paletteReady: false, productionAnatomyApproved: false, concealedJointsApproved: false, separateUnderwearAuthored: false, footwearCompatibilityApproved: false, tposeApproved: false, finalStep6CAccepted: false, step6DStarted: false,
       hiddenFrontalLayers: 'hiddenFrontalLayers' in actual ? actual.hiddenFrontalLayers : [],
       overviewColumns: ['recomposed visible body plus accepted head', `accepted ${direction} whole-body fit`, `actual ${direction} body planes plus accepted head/face/hair`],
-      partSheetCells: ['recomposed visible body', 'torso with underwear', ...layout.slice(1).map(p => `${direction === 'SE' || direction === 'SW' || direction === 'NE' ? p.characterSide === (direction === 'SW' ? 'left' : 'right') ? 'near' : 'far' : p.visibility === 'visible' ? 'near' : 'far'} physical-${p.characterSide} ${p.id.endsWith('arm') ? 'arm' : 'leg'}${p.visibility === 'visible' ? '' : ': occluded, no source geometry'}`)],
+      partSheetCells: ['recomposed visible body', 'torso with underwear', ...layout.slice(1).map(p => `${direction === 'SE' || direction === 'SW' || direction === 'NE' || direction === 'NW' ? p.characterSide === (direction === 'SW' || direction === 'NW' ? 'left' : 'right') ? 'near' : 'far' : p.visibility === 'visible' ? 'near' : 'far'} physical-${p.characterSide} ${p.id.endsWith('arm') ? 'arm' : 'leg'}${p.visibility === 'visible' ? '' : ': occluded, no source geometry'}`)],
       futureFootwearFitObligations: actual.futureFootwearFitObligations, futureBodyFitObligations: actual.futureBodyFitObligations, futureHairstyleFitObligations: actual.futureHairstyleFitObligations,
       reviewRequired: [`Review ${direction} shoulder and brief-opening cut locations at native resolution.`, 'Concealed limb and joint coverage require independently authored geometry before reusable limb or alternate-pose acceptance.', 'Underwear remains baked into the torso study; no separate garment or material approval.'],
       outputs: pending.map(p => ({ path: p.path, sha256: sha256(p.bytes) })),

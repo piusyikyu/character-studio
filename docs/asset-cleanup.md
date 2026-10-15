@@ -1,5 +1,7 @@
 # Asset workspace cleanup — 2026-10-13
 
+NW part staging at `body/parts-v1/northwest/` protects five metadata-declared PNGs. Preserve five original native source partitions, settings, provenance and scratch replay plus approved NW body/head/hair dependencies. All earlier source art and current reviews stay intact; temporary composition exports and obsolete part previews are removed.
+
 NE part staging at `body/parts-v1/northeast/` protects five metadata-declared PNGs. Preserve five original native source partitions, settings, provenance and scratch replay plus the approved NE revision-2 body/head/hair dependencies. Existing SW/SE/E/W sources remain intact; temporary composition exports and obsolete part previews are removed.
 
 SW part staging at `body/parts-v1/southwest/` protects five metadata-declared PNGs. Preserve its five native source partitions, settings, provenance and scratch replay, plus the approved revision-5 fabric and revision-4 head/hair dependencies. Existing SE/E/W sources stay intact; temporary composition exports and obsolete part previews are removed.

@@ -1,5 +1,53 @@
 # Female Character Studio — Project Context and Handoff
 
+## NW visible-part approval — 2026-10-15
+
+The user approved the five native NW visible-body partitions and exact static
+fit with the approved NW body, intact hands and posterior head/ear/neck/
+hair. `body/parts-v1/northwest/review-fit-v1.json` pins the configuration, five
+source parts and body/anatomy/fit hashes. Frontal features remain hidden. This
+approval covers visible cuts and composition; concealed anatomy, separate
+underwear/materials, production rig and footwear compatibility remain open.
+Next: consolidate the eight approved visible-part studies for cross-facing review.
+Step 6C stays open; Step 6D has not started. Earlier pending NW notes
+below are historical.
+
+
+## NW visible-body-part study — 2026-10-15
+
+Local commit `dda2c07` records the approved NE visible cuts and exact posterior
+fit. Generated cleanup removed 64 files (1.7 MiB), preserving all current reviews.
+
+The next bounded Step 6C increment is `body/parts-v1/northwest/`. Five native
+RGBA partitions select torso with posterior bra/briefs and physical-right/left
+arms and legs from the approved NW body. Its shoulder, brief-opening and
+inter-leg contours are independently traced. Near physical-left limbs on
+screen left use front limb planes; far physical-right limbs on screen right
+use back limb planes. No mirroring, transforms, recolouring or new anatomy.
+
+`pnpm body:review:parts:northwest` validates the exact `authoring-nw-v1.json`
+and `review-fit-nw-v1.json` checkpoint, exclusive source ownership and actual
+core NW composition with accepted head, ear, posed neck and posterior hair.
+The original body RGBA and approved anatomy/fit PNG hashes must match exactly.
+Eyes, eyebrows, mouth and front hair stay hidden. Unsafe output paths, side or
+alpha changes, foreign baselines and frontal feature planes are rejected.
+
+Review `assets/staging/heroine-v1/body/parts-v1/northwest/overview.png`: anatomy
+from parts / accepted NW fit / actual five-plane fit. `parts-overview.png`
+reads top row whole body / torso / far right arm, bottom row near left arm /
+far right leg / near left leg. Cleanup protects these five metadata-declared
+PNGs; native sources, settings, provenance and scratch replay remain retained.
+
+NW cuts await human review and remain uncommitted. Earlier seven facing
+partition checkpoints are approved for their visible studies; profiles still
+have unavailable far-side limbs. Concealed joints/anatomy, separate underwear
+and materials, reusable rig/anchors and alternate anatomy remain unfinished.
+Existing heel-based feet confer no new footwear compatibility. Step 6C stays
+open; Step 6D has not started. Earlier candidate entries below are historical.
+
+
+NW-part verification: asset-validator typecheck, root lint (zero warnings), ESM/declaration build and the NW part CLI passed. Both posterior part workflows and cleanup passed (3 tests, none skipped, 72.82 seconds). Checks cover actual NE/NW composition, posterior visibility, exclusive source RGBA ownership, original hands/feet, deterministic export, immutable inputs and rejection of side/alpha/facing/frontal-plane substitutions. All five NW source PNGs replay byte-for-byte; all 1,070 preceding source SHA/mtime pairs remain exact. Final cleanup removed 64 regenerated files (1.7 MiB), preserving all 345 current output hashes and both hashed viewers. Full app build and browser E2E were not rerun. See `body/parts-v1/northwest/fit-audit-v1.json`.
+
 ## NE visible-part approval — 2026-10-15
 
 The user approved the five native NE visible-body partitions and exact static

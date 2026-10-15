@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-15",
+  "id": "body.parts.northwest.v1",
+  "assetVersion": 1,
+  "direction": "NW",
+  "target": "detailed",
+  "configuration": "authoring.json",
+  "configurationSha256": "f4105cd87203af4d8f5a8cc64c85c6d15eb8cb2db24cc2e70f3bb92081917d6d",
+  "decision": "approved-native-nw-visible-body-part-study",
+  "userFeedback": "Approved. Remove unneeded files and commit, then go on to next step.",
+  "currentStudyPartsApproved": true,
+  "bodySha256": "46ac75187b5fac429064f9fad6eeca548bf383195584ca9bb0330be1af3bfb94",
+  "bareSha256": "5200368b2e49b78c67dd0944754445dd6b5778ca6191b5164ca3132d792da47d",
+  "fitSha256": "fdaf2efacfd7cae2e65a383ffdcdde1a5a0516497f40a89e32cfdc7fe28c3790",
+  "parts": [
+    {
+      "id": "torso",
+      "plane": "body-torso",
+      "characterSide": "center",
+      "visibility": "visible",
+      "artwork": {
+        "source": "NW-torso-v1.png",
+        "sourceSha256": "0f2590d68d18118cbdd606a77967046eb891c137f2e8b5495eaac34b1e689aa1"
+      }
+    },
+    {
+      "id": "right-arm",
+      "plane": "body-back-arm",
+      "characterSide": "right",
+      "visibility": "visible",
+      "artwork": {
+        "source": "NW-right-arm-v1.png",
+        "sourceSha256": "6386c96a1486adbc6c07effe7874810a59c0d0263c8a41a8f6b360a8c8d05552"
+      }
+    },
+    {
+      "id": "left-arm",
+      "plane": "body-front-arm",
+      "characterSide": "left",
+      "visibility": "visible",
+      "artwork": {
+        "source": "NW-left-arm-v1.png",
+        "sourceSha256": "068d7fca8a3ab0472730ffdf471b9a9178835221c4154931fa44000dc2881483"
+      }
+    },
+    {
+      "id": "right-leg",
+      "plane": "body-back-leg",
+      "characterSide": "right",
+      "visibility": "visible",
+      "artwork": {
+        "source": "NW-right-leg-v1.png",
+        "sourceSha256": "d41ec7b868e5b6d6cad094647ce953d9f42900b5435bcf272a69c6207e74d695"
+      }
+    },
+    {
+      "id": "left-leg",
+      "plane": "body-front-leg",
+      "characterSide": "left",
+      "visibility": "visible",
+      "artwork": {
+        "source": "NW-left-leg-v1.png",
+        "sourceSha256": "b85ffadbf09d769f8afd287fc53f9e21c62875598e1851c1a0edc55b18ee3aa2"
+      }
+    }
+  ],
+  "baselineApproval": {
+    "source": "body/back-diagonals-v1/review-fit-nw-v1.json",
+    "sourceSha256": "61b2160ade29d524803bb66560e927eb304a678580f6ff4210169077165a4c46"
+  },
+  "reviewOutputs": [
+    {
+      "path": "fit/NW-body-only.png",
+      "sha256": "46ac75187b5fac429064f9fad6eeca548bf383195584ca9bb0330be1af3bfb94"
+    },
+    {
+      "path": "fit/NW-anatomy.png",
+      "sha256": "5200368b2e49b78c67dd0944754445dd6b5778ca6191b5164ca3132d792da47d"
+    },
+    {
+      "path": "fit/NW.png",
+      "sha256": "fdaf2efacfd7cae2e65a383ffdcdde1a5a0516497f40a89e32cfdc7fe28c3790"
+    },
+    {
+      "path": "overview.png",
+      "sha256": "32eaba69a5bde4b8be085a02399ac5e3d3b573ea55458274f8890c86a39b7a69"
+    },
+    {
+      "path": "parts-overview.png",
+      "sha256": "c86593d5fa913e0f77c326b17bc71076e5ba51fec5846194d190322d2bb8a2c7"
+    }
+  ],
+  "hiddenFrontalLayers": [
+    "eyes",
+    "eyebrows",
+    "mouth",
+    "hair-front"
+  ],
+  "unavailableGeometry": [],
+  "allFiveVisiblePartsAuthored": true,
+  "futureFootwearFitObligations": [
+    "Current S/N feet are a provisional high-heel study; different kinds of shoes may require extra independently authored leg-and-foot parts.",
+    "Review NW same-facing ankle posture, leg/foot attachment, sole contact and ground baseline before barefoot, flat-shoe or any footwear acceptance. Do not mirror, deform or overwrite approved limbs."
+  ],
+  "scope": "NW visible-pixel ownership cuts and exact actual body/posterior head/ear/neck/hair fit with intact hands and no frontal features. Full concealed anatomy, separate underwear/materials, production rig, new poses and footwear compatibility remain unfinished.",
+  "published": false,
+  "paletteReady": false,
+  "productionAnatomyApproved": false,
+  "concealedJointsApproved": false,
+  "separateUnderwearAuthored": false,
+  "footwearCompatibilityApproved": false,
+  "tposeApproved": false,
+  "finalStep6CAccepted": false,
+  "step6DStarted": false
+}
