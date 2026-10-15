@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-15",
+  "approvalCommit": "8f2a0b2",
+  "selectionSha256": "d6ea8ee74742659e4ebab8e72bdfcce559ed29543dc11e3a0f4e320061c72f9e",
+  "protectedSources": {
+    "count": 1003,
+    "sha256Unchanged": true,
+    "mtimeUnchanged": true
+  },
+  "nativeFramesVerified": 8,
+  "allIndividualApprovalsMatch": true,
+  "newArtwork": false,
+  "currentOutputs": [
+    {
+      "path": "overview.png",
+      "sha256": "6a58308de69d40d9aa20694e4cfcb3401321db84258d519e9005f6e202d51756"
+    },
+    {
+      "path": "anatomy-overview.png",
+      "sha256": "dde4857b4d974a90d55349c49a2b58757fa4f79ddd6c44764d3d81e7f433c0c2"
+    },
+    {
+      "path": "inspection/body-review.html",
+      "sha256": "c5a88158a5b2406fce5e310594a5c6462741b6bc9238be8ce9a8f4a49e335dc5"
+    }
+  ],
+  "temporaryComponentExportsRemoved": true,
+  "visualApproval": false,
+  "validation": {
+    "typecheck": "passed",
+    "rootLint": "passed-zero-warnings",
+    "validatorBuild": "passed-ESM-and-declarations",
+    "nativeExport": "passed",
+    "focusedIntegrationTests": {
+      "passed": 2,
+      "durationSeconds": 166.02
+    },
+    "chromiumViewerWorkflow": "passed-outside-sandbox-after-sandbox-process-startup-failure",
+    "fullAppBuild": "not-rerun",
+    "appWideBrowserSuite": "not-rerun"
+  },
+  "currentMetadataOutputHashesVerifiedAfterCleanup": 315,
+  "currentViewerHashesVerifiedAfterCleanup": 2,
+  "cleanup": {
+    "generatedFilesRemoved": 63,
+    "approximateMiB": 1.6
+  }
+}

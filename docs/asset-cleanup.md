@@ -1,5 +1,9 @@
 # Asset workspace cleanup — 2026-10-13
 
+SW colour revision 5 keeps its selected colour study, native edit/SE guides, bounded fabric body/mask, settings/prompts and scratch replay. Current southwest staging protects six metadata-declared PNGs including the old/new clothing comparison. Superseded eye/hair inspection previews are regenerable from retained revision 4. All three versioned all-eight selections and their source pins remain retained; current metadata protects the current sheets/viewer. The explicit revision-5 SW colour approval is retained.
+
+The current all-eight body review at `body/assembly-v1/` protects two metadata-declared native PNG sheets and its interactive viewer. Its source selection pins the eight individually approved native body configurations and approvals. Temporary component review exports are removed after validation, so no duplicate per-facing fits are retained in the consolidated folder. All approved source art and replay inputs remain protected.
+
 NW is approved in `review-fit-nw-v1.json`. Preserve all six current nested review PNGs and pinned native source/replay inputs; next consolidate the eight individually approved body studies. Older candidate entries below are historical.
 
 Current NW body review is metadata-protected in `body/back-diagonals-v1/northwest/`, including all six exported PNGs. Retain its native source pack, selected study/guide inputs, masks/settings/prompts and scratch replay, along with approved NE/source derivations. Reuse the existing N guide; discarded generation attempts and obsolete build/review output are not source dependencies.

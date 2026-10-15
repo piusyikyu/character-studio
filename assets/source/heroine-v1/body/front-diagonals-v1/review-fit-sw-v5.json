@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-15",
+  "id": "body.front-diagonals.v1",
+  "assetVersion": 5,
+  "direction": "SW",
+  "target": "detailed",
+  "configuration": "authoring-sw-v5.json",
+  "configurationSha256": "cdf93f6bbc394b8caae75248af754c3425c825bbc9805147c038ca1607e17490",
+  "decision": "approved-independent-sw-body-study-and-clothing-colour",
+  "userFeedback": "Approved. Remove unneeded files and commit, then go on to next step.",
+  "currentStudyFitApproved": true,
+  "bareSha256": "5d74e8d2e32f97ce2790f23765b81d91944def3ee298e4ddf4d3997afadb5c6b",
+  "fitSha256": "a2b5d725f1d92a0063468aad90eaf170cef2c137030adcf4a93ade04771dc3a7",
+  "body": {
+    "source": "SW-body-v5.png",
+    "sourceSha256": "8250febe0d6518f648af8ec394739506fb1b031a581b50cdee2846c48314c2dd"
+  },
+  "previous": {
+    "source": "authoring-sw-v4.json",
+    "sourceSha256": "a381dc6ddf1b63378406842061d58df1ffa1eedf47ea3a121d8b59f399d9bdb6"
+  },
+  "previousApproval": {
+    "source": "review-fit-sw-v4.json",
+    "sourceSha256": "9c57101b22561f3dba8bc9e75134bbe4aebe612c17bbddfa441981d1cd8324d1"
+  },
+  "reviewOutputs": [
+    {
+      "path": "fit/SW-anatomy.png",
+      "sha256": "5d74e8d2e32f97ce2790f23765b81d91944def3ee298e4ddf4d3997afadb5c6b"
+    },
+    {
+      "path": "fit/SW.png",
+      "sha256": "a2b5d725f1d92a0063468aad90eaf170cef2c137030adcf4a93ade04771dc3a7"
+    },
+    {
+      "path": "overview.png",
+      "sha256": "1f18e55e481ec42d8c8d2074204f210bfda2cd28ef4850362fedbe82ac87e8f5"
+    },
+    {
+      "path": "inspection/SW-clothing-comparison.png",
+      "sha256": "86b5941917cbd4e34f13ee4835579937852d5257aca47e8a5fbdf83ed0977691"
+    },
+    {
+      "path": "inspection/SW-neck-shoulder-comparison.png",
+      "sha256": "8c74f26efa08866fb3fa448aba806e964b63f6aa8cfd5bc3e959e1f1c9b1d44f"
+    },
+    {
+      "path": "inspection/SW-hand-alpha-comparison.png",
+      "sha256": "458b663c501daf291584be3706a2e08b30db2e8693bd01f559dbfaa4297e216e"
+    }
+  ],
+  "scope": "Current SW study with lighter cool-grey bra and briefs. Only selected fabric RGB changed; body geometry, alpha, skin, head, hair and other facings retain their accepted baselines.",
+  "published": false,
+  "paletteReady": false,
+  "productionAnatomyApproved": false,
+  "footwearCompatibilityApproved": false,
+  "tposeApproved": false,
+  "finalStep6CAccepted": false,
+  "step6DStarted": false
+}

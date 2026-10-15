@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "id": "body.front-diagonals.v1",
+  "assetVersion": 5,
+  "direction": "SW",
+  "target": "detailed",
+  "previous": {
+    "source": "authoring-sw-v4.json",
+    "sourceSha256": "a381dc6ddf1b63378406842061d58df1ffa1eedf47ea3a121d8b59f399d9bdb6"
+  },
+  "previousApproval": {
+    "source": "review-fit-sw-v4.json",
+    "sourceSha256": "9c57101b22561f3dba8bc9e75134bbe4aebe612c17bbddfa441981d1cd8324d1"
+  },
+  "originalBody": {
+    "source": "SW-body-v1.png",
+    "sourceSha256": "71844bff8f8acdefa59473a63f6ff3405d11704f8b249387a2633a7b89263144"
+  },
+  "body": {
+    "source": "SW-body-v5.png",
+    "sourceSha256": "8250febe0d6518f648af8ec394739506fb1b031a581b50cdee2846c48314c2dd"
+  },
+  "selection": {
+    "source": "SW-clothing-mask-v5.png",
+    "sourceSha256": "8dd08902d56f1e5c125e22feea6e52634511b4600b3d34dd19d550b5d2b97cb7"
+  },
+  "settings": {
+    "source": "clothing-settings-sw-v5.json",
+    "sourceSha256": "dc77e9fccea82e02ccfe1121b049487a57fe0258c4dc30df2d87c4abd5c91df7"
+  },
+  "provenance": {
+    "source": "prompts-sw-v5.json",
+    "sourceSha256": "30e5df8a8313268e9cd61fe60579dfd06f74129b31abadc6f24fb59f1cc5ff92"
+  },
+  "study": {
+    "source": "inputs/SW-clothing-study-v5.png",
+    "sourceSha256": "4aed732c3c3f354642308aacc3d4df2169d6b155887245cac4b29f7eaab7ceed"
+  },
+  "guide": {
+    "source": "inputs/SW-clothing-guide-v5.png",
+    "sourceSha256": "09aa01742228e61943084c60f53797c236bc947768fb6d340d5c140e89d341ca"
+  },
+  "colourReference": {
+    "source": "inputs/SW-clothing-se-guide-v5.png",
+    "sourceSha256": "b7536ea63f3c2f55e3bf4a4a1e1a8642c4e7caf0056518aa3c8f5d044d9af815"
+  },
+  "front": {
+    "source": "SW-front-body-fit-v4.png",
+    "sourceSha256": "26599db1ca62f6ee2de2d1fa4601fd82e24764e1e630f19716335f470aa1b8f1"
+  },
+  "rear": {
+    "source": "SW-rear-body-fit-v4.png",
+    "sourceSha256": "0823e7669fface624591b3e9b0b164a04b229ffda38be1ccde2538cad1fdfe1b"
+  },
+  "status": "draft-needs-human-review",
+  "published": false,
+  "paletteReady": false,
+  "productionAnatomyApproved": false,
+  "tposeApproved": false,
+  "finalStep6CAccepted": false,
+  "knownReviewIssues": [
+    "SW revision 5 changes only grey fabric colour to match the lighter cool-grey family of other views. Original garment shape, native shading variation and dark outlines are retained.",
+    "Skin, body alpha/geometry, head, eyes, brows, mouth, ears, hair, hands, feet and all other facings retain their prior sources exactly.",
+    "Generated study supplies colour calibration only. Actual garment pixels derive from the original body and a bounded fabric selection; generated anatomy and linework are unselected.",
+    "Actual retained-hair composition is verified in every selected garment pixel against the approved SW revision-4 fit before colour replacement.",
+    "Clothing colour requires visual approval. This is not a finished material map, separate underwear asset, anatomy/footwear or Step 6C acceptance."
+  ],
+  "reference": {
+    "source": "SW.png",
+    "sourceSha256": "4d288310e7fbf452f9bf7cd842172b5201ce061249f2eade711d31518c34b870"
+  }
+}

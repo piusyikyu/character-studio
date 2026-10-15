@@ -1,5 +1,113 @@
 # MVP Plan — Female Character Studio
 
+## SW clothing colour approval — 2026-10-15
+
+The user approved the revision-5 lighter cool-grey bra and briefs.
+`body/front-diagonals-v1/review-fit-sw-v5.json` records the exact configuration
+and native anatomy/fit hashes. Only selected fabric RGB differs from the prior
+approved SW study; geometry, alpha, skin, head, hair and other facings are intact.
+The current all-eight review uses `body/assembly-v1/review-selection-v3.json`
+with an explicit SW revision-5 approval pin; earlier selections remain replayable.
+All individual fits are approved. The combined sheet remains a study review;
+concealed anatomy, separate garments/materials, footwear compatibility and a
+production T-pose rig remain unfinished. Step 6C stays open; Step 6D has not begun.
+Next: a native E-facing visible-body-part partition study.
+
+
+## SW clothing colour consistency — revision 5 — 2026-10-15
+
+The user identified SW underwear as darker/warmer than the other views and
+requested a correction. `body/front-diagonals-v1/authoring-sw-v5.json` selects
+a fabric-only derivative of the approved SW revision-4 fit. A built-in imagegen
+colour study uses the exact accepted SW anatomy and SE colour reference. Its
+anatomy, skin, linework and alpha are unselected. Median fabric RGB offsets are
+applied to bounded original bra/strap/band and brief material pixels, fading to
+zero at dark outlines and retaining the original shade variation.
+
+`SW-body-v5.png` and `SW-clothing-mask-v5.png` retain exact original body alpha
+and placement. Every pixel outside the nonzero fabric selection is unchanged.
+The corrected bare anatomy is identical to its accepted guide outside that
+selection; the layered fit likewise retains its baseline outside-selection hash.
+Inside the selection, source-over composition of the original body and approved
+front/rear hair must first match the old native fit exactly. Only then are the
+new garment colours substituted using the same actual plane order. Head, eyes,
+brows, mouth, ears, skin, hair, hands, feet and all other facings stay intact.
+
+`pnpm body:review:front-diagonals:southwest` now selects revision 5. Six current
+PNGs and metadata remain in southwest staging; `inspection/SW-clothing-comparison.png`
+shows old / corrected fabric, anatomy above and actual hair fit below. The new
+`--southwest-v4` CLI flag reproduces the retained approved fit in historical staging.
+Keep the selected colour study, exact edit/reference guides, native body/mask,
+settings, prompt provenance and scratch-only `recolour-clothing-sw-v5.js`. The
+first image attempt was rejected at the output check; the complete-character
+retry succeeded. No CLI/API fallback was used.
+
+The all-eight viewer uses versioned `body/assembly-v1/review-selection-v2.json`.
+Its baseline frame pins retain all eight individual approvals, with an explicit
+unapproved SW clothing candidate. The other seven cells still match approval.
+The original `review-selection.json` is retained for exact historical export via
+the API selectionFile option. Current metadata/viewer identify SW as awaiting
+colour approval; the correction does not silently inherit the old fit approval.
+
+No new body preset, runtime material contract or published catalog is introduced.
+Full material maps, separate underwear/limbs, concealed anatomy, production rig,
+footwear compatibility and native pixel artwork remain unfinished. The colour
+fix and combined review are uncommitted and await approval. Step 6C stays open;
+Step 6D has not started. Earlier entries below are historical.
+
+Validation: asset-validator typecheck, root lint (zero warnings), ESM/declaration build, current SW export and the all-eight export passed. Clothing/cleanup workflows passed (2 tests, 1.63 seconds); the repeated all-eight workflow passed (1 test, 171.88 seconds). They verify exact alpha, unchanged skin and all pixels outside the fabric mask, actual native composition, seven unchanged approved cells, determinism and rejected re-pinned skin edits. Chromium verified the updated viewer outside the sandbox. Both derived PNGs replay byte-for-byte; all 1,004 preceding source hashes/mtimes are unchanged. Final cleanup protects the six current SW PNGs and two body-set sheets/viewer; all 315 current output hashes and both viewer hashes verify. Initial reference-pin and rounded-mask-count issues were corrected. Full app build and the app-wide browser suite were not rerun. See `fit-audit-sw-v5.json` and the body-set revision-2 audit.
+
+
+## Eight-facing body review candidate — 2026-10-15
+
+Local commit `8f2a0b2` records the approved independent NW study after generated
+cleanup (60 files, 1.6 MiB). All eight selected whole-body study fits now have
+individual approval. The next bounded Step 6C increment consolidates their exact
+accepted body/head/hair compositions; it introduces no new artwork or runtime
+catalog changes.
+
+`body/assembly-v1/review-selection.json` pins N v1, NE v2, E v1, SE v2, S v6,
+SW v4, W v2 and NW v1 configurations and their individual approvals.
+`pnpm body:review:all` rebuilds all eight source pipelines in temporary storage,
+requires both anatomy and layered fit to match each accepted native PNG hash,
+then removes those temporary exports. No source selection or image is replaced.
+
+Current staging at `assets/staging/heroine-v1/body/assembly-v1/` contains only two
+4096×3072 sheets, metadata and `inspection/body-review.html`. The native grid is
+N / NE / E / SE, then S / SW / W / NW. Every cell stays 1024×1536 at its native
+position; no mirroring, resizing, recentering, pose correction or baseline shift.
+Checker and yellow labels decorate review sheets only. The viewer switches
+hair/anatomy, all facings/a single facing, and 25% / 50% / 100% native zoom.
+Browser preview zoom never modifies the source or native sheet pixels.
+
+All individual hashes match approval, including the local S/W/SW head/hair and
+eye corrections. Review body build and head-to-body scale, neck/shoulder/hair
+roots, physical hand identity and rear-facing feature visibility together. Feet
+retain different authored poses/native heights: anatomy bottom rows range from
+NE 1448 to SW 1486. This bounds observation does not establish a common ground
+baseline or arbitrary footwear compatibility. Any correction needs a new scoped
+source version and approval; no existing limb is silently deformed or mirrored.
+
+The combined body set is unapproved/uncommitted. S/N have approved visible-part
+partition studies; remaining facings need their own partitions. Complete concealed
+joints, reusable anatomy, separate underwear/garments/materials, production rig,
+variants and independent native pixel artwork remain unfinished. Step 6C stays
+open; Step 6D has not started. Earlier candidate/next-step entries are historical.
+
+Validation: asset-validator typecheck, root lint (zero warnings), ESM/declaration
+build and the all-eight native export passed. Two focused integration workflows
+passed in 166.02 seconds: every panel matches its individually approved native
+export, repeated full rebuild is deterministic, wrong-facing/stale pins and unsafe
+outputs fail, and metadata cleanup preserves current sheets/viewer. A Chromium
+workflow verified all/isolated NW, anatomy/hair, native/50% zoom, sheet crop and
+full-resolution image decode without page errors. Chromium required execution
+outside the sandbox because its process startup was blocked inside. Full app
+build and the app-wide browser suite were not rerun. Final source/cleanup audit
+is in `body/assembly-v1/fit-audit-v1.json`.
+
+Final cleanup removed 63 generated build files (1.6 MiB). All 1,003 preceding source hashes/mtimes remain unchanged; 315 current metadata-declared output hashes and both hashed viewers verify after cleanup. Only the two current native sheets, their viewer and metadata remain in the consolidated staging folder.
+
+
 ## NW body approval and eight-facing review — 2026-10-15
 
 The user approved the independent NW body and posterior head/hair fit.
@@ -1473,7 +1581,7 @@ The editor operates on the temporary geometric catalog, not approved artwork.
 - [x] Record background/alpha/bounds/baseline measurements and versioned candidate anchors.
 - [x] Add repeatable import/export and source-preservation workflow tests.
 - [ ] Human review of matte edges, uncertain regions, anchors and baseline inconsistency.
-- [ ] Step 6C: All eight hair designs approved; S/N anatomy draft and revision-2 S fit checkpoint committed. Revision-3 local patches failed visual review. Revision-4 coherent hair looks acceptable, but assembled ear clipping was rejected. Revision-5 fit generally approved with known hair noise and committed as `11fe059`. Independent E/W head/neck skin candidates and native masks await review. Profile-fit revision 1 exposes original scalp/nose defects; revision 2 fits visible same-facing reference hair with sampled facial exposure and ear depth. The user rejected profile ear size/placement; revision 3 locally restores visible reference ear pixels and bounded concealed anatomy with corrected fringe ownership. Revision-3 E/W standing-reference fit is now approved with minor left/W overview-ear pixelation acknowledged in `profiles-review-fit-v3.json`. Independent SE/SW head/neck revision 1 was rejected for clipped bare ears, a displaced SE nose and SW white mask fragments. Revision 2 supplies complete ear studies, local SE face/native nose repair and bounded SW front-hair cleanup. The user found SE much better but rejected SW's remaining nose offset and jaw/neck cutouts. Revision 3 preserves SE's fit and corrects SW with native nose/jaw ownership and a local authored curl, pending visual approval. Hair-mask edges and complete production anatomy remain unresolved. Concealed lower hair, four diagonal heads, full body/clothing anatomy and production fit remain unfinished.
+- [ ] Step 6C: Eight detailed whole-body study baselines are individually approved. SW now has a clothing-only colour candidate, and the native all-eight comparison awaits visual approval. S/N visible-part partitions are approved studies; remaining partitions, complete concealed anatomy, separate garments/materials, production rig, variants and independent pixel artwork remain unfinished. Step 6D has not started.
 
 On 2026-10-12 the user generally approved SE/SW head-fit revision 3 while flagging
 abrupt SW neck hair. Revision 4 clears 157 duplicate foreground pixels already

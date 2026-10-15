@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "direction": "SW",
+  "method": "bounded-fabric-tone-transfer",
+  "braOffset": [
+    47,
+    54,
+    54
+  ],
+  "briefsOffset": [
+    45,
+    54,
+    53
+  ],
+  "outlineThreshold": 85,
+  "fullToneThreshold": 125,
+  "maximumFabricRed": 220,
+  "maximumFabricChroma": 28,
+  "preserveSourceAlpha": true
+}

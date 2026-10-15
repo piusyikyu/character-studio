@@ -1,5 +1,9 @@
 # Source artwork
 
+Current SW clothing correction: `heroine-v1/body/front-diagonals-v1/authoring-sw-v5.json` retains the approved revision-4 anatomy/head/hair and changes fabric RGB only. Preserve selected colour study/edit/SE guides, body/mask, settings/prompts and scratch replay. The all-eight review selects it explicitly through `body/assembly-v1/review-selection-v3.json`; its seven other fits and all earlier source versions stay intact. Exact colour-fit approval is recorded in `review-fit-sw-v5.json`; all eight individual fits are approved.
+
+Current all-eight body review: `heroine-v1/body/assembly-v1/review-selection.json` pins each individually approved study/configuration. `pnpm body:review:all` rebuilds two native sheets and a local viewer in staging, validating exact accepted frame hashes without creating new source art or keeping temporary per-facing exports. The combined review awaits visual approval; Step 6C remains open.
+
 NW is approved in `heroine-v1/body/back-diagonals-v1/review-fit-nw-v1.json`. All eight whole-body studies now have individual approvals. Next consolidate their exact native compositions for cross-facing review; source inputs and earlier derivations remain retained. Older candidate notes below are historical.
 
 Current independent NW body candidate: `heroine-v1/body/back-diagonals-v1/authoring-nw-v1.json`. Keep its selected study/head/NE proportion guides, reused N guide, native body/neck layers and masks, settings/prompts and scratch replay. `pnpm body:review:back-diagonals:northwest` rebuilds six native review PNGs in nested northwest staging. NW awaits its own approval; approved NE and all preceding art stay intact.

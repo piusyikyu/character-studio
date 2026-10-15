@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-15",
+  "scope": "Explicitly approved SW colour fit in all-eight body-study review",
+  "selectionFile": "review-selection-v3.json",
+  "selectionSha256": "3baa6d0d9570a260107ce093c3a62d7ed9bf50148e537c44b6909fce812e725b",
+  "individualFitsMatchApprovals": true,
+  "pendingCandidateDirections": [],
+  "outputs": [
+    {
+      "path": "overview.png",
+      "sha256": "6996fe070888ae0fec968f1844d0c6545c0e487d3aa2bb6c85ccbf9226e47db2"
+    },
+    {
+      "path": "anatomy-overview.png",
+      "sha256": "03ccbd0284119abe8dce3b29093c6d4d67867cd4e085b2b02c0fbcbcfd224e74"
+    }
+  ],
+  "interactiveInspection": {
+    "path": "inspection/body-review.html",
+    "sha256": "c5a88158a5b2406fce5e310594a5c6462741b6bc9238be8ce9a8f4a49e335dc5"
+  },
+  "precedingSourcesUnchanged": 1004,
+  "crossFacingBodySetApproved": false,
+  "finalStep6CAccepted": false
+}
