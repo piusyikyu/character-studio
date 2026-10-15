@@ -1,5 +1,7 @@
 # Asset workspace cleanup — 2026-10-13
 
+W visible-part staging at `body/parts-v1/west/` protects five metadata-declared PNGs and removes obsolete previews. Preserve its three original W source partitions plus settings, provenance and scratch replay. Far-side entries create no blank source images. All approved E inputs and review outputs remain protected.
+
 E visible-part staging at `body/parts-v1/east/` protects five metadata-declared PNGs. Three source RGBA partitions and their settings/provenance/replay remain retained; occluded far-side slots create no blank source PNGs. Temporary baseline/part exports are removed after validation.
 
 SW colour revision 5 keeps its selected colour study, native edit/SE guides, bounded fabric body/mask, settings/prompts and scratch replay. Current southwest staging protects six metadata-declared PNGs including the old/new clothing comparison. Superseded eye/hair inspection previews are regenerable from retained revision 4. All three versioned all-eight selections and their source pins remain retained; current metadata protects the current sheets/viewer. The explicit revision-5 SW colour approval is retained.

@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-15",
+  "id": "body.parts.west.v1",
+  "assetVersion": 1,
+  "direction": "W",
+  "target": "detailed",
+  "configuration": "authoring.json",
+  "configurationSha256": "596780dcc690d45dd2d095b09baecefaf35851173c24ce061add7486e7722221",
+  "decision": "approved-native-w-visible-body-part-study",
+  "userFeedback": "Approved. Remove unneeded files and commit, then go on to next step.",
+  "currentStudyPartsApproved": true,
+  "bodySha256": "5132e3ecdedff63a279f63997c1048f1068d8dde3e920d5f2109bff7dd634d25",
+  "bareSha256": "4c7183524b04aabeb897152d808b9fccf7b7b128de29fac1c67fc0aadbdc7c73",
+  "fitSha256": "dc1ec961928a79ceaa0c334751dca84e8c3e3ce66b1641d8a9f1d7ef59924f77",
+  "parts": [
+    {
+      "id": "torso",
+      "plane": "body-torso",
+      "characterSide": "center",
+      "visibility": "visible",
+      "artwork": {
+        "source": "W-torso-v1.png",
+        "sourceSha256": "06d328eac412c5fa4da95e65217dd74e00a9f0f161b517580d36ae9935d37bb0"
+      }
+    },
+    {
+      "id": "left-arm",
+      "plane": "body-front-arm",
+      "characterSide": "left",
+      "visibility": "visible",
+      "artwork": {
+        "source": "W-left-arm-v1.png",
+        "sourceSha256": "08eb9c4ea3b8cfdadbc0ab966e5fc572da8ba987c37affc8b11bcae968aa88f0"
+      }
+    },
+    {
+      "id": "right-arm",
+      "plane": "body-back-arm",
+      "characterSide": "right",
+      "visibility": "occluded-unavailable",
+      "reason": "No separately recoverable far-side artwork in the accepted W study."
+    },
+    {
+      "id": "left-leg",
+      "plane": "body-front-leg",
+      "characterSide": "left",
+      "visibility": "visible",
+      "artwork": {
+        "source": "W-left-leg-v1.png",
+        "sourceSha256": "4983ca7418ea62d9f03c85ffa42fe1a492da096f3045fc01fcbe9e9e47b57a9b"
+      }
+    },
+    {
+      "id": "right-leg",
+      "plane": "body-back-leg",
+      "characterSide": "right",
+      "visibility": "occluded-unavailable",
+      "reason": "No separately recoverable far-side artwork in the accepted W study."
+    }
+  ],
+  "baselineApproval": {
+    "source": "body/profiles-v1/review-fit-w-v2.json",
+    "sourceSha256": "724b6add5da782a7c9c112df68b1d8ed2732dfa57043baa4078f3f2538e1e96e"
+  },
+  "reviewOutputs": [
+    {
+      "path": "fit/W-body-only.png",
+      "sha256": "5132e3ecdedff63a279f63997c1048f1068d8dde3e920d5f2109bff7dd634d25"
+    },
+    {
+      "path": "fit/W-anatomy.png",
+      "sha256": "4c7183524b04aabeb897152d808b9fccf7b7b128de29fac1c67fc0aadbdc7c73"
+    },
+    {
+      "path": "fit/W.png",
+      "sha256": "dc1ec961928a79ceaa0c334751dca84e8c3e3ce66b1641d8a9f1d7ef59924f77"
+    },
+    {
+      "path": "overview.png",
+      "sha256": "9ee7fa0a7559a5fdc9a44e0722b947ee7811701e83b1314c9a730f433a570d59"
+    },
+    {
+      "path": "parts-overview.png",
+      "sha256": "f6868841d3d306d2bbd7842fc290cb22be9827aa8e07fd3ea1d75676de594231"
+    }
+  ],
+  "unavailableGeometry": [
+    "right-arm",
+    "right-leg"
+  ],
+  "allFivePartsAuthored": false,
+  "futureFootwearFitObligations": [
+    "Current S/N feet are made for high heels; different kinds of shoes may require extra independently authored leg-and-foot parts.",
+    "W feet remain a provisional heel-based study. Before barefoot, flat-shoe or other footwear designs are accepted, review ankle posture, leg/foot attachment, sole contact and ground baseline with compatible independently authored facing/target variants."
+  ],
+  "scope": "W visible-pixel ownership cuts and exact actual native head/face/hair fit. Far physical-right arm/leg remain unavailable; no approval of concealed joints, a complete reusable rig, separate underwear, new pose or footwear compatibility.",
+  "published": false,
+  "paletteReady": false,
+  "productionAnatomyApproved": false,
+  "concealedJointsApproved": false,
+  "separateUnderwearAuthored": false,
+  "footwearCompatibilityApproved": false,
+  "tposeApproved": false,
+  "finalStep6CAccepted": false,
+  "step6DStarted": false
+}

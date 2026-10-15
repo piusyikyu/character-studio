@@ -1,5 +1,59 @@
 # Step 6C — First S body anatomy study
 
+## W visible-part approval — 2026-10-15
+
+The user approved the W visible torso/left-arm/left-leg ownership study.
+`body/parts-v1/west/review-fit-v1.json` pins the exact configuration, parts and
+body/anatomy/hair-fit hashes. Far physical-right limbs remain explicitly
+unavailable. This approval covers the native visible cuts and actual static
+composition; concealed geometry, separate underwear, production rig and footwear
+compatibility remain open. Next: independently traced SE visible-part cuts using
+the approved SE revision-2 body/head/hair fit. Step 6C stays open; Step 6D has
+not started. Earlier pending W notes below are historical.
+
+
+## W visible-body-part study — 2026-10-15
+
+Local commit `34adade` records the approved E visible-part study and exact native
+fit after generated cleanup (64 files, 1.6 MiB). Its three source PNGs, settings,
+replay, approval and all earlier body/head/hair sources remain intact.
+
+The next bounded Step 6C increment is `body/parts-v1/west/`. Three original W
+RGBA partitions use independently traced W shoulder/socket and brief-opening
+cuts: torso with underwear, near physical-left arm and near physical-left leg.
+No E contours or pixels are reflected, scaled or transferred. Far physical-right
+arm/leg entries are explicitly occluded/unavailable and have no source PNGs;
+full concealed limbs and joint geometry still require authored assets.
+
+`pnpm body:review:parts:west` pins the accepted W revision-2 body/head/hair
+configuration and approval. It rebuilds the original fit and composes the actual
+five body slots with accepted head/neck/ear/eye/brow/mouth/hair layers in native
+core W order. The existing near-hand hair-depth correction and removed red
+reference-clothing fragment are preserved. Recomposition must match the accepted
+body RGBA and both anatomy/fit PNG hashes exactly. No production catalog changes.
+
+The E-only part loader/validator/geometry modules have been renamed to
+`body-profile-parts-review.ts` and `body-profile-parts.ts`, sharing the validation
+and native-copy algorithm while retaining separately authored E/W cuts and side
+identity. The combined profile integration workflow also checks accepted E output.
+Existing E source scripts and hashes remain unchanged.
+
+Review `assets/staging/heroine-v1/body/parts-v1/west/overview.png`: recomposed
+anatomy / accepted W fit / actual body-plane fit. Read `parts-overview.png` top
+row whole visible body / torso / near left arm, then bottom row unavailable
+far right arm / near left leg / unavailable far right leg. Empty review cells
+declare missing geometry; no blank substitute asset is authored. Five current
+review PNGs and metadata remain, and temporary exports are removed.
+
+W shoulder/thigh cuts await human review and remain uncommitted. Separate
+underwear/materials, concealed joints, other facing partitions, production rig
+and alternate anatomy remain unfinished. Existing heel-oriented posture stays
+provisional and conveys no new barefoot/flat-shoe/other-footwear approval.
+Step 6C stays open; Step 6D has not begun. Earlier entries below are historical.
+
+
+W-part verification: asset-validator typecheck, root lint (zero warnings), ESM/declaration build and both E/W part CLIs passed. The combined profile and cleanup integration workflows passed (3 tests, 91.64 seconds): accepted native E/W composition, exclusive source RGBA ownership, physical-side probes, unavailable far-side geometry, repeated deterministic exports, immutable inputs and rejection of altered side/pixels or foreign-facing W checkpoints. All three W source PNGs replay byte-for-byte; all 1,028 preceding source SHA/mtime pairs remain unchanged. Final cleanup removed 64 regenerated files (1.6 MiB); all 325 current output hashes and both hashed viewers verify. An initial config-file type inference issue was corrected. Full app build and browser E2E were not rerun. See `body/parts-v1/west/fit-audit-v1.json`.
+
 ## E visible-part approval — 2026-10-15
 
 The user approved the E visible torso/right-arm/right-leg ownership study.

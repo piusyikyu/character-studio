@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-15",
+  "method": "manual native exclusive W visible ownership",
+  "replay": {
+    "source": "partition-native-parts.js",
+    "sourceSha256": "82adeb0a3a59dcd05d505243f44d2f1b9e10e62697d3b7123168cfca739dea1f"
+  },
+  "scope": "Three original native W visible regions, without resampling, transforms, colour edits or new anatomy. Actual five-plane W composition includes explicit empty far-side review slots; no blank source files are manufactured.",
+  "physicalSide": "W near arm and leg are character left. Far physical-right geometry is not separately recoverable from the flattened source.",
+  "limitations": [
+    "Cut locations need human review. Shoulder socket and brief opening do not establish concealed joint or rig anchor geometry.",
+    "Underwear remains baked into torso. No separate garment or skin material layers.",
+    "Far arm/leg are explicitly unavailable. This is not a complete reusable five-limb rig.",
+    "Existing heel-based foot posture is retained. No barefoot, flat-shoe or arbitrary footwear approval."
+  ]
+}

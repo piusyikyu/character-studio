@@ -1,5 +1,7 @@
 # Source artwork
 
+Current W visible body partitions: `heroine-v1/body/parts-v1/west/` uses three original W regions with independently traced cuts and explicit unavailable far-right limbs. Exact composition retains the approved W revision-2 hand/hair fit. The cuts await approval. Preserve source PNGs, settings, provenance and scratch replay. E visible-part approval is recorded in `body/parts-v1/east/review-fit-v1.json`.
+
 Current E visible body partitions: `heroine-v1/body/parts-v1/east/` keeps three native visible RGBA regions and explicit unavailable far-left arm/leg entries. Actual E plane composition exactly matches the approved fit. Shoulder/thigh cuts await review; concealed geometry and separate underwear remain unfinished. Keep settings, provenance and the scratch-only replay.
 
 Current SW clothing correction: `heroine-v1/body/front-diagonals-v1/authoring-sw-v5.json` retains the approved revision-4 anatomy/head/hair and changes fabric RGB only. Preserve selected colour study/edit/SE guides, body/mask, settings/prompts and scratch replay. The all-eight review selects it explicitly through `body/assembly-v1/review-selection-v3.json`; its seven other fits and all earlier source versions stay intact. Exact colour-fit approval is recorded in `review-fit-sw-v5.json`; all eight individual fits are approved.

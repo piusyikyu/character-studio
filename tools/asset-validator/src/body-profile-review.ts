@@ -190,10 +190,10 @@ async function prepareFacialBodyReview(options: NorthBodyReviewOptions & Pick<Pr
   }
   if (options.bodyParts) {
     const required = ['body-torso', 'body-front-arm', 'body-back-arm', 'body-front-leg', 'body-back-leg'];
-    if (direction !== 'E' || options.bodyParts.length !== 5 || new Set(options.bodyParts.map(p => p.plane)).size !== 5 || options.bodyParts.some(p => !required.includes(p.plane) || p.image.width !== 1024 || p.image.height !== 1536)) throw new Error('Five explicitly assigned native E body planes required.');
+    if (!['E', 'W'].includes(direction) || options.bodyParts.length !== 5 || new Set(options.bodyParts.map(p => p.plane)).size !== 5 || options.bodyParts.some(p => !required.includes(p.plane) || p.image.width !== 1024 || p.image.height !== 1536)) throw new Error('Five explicitly assigned native profile body planes required.');
     const reconstructed = blankImage(1024, 1536);
-    for (const plane of DIRECTION_PLANE_ORDER.E) for (const part of options.bodyParts) if (part.plane === plane) drawRgba(reconstructed, part.image, 0, 0);
-    if (reconstructed.data.some((v, i) => v !== body!.data[i])) throw new Error('E body planes must reconstruct the accepted native body exactly.');
+    for (const plane of DIRECTION_PLANE_ORDER[direction]) for (const part of options.bodyParts) if (part.plane === plane) drawRgba(reconstructed, part.image, 0, 0);
+    if (reconstructed.data.some((v, i) => v !== body!.data[i])) throw new Error('Profile body planes must reconstruct the accepted native body exactly.');
   }
   const compose = (withBody: boolean, withHair: boolean, repaired: boolean | 'previous' | 'quality-previous' = true) => {
     const image = blankImage(1024, 1536), planes = new Map<RenderPlane, RgbaImage[]>([['head', [repaired === true ? fittedHead : frame.head]], ['neck', [withBody ? posedNeck! : frame.neck]], ['eyebrows', frame.brows]]);

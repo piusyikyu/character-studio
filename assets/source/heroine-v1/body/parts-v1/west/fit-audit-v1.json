@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-15",
+  "scope": "Independent W visible-body-part partition study",
+  "configSha256": "596780dcc690d45dd2d095b09baecefaf35851173c24ce061add7486e7722221",
+  "measurements": {
+    "parts": [
+      {
+        "id": "torso",
+        "plane": "body-torso",
+        "characterSide": "center",
+        "visibility": "visible",
+        "selectedPixels": 51374,
+        "nativePosition": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "left-arm",
+        "plane": "body-front-arm",
+        "characterSide": "left",
+        "visibility": "visible",
+        "selectedPixels": 6074,
+        "nativePosition": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "right-arm",
+        "plane": "body-back-arm",
+        "characterSide": "right",
+        "visibility": "occluded-unavailable",
+        "selectedPixels": 0,
+        "nativePosition": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "left-leg",
+        "plane": "body-front-leg",
+        "characterSide": "left",
+        "visibility": "visible",
+        "selectedPixels": 84051,
+        "nativePosition": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "right-leg",
+        "plane": "body-back-leg",
+        "characterSide": "right",
+        "visibility": "occluded-unavailable",
+        "selectedPixels": 0,
+        "nativePosition": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ],
+    "overlapPixels": 0,
+    "unownedPixels": 0,
+    "generatedAnatomy": false
+  },
+  "unavailableGeometry": [
+    "right-arm",
+    "right-leg"
+  ],
+  "exactApprovedFit": true,
+  "bodySha256": "5132e3ecdedff63a279f63997c1048f1068d8dde3e920d5f2109bff7dd634d25",
+  "bareSha256": "4c7183524b04aabeb897152d808b9fccf7b7b128de29fac1c67fc0aadbdc7c73",
+  "fitSha256": "dc1ec961928a79ceaa0c334751dca84e8c3e3ce66b1641d8a9f1d7ef59924f77",
+  "outputs": [
+    {
+      "path": "fit/W-body-only.png",
+      "sha256": "5132e3ecdedff63a279f63997c1048f1068d8dde3e920d5f2109bff7dd634d25"
+    },
+    {
+      "path": "fit/W-anatomy.png",
+      "sha256": "4c7183524b04aabeb897152d808b9fccf7b7b128de29fac1c67fc0aadbdc7c73"
+    },
+    {
+      "path": "fit/W.png",
+      "sha256": "dc1ec961928a79ceaa0c334751dca84e8c3e3ce66b1641d8a9f1d7ef59924f77"
+    },
+    {
+      "path": "overview.png",
+      "sha256": "9ee7fa0a7559a5fdc9a44e0722b947ee7811701e83b1314c9a730f433a570d59"
+    },
+    {
+      "path": "parts-overview.png",
+      "sha256": "f6868841d3d306d2bbd7842fc290cb22be9827aa8e07fd3ea1d75676de594231"
+    }
+  ],
+  "validation": {
+    "typecheck": "pnpm --filter @character-studio/asset-validator typecheck: passed",
+    "lint": "pnpm lint: passed, zero warnings",
+    "build": "pnpm --filter @character-studio/asset-validator build: ESM and declaration passed",
+    "export": [
+      "body-parts-review-cli.js --west: passed",
+      "body-parts-review-cli.js --east: passed, exact approved outputs"
+    ],
+    "integration": {
+      "command": "pnpm exec vitest run tools/asset-validator/src/body-profile-parts-review.integration.test.ts tools/asset-validator/src/workspace-cleanup.integration.test.ts --maxWorkers=1",
+      "passed": 3,
+      "seconds": 91.64,
+      "checks": [
+        "Actual native E/W body planes with accepted head/face/hair reproduce their individual approved fit hashes.",
+        "Exclusive native source RGBA ownership and physical-right E / physical-left W limb probes.",
+        "Two far-side slots explicitly unavailable in each profile, with no blank source assets.",
+        "Repeated full exports deterministic; selected source hashes and mtimes preserved.",
+        "Side changes, repinned foreign pixels and foreign-facing W checkpoints rejected.",
+        "Cleanup keeps current E/W outputs and removes obsolete part previews."
+      ]
+    },
+    "fullAppBuild": "not rerun; runtime app unchanged",
+    "browserE2E": "not rerun; no UI changes",
+    "resolvedImplementationIssue": "Initial new baseline configFile inferred as string; explicit supported configuration union restored typecheck."
+  },
+  "replayedByteExact": 3,
+  "precedingSourcesUnchanged": 1028,
+  "cleanup": {
+    "deletedGeneratedFiles": 64,
+    "deletedMiB": 1.6,
+    "verifiedCurrentOutputHashes": 325,
+    "verifiedViewerHashes": 2
+  },
+  "visualApprovalPending": true,
+  "published": false,
+  "productionAnatomyApproved": false,
+  "concealedJointsApproved": false,
+  "separateUnderwearAuthored": false,
+  "footwearCompatibilityApproved": false,
+  "finalStep6CAccepted": false,
+  "step6DStarted": false
+}

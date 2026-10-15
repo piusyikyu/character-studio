@@ -106,6 +106,7 @@ pnpm face:review:front-diagonals:v1 # Reproduce the preceding facial fit with SE
 pnpm body:review # Approved S revision-6 body/head/hair study
 pnpm body:review:parts # Approved native S torso/arms/legs layering study
 pnpm body:review:north # Approved independent N/full-back body and posterior hair fit
+pnpm body:review:parts:west # W visible torso/left limbs with approved hand/hair depth
 pnpm body:review:parts:east # E visible torso/right limbs; far-left geometry explicitly unavailable
 pnpm body:review:parts:north # Approved native N torso/arms/legs layering study
 pnpm body:review:profiles # Approved E body profile and actual native head/hair fit
