@@ -26,9 +26,27 @@ const lineValue = (value: number, line: readonly (readonly [number, number])[], 
   }
   return line.at(-1)![output];
 };
-export function partitionSoutheastBody(body: RgbaImage) {
-  if (body.width !== 1024 || body.height !== 1536) throw new Error('Native SE body required.');
-  const g = southeastBodyPartsGeometry, parts = southeastBodyPartLayout.map(() => blankImage(1024, 1536)), pixelCounts = southeastBodyPartLayout.map(() => 0);
+export const southwestBodyPartLayout = [
+  { id: 'torso', plane: 'body-torso', characterSide: 'center', visibility: 'visible' },
+  { id: 'right-arm', plane: 'body-back-arm', characterSide: 'right', visibility: 'visible' },
+  { id: 'left-arm', plane: 'body-front-arm', characterSide: 'left', visibility: 'visible' },
+  { id: 'right-leg', plane: 'body-back-leg', characterSide: 'right', visibility: 'visible' },
+  { id: 'left-leg', plane: 'body-front-leg', characterSide: 'left', visibility: 'visible' },
+] as const;
+/** SW-specific contours traced on the accepted colour-corrected body, never reflected SE cuts. */
+export const southwestBodyPartsGeometry = {
+  armBottom: 455,
+  rightArmRoot: [[430,303],[416,325],[400,345],[380,365],[357,380],[335,391],[315,410],[315,455]],
+  leftArmRoot: [[554,299],[545,321],[545,344],[559,365],[580,379],[599,407],[606,455]],
+  legSeam: [[468,714],[468,760],[474,820],[489,900],[509,1000],[520,1200],[520,1536]],
+  rightThighRoot: [[371,636],[405,669],[436,703],[468,714]],
+  leftThighRoot: [[468,714],[481,675],[504,643],[532,626],[559,620],[584,624],[605,636]],
+} as const;
+export const partitionSoutheastBody = (body: RgbaImage) => partitionDiagonalBody(body, southeastBodyPartLayout, southeastBodyPartsGeometry);
+export const partitionSouthwestBody = (body: RgbaImage) => partitionDiagonalBody(body, southwestBodyPartLayout, southwestBodyPartsGeometry);
+function partitionDiagonalBody(body: RgbaImage, layout: typeof southeastBodyPartLayout | typeof southwestBodyPartLayout, geometry: { readonly armBottom: number; readonly rightArmRoot: readonly (readonly [number,number])[]; readonly leftArmRoot: readonly (readonly [number,number])[]; readonly legSeam: readonly (readonly [number,number])[]; readonly rightThighRoot: readonly (readonly [number,number])[]; readonly leftThighRoot: readonly (readonly [number,number])[] }) {
+  if (body.width !== 1024 || body.height !== 1536) throw new Error('Native front-diagonal body required.');
+  const g = geometry, parts = layout.map(() => blankImage(1024, 1536)), pixelCounts = layout.map(() => 0);
   for (let y = 0; y < 1536; y++) for (let x = 0; x < 1024; x++) {
     const p = (y * 1024 + x) * 4; if (body.data[p + 3]! < 8) continue;
     const px = x + .5, py = y + .5, rightLeg = px < lineValue(py, g.legSeam, 1);

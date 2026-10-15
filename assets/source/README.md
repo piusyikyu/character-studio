@@ -1,5 +1,7 @@
 # Source artwork
 
+Current SW visible body partitions: `heroine-v1/body/parts-v1/southwest/` selects five original native regions from the approved revision-5 light-grey clothing body. Independently traced SW cuts and actual five-plane composition preserve accepted head/eye/hair repairs. Cuts await review; concealed joints and separate garments/materials remain unfinished. Preserve source PNGs, settings, provenance and scratch replay. SE part approval is recorded in `body/parts-v1/southeast/review-fit-v1.json`.
+
 Current SE visible body partitions: `heroine-v1/body/parts-v1/southeast/` selects five original SE regions using its own socket/brief/inter-leg contours and the approved revision-2 complete hands. Actual five-plane composition must match accepted SE anatomy/head/hair hashes exactly. Cuts await review; underwear remains baked into torso and concealed joints remain unfinished. Preserve settings, provenance and scratch replay. W part approval is in `body/parts-v1/west/review-fit-v1.json`.
 
 Current W visible body partitions: `heroine-v1/body/parts-v1/west/` uses three original W regions with independently traced cuts and explicit unavailable far-right limbs. Exact composition retains the approved W revision-2 hand/hair fit. The cuts await approval. Preserve source PNGs, settings, provenance and scratch replay. E visible-part approval is recorded in `body/parts-v1/east/review-fit-v1.json`.

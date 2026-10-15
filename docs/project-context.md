@@ -1,5 +1,62 @@
 # Female Character Studio — Project Context and Handoff
 
+## SW visible-part approval — 2026-10-15
+
+The user approved the five native SW visible-body partitions and exact static
+composition with light-grey underwear, complete eyes, head/hair repairs and
+intact hands. `body/parts-v1/southwest/review-fit-v1.json` pins the configuration,
+five source parts and body/anatomy/fit hashes. Approval covers visible ownership
+cuts and actual composition; concealed anatomy, separate underwear/materials,
+production rig and footwear compatibility remain unfinished. Next: independently
+traced NE parts using the approved revision-2 proportion-refitted body and
+posterior head/hair fit. Step 6C stays open; Step 6D has not started. Earlier
+pending SW notes below are historical.
+
+
+## SW visible-body-part study — 2026-10-15
+
+Local commit `e79fd24` records the approved five SE visible-body partitions,
+complete hands and exact actual static fit after generated cleanup (64 files,
+1.6 MiB). Approved source artwork, cuts, configurations and review records remain
+unchanged. Step 6C continues with SW; Step 6D has not started.
+
+`body/parts-v1/southwest/` selects five original native SW regions: torso with
+underwear, physical-right/left arms and physical-right/left legs. SW-specific
+shoulder sockets, brief openings and an inter-leg seam are independently traced
+against its own accepted body. Near physical-left limbs use front limb planes;
+far physical-right limbs use back limb planes. No SE cuts or artwork are mirrored,
+scaled, translated or deformed. All original source RGBA is retained.
+
+`pnpm body:review:parts:southwest` pins `authoring-sw-v5.json` and its explicit
+`review-fit-sw-v5.json` approval. Its body keeps the approved lighter cool-grey
+bra/briefs; revision-4 native head/front/rear hair contours and full far-eye
+repair stay selected through the existing SW pipeline. Old darker clothing is
+not accepted as a substitute for the selected body.
+
+The shared clothing review accepts actual body planes. It validates their native
+reconstruction of the selected revision-5 body, carries identical ownership
+against the pre-colour revision-4 body, and rebuilds that actual five-plane
+composition with all accepted head, neck, ears, eyes, brows, mouth and hair.
+Only the bounded existing fabric selection receives revision-5 RGB in its real
+body/hair order; all source alpha and outside-fabric pixels remain unchanged.
+The final anatomy and fit must exactly match approved revision-5 hashes.
+
+Review `assets/staging/heroine-v1/body/parts-v1/southwest/overview.png`: anatomy
+from parts / accepted SW fit / actual five-plane fit. Read `parts-overview.png`
+top row whole body / torso / far right arm, then bottom row near left arm /
+far right leg / near left leg. Staging retains five PNGs and metadata; temporary
+baseline/composition exports are removed. Native source partitions, settings,
+provenance and scratch replay remain protected, as do all approved earlier views.
+
+Shoulder/thigh/inter-leg cuts await human review and remain uncommitted. Full
+concealed anatomy, separate underwear/skin/materials, other facing partitions,
+production rig and alternate anatomy remain unfinished. Existing heel-oriented
+feet remain provisional with no new footwear compatibility approval. There are
+no runtime recipe/catalog/UI changes. Earlier entries below are historical.
+
+
+SW-part verification: asset-validator typecheck, root lint (zero warnings), ESM/declaration build and the current SW part CLI passed. SW/SE, E/W regression, clothing isolation and cleanup integration workflows passed (6 tests, 223.68 seconds). They verify actual five-plane compositions, accepted colour/head/eye/hair hashes, complete/exclusive RGBA ownership, both hands, repeated determinism, immutable inputs, rejected side/alpha/foreign-facing/old-clothing substitutions and cleanup protection. All five source PNGs replay byte-for-byte; all 1,048 preceding source SHA/mtime pairs remain exact. Final cleanup removed 64 regenerated files (1.7 MiB), preserving all 335 current output hashes and both hashed viewers. Full app build and browser E2E were not rerun. See `body/parts-v1/southwest/fit-audit-v1.json`.
+
 ## SE visible-part approval — 2026-10-15
 
 The user approved the five native SE visible-body partitions, including both

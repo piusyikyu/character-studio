@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-15",
+  "method": "manual native exclusive SW visible ownership",
+  "replay": {
+    "source": "partition-native-parts.js",
+    "sourceSha256": "97779d0260c561d524cd5007c545d751574492426d00297abdec43d8a531caa8"
+  },
+  "scope": "Five original SW visible RGBA regions from the accepted lighter cool-grey clothing body. Independently traced SW shoulder sockets, brief openings and inter-leg seam; native (0,0) ownership only, without resampling, transforms, colour edits, new anatomy or mirrored source.",
+  "physicalSide": "Near physical-left arm/leg use front limb planes; far physical-right arm/leg use back limb planes. Both sides retain their recoverable visible source art.",
+  "limitations": [
+    "Only visible ownership cuts are authored. Full concealed joints and reusable rig anchors require separate anatomy authoring.",
+    "Underwear remains baked into torso. No separate garment or skin material layers.",
+    "The clothing wrapper composes the same source ownership against the approved pre-colour baseline, then only the bounded fabric pixels in their actual body/hair order are recoloured. Every final anatomy/fit hash must match SW revision-5 approval.",
+    "Existing heel-based foot posture is retained. No barefoot, flat-shoe or arbitrary footwear approval."
+  ]
+}

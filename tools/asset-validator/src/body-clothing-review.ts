@@ -8,6 +8,7 @@ import { blankImage, decodePng, drawRgba, encodePng } from '@character-studio/re
 import type { RgbaImage } from '@character-studio/render-utils';
 import { prepareFrontDiagonalBodyReview } from './body-profile-review';
 import type { NorthBodyReviewOptions } from './body-north-review';
+import type { ProfileBodyReviewOptions } from './body-profile-review';
 import { recolourSouthwestClothing } from './body-southwest-clothing';
 import { checkerPreview } from './inspection';
 import { sha256 } from './reference-import';
@@ -26,7 +27,7 @@ const inside = (base: string, p: string) => { const r = relative(base, p); retur
 const missing = (e: unknown) => (e as NodeJS.ErrnoException).code === 'ENOENT';
 
 /** Preserve the approved SW composition; replace only explicitly selected garment RGB at native coordinates. */
-export async function prepareSouthwestClothingReview(options: NorthBodyReviewOptions) {
+export async function prepareSouthwestClothingReview(options: NorthBodyReviewOptions & Pick<ProfileBodyReviewOptions, 'bodyParts'>) {
   const [root, assets, refs] = await Promise.all([options.sourceDirectory, options.assetDirectory, options.referenceDirectory].map(p => realpath(p)));
   const out = resolve(options.outputDirectory), inputs = new Map<string, string>();
   if ([root!, assets!, refs!].some(p => inside(p, out) || inside(out, p))) throw new Error('Clothing review outputs and inputs must be disjoint.');
@@ -54,18 +55,34 @@ export async function prepareSouthwestClothingReview(options: NorthBodyReviewOpt
   await read(root!, config.provenance); await load(root!, config.study); await load(root!, config.colourReference);
   const expected = recolourSouthwestClothing(original!, JSON.parse((await read(root!, config.settings)).toString('utf8')));
   if (body!.data.some((v, i) => v !== expected.body.data[i]) || mask!.data.some((v, i) => v !== expected.mask.data[i])) throw new Error('SW clothing must retain native fabric-only tone transfer and exact source alpha.');
+  let originalParts: ProfileBodyReviewOptions['bodyParts'];
+  if (options.bodyParts) {
+    const required = ['body-torso', 'body-front-arm', 'body-back-arm', 'body-front-leg', 'body-back-leg'];
+    if (options.bodyParts.length !== 5 || new Set(options.bodyParts.map(p => p.plane)).size !== 5 || options.bodyParts.some(p => !required.includes(p.plane) || p.image.width !== 1024 || p.image.height !== 1536)) throw new Error('Five explicitly assigned native SW body planes required.');
+    const reconstructed = blankImage(1024, 1536);
+    for (const plane of DIRECTION_PLANE_ORDER.SW) for (const p of options.bodyParts) if (p.plane === plane) drawRgba(reconstructed, p.image, 0, 0);
+    if (reconstructed.data.some((v, i) => v !== body!.data[i])) throw new Error('SW parts must reconstruct the exact accepted colour-corrected native body.');
+    // Retain the exact same native ownership in the approved pre-colour baseline.
+    originalParts = options.bodyParts.map(p => {
+      const image = blankImage(1024, 1536);
+      for (let i = 0; i < image.data.length; i += 4) if (p.image.data[i + 3]) image.data.set(original!.data.subarray(i, i + 4), i);
+      return { plane: p.plane, image };
+    });
+  }
   const temporary = await mkdtemp(resolve(tmpdir(), 'character-sw-clothing-'));
   try {
-    const baseline = await prepareFrontDiagonalBodyReview({ ...options, sourceDirectory: root!, assetDirectory: assets!, referenceDirectory: refs!, outputDirectory: temporary, configFile: 'authoring-sw-v4.json' });
+    const baseline = await prepareFrontDiagonalBodyReview({ sourceDirectory: root!, assetDirectory: assets!, referenceDirectory: refs!, outputDirectory: temporary, configFile: 'authoring-sw-v4.json', ...(originalParts ? { bodyParts: originalParts } : {}) });
     if (baseline.configSha256 !== accepted.configurationSha256 || baseline.bareSha256 !== accepted.bareSha256 || baseline.fitSha256 !== accepted.fitSha256 || sha256(encodePng(guide!)) !== accepted.bareSha256) throw new Error('Clothing correction requires the actual approved SW anatomy and layered guide.');
     const baselineAnatomy = decodePng(await readFile(resolve(temporary, 'fit/SW-anatomy.png'))), baselineFit = decodePng(await readFile(resolve(temporary, 'fit/SW.png')));
     const anatomy = { ...baselineAnatomy, data: baselineAnatomy.data.slice() }, fit = { ...baselineFit, data: baselineFit.data.slice() };
-    const composeGarment = (selectedBody: RgbaImage) => {
-      const image = blankImage(1024, 1536), planes = new Map<RenderPlane, RgbaImage>([['body-torso', selectedBody], ['hair-front', front!], ['hair-rear', rear!]]);
+    const composeGarment = (selectedBody: RgbaImage, selectedParts?: ProfileBodyReviewOptions['bodyParts']) => {
+      const image = blankImage(1024, 1536), planes = new Map<RenderPlane, RgbaImage>([['hair-front', front!], ['hair-rear', rear!]]);
+      if (selectedParts) for (const part of selectedParts) planes.set(part.plane, part.image);
+      else planes.set('body-torso', selectedBody);
       for (const plane of DIRECTION_PLANE_ORDER.SW) { const layer = planes.get(plane); if (layer) drawRgba(image, layer, 0, 0); }
       return image;
     };
-    const originalGarment = composeGarment(original!), newGarment = composeGarment(body!);
+    const originalGarment = composeGarment(original!, originalParts), newGarment = composeGarment(body!, options.bodyParts);
     const outsideClothingHash = (image: RgbaImage) => {
       const data = image.data.slice();
       for (let p = 0; p < data.length; p += 4) if (mask!.data[p + 3]) data.fill(0, p, p + 4);

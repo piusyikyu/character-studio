@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "id": "body.parts.southwest.v1",
+  "assetVersion": 1,
+  "direction": "SW",
+  "target": "detailed",
+  "sourcePose": "tpose-study",
+  "status": "draft-needs-human-review",
+  "published": false,
+  "paletteReady": false,
+  "productionAnatomyApproved": false,
+  "concealedJointsApproved": false,
+  "separateUnderwearAuthored": false,
+  "tposeApproved": false,
+  "finalStep6CAccepted": false,
+  "baselineConfiguration": {
+    "source": "body/front-diagonals-v1/authoring-sw-v5.json",
+    "sourceSha256": "cdf93f6bbc394b8caae75248af754c3425c825bbc9805147c038ca1607e17490"
+  },
+  "baselineApproval": {
+    "source": "body/front-diagonals-v1/review-fit-sw-v5.json",
+    "sourceSha256": "28d728d11c4204e37dbe34358097590dfb11bde77ef7c9cc5a4596cb0f42f3f6"
+  },
+  "wholeBody": {
+    "source": "body/front-diagonals-v1/SW-body-v5.png",
+    "sourceSha256": "8250febe0d6518f648af8ec394739506fb1b031a581b50cdee2846c48314c2dd"
+  },
+  "settings": {
+    "source": "settings.json",
+    "sourceSha256": "499614bd37e2d0275a32aa04d9edca4d371d244d2ad8be0c87ae5e33bc4006bc"
+  },
+  "provenance": {
+    "source": "provenance.json",
+    "sourceSha256": "f111639447058fa2b497499c4eb258c3ebe6e2be20a869514de1b86fecee1b6e"
+  },
+  "parts": [
+    {
+      "id": "torso",
+      "plane": "body-torso",
+      "characterSide": "center",
+      "visibility": "visible",
+      "artwork": {
+        "source": "SW-torso-v1.png",
+        "sourceSha256": "4d33af1e293dddfa353769f587ca99a0dacda4513e07748d7012aeb874ceb39c"
+      }
+    },
+    {
+      "id": "right-arm",
+      "plane": "body-back-arm",
+      "characterSide": "right",
+      "visibility": "visible",
+      "artwork": {
+        "source": "SW-right-arm-v1.png",
+        "sourceSha256": "1636ede634e33b1307da8647790e086242497ab5c0994ce3e08d1e5076510ec6"
+      }
+    },
+    {
+      "id": "left-arm",
+      "plane": "body-front-arm",
+      "characterSide": "left",
+      "visibility": "visible",
+      "artwork": {
+        "source": "SW-left-arm-v1.png",
+        "sourceSha256": "a65fff8e44ec7536fbacc10e1cbecf5485d7955cd92d341a4ca77660a4fa4e04"
+      }
+    },
+    {
+      "id": "right-leg",
+      "plane": "body-back-leg",
+      "characterSide": "right",
+      "visibility": "visible",
+      "artwork": {
+        "source": "SW-right-leg-v1.png",
+        "sourceSha256": "0f140c57a1a5ce0e3bf66f5e1f87f5146044659da5ca78bf1a56be2cf171e69f"
+      }
+    },
+    {
+      "id": "left-leg",
+      "plane": "body-front-leg",
+      "characterSide": "left",
+      "visibility": "visible",
+      "artwork": {
+        "source": "SW-left-leg-v1.png",
+        "sourceSha256": "c7a84e343533aeb43452d3158183ba37f7f4bf7177910456726749af78206526"
+      }
+    }
+  ]
+}
