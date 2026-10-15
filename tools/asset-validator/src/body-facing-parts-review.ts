@@ -5,8 +5,9 @@ import { z } from 'zod';
 import { DIRECTION_PLANE_ORDER } from '@character-studio/core';
 import { blankImage, decodePng, drawRgba, encodePng } from '@character-studio/render-utils';
 import { eastBodyPartLayout, eastBodyPartsGeometry, partitionEastBody, westBodyPartLayout, westBodyPartsGeometry, partitionWestBody } from './body-profile-parts';
-import { prepareProfileBodyReview, profileBodyReviewSchema, westBodyReviewV2Schema } from './body-profile-review';
+import { prepareProfileBodyReview, prepareFrontDiagonalBodyReview, profileBodyReviewSchema, westBodyReviewV2Schema, frontDiagonalBodyReviewV2Schema } from './body-profile-review';
 import type { BodyPartsReviewOptions } from './body-parts-review';
+import { southeastBodyPartLayout, southeastBodyPartsGeometry, partitionSoutheastBody } from './body-diagonal-parts';
 import { checkerPreview } from './inspection';
 import { sha256 } from './reference-import';
 
@@ -22,20 +23,23 @@ export const eastBodyPartsReviewSchema = z.strictObject({
   baselineConfiguration: pin, baselineApproval: pin, wholeBody: pin, settings: pin, provenance: pin, parts: z.array(partSchema('No separately recoverable far-side artwork in the accepted E study.')).length(5),
 });
 export const westBodyPartsReviewSchema = eastBodyPartsReviewSchema.extend({ id: z.literal('body.parts.west.v1'), direction: z.literal('W'), parts: z.array(partSchema('No separately recoverable far-side artwork in the accepted W study.')).length(5) });
+export const southeastBodyPartsReviewSchema = eastBodyPartsReviewSchema.extend({ id: z.literal('body.parts.southeast.v1'), direction: z.literal('SE'), parts: z.array(identity.extend({ visibility: z.literal('visible'), artwork: pin })).length(5) });
 const inside = (base: string, path: string) => { const p = relative(base, path); return p === '' || (!isAbsolute(p) && p !== '..' && !p.startsWith('../')); };
 const missing = (e: unknown) => (e as NodeJS.ErrnoException).code === 'ENOENT';
 
 /** Visible source ownership only. Far-side geometry stays explicitly unavailable. */
-export const prepareEastBodyPartsReview = (options: BodyPartsReviewOptions) => prepareNativeProfilePartsReview(options, 'E');
-export const prepareWestBodyPartsReview = (options: BodyPartsReviewOptions) => prepareNativeProfilePartsReview(options, 'W');
-async function prepareNativeProfilePartsReview(options: BodyPartsReviewOptions, direction: 'E' | 'W') {
-  const schema = direction === 'E' ? eastBodyPartsReviewSchema : westBodyPartsReviewSchema;
-  const layout = direction === 'E' ? eastBodyPartLayout : westBodyPartLayout;
-  const geometry = direction === 'E' ? eastBodyPartsGeometry : westBodyPartsGeometry;
-  const partition = direction === 'E' ? partitionEastBody : partitionWestBody;
-  const baselineFile: 'authoring.json' | 'authoring-w-v2.json' = direction === 'E' ? 'authoring.json' : 'authoring-w-v2.json';
-  const approvalFile = direction === 'E' ? 'review-fit-v1.json' : 'review-fit-w-v2.json';
-  const decision = direction === 'E' ? 'approved-independent-e-profile-body-study' : 'approved-independent-w-profile-body-study-with-local-hair-repair';
+export const prepareEastBodyPartsReview = (options: BodyPartsReviewOptions) => prepareNativeFacingPartsReview(options, 'E');
+export const prepareWestBodyPartsReview = (options: BodyPartsReviewOptions) => prepareNativeFacingPartsReview(options, 'W');
+export const prepareSoutheastBodyPartsReview = (options: BodyPartsReviewOptions) => prepareNativeFacingPartsReview(options, 'SE');
+async function prepareNativeFacingPartsReview(options: BodyPartsReviewOptions, direction: 'E' | 'W' | 'SE') {
+  const schema = direction === 'E' ? eastBodyPartsReviewSchema : direction === 'W' ? westBodyPartsReviewSchema : southeastBodyPartsReviewSchema;
+  const layout = direction === 'E' ? eastBodyPartLayout : direction === 'W' ? westBodyPartLayout : southeastBodyPartLayout;
+  const geometry = direction === 'E' ? eastBodyPartsGeometry : direction === 'W' ? westBodyPartsGeometry : southeastBodyPartsGeometry;
+  const partition = direction === 'E' ? partitionEastBody : direction === 'W' ? partitionWestBody : partitionSoutheastBody;
+  const baselineFile = direction === 'E' ? 'authoring.json' as const : direction === 'W' ? 'authoring-w-v2.json' as const : 'authoring-v2.json' as const;
+  const baselineDirectory = direction === 'SE' ? 'body/front-diagonals-v1' : 'body/profiles-v1';
+  const approvalFile = direction === 'E' ? 'review-fit-v1.json' : direction === 'W' ? 'review-fit-w-v2.json' : 'review-fit-v2.json';
+  const decision = direction === 'E' ? 'approved-independent-e-profile-body-study' : direction === 'W' ? 'approved-independent-w-profile-body-study-with-local-hair-repair' : 'approved-independent-se-body-study-with-native-hand-repair';
   const [root, assets, refs] = await Promise.all([options.sourceDirectory, options.assetDirectory, options.referenceDirectory].map(p => realpath(p)));
   const out = resolve(options.outputDirectory), inputs = new Map<string, string>();
   if ([root!, assets!, refs!].some(p => inside(p, out) || inside(out, p))) throw new Error(`${direction} body part outputs and inputs must be disjoint.`);
@@ -51,9 +55,9 @@ async function prepareNativeProfilePartsReview(options: BodyPartsReviewOptions, 
     inputs.set(path, digest); return bytes;
   };
   const configBytes = await read(root!, { source: 'authoring.json' }), config = schema.parse(JSON.parse(configBytes.toString('utf8')));
-  if (config.baselineConfiguration.source !== 'body/profiles-v1/' + baselineFile || config.baselineApproval.source !== 'body/profiles-v1/' + approvalFile) throw new Error(`${direction} parts require the accepted same-facing checkpoint.`);
-  const baseline = (direction === 'E' ? profileBodyReviewSchema : westBodyReviewV2Schema).parse(JSON.parse((await read(assets!, config.baselineConfiguration)).toString('utf8')));
-  if (config.wholeBody.source !== 'body/profiles-v1/' + baseline.body.source || config.wholeBody.sourceSha256 !== baseline.body.sourceSha256) throw new Error(`${direction} parts must preserve accepted native body selection.`);
+  if (config.baselineConfiguration.source !== baselineDirectory + '/' + baselineFile || config.baselineApproval.source !== baselineDirectory + '/' + approvalFile) throw new Error(`${direction} parts require the accepted same-facing checkpoint.`);
+  const baseline = (direction === 'E' ? profileBodyReviewSchema : direction === 'W' ? westBodyReviewV2Schema : frontDiagonalBodyReviewV2Schema).parse(JSON.parse((await read(assets!, config.baselineConfiguration)).toString('utf8')));
+  if (config.wholeBody.source !== baselineDirectory + '/' + baseline.body.source || config.wholeBody.sourceSha256 !== baseline.body.sourceSha256) throw new Error(`${direction} parts must preserve accepted native body selection.`);
   const approval = z.object({ decision: z.literal(decision), direction: z.literal(direction), configuration: z.literal(baselineFile), configurationSha256: hash, bareSha256: hash, fitSha256: hash, currentStudyFitApproved: z.literal(true) }).parse(JSON.parse((await read(assets!, config.baselineApproval)).toString('utf8')));
   if (approval.configurationSha256 !== config.baselineConfiguration.sourceSha256) throw new Error(`${direction} parts approval must match its selected configuration.`);
   const settings = JSON.parse((await read(root!, config.settings)).toString('utf8'));
@@ -76,9 +80,12 @@ async function prepareNativeProfilePartsReview(options: BodyPartsReviewOptions, 
   if (recomposed.data.some((v, i) => v !== body.data[i])) throw new Error(`${direction} parts must reconstruct the accepted native body.`);
   const temporary = await mkdtemp(resolve(tmpdir(), `character-${direction.toLowerCase()}-parts-`));
   try {
-    const common = { configFile: baselineFile, sourceDirectory: resolve(assets!, 'body/profiles-v1'), assetDirectory: assets!, referenceDirectory: refs! };
-    const accepted = await prepareProfileBodyReview({ ...common, outputDirectory: resolve(temporary, 'accepted') });
-    const actual = await prepareProfileBodyReview({ ...common, bodyParts: parts, outputDirectory: resolve(temporary, 'parts') });
+    const common = { sourceDirectory: resolve(assets!, baselineDirectory), assetDirectory: assets!, referenceDirectory: refs! };
+    const prepare = (outputDirectory: string, bodyParts?: Parameters<typeof prepareProfileBodyReview>[0]['bodyParts']) => direction === 'SE'
+      ? prepareFrontDiagonalBodyReview({ ...common, configFile: 'authoring-v2.json', ...(bodyParts ? { bodyParts } : {}), outputDirectory })
+      : prepareProfileBodyReview({ ...common, configFile: direction === 'E' ? 'authoring.json' : 'authoring-w-v2.json', ...(bodyParts ? { bodyParts } : {}), outputDirectory });
+    const accepted = await prepare(resolve(temporary, 'accepted'));
+    const actual = await prepare(resolve(temporary, 'parts'), parts);
     if ([accepted, actual].some(r => r.bareSha256 !== approval.bareSha256 || r.fitSha256 !== approval.fitSha256)) throw new Error(`Actual ${direction} body planes with head/face/hair must reproduce the approved fit exactly.`);
     const fit = decodePng(await readFile(resolve(temporary, `parts/fit/${direction}.png`))), anatomy = decodePng(await readFile(resolve(temporary, `parts/fit/${direction}-anatomy.png`)));
     const overview = blankImage(3072, 1536);
@@ -91,12 +98,12 @@ async function prepareNativeProfilePartsReview(options: BodyPartsReviewOptions, 
       schemaVersion: 1, id: config.id, assetVersion: 1, configuration: 'authoring.json', configSha256: sha256(configBytes), status: config.status, supportedReviewDirections: [direction], target: 'detailed', sourcePose: config.sourcePose,
       baselineConfiguration: config.baselineConfiguration, baselineApproval: config.baselineApproval, compositionOrder: DIRECTION_PLANE_ORDER[direction],
       measurements: { parts: layout.map((p, i) => ({ ...p, selectedPixels: expected.pixelCounts[i], nativePosition: { x: 0, y: 0 } })), overlapPixels: 0, unownedPixels: 0, generatedAnatomy: false },
-      unavailableGeometry: layout.filter(p => p.visibility === 'occluded-unavailable').map(p => p.id), allFivePartsAuthored: false, bodySha256: sha256(encodePng(recomposed)), bareSha256: actual.bareSha256, fitSha256: actual.fitSha256, exactApprovedFit: true,
+      unavailableGeometry: layout.filter(p => p.visibility === 'occluded-unavailable').map(p => p.id), allFivePartsAuthored: layout.every(p => p.visibility === 'visible'), bodySha256: sha256(encodePng(recomposed)), bareSha256: actual.bareSha256, fitSha256: actual.fitSha256, exactApprovedFit: true,
       published: false, paletteReady: false, productionAnatomyApproved: false, concealedJointsApproved: false, separateUnderwearAuthored: false, footwearCompatibilityApproved: false, tposeApproved: false, finalStep6CAccepted: false, step6DStarted: false,
       overviewColumns: ['recomposed visible body plus accepted head', `accepted ${direction} whole-body fit`, `actual ${direction} body planes plus accepted head/face/hair`],
-      partSheetCells: ['recomposed visible body', 'torso with underwear', ...layout.slice(1).map(p => `${p.visibility === 'visible' ? 'near' : 'far'} physical-${p.characterSide} ${p.id.endsWith('arm') ? 'arm' : 'leg'}${p.visibility === 'visible' ? '' : ': occluded, no source geometry'}`)],
+      partSheetCells: ['recomposed visible body', 'torso with underwear', ...layout.slice(1).map(p => `${direction === 'SE' ? p.characterSide === 'right' ? 'near' : 'far' : p.visibility === 'visible' ? 'near' : 'far'} physical-${p.characterSide} ${p.id.endsWith('arm') ? 'arm' : 'leg'}${p.visibility === 'visible' ? '' : ': occluded, no source geometry'}`)],
       futureFootwearFitObligations: actual.futureFootwearFitObligations, futureBodyFitObligations: actual.futureBodyFitObligations, futureHairstyleFitObligations: actual.futureHairstyleFitObligations,
-      reviewRequired: [`Review ${direction} shoulder and brief-opening cut locations at native resolution.`, 'Far-side limbs and concealed joint coverage require independently authored geometry before reusable limb or alternate-pose acceptance.', 'Underwear remains baked into the torso study; no separate garment or material approval.'],
+      reviewRequired: [`Review ${direction} shoulder and brief-opening cut locations at native resolution.`, 'Concealed limb and joint coverage require independently authored geometry before reusable limb or alternate-pose acceptance.', 'Underwear remains baked into the torso study; no separate garment or material approval.'],
       outputs: pending.map(p => ({ path: p.path, sha256: sha256(p.bytes) })),
     };
     const files = [...pending, { path: 'metadata.json', bytes: Buffer.from(JSON.stringify(report, null, 2) + '\n') }];

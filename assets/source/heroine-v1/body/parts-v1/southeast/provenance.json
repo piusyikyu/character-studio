@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-15",
+  "method": "manual native exclusive SE visible ownership",
+  "replay": {
+    "source": "partition-native-parts.js",
+    "sourceSha256": "14ef81b6723573962e3b86f5e5c9c080f79eae954f9031c5fc3d5f171f7238e5"
+  },
+  "scope": "Five original SE visible RGBA regions, independently traced shoulder sockets, brief openings and inter-leg seam. Original source RGBA copied at native (0,0); no resampling, transforms, colour edits, new anatomy or mirrored source.",
+  "physicalSide": "Near physical-right arm/leg are on front limb planes; far physical-left arm/leg are on back limb planes. Both arms and legs have recoverable visible source art in this facing.",
+  "limitations": [
+    "Only visible ownership cuts are authored. Full concealed joints and reusable rig anchors require separate anatomy authoring.",
+    "Underwear remains baked into torso. No separate garment or skin material layers.",
+    "Retain approved revision-2 complete hand alpha; the earlier partially transparent extraction is not selected.",
+    "Existing heel-based foot posture is retained. No barefoot, flat-shoe or arbitrary footwear approval."
+  ]
+}

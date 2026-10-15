@@ -1,5 +1,60 @@
 # Female Character Studio — Project Context and Handoff
 
+## SE visible-part approval — 2026-10-15
+
+The user approved the five native SE visible-body partitions, including both
+complete hands and exact actual head/face/hair fit.
+`body/parts-v1/southeast/review-fit-v1.json` pins the configuration, five parts
+and body/anatomy/fit hashes. Approval covers the visible ownership cuts and
+static composition. Concealed joints, separate underwear/materials, production
+rig and general footwear compatibility remain unfinished. Next: independently
+traced SW visible-part cuts using the approved revision-5 cool-grey clothing and
+revision-4 head/hair contours. Step 6C stays open; Step 6D has not started.
+Earlier pending SE notes below are historical.
+
+
+## SE visible-body-part study — 2026-10-15
+
+Local commit `5f5f147` records the approved W visible torso/left-limb study after
+generated cleanup (64 files, 1.6 MiB). Approved W/E source partitions and their
+scoped static-fit approvals remain unchanged.
+
+The next bounded Step 6C increment is `body/parts-v1/southeast/`. Five native
+RGBA regions select the original SE torso with underwear, physical-right/left
+arms and physical-right/left legs. Both sides are visible in this independently
+authored SE view. Its shoulder sockets, brief openings and inter-leg seam are
+traced against SE itself; no other-facing contours or artwork are transformed.
+Near physical-right limbs use front limb planes, far physical-left limbs back
+limb planes. These visible cuts do not supply full concealed joint geometry.
+
+`pnpm body:review:parts:southeast` pins approved `authoring-v2.json` and
+`review-fit-v2.json` from the SE whole-body pack, including the native hand
+repair. It rebuilds the original accepted fit and composes the actual five body
+planes with every accepted head/neck/ear/eye/brow/mouth/hair layer in core SE
+order. Reconstructed body RGBA and both anatomy/fit hashes must match approval
+exactly. No source pixels, alpha, position, head or hair are changed.
+
+The shared part review loader is now `body-facing-parts-review.ts`; it retains
+E/W behavior and adds SE selection/composition. E/W source files and their
+independent native cuts remain intact. The SE helper is `body-diagonal-parts.ts`.
+No runtime recipe, material contract, asset catalog or app UI is changed.
+
+Review `assets/staging/heroine-v1/body/parts-v1/southeast/overview.png`: anatomy
+from body parts / accepted SE fit / actual five-plane fit. In
+`parts-overview.png`, read top row recomposed body / torso / near right arm,
+then bottom row far left arm / near right leg / far left leg. Five review PNGs
+and metadata are retained; temporary baseline exports are removed. Cleanup
+protects current outputs, approved sources and required replay/provenance inputs.
+
+Shoulder/thigh/inter-leg cuts await human approval and remain uncommitted.
+Underwear is still baked into the torso. Separate garments/materials, concealed
+joints, other facing partitions, reusable rig and alternate anatomy remain open.
+Existing heel-based feet remain provisional and gain no new footwear approval.
+Step 6C stays open; Step 6D has not started. Earlier entries are historical.
+
+
+SE-part verification: asset-validator typecheck, root lint (zero warnings), ESM/declaration build and the current SE part CLI passed. The SE, E/W regression and cleanup integration workflows passed (4 tests, 144.61 seconds). They cover actual native composition and accepted fit hashes, exclusive RGBA ownership, physical-side probes, both complete hands, repeated determinism, unchanged inputs, cleanup protection and rejection of wrong sides, re-pinned hand alpha loss or foreign-facing baselines. All five source PNGs replay byte-for-byte; all 1,037 preceding source SHA/mtime pairs remain exact. Final cleanup removed 64 regenerated files (1.6 MiB), preserving all 330 current output hashes and both hashed viewers. An initial optional-property type mismatch was corrected. Full app build and browser E2E were not rerun. See `body/parts-v1/southeast/fit-audit-v1.json`.
+
 ## W visible-part approval — 2026-10-15
 
 The user approved the W visible torso/left-arm/left-leg ownership study.

@@ -4,7 +4,7 @@ import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { expect, it } from 'vitest';
 import { decodePng, encodePng } from '@character-studio/render-utils';
-import { eastBodyPartsReviewSchema, prepareEastBodyPartsReview, westBodyPartsReviewSchema, prepareWestBodyPartsReview } from './body-profile-parts-review';
+import { eastBodyPartsReviewSchema, prepareEastBodyPartsReview, westBodyPartsReviewSchema, prepareWestBodyPartsReview } from './body-facing-parts-review';
 import { sha256 } from './reference-import';
 
 const repository = fileURLToPath(new URL('../../../', import.meta.url));

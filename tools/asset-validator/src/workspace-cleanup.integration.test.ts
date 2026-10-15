@@ -23,6 +23,7 @@ it('cleans generated data while preserving current reviews and sources, and reje
     const northParts = `${bodyParts}/north`, northPartMetadata = { outputs: [{ path: 'fit/N-body-only.png' }, { path: 'fit/N.png' }, { path: 'parts-overview.png' }] };
     const eastParts = `${bodyParts}/east`, eastPartMetadata = { outputs: [{ path: 'fit/E-body-only.png' }, { path: 'fit/E.png' }, { path: 'parts-overview.png' }] };
     const westParts = `${bodyParts}/west`, westPartMetadata = { outputs: [{ path: 'fit/W-body-only.png' }, { path: 'fit/W.png' }, { path: 'parts-overview.png' }] };
+    const southeastParts = `${bodyParts}/southeast`, southeastPartMetadata = { outputs: [{ path: 'fit/SE-body-only.png' }, { path: 'fit/SE.png' }, { path: 'parts-overview.png' }] };
     const profileBody = 'assets/staging/heroine-v1/body/profiles-v1', profileBodyMetadata = { outputs: [{ path: 'fit/E.png' }, { path: 'fit/E-anatomy.png' }, { path: 'overview.png' }] };
     const westBody = `${profileBody}/west`, westBodyMetadata = { outputs: [{ path: 'fit/W.png' }, { path: 'fit/W-anatomy.png' }, { path: 'overview.png' }] };
     const diagonalBody = 'assets/staging/heroine-v1/body/front-diagonals-v1', diagonalBodyMetadata = { outputs: [{ path: 'fit/SE.png' }, { path: 'fit/SE-anatomy.png' }, { path: 'overview.png' }] };
@@ -47,6 +48,8 @@ it('cleans generated data while preserving current reviews and sources, and reje
     await save(`${eastParts}/metadata.json`, JSON.stringify(eastPartMetadata));
     for (const file of westPartMetadata.outputs) preserved.push(`${westParts}/${file.path}`);
     await save(`${westParts}/metadata.json`, JSON.stringify(westPartMetadata));
+    for (const file of southeastPartMetadata.outputs) preserved.push(`${southeastParts}/${file.path}`);
+    await save(`${southeastParts}/metadata.json`, JSON.stringify(southeastPartMetadata));
     for (const file of profileBodyMetadata.outputs) preserved.push(`${profileBody}/${file.path}`);
     await save(`${profileBody}/metadata.json`, JSON.stringify(profileBodyMetadata));
     for (const file of westBodyMetadata.outputs) preserved.push(`${westBody}/${file.path}`);
@@ -68,6 +71,7 @@ it('cleans generated data while preserving current reviews and sources, and reje
     obsolete.push(`${northParts}/obsolete-part.png`);
     obsolete.push(`${eastParts}/obsolete-part.png`);
     obsolete.push(`${westParts}/obsolete-part.png`);
+    obsolete.push(`${southeastParts}/obsolete-part.png`);
     obsolete.push(`${profileBody}/obsolete-study.png`);
     obsolete.push(`${westBody}/obsolete-study.png`);
     obsolete.push(`${diagonalBody}/obsolete-study.png`);

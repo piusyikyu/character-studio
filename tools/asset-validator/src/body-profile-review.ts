@@ -32,7 +32,7 @@ export const southwestBodyReviewSchema = frontDiagonalBodyReviewSchema.extend({ 
 export const southwestBodyReviewV2Schema = southwestBodyReviewSchema.extend({ assetVersion: z.literal(2), previous: pin, bodyStudyFeedback: pin, fitRepair: z.strictObject({ front: pin, rear: pin, eye: pin, eyeSelection: pin, hairSelection: pin, frontEraseSelection: pin, rearEraseSelection: pin, study: pin, guide: pin, reference: pin, settings: pin, provenance: pin }) });
 export const southwestBodyReviewV3Schema = southwestBodyReviewV2Schema.extend({ assetVersion: z.literal(3), eyeFeedback: pin, hairFit: z.strictObject({ front: pin, rear: pin, frontEraseSelection: pin, frontSelection: pin, rearEraseSelection: pin, rearSelection: pin, study: pin, guide: pin, settings: pin, provenance: pin }) });
 export const southwestBodyReviewV4Schema = southwestBodyReviewV3Schema.extend({ assetVersion: z.literal(4), quality: z.strictObject({ head: pin, front: pin, rear: pin, rearStudy: pin, rearGuide: pin, rearEraseSelection: pin, rearSelection: pin, headEraseSelection: pin, headSelection: pin, frontEraseSelection: pin, frontSelection: pin, headStudy: pin, hairReference: pin, guide: pin, settings: pin, provenance: pin }) });
-export interface FrontDiagonalBodyReviewOptions extends NorthBodyReviewOptions { readonly configFile?: 'authoring.json' | 'authoring-v2.json' | 'authoring-sw-v1.json' | 'authoring-sw-v2.json' | 'authoring-sw-v3.json' | 'authoring-sw-v4.json' }
+export interface FrontDiagonalBodyReviewOptions extends NorthBodyReviewOptions, Pick<ProfileBodyReviewOptions, 'bodyParts'> { readonly configFile?: 'authoring.json' | 'authoring-v2.json' | 'authoring-sw-v1.json' | 'authoring-sw-v2.json' | 'authoring-sw-v3.json' | 'authoring-sw-v4.json' }
 export interface ProfileBodyReviewOptions extends NorthBodyReviewOptions { readonly bodyParts?: readonly { readonly plane: RenderPlane; readonly image: RgbaImage }[]; readonly configFile?: 'authoring.json' | 'authoring-w-v1.json' | 'authoring-w-v2.json' }
 const inside = (base: string, path: string) => { const p = relative(base, path); return p === '' || (!isAbsolute(p) && p !== '..' && !p.startsWith('../')); };
 
@@ -190,10 +190,10 @@ async function prepareFacialBodyReview(options: NorthBodyReviewOptions & Pick<Pr
   }
   if (options.bodyParts) {
     const required = ['body-torso', 'body-front-arm', 'body-back-arm', 'body-front-leg', 'body-back-leg'];
-    if (!['E', 'W'].includes(direction) || options.bodyParts.length !== 5 || new Set(options.bodyParts.map(p => p.plane)).size !== 5 || options.bodyParts.some(p => !required.includes(p.plane) || p.image.width !== 1024 || p.image.height !== 1536)) throw new Error('Five explicitly assigned native profile body planes required.');
+    if (!['E', 'W', 'SE'].includes(direction) || options.bodyParts.length !== 5 || new Set(options.bodyParts.map(p => p.plane)).size !== 5 || options.bodyParts.some(p => !required.includes(p.plane) || p.image.width !== 1024 || p.image.height !== 1536)) throw new Error('Five explicitly assigned native facing body planes required.');
     const reconstructed = blankImage(1024, 1536);
     for (const plane of DIRECTION_PLANE_ORDER[direction]) for (const part of options.bodyParts) if (part.plane === plane) drawRgba(reconstructed, part.image, 0, 0);
-    if (reconstructed.data.some((v, i) => v !== body!.data[i])) throw new Error('Profile body planes must reconstruct the accepted native body exactly.');
+    if (reconstructed.data.some((v, i) => v !== body!.data[i])) throw new Error('Body planes must reconstruct the accepted native body exactly.');
   }
   const compose = (withBody: boolean, withHair: boolean, repaired: boolean | 'previous' | 'quality-previous' = true) => {
     const image = blankImage(1024, 1536), planes = new Map<RenderPlane, RgbaImage[]>([['head', [repaired === true ? fittedHead : frame.head]], ['neck', [withBody ? posedNeck! : frame.neck]], ['eyebrows', frame.brows]]);

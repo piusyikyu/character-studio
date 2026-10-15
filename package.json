@@ -76,6 +76,7 @@
     "body:review:v5": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-review-cli.js --v5",
     "body:review:parts": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-parts-review-cli.js",
     "body:review:north": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-north-review-cli.js",
+    "body:review:parts:southeast": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-parts-review-cli.js --southeast",
     "body:review:parts:west": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-parts-review-cli.js --west",
     "body:review:parts:east": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-parts-review-cli.js --east",
     "body:review:parts:north": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-parts-review-cli.js --north",

@@ -1,5 +1,7 @@
 # Asset workspace cleanup — 2026-10-13
 
+SE part staging at `body/parts-v1/southeast/` protects five metadata-declared PNGs and removes obsolete previews. Preserve five native source partitions, settings, provenance and scratch replay. The approved SE revision-2 body/hands and all earlier E/W sources remain protected; temporary composition exports are removed after validation.
+
 W visible-part staging at `body/parts-v1/west/` protects five metadata-declared PNGs and removes obsolete previews. Preserve its three original W source partitions plus settings, provenance and scratch replay. Far-side entries create no blank source images. All approved E inputs and review outputs remain protected.
 
 E visible-part staging at `body/parts-v1/east/` protects five metadata-declared PNGs. Three source RGBA partitions and their settings/provenance/replay remain retained; occluded far-side slots create no blank source PNGs. Temporary baseline/part exports are removed after validation.
