@@ -1,5 +1,56 @@
 # Step 6C — First S body anatomy study
 
+## E visible-part approval — 2026-10-15
+
+The user approved the E visible torso/right-arm/right-leg ownership study.
+`body/parts-v1/east/review-fit-v1.json` pins the exact configuration, parts and
+body/anatomy/hair-fit hashes. Far physical-left limbs remain explicitly
+unavailable. This approval covers the native visible cuts and actual static
+composition; concealed geometry, separate underwear, production rig and footwear
+compatibility remain open. Next: independently traced W visible-part cuts using
+the approved W revision-2 body/head/hair fit. Step 6C stays open; Step 6D has
+not started. Earlier pending E notes below are historical.
+
+
+## E visible-body-part study — 2026-10-15
+
+Local commit `649c597` records the approved SW revision-5 clothing colour and
+all-eight review tools after generated cleanup (64 files, 1.6 MiB). All eight
+individual fits have explicit approval; the combined sheet remains a study
+review rather than production anatomy or rig acceptance.
+
+The next bounded Step 6C increment is `body/parts-v1/east/`. Three native RGBA
+partitions select the original E torso with underwear, near physical-right arm
+and near physical-right leg. E-specific shoulder/socket and brief-opening cuts
+copy original pixels at (0,0), without transformations, colour edits or new art.
+The far physical-left arm and leg have no separately recoverable source geometry:
+the five semantic entries explicitly mark them occluded/unavailable. No empty
+source PNGs or mirrored replacement limbs are created. This study cannot certify
+a complete reusable five-part rig; concealed limbs/joints must be authored later.
+
+`pnpm body:review:parts:east` checks exclusive ownership, rebuilds the accepted
+E pipeline, then composes the actual five body-plane slots with every original
+head, neck, ear, eye, brow, mouth and hair plane in the core E order. Body-only
+RGBA and both anatomy/fit PNG hashes must match the accepted E study exactly.
+Temporary baseline/part exports are removed. Staging retains five review PNGs
+and metadata; cleanup protects only the current declared outputs.
+
+Review `assets/staging/heroine-v1/body/parts-v1/east/overview.png`: anatomy from
+parts / accepted E fit / actual body-plane fit. In `parts-overview.png`, read
+top row whole visible body / torso / near right arm, then bottom row unavailable
+far left arm / near right leg / unavailable far left leg. The two empty review
+cells are deliberate declarations of missing geometry, not authored assets.
+
+Shoulder and thigh cut locations await human approval. Underwear stays baked
+into the torso; separate garments, skin/material layers, concealed joints, other
+facing partitions and the production rig remain unfinished. Existing heel-based
+foot posture is unchanged and establishes no new footwear compatibility. Step 6C
+stays open; Step 6D has not begun. This new study is uncommitted. Earlier entries
+below describe historical candidates and approvals.
+
+
+E-part validation: asset-validator typecheck, root lint (zero warnings), ESM/declaration build and the current E part CLI passed. The E partition and cleanup integration workflows passed (2 tests, 45.22 seconds), covering actual accepted E composition, exclusive RGBA ownership, physical-side probes, unavailable far-side geometry, deterministic exports, immutable inputs and rejected side/repinned-pixel edits. All three source PNGs replay byte-for-byte; all 1,019 preceding source hashes/mtimes are unchanged. Final cleanup removed 64 regenerated files (1.6 MiB), preserving all 320 current output hashes and both hashed viewers. An initial scratch child-process launch was blocked by the sandbox; in-process replay passed. Full app build and browser E2E were not rerun. See `body/parts-v1/east/fit-audit-v1.json`.
+
 ## SW clothing colour approval — 2026-10-15
 
 The user approved the revision-5 lighter cool-grey bra and briefs.

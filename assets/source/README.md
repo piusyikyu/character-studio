@@ -1,5 +1,7 @@
 # Source artwork
 
+Current E visible body partitions: `heroine-v1/body/parts-v1/east/` keeps three native visible RGBA regions and explicit unavailable far-left arm/leg entries. Actual E plane composition exactly matches the approved fit. Shoulder/thigh cuts await review; concealed geometry and separate underwear remain unfinished. Keep settings, provenance and the scratch-only replay.
+
 Current SW clothing correction: `heroine-v1/body/front-diagonals-v1/authoring-sw-v5.json` retains the approved revision-4 anatomy/head/hair and changes fabric RGB only. Preserve selected colour study/edit/SE guides, body/mask, settings/prompts and scratch replay. The all-eight review selects it explicitly through `body/assembly-v1/review-selection-v3.json`; its seven other fits and all earlier source versions stay intact. Exact colour-fit approval is recorded in `review-fit-sw-v5.json`; all eight individual fits are approved.
 
 Current all-eight body review: `heroine-v1/body/assembly-v1/review-selection.json` pins each individually approved study/configuration. `pnpm body:review:all` rebuilds two native sheets and a local viewer in staging, validating exact accepted frame hashes without creating new source art or keeping temporary per-facing exports. The combined review awaits visual approval; Step 6C remains open.

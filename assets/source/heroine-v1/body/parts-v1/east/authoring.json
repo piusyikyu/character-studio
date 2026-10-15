@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "id": "body.parts.east.v1",
+  "assetVersion": 1,
+  "direction": "E",
+  "target": "detailed",
+  "sourcePose": "tpose-study",
+  "status": "draft-needs-human-review",
+  "published": false,
+  "paletteReady": false,
+  "productionAnatomyApproved": false,
+  "concealedJointsApproved": false,
+  "separateUnderwearAuthored": false,
+  "tposeApproved": false,
+  "finalStep6CAccepted": false,
+  "baselineConfiguration": {
+    "source": "body/profiles-v1/authoring.json",
+    "sourceSha256": "694902c1ef41774bdb173d9f9dd084c1baa2bda7e21ce314c16f859571b3c5a9"
+  },
+  "baselineApproval": {
+    "source": "body/profiles-v1/review-fit-v1.json",
+    "sourceSha256": "9604704fe8b9eb87362edd338034ee0e1e4b1bd47f88c48a20e8870e1611c4ba"
+  },
+  "wholeBody": {
+    "source": "body/profiles-v1/E-body-v1.png",
+    "sourceSha256": "7760c7a05153fb031e03e8111f302740abdee96a6aaba83c17dc23439d171cc1"
+  },
+  "settings": {
+    "source": "settings.json",
+    "sourceSha256": "e3d593dc699304975a9248b6bcb87a5b0abc61a086cd09984293a6dd7a95e741"
+  },
+  "provenance": {
+    "source": "provenance.json",
+    "sourceSha256": "6ab382dbd8c36f8bd4a68f2a2c172a9ddb48a92a186bf978b8f4915f7a7e074a"
+  },
+  "parts": [
+    {
+      "id": "torso",
+      "plane": "body-torso",
+      "characterSide": "center",
+      "visibility": "visible",
+      "artwork": {
+        "source": "E-torso-v1.png",
+        "sourceSha256": "e03b999c0daf3225f4ea4dbc73be209e8b7be96987b81f9288ac3c38c00584c2"
+      }
+    },
+    {
+      "id": "right-arm",
+      "plane": "body-front-arm",
+      "characterSide": "right",
+      "visibility": "visible",
+      "artwork": {
+        "source": "E-right-arm-v1.png",
+        "sourceSha256": "a74b6ef8bfbd8bee9a7eff286e765937e308bf5aecc99f0a3dae5416fa09a9a7"
+      }
+    },
+    {
+      "id": "left-arm",
+      "plane": "body-back-arm",
+      "characterSide": "left",
+      "visibility": "occluded-unavailable",
+      "reason": "No separately recoverable far-side artwork in the accepted E study."
+    },
+    {
+      "id": "right-leg",
+      "plane": "body-front-leg",
+      "characterSide": "right",
+      "visibility": "visible",
+      "artwork": {
+        "source": "E-right-leg-v1.png",
+        "sourceSha256": "c84b68406bcb5096a2c222d5d0aa7b301825c3d43a4e33972311cec64be15bde"
+      }
+    },
+    {
+      "id": "left-leg",
+      "plane": "body-back-leg",
+      "characterSide": "left",
+      "visibility": "occluded-unavailable",
+      "reason": "No separately recoverable far-side artwork in the accepted E study."
+    }
+  ]
+}

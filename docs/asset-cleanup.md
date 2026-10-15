@@ -1,5 +1,7 @@
 # Asset workspace cleanup — 2026-10-13
 
+E visible-part staging at `body/parts-v1/east/` protects five metadata-declared PNGs. Three source RGBA partitions and their settings/provenance/replay remain retained; occluded far-side slots create no blank source PNGs. Temporary baseline/part exports are removed after validation.
+
 SW colour revision 5 keeps its selected colour study, native edit/SE guides, bounded fabric body/mask, settings/prompts and scratch replay. Current southwest staging protects six metadata-declared PNGs including the old/new clothing comparison. Superseded eye/hair inspection previews are regenerable from retained revision 4. All three versioned all-eight selections and their source pins remain retained; current metadata protects the current sheets/viewer. The explicit revision-5 SW colour approval is retained.
 
 The current all-eight body review at `body/assembly-v1/` protects two metadata-declared native PNG sheets and its interactive viewer. Its source selection pins the eight individually approved native body configurations and approvals. Temporary component review exports are removed after validation, so no duplicate per-facing fits are retained in the consolidated folder. All approved source art and replay inputs remain protected.
