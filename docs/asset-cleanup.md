@@ -1,5 +1,7 @@
 # Asset workspace cleanup — 2026-10-13
 
+Preserve the nested N wardrobe metadata, three clothed fit PNGs and `inspection/N-wardrobe.html` under `assets/staging/heroine-v1/outfit/dress-v1/north/`. Required N source art, exact prompts, reference hashes, source reconstruction/configuration and audit remain protected.
+
 Preserve the current `assets/staging/heroine-v1/outfit/dress-v1/` metadata-declared pair of clothed fit PNGs and inspection HTML. Six source layers, two fully clothed imagegen inputs, exact prompts, replay, settings, construction notes and configuration pins are construction dependencies. Do not delete these as obsolete investigation images.
 
 Preserve the current nested N attachment review in `body/attachments-v1/north/` and its existing N part anatomy/hair PNG dependencies. Metadata declares the retained HTML page; obsolete previews in the same folder can be removed.

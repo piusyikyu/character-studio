@@ -1,5 +1,7 @@
 # Source artwork
 
+Current N wardrobe review: `pnpm outfit:review:dress:north`, using independently authored posterior geometry and same-facing coverage masks. S wardrobe is approved; N wardrobe and N attachment registrations await approval. See `docs/modular-clothing.md` for outfit-specific surface requirements, including the pending smooth chest variant.
+
 Current wardrobe review: `pnpm outfit:review:dress` builds the S reference gown and a midriff/high-slit coverage test from independent underwear, opaque lining and exposed-surface patches. Sources/provenance are in `heroine-v1/outfit/dress-v1/` under `assets/source`; no complete unclothed body is authored. N attachment approval remains pending.
 
 Current review: independent native N attachment registrations in `body/attachments-v1/north/authoring.json`, via `pnpm body:review:attachments:north`. S registrations are approved; N awaits review. No new PNGs or production rig.

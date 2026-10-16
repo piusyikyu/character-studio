@@ -33,6 +33,7 @@ it('cleans generated data while preserving current reviews and sources, and reje
     const southwestBody = `${diagonalBody}/southwest`, southwestBodyMetadata = { outputs: [{ path: 'fit/SW.png' }, { path: 'fit/SW-anatomy.png' }, { path: 'overview.png' }] };
     const backBody = 'assets/staging/heroine-v1/body/back-diagonals-v1', backBodyMetadata = { outputs: [{ path: 'fit/NE.png' }, { path: 'fit/NE-anatomy.png' }, { path: 'overview.png' }] };
     const northwestBody = `${backBody}/northwest`, northwestBodyMetadata = { outputs: [{ path: 'fit/NW.png' }, { path: 'fit/NW-anatomy.png' }, { path: 'overview.png' }] };
+    const northWardrobe = 'assets/staging/heroine-v1/outfit/dress-v1/north', northWardrobeMetadata = { outputs: [{ path: 'fit/N.png' }, { path: 'fit/N-anatomy.png' }, { path: 'fit/N-waist-opening-test.png' }, { path: 'inspection/N-wardrobe.html' }] };
     const wardrobe = 'assets/staging/heroine-v1/outfit/dress-v1', wardrobeMetadata = { outputs: [{ path: 'fit/S.png' }, { path: 'fit/S-midriff-high-slit.png' }, { path: 'inspection/S-wardrobe.html' }] };
     const northAttachments = 'assets/staging/heroine-v1/body/attachments-v1/north', northAttachmentMetadata = { outputs: [{ path: 'inspection/N-attachments.html' }] };
     const attachments = 'assets/staging/heroine-v1/body/attachments-v1', attachmentMetadata = { outputs: [{ path: 'inspection/S-attachments.html' }] };
@@ -77,6 +78,8 @@ it('cleans generated data while preserving current reviews and sources, and reje
     await save(`${backBody}/metadata.json`, JSON.stringify(backBodyMetadata));
     for (const file of northwestBodyMetadata.outputs) preserved.push(`${northwestBody}/${file.path}`);
     await save(`${northwestBody}/metadata.json`, JSON.stringify(northwestBodyMetadata));
+    for (const file of northWardrobeMetadata.outputs) preserved.push(`${northWardrobe}/${file.path}`);
+    await save(`${northWardrobe}/metadata.json`, JSON.stringify(northWardrobeMetadata));
     for (const file of wardrobeMetadata.outputs) preserved.push(`${wardrobe}/${file.path}`);
     await save(`${wardrobe}/metadata.json`, JSON.stringify(wardrobeMetadata));
     for (const file of northAttachmentMetadata.outputs) preserved.push(`${northAttachments}/${file.path}`);
@@ -109,7 +112,7 @@ it('cleans generated data while preserving current reviews and sources, and reje
     obsolete.push(`${southwestBody}/obsolete-study.png`);
     obsolete.push(`${backBody}/obsolete-study.png`);
     obsolete.push(`${northwestBody}/obsolete-study.png`);
-    obsolete.push(`${bodySet}/obsolete-study.png`, `${partSet}/obsolete-study.png`, `${shoulders}/obsolete-study.png`, `${hips}/obsolete-study.png`, `${attachments}/obsolete-study.png`, `${northAttachments}/obsolete-study.png`, `${wardrobe}/obsolete-study.png`);
+    obsolete.push(`${bodySet}/obsolete-study.png`, `${partSet}/obsolete-study.png`, `${shoulders}/obsolete-study.png`, `${hips}/obsolete-study.png`, `${attachments}/obsolete-study.png`, `${northAttachments}/obsolete-study.png`, `${wardrobe}/obsolete-study.png`, `${northWardrobe}/obsolete-study.png`);
     for (const path of [...preserved, ...obsolete]) await save(path);
     for (const file of backEarMetadata.outputs) { const path = `${backEars}/${file.path}`; preserved.push(path); await save(path); }
     for (const file of northMetadata.outputs) { const path = `${north}/${file.path}`; preserved.push(path); await save(path); }

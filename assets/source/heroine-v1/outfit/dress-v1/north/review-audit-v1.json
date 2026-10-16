@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-15",
+  "id": "outfit.reference-dress.n.v1",
+  "configurationSha256": "06f156b8ff7799a5bed90eb76d3d1c894e5848aa6a6f7dbde3f1201d2bb4caba",
+  "sourceImmutability": {
+    "previousFilesChecked": 1124,
+    "sha256Unchanged": true,
+    "mtimeUnchanged": true,
+    "excluded": [
+      "assets/source/README.md (new N/surface-compatibility documentation)"
+    ]
+  },
+  "verification": {
+    "typecheck": "passed: asset-validator",
+    "lint": "passed: root, zero warnings",
+    "build": "passed: asset-validator ESM and declarations",
+    "nativeWardrobeCLIs": "passed: S regression and N",
+    "approvedSWardrobeOutputs": "all three original approved hashes exact",
+    "integrationTests": {
+      "distinctWorkflowsPassed": 4,
+      "suiteDurationSeconds": 76.94,
+      "finalAffectedNWorkflowPassed": 1,
+      "finalAffectedNDurationSeconds": 30.6,
+      "scope": "Real S/N assembly and exact underwear replay; native closed rear and bodice-side checks; independent waist exposure; opaque/missing masks; wrong facing, unavailable chest surface and damaged panels rejected; immutable sources, deterministic exports and cleanup protection."
+    },
+    "browser": "Corrected N comparison rendered and visually inspected in Chromium",
+    "nativeReplay": "all six N layer PNGs replay byte-for-byte",
+    "generationReferences": "clothed study, provided native N anatomy and reference gown hashes exact",
+    "studioBuildAndE2E": "not rerun; application UI/catalog/recipe contracts unchanged",
+    "resolvedFailures": [
+      "The shared loader initially omitted the established N alpha<8 normalization; its decoded scratch buffers now match the approved N pipeline.",
+      "The new corset was narrower at the old band and body sides; bounded N-only garment seams and body-owned shoulder edge recovery preserve original body geometry.",
+      "Visual inspection found unintended side openings; the reference gown now has a same-facing closed-side mask, while its waist-opening test remains independent. Antialiased silhouette edge pixels are excluded from opaque-interior requirements."
+    ]
+  },
+  "cleanup": "Removed 84 generated files (1.8 MiB).",
+  "currentReviewHashes": {
+    "verifiedOutputHashes": 358,
+    "verifiedViewers": 4
+  },
+  "measurements": {
+    "reference-dress": {
+      "coverage": {
+        "pelvis": 10336,
+        "closed-bodice-sides": 1727,
+        "closed-rear-skirt": 42160
+      },
+      "bodyGapPixels": 0,
+      "visibleLiningPixels": 0,
+      "bellyVisible": false,
+      "waistVisible": false,
+      "closedRearSkirt": true
+    },
+    "waist-opening-test": {
+      "coverage": {
+        "pelvis": 10336,
+        "closed-rear-skirt": 42160
+      },
+      "bodyGapPixels": 0,
+      "visibleLiningPixels": 0,
+      "bellyVisible": false,
+      "waistVisible": true,
+      "closedRearSkirt": true
+    }
+  },
+  "outputs": [
+    {
+      "path": "fit/N-anatomy.png",
+      "sha256": "c4ad4c14b1b426e7d5027bf67cad6aa59a0f6b2258275dd58a26d7cdfd9442a0"
+    },
+    {
+      "path": "fit/N.png",
+      "sha256": "9286fac8b14aaf99301b33bf3d0d7f4533dfa19c3f682cb45d915d87ab9580d0"
+    },
+    {
+      "path": "fit/N-waist-opening-test.png",
+      "sha256": "4a70740835f96dd580c120220b53beb02def041117612cd7020b7e0e48aaf485"
+    },
+    {
+      "path": "inspection/N-wardrobe.html",
+      "sha256": "356b8ac0d1baea88a241341e226278ac5b3f5f7dcdd4034c78c24f145e97833f"
+    }
+  ],
+  "smoothChestSurfaceArtAuthored": false,
+  "coverageProfilesAreOutfitSurfaceAndFacingSpecific": true,
+  "skinBelowCoveredAreasAuthored": false,
+  "separateUnderwearAuthored": true,
+  "coveredAssembliesOnly": true,
+  "humanApproved": false,
+  "published": false,
+  "productionRigApproved": false,
+  "footwearCompatibilityApproved": false,
+  "finalStep6CAccepted": false,
+  "step6DStarted": false
+}

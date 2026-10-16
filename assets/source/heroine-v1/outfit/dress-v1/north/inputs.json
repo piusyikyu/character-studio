@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "outfit.reference-dress.n.v1",
+  "direction": "N",
+  "target": "detailed",
+  "sourcePose": "tpose-study",
+  "status": "draft-needs-human-review",
+  "baselineConfiguration": {
+    "source": "body/parts-v1/north/authoring.json",
+    "sourceSha256": "be21f85b592e85a5fbf48889dec2ff8940a59c17924310f0e629995ea299d908"
+  },
+  "baselineApproval": {
+    "source": "body/parts-v1/north/review-fit-v1.json",
+    "sourceSha256": "8ddf18b4c794a93a8ee38201eddf8d29e8806fffb4ddaedfa57a46a5784da0ae"
+  },
+  "southWardrobeApproval": {
+    "source": "outfit/dress-v1/review-fit-v1.json",
+    "sourceSha256": "454ef779974cb208a8a4a00219c85cba250f0b64dc2c9e038bb55922b65521b4"
+  },
+  "study": {
+    "source": "inputs/N-dress-study-v1.png",
+    "sourceSha256": "0392eef3fb01c7e02966d0a0361fa0d765dfb80d085b6582b66f37a0fec75477"
+  },
+  "prompts": {
+    "source": "prompts.json",
+    "sourceSha256": "db4f52c7612bf8eb2deee0adcb15fcb8f7a0d7ec2af9367c40f83a05d561e4da"
+  },
+  "settings": {
+    "source": "settings.json",
+    "sourceSha256": "d656921c5df705748f2d5eb3e57b2b2f516594244ff2bf95287d9b5f73e7ca7d"
+  },
+  "replay": {
+    "source": "construct-study-v1.js",
+    "sourceSha256": "f7804bec50dc3932a30958c993ad4e273215fc00abade7d5c664133beaf5e3a6"
+  },
+  "published": false,
+  "productionAnatomyApproved": false,
+  "finalStep6CAccepted": false
+}

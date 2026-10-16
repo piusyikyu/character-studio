@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "tool": "built-in imagegen",
+  "prompts": [
+    {
+      "file": "inputs/N-dress-study-v1.png",
+      "role": "independent N posterior gown and unobstructed back skin",
+      "prompt": "Edit Image 1 into a fully clothed adult fantasy character wardrobe construction study. Image 1 is the exact native 1024x1536 full-back N-facing T-pose registration: bald posterior head with no face/eyes visible, original neck/shoulder height, same body proportions, both bare arms outstretched horizontally, backs of hands visible, native posterior legs/feet. Preserve that framing and anatomy exactly. Image 2 is ONLY the approved reference design for the BACK of her purple gown, not a pose/body-shape reference. Dress the adult woman from Image 1 in that opaque deep-purple strapless back corset and long flowing purple rear skirt, with red draped hip sash, red trim and the reference's red fabric tails on the character's left (screen left in N). The back bodice has a shallow V upper edge across the back, fitted panel seams, and no front cup shapes. The rear skirt is CLOSED across the buttocks and upper legs; any front thigh slit is out of sight in this full-back view, so do not add a back slit or expose a front thigh. Keep the upper back and shoulders naturally uncovered, with continuous skin and no grey bra straps, band or clasp visible. The opaque gown fully covers the pelvis. Outfit stays fully on, no nudity or intimate anatomy. Keep the original bald back head, bare arms, hands, feet and pose; gloves and shoes are separate future items and should not be included. No long hair in this construction study so the back neckline is unobstructed; hair is a separate existing layer. Skirt hem should end above the original heel baseline at y1454 so the unchanged original feet remain visible. Transparent background, no glow/backdrop, no text or labels. Single N-facing character at the exact native coordinates, no mirroring, no front facial details."
+    }
+  ]
+}
