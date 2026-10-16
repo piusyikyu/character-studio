@@ -1,5 +1,6 @@
-import { blankImage, drawRgba } from '@character-studio/render-utils';
+import { blankImage } from '@character-studio/render-utils';
 import type { RgbaImage } from '@character-studio/render-utils';
+import { validateAuthoredWardrobeCompatibility } from './wardrobe-compatibility';
 
 /** S-only study geometry. Independent garment fitting, not a reusable anatomy or rig declaration. */
 export const southWardrobeGeometry = {
@@ -112,15 +113,11 @@ export function wardrobeClothing(layers: WardrobeLayers, look: WardrobeLook) {
 /** Fail before preview/export: coverage is independent at the bust and pelvis; belly exposure is allowed. */
 export function validateWardrobeCoverage(clothing: readonly RgbaImage[]) {
   native(clothing);
-  const covered = blankImage(1024,1536);
-  for (const layer of clothing) drawRgba(covered,layer,0,0);
-  const counts = { bust: 0, pelvis: 0 };
+  const masks = new Map([['bust.s.v1',blankImage(1024,1536)],['pelvis.s.v1',blankImage(1024,1536)]]);
   for (let y = 389; y < 716; y++) for (let x = 350; x < 660; x++) {
     const region = wardrobeCoverageRegion(x,y);
-    if (region) {
-      if (covered.data[(y * 1024 + x) * 4 + 3]! < southWardrobeGeometry.minimumCoverageAlpha) throw new Error('WARDROBE_COVERAGE_MISSING: ' + region + ' needs opaque underwear or fitted lining/clothing.');
-      counts[region]++;
-    }
+    if (region) masks.get(region + '.s.v1')!.data[(y * 1024 + x) * 4 + 3] = 255;
   }
-  return counts;
+  const checked = validateAuthoredWardrobeCompatibility({ schemaVersion: 1,outfitId: 'reference-gown-study.s.v1',surfaceId: 'exposed-surface-torso.s.v1',direction: 'S',requiredZones: [{ id: 'bust',maskId: 'bust.s.v1' },{ id: 'pelvis',maskId: 'pelvis.s.v1' }],minimumOpaqueAlpha: 250 },{ direction: 'S',availableSurfaceIds: ['exposed-surface-torso.s.v1'],masks,clothing });
+  return { bust: checked.coveredPixels.bust!,pelvis: checked.coveredPixels.pelvis! };
 }

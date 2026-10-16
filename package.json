@@ -95,7 +95,8 @@
     "body:review:front-diagonals": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-diagonal-review-cli.js",
     "body:review:back-diagonals": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-back-diagonal-review-cli.js",
     "body:review:back-diagonals:northwest": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-back-diagonal-review-cli.js --northwest",
-    "body:review:all": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-set-review-cli.js"
+    "body:review:all": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/body-set-review-cli.js",
+    "outfit:audit:foundation": "pnpm --filter @character-studio/asset-validator build && node tools/asset-validator/dist/wardrobe-foundation-audit-cli.js"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.0",
