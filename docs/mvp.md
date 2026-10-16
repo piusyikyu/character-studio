@@ -1,5 +1,16 @@
 # MVP Plan — Female Character Studio
 
+## Current target and next proof — 2026-10-16
+
+[character-vision.md](character-vision.md) defines the refined discrete anatomy,
+outfit authoring and game export target. [project-context.md](project-context.md)
+records implementation status and the next proof: one race/build, two chest and
+two hip options with existing ordinary underwear, initially S, then one separable
+outfit through eight facings, editor selection, export and pixel preparation.
+S wardrobe is approved; N wardrobe and N attachment candidates are unapproved.
+Missing chest/pelvis/alternative-underwear art remains unresolved. Step 6C stays
+open; these requirements do not advance milestones. Earlier entries are historical.
+
 ## S covered wardrobe approved — 2026-10-15
 
 The user approved the S everyday underwear separation, reference gown and

@@ -1,5 +1,47 @@
 # Female Character Studio — Project Context and Handoff
 
+## Current checkpoint — 2026-10-16
+
+The current requirements are in [character-vision.md](character-vision.md):
+fixed height, five chest levels, discrete hip/build options, intact same-race
+limbs, clothing fitted to anatomy and compatible underwear, eight authored
+facings, and self-contained game asset export with reviewed pixel preparation.
+This supersedes earlier variable-height and mixed/missing-limb proposals.
+These are product requirements, not implemented feature claims.
+
+The approved S wardrobe is recorded by local commit `3ed1e4b`. The N posterior
+wardrobe study in `outfit/dress-v1/north/` has six reproducible native layers,
+three clothed fits and a viewer. It remains unapproved, as do the earlier N
+attachment registrations. Source anatomy and approved S outputs are unchanged.
+The retained N source audit records its fit and verification. This study is a
+prototype, not a reusable production anatomy foundation.
+
+Offline surface assembly, garment compatibility, coverage and underwear
+concealment checks are implemented with abstract integration fixtures. Actual
+chest/pelvis replacements and alternative underwear cuts remain unavailable.
+Both the smooth-surface and separate opaque skin-tone underwear image requests
+were rejected at the image tool's output safety check. Exact prompts, IDs and
+pins remain in `wardrobe-foundation-pending.json`; the foundation audit
+intentionally exits 1 until suitable art exists. See
+[modular-clothing.md](modular-clothing.md) for implementation and limitations.
+
+After cleanup, the next proof is S-only first: one race/build, fixed height,
+two chest options and two hip options using existing ordinary underwear.
+Establish reusable covered anatomy, then one separable fitted outfit through
+eight facings, editor selection, game export and a pixel trial before catalogue
+expansion. This proof has not started. Outfit-owned painted anatomy remains
+only a reference technique. Current runtime still has its older limited presets;
+no recipe migration, 3D pipeline or milestone advance is implied. Step 6C stays
+open. Earlier entries below are historical.
+
+Cleanup checkpoint verification: asset-validator typecheck, root lint (zero
+warnings), ESM/declaration build and six integration tests across five focused
+workflows passed (76.57 seconds). The foundation audit still intentionally exits
+1 for missing chest/pelvis art. Removed 90 generated files (1.8 MiB), consolidated
+repeated status notes, and verified all 1,140 source SHA/mtime pairs plus 358
+current output hashes and four hashed viewers unchanged. Studio build/browser
+E2E were not rerun; runtime/UI contracts and approved art are unchanged.
+
 ## S covered wardrobe approved — 2026-10-15
 
 The user approved the S everyday underwear separation, reference gown and

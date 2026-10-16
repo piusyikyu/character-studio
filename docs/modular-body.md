@@ -1,5 +1,16 @@
 # Step 6C — First S body anatomy study
 
+## Current anatomy boundary — 2026-10-16
+
+The current [product target](character-vision.md) uses fixed height, discrete
+chest/hip/build options and intact same-race limbs. Anatomy owns shoulders,
+chest, pelvis and skin; clothing fits the selected anatomy and supported
+underwear. Anchors alone do not establish fit. [Project context](project-context.md)
+records the next small covered-anatomy proof and the unapproved N candidates.
+[Modular clothing](modular-clothing.md) records the implemented offline checks
+and unavailable surface/underwear artwork. Preserve approved source geometry
+and provisional heel-footwear scope. Step 6C remains open.
+
 ## S covered wardrobe approved — 2026-10-15
 
 The user approved the S everyday underwear separation, reference gown and

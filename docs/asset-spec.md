@@ -6,6 +6,14 @@ and export are implemented; production PNG/visual audits remain future work.
 Changes to this contract require updating
 loaders, validators, fixtures and both renderers.
 
+The refined product target in [character-vision.md](character-vision.md) adds
+discrete anatomy/underwear fit dependencies, outfit authoring from an S guide,
+completion of seven other facings and concealed garment parts, fitted variant
+preparation, and a self-contained game asset bundle. AI/algorithm-assisted pixel
+conversion may create authoring candidates; final native pixel assets still
+need target-specific pose/grid/palette/facing review. These requirements do not
+claim that the current manifests, export UI or authoring tools implement them.
+
 ## 1. Asset families and native sizes
 
 | Target | Canvas size | Initial pose | Sampling | Notes |

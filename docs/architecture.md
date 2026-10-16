@@ -2,6 +2,16 @@
 
 **Status:** Proposed MVP baseline. Implement incrementally, adapting package file names to actual scaffold conventions.
 
+The product target refined on 2026-10-16 is recorded in
+[character-vision.md](character-vision.md): fixed height, five discrete chest
+levels, discrete hip/build options and intact same-race limbs. Anatomy owns
+body geometry and surfaces; underwear configurations are reusable dependencies;
+clothing is fitted to the selected anatomy and underwear. Outfit authoring must
+prepare eight facings, complete reusable parts and supported fitted variants
+before editor assembly. AI/algorithm-assisted pixel preparation and a complete
+game-ready asset package are product requirements, not implemented guarantees.
+This clarification does not migrate the current recipe or advance milestones.
+
 ## Objective
 One `CharacterRecipe` produces a *coherent identity* in two output families:
 
