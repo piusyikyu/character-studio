@@ -1,36 +1,34 @@
-# Modular clothing surfaces and coverage
+# Clothing fitting and coverage
 
-The current heroine wardrobe studies are Step 6C authoring work. A character's body surface, underwear, lining, outer outfit and hair are independent inputs. The live Studio still uses the temporary catalog; these studies are not a production wardrobe.
+Anatomy owns body geometry and surfaces. Clothing fits the selected anatomy;
+anchors only place already compatible parts. Underwear cut and support are
+explicit reusable choices. Garments may need different prepared variants for
+chest, hips, build, pose or support, while unrelated accessories can be reused.
+See [the product target](character-vision.md) for authoring and export requirements.
 
-The user's clarified long-term goal is recorded in [character-vision.md](character-vision.md). Anatomy, including chest, pelvis and shoulders, must remain independently selected when clothing changes. The proposed approach of binding visible skin and dressed torso replacements to each outfit is a prototype authoring compromise, not the accepted production ownership model. Existing study approvals do not establish independent anatomical customisation; the reusable anatomy/garment-fit authoring decision remains open.
+The old S/N heroine wardrobe studies and their unavailable-art checkpoint were
+retired on the alternative branch. They remain in Git history and local `master`
+commit `a8da310`. No production underwear family or fitted outfit is available.
 
-The 2026-10-16 refinement selects a discrete product model: fixed height, five chest levels with possible larger-chest shape variants, comparable hip options, several build levels, and intact same-race limbs. Outfits must be authored around reusable compatible underwear cuts/support configurations. Mixed garment selections must agree on anatomy, underwear and layering. Prepared clothing fits are explicit native assets for the option combinations they depend on; anchor matching or uniform image scaling alone cannot certify them. Automatic facing completion, segmentation/hidden-part completion and fit preparation belong to authoring; the editor selects prepared variants. The current full-surface fitting helper is one offline study path, not proof that the requested underwear families or complete production pipeline exist.
+Two generic offline checks remain in `tools/asset-validator/src/`:
 
-On 2026-10-15 the user requested support for narrow/strappy tops with substantial visible chest, open bellies and high dress slits. An outfit may require an independently authored chest replacement with a smooth surface and no nipple detail. Garment support shape, cleavage, under-bust contour, contact shadows and the visible skin around the fabric may differ between outfits. Keep the approved chest/body available and add a versioned discrete alternative; do not silently stretch, mirror or overwrite it.
+- `wardrobe-compatibility.ts` validates authored garment/body-surface/facing
+  profiles. Each profile has its own native coverage masks; one bra footprint
+  cannot serve as the requirement for every top. Exposed waists are independent
+  of required opaque panels. Missing/wrong-facing surfaces, missing or empty
+  masks and insufficient garment alpha produce errors.
+- `wardrobe-surface-fit.ts` assembles complete versioned surfaces before fitting
+  garments. Replacement ownership is disjoint, source silhouette alpha remains
+  exact, and unavailable/incomplete surfaces fail. Garments name required
+  surfaces and body/facing fits. When concealment is required, visible underwear
+  through a neckline, midriff opening or slit is rejected rather than clipped.
 
-A chest surface can be selected as an outfit compatibility requirement without adding a new recipe control. The recipe still describes appearance rather than image paths. Any later decision to expose chest-surface choices in CharacterRecipe needs separate contract work.
+These helpers have abstract integration coverage for different underwear cuts,
+open waists, coverage, concealment and invalid fit boundaries. They are software
+contracts, not automatic anatomical analysis or proof of universal compatibility.
+Actual anatomy, underlayers and outerwear still need visual fitting approval.
 
-`tools/asset-validator/src/wardrobe-compatibility.ts` validates offline profiles keyed by outfit ID, required body surface ID and facing. Each profile references independently authored native coverage masks. A mask identifies the regions that this particular garment must cover; it does not define a universal bra footprint. Other skin, including the waist or skin around small garment panels, can remain exposed. Missing surfaces, missing/empty masks, wrong facings and insufficient opaque clothing/lining produce explicit diagnostics before export. Mask regions and garment fit still require human review; this is not an automatic nudity or anatomical classifier.
-
-Current S ellipses and pelvic mask belong only to the approved S gown study. They must not be reused as universal requirements for every top. N uses its own posterior pelvic and closed-skirt masks; no front bust mask or frontal thigh slit is inferred from S. Future strappy designs need a new fitted surface and coverage profile instead of disabling checks or borrowing the gown masks.
-
-The requested smooth chest variant is **not yet authored**. It is represented as an unavailable compatibility dependency and must fail with `WARDROBE_SURFACE_MISSING` until suitable art exists. Synthetic integration coverage verifies that an explicit small-panel profile can pass while leaving the surrounding chest/waist transparent in the garment layer, provided its matching surface and opaque required panels are available. These fixtures are test geometry, not character artwork or approval of a particular outfit.
-
-Current S/N source torsos are incomplete beneath their selected underwear and cannot be exported alone as wearable states. Default views retain ordinary bra and panties; fitted dress views retain opaque inner coverage. No full unclothed body or new intimate anatomy is generated. High slits may require higher-cut/low-rise underwear or fitted lining, and each opening must stay compatible with its actual surface and underlayers.
-
-The user prioritised this foundation before further wardrobe facings. `wardrobe-surface-fit.ts` implements the offline assembly and fitting path:
-
-- Chest and pelvis are independently selected versioned surface replacements. A complete surface is assembled before clothing selection; it cannot depend on a particular panty silhouette or on dress-specific painted skin patches.
-- Every replacement declares its body and facing. Native region ownership is disjoint, the original body outline/edge alpha stays exact, and pixels outside those regions stay unchanged. Missing or transparent replacement pixels fail before fitting.
-- Each bra, brief or lining variant declares its required surface IDs. Panties can require only the pelvis part, so replacing the chest alone does not invalidate the same panties. Different cuts use separate artwork on the same complete surface. Geometry/support changes need a different authored surface, not stretching or automatic clipping.
-- Coverage still comes from opaque garments, never from smooth skin. Underwear draws before outerwear. An outfit that must hide underwear rejects any underlayer visible through its neckline, waist opening or slit; select a compatible cut or fitted lining instead of erasing the evidence.
-
-The synthetic workflow exercises daily briefs, a low-rise/high-cut brief, high-waist briefs and a smaller top against one abstract complete surface. It also rejects a broad brief peeking through an opening that accepts the narrower cut. This proves the software path, not heroine art fit or universal underwear support.
-
-`pnpm outfit:audit:foundation` reads pinned actual S assets and reports both unavailable surfaces and the pixels missing beneath the original underwear. It deliberately exits 1 while either surface is unavailable. `docs/wardrobe-foundation-pending.json` records exact input hashes, planned cuts and the authoring attempt. The built-in image tool rejected the neutral smooth-surface edit at its output safety check (request `046a74f4-745f-49ad-b3de-6e12afc32872`); no new image was produced, retried through another route or substituted. The chest/pelvis art and actual alternative underwear cuts remain unfinished. The existing covered S gown remains approved; the N candidate remains unapproved.
-
-The user subsequently authorised a fully covered alternative: actual opaque skin-tone bra cups and ordinary low-rise/high-cut briefs, with fabric seams and edges retained. This is a garment study, not a complete skin surface. The built-in image tool also rejected this separate covered-underwear request at its output safety check (`e1460cd0-2c94-4ddc-9a45-620118811351`). No image or new fitted garment was produced. The exact prompt and rejection are retained as `coveredUnderwearAttempt` in the pending record; both surface images stay null.
-
-Approval of a study does not certify other body presets, support shapes, facings, clothing openings, alternate footwear or production anatomy. Step 6C remains open.
-
-Foundation verification: asset-validator typecheck, root lint (zero warnings), ESM/declaration build and six focused integration tests across five files passed. The native foundation audit intentionally exits 1 with missing chest/pelvis art; it measures 16,036 chest and 10,558 pelvis pixels absent beneath the original underwear. The initial actual-image test timed out while deeply comparing large arrays; full-data hash comparison resolved it. All 1,140 existing source SHA/mtime pairs and 358 current output hashes plus four hashed viewers remain exact. Removed 90 generated files (1.8 MiB). No new art was produced; no new browser UI or runtime behavior was added, and full Studio build/E2E were not rerun.
+For the anatomy-first proof, prepare one separable outfit against approved
+masters and test it on two anatomy combinations before building a wardrobe.
+High slits and exposed bellies require a compatible brief or lining. Do not
+paint a new body into each outfit or rely on clothing to hide an incomplete join.

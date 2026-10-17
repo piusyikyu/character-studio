@@ -1,11 +1,8 @@
-import { readFile } from 'node:fs/promises';
-import { fileURLToPath } from 'node:url';
 import { expect,it } from 'vitest';
-import { blankImage,decodePng,drawRgba } from '@character-studio/render-utils';
+import { blankImage,drawRgba } from '@character-studio/render-utils';
 import { assembleWardrobeSurface,fitWardrobeOnSurface } from './wardrobe-surface-fit';
 import type { AuthoredWardrobeGarment } from './wardrobe-surface-fit';
 import { sha256 } from './reference-import';
-import { auditWardrobeFoundation } from './wardrobe-foundation-audit';
 
 it('fits multiple underwear cuts to one complete surface and rejects underwear peeking through a slit without clipping it away',() => {
   // Abstract blocks only: these exercise fit contracts, not anatomical artwork.
@@ -57,19 +54,3 @@ it('fits multiple underwear cuts to one complete surface and rejects underwear p
   expect(sha256(surface.image.data)).toBe(sha256(footprint.data));
   expect(fitWardrobeOnSurface(profile,{ surface,garments: [outer,top,lowRise],masks,concealUnderwear: true })).toEqual(fitted);
 });
-
-it('identifies missing chest and pelvis surfaces in the actual approved S partitions instead of certifying arbitrary underwear compatibility',async () => {
-  const root = fileURLToPath(new URL('../../../assets/source/heroine-v1/',import.meta.url));
-  const load = async (path: string) => decodePng(await readFile(root + path));
-  const [baseSkin,bra,panties,bodyFootprint] = await Promise.all(['outfit/dress-v1/S-skinBase-v1.png','outfit/dress-v1/S-bra-v1.png','outfit/dress-v1/S-panties-v1.png','body/parts-v1/S-torso-v1.png'].map(load));
-  const replay = { ...baseSkin!,data: baseSkin!.data.slice() };
-  drawRgba(replay,bra!,0,0); drawRgba(replay,panties!,0,0);
-  expect(sha256(replay.data)).toBe(sha256(bodyFootprint!.data));
-  const context = { bodyId: 'heroine.s.body-v4',direction: 'S',baseSkin: baseSkin!,bodyFootprint: bodyFootprint!,regions: new Map([['chest',bra!],['pelvis',panties!]]),parts: new Map() };
-  for (const [regionId,surfaceId] of [['chest','chest.s.smooth-v1'],['pelvis','pelvis.s.smooth-v1']]) {
-    expect(() => assembleWardrobeSurface({ schemaVersion: 1,id: 'body.s.complete-surface-v1',bodyId: context.bodyId,direction: 'S',replacements: [{ regionId,surfaceId }] },context)).toThrow('WARDROBE_SURFACE_MISSING: ' + surfaceId);
-  }
-  const audit = await auditWardrobeFoundation(fileURLToPath(new URL('../../../',import.meta.url)));
-  expect(audit).toMatchObject({ completeSurfaceAvailable: false,arbitraryUnderwearCompatibilityApproved: false,missingSurfaces: ['chest.s.smooth-v1','pelvis.s.smooth-v1'] });
-  expect(audit.surfaces.every(s => s.missingBasePixels > 1000)).toBe(true);
-},30_000);

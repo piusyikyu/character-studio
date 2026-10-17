@@ -3,8 +3,8 @@
 MVP milestone 2 provides version-1 manifest/catalog parsers, indexed manifest and
 rig-profile lookups, coverage diagnostics and immutable RenderPlans. The new API
 uses `@character-studio/core` and Zod; it performs no file I/O, React work, PixiJS
-work or image rendering. The original `createAssetRegistry` API is preserved in
-`src/legacy.ts` for legacy consumers; new code uses `createManifestRegistry`.
+work or image rendering. Consumers use `createManifestRegistry`; the unused
+pre-CharacterRecipe registry and empty-preview backends have been removed.
 
 ```ts
 import { createCharacterRecipe } from '@character-studio/core';

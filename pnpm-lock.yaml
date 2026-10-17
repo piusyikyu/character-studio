@@ -84,18 +84,9 @@ importers:
 
   packages/asset-registry:
     dependencies:
-      '@character-studio/character-engine':
-        specifier: workspace:*
-        version: link:../character-engine
       '@character-studio/core':
         specifier: workspace:*
         version: link:../core
-      zod:
-        specifier: ^4.0.0
-        version: 4.6.5
-
-  packages/character-engine:
-    dependencies:
       zod:
         specifier: ^4.0.0
         version: 4.6.5
@@ -114,12 +105,6 @@ importers:
       fast-png:
         specifier: ^7.0.0
         version: 7.0.1
-
-  packages/renderer-canvas:
-    dependencies:
-      '@character-studio/character-engine':
-        specifier: workspace:*
-        version: link:../character-engine
 
   packages/renderer-detailed:
     dependencies:
@@ -142,20 +127,8 @@ importers:
         specifier: workspace:*
         version: link:../render-utils
 
-  packages/renderer-pixi:
-    dependencies:
-      '@character-studio/character-engine':
-        specifier: workspace:*
-        version: link:../character-engine
-      pixi.js:
-        specifier: ^8.0.0
-        version: 8.22.0
-
   tools/asset-validator:
     dependencies:
-      '@character-studio/asset-registry':
-        specifier: workspace:*
-        version: link:../../packages/asset-registry
       '@character-studio/core':
         specifier: workspace:*
         version: link:../../packages/core

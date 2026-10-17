@@ -33,5 +33,5 @@ source-over, retention masks, transparent output, palettes and repeated export.
 
 `renderer.canvas` exposes the native preview canvas. `exportPng(..., {
 transparent: true })` omits green fill while retaining the yellow label. Browser
-WebGL is required. The existing legacy `renderer-pixi` and main editor are unchanged.
+WebGL is required. The interactive editor uses this renderer for detailed previews.
 See [the demo procedure](../../tools/render-demo/README.md).

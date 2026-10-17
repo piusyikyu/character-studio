@@ -1,5 +1,0 @@
-{
-  "method": "duplicate-front-behind-skin",
-  "region": [[466, 263], [476, 263], [476, 287], [466, 287]],
-  "scope": "Clear the detached foreground fragment only where identical rear hair already exists behind head/neck skin. Retain native RGBA, rear hair, anatomy, SE and all previous artwork."
-}

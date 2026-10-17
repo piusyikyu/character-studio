@@ -109,6 +109,8 @@ The current MVP recipe, placeholder editor and heroine-v1 studies implement only
 part of this target. Five-level anatomy selection, full outfit authoring/fitting,
 underwear families, automatic seven-facing completion, pixel preparation and a
 complete production asset bundle are not established by the existing studies.
-The chest/pelvis surface and covered-underwear attempts remain unavailable as
-recorded in wardrobe-foundation-pending.json. Existing approvals, native source
-art and milestone boundaries remain unchanged. Step 6C remains open.
+The old heroine extraction studies have been retired on the alternative branch;
+their history remains in Git. The next proposed proof starts with coherent
+anatomy masters, then prepares compatible parts and material/shading maps.
+See [project-context.md](project-context.md). No production anatomy, fitted
+wardrobe or new milestone acceptance is implied. Step 6C remains open.

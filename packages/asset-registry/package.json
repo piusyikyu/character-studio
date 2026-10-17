@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "@character-studio/core": "workspace:*",
-    "@character-studio/character-engine": "workspace:*",
     "zod": "^4.0.0"
   }
 }

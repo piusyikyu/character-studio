@@ -11,6 +11,10 @@ prepare eight facings, complete reusable parts and supported fitted variants
 before editor assembly. AI/algorithm-assisted pixel preparation and a complete
 game-ready asset package are product requirements, not implemented guarantees.
 This clarification does not migrate the current recipe or advance milestones.
+The alternative authoring experiment begins with coherent complete anatomy
+masters and then derives reusable parts/material maps. Its relaxed standing
+pose is an authoring study; runtime target poses below remain unchanged until
+a separately approved contract migration.
 
 ## Objective
 One `CharacterRecipe` produces a *coherent identity* in two output families:

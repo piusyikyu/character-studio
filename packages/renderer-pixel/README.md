@@ -29,5 +29,5 @@ RGBA and PNG with the pinned codec and palette definitions.
 `scalePixelPreview` permits integer nearest-neighbour enlargement only; native PNG
 exports always retain their native dimensions. The read-only browser demo displays
 pixel images at exactly 2× with `image-rendering: pixelated`.
-The legacy `renderer-canvas` and main editor remain unchanged.
+The interactive editor uses this compositor for pixel previews and exports.
 See [the demo procedure](../../tools/render-demo/README.md).

@@ -120,7 +120,7 @@ controls, history, seed replay and JSON import/export; these six tests retain th
 platform-independent API validation and compatibility boundaries.
 
 TypeScript excludes DOM and ambient Node types. ESLint disallows React, PixiJS,
-Node built-ins, registry, renderer, and legacy character-engine imports. Core must
+Node built-ins, registry and renderer imports. Core must
 not decode images or own rendering. Read the architecture, asset specification,
 and MVP documents before implementing contracts.
 
@@ -134,7 +134,5 @@ coordinates, bounds, draw order and hidden rear eyes/front-only details. Registr
 resolution lives in `packages/asset-registry`. Both renderers now consume these
 plans with temporary native placeholder assets; see `tools/render-demo/README.md`.
 
-`packages/character-engine` remains the original working demo, whose Character
-and DOM renderer contracts are not the specified CharacterRecipe. Do not re-export
-that demo as core. The interactive editor has migrated to CharacterRecipe and RenderPlan; the legacy
-packages remain available independently.
+The interactive editor uses CharacterRecipe and RenderPlan. The unused original
+Character/DOM demo and empty-preview backends were removed on the alternative branch.
